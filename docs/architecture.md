@@ -252,6 +252,8 @@ flowchart LR
 
 ### Workflows
 
+All workflows use GitHub-hosted runners, which are free for public repositories. A self-hosted runner saves nothing here and exposes the machine to workflows triggered from forks.
+
 1. **`ci.yml`** (pull requests and pushes):
    - backend: `uv sync`, linter if configured, `uv run pytest` against a Postgres service container;
    - frontend: `npm ci`, `npm test`, `npm run build`;
