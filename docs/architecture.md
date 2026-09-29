@@ -59,7 +59,7 @@ sequenceDiagram
 Rules that matter for the infrastructure (full definitions in `docs/spec.md`):
 - **Keep until success:** a retry replaces findings and email only when it succeeds.
 - **Run check:** a task commits only if the contract is still `analyzing` with the task's `analysis_run_id`.
-- **Stale analysis rule:** an `analyzing` contract older than `ANALYSIS_STALE_AFTER_SECONDS` (default 900) becomes `failed` on its next read or change. This is the safety net for lost background tasks.
+- **Stale analysis rule:** an `analyzing` contract older than `ANALYSIS_STALE_AFTER_SECONDS` (default 600) becomes `failed` on its next read or change. This is the safety net for lost background tasks.
 
 ### Background work on Cloud Run
 
@@ -133,26 +133,24 @@ These objects are created by an Alembic migration; the role password comes from 
 
 Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free and developer tiers on 2026-08-16. The free tier now serves `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, and a Qwen model.
 
-| Use | Model (env var) | Why |
-|---|---|---|
-| Contract analysis + email | `openai/gpt-oss-120b` (`GROQ_ANALYSIS_MODEL`) | Strongest free model for clause reasoning. |
-| Text-to-SQL router + SQL + answer | `openai/gpt-oss-20b` (`GROQ_QUERY_MODEL`) | Fast; separate per-model quota from analysis. |
+**Decision: one model for everything, `openai/gpt-oss-120b`** (`GROQ_MODEL`), used for contract analysis, the email, and all text-to-SQL steps.
 
-Free-tier limits reported for these models: **30 requests/min, 1,000 requests/day, 8,000 tokens/min, 200,000 tokens/day**, per model.
+- Free-tier limits reported for `gpt-oss-120b` and `gpt-oss-20b` are the same: **30 requests/min, 1,000 requests/day, 8,000 tokens/min, 200,000 tokens/day**. The only Qwen model with published numbers (`qwen3-32b`) has a lower 6,000 tokens/min.
+- With equal limits, `gpt-oss-120b` is the stronger model on published reasoning benchmarks, so it wins.
+- It is a reasoning model: request `reasoning_effort: "low"` so reasoning tokens do not eat the per-minute budget.
+- Trade-off: analysis and history queries share one quota of 200,000 tokens/day. The limiter below covers both.
 
 ### Consequences for analysis
 
-- 100,000 characters is about 25,000 tokens: far above 8,000 tokens/min. A maximum-size contract cannot be sent in one request.
-- **Chunking:** split `source_text` on paragraph boundaries into chunks of about 12,000 characters (about 3,000 tokens). With the system prompt (about 1,500 tokens) and structured output (up to about 1,500 tokens), one request stays near 6,000 tokens: one chunk per minute.
-- A maximum-size contract takes about 9 chunks, so **about 9 minutes**. That is why `ANALYSIS_STALE_AFTER_SECONDS` defaults to 900, and why the frontend's 5-minute message says "taking longer than expected" rather than "failed".
-- The daily limit of 200,000 tokens allows about 30 chunks per day: 3 maximum-size contracts, or many short ones. Enough for a demo, not for real use.
+- The product limit is **30,000 characters** (about 7,500 tokens, about 10 pages; typical freelance contracts and SOWs are 3–10 pages). The limit follows from the provider limits: 100,000 characters would take about 9 minutes per contract and allow only about 3 such contracts per day.
+- Even 7,500 tokens plus the prompt and output exceed 8,000 tokens/min, so a long contract still cannot go in one request.
+- **Chunking:** split `source_text` on paragraph boundaries into chunks of up to about 12,000 characters (about 3,000 tokens). With the system prompt (about 1,500 tokens) and structured output including reasoning (up to about 2,000 tokens), one request stays near 6,500 tokens: one chunk per minute.
+- A maximum-size contract takes 3 chunks plus the email request, so **about 3–4 minutes**. That fits inside the frontend's 5-minute polling window; `ANALYSIS_STALE_AFTER_SECONDS` defaults to 600, which leaves room for rate-limit backoff.
+- Daily budget: a maximum-size contract costs about 22,000 tokens, so about 9 maximum-size contracts per day, or many more short ones, minus history queries. Enough for development and a demo.
 - A token-bucket limiter in the backend spaces requests below the per-minute limit; `429` responses are retried with exponential backoff (up to 5 attempts, honoring `retry-after`). When retries are exhausted, the analysis fails with the normal failure rule.
 - Structured output is validated with Pydantic; quotes are verified against `source_text` (spec: Quote verification). The email is generated in a final request from the verified `high` and `medium` findings.
 
-Options if the limits hurt (open decision, see [Open decisions](#open-decisions)):
-1. Lower the maximum contract length for the LLM phase (a product change in `docs/spec.md`).
-2. Use the CUAD/LoRA classifier to preselect candidate clauses and send only those to the LLM. This also gives the classifier a clear job in the pipeline.
-3. Move to a paid Groq tier.
+If the limits still hurt: use the CUAD/LoRA classifier to preselect candidate clauses and send only those to the LLM, or move to a paid Groq tier.
 
 ### Data policy
 
@@ -295,9 +293,9 @@ Cloud Run deploys **public** images from `ghcr.io` directly; private `ghcr.io` i
 | `MIGRATIONS_DATABASE_URL` | CI deploy jobs | yes | Direct Neon URL for Alembic. |
 | `JWT_SECRET` | backend | yes | HS256 signing key. |
 | `GROQ_API_KEY` | backend | yes | Groq access. |
-| `GROQ_ANALYSIS_MODEL`, `GROQ_QUERY_MODEL` | backend | no | Model IDs. |
+| `GROQ_MODEL` | backend | no | Model ID, default `openai/gpt-oss-120b`. |
 | `ANALYZER` | backend | no | `stub` or `groq`. |
-| `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 900. |
+| `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 600. |
 | `CORS_ORIGINS` | backend | no | Comma-separated exact origins (Pages dev/prod, `http://localhost:5173`). No wildcards. |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS` | backend | headers yes | Grafana Cloud OTLP. |
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |
@@ -361,10 +359,10 @@ This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes 
 
 ## Open decisions
 
-1. **Maximum contract length in the LLM phase.** Keep 100,000 characters (about 9 minutes and 3 maximum-size contracts per day on the free tier), or lower it. This is a product change in `docs/spec.md`.
-2. **CUAD/LoRA:** stretch goal with preselection (recommended), or dropped.
-3. **Background execution:** instance-based billing + stale rule (current decision), or Cloud Tasks from the start.
-4. **Groq models:** `gpt-oss-120b` / `gpt-oss-20b` as above, or a single model for both.
+1. **CUAD/LoRA:** stretch goal with preselection (recommended), or dropped.
+2. **Background execution:** instance-based billing + stale rule (current decision), or Cloud Tasks from the start.
+
+Decided on 2026-09-29: maximum contract length 30,000 characters (all phases); one Groq model, `openai/gpt-oss-120b`.
 
 ## Facts to re-verify
 
