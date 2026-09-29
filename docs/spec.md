@@ -28,8 +28,10 @@ This document is also the input prompt for Lovable, which generates the React fr
 - **Database MVP:** in-memory store first, then SQLAlchemy + PostgreSQL.
 - **Authentication:** email + password, JWT access token (HS256, 24 hours), one role (`user`).
 - **Analysis MVP:** fixed deterministic stub analyzer.
-- **Async execution MVP:** FastAPI `BackgroundTasks`.
+- **Async execution MVP:** FastAPI `BackgroundTasks`, behind an analysis-runner interface, with a stale-analysis rule so a lost task never leaves a contract stuck in `analyzing` (see [Stale analysis rule](#stale-analysis-rule)).
 - **Raw uploaded binary:** discarded immediately after text extraction; never persisted.
+
+Hosting, CI/CD, database operations, the LLM provider setup, and the agent/observability layers are described in `docs/architecture.md`. This document stays the source of truth for product behavior; `docs/architecture.md` must not contradict it.
 
 ### Product constraints
 
@@ -346,10 +348,12 @@ Layout:
   - `Showing first N rows` note when `truncated` is true;
   - collapsible `Show SQL` section with the `sql` string (monospace, read-only);
 - empty result: the answer text plus `No matching contracts.`;
+- clarification (`sql` is `null`): show only the `answer` text (a clarifying question), no table and no `Show SQL`;
 - a session-local list of the last 5 questions below the input (not persisted to the server).
 
 Error states:
 - `501 FEATURE_NOT_AVAILABLE`: `History search is coming soon.` with the chips still visible;
+- `422 QUERY_NOT_SUPPORTED` / `422 QUERY_TOO_EXPENSIVE`: show the API `message` next to the input, keep the question so the user can rephrase;
 - other errors: show the API `message`.
 
 ---
@@ -383,6 +387,8 @@ The initial implementation may use an in-memory repository, but the model must m
 | `created_at` | datetime (UTC) | required | Creation timestamp. |
 | `updated_at` | datetime (UTC) | required | Updated on every contract mutation/status change. |
 | `analyzed_at` | datetime (UTC) / nullable | null until first successful analysis; updated on each successful analysis | A failed retry keeps the previous successful timestamp. |
+| `analysis_started_at` | datetime (UTC) / nullable | set every time the contract enters `analyzing` | Used by the stale-analysis rule. Not exposed via API. |
+| `analysis_run_id` | UUID / nullable | new value every time the contract enters `analyzing` | Identifies the current analysis run; a background task may commit only if it still owns the current run. Not exposed via API. |
 
 #### Contract derived fields (not stored)
 
@@ -531,7 +537,7 @@ interface ContractPage {
 interface HistoryQueryResult {
   question: string;
   answer: string;
-  sql: string;
+  sql: string | null;          // null when the question needed clarification
   columns: string[];
   rows: (string | number | null)[][];
   row_count: number;
@@ -546,7 +552,9 @@ interface ApiError {
 }
 ```
 
-`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text` and `user_id` are never returned.
+`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text`, `user_id`, `analysis_started_at`, and `analysis_run_id` are never returned.
+
+In `HistoryQueryResult`, `sql` is `null` when no query was executed (the question needed clarification); `columns` and `rows` are then empty and `answer` holds the clarifying question.
 
 ---
 
@@ -565,7 +573,7 @@ Base URL comes from `VITE_API_URL`. All paths below are relative to it. Every pa
 | 7 | Rename contract | `PATCH /contracts/{id}` | JSON `{ title }` | `200` `ContractDetail` | `404 CONTRACT_NOT_FOUND`, `422 VALIDATION_ERROR` |
 | 8 | Retry analysis | `POST /contracts/{id}/retry` | — | `202` `ContractDetail` (status `analyzing`) | `404 CONTRACT_NOT_FOUND`, `409 ANALYSIS_IN_PROGRESS` |
 | 9 | Delete contract | `DELETE /contracts/{id}` | — | `204` no body | `404 CONTRACT_NOT_FOUND`, `409 CONTRACT_ANALYSIS_IN_PROGRESS` |
-| 10 | History query | `POST /query` | JSON `{ question }` | `200` `HistoryQueryResult` | `501 FEATURE_NOT_AVAILABLE` (real backend in MVP), `422 VALIDATION_ERROR` |
+| 10 | History query | `POST /query` | JSON `{ question }` | `200` `HistoryQueryResult` | `501 FEATURE_NOT_AVAILABLE` (real backend in MVP), `422 VALIDATION_ERROR`, `422 QUERY_NOT_SUPPORTED`, `422 QUERY_TOO_EXPENSIVE` |
 
 Logout is client-side only and has no API operation.
 
@@ -601,7 +609,7 @@ Any protected operation can also return `401 UNAUTHORIZED`.
 - `question`: 1–500 characters after trimming.
 - MVP real backend: validates auth and input, then returns `501 FEATURE_NOT_AVAILABLE` with message `History search is coming soon.`
 - MVP mock: returns a `HistoryQueryResult` built from the mock's own data (see [Mock behavior](#mock-behavior)).
-- Later phase: implemented by the guarded text-to-SQL agent; the response shape does not change.
+- Later phase: implemented by the guarded text-to-SQL agent; the response shape does not change. This endpoint is the **only** entry point to history querying: the MCP server calls it too (see [Agent/MCP layer](#agentmcp-layer)).
 
 ### Frontend polling
 
@@ -665,6 +673,10 @@ The mock is a complete, realistic, in-memory implementation of `ApiClient`, so t
   - `simulate-slow` → stays `analyzing` indefinitely, to exercise the 5-minute timeout;
   - `simulate-non-english` → upload rejected with `422 UNSUPPORTED_LANGUAGE`;
   - `simulate-scanned` → upload rejected with `422 PDF_TEXT_EXTRACTION_FAILED`.
+- History query test triggers (mock only), matched in the question:
+  - `simulate-unsupported` → `422 QUERY_NOT_SUPPORTED`;
+  - `simulate-expensive` → `422 QUERY_TOO_EXPENSIVE`;
+  - `simulate-clarify` → `200` with `sql: null` and a clarifying question as `answer`.
 - Retry and delete return `409` while `analyzing`, exactly like the real API.
 - Retry keeps previous findings/email until the new run succeeds; a retry that fails keeps them.
 - History query: answers each quick-prompt chip from the current in-memory data (e.g. counts and lists of the user's findings by category and date range), with a plausible `sql` string. For other questions it matches category keywords (`liability`, `payment`, `revision`, `scope`, `termination`, `IP`/`intellectual property`) and time words (`this month`, `last 30 days`); if nothing matches, it returns an empty result with the answer `I could not map this question to your contract history. Try one of the examples.`
@@ -906,6 +918,8 @@ Initial persisted state during the upload transaction. The backend immediately a
 
 A single background analysis task is active for the contract. Only one active analysis task is allowed per contract. `POST /contracts/{id}/retry` and `DELETE /contracts/{id}` return `409 Conflict` in this state.
 
+Entering `analyzing` (on upload or retry) sets `analysis_started_at` to the current time and `analysis_run_id` to a new UUID.
+
 #### `done`
 
 A complete analysis succeeded, including email generation when required by the findings. For zero/low-only findings, successful completion still produces `done` with `email_draft = null`.
@@ -919,15 +933,28 @@ The analysis workflow failed. Previous successful findings/email, if any, remain
 When a background analysis succeeds:
 1. generate findings;
 2. generate the email draft if required;
-3. atomically replace previous findings and email draft;
-4. set status to `done`;
-5. update `analyzed_at`.
+3. in one transaction, check that the contract is still `analyzing` with the same `analysis_run_id` the task started with; if not, discard the result and stop;
+4. atomically replace previous findings and email draft;
+5. set status to `done`;
+6. update `analyzed_at`.
 
 When analysis fails:
 - do not commit partial new findings;
 - do not commit a partial email draft;
 - keep previous successful findings/email and `analyzed_at` untouched;
-- set status to `failed`.
+- set status to `failed`, under the same `analysis_run_id` check.
+
+The run check means a task that finishes late (after the stale-analysis rule marked the contract `failed`, or after a newer retry started) can never overwrite newer state.
+
+### Stale analysis rule
+
+A background task can be lost without reporting back, for example when the server instance shuts down mid-analysis. Without a safeguard the contract would stay `analyzing` forever, and retry/delete would be blocked by `409`.
+
+- A contract is **stale** when its status is `analyzing` and `analysis_started_at` is older than `ANALYSIS_STALE_AFTER_SECONDS` (environment variable, default **900**, i.e. 15 minutes).
+- The check is lazy: before get, list, rename, retry, and delete read or change a contract, the backend moves any stale contract it touches to `failed`. No scheduler is needed.
+- Moving a stale contract to `failed` follows the failure rule: previous successful findings/email and `analyzed_at` stay untouched.
+- The frontend needs no special handling: after its 5-minute polling timeout, `Check again` eventually returns `failed`, and `Retry Analysis` becomes available.
+- The default is longer than the frontend timeout on purpose: a real LLM analysis of a maximum-size contract may legitimately take several minutes under provider rate limits (see `docs/architecture.md`).
 
 ---
 
@@ -967,7 +994,9 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Retry while analyzing | 409 | `ANALYSIS_IN_PROGRESS` | `An analysis is already running for this contract.` |
 | Contract not owned by user / not found | 404 | `CONTRACT_NOT_FOUND` | `Contract not found.` Never reveals whether another user's contract exists. |
 | History search not available on the real backend yet | 501 | `FEATURE_NOT_AVAILABLE` | `History search is coming soon.` |
-| Background analysis failure | — | — | Not an HTTP error: contract status becomes `failed`; the UI shows the failed state with Retry Analysis. |
+| Question is off-topic, unsafe, or cannot be answered from contract history | 422 | `QUERY_NOT_SUPPORTED` | `This question can't be answered from your contract history. Try rephrasing it.` (text-to-SQL phase; emulated by the mock) |
+| Generated query exceeds the cost check or the statement timeout | 422 | `QUERY_TOO_EXPENSIVE` | `This question is too broad. Try narrowing it down, for example to a date range.` (text-to-SQL phase; emulated by the mock) |
+| Background analysis failure or stale analysis | — | — | Not an HTTP error: contract status becomes `failed`; the UI shows the failed state with Retry Analysis. |
 | Unexpected server error | 500 | `INTERNAL_ERROR` | `Something went wrong. Please try again.` |
 
 ### Validation and normalization
@@ -1042,6 +1071,7 @@ Risk findings and email draft are committed together. If either analysis or requ
 - Text-to-SQL history agent (backend).
 - LangGraph router.
 - Custom MCP server and `query_risk_history` tool.
+- On-call agent.
 - Agent memory or multi-agent orchestration.
 
 ### Infrastructure and operations
@@ -1062,16 +1092,19 @@ Deferred until the core application works end to end locally:
 
 ### LLM analyzer (Groq)
 
-Replace the fixed stub analyzer with an LLM-backed analyzer using the **Groq API**.
+Replace the fixed stub analyzer with an LLM-backed analyzer using the **Groq API**. The model is configured by environment variable; model choice, free-tier limits, and chunk sizes are in `docs/architecture.md`.
 
 Requirements:
 - Input: persisted `source_text`.
 - Output: structured JSON only.
 - Validate output with Pydantic before persistence.
 - Output must contain zero or more findings using the six MVP categories and the deterministic severity matrix.
-- The email must be produced as structured data and validated before database commit.
-- Failed validation or provider errors use the same transactional failure behavior as the MVP analysis.
+- **Quote verification:** every `quoted_text` must occur in `source_text` after normalizing whitespace and quote/dash characters. A finding whose quote is not found is dropped (and logged), not persisted. Dropping a finding does not fail the analysis.
+- Long contracts are analyzed in chunks that fit the provider's per-request and per-minute token limits; findings from all chunks are merged and exact duplicate quotes are removed.
+- The email is generated after quote verification, from the final set of `high` and `medium` findings, as structured data validated before commit.
+- Provider rate-limit responses are retried with backoff inside the task. When retries are exhausted, or on failed validation or other provider errors, the analysis fails with the same transactional failure behavior as the MVP.
 - The frontend API contract remains unchanged.
+- Before this analyzer is enabled, the Upload / Analyze screen must also state that contract text is sent to a third-party AI provider for analysis, and `docs/ai-data-policy.md` must describe what is sent, to whom, and what is stored.
 
 The LLM prompt must explicitly encode:
 - strict contractual-trigger rule;
@@ -1103,27 +1136,35 @@ Example question:
 
 > Which contracts had uncapped liability this month?
 
-Architecture:
-- a text-to-SQL agent translates the question into SQL;
-- queries run against the user's contract/finding history;
-- database credentials used by the agent are read-only;
-- only a **single `SELECT` statement** is allowed;
-- a server-side row limit (100) is enforced and reported through `truncated`;
-- multiple statements, DDL/DML, writes, constructs that violate the safety policy, and unsupported SQL are rejected;
-- user isolation is enforced so the generated query can never access another user's records;
-- generated SQL is validated/parsed before execution;
-- the answer is based only on query results.
+Flow inside `POST /query`, implemented as a **LangGraph** graph:
+1. **Router** classifies the question as `history_query`, `needs_clarification`, or `not_supported` (off-topic, unsafe, or asking for data outside the user's contract history).
+   - `needs_clarification` → `200` with `sql: null` and a clarifying question as `answer`.
+   - `not_supported` → `422 QUERY_NOT_SUPPORTED`.
+2. **SQL generation** translates a `history_query` into one SQL statement over the allowed views (below).
+3. **Guardrails** validate and execute it (below). A rejected statement → `422 QUERY_NOT_SUPPORTED`; a statement over the cost check or the timeout → `422 QUERY_TOO_EXPENSIVE`.
+4. **Answer** writes a short answer based only on the returned rows.
 
-Rejected or unsafe questions return `422` with a dedicated error code, to be added to the error table when this phase starts.
+Guardrails, applied in this order. The first three are enforced by the database. Read-only access and the timeout hold even if every application check is bypassed; user isolation additionally relies on guardrail 5 blocking `set_config`:
+1. **Read-only role.** Queries run as a dedicated database role (`agent_readonly`) that can only `SELECT`, and only from the allowed views.
+2. **User isolation.** The allowed views (or row-level security policies behind them) filter every row by the current user, taken from a transaction-local setting that the backend sets from the authenticated JWT (`SET LOCAL app.user_id = ...`). The generated SQL never supplies the user ID, so a query cannot reach another user's rows.
+3. **Statement timeout** of 5 seconds on the role.
+4. **Single SELECT.** The SQL is parsed into a syntax tree before execution; exactly one `SELECT` statement is allowed. Multiple statements, DDL/DML, writes, and locking clauses are rejected.
+5. **Allowlist.** Only the allowed views may be referenced, and only allowlisted functions may be called (aggregates, date/time, and string functions). Everything else is rejected, including system catalogs (`pg_catalog`, `information_schema`), `set_config` and `current_setting` (which could change the isolation setting), `pg_sleep`, `dblink`, and file or large-object functions.
+6. **Row limit.** A `LIMIT` of at most 100 is enforced (added or lowered); hitting it sets `truncated: true`.
+7. **Cost check.** `EXPLAIN` estimated cost above a configured threshold is rejected before execution.
+
+Allowed views expose only non-sensitive history fields: contract `id`, `title`, `file_type`, `status`, `created_at`, `analyzed_at`, and finding `category`, `risk_level`, `quoted_text`. They never expose `source_text`, users' emails, or password hashes.
+
+The question text and query results are sent to the LLM provider; this is covered by `docs/ai-data-policy.md`.
 
 ### Agent/MCP layer
 
-Add:
-- a **LangGraph router**;
-- a custom MCP server;
-- exactly one MCP tool: `query_risk_history`.
+Add a custom MCP server with exactly one tool: `query_risk_history(question: str)`.
 
-The MCP tool exposes the guarded history-query capability, not direct unrestricted database access.
+- The MCP server is a **thin client of `POST /query`**. It holds no database credentials and runs no SQL itself, so all guardrails and user isolation stay in one place on the backend.
+- It authenticates as one user with that user's access token, supplied through an environment variable when the MCP server is started.
+- The tool returns the `HistoryQueryResult` as structured data. `401` and `422` errors are returned to the MCP client as tool errors with the API `message`.
+- Transport: stdio (local MCP clients such as Claude Code or Claude Desktop).
 
 The agent layer must preserve:
 - authenticated user isolation;
@@ -1134,20 +1175,26 @@ The agent layer must preserve:
 ### Deployment
 
 After the local MVP is stable:
-- containerize the backend/frontend as appropriate with Docker;
-- add CI/CD;
-- deploy to a low-cost/free serverless hosting target, with Cloud Run as the planned deployment option;
+- containerize the backend with Docker;
+- add CI/CD with separate dev and prod environments;
+- deploy the backend to Google Cloud Run and the frontend to Cloudflare Pages, with Neon Postgres as the database;
 - keep environment-specific configuration and secrets outside source control;
 - add production hardening after functional MVP validation.
+
+Details: `docs/architecture.md`.
 
 ### Observability
 
 After deployment work:
 - instrument backend operations with **OpenTelemetry**;
 - capture traces for upload, extraction, analysis, database operations, and failures;
-- expose operational dashboards in **Grafana**;
-- monitor analysis latency, failure rates, API errors, and background-task failures;
+- expose operational dashboards and alerts in **Grafana**;
+- monitor analysis latency, failure rates, stale analyses, API errors, and background-task failures;
 - preserve application-level error codes for correlation with traces/logs.
+
+### On-call agent
+
+A LangGraph on-call agent reacts to Grafana alerts: it gathers logs, traces, and recent commits, reproduces the failure, and either opens a pull request with a minimal fix and passing tests, or explains why the alert is a false positive. It never commits to `main`, never deploys, and never changes infrastructure. Boundaries are documented in `docs/permissions.md`; the design is in `docs/architecture.md`.
 
 ---
 
@@ -1171,14 +1218,15 @@ The MVP is complete when all of the following are true:
 14. Low-only and zero-finding analyses produce `email_draft = null`.
 15. Analysis and email persistence are atomic.
 16. Retries keep the previous findings/email until the new analysis succeeds; failed retries preserve them.
-17. A user can rename a contract up to 250 characters.
-18. A user can permanently delete a done/failed contract; cascading findings/email are deleted.
-19. Delete and retry return `409` during `analyzing`.
-20. Contract History is server-side paginated (`page_size` max 50) and sorted newest first.
-21. A `401` on any protected call clears the token, shows the session-expired message, and redirects to Login.
-22. All API calls go through `src/services/api.ts`; the five screens (Login / Register, Contract History, Upload / Analyze, Contract Details, History Search) work fully against the mock, and the first four also work against the real API.
-23. History Search shows quick-prompt chips, answers from mock data in mock mode, and shows `History search is coming soon.` on the real backend's `501`.
-24. All backend errors use the standardized `{ "error": { "code", "message" } }` envelope.
-25. The frontend shows the required legal disclaimer on Upload / Analyze and Contract Details.
-26. The Client Email section has a working `Copy to Clipboard` button.
-27. `openapi.yaml` describes the frontend-facing API contract without exposing backend implementation details.
+17. A contract stuck in `analyzing` longer than `ANALYSIS_STALE_AFTER_SECONDS` becomes `failed` on its next read or change, keeping previous results; a task that finishes after its run was superseded commits nothing.
+18. A user can rename a contract up to 250 characters.
+19. A user can permanently delete a done/failed contract; cascading findings/email are deleted.
+20. Delete and retry return `409` during `analyzing`.
+21. Contract History is server-side paginated (`page_size` max 50) and sorted newest first.
+22. A `401` on any protected call clears the token, shows the session-expired message, and redirects to Login.
+23. All API calls go through `src/services/api.ts`; the five screens (Login / Register, Contract History, Upload / Analyze, Contract Details, History Search) work fully against the mock, and the first four also work against the real API.
+24. History Search shows quick-prompt chips, answers from mock data in mock mode (including the clarification and `422` cases), and shows `History search is coming soon.` on the real backend's `501`.
+25. All backend errors use the standardized `{ "error": { "code", "message" } }` envelope.
+26. The frontend shows the required legal disclaimer on Upload / Analyze and Contract Details.
+27. The Client Email section has a working `Copy to Clipboard` button.
+28. `openapi.yaml` describes the frontend-facing API contract without exposing backend implementation details.
