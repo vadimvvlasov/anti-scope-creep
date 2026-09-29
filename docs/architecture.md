@@ -359,12 +359,16 @@ This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes 
 
 ---
 
-## Open decisions
+## Decisions
 
-1. **CUAD/LoRA:** stretch goal with preselection (recommended), or dropped.
-2. **Background execution:** instance-based billing + stale rule (current decision), or Cloud Tasks from the start.
+All decided on 2026-09-29; no open decisions right now.
 
-Decided on 2026-09-29: maximum contract length 30,000 characters (all phases); one Groq model, `openai/gpt-oss-120b`.
+| Topic | Decision | Revisit when |
+|---|---|---|
+| Maximum contract length | 30,000 characters, all phases | Moving to a paid LLM tier, or LoRA preselection cuts tokens per contract |
+| LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL | Groq changes free-tier models or limits |
+| CUAD/LoRA + MLflow | **Stretch goal**, built only after phases 1–6. Role: preselect candidate clauses before the LLM | Core phases are done before the capstone deadline |
+| Background execution | **Option A:** in-process `BackgroundTasks`, Cloud Run instance-based billing (`--no-cpu-throttling`), `min-instances=0`, plus the stale-analysis rule. Cloud Tasks is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics), or instance-based billing leaves the free tier |
 
 ## Facts to re-verify
 

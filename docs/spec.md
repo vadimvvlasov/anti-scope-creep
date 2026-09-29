@@ -1115,9 +1115,11 @@ The LLM prompt must explicitly encode:
 - concise plain-English explanations;
 - negotiation email rules.
 
-### CUAD / LoRA classifier
+### CUAD / LoRA classifier (stretch goal)
 
-Introduce a small fine-tuned **LoRA classifier** trained on the CUAD legal dataset.
+Built only if time remains after the core phases (see `docs/architecture.md`, Decisions).
+
+Introduce a small fine-tuned **LoRA classifier** trained on the CUAD legal dataset. Its main job is to preselect candidate clauses so that only those are sent to the LLM analyzer, which reduces token use.
 
 Goals:
 - score clause/category candidates;
