@@ -35,6 +35,11 @@ Frontend:
 - `npm run dev` - start the dev server
 - `npm test` - run frontend tests
 
+Scripts (Python standard library only):
+
+- `python3 scripts/build_lovable_prompt.py -o <FILE>` - build the Lovable prompt from `docs/spec.md`
+- `python3 -m unittest discover -s scripts` - run script tests
+
 ## Workflow
 
 - Before changing code, create a feature branch (`git checkout -b feat/<short-description>`).
