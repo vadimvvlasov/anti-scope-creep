@@ -292,7 +292,13 @@ export class MockApiClient implements ApiClient {
     const user = this.currentUser();
     const page = params.page ?? 1;
     const pageSize = params.page_size ?? 20;
-    if (!Number.isInteger(page) || page < 1 || !Number.isInteger(pageSize) || pageSize < 1 || pageSize > 50) {
+    if (
+      !Number.isInteger(page) ||
+      page < 1 ||
+      !Number.isInteger(pageSize) ||
+      pageSize < 1 ||
+      pageSize > 50
+    ) {
       throw new ApiError(422, "VALIDATION_ERROR", "Invalid pagination parameters.");
     }
     const mine = this.contracts.filter((c) => c.user_id === user.id);
@@ -407,10 +413,7 @@ export class MockApiClient implements ApiClient {
     if (lower.includes("how many") && (lower.includes("high") || lower.includes("finding"))) {
       const count = mine
         .filter(inRange)
-        .reduce(
-          (acc, c) => acc + c.findings.filter((f) => f.risk_level === "high").length,
-          0,
-        );
+        .reduce((acc, c) => acc + c.findings.filter((f) => f.risk_level === "high").length, 0);
       return {
         question: q,
         answer: `You had ${count} high-risk finding${count === 1 ? "" : "s"}${
@@ -427,7 +430,12 @@ export class MockApiClient implements ApiClient {
     }
 
     if (lower.includes("payment") && (lower.includes("30") || lower.includes("longer"))) {
-      return this.contractsWithCategory(q, mine.filter(inRange), "unfavorable_payment_terms", sinceDays);
+      return this.contractsWithCategory(
+        q,
+        mine.filter(inRange),
+        "unfavorable_payment_terms",
+        sinceDays,
+      );
     }
 
     if (category) {

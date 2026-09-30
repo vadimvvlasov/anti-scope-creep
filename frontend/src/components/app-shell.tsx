@@ -21,7 +21,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-20 border-b border-border bg-card/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4">
-          <Link to="/history" className="flex items-center gap-2 font-display text-sm font-semibold">
+          <Link
+            to="/history"
+            className="flex items-center gap-2 font-display text-sm font-semibold"
+          >
             <ShieldCheck className="size-5 text-accent" />
             Anti-Scope Creep
           </Link>

@@ -18,8 +18,7 @@ const makeClient = () => {
 const login = async (client: MockApiClient, email = DEMO_EMAIL) =>
   client.login(email, DEMO_PASSWORD);
 
-const file = (name: string, size = 1000) =>
-  ({ name, size }) as unknown as File;
+const file = (name: string, size = 1000) => ({ name, size }) as unknown as File;
 
 beforeEach(() => {
   vi.useRealTimers();

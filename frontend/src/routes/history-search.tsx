@@ -5,11 +5,7 @@ import { Search, ChevronDown } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useRequireAuth } from "@/hooks/useAuth";
 import { api, isApiError, type HistoryQueryResult } from "@/services/api";
 

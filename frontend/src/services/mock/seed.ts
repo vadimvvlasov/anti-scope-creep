@@ -204,8 +204,7 @@ const CLAUSES: Record<RiskCategory, Record<RiskLevel, ClauseSeed>> = {
         "The indemnity is broad and has no financial ceiling stated, so your exposure may be far larger than the fee.",
     },
     low: {
-      quoted_text:
-        "Liability under this Agreement is limited to three times the total fees paid.",
+      quoted_text: "Liability under this Agreement is limited to three times the total fees paid.",
       explanation:
         "Liability is capped, but at a multiple of the fee rather than at the fee itself.",
     },

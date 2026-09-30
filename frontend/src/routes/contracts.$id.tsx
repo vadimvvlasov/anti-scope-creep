@@ -18,12 +18,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useRequireAuth } from "@/hooks/useAuth";
-import {
-  api,
-  isApiError,
-  RISK_CATEGORY_LABELS,
-  type ContractDetail,
-} from "@/services/api";
+import { api, isApiError, RISK_CATEGORY_LABELS, type ContractDetail } from "@/services/api";
 
 export const Route = createFileRoute("/contracts/$id")({
   head: () => ({

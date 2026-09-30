@@ -90,9 +90,7 @@ function NewAnalysisPage() {
     setBusy(true);
     try {
       const contract = await api.createContract(
-        mode === "file"
-          ? { file, title: trimmedTitle || null }
-          : { text, title: trimmedTitle },
+        mode === "file" ? { file, title: trimmedTitle || null } : { text, title: trimmedTitle },
       );
       void navigate({ to: "/contracts/$id", params: { id: contract.id } });
     } catch (err) {
