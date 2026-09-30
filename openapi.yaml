@@ -1,0 +1,895 @@
+openapi: 3.1.0
+
+info:
+  title: Anti-Scope Creep API
+  version: 0.1.0
+  summary: Flags risky clauses in freelance contracts and drafts a client email.
+  description: |
+    API contract between the Anti-Scope Creep frontend (`frontend/src/services/api.ts`)
+    and the FastAPI backend. Product behavior is defined in `docs/spec.md`.
+
+    Conventions:
+    - All IDs are UUID strings.
+    - All timestamps are ISO 8601 strings in UTC (e.g. `2026-09-29T10:15:00Z`).
+    - JSON field names are `snake_case`.
+    - Nullable fields are always present with `null`, never omitted.
+    - Every error uses the envelope `{ "error": { "code", "message" } }`. Clients branch
+      on `code`, never on `message`. Messages are safe to show to end users.
+
+    Authentication: every operation except `POST /auth/register` and `POST /auth/login`
+    requires `Authorization: Bearer <token>` (JWT, HS256, 24-hour lifetime). Any protected
+    operation can return `401 UNAUTHORIZED`. Logout is client-side only and has no API
+    operation.
+
+    Ownership: a contract that belongs to another user is indistinguishable from a
+    missing one and returns `404 CONTRACT_NOT_FOUND`, never `403`.
+
+servers:
+  - url: http://localhost:8000
+    description: Local development (frontend `VITE_API_URL`)
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: auth
+    description: Registration, login, and the current user.
+  - name: contracts
+    description: Contract upload, analysis results, history, rename, retry, and delete.
+  - name: query
+    description: Natural-language questions over the user's contract history.
+
+paths:
+  /auth/register:
+    post:
+      tags: [auth]
+      operationId: register
+      summary: Register a new user
+      description: |
+        Creates a user and returns an access token, so the new user is logged in
+        immediately. The email is trimmed and lower-cased before the uniqueness check.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: User created and logged in.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "409":
+          description: An account with this email already exists.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: EMAIL_ALREADY_EXISTS
+                  message: An account with this email already exists.
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /auth/login:
+    post:
+      tags: [auth]
+      operationId: login
+      summary: Log in with email and password
+      description: |
+        Returns a JWT access token. A wrong email or password returns
+        `401 INVALID_CREDENTIALS`; the frontend shows it inline on the Login form and does
+        not treat it as an expired session.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Logged in.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Wrong email or password.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: INVALID_CREDENTIALS
+                  message: Invalid email or password.
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /auth/me:
+    get:
+      tags: [auth]
+      operationId: getMe
+      summary: Get the current user
+      description: Called on app load when a token is stored, to validate it.
+      responses:
+        "200":
+          description: The authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /contracts:
+    post:
+      tags: [contracts]
+      operationId: createContract
+      summary: Upload a contract and start analysis
+      description: |
+        Accepts exactly one of `file` or `text`. The backend validates the input, extracts
+        the text, discards the uploaded binary, stores the contract, moves it to
+        `analyzing`, and schedules the analysis in the background.
+
+        The response is the new contract with `status: "analyzing"`, `analyzed_at: null`,
+        `risk_summary: null`, `findings: []`, and `email_draft: null`. The client then polls
+        `GET /contracts/{id}` every 2 seconds until the status is `done` or `failed`.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateContractRequest"
+            encoding:
+              file:
+                contentType: application/pdf, text/plain
+      responses:
+        "202":
+          description: Contract accepted; analysis is running.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContractDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: |
+            Invalid contract input. Possible codes: `VALIDATION_ERROR`,
+            `INVALID_CONTRACT_INPUT`, `INVALID_FILE_FORMAT`, `FILE_TOO_LARGE`,
+            `CONTRACT_TOO_LARGE`, `ENCRYPTED_PDF_NOT_SUPPORTED`, `UNPARSEABLE_PDF`,
+            `PDF_TEXT_EXTRACTION_FAILED`, `UNSUPPORTED_LANGUAGE`, `LANGUAGE_UNDETERMINED`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                VALIDATION_ERROR:
+                  summary: Title missing for pasted text, or title too long
+                  value:
+                    error:
+                      code: VALIDATION_ERROR
+                      message: Title is required for pasted text.
+                INVALID_CONTRACT_INPUT:
+                  summary: Not exactly one of file / text
+                  value:
+                    error:
+                      code: INVALID_CONTRACT_INPUT
+                      message: Provide either a file or pasted text, not both.
+                INVALID_FILE_FORMAT:
+                  summary: Wrong extension, MIME type, or file signature
+                  value:
+                    error:
+                      code: INVALID_FILE_FORMAT
+                      message: Only PDF and TXT files are supported.
+                FILE_TOO_LARGE:
+                  summary: File over 5 MB
+                  value:
+                    error:
+                      code: FILE_TOO_LARGE
+                      message: The file is larger than 5 MB.
+                CONTRACT_TOO_LARGE:
+                  summary: Text over 30,000 characters
+                  value:
+                    error:
+                      code: CONTRACT_TOO_LARGE
+                      message: The contract text is longer than 30,000 characters.
+                ENCRYPTED_PDF_NOT_SUPPORTED:
+                  summary: Password-protected or encrypted PDF
+                  value:
+                    error:
+                      code: ENCRYPTED_PDF_NOT_SUPPORTED
+                      message: Password-protected PDFs are not supported.
+                UNPARSEABLE_PDF:
+                  summary: Corrupt or unparseable PDF
+                  value:
+                    error:
+                      code: UNPARSEABLE_PDF
+                      message: The PDF could not be read.
+                PDF_TEXT_EXTRACTION_FAILED:
+                  summary: Scanned or image-only PDF
+                  value:
+                    error:
+                      code: PDF_TEXT_EXTRACTION_FAILED
+                      message: No text could be extracted. Scanned PDFs are not supported.
+                UNSUPPORTED_LANGUAGE:
+                  summary: Non-English contract
+                  value:
+                    error:
+                      code: UNSUPPORTED_LANGUAGE
+                      message: Only English contracts are supported in the MVP
+                LANGUAGE_UNDETERMINED:
+                  summary: Language cannot be reliably classified
+                  value:
+                    error:
+                      code: LANGUAGE_UNDETERMINED
+                      message: The contract language could not be determined. Please provide more text.
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+    get:
+      tags: [contracts]
+      operationId: listContracts
+      summary: List the user's contracts
+      description: |
+        Server-side paginated, sorted by `created_at` descending (newest first). Only the
+        authenticated user's contracts are included. A `page` beyond `total_pages` returns
+        an empty `items` list.
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: Page number, starting at 1.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          required: false
+          description: Items per page.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: One page of contracts.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContractPage"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /contracts/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ContractId"
+
+    get:
+      tags: [contracts]
+      operationId: getContract
+      summary: Get a contract with its analysis results
+      description: |
+        Findings, risk summary, and email draft always reflect the last successful
+        analysis, whatever the current status is. Polled every 2 seconds while the
+        contract is `analyzing`.
+      responses:
+        "200":
+          description: The contract.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContractDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/ContractNotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+    patch:
+      tags: [contracts]
+      operationId: renameContract
+      summary: Rename a contract
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RenameContractRequest"
+      responses:
+        "200":
+          description: The renamed contract.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContractDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/ContractNotFound"
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+    delete:
+      tags: [contracts]
+      operationId: deleteContract
+      summary: Permanently delete a contract
+      description: |
+        Allowed when status is `done` or `failed`. Deletes the contract with its findings
+        and email draft. There is no soft delete.
+      responses:
+        "204":
+          description: Contract deleted. No body.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/ContractNotFound"
+        "409":
+          description: The contract is being analyzed and cannot be deleted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: CONTRACT_ANALYSIS_IN_PROGRESS
+                  message: This contract cannot be deleted while analysis is running.
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /contracts/{id}/retry:
+    parameters:
+      - $ref: "#/components/parameters/ContractId"
+
+    post:
+      tags: [contracts]
+      operationId: retryAnalysis
+      summary: Re-run analysis on a contract
+      description: |
+        Allowed when status is `done` or `failed`. Reuses the stored contract text and the
+        same contract ID. Existing findings and email draft are kept until the new analysis
+        succeeds; a failed retry preserves them. No request body.
+      responses:
+        "202":
+          description: Analysis restarted; the contract is returned in status `analyzing`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContractDetail"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/ContractNotFound"
+        "409":
+          description: An analysis is already running for this contract.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: ANALYSIS_IN_PROGRESS
+                  message: An analysis is already running for this contract.
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /query:
+    post:
+      tags: [query]
+      operationId: queryHistory
+      summary: Ask a natural-language question about the user's contract history
+      description: |
+        MVP backend: validates authentication and input, then returns
+        `501 FEATURE_NOT_AVAILABLE`. The `200` response shape is the contract for the
+        frontend mock and for the later text-to-SQL phase; it does not change when that
+        phase ships.
+
+        When the question needs clarification, the response is `200` with `sql: null`,
+        empty `columns` and `rows`, and the clarifying question in `answer`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HistoryQueryRequest"
+      responses:
+        "200":
+          description: Answer and result rows.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoryQueryResult"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: |
+            The question is invalid or cannot be answered. Possible codes:
+            `VALIDATION_ERROR`, `QUERY_NOT_SUPPORTED`, `QUERY_TOO_EXPENSIVE`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                VALIDATION_ERROR:
+                  summary: Question empty or over 500 characters
+                  value:
+                    error:
+                      code: VALIDATION_ERROR
+                      message: Ask a question between 1 and 500 characters.
+                QUERY_NOT_SUPPORTED:
+                  summary: Off-topic, unsafe, or not answerable from contract history
+                  value:
+                    error:
+                      code: QUERY_NOT_SUPPORTED
+                      message: This question can't be answered from your contract history. Try rephrasing it.
+                QUERY_TOO_EXPENSIVE:
+                  summary: Query exceeds the cost check or the statement timeout
+                  value:
+                    error:
+                      code: QUERY_TOO_EXPENSIVE
+                      message: This question is too broad. Try narrowing it down, for example to a date range.
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "501":
+          description: History search is not available on the backend yet (MVP).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: FEATURE_NOT_AVAILABLE
+                  message: History search is coming soon.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: HS256 JWT access token from register or login, valid for 24 hours.
+
+  parameters:
+    ContractId:
+      name: id
+      in: path
+      required: true
+      description: Contract ID.
+      schema:
+        type: string
+        format: uuid
+
+  responses:
+    Unauthorized:
+      description: Missing, invalid, or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: Your session has expired. Please log in again.
+    ContractNotFound:
+      description: The contract does not exist or belongs to another user.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: CONTRACT_NOT_FOUND
+              message: Contract not found.
+    ValidationError:
+      description: Invalid request structure or field value.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: VALIDATION_ERROR
+              message: Password must be at least 8 characters.
+    InternalError:
+      description: Unexpected server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: INTERNAL_ERROR
+              message: Something went wrong. Please try again.
+
+  schemas:
+    RiskLevel:
+      type: string
+      enum: [high, medium, low]
+
+    ContractStatus:
+      type: string
+      description: |
+        `uploaded` is the initial persisted state inside the upload transaction; clients
+        normally never see it.
+      enum: [uploaded, analyzing, done, failed]
+
+    RiskCategory:
+      type: string
+      enum:
+        - scope_creep
+        - unlimited_revisions
+        - one_sided_termination
+        - ip_transfer_before_payment
+        - uncapped_liability
+        - unfavorable_payment_terms
+
+    RegisterRequest:
+      type: object
+      required: [email, password]
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+          description: Trimmed and lower-cased by the server; must be unique.
+          examples: [demo@example.com]
+        password:
+          type: string
+          format: password
+          minLength: 8
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          minLength: 1
+          description: Trimmed and lower-cased by the server before lookup.
+          examples: [demo@example.com]
+        password:
+          type: string
+          format: password
+          minLength: 1
+
+    User:
+      type: object
+      required: [id, email, role, created_at]
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          const: user
+        created_at:
+          type: string
+          format: date-time
+
+    AuthResponse:
+      type: object
+      required: [access_token, token_type, expires_in, user]
+      additionalProperties: false
+      properties:
+        access_token:
+          type: string
+          description: "JWT (HS256). Send as `Authorization: Bearer <token>`."
+        token_type:
+          type: string
+          const: bearer
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds.
+          examples: [86400]
+        user:
+          $ref: "#/components/schemas/User"
+
+    CreateContractRequest:
+      type: object
+      description: |
+        Exactly one of `file` or `text` must be present; otherwise
+        `422 INVALID_CONTRACT_INPUT`.
+      properties:
+        file:
+          type: string
+          format: binary
+          description: |
+            `.pdf` or `.txt` file, at most 5 MB (5,242,880 bytes). Extension, MIME type, and
+            file signature are all checked. The extracted text must be 1–30,000 characters.
+        text:
+          type: string
+          description: |
+            Pasted contract text, 1–30,000 characters after normalization. Longer text
+            returns `422 CONTRACT_TOO_LARGE`.
+        title:
+          type: string
+          maxLength: 250
+          description: |
+            1–250 characters after trimming. Required with `text`. Optional with `file`;
+            defaults to the original filename.
+
+    RenameContractRequest:
+      type: object
+      required: [title]
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 250
+          description: New title, 1–250 characters after trimming.
+
+    RiskSummary:
+      type: object
+      description: Derived from findings. Overall level uses `high > medium > low`; zero findings is `low`.
+      required: [overall_risk_level, high_count, medium_count, low_count]
+      additionalProperties: false
+      properties:
+        overall_risk_level:
+          $ref: "#/components/schemas/RiskLevel"
+        high_count:
+          type: integer
+          minimum: 0
+        medium_count:
+          type: integer
+          minimum: 0
+        low_count:
+          type: integer
+          minimum: 0
+
+    ContractSummary:
+      type: object
+      required:
+        - id
+        - title
+        - filename
+        - file_type
+        - file_size
+        - status
+        - created_at
+        - updated_at
+        - analyzed_at
+        - overall_risk_level
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          minLength: 1
+          maxLength: 250
+        filename:
+          type: string
+          maxLength: 255
+          description: Original filename; empty string `""` for pasted text.
+        file_type:
+          type: string
+          enum: [pdf, txt]
+          description: Pasted text uses `txt`.
+        file_size:
+          type: [integer, "null"]
+          minimum: 0
+          maximum: 5242880
+          description: Uploaded file size in bytes; `null` for pasted text.
+        status:
+          $ref: "#/components/schemas/ContractStatus"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        analyzed_at:
+          type: [string, "null"]
+          format: date-time
+          description: Time of the last successful analysis; `null` until the first one.
+        overall_risk_level:
+          description: '`null` until the first successful analysis.'
+          oneOf:
+            - $ref: "#/components/schemas/RiskLevel"
+            - type: "null"
+
+    Finding:
+      type: object
+      required: [id, category, risk_level, quoted_text, explanation]
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        category:
+          $ref: "#/components/schemas/RiskCategory"
+        risk_level:
+          $ref: "#/components/schemas/RiskLevel"
+        quoted_text:
+          type: string
+          minLength: 1
+          maxLength: 10000
+          description: Exact clause text from the analyzed contract.
+        explanation:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Short plain-English explanation.
+
+    EmailDraft:
+      type: object
+      required: [id, subject, body, created_at]
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        subject:
+          type: string
+          minLength: 1
+          maxLength: 200
+        body:
+          type: string
+          minLength: 1
+          maxLength: 5000
+          description: Plain text; bullets use `- `.
+        created_at:
+          type: string
+          format: date-time
+
+    ContractDetail:
+      description: |
+        A contract with the results of its last successful analysis. `risk_summary`,
+        `findings`, and `email_draft` reflect that analysis whatever the current status is.
+      allOf:
+        - $ref: "#/components/schemas/ContractSummary"
+        - type: object
+          required: [risk_summary, findings, email_draft]
+          properties:
+            risk_summary:
+              description: '`null` until the first successful analysis.'
+              oneOf:
+                - $ref: "#/components/schemas/RiskSummary"
+                - type: "null"
+            findings:
+              type: array
+              description: Sorted `high -> medium -> low`; empty until the first successful analysis.
+              items:
+                $ref: "#/components/schemas/Finding"
+            email_draft:
+              description: |
+                Present only when at least one `high` or `medium` finding exists;
+                otherwise `null`.
+              oneOf:
+                - $ref: "#/components/schemas/EmailDraft"
+                - type: "null"
+
+    ContractPage:
+      type: object
+      required: [items, total_count, page, page_size, total_pages]
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContractSummary"
+        total_count:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        page_size:
+          type: integer
+          minimum: 1
+          maximum: 50
+        total_pages:
+          type: integer
+          minimum: 0
+          description: '`0` when `total_count` is `0`.'
+
+    HistoryQueryRequest:
+      type: object
+      required: [question]
+      additionalProperties: false
+      properties:
+        question:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: 1–500 characters after trimming.
+          examples: [Which contracts had uncapped liability this month?]
+
+    HistoryQueryResult:
+      type: object
+      required: [question, answer, sql, columns, rows, row_count, truncated]
+      additionalProperties: false
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+          description: Short answer, or a clarifying question when `sql` is `null`.
+        sql:
+          type: [string, "null"]
+          description: The SQL that produced the rows; `null` when the question needed clarification.
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names. A `contract_id` column links to Contract Details.
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: [string, number, "null"]
+        row_count:
+          type: integer
+          minimum: 0
+        truncated:
+          type: boolean
+          description: '`true` when the server row limit (100) was hit.'
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      additionalProperties: false
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          additionalProperties: false
+          properties:
+            code:
+              $ref: "#/components/schemas/ErrorCode"
+            message:
+              type: string
+              description: User-friendly and safe to show in the UI.
+
+    ErrorCode:
+      type: string
+      description: Stable UPPER_SNAKE_CASE code. Clients branch on this, never on `message`.
+      enum:
+        - UNAUTHORIZED
+        - INVALID_CREDENTIALS
+        - VALIDATION_ERROR
+        - INVALID_CONTRACT_INPUT
+        - INVALID_FILE_FORMAT
+        - FILE_TOO_LARGE
+        - CONTRACT_TOO_LARGE
+        - ENCRYPTED_PDF_NOT_SUPPORTED
+        - UNPARSEABLE_PDF
+        - PDF_TEXT_EXTRACTION_FAILED
+        - UNSUPPORTED_LANGUAGE
+        - LANGUAGE_UNDETERMINED
+        - EMAIL_ALREADY_EXISTS
+        - CONTRACT_ANALYSIS_IN_PROGRESS
+        - ANALYSIS_IN_PROGRESS
+        - CONTRACT_NOT_FOUND
+        - FEATURE_NOT_AVAILABLE
+        - QUERY_NOT_SUPPORTED
+        - QUERY_TOO_EXPENSIVE
+        - INTERNAL_ERROR
