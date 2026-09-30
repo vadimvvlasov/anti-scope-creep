@@ -16,8 +16,8 @@ info:
     - Every error uses the envelope `{ "error": { "code", "message" } }`. Clients branch
       on `code`, never on `message`. Messages are safe to show to end users.
 
-    Authentication: every operation except `POST /auth/register` and `POST /auth/login`
-    requires `Authorization: Bearer <token>` (JWT, HS256, 24-hour lifetime). Any protected
+    Authentication: every operation except `POST /auth/register`, `POST /auth/login`,
+    and the `/health` probes requires `Authorization: Bearer <token>` (JWT, HS256, 24-hour lifetime). Any protected
     operation can return `401 UNAUTHORIZED`. Logout is client-side only and has no API
     operation.
 
@@ -38,8 +38,52 @@ tags:
     description: Contract upload, analysis results, history, rename, retry, and delete.
   - name: query
     description: Natural-language questions over the user's contract history.
+  - name: operations
+    description: Liveness and readiness probes (see `docs/architecture.md`). Not used by the frontend.
 
 paths:
+  /health:
+    get:
+      tags: [operations]
+      operationId: getHealth
+      summary: Liveness probe
+      description: Returns `200` without touching the database.
+      security: []
+      responses:
+        "200":
+          description: The process is up.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+              example:
+                status: ok
+
+  /health/ready:
+    get:
+      tags: [operations]
+      operationId: getReadiness
+      summary: Readiness probe
+      description: Checks the database connection. Used by the post-deploy smoke test.
+      security: []
+      responses:
+        "200":
+          description: The database is reachable.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+              example:
+                status: ok
+        "503":
+          description: The database is not reachable.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+              example:
+                status: unavailable
+
   /auth/register:
     post:
       tags: [auth]
@@ -852,6 +896,15 @@ components:
         truncated:
           type: boolean
           description: '`true` when the server row limit (100) was hit.'
+
+    HealthStatus:
+      type: object
+      required: [status]
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [ok, unavailable]
 
     ErrorResponse:
       type: object
