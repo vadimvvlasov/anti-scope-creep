@@ -3,7 +3,11 @@
 Run locally: `uv run uvicorn app.main:create_app --factory --reload`
 """
 
+import asyncio
 import logging
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+from uuid import UUID
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,11 +19,23 @@ from app.context import AppContext, Clock, utc_now
 from app.errors import register_error_handlers
 from app.extraction import MAX_FILE_BYTES
 from app.routers import auth, contracts, health, query
+from app.seed import finish_pending_analyses, seed_demo_data
 from app.store import InMemoryStore, Store
 
 # Keep uploads up to the size limit in memory instead of spooling them to a temp file:
 # the raw binary must never be written anywhere (docs/spec.md "Original uploaded binary").
 MultiPartParser.spool_max_size = MAX_FILE_BYTES + 1
+
+
+def _lifespan(context: AppContext, pending_runs: list[tuple[UUID, UUID]]):
+    @asynccontextmanager
+    async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+        task = asyncio.create_task(finish_pending_analyses(context, pending_runs)) if pending_runs else None
+        yield
+        if task:
+            task.cancel()
+
+    return lifespan
 
 
 def create_app(
@@ -36,7 +52,10 @@ def create_app(
         analyzer=analyzer or build_analyzer(settings.analyzer),
         clock=clock,
     )
-    app = FastAPI(title="Anti-Scope Creep API", version="0.1.0")
+    pending_runs = seed_demo_data(context) if settings.seed_demo_data else []
+    app = FastAPI(
+        title="Anti-Scope Creep API", version="0.1.0", lifespan=_lifespan(context, pending_runs)
+    )
     app.state.context = context
     app.add_middleware(
         CORSMiddleware,
