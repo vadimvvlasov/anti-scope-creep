@@ -31,3 +31,18 @@ plain English and get an answer without writing SQL.
 - History questions go through a dedicated text-to-SQL agent, sandboxed behind
   guardrails: read-only access, single SELECT only, enforced row limit — so the
   agent can't modify data or return unbounded results
+## Development
+
+Run these from the repository root. You need [uv](https://docs.astral.sh/uv/),
+Node.js and npm.
+
+| Command | What it does |
+|---|---|
+| `make install` | Install backend (`uv sync`) and frontend (`npm i`) dependencies |
+| `make dev-backend` | Start the backend dev server on `http://localhost:8000` |
+| `make dev-frontend` | Start the frontend dev server |
+| `make test` | Run backend and frontend tests |
+| `make lint` | Lint the frontend with ESLint |
+
+Backend configuration is read from environment variables; see
+[`backend/.env.example`](backend/.env.example) and [`backend/README.md`](backend/README.md).

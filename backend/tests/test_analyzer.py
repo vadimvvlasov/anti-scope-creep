@@ -1,0 +1,62 @@
+import pytest
+from pydantic import ValidationError
+
+from app.analyzer import (
+    STUB_EMAIL,
+    AnalysisResult,
+    EmailDraftContent,
+    FindingDraft,
+    StubAnalyzer,
+    build_analyzer,
+)
+from app.models import RiskCategory, RiskLevel
+
+
+def finding(level: RiskLevel) -> FindingDraft:
+    return FindingDraft(
+        category=RiskCategory.SCOPE_CREEP, risk_level=level, quoted_text="q", explanation="e"
+    )
+
+
+def test_stub_returns_spec_fixture_regardless_of_text():
+    first = StubAnalyzer().analyze("anything")
+    second = StubAnalyzer().analyze("something else entirely")
+
+    assert first == second
+    assert [(f.category, f.risk_level) for f in first.findings] == [
+        (RiskCategory.UNCAPPED_LIABILITY, RiskLevel.HIGH),
+        (RiskCategory.UNFAVORABLE_PAYMENT_TERMS, RiskLevel.MEDIUM),
+        (RiskCategory.UNLIMITED_REVISIONS, RiskLevel.LOW),
+    ]
+    assert first.findings[1].quoted_text == "Invoices are payable within 60 days of receipt."
+    assert first.email_draft.subject == "Proposed changes to the agreement"
+    assert first.email_draft.body.startswith("Hello,\n\nThank you for sending over the agreement.")
+    assert first.email_draft.body.endswith("Best regards")
+    assert first.email_draft.body.count("\n- ") == 2
+
+
+def test_result_requires_email_when_high_or_medium_findings_exist():
+    with pytest.raises(ValidationError):
+        AnalysisResult(findings=[finding(RiskLevel.MEDIUM)], email_draft=None)
+
+
+@pytest.mark.parametrize("findings", [[], [finding(RiskLevel.LOW)]])
+def test_result_rejects_email_without_high_or_medium_findings(findings):
+    with pytest.raises(ValidationError):
+        AnalysisResult(findings=findings, email_draft=STUB_EMAIL)
+    assert AnalysisResult(findings=findings, email_draft=None).email_draft is None
+
+
+def test_finding_and_email_length_limits():
+    with pytest.raises(ValidationError):
+        FindingDraft(category="scope_creep", risk_level="low", quoted_text="", explanation="e")
+    with pytest.raises(ValidationError):
+        FindingDraft(category="scope_creep", risk_level="low", quoted_text="q", explanation="e" * 2001)
+    with pytest.raises(ValidationError):
+        EmailDraftContent(subject="s" * 201, body="b")
+
+
+def test_unknown_analyzer_is_rejected():
+    assert isinstance(build_analyzer("stub"), StubAnalyzer)
+    with pytest.raises(ValueError):
+        build_analyzer("groq")
