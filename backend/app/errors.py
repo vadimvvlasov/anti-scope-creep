@@ -6,6 +6,7 @@ from enum import StrEnum
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +29,8 @@ class ErrorCode(StrEnum):
     ANALYSIS_IN_PROGRESS = "ANALYSIS_IN_PROGRESS"
     CONTRACT_NOT_FOUND = "CONTRACT_NOT_FOUND"
     FEATURE_NOT_AVAILABLE = "FEATURE_NOT_AVAILABLE"
+    NOT_FOUND = "NOT_FOUND"
+    METHOD_NOT_ALLOWED = "METHOD_NOT_ALLOWED"
     INTERNAL_ERROR = "INTERNAL_ERROR"
 
 
@@ -59,7 +62,16 @@ _DEFAULTS: dict[ErrorCode, tuple[int, str]] = {
     ErrorCode.ANALYSIS_IN_PROGRESS: (409, "An analysis is already running for this contract."),
     ErrorCode.CONTRACT_NOT_FOUND: (404, "Contract not found."),
     ErrorCode.FEATURE_NOT_AVAILABLE: (501, "History search is coming soon."),
+    ErrorCode.NOT_FOUND: (404, "The requested resource does not exist."),
+    ErrorCode.METHOD_NOT_ALLOWED: (405, "This method is not allowed for this resource."),
     ErrorCode.INTERNAL_ERROR: (500, "Something went wrong. Please try again."),
+}
+
+# Framework-level HTTP errors (routing, methods) -> spec error code.
+_HTTP_STATUS_CODES: dict[int, ErrorCode] = {
+    401: ErrorCode.UNAUTHORIZED,
+    404: ErrorCode.NOT_FOUND,
+    405: ErrorCode.METHOD_NOT_ALLOWED,
 }
 
 # Field name -> message for request validation failures.
@@ -112,6 +124,14 @@ async def _validation_error_handler(_: Request, exc: RequestValidationError) -> 
     return error_response(422, ErrorCode.VALIDATION_ERROR, message)
 
 
+async def _http_error_handler(_: Request, exc: StarletteHTTPException) -> JSONResponse:
+    fallback = ErrorCode.INTERNAL_ERROR if exc.status_code >= 500 else ErrorCode.VALIDATION_ERROR
+    code = _HTTP_STATUS_CODES.get(exc.status_code, fallback)
+    response = error_response(exc.status_code, code, _DEFAULTS[code][1])
+    response.headers.update(exc.headers or {})
+    return response
+
+
 async def _unexpected_error_handler(_: Request, exc: Exception) -> JSONResponse:
     logger.exception("Unhandled error", exc_info=exc)
     status_code, message = _DEFAULTS[ErrorCode.INTERNAL_ERROR]
@@ -121,4 +141,5 @@ async def _unexpected_error_handler(_: Request, exc: Exception) -> JSONResponse:
 def register_error_handlers(app: FastAPI) -> None:
     app.add_exception_handler(AppError, _app_error_handler)
     app.add_exception_handler(RequestValidationError, _validation_error_handler)
+    app.add_exception_handler(StarletteHTTPException, _http_error_handler)
     app.add_exception_handler(Exception, _unexpected_error_handler)

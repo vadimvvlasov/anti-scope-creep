@@ -993,6 +993,8 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Delete while analyzing | 409 | `CONTRACT_ANALYSIS_IN_PROGRESS` | `This contract cannot be deleted while analysis is running.` |
 | Retry while analyzing | 409 | `ANALYSIS_IN_PROGRESS` | `An analysis is already running for this contract.` |
 | Contract not owned by user / not found | 404 | `CONTRACT_NOT_FOUND` | `Contract not found.` Never reveals whether another user's contract exists. |
+| Unknown path (not an API operation) | 404 | `NOT_FOUND` | `The requested resource does not exist.` |
+| HTTP method not supported for the path | 405 | `METHOD_NOT_ALLOWED` | `This method is not allowed for this resource.` |
 | History search not available on the real backend yet | 501 | `FEATURE_NOT_AVAILABLE` | `History search is coming soon.` |
 | Question is off-topic, unsafe, or cannot be answered from contract history | 422 | `QUERY_NOT_SUPPORTED` | `This question can't be answered from your contract history. Try rephrasing it.` (text-to-SQL phase; emulated by the mock) |
 | Generated query exceeds the cost check or the statement timeout | 422 | `QUERY_TOO_EXPENSIVE` | `This question is too broad. Try narrowing it down, for example to a date range.` (text-to-SQL phase; emulated by the mock) |

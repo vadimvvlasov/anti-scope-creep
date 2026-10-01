@@ -943,6 +943,8 @@ components:
         - ANALYSIS_IN_PROGRESS
         - CONTRACT_NOT_FOUND
         - FEATURE_NOT_AVAILABLE
+        - NOT_FOUND
+        - METHOD_NOT_ALLOWED
         - QUERY_NOT_SUPPORTED
         - QUERY_TOO_EXPENSIVE
         - INTERNAL_ERROR

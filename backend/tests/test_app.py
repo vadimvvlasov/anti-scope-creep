@@ -40,6 +40,17 @@ def test_invalid_json_uses_error_envelope(client):
     assert_error(response, 422, "VALIDATION_ERROR")
 
 
+def test_unknown_route_uses_error_envelope(client):
+    assert_error(client.get("/does-not-exist"), 404, "NOT_FOUND")
+
+
+def test_wrong_method_uses_error_envelope_and_keeps_allow_header(client):
+    response = client.put("/auth/me")
+
+    assert_error(response, 405, "METHOD_NOT_ALLOWED")
+    assert response.headers["allow"] == "GET"
+
+
 def test_unexpected_error_returns_internal_error_envelope(harness):
     @harness.app.get("/boom")
     def boom():
