@@ -14,7 +14,7 @@ from app.config import Settings
 from app.context import AppContext, Clock, utc_now
 from app.errors import register_error_handlers
 from app.extraction import MAX_FILE_BYTES
-from app.routers import auth, contracts, health
+from app.routers import auth, contracts, health, query
 from app.store import InMemoryStore, Store
 
 # Keep uploads up to the size limit in memory instead of spooling them to a temp file:
@@ -45,6 +45,6 @@ def create_app(
         allow_headers=["Authorization", "Content-Type"],
     )
     register_error_handlers(app)
-    for router in (health.router, auth.router, contracts.router):
+    for router in (health.router, auth.router, contracts.router, query.router):
         app.include_router(router)
     return app

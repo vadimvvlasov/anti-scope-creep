@@ -219,6 +219,16 @@ class HistoryQueryRequest(BaseModel):
     question: TrimmedQuestion
 
 
+class HistoryQueryResult(BaseModel):
+    question: str
+    answer: str
+    sql: str | None
+    columns: list[str]
+    rows: list[list[str | int | float | None]]
+    row_count: int
+    truncated: bool
+
+
 class HealthStatus(BaseModel):
     status: Literal["ok", "unavailable"]
 
