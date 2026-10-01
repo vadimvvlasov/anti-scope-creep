@@ -21,6 +21,14 @@ scores them, and drafts an email to the client.
 
 ## Commands
 
+Makefile (run from the repository root):
+
+- `make install` - install backend (`uv sync`) and frontend (`npm i`) dependencies
+- `make dev-backend` - start the backend dev server on `http://localhost:8000`
+- `make dev-frontend` - start the frontend dev server
+- `make test` - run backend and frontend tests
+- `make lint` - lint the frontend with ESLint (the backend has no linter configured)
+
 Backend (use uv for dependency management):
 
 - `uv sync` - install dependencies

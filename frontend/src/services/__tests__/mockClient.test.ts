@@ -4,13 +4,17 @@ import { ApiError } from "../errors";
 import { MockApiClient } from "../mock/mockClient";
 import { DEMO_EMAIL, DEMO_PASSWORD, OTHER_EMAIL } from "../mock/seed";
 
-const makeClient = () => {
+// Mid-month, so "this month" covers seeded contracts from the last few days.
+const MID_MONTH = Date.parse("2026-09-20T12:00:00Z");
+
+const makeClient = (now?: () => number) => {
   let token: string | null = null;
   const client = new MockApiClient({
     getToken: () => token,
     setToken: (t) => {
       token = t;
     },
+    now,
   });
   return { client, getToken: () => token };
 };
@@ -233,7 +237,7 @@ describe("analysis lifecycle", () => {
 
 describe("history query", () => {
   it("answers a category question with rows and SQL", async () => {
-    const { client } = makeClient();
+    const { client } = makeClient(() => MID_MONTH);
     await login(client);
     const res = await client.queryHistory("Which contracts had uncapped liability this month?");
     expect(res.sql).toContain("uncapped_liability");
