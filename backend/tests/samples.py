@@ -7,3 +7,4 @@ ENGLISH_CONTRACT = (
     "services, without limitation. Invoices are payable within 60 days of receipt. "
     "The Client may request reasonable revisions to the deliverables during the project."
 )
+TEST_JWT_SECRET = "test-secret-0123456789abcdef0123456789"

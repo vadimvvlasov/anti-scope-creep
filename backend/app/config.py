@@ -37,6 +37,8 @@ class Settings:
 def _jwt_secret(env: Mapping[str, str]) -> str:
     secret = env.get("JWT_SECRET", "")
     if secret:
+        if len(secret.encode()) < 32:
+            logger.warning("JWT_SECRET is shorter than 32 bytes; use a longer random value.")
         return secret
     logger.warning("JWT_SECRET is not set; using a random secret. Tokens will not survive a restart.")
     return secrets.token_urlsafe(32)
