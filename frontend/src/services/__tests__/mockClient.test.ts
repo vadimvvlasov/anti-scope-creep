@@ -245,6 +245,27 @@ describe("history query", () => {
     expect(res.row_count).toBeGreaterThan(0);
   });
 
+  it("maps the IP question to IP transfer, not payment terms", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const res = await client.queryHistory("List contracts where IP transfers before payment.");
+    expect(res.sql).toContain("'ip_transfer_before_payment'");
+    expect(res.row_count).toBeGreaterThan(0);
+    expect(res.answer).toMatch(
+      /^\d+ contracts? ha(s|ve) a finding in "IP transfer before payment"\.$/,
+    );
+  });
+
+  it("does not read a payment term length as a date range", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const res = await client.queryHistory(
+      "Which contracts have payment terms longer than 30 days?",
+    );
+    expect(res.sql).toContain("'unfavorable_payment_terms'");
+    expect(res.sql).not.toContain("interval");
+  });
+
   it("counts high-risk findings", async () => {
     const { client } = makeClient();
     await login(client);
