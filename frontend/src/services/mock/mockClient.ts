@@ -10,7 +10,7 @@ import type {
   RiskCategory,
   User,
 } from "../types";
-import { MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "../types";
+import { MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH, RISK_CATEGORY_LABELS } from "../types";
 import {
   buildEmailDraft,
   buildStubFindings,
@@ -401,7 +401,7 @@ export class MockApiClient implements ApiClient {
     const category = matchCategory(lower);
     const sinceDays = lower.includes("this month")
       ? new Date(this.now()).getDate()
-      : lower.includes("last 30 days") || lower.includes("30 days")
+      : lower.includes("last 30 days")
         ? 30
         : null;
     const since = sinceDays === null ? null : this.now() - sinceDays * DAY;
@@ -427,15 +427,6 @@ export class MockApiClient implements ApiClient {
         row_count: 1,
         truncated: false,
       };
-    }
-
-    if (lower.includes("payment") && (lower.includes("30") || lower.includes("longer"))) {
-      return this.contractsWithCategory(
-        q,
-        mine.filter(inRange),
-        "unfavorable_payment_terms",
-        sinceDays,
-      );
     }
 
     if (category) {
@@ -473,7 +464,7 @@ export class MockApiClient implements ApiClient {
       answer:
         matched.length === 0
           ? "No contracts in your history match that question."
-          : `${matched.length} contract${matched.length === 1 ? "" : "s"} contain a ${category.replace(/_/g, " ")} finding.`,
+          : `${matched.length === 1 ? "1 contract has" : `${matched.length} contracts have`} a finding in "${RISK_CATEGORY_LABELS[category]}".`,
       sql: `SELECT c.id AS contract_id, c.title, c.created_at::date, f.risk_level\nFROM contracts c\nJOIN findings f ON f.contract_id = c.id\nWHERE c.user_id = :user_id\n  AND f.category = '${category}'${
         sinceDays === null ? "" : `\n  AND c.created_at >= now() - interval '${sinceDays} days'`
       }\nORDER BY c.created_at DESC\nLIMIT 100;`,
@@ -485,13 +476,14 @@ export class MockApiClient implements ApiClient {
   }
 }
 
+// IP comes first: "IP transfers before payment" also mentions payment.
 const matchCategory = (lower: string): RiskCategory | null => {
+  if (lower.includes("intellectual property") || /\bip\b/.test(lower))
+    return "ip_transfer_before_payment";
   if (lower.includes("liability")) return "uncapped_liability";
   if (lower.includes("payment")) return "unfavorable_payment_terms";
   if (lower.includes("revision")) return "unlimited_revisions";
   if (lower.includes("scope")) return "scope_creep";
   if (lower.includes("termination") || lower.includes("terminate")) return "one_sided_termination";
-  if (lower.includes("intellectual property") || /\bip\b/.test(lower))
-    return "ip_transfer_before_payment";
   return null;
 };
