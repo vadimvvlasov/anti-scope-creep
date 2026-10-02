@@ -35,7 +35,8 @@ export function AppShell({ children }: { children: ReactNode }) {
                 to={item.to}
                 className={cn(
                   "rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
-                  pathname.startsWith(item.to) && "bg-secondary text-foreground",
+                  (pathname === item.to || pathname.startsWith(`${item.to}/`)) &&
+                    "bg-secondary text-foreground",
                 )}
               >
                 {item.label}
