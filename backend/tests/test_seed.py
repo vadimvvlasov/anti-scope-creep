@@ -16,7 +16,7 @@ from app.seed import (
     finish_pending_analyses,
     seed_demo_data,
 )
-from app.store import InMemoryStore
+from tests.database import memory_store
 from tests.conftest import assert_error
 from tests.fakes import FakeClock
 from tests.samples import TEST_JWT_SECRET
@@ -24,7 +24,7 @@ from tests.samples import TEST_JWT_SECRET
 
 @pytest.fixture(scope="module")
 def seeded():
-    app = create_app(Settings(jwt_secret=TEST_JWT_SECRET, seed_demo_data=True))
+    app = create_app(Settings(jwt_secret=TEST_JWT_SECRET, seed_demo_data=True), store=memory_store())
     client = TestClient(app)  # not entered: the delayed pending run does not start
 
     def login(email):
@@ -111,7 +111,7 @@ def test_other_users_contract_is_hidden_from_demo(seeded):
 
 
 def test_pending_seed_analysis_finishes_with_stub_fixture():
-    context = AppContext(Settings(jwt_secret=TEST_JWT_SECRET), InMemoryStore(), StubAnalyzer(), FakeClock())
+    context = AppContext(Settings(jwt_secret=TEST_JWT_SECRET), memory_store(), StubAnalyzer(), FakeClock())
     pending = seed_demo_data(context)
     assert len(pending) == 1
 
@@ -123,6 +123,15 @@ def test_pending_seed_analysis_finishes_with_stub_fixture():
     assert len(context.store.get_findings(contract.id)) == 3
 
 
+def test_seeding_twice_keeps_one_copy_of_the_demo_data():
+    context = AppContext(Settings(jwt_secret=TEST_JWT_SECRET), memory_store(), StubAnalyzer(), FakeClock())
+    seed_demo_data(context)
+    demo = context.store.get_user_by_email(DEMO_EMAIL)
+
+    assert seed_demo_data(context) == []
+    assert context.store.list_contracts(demo.id, 0, 50)[1] == len(DEMO_CONTRACTS)
+
+
 def test_seeding_is_disabled_by_setting():
-    app = create_app(Settings(jwt_secret=TEST_JWT_SECRET, seed_demo_data=False))
+    app = create_app(Settings(jwt_secret=TEST_JWT_SECRET, seed_demo_data=False), store=memory_store())
     assert app.state.context.store.get_user_by_email(DEMO_EMAIL) is None

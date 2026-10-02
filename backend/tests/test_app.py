@@ -4,11 +4,14 @@ from fastapi.testclient import TestClient
 
 from app.config import Settings
 from app.main import create_app
-from app.store import InMemoryStore
+from app.store import SqlStore
 from tests.conftest import assert_error
 
 
-class UnreachableStore(InMemoryStore):
+class UnreachableStore(SqlStore):
+    def __init__(self) -> None:
+        super().__init__(engine=None)
+
     def ping(self) -> bool:
         raise ConnectionError("database is down")
 
@@ -82,16 +85,19 @@ def test_settings_from_env():
             "ANALYSIS_STALE_AFTER_SECONDS": "30",
             "CORS_ORIGINS": "https://a.example, https://b.example",
             "SEED_DEMO_DATA": "false",
+            "DATABASE_URL": "postgresql+psycopg://u:p@db:5432/asc",
         }
     )
     assert settings.jwt_secret == "s"
     assert settings.analysis_stale_after_seconds == 30
     assert settings.cors_origins == ("https://a.example", "https://b.example")
     assert settings.seed_demo_data is False
+    assert settings.database_url == "postgresql+psycopg://u:p@db:5432/asc"
 
 
 def test_settings_defaults_and_random_secret():
-    first, second = Settings.from_env({}), Settings.from_env({})
+    env = {"DATABASE_URL": "sqlite://"}
+    first, second = Settings.from_env(env), Settings.from_env(env)
     assert first.jwt_secret and first.jwt_secret != second.jwt_secret
     assert first.analysis_stale_after_seconds == 600
     assert first.seed_demo_data is True

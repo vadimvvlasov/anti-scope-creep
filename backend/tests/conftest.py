@@ -5,7 +5,7 @@ from app.analyzer import Analyzer, StubAnalyzer
 from app.config import Settings
 from app.context import AppContext
 from app.main import create_app
-from app.store import InMemoryStore
+from tests.database import memory_store
 from tests.fakes import FakeClock, RecordingRunner
 from tests.samples import ENGLISH_CONTRACT, TEST_JWT_SECRET
 
@@ -17,7 +17,7 @@ class Harness:
         self.settings = Settings(
             jwt_secret=TEST_JWT_SECRET, analysis_stale_after_seconds=stale_after, seed_demo_data=False
         )
-        self.store = InMemoryStore()
+        self.store = memory_store()
         self.clock = FakeClock()
         self.analyzer = analyzer or StubAnalyzer()
         self.app = create_app(self.settings, self.store, self.analyzer, self.clock)

@@ -20,7 +20,8 @@ from app.errors import register_error_handlers
 from app.extraction import MAX_FILE_BYTES
 from app.routers import auth, contracts, health, query
 from app.seed import finish_pending_analyses, seed_demo_data
-from app.store import InMemoryStore, Store
+from app.db import build_engine
+from app.store import SqlStore, Store
 
 # Keep uploads up to the size limit in memory instead of spooling them to a temp file:
 # the raw binary must never be written anywhere (docs/spec.md "Original uploaded binary").
@@ -38,6 +39,12 @@ def _lifespan(context: AppContext, pending_runs: list[tuple[UUID, UUID]]):
     return lifespan
 
 
+def _sql_store(settings: Settings) -> SqlStore:
+    if not settings.database_url:
+        raise ValueError("Settings.database_url is required when no store is passed in.")
+    return SqlStore(build_engine(settings.database_url))
+
+
 def create_app(
     settings: Settings | None = None,
     store: Store | None = None,
@@ -48,7 +55,7 @@ def create_app(
     settings = settings or Settings.from_env()
     context = AppContext(
         settings=settings,
-        store=store or InMemoryStore(),
+        store=store or _sql_store(settings),
         analyzer=analyzer or build_analyzer(settings.analyzer),
         clock=clock,
     )
