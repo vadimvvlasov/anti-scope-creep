@@ -156,6 +156,10 @@ If the limits still hurt: use the CUAD/LoRA classifier to preselect candidate cl
 
 Contract text and history-query results are sent to Groq. Before the Groq analyzer is enabled, `docs/ai-data-policy.md` describes what is sent, to whom, retention on the provider side, and what the app stores. The Upload / Analyze screen states that text is sent to a third-party AI provider (spec requirement).
 
+- **Pseudonymization before every Groq call** (spec: Pseudonymization rules). A rule-based `Pseudonymizer` (regex plus party names from the preamble and signature block) sits between the analyzer / text-to-SQL Answer step and the Groq client. It returns the pseudonymized text and an in-memory mapping, and restores placeholders in the model output before quote verification. No NER library in the MVP; Presidio or spaCy is a new dependency to discuss first.
+- **Zero Data Retention.** By default Groq does not retain inference data, but may keep it for up to 30 days for reliability troubleshooting and abuse monitoring. Enable ZDR in the Groq console (Settings → Data Controls) for the project's organization before the Groq analyzer is enabled in any environment. It is an account setting, not code: record the date it was enabled in `docs/ai-data-policy.md`.
+- **Location.** Groq stores customer data in Google Cloud buckets in the United States. `docs/ai-data-policy.md` states this.
+
 ---
 
 ## 5. Agent layer
@@ -228,10 +232,12 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 - **Instrumentation:** OpenTelemetry SDK in the backend, with auto-instrumentation for FastAPI, SQLAlchemy, and HTTPX (the Groq client), plus manual spans for extraction, each analysis chunk, quote verification, and the text-to-SQL graph nodes.
 - **Export:** OTLP over HTTP directly to the Grafana Cloud OTLP gateway, with no collector sidecar. Prometheus-style pull scraping does not fit Cloud Run, since instances come and go. Flush exporters on `SIGTERM` (Cloud Run gives about 10 s).
 - **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to Cloud Logging automatically and to Loki through OTLP logs.
+- **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
 - **Metrics:**
   - `analyses_total{outcome=done|failed|stale}`
   - `analysis_duration_seconds`
   - `llm_requests_total{model,status}`, `llm_tokens_total{model}`, `llm_rate_limited_total`
+  - `findings_dropped_total{reason=quote_not_found|placeholder_not_restored}`
   - `api_errors_total{code}`
   - `history_queries_total{route,outcome}`
 - **Alerts:** analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s.
@@ -377,6 +383,7 @@ Checked on 2026-09-29; re-check before Phase 2 and before the LLM phase.
 | Fact | Source |
 |---|---|
 | Groq free models and limits; Llama removal on 2026-08-16 | https://console.groq.com/docs/rate-limits, https://console.groq.com/docs/deprecations |
+| Groq data retention (none by default, up to 30 days for reliability/abuse), ZDR, US storage | https://console.groq.com/docs/your-data |
 | Cloud Run free tier per billing mode | https://cloud.google.com/run/pricing |
 | Cloud Run can deploy public `ghcr.io` images directly | https://cloud.google.com/run/docs/deploying |
 | Neon free tier (storage, compute hours, branches, scale-to-zero) | https://neon.com/pricing |

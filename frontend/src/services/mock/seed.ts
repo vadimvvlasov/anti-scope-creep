@@ -90,6 +90,42 @@ export const buildEmailDraft = (findings: Finding[], createdAt: string): EmailDr
   };
 };
 
+// One bullet per high/medium finding, as in backend/app/seed.py (non-stub seed contracts).
+const EMAIL_BULLETS: Record<RiskCategory, string> = {
+  scope_creep:
+    "Scope: the relevant clause allows additional work to be added without a change order. I propose listing the deliverables and handling extra work through written change requests at an agreed rate.",
+  unlimited_revisions:
+    "Revisions: the agreement does not set a clear limit on revision rounds. I propose including two rounds of revisions, with further rounds billed at the hourly rate.",
+  one_sided_termination:
+    "Termination: the relevant clause lets the agreement end without fair notice or payment for work already done. I propose mutual termination on written notice, with payment for all work completed up to the termination date.",
+  ip_transfer_before_payment:
+    "Intellectual property: ownership of the deliverables transfers before payment is received. I propose that ownership transfers once all invoices have been paid in full.",
+  uncapped_liability:
+    "Liability: the relevant clause leaves my liability for losses without a reasonable cap. I propose capping total liability at the fees paid under the agreement.",
+  unfavorable_payment_terms:
+    "Payment terms: the payment period in the agreement is longer than usual. I propose payment within 30 days of the invoice date.",
+};
+
+const buildSeedEmailDraft = (findings: Finding[], createdAt: string): EmailDraft | null => {
+  const bullets = findings
+    .filter((f) => f.risk_level !== "low")
+    .map((f) => `- ${EMAIL_BULLETS[f.category]}`);
+  if (bullets.length === 0) return null;
+  const changes = bullets.length === 1 ? "one change" : "the following changes";
+  return {
+    id: mockId("eml"),
+    subject: STUB_EMAIL_SUBJECT,
+    body: [
+      "Hello,",
+      `Thank you for sending over the agreement. Before signing, I would like to suggest ${changes}:`,
+      bullets.join("\n"),
+      "I am happy to discuss these points. Please let me know if these changes work for you.",
+      "Best regards",
+    ].join("\n\n"),
+    created_at: createdAt,
+  };
+};
+
 export const computeSummary = (findings: Finding[]): RiskSummary => {
   const high = findings.filter((f) => f.risk_level === "high").length;
   const medium = findings.filter((f) => f.risk_level === "medium").length;
@@ -217,14 +253,14 @@ const CLAUSES: Record<RiskCategory, Record<RiskLevel, ClauseSeed>> = {
         "Payment can be three months away and only starts counting after acceptance, which the Client controls.",
     },
     medium: {
-      quoted_text: "Invoices are payable within 60 days of receipt.",
-      explanation:
-        "Payment can arrive up to two months after you invoice, which is well beyond the common 30-day standard and delays your cash flow.",
-    },
-    low: {
       quoted_text: "Invoices are payable within 45 days of receipt.",
       explanation:
-        "Net 45 is slower than the common 30-day standard and stretches your cash flow a little.",
+        "Net 45 is well beyond the common 30-day standard and delays your cash flow by several weeks.",
+    },
+    low: {
+      quoted_text: "Invoices are payable within 40 days of receipt.",
+      explanation:
+        "Net 40 is a little slower than the common 30-day standard and stretches your cash flow slightly.",
     },
   },
 };
@@ -251,6 +287,7 @@ interface SeedSpec {
   daysAgo: number;
   findings: Array<[RiskCategory, RiskLevel]>;
   previousSuccess?: boolean;
+  stub?: boolean; // results are exactly the stub analyzer fixture
 }
 
 const OTHER_SPECS: SeedSpec[] = [
@@ -276,11 +313,8 @@ const DEMO_SPECS: SeedSpec[] = [
     input: "pdf",
     status: "done",
     daysAgo: 2,
-    findings: [
-      ["uncapped_liability", "high"],
-      ["unfavorable_payment_terms", "medium"],
-      ["unlimited_revisions", "low"],
-    ],
+    findings: [],
+    stub: true,
   },
   {
     title: "Brand Identity SOW.txt",
@@ -288,7 +322,7 @@ const DEMO_SPECS: SeedSpec[] = [
     status: "done",
     daysAgo: 5,
     findings: [
-      ["unfavorable_payment_terms", "low"],
+      ["unfavorable_payment_terms", "medium"],
       ["scope_creep", "low"],
     ],
   },
@@ -465,7 +499,9 @@ const DEMO_SPECS: SeedSpec[] = [
 
 const buildContract = (spec: SeedSpec, userId: string, now: number): MockContract => {
   const created = now - spec.daysAgo * DAY - 3600_000;
-  const findings = sortFindings(spec.findings.map(([c, l]) => makeFinding(c, l)));
+  const findings = spec.stub
+    ? buildStubFindings()
+    : sortFindings(spec.findings.map(([c, l]) => makeFinding(c, l)));
   const hasResults =
     spec.status === "done" || (spec.status === "failed" && spec.previousSuccess === true);
   const analyzedAt = hasResults ? iso(created + 60_000) : null;
@@ -485,7 +521,9 @@ const buildContract = (spec: SeedSpec, userId: string, now: number): MockContrac
     overall_risk_level: hasResults ? computeSummary(findings).overall_risk_level : null,
     risk_summary: hasResults ? computeSummary(findings) : null,
     findings: hasResults ? findings : [],
-    email_draft: hasResults ? buildEmailDraft(findings, analyzedAt ?? iso(created)) : null,
+    email_draft: hasResults
+      ? (spec.stub ? buildEmailDraft : buildSeedEmailDraft)(findings, analyzedAt ?? iso(created))
+      : null,
     source_text: `Mock contract text for ${spec.title}.`,
     pending_until: spec.status === "analyzing" ? now + 5000 : null,
     pending_outcome: spec.status === "analyzing" ? "done" : null,

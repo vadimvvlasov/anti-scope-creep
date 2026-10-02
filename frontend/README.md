@@ -20,5 +20,8 @@ Prefer working locally? You need Node.js and npm — [install with nvm](https://
 git clone <this-repository-url>
 cd <repository-name>
 npm i
+cp .env.example .env   # then edit VITE_API_URL / VITE_USE_MOCK
 npm run dev
 ```
+
+Vite reads `VITE_*` variables from `.env` in this folder at dev/build time (they are inlined into the bundle, so rebuild after changing them). `.env` is gitignored; `.env.example` is the template.

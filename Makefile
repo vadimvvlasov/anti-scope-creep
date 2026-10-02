@@ -3,6 +3,7 @@
 install:
 	cd backend && uv sync
 	cd frontend && npm i
+	cd frontend && (test -f .env || cp .env.example .env)
 
 dev-backend:
 	cd backend && uv run uvicorn app.main:create_app --factory --reload

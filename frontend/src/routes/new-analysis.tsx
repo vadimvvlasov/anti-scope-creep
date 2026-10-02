@@ -40,20 +40,29 @@ function NewAnalysisPage() {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [error, setError] = useState<string | null>(null);
+  // Why the last picked file was rejected, so submitting without a file repeats it.
+  const [fileError, setFileError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const rejectFile = (message: string) => {
+    setFile(null);
+    setFileError(message);
+    setError(message);
+  };
+
   const pickFile = (f: File | null) => {
     setError(null);
+    setFileError(null);
     if (!f) return;
     const lower = f.name.toLowerCase();
     if (!lower.endsWith(".pdf") && !lower.endsWith(".txt")) {
-      setError("Only PDF and TXT files are supported.");
+      rejectFile("Only PDF and TXT files are supported.");
       return;
     }
     if (f.size > MAX_FILE_BYTES) {
-      setError("The file is larger than 5 MB.");
+      rejectFile("The file is larger than 5 MB.");
       return;
     }
     setFile(f);
@@ -65,7 +74,7 @@ function NewAnalysisPage() {
     const trimmedTitle = title.trim();
 
     if (mode === "file" && !file) {
-      setError("Choose a PDF or TXT file to analyze.");
+      setError(fileError ?? "Choose a PDF or TXT file to analyze.");
       return;
     }
     if (mode === "text") {
