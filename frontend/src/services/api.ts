@@ -61,9 +61,10 @@ const handleUnauthorized = (error: ApiError) => {
 
 /* ------------------------- HTTP implementation -------------------- */
 
-const API_URL: string =
+const API_URL: string = (
   (typeof import.meta !== "undefined" && import.meta.env?.["VITE_API_URL"]) ||
-  "http://localhost:8000";
+  "http://localhost:8000"
+).replace(/\/+$/, "");
 
 class HttpApiClient implements ApiClient {
   constructor(private baseUrl: string) {}
@@ -214,7 +215,8 @@ export const createMockApi = (): ApiClient =>
 
 export const createHttpApi = (baseUrl: string = API_URL): ApiClient => new HttpApiClient(baseUrl);
 
-const USE_MOCK =
-  (typeof import.meta !== "undefined" && import.meta.env?.["VITE_USE_MOCK"]) !== "false";
+/** The real HTTP client is the default; set VITE_USE_MOCK=true to run on the in-memory mock. */
+export const USE_MOCK =
+  (typeof import.meta !== "undefined" && import.meta.env?.["VITE_USE_MOCK"]) === "true";
 
 export const api: ApiClient = USE_MOCK ? createMockApi() : createHttpApi();

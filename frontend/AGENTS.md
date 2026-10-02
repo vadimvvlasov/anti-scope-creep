@@ -12,5 +12,5 @@
 ## Project rules
 
 - All backend calls go through `src/services/api.ts` (types, `ApiError`, HTTP client, mock client, token storage, global 401 handler). No `fetch`/URL building elsewhere — keeps the UI independent of the backend and lets the app run on the mock.
-- `VITE_USE_MOCK` (default `true`) selects the in-memory mock in `src/services/mock/`; `VITE_API_URL` targets the real FastAPI backend.
+- `VITE_API_URL` is the FastAPI backend base URL; the real HTTP client is the default. `VITE_USE_MOCK=true` switches to the in-memory mock in `src/services/mock/`.
 - Frontend tests run with `bun run test` (vitest) and cover the mock service layer.

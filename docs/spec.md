@@ -653,7 +653,7 @@ This applies to get, rename, retry, and delete. List and history queries only ev
   - the exported `api` instance, chosen by environment.
 - The mock implementation and its seed data may live in `src/services/mock/`, imported only by `api.ts`.
 - Environment variables:
-  - `VITE_USE_MOCK` — `true` (default) uses the mock, `false` uses HTTP;
+  - `VITE_USE_MOCK` — `true` uses the mock, `false` (default) uses HTTP;
   - `VITE_API_URL` — backend base URL for the HTTP client, e.g. `http://localhost:8000`.
 - Provide `.env.example` with both variables.
 
@@ -1098,15 +1098,23 @@ Replace the fixed stub analyzer with an LLM-backed analyzer using the **Groq API
 
 Requirements:
 - Input: persisted `source_text`.
+- **Pseudonymization:** the text sent to the provider is pseudonymized `source_text`, never the raw text (see below).
 - Output: structured JSON only.
 - Validate output with Pydantic before persistence.
 - Output must contain zero or more findings using the six MVP categories and the deterministic severity matrix.
-- **Quote verification:** every `quoted_text` must occur in `source_text` after normalizing whitespace and quote/dash characters. A finding whose quote is not found is dropped (and logged), not persisted. Dropping a finding does not fail the analysis.
+- **Quote verification:** placeholders in each `quoted_text` are first restored to the original values; the restored quote must then occur in `source_text` after normalizing whitespace and quote/dash characters. A finding whose quote is not found, or that contains a placeholder that cannot be restored, is dropped (and logged with the reason), not persisted. Dropping a finding does not fail the analysis.
 - Long contracts are analyzed in chunks that fit the provider's per-request and per-minute token limits; findings from all chunks are merged and exact duplicate quotes are removed.
-- The email is generated after quote verification, from the final set of `high` and `medium` findings, as structured data validated before commit.
+- The email is generated after quote verification, from the final set of `high` and `medium` findings, as structured data validated before commit. It is generated from pseudonymized findings, and placeholders are restored before it is stored.
 - Provider rate-limit responses are retried with backoff inside the task. When retries are exhausted, or on failed validation or other provider errors, the analysis fails with the same transactional failure behavior as the MVP.
 - The frontend API contract remains unchanged.
 - Before this analyzer is enabled, the Upload / Analyze screen must also state that contract text is sent to a third-party AI provider for analysis, and `docs/ai-data-policy.md` must describe what is sent, to whom, and what is stored.
+
+Pseudonymization rules:
+- Replaced with stable placeholders: names of the parties and signatories (taken from the preamble, party definitions, and signature block), email addresses, phone numbers, URLs, bank account / IBAN numbers, and tax or company registration IDs. Placeholders are typed and numbered, e.g. `[PARTY_A]`, `[PERSON_1]`, `[EMAIL_1]`.
+- Not replaced: monetary amounts, payment periods, durations, dates, percentages, and liability caps. The severity matrix depends on them.
+- One mapping per analysis run, shared by all chunks and the email request, so the same value always gets the same placeholder.
+- The mapping exists only in memory for the duration of the background task. It is never persisted, logged, or attached to traces.
+- Detection is best-effort (rule-based) and may miss values. `docs/ai-data-policy.md` must say so, and the UI notice must not claim the text is anonymized.
 
 The LLM prompt must explicitly encode:
 - strict contractual-trigger rule;
@@ -1114,6 +1122,7 @@ The LLM prompt must explicitly encode:
 - severity matrix;
 - no-finding rule when thresholds are not clearly met;
 - exact quoted clause requirement;
+- copy placeholders such as `[PARTY_A]` verbatim, never invent or expand them;
 - concise plain-English explanations;
 - negotiation email rules.
 
@@ -1161,6 +1170,15 @@ Allowed views expose only non-sensitive history fields: contract `id`, `title`, 
 
 The question text and query results are sent to the LLM provider; this is covered by `docs/ai-data-policy.md`.
 
+Rows are pseudonymized before the Answer step:
+- each contract `title` is replaced with `[CONTRACT_n]`, since titles often name the client;
+- `quoted_text` goes through the same pseudonymization rules as the analyzer, with party names taken from that contract's `source_text` (read by the backend, not by the agent role);
+- placeholders in the answer are restored before the response is returned;
+- the mapping is per request, in memory only;
+- the router and SQL-generation steps receive only the question and the view schema, never rows.
+
+The question itself is sent as typed, since SQL generation may need the names it contains (e.g. a title search). The History Search screen states this.
+
 ### Agent/MCP layer
 
 Add a custom MCP server with exactly one tool: `query_risk_history(question: str)`.
@@ -1194,7 +1212,8 @@ After deployment work:
 - capture traces for upload, extraction, analysis, database operations, and failures;
 - expose operational dashboards and alerts in **Grafana**;
 - monitor analysis latency, failure rates, stale analyses, API errors, and background-task failures;
-- preserve application-level error codes for correlation with traces/logs.
+- preserve application-level error codes for correlation with traces/logs;
+- keep contract content (source text, prompts, model output, quotes, query rows) out of traces, logs, and metrics (details in `docs/architecture.md`).
 
 ### On-call agent
 

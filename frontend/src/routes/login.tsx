@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
-import { isApiError, SESSION_EXPIRED_MESSAGE } from "@/services/api";
+import { isApiError, SESSION_EXPIRED_MESSAGE, USE_MOCK } from "@/services/api";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -27,7 +27,6 @@ export const Route = createFileRoute("/login")({
   component: LoginPage,
 });
 
-const USE_MOCK = import.meta.env["VITE_USE_MOCK"] !== "false";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function LoginPage() {

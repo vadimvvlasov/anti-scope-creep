@@ -10,8 +10,8 @@ uv sync
 JWT_SECRET=<long-random-value> uv run uvicorn app.main:create_app --factory --reload
 ```
 
-The API listens on `http://localhost:8000`. Point the frontend at it with
-`VITE_USE_MOCK=false` and `VITE_API_URL=http://localhost:8000`.
+The API listens on `http://localhost:8000`. The frontend calls it by default; set
+`VITE_API_URL` to point it elsewhere (or `VITE_USE_MOCK=true` to run without a backend).
 
 Configuration is read from environment variables; see [`.env.example`](.env.example).
 The app does not load `.env` files itself, so export the variables or pass them on
