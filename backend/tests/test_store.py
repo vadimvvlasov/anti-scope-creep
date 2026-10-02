@@ -13,7 +13,8 @@ from app.models import (
     RiskLevel,
     UserRecord,
 )
-from app.store import ContractBusyError, DuplicateEmailError, InMemoryStore
+from app.store import ContractBusyError, DuplicateEmailError, SqlStore
+from tests.database import DATABASE_URLS, fresh_engine
 
 NOW = datetime(2026, 9, 29, 10, 0, tzinfo=UTC)
 
@@ -52,9 +53,11 @@ def make_email(contract_id):
     return EmailDraftRecord(id=uuid4(), contract_id=contract_id, subject="s", body="b", created_at=NOW)
 
 
-@pytest.fixture
-def store():
-    return InMemoryStore()
+@pytest.fixture(params=DATABASE_URLS)
+def store(request):
+    engine = fresh_engine(request.param)
+    yield SqlStore(engine)
+    engine.dispose()
 
 
 @pytest.fixture

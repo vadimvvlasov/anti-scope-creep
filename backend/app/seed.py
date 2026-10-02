@@ -162,7 +162,12 @@ OTHER_CONTRACTS = (
 
 
 def seed_demo_data(context: AppContext) -> list[tuple[UUID, UUID]]:
-    """Create the demo users and contracts. Returns (contract_id, run_id) of pending runs."""
+    """Create the demo users and contracts. Returns (contract_id, run_id) of pending runs.
+
+    Runs on every startup; with a persistent database it seeds only once.
+    """
+    if context.store.get_user_by_email(DEMO_EMAIL) is not None:
+        return []
     now = context.clock()
     password_hash = hash_password(DEMO_PASSWORD)
     pending: list[tuple[UUID, UUID]] = []

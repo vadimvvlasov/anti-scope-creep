@@ -1,7 +1,6 @@
 """Domain records (store shape) and API schemas (request/response shape).
 
-Records mirror the relational tables in docs/spec.md "Data model" so the in-memory
-store can later be replaced by SQLAlchemy without changing product semantics.
+Records mirror the relational tables in docs/spec.md "Data model" (see `app/db.py`).
 """
 
 from dataclasses import dataclass

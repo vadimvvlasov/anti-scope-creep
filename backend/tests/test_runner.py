@@ -9,7 +9,7 @@ from app.config import Settings
 from app.context import AppContext
 from app.models import ContractRecord, ContractStatus, FileType, RiskLevel, UserRecord
 from app.runner import BackgroundTasksRunner, run_analysis
-from app.store import InMemoryStore
+from tests.database import memory_store
 from tests.fakes import FailingAnalyzer, FakeClock
 
 USER_ID = uuid4()
@@ -28,7 +28,7 @@ class InvalidResultAnalyzer:
 def make_context(analyzer=None) -> AppContext:
     return AppContext(
         settings=Settings(jwt_secret="x", seed_demo_data=False),
-        store=InMemoryStore(),
+        store=memory_store(),
         analyzer=analyzer or StubAnalyzer(),
         clock=FakeClock(),
     )
