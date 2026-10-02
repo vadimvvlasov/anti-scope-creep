@@ -7,6 +7,9 @@ FastAPI implementation of [`openapi.yaml`](../openapi.yaml). Product rules come 
 
 ```bash
 uv sync
+make -C .. db   # local Postgres 16 container `asc-pg` on 127.0.0.1:5432
+export DATABASE_URL=postgresql+psycopg://postgres:dev@localhost:5432/asc
+uv run alembic upgrade head
 JWT_SECRET=<long-random-value> uv run uvicorn app.main:create_app --factory --reload
 ```
 
@@ -17,18 +20,32 @@ Configuration is read from environment variables; see [`.env.example`](.env.exam
 The app does not load `.env` files itself, so export the variables or pass them on
 the command line.
 
-With `SEED_DEMO_DATA=true` (the default) the in-memory store starts with demo data:
+`DATABASE_URL` is required. The schema comes only from Alembic migrations in
+`migrations/`; the app never creates tables. After changing `app/db.py`, add a
+migration with `uv run alembic revision --autogenerate -m "<change>"`, review it, and
+check that `uv run alembic check` reports no differences.
+
+With `SEED_DEMO_DATA=true` (the default) the first startup on an empty database adds
+demo data (later startups find the demo user and skip seeding):
 
 - `demo@example.com` / `password123` — 23 contracts in every status
 - `other@example.com` / `password123` — one contract, for checking that other users'
   contracts return `404`
 
-All data lives in memory and is lost on restart.
+Data is kept in the database across restarts.
 
 ## Test
 
 ```bash
 uv run pytest
+```
+
+Tests run on SQLite in memory. Store, migration and constraint tests also run on
+PostgreSQL when `TEST_DATABASE_URL` points at a throwaway database (it is wiped):
+
+```bash
+docker exec asc-pg psql -U postgres -c "create database asc_test"
+TEST_DATABASE_URL=postgresql+psycopg://postgres:dev@localhost:5432/asc_test uv run pytest
 ```
 
 ## Layout
@@ -38,7 +55,9 @@ uv run pytest
 | `app/main.py` | App factory: settings, store, analyzer, routers, CORS, seeding |
 | `app/routers/` | HTTP endpoints, one module per `openapi.yaml` tag |
 | `app/models.py` | Domain records (store shape) and Pydantic API schemas |
-| `app/store.py` | `Store` interface and the thread-safe `InMemoryStore` |
+| `app/db.py` | SQLAlchemy tables (`users`, `contracts`, `risk_findings`, `email_drafts`), engine |
+| `app/store.py` | `Store` interface and `SqlStore` (one transaction per operation) |
+| `migrations/` | Alembic environment and migrations; reads `DATABASE_URL` |
 | `app/auth.py` | Argon2 password hashing, HS256 JWTs, current-user dependency |
 | `app/services.py` | Contract use cases: status flow, stale-analysis rule, response mapping |
 | `app/extraction.py` | Upload validation, PDF/TXT text extraction, language check |

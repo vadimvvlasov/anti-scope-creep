@@ -24,6 +24,8 @@ scores them, and drafts an email to the client.
 Makefile (run from the repository root):
 
 - `make install` - install backend (`uv sync`) and frontend (`npm i`) dependencies
+- `make db` - start the local Postgres 16 container `asc-pg` on `127.0.0.1:5432`
+- `make migrate` - apply Alembic migrations to `DATABASE_URL`
 - `make dev-backend` - start the backend dev server on `http://localhost:8000`
 - `make dev-frontend` - start the frontend dev server
 - `make test` - run backend and frontend tests
@@ -36,6 +38,9 @@ Backend (use uv for dependency management):
 - `uv run pytest` - run the whole test suite
 - `uv run pytest tests/test_<module>.py` - run one test file
 - `uv run python <PYTHON-FILE>` - run a script
+- `uv run alembic upgrade head` - apply migrations to `DATABASE_URL`
+- `uv run alembic revision --autogenerate -m "<change>"` - draft a migration (review it before committing)
+- `TEST_DATABASE_URL=<throwaway-postgres-url> uv run pytest` - also run database tests on PostgreSQL
 
 Frontend:
 
