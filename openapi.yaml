@@ -864,7 +864,7 @@ components:
           minLength: 1
           maxLength: 500
           description: 1–500 characters after trimming.
-          examples: [Which contracts had uncapped liability this month?]
+          examples: ["Which contracts had uncapped liability this month?"]
 
     HistoryQueryResult:
       type: object
