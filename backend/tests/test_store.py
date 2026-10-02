@@ -152,6 +152,19 @@ def test_complete_analysis_replaces_results_atomically(store, user):
     assert store.get_email_draft(contract.id) is None
 
 
+def test_several_findings_of_one_category_are_kept(store, user):
+    contract = make_contract(user.id)
+    store.add_contract(contract)
+    run = uuid4()
+    store.start_analysis(user.id, contract.id, run, NOW)
+    findings = [make_finding(contract.id), make_finding(contract.id, RiskLevel.MEDIUM)]
+    assert store.complete_analysis(contract.id, run, findings, make_email(contract.id), NOW) is True
+
+    saved = store.get_findings(contract.id)
+    assert {f.id for f in saved} == {f.id for f in findings}
+    assert {f.category for f in saved} == {RiskCategory.UNCAPPED_LIABILITY}
+
+
 def test_task_with_superseded_run_commits_nothing(store, user):
     contract = make_contract(user.id)
     store.add_contract(contract)
