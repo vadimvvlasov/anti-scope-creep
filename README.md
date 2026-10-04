@@ -74,6 +74,20 @@ email draft.
 
 ## Run locally
 
+### With Docker (the full system, one command)
+
+You need Docker with Compose.
+
+```bash
+make up      # Postgres, migrations, backend, frontend
+```
+
+Open http://localhost:3000 and log in as `demo@example.com` / `password123`
+(demo accounts are described below). The API is on http://localhost:8000.
+`make down` stops everything and keeps the database volume; `make logs` follows the logs.
+
+### For development (hot reload)
+
 You need [uv](https://docs.astral.sh/uv/), Node.js 20+ with npm, and Docker (only
 for the Postgres container).
 
@@ -122,6 +136,9 @@ Run from the repository root.
 | Command | What it does |
 |---|---|
 | `make install` | Install backend (`uv sync`) and frontend (`npm i`) dependencies |
+| `make up` | Build and start the full system in Docker: frontend on `http://localhost:3000`, backend on `http://localhost:8000` |
+| `make down` | Stop the compose stack (the database volume is kept) |
+| `make logs` | Follow the compose logs |
 | `make db` | Start the local Postgres 16 container `asc-pg` |
 | `make migrate` | Apply Alembic migrations to `DATABASE_URL` |
 | `make dev-backend` | Start the backend dev server on `http://localhost:8000` |

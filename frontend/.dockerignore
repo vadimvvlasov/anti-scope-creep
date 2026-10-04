@@ -1,0 +1,9 @@
+node_modules
+.output
+dist
+.wrangler
+.lovable
+.env
+.env.*
+Dockerfile
+.dockerignore
