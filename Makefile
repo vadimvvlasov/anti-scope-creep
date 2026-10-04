@@ -1,4 +1,4 @@
-.PHONY: install up down logs db migrate dev-backend dev-frontend test lint
+.PHONY: install up down logs e2e db migrate dev-backend dev-frontend test lint
 
 install:
 	cd backend && uv sync
@@ -14,6 +14,10 @@ down:
 
 logs:
 	docker compose logs -f
+
+# Playwright end-to-end tests against the running stack (run `make up` first).
+e2e:
+	cd frontend && npm run e2e
 
 # Only Postgres, for running the backend and tests on the host (make dev-backend).
 db:
