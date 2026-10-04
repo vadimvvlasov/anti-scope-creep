@@ -279,7 +279,7 @@ Lightsail container services pull images from public registries, so the image is
 
 ### Authentication to clouds
 
-- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
+- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. The trust policies match GitHub's immutable subject claim (`repo:vadimvvlasov@48059972/anti-scope-creep@1393514697:environment:<env>`): repositories created after 2026-07-15 get it by default, and it keeps a recreated repository with the same name from assuming the roles. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
 - GitHub → Cloudflare: API token limited to Workers Scripts edit on this account, stored as an environment secret.
 
 ---
