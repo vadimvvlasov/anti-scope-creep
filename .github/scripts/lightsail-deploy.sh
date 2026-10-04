@@ -38,8 +38,17 @@ if ! aws lightsail get-container-services --service-name "$SERVICE" > /dev/null 
     exit 1
   fi
   echo "Creating container service $SERVICE (nano, scale 1, env=$ENV_TAG)"
-  aws lightsail create-container-service --service-name "$SERVICE" --power nano --scale 1 \
-    --tags "key=env,value=$ENV_TAG" > /dev/null
+  # A just-deleted service disappears from the list before its name is free again:
+  # Lightsail answers "try again when service ... is done DELETING" for a few minutes.
+  until aws lightsail create-container-service --service-name "$SERVICE" --power nano --scale 1 \
+    --tags "key=env,value=$ENV_TAG" > /dev/null 2> "$RUNNER_TEMP/create.err"; do
+    if ! grep -q "done DELETING" "$RUNNER_TEMP/create.err" || ((SECONDS > deadline)); then
+      cat "$RUNNER_TEMP/create.err" >&2
+      exit 1
+    fi
+    echo "The previous $SERVICE is still being deleted, retrying in 15 s"
+    sleep 15
+  done
 fi
 wait_for_service
 
