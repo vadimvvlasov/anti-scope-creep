@@ -10,8 +10,8 @@ Target: **zero hosting cost** on free tiers. Free-tier numbers below were checke
 
 ```mermaid
 flowchart LR
-    U["Browser"] --> FE["React SPA<br/>Cloudflare Pages"]
-    FE -->|"HTTPS + JWT<br/>src/services/api.ts"| BE["FastAPI<br/>Google Cloud Run"]
+    U["Browser"] --> FE["React SPA<br/>Cloudflare Workers<br/>static assets"]
+    FE -->|"HTTPS + JWT<br/>src/services/api.ts"| BE["FastAPI<br/>AWS Lightsail container"]
     BE -->|"pooled connection"| DB[("Neon Postgres")]
     BE -->|"analysis, text-to-SQL"| LLM["Groq API"]
     BE -->|"OTLP"| OBS["Grafana Cloud<br/>metrics, logs, traces"]
@@ -22,15 +22,15 @@ flowchart LR
 
 | Component | Technology | Hosting | Notes |
 |---|---|---|---|
-| Frontend | React + TypeScript (Lovable) | Cloudflare Pages | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. |
+| Frontend | React + TypeScript (Lovable) | Cloudflare Workers static assets (`frontend/wrangler.jsonc`) | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. TanStack Start SPA mode, build output `frontend/.output/public`; the shell is `index.html`, and `not_found_handling: single-page-application` serves it for deep links. No Worker script: requests to static assets are free and unlimited. URLs: `anti-scope-creep.vadimvlasov.workers.dev` (prod), `anti-scope-creep-dev.vadimvlasov.workers.dev` (dev). Cloudflare Pages was the first plan; Wrangler now delegates new Pages projects to Workers. |
 | API contract | `openapi.yaml` | repo | Contract between frontend and backend. |
-| Backend | Python, FastAPI, `uv`, `pytest` | Google Cloud Run | One Docker image, scale to zero. |
+| Backend | Python, FastAPI, `uv`, `pytest` | AWS Lightsail container service | One Docker image, one always-on Nano node per environment. |
 | Database | PostgreSQL, SQLAlchemy, Alembic | Neon | Built-in PgBouncer pooling, branches for dev/prod. |
 | LLM | Groq API | Groq cloud | Stub analyzer in Phase 1; Groq from the LLM phase. |
 | Agents | LangGraph | inside the backend; on-call agent in GitHub Actions | Text-to-SQL graph behind `POST /query`. |
 | MCP server | FastMCP, stdio | user's machine | Thin client of `POST /query`. |
 | Observability | OpenTelemetry → Grafana Cloud | Grafana Cloud free tier | Managed Prometheus-compatible metrics, Loki, Tempo. |
-| CI/CD | GitHub Actions | GitHub | Workload Identity Federation to GCP, no long-lived keys. |
+| CI/CD | GitHub Actions | GitHub | OIDC role in AWS, no long-lived keys. |
 | Images | Docker | GitHub Container Registry (public) | See [Container registry](#container-registry). |
 
 ---
@@ -61,25 +61,15 @@ Rules that matter for the infrastructure (full definitions in `docs/spec.md`):
 - **Run check:** a task commits only if the contract is still `analyzing` with the task's `analysis_run_id`.
 - **Stale analysis rule:** an `analyzing` contract older than `ANALYSIS_STALE_AFTER_SECONDS` (default 600) becomes `failed` on its next read or change. This is the safety net for lost background tasks.
 
-### Background work on Cloud Run
+### Background work on Lightsail
 
-FastAPI `BackgroundTasks` run in the same process after the response is sent. On Cloud Run this needs care:
+FastAPI `BackgroundTasks` run in the same process after the response is sent. A Lightsail container service keeps its containers running: CPU is not throttled between requests and the service does not scale to zero, so in-process tasks run normally after the `202` response. A container can still be replaced (deploy, node restart), and the stale rule covers that.
 
-- With **request-based billing** (the default), CPU is only allocated while a request is being handled. After the `202` response, the task is throttled; the instance may also be shut down before the task finishes.
-- With **instance-based billing** (`--no-cpu-throttling`), CPU stays allocated for the instance's lifetime, so in-process tasks run normally. An instance can still be shut down (scale-in, deploy), and the stale rule covers that.
+**Decision:** in-process `BackgroundTasks` plus the stale rule. The analysis runner sits behind an interface (`AnalysisRunner.schedule(contract_id, run_id)`), so it can be swapped for a task queue (for example, SQS with a worker container in the same deployment) if tasks get lost too often. That swap changes no public API.
 
-**Decision:** deploy with instance-based billing, `min-instances=0`, and the stale rule. The analysis runner sits behind an interface (`AnalysisRunner.schedule(contract_id, run_id)`), so it can be swapped for **Cloud Tasks** (a task queue calling `POST /internal/analyze/{id}` on the same service, protected by OIDC) if tasks get lost too often or costs grow. That swap changes no public API.
+**Cost.** Lightsail bills by the hour up to the monthly price, for as long as a container service exists, busy or idle, enabled or disabled; only deleting it stops the charge. Nano power (0.25 vCPU, 512 MB) costs 7 USD/month per node (about 0.0096 USD/hour) and includes 500 GB of data transfer. So **prod is permanent** (7 USD/month) and **dev is ephemeral**: the deploy workflow creates the dev service when it needs it, and a nightly workflow deletes it, so a dozen hours of dev a month cost about 0.12 USD. Both are paid from the AWS Free Tier credits (100 USD, valid until 2027-05-08). Set an AWS budget alert that ignores credits, and delete the prod service when the project is no longer demoed.
 
-Free tier differs per billing mode (monthly, per billing account):
-
-| Billing mode | vCPU-seconds | GiB-seconds | Requests |
-|---|---:|---:|---:|
-| Request-based | 180,000 | 360,000 | 2 million |
-| Instance-based | 240,000 | 450,000 | — |
-
-With instance-based billing, an instance is billed while it is alive, including idle time before scale-in (up to about 15 minutes). A wake-up costs at most about 900 vCPU-seconds, so roughly 260 wake-ups per month stay free. That is enough for development and demos. Set a GCP budget alert at 1 USD.
-
-Cloud Run service settings: 1 vCPU, 512 MiB, `min-instances=0`, `max-instances=2`, request timeout 60 s, region `us-central1`.
+Lightsail settings: power Nano, scale 1, region `eu-central-1` (Frankfurt, the same AWS region as Neon), container port 8000 as the public endpoint (HTTPS only, default `*.cs.amazonlightsail.com` domain), health check `GET /health`.
 
 ---
 
@@ -100,6 +90,7 @@ Local development uses a single Postgres container (`docker run ... postgres:16`
 
 - Neon branch `main` → prod.
 - Neon branch `dev` → dev (branched from `main`, can be reset).
+- Region: AWS `eu-central-1` (Frankfurt), the same as the backend.
 
 ### Roles and isolation for the text-to-SQL agent
 
@@ -221,7 +212,7 @@ flowchart TD
 
 Boundaries (enforced by workflow permissions, and documented in `docs/permissions.md`):
 - Write access only to `oncall/*` branches, pull requests, and issues. Never pushes to `main`.
-- The workflow has no deploy credentials and no Neon or GCP access; it reads Grafana with a read-only token.
+- The workflow has no deploy credentials and no Neon or AWS access; it reads Grafana with a read-only token.
 - If classification is unsure, the default is "explain + needs human review", never a silent fix.
 - Merging and promoting to prod stay human.
 
@@ -230,8 +221,8 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 ## 6. Observability
 
 - **Instrumentation:** OpenTelemetry SDK in the backend, with auto-instrumentation for FastAPI, SQLAlchemy, and HTTPX (the Groq client), plus manual spans for extraction, each analysis chunk, quote verification, and the text-to-SQL graph nodes.
-- **Export:** OTLP over HTTP directly to the Grafana Cloud OTLP gateway, with no collector sidecar. Prometheus-style pull scraping does not fit Cloud Run, since instances come and go. Flush exporters on `SIGTERM` (Cloud Run gives about 10 s).
-- **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to Cloud Logging automatically and to Loki through OTLP logs.
+- **Export:** OTLP over HTTP directly to the Grafana Cloud OTLP gateway, with no collector sidecar. Pull scraping would need a public metrics endpoint on the container service, so push is simpler. Flush exporters on `SIGTERM`, when a deployment replaces the container.
+- **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to the Lightsail container logs automatically and to Loki through OTLP logs.
 - **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
 - **Metrics:**
   - `analyses_total{outcome=done|failed|stale}`
@@ -252,8 +243,8 @@ Grafana Cloud free tier (metrics, logs, traces with limited retention) is enough
 ```mermaid
 flowchart LR
     PR["pull request"] --> CI["ci.yml:<br/>backend tests + Postgres,<br/>frontend tests + build,<br/>e2e, Semgrep"]
-    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>Cloud Run dev, Pages dev,<br/>smoke test"]
-    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon main,<br/>Cloud Run prod, Pages prod,<br/>smoke test"]
+    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>create + deploy Lightsail dev,<br/>Workers dev, smoke test"]
+    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon main,<br/>Lightsail prod, Workers prod,<br/>smoke test"]
 ```
 
 ### Workflows
@@ -266,29 +257,30 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
    - end-to-end: Playwright against backend + Postgres + built frontend (integration-testing criterion);
    - Semgrep scan, with results saved as a workflow artifact.
 2. **`deploy-dev.yml`** (after CI passes on `main`):
-   - build the image once and tag it `sha-<short-sha>`;
-   - `alembic upgrade head` on the Neon `dev` branch (direct endpoint);
-   - deploy to Cloud Run service `anti-scope-creep-dev`;
-   - build the frontend with the dev `VITE_API_URL` and deploy it to Cloudflare Pages project `anti-scope-creep-dev` (`wrangler pages deploy`);
+   - build the image once, tag it `sha-<short-sha>`, and push it to `ghcr.io`;
+   - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
+   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral, so its URL changes when it is recreated), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
+   - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
    - smoke test: `GET /health/ready`, register + upload + poll with the stub.
 3. **`promote-prod.yml`** (`workflow_dispatch` with an image tag, GitHub Environment `prod` with a required reviewer):
    - reuses the **same image** tested in dev;
    - migrations on the Neon `main` branch;
-   - deploys to `anti-scope-creep-prod`;
-   - builds the frontend with the prod `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to Pages project `anti-scope-creep`;
+   - deploys it to the Lightsail container service `anti-scope-creep-prod`;
+   - builds the frontend with the prod `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
    - smoke test.
-4. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
+4. **`dev-down.yml`** (nightly schedule and `workflow_dispatch`): deletes the dev container service, which is billed until deleted.
+5. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
 
 Migrations run **before** the new revision takes traffic, so they must be backward-compatible with the running revision (add columns first, remove them in a later release).
 
 ### Container registry
 
-Cloud Run deploys **public** images from `ghcr.io` directly; private `ghcr.io` images need an Artifact Registry remote repository. The repository is public, so the image package is public on `ghcr.io`. If the image ever has to be private, push to Artifact Registry instead.
+Lightsail container services pull images from public registries, so the image is a public package on `ghcr.io` (the repository is public too). If the image ever has to be private, push it to the container service itself (`aws lightsail push-container-image`) or to Amazon ECR.
 
 ### Authentication to clouds
 
-- GitHub → GCP: Workload Identity Federation (OIDC), limited to this repository and the `main` branch / `prod` environment. The deploy service account has only `run.developer` and `iam.serviceAccountUser` on the runtime service account.
-- GitHub → Cloudflare: API token limited to Pages edit, stored as an environment secret.
+- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
+- GitHub → Cloudflare: API token limited to Workers Scripts edit on this account, stored as an environment secret.
 
 ---
 
@@ -304,19 +296,19 @@ Cloud Run deploys **public** images from `ghcr.io` directly; private `ghcr.io` i
 | `GROQ_MODEL` | backend | no | Model ID, default `openai/gpt-oss-120b`. |
 | `ANALYZER` | backend | no | `stub` or `groq`. |
 | `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 600. |
-| `CORS_ORIGINS` | backend | no | Comma-separated exact origins (Pages dev/prod, `http://localhost:5173`). No wildcards. |
+| `CORS_ORIGINS` | backend | no | Comma-separated exact origins (the `workers.dev` frontend of the environment, `http://localhost:5173`). No wildcards. |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS` | backend | headers yes | Grafana Cloud OTLP. |
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |
 | `ASC_API_URL`, `ASC_API_TOKEN` | MCP server | token yes | MCP thin client. |
 
-- Runtime secrets live in GCP Secret Manager and are mounted with `gcloud run deploy --set-secrets`.
+- Runtime secrets (`DATABASE_URL`, `JWT_SECRET`, later `GROQ_API_KEY`) live in GitHub Environment secrets and are passed to the container as environment variables of the Lightsail deployment. Lightsail keeps them in the deployment configuration, readable by anyone with Lightsail read access to the account, so that access stays limited to the account owner and the deploy role.
 - `.env.example` in `backend/` and `frontend/` lists every variable with placeholder values; `.env` is git-ignored.
 
 ---
 
 ## 9. Security notes
 
-- JWT in `localStorage` is readable by injected scripts. Accepted for the MVP. Mitigated by a strict Content-Security-Policy in the Pages `_headers` file and by never rendering contract text as HTML.
+- JWT in `localStorage` is readable by injected scripts. Accepted for the MVP. Mitigated by a strict Content-Security-Policy in the `_headers` file of the static assets and by never rendering contract text as HTML.
 - CORS: an explicit origin list and the `Authorization` header allowed; credentials mode is not needed, since tokens are not cookies.
 - Uploads: 5 MB limit checked before extraction; extension, MIME, and magic bytes checked; PDFs parsed in memory with no disk writes.
 - Ownership: every contract query filters by `user_id`; other users' contracts return `404`.
@@ -333,7 +325,7 @@ Cloud Run deploys **public** images from `ghcr.io` directly; private `ghcr.io` i
 | Phase | Scope | Result |
 |---|---|---|
 | 1 | Lovable frontend + mock, `openapi.yaml`, FastAPI in-memory, then SQLAlchemy + Postgres | Full product locally with the stub analyzer |
-| 2 | Docker, CI/CD, Neon, Cloud Run, Cloudflare Pages, dev/prod | Deployed MVP |
+| 2 | Docker, CI/CD, Neon, AWS Lightsail, Cloudflare Workers static assets, dev/prod | Deployed MVP |
 | 3 | Groq analyzer (chunking, quote verification, data policy) | Real findings |
 | 4 | OpenTelemetry, Grafana Cloud, alerts, on-call agent | Observable system + diagnosis artifact |
 | 5 | Text-to-SQL graph behind `/query`, MCP server | History Search works on the real backend |
@@ -357,7 +349,7 @@ This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes 
 | Database integration | Phase 1–2 | Alembic migrations, Neon |
 | Containerization | Phase 2 | `Dockerfile`, local compose |
 | Integration testing | Phase 1–2 | Playwright e2e in CI |
-| Deployment | Phase 2 | Cloud Run + Pages URLs |
+| Deployment | Phase 2 | Lightsail + `workers.dev` URLs |
 | CI/CD pipeline | Phase 2 | `.github/workflows/` |
 | Agent extension pack | Phase 6 | subagents/skills in repo |
 | Security / audit / DevOps hardening | Phases 4 and 6 | Semgrep artifact, PR audit output, `docs/permissions.md`, on-call diagnosis log, `docs/ai-data-policy.md` |
@@ -367,25 +359,27 @@ This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes 
 
 ## Decisions
 
-All decided on 2026-09-29; no open decisions right now.
+Decided on 2026-09-29; backend hosting changed on 2026-10-04. No open decisions right now.
 
 | Topic | Decision | Revisit when |
 |---|---|---|
 | Maximum contract length | 30,000 characters, all phases | Moving to a paid LLM tier, or LoRA preselection cuts tokens per contract |
 | LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL | Groq changes free-tier models or limits |
 | CUAD/LoRA + MLflow | **Stretch goal**, built only after phases 1–6. Role: preselect candidate clauses before the LLM | Core phases are done before the capstone deadline |
-| Background execution | **Option A:** in-process `BackgroundTasks`, Cloud Run instance-based billing (`--no-cpu-throttling`), `min-instances=0`, plus the stale-analysis rule. Cloud Tasks is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics), or instance-based billing leaves the free tier |
+| Background execution | In-process `BackgroundTasks` on an always-on Lightsail container, plus the stale-analysis rule. A task queue is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics) |
+| Backend hosting | AWS Lightsail container services (Nano, `eu-central-1`), paid from AWS Free Tier credits. Google Cloud Run was the first choice, but a Google Cloud billing account could not be created (`OR_BACR2_59`) | The credits run out (about 2027-05) or Lightsail pricing changes |
 
 ## Facts to re-verify
 
-Checked on 2026-09-29; re-check before Phase 2 and before the LLM phase.
+Checked on 2026-09-29 (Lightsail and AWS rows on 2026-10-04); re-check before the LLM phase.
 
 | Fact | Source |
 |---|---|
 | Groq free models and limits; Llama removal on 2026-08-16 | https://console.groq.com/docs/rate-limits, https://console.groq.com/docs/deprecations |
 | Groq data retention (none by default, up to 30 days for reliability/abuse), ZDR, US storage | https://console.groq.com/docs/your-data |
-| Cloud Run free tier per billing mode | https://cloud.google.com/run/pricing |
-| Cloud Run can deploy public `ghcr.io` images directly | https://cloud.google.com/run/docs/deploying |
+| Lightsail container pricing (Nano 7 USD/month per node, 500 GB transfer included) | https://aws.amazon.com/lightsail/pricing/ |
+| Lightsail container services deploy images from public registries | https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-container-services.html |
+| AWS Free Tier credits cover Lightsail containers | https://aws.amazon.com/free/compute/lightsail/ |
 | Neon free tier (storage, compute hours, branches, scale-to-zero) | https://neon.com/pricing |
 | Grafana Cloud free tier limits and retention | https://grafana.com/pricing |
-| Cloudflare Pages free tier (builds per month) | https://developers.cloudflare.com/pages/platform/limits/ |
+| Cloudflare Workers static assets: requests to static assets are free and unlimited | https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/ |

@@ -1,11 +1,25 @@
-.PHONY: install db migrate dev-backend dev-frontend test lint
+.PHONY: install up down logs e2e db migrate dev-backend dev-frontend test lint
 
 install:
 	cd backend && uv sync
 	cd frontend && npm i
 	cd frontend && (test -f .env || cp .env.example .env)
 
-# Local Postgres 16 in one container (not the app's compose file, that is Phase 2).
+# The full system in Docker (compose.yaml): frontend on http://localhost:3000.
+up:
+	docker compose up -d --build --wait
+
+down:
+	docker compose down
+
+logs:
+	docker compose logs -f
+
+# Playwright end-to-end tests against the running stack (run `make up` first).
+e2e:
+	cd frontend && npm run e2e
+
+# Only Postgres, for running the backend and tests on the host (make dev-backend).
 db:
 	docker start asc-pg 2>/dev/null || docker run --name asc-pg -e POSTGRES_PASSWORD=dev \
 		-e POSTGRES_DB=asc -p 127.0.0.1:5432:5432 -d postgres:16

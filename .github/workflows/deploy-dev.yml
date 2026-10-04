@@ -1,0 +1,89 @@
+name: Deploy dev
+
+# After CI passes on main (or by hand): one image, Neon dev migrations, the ephemeral
+# Lightsail dev service, the dev frontend Worker, and a smoke test.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    env:
+      SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.SHA }}
+
+      - name: Build and push the backend image
+        id: image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/anti-scope-creep-backend:sha-${SHA::7}"
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker build -t "$image" \
+            --label "org.opencontainers.image.source=https://github.com/$GITHUB_REPOSITORY" \
+            --label "org.opencontainers.image.revision=$SHA" backend/
+          docker push "$image"
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+
+      - name: Migrate the Neon dev branch
+        env:
+          MIGRATIONS_DATABASE_URL: ${{ secrets.MIGRATIONS_DATABASE_URL }}
+        run: docker run --rm -e DATABASE_URL="$MIGRATIONS_DATABASE_URL" "${{ steps.image.outputs.image }}" alembic upgrade head
+
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to the Lightsail dev service
+        id: backend
+        env:
+          SERVICE: ${{ vars.LIGHTSAIL_SERVICE }}
+          IMAGE: ${{ steps.image.outputs.image }}
+          ENV_TAG: dev
+          CREATE_IF_MISSING: "true"
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          CORS_ORIGINS: ${{ vars.CORS_ORIGINS }}
+        run: .github/scripts/lightsail-deploy.sh
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build and deploy the dev frontend
+        working-directory: frontend
+        env:
+          VITE_API_URL: ${{ steps.backend.outputs.url }}
+          VITE_USE_MOCK: "false"
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npm ci
+          npm run build
+          npx --yes wrangler@4.147.0 deploy --env dev
+
+      - name: Smoke test
+        run: python3 scripts/smoke.py "${{ steps.backend.outputs.url }}"

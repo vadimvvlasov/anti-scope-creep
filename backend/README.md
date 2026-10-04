@@ -48,6 +48,10 @@ docker exec asc-pg psql -U postgres -c "create database asc_test"
 TEST_DATABASE_URL=postgresql+psycopg://postgres:dev@localhost:5432/asc_test uv run pytest
 ```
 
+`tests/test_openapi_contract.py` checks the app against [`openapi.yaml`](../openapi.yaml),
+the hand-written API contract: same operations, same success statuses, and no error
+status the contract lacks. It fails when a route changes without the contract.
+
 ## Layout
 
 | Module | Responsibility |

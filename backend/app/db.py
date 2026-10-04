@@ -26,7 +26,7 @@ from sqlalchemy import (
     create_engine,
     event,
 )
-from sqlalchemy.engine import Engine
+from sqlalchemy.engine import Engine, make_url
 from sqlalchemy.pool import StaticPool
 
 from app.models import ContractStatus, FileType, RiskCategory, RiskLevel
@@ -140,6 +140,15 @@ def build_engine(database_url: str) -> Engine:
         # One shared connection, so every session sees the same in-memory database.
         engine = create_engine(
             database_url, poolclass=StaticPool, connect_args={"check_same_thread": False}
+        )
+    elif make_url(database_url).drivername == "postgresql+psycopg":
+        # Neon's pooled endpoint is PgBouncer in transaction mode, which cannot keep
+        # server-side prepared statements; idle computes are suspended, so ping first.
+        engine = create_engine(
+            database_url,
+            pool_pre_ping=True,
+            pool_size=5,
+            connect_args={"prepare_threshold": None},
         )
     else:
         engine = create_engine(database_url, pool_pre_ping=True)

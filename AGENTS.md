@@ -24,6 +24,11 @@ scores them, and drafts an email to the client.
 Makefile (run from the repository root):
 
 - `make install` - install backend (`uv sync`) and frontend (`npm i`) dependencies
+- `make up` - build and start the full system in Docker (`compose.yaml`): Postgres, migrations,
+  backend on `http://localhost:8000`, frontend on `http://localhost:3000`
+- `make down` - stop it (the database volume is kept)
+- `make logs` - follow the compose logs
+- `make e2e` - run the Playwright end-to-end tests (`frontend/e2e/*.e2e.ts`) against the stack from `make up`
 - `make db` - start the local Postgres 16 container `asc-pg` on `127.0.0.1:5432`
 - `make migrate` - apply Alembic migrations to `DATABASE_URL`
 - `make dev-backend` - start the backend dev server on `http://localhost:8000`
