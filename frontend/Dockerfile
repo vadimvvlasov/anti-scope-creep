@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Static frontend for running the full system locally with compose.
-# Production serves the same build from Cloudflare Pages (docs/architecture.md).
+# Production serves the same build from Cloudflare Workers static assets (docs/architecture.md).
 
 FROM node:22-bookworm-slim AS build
 

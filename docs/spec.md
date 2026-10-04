@@ -1199,7 +1199,7 @@ The agent layer must preserve:
 After the local MVP is stable:
 - containerize the backend with Docker;
 - add CI/CD with separate dev and prod environments;
-- deploy the backend to an AWS Lightsail container service and the frontend to Cloudflare Pages, with Neon Postgres as the database;
+- deploy the backend to an AWS Lightsail container service and the frontend to Cloudflare (Workers static assets), with Neon Postgres as the database;
 - keep environment-specific configuration and secrets outside source control;
 - add production hardening after functional MVP validation.
 

@@ -1,0 +1,18 @@
+// Static frontend on Cloudflare Workers Static Assets (no Worker script).
+// Build first (`npm run build`), then: prod `npx wrangler deploy`, dev `npx wrangler deploy --env dev`.
+// Requests to static assets are free and unlimited; unknown paths get index.html (SPA routing).
+{
+  "name": "anti-scope-creep",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./.output/public",
+    "not_found_handling": "single-page-application"
+  },
+  "env": {
+    "dev": {
+      "name": "anti-scope-creep-dev"
+    }
+  }
+}

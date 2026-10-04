@@ -10,7 +10,7 @@ Target: **zero hosting cost** on free tiers. Free-tier numbers below were checke
 
 ```mermaid
 flowchart LR
-    U["Browser"] --> FE["React SPA<br/>Cloudflare Pages"]
+    U["Browser"] --> FE["React SPA<br/>Cloudflare Workers<br/>static assets"]
     FE -->|"HTTPS + JWT<br/>src/services/api.ts"| BE["FastAPI<br/>AWS Lightsail container"]
     BE -->|"pooled connection"| DB[("Neon Postgres")]
     BE -->|"analysis, text-to-SQL"| LLM["Groq API"]
@@ -22,7 +22,7 @@ flowchart LR
 
 | Component | Technology | Hosting | Notes |
 |---|---|---|---|
-| Frontend | React + TypeScript (Lovable) | Cloudflare Pages | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. TanStack Start SPA mode, build output `frontend/.output/public`; the shell is `index.html`, so Pages serves it for deep links (no `404.html`, no `_redirects`). |
+| Frontend | React + TypeScript (Lovable) | Cloudflare Workers static assets (`frontend/wrangler.jsonc`) | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. TanStack Start SPA mode, build output `frontend/.output/public`; the shell is `index.html`, and `not_found_handling: single-page-application` serves it for deep links. No Worker script: requests to static assets are free and unlimited. URLs: `anti-scope-creep.vadimvlasov.workers.dev` (prod), `anti-scope-creep-dev.vadimvlasov.workers.dev` (dev). Cloudflare Pages was the first plan; Wrangler now delegates new Pages projects to Workers. |
 | API contract | `openapi.yaml` | repo | Contract between frontend and backend. |
 | Backend | Python, FastAPI, `uv`, `pytest` | AWS Lightsail container service | One Docker image, one always-on Nano node per environment. |
 | Database | PostgreSQL, SQLAlchemy, Alembic | Neon | Built-in PgBouncer pooling, branches for dev/prod. |
@@ -243,8 +243,8 @@ Grafana Cloud free tier (metrics, logs, traces with limited retention) is enough
 ```mermaid
 flowchart LR
     PR["pull request"] --> CI["ci.yml:<br/>backend tests + Postgres,<br/>frontend tests + build,<br/>e2e, Semgrep"]
-    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>create + deploy Lightsail dev,<br/>Pages dev, smoke test"]
-    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon main,<br/>Lightsail prod, Pages prod,<br/>smoke test"]
+    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>create + deploy Lightsail dev,<br/>Workers dev, smoke test"]
+    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon main,<br/>Lightsail prod, Workers prod,<br/>smoke test"]
 ```
 
 ### Workflows
@@ -260,13 +260,13 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
    - build the image once, tag it `sha-<short-sha>`, and push it to `ghcr.io`;
    - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
    - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral, so its URL changes when it is recreated), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
-   - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to Cloudflare Pages project `anti-scope-creep-dev` (`wrangler pages deploy`);
+   - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
    - smoke test: `GET /health/ready`, register + upload + poll with the stub.
 3. **`promote-prod.yml`** (`workflow_dispatch` with an image tag, GitHub Environment `prod` with a required reviewer):
    - reuses the **same image** tested in dev;
    - migrations on the Neon `main` branch;
    - deploys it to the Lightsail container service `anti-scope-creep-prod`;
-   - builds the frontend with the prod `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to Pages project `anti-scope-creep`;
+   - builds the frontend with the prod `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
    - smoke test.
 4. **`dev-down.yml`** (nightly schedule and `workflow_dispatch`): deletes the dev container service, which is billed until deleted.
 5. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
@@ -280,7 +280,7 @@ Lightsail container services pull images from public registries, so the image is
 ### Authentication to clouds
 
 - GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
-- GitHub → Cloudflare: API token limited to Pages edit, stored as an environment secret.
+- GitHub → Cloudflare: API token limited to Workers Scripts edit on this account, stored as an environment secret.
 
 ---
 
@@ -296,7 +296,7 @@ Lightsail container services pull images from public registries, so the image is
 | `GROQ_MODEL` | backend | no | Model ID, default `openai/gpt-oss-120b`. |
 | `ANALYZER` | backend | no | `stub` or `groq`. |
 | `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 600. |
-| `CORS_ORIGINS` | backend | no | Comma-separated exact origins (Pages dev/prod, `http://localhost:5173`). No wildcards. |
+| `CORS_ORIGINS` | backend | no | Comma-separated exact origins (the `workers.dev` frontend of the environment, `http://localhost:5173`). No wildcards. |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS` | backend | headers yes | Grafana Cloud OTLP. |
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |
 | `ASC_API_URL`, `ASC_API_TOKEN` | MCP server | token yes | MCP thin client. |
@@ -308,7 +308,7 @@ Lightsail container services pull images from public registries, so the image is
 
 ## 9. Security notes
 
-- JWT in `localStorage` is readable by injected scripts. Accepted for the MVP. Mitigated by a strict Content-Security-Policy in the Pages `_headers` file and by never rendering contract text as HTML.
+- JWT in `localStorage` is readable by injected scripts. Accepted for the MVP. Mitigated by a strict Content-Security-Policy in the `_headers` file of the static assets and by never rendering contract text as HTML.
 - CORS: an explicit origin list and the `Authorization` header allowed; credentials mode is not needed, since tokens are not cookies.
 - Uploads: 5 MB limit checked before extraction; extension, MIME, and magic bytes checked; PDFs parsed in memory with no disk writes.
 - Ownership: every contract query filters by `user_id`; other users' contracts return `404`.
@@ -325,7 +325,7 @@ Lightsail container services pull images from public registries, so the image is
 | Phase | Scope | Result |
 |---|---|---|
 | 1 | Lovable frontend + mock, `openapi.yaml`, FastAPI in-memory, then SQLAlchemy + Postgres | Full product locally with the stub analyzer |
-| 2 | Docker, CI/CD, Neon, AWS Lightsail, Cloudflare Pages, dev/prod | Deployed MVP |
+| 2 | Docker, CI/CD, Neon, AWS Lightsail, Cloudflare Workers static assets, dev/prod | Deployed MVP |
 | 3 | Groq analyzer (chunking, quote verification, data policy) | Real findings |
 | 4 | OpenTelemetry, Grafana Cloud, alerts, on-call agent | Observable system + diagnosis artifact |
 | 5 | Text-to-SQL graph behind `/query`, MCP server | History Search works on the real backend |
@@ -349,7 +349,7 @@ This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes 
 | Database integration | Phase 1–2 | Alembic migrations, Neon |
 | Containerization | Phase 2 | `Dockerfile`, local compose |
 | Integration testing | Phase 1–2 | Playwright e2e in CI |
-| Deployment | Phase 2 | Lightsail + Pages URLs |
+| Deployment | Phase 2 | Lightsail + `workers.dev` URLs |
 | CI/CD pipeline | Phase 2 | `.github/workflows/` |
 | Agent extension pack | Phase 6 | subagents/skills in repo |
 | Security / audit / DevOps hardening | Phases 4 and 6 | Semgrep artifact, PR audit output, `docs/permissions.md`, on-call diagnosis log, `docs/ai-data-policy.md` |
@@ -382,4 +382,4 @@ Checked on 2026-09-29 (Lightsail and AWS rows on 2026-10-04); re-check before th
 | AWS Free Tier credits cover Lightsail containers | https://aws.amazon.com/free/compute/lightsail/ |
 | Neon free tier (storage, compute hours, branches, scale-to-zero) | https://neon.com/pricing |
 | Grafana Cloud free tier limits and retention | https://grafana.com/pricing |
-| Cloudflare Pages free tier (builds per month) | https://developers.cloudflare.com/pages/platform/limits/ |
+| Cloudflare Workers static assets: requests to static assets are free and unlimited | https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/ |
