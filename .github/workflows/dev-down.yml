@@ -1,0 +1,40 @@
+name: Dev down
+
+# A Lightsail container service is billed until it is deleted, even when disabled.
+# Dev is ephemeral: delete it every night; the next deploy-dev run creates it again.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Delete the dev container service
+        env:
+          SERVICE: ${{ vars.LIGHTSAIL_SERVICE }}
+        run: |
+          if [[ "$SERVICE" != *-dev ]]; then echo "Refusing to delete $SERVICE: not a dev service" >&2; exit 1; fi
+          if ! aws lightsail get-container-services --service-name "$SERVICE" > /dev/null 2> err.txt; then
+            if grep -q NotFoundException err.txt; then echo "$SERVICE does not exist, nothing to delete"; exit 0; fi
+            cat err.txt >&2; exit 1
+          fi
+          aws lightsail delete-container-service --service-name "$SERVICE"
+          echo "Deleted $SERVICE"
