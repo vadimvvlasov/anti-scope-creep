@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from app.config import Settings
+from app.config import Settings, migrations_database_url
 from app.main import create_app
 from app.store import SqlStore
 from tests.conftest import assert_error
@@ -101,3 +101,16 @@ def test_settings_defaults_and_random_secret():
     assert first.jwt_secret and first.jwt_secret != second.jwt_secret
     assert first.analysis_stale_after_seconds == 600
     assert first.seed_demo_data is True
+
+
+POOLED_URL = "postgresql+psycopg://u:p@ep-x-pooler.neon.tech/asc"
+DIRECT_URL = "postgresql+psycopg://u:p@ep-x.neon.tech/asc"
+
+
+def test_migrations_use_the_direct_url_when_set():
+    env = {"DATABASE_URL": POOLED_URL, "MIGRATIONS_DATABASE_URL": DIRECT_URL}
+    assert migrations_database_url(env) == DIRECT_URL
+
+
+def test_migrations_fall_back_to_database_url():
+    assert migrations_database_url({"DATABASE_URL": POOLED_URL, "MIGRATIONS_DATABASE_URL": " "}) == POOLED_URL

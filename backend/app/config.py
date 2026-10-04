@@ -36,6 +36,15 @@ class Settings:
         )
 
 
+def migrations_database_url(env: Mapping[str, str] = os.environ) -> str:
+    """The URL Alembic migrates: MIGRATIONS_DATABASE_URL if set, otherwise DATABASE_URL.
+
+    On Neon the application uses the pooled endpoint (PgBouncer, transaction mode),
+    which cannot run migrations; MIGRATIONS_DATABASE_URL points at the direct endpoint.
+    """
+    return env.get("MIGRATIONS_DATABASE_URL", "").strip() or _database_url(env)
+
+
 def _database_url(env: Mapping[str, str]) -> str:
     url = env.get("DATABASE_URL", "").strip()
     if not url:
