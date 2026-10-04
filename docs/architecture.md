@@ -259,7 +259,7 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
 2. **`deploy-dev.yml`** (after CI passes on `main`):
    - build the image once, tag it `sha-<short-sha>`, and push it to `ghcr.io`;
    - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
-   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral, so its URL changes when it is recreated), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
+   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral; its default domain stays the same, because the random part is per account and Region), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
    - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
    - smoke test: `GET /health/ready`, register + upload + poll with the stub.
 3. **`promote-prod.yml`** (`workflow_dispatch` with an image tag, GitHub Environment `prod` with a required reviewer):
