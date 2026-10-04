@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Backend image for local compose and Cloud Run. Build from backend/: `docker build -t asc-backend .`
+# Backend image for local compose and AWS Lightsail. Build from backend/: `docker build -t asc-backend .`
 
 FROM python:3.12-slim-bookworm AS build
 
@@ -37,5 +37,5 @@ USER app
 EXPOSE 8000
 
 # Migrations are not run here; deploy jobs run `alembic upgrade head` with this image.
-# Cloud Run passes the port in PORT; uvicorn does not read it, so the shell does.
+# The port can be overridden with PORT (default 8000); uvicorn does not read it, so the shell does.
 CMD ["sh", "-c", "exec uvicorn app.main:create_app --factory --host 0.0.0.0 --port ${PORT:-8000}"]

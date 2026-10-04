@@ -1,5 +1,5 @@
 # The full system locally: `make up`, then open http://localhost:3000.
-# Production runs the same backend image on Cloud Run and the frontend on Cloudflare Pages.
+# Production runs the same backend image on AWS Lightsail and the frontend on Cloudflare Pages.
 
 services:
   postgres:
