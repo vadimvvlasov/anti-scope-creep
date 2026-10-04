@@ -22,7 +22,7 @@ flowchart LR
 
 | Component | Technology | Hosting | Notes |
 |---|---|---|---|
-| Frontend | React + TypeScript (Lovable) | Cloudflare Pages | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. |
+| Frontend | React + TypeScript (Lovable) | Cloudflare Pages | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. TanStack Start SPA mode, build output `frontend/.output/public`; the shell is `index.html`, so Pages serves it for deep links (no `404.html`, no `_redirects`). |
 | API contract | `openapi.yaml` | repo | Contract between frontend and backend. |
 | Backend | Python, FastAPI, `uv`, `pytest` | Google Cloud Run | One Docker image, scale to zero. |
 | Database | PostgreSQL, SQLAlchemy, Alembic | Neon | Built-in PgBouncer pooling, branches for dev/prod. |
