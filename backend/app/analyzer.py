@@ -12,6 +12,7 @@ class FindingDraft(BaseModel):
     risk_level: RiskLevel
     quoted_text: str = Field(min_length=1, max_length=10_000)
     explanation: str = Field(min_length=1, max_length=2_000)
+    suggested_change: str = Field(min_length=1, max_length=2_000)
 
 
 class EmailDraftContent(BaseModel):
@@ -57,6 +58,10 @@ STUB_FINDINGS = (
             "You would be responsible for any loss connected to the work with no upper limit, "
             "so a single claim could exceed the total contract value."
         ),
+        suggested_change=(
+            "The Contractor's total liability arising out of or in connection with this Agreement "
+            "shall not exceed the total fees paid under this Agreement."
+        ),
     ),
     FindingDraft(
         category=RiskCategory.UNFAVORABLE_PAYMENT_TERMS,
@@ -66,6 +71,7 @@ STUB_FINDINGS = (
             "Payment can arrive up to two months after you invoice, which is well beyond the "
             "common 30-day standard and delays your cash flow."
         ),
+        suggested_change="Invoices are payable within 30 days of the invoice date.",
     ),
     FindingDraft(
         category=RiskCategory.UNLIMITED_REVISIONS,
@@ -74,6 +80,10 @@ STUB_FINDINGS = (
         explanation=(
             "The number of revision rounds is not stated, which leaves some room for extra work, "
             "although revisions are limited to what is reasonable."
+        ),
+        suggested_change=(
+            "The Client may request up to two rounds of revisions to each deliverable; further "
+            "revisions will be billed at the Contractor's hourly rate."
         ),
     ),
 )
@@ -94,7 +104,10 @@ Best regards""",
 
 
 class StubAnalyzer:
-    """Deterministic MVP analyzer: ignores the text and always returns the fixture."""
+    """Deterministic MVP analyzer: ignores the text and always returns the fixture.
+
+    Offsets are not the analyzer's job: they are set when the result is committed.
+    """
 
     def analyze(self, source_text: str) -> AnalysisResult:
         return AnalysisResult(findings=list(STUB_FINDINGS), email_draft=STUB_EMAIL)

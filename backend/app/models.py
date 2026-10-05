@@ -90,6 +90,10 @@ class FindingRecord:
     risk_level: RiskLevel
     quoted_text: str
     explanation: str
+    suggested_change: str
+    # Code-point offsets of the quote in source_text; both None when it was not located.
+    start_char: int | None
+    end_char: int | None
 
 
 @dataclass(frozen=True)
@@ -195,6 +199,9 @@ class Finding(BaseModel):
     risk_level: RiskLevel
     quoted_text: str
     explanation: str
+    suggested_change: str
+    start_char: int | None
+    end_char: int | None
 
 
 class EmailDraft(BaseModel):
@@ -205,6 +212,7 @@ class EmailDraft(BaseModel):
 
 
 class ContractDetail(ContractSummary):
+    source_text: str
     risk_summary: RiskSummary | None
     findings: list[Finding]
     email_draft: EmailDraft | None

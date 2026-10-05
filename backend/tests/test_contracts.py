@@ -19,11 +19,12 @@ DETAIL_FIELDS = {
     "updated_at",
     "analyzed_at",
     "overall_risk_level",
+    "source_text",
     "risk_summary",
     "findings",
     "email_draft",
 }
-SUMMARY_FIELDS = DETAIL_FIELDS - {"risk_summary", "findings", "email_draft"}
+SUMMARY_FIELDS = DETAIL_FIELDS - {"source_text", "risk_summary", "findings", "email_draft"}
 
 
 # -- create ---------------------------------------------------------------------------
@@ -44,7 +45,7 @@ def test_create_returns_202_analyzing_contract_without_results(harness, auth_hea
     assert body["risk_summary"] is None
     assert body["findings"] == []
     assert body["email_draft"] is None
-    assert "source_text" not in response.text
+    assert body["source_text"] == ENGLISH_CONTRACT
 
 
 def test_create_schedules_one_run_matching_the_stored_run_id(harness, auth_headers):
@@ -73,9 +74,40 @@ def test_background_analysis_completes_with_stub_fixture(harness, auth_headers):
         "low_count": 1,
     }
     assert [f["risk_level"] for f in body["findings"]] == ["high", "medium", "low"]
-    assert set(body["findings"][0]) == {"id", "category", "risk_level", "quoted_text", "explanation"}
+    assert set(body["findings"][0]) == {
+        "id", "category", "risk_level", "quoted_text", "explanation", "suggested_change", "start_char", "end_char"
+    }
     assert body["email_draft"]["subject"] == "Proposed changes to the agreement"
     assert set(body["email_draft"]) == {"id", "subject", "body", "created_at"}
+
+
+def test_findings_carry_suggested_change_and_offsets_into_the_source_text(harness, auth_headers):
+    contract_id = harness.create_contract(auth_headers)["id"]  # contains all three stub quotes
+
+    body = harness.client.get(f"/contracts/{contract_id}", headers=auth_headers).json()
+
+    for finding in body["findings"]:
+        assert finding["suggested_change"]
+        assert body["source_text"][finding["start_char"] : finding["end_char"]] == finding["quoted_text"]
+
+
+def test_findings_whose_quote_is_not_in_the_text_have_null_offsets(harness, auth_headers):
+    text = (
+        "This Services Agreement is entered into between the Client and the Contractor. The Contractor "
+        "will design a marketing website. Invoices are payable within 30 days of the invoice date."
+    )
+    contract_id = harness.create_contract(auth_headers, text=text)["id"]
+
+    body = harness.client.get(f"/contracts/{contract_id}", headers=auth_headers).json()
+
+    assert body["status"] == "done"
+    assert [(f["start_char"], f["end_char"]) for f in body["findings"]] == [(None, None)] * 3
+
+
+def test_list_items_never_include_source_text(harness, auth_headers):
+    harness.create_contract(auth_headers)
+    items = harness.client.get("/contracts", headers=auth_headers).json()["items"]
+    assert "source_text" not in items[0]
 
 
 def test_create_from_txt_file_defaults_title_to_filename(harness, auth_headers):

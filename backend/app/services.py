@@ -116,6 +116,7 @@ class ContractService:
         return ContractDetail(
             **_summary_fields(record),
             overall_risk_level=summary.overall_risk_level if summary else None,
+            source_text=record.source_text,
             risk_summary=summary,
             findings=[_finding(f) for f in sort_findings(findings)] if summary else [],
             email_draft=_email(self._store.get_email_draft(record.id)) if summary else None,
@@ -161,6 +162,9 @@ def _finding(record: FindingRecord) -> Finding:
         risk_level=record.risk_level,
         quoted_text=record.quoted_text,
         explanation=record.explanation,
+        suggested_change=record.suggested_change,
+        start_char=record.start_char,
+        end_char=record.end_char,
     )
 
 
