@@ -122,12 +122,12 @@ These objects are created by an Alembic migration; the role password comes from 
 
 ### Model choice
 
-Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free and developer tiers on 2026-08-16. The free tier now serves `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, and a Qwen model.
+Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free and developer tiers on 2026-08-16. The free tier now serves `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, and `qwen/qwen3.8-27b` (checked 2026-10-05).
 
 **Decision: one model for everything, `openai/gpt-oss-120b`** (`GROQ_MODEL`), used for contract analysis, the email, and all text-to-SQL steps.
 
-- Free-tier limits reported for `gpt-oss-120b` and `gpt-oss-20b` are the same: **30 requests/min, 1,000 requests/day, 8,000 tokens/min, 200,000 tokens/day**. The only Qwen model with published numbers (`qwen3-32b`) has a lower 6,000 tokens/min.
-- With equal limits, `gpt-oss-120b` is the stronger model on published reasoning benchmarks, so it wins.
+- Free-tier limits for `gpt-oss-120b`, `gpt-oss-20b` and `qwen/qwen3.8-27b` are the same: **30 requests/min, 1,000 requests/day, 8,000 tokens/min, 200,000 tokens/day**.
+- With equal limits, `gpt-oss-120b` stays the choice: it is the largest of the three. `qwen/qwen3.8-27b` replaced `qwen3-32b` and has not been benchmarked for this project; compare it in the Phase 3 eval if quality is a problem.
 - It is a reasoning model: request `reasoning_effort: "low"` so reasoning tokens do not eat the per-minute budget.
 - Trade-off: analysis and history queries share one quota of 200,000 tokens/day. The limiter below covers both.
 
