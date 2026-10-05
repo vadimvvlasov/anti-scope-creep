@@ -163,6 +163,12 @@ class RenameContractRequest(BaseModel):
     title: TrimmedTitle
 
 
+class ExportReportRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    format: Literal["pdf", "docx"]
+
+
 class RiskSummary(BaseModel):
     overall_risk_level: RiskLevel
     high_count: int

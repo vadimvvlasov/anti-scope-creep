@@ -7,7 +7,7 @@ from app.auth import CurrentUser
 from app.context import AppContext, get_context
 from app.errors import AppError, ErrorCode
 from app.extraction import MAX_FILE_BYTES, UploadedFile, build_contract_input
-from app.models import ContractDetail, ContractPage, RenameContractRequest
+from app.models import ContractDetail, ContractPage, ExportReportRequest, RenameContractRequest
 from app.runner import AnalysisRunner, BackgroundTasksRunner
 from app.services import ContractService
 
@@ -89,3 +89,10 @@ def delete_contract(id: str, user: CurrentUser, service: Service) -> Response:
 @router.post("/{id}/retry", status_code=status.HTTP_202_ACCEPTED, response_model=ContractDetail)
 def retry_analysis(id: str, user: CurrentUser, service: Service) -> ContractDetail:
     return service.retry(user.id, parse_contract_id(id))
+
+
+@router.post("/{id}/export")
+def export_report(id: str, body: ExportReportRequest, user: CurrentUser, service: Service) -> None:
+    """MVP: auth, input, and ownership are checked, then the feature reports itself unavailable."""
+    service.get(user.id, parse_contract_id(id))
+    raise AppError(ErrorCode.FEATURE_NOT_AVAILABLE, "Report export is coming soon.")

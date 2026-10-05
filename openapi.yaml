@@ -35,7 +35,7 @@ tags:
   - name: auth
     description: Registration, login, and the current user.
   - name: contracts
-    description: Contract upload, analysis results, history, rename, retry, and delete.
+    description: Contract upload, analysis results, history, rename, retry, delete, and report export.
   - name: query
     description: Natural-language questions over the user's contract history.
   - name: operations
@@ -437,6 +437,80 @@ paths:
         "500":
           $ref: "#/components/responses/InternalError"
 
+  /contracts/{id}/export:
+    parameters:
+      - $ref: "#/components/parameters/ContractId"
+
+    post:
+      tags: [contracts]
+      operationId: exportReport
+      summary: Export a counter-proposal report as PDF or DOCX
+      description: |
+        Builds a report from the last successful analysis: header (title, analysis and
+        export time, overall risk level), Executive Summary (counts per risk level),
+        Protocol of Disagreements (one row per `high`/`medium` finding: original clause,
+        risk and explanation, proposed counter-clause), and the client cover letter (the
+        email draft, when present). Allowed in any status once `analyzed_at` is not null.
+        Content is defined in `docs/spec.md`.
+
+        MVP backend: validates authentication, input, and ownership, then returns
+        `501 FEATURE_NOT_AVAILABLE`. The `200` response is the contract for the frontend
+        mock and for the later backend-export phase.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExportReportRequest"
+      responses:
+        "200":
+          description: |
+            The report file. `Content-Disposition: attachment; filename="<title> - Counter-proposal.<pdf|docx>"`,
+            where every title character other than ASCII letters, digits, space, `.`, `_`, and `-`
+            is replaced with `_` and the title part is cut to 100 characters.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              example: 'attachment; filename="Website Redesign Agreement.pdf - Counter-proposal.pdf"'
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+              schema:
+                type: string
+                format: binary
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/ContractNotFound"
+        "409":
+          description: The contract has no successful analysis yet.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: NO_ANALYSIS_RESULTS
+                  message: This contract has no analysis results to export yet.
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "501":
+          description: Report export is not available on the backend yet (MVP).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: FEATURE_NOT_AVAILABLE
+                  message: Report export is coming soon.
+
   /query:
     post:
       tags: [query]
@@ -761,7 +835,7 @@ components:
 
     Finding:
       type: object
-      required: [id, category, risk_level, quoted_text, explanation]
+      required: [id, category, risk_level, quoted_text, explanation, suggested_change, start_char, end_char]
       additionalProperties: false
       properties:
         id:
@@ -781,6 +855,21 @@ components:
           minLength: 1
           maxLength: 2000
           description: Short plain-English explanation.
+        suggested_change:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Proposed counter-clause for the quoted clause; used in the exported report.
+        start_char:
+          type: [integer, "null"]
+          minimum: 0
+          description: |
+            Start of the quoted passage in `source_text`, in Unicode code points, 0-based.
+            `null` together with `end_char` when the quote was not located.
+        end_char:
+          type: [integer, "null"]
+          minimum: 1
+          description: End of the quoted passage (exclusive), in Unicode code points; greater than `start_char`.
 
     EmailDraft:
       type: object
@@ -810,8 +899,13 @@ components:
       allOf:
         - $ref: "#/components/schemas/ContractSummary"
         - type: object
-          required: [risk_summary, findings, email_draft]
+          required: [source_text, risk_summary, findings, email_draft]
           properties:
+            source_text:
+              type: string
+              minLength: 1
+              maxLength: 30000
+              description: Full contract text, for the Contract Reader. Never included in list items.
             risk_summary:
               description: '`null` until the first successful analysis.'
               oneOf:
@@ -897,6 +991,15 @@ components:
           type: boolean
           description: '`true` when the server row limit (100) was hit.'
 
+    ExportReportRequest:
+      type: object
+      required: [format]
+      additionalProperties: false
+      properties:
+        format:
+          type: string
+          enum: [pdf, docx]
+
     HealthStatus:
       type: object
       required: [status]
@@ -942,6 +1045,7 @@ components:
         - CONTRACT_ANALYSIS_IN_PROGRESS
         - ANALYSIS_IN_PROGRESS
         - CONTRACT_NOT_FOUND
+        - NO_ANALYSIS_RESULTS
         - FEATURE_NOT_AVAILABLE
         - NOT_FOUND
         - METHOD_NOT_ALLOWED

@@ -249,6 +249,7 @@ def test_other_users_contract_is_indistinguishable_from_missing(harness, auth_he
         ("patch", "", {"json": {"title": "mine now"}}),
         ("delete", "", {}),
         ("post", "/retry", {}),
+        ("post", "/export", {"json": {"format": "pdf"}}),
     ]:
         foreign = harness.client.request(method, owned + suffix, headers=intruder, **kwargs)
         absent = harness.client.request(method, missing + suffix, headers=intruder, **kwargs)
