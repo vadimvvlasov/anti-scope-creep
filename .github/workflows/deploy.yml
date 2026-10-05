@@ -1,0 +1,91 @@
+name: Deploy
+
+# Reusable: deploy a backend image that is already in ghcr to one environment.
+# Neon migrations, the Lightsail container service, the frontend Worker, a smoke test.
+# Called by deploy-dev.yml and promote-prod.yml; secrets come from the GitHub Environment.
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: GitHub Environment (dev or prod)
+        required: true
+        type: string
+      image:
+        description: Backend image, ghcr.io/...:sha-<short-sha>
+        required: true
+        type: string
+      ref:
+        description: Full commit SHA the image was built from (frontend and smoke script come from it)
+        required: true
+        type: string
+      create-service:
+        description: Create the Lightsail service if it does not exist (dev is ephemeral)
+        type: boolean
+        default: false
+      wrangler-env:
+        description: Wrangler environment (dev); empty deploys the top-level prod Worker
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Migrate the Neon branch
+        env:
+          IMAGE: ${{ inputs.image }}
+          MIGRATIONS_DATABASE_URL: ${{ secrets.MIGRATIONS_DATABASE_URL }}
+        run: docker run --rm -e DATABASE_URL="$MIGRATIONS_DATABASE_URL" "$IMAGE" alembic upgrade head
+
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to the Lightsail service
+        id: backend
+        env:
+          SERVICE: ${{ vars.LIGHTSAIL_SERVICE }}
+          IMAGE: ${{ inputs.image }}
+          ENV_TAG: ${{ inputs.environment }}
+          CREATE_IF_MISSING: ${{ inputs.create-service }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          CORS_ORIGINS: ${{ vars.CORS_ORIGINS }}
+        run: .github/scripts/lightsail-deploy.sh
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # Vite inlines VITE_* at build time, so the frontend is rebuilt for every environment.
+      - name: Build and deploy the frontend
+        working-directory: frontend
+        env:
+          VITE_API_URL: ${{ steps.backend.outputs.url }}
+          VITE_USE_MOCK: "false"
+          WRANGLER_ENV: ${{ inputs.wrangler-env }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npm ci
+          npm run build
+          npx --yes wrangler@4.147.0 deploy ${WRANGLER_ENV:+--env "$WRANGLER_ENV"}
+
+      - name: Smoke test
+        env:
+          API_URL: ${{ steps.backend.outputs.url }}
+        run: python3 scripts/smoke.py "$API_URL"

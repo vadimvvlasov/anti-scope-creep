@@ -259,15 +259,17 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
 2. **`deploy-dev.yml`** (after CI passes on `main`):
    - build the image once, tag it `sha-<short-sha>`, and push it to `ghcr.io`;
    - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
-   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral, so its URL changes when it is recreated), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
+   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral; its default domain stays the same, because the random part is per account and Region), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
    - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
    - smoke test: `GET /health/ready`, register + upload + poll with the stub.
 3. **`promote-prod.yml`** (`workflow_dispatch` with an image tag, GitHub Environment `prod` with a required reviewer):
    - reuses the **same image** tested in dev;
    - migrations on the Neon `main` branch;
    - deploys it to the Lightsail container service `anti-scope-creep-prod`;
-   - builds the frontend with the prod `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
+   - builds the frontend with the prod service URL as `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
    - smoke test.
+
+   Before the approval gate, a job checks that the tag is `sha-<short-sha>` of a commit on `main` and that the image exists in ghcr. Both deploy workflows share the steps after the image build through the reusable workflow **`deploy.yml`** (migrate, Lightsail deployment, frontend Worker, smoke test); only dev may create its service.
 4. **`dev-down.yml`** (nightly schedule and `workflow_dispatch`): deletes the dev container service, which is billed until deleted.
 5. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
 
@@ -279,7 +281,7 @@ Lightsail container services pull images from public registries, so the image is
 
 ### Authentication to clouds
 
-- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
+- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. The trust policies match GitHub's immutable subject claim (`repo:vadimvvlasov@48059972/anti-scope-creep@1393514697:environment:<env>`): repositories created after 2026-07-15 get it by default, and it keeps a recreated repository with the same name from assuming the roles. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
 - GitHub → Cloudflare: API token limited to Workers Scripts edit on this account, stored as an environment secret.
 
 ---
