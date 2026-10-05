@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ShieldCheck, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { AuthorBar, SiteFooter } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { LEGAL_DISCLAIMER } from "@/services/api";
@@ -18,8 +19,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <header className="sticky top-0 z-20 border-b border-border bg-card/85 backdrop-blur">
+        <AuthorBar />
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4">
           <Link
             to="/history"
@@ -51,7 +53,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
+      <SiteFooter />
     </div>
   );
 }
