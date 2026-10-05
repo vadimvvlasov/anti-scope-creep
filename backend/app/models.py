@@ -156,7 +156,7 @@ class User(BaseModel):
 
 class AuthResponse(BaseModel):
     access_token: str
-    token_type: Literal["bearer"] = "bearer"
+    token_type: Literal["bearer"]
     expires_in: int
     user: User
 

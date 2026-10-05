@@ -4,7 +4,8 @@ The hand-written file is the source of truth and is never generated from the app
 This test compares it with `app.openapi()`:
 - both have the same operations (method + path);
 - every operation has the same success (2xx) status;
-- the app documents no error status that the contract lacks.
+- the app documents no error status that the contract lacks;
+- every schema both define has the same properties, required fields, and enum values.
 
 Error responses that exist only in openapi.yaml (401, 404, 409, 500, 501) are expected:
 FastAPI only documents what a route signature declares, and these errors are raised in
@@ -31,6 +32,7 @@ NEVER_RETURNED = {
 }
 
 Operations = dict[tuple[str, str], set[str]]
+Shape = dict[str, list]
 
 
 def _operations(spec: dict) -> Operations:
@@ -46,14 +48,45 @@ def _success(statuses: set[str]) -> set[str]:
     return {status for status in statuses if status.startswith("2")}
 
 
-@pytest.fixture(scope="module")
-def contract() -> Operations:
-    return _operations(yaml.safe_load(CONTRACT.read_text()))
+def _shapes(spec: dict) -> dict[str, Shape]:
+    """Each component schema as its properties, required fields, and enum values."""
+    schemas = spec["components"]["schemas"]
+    return {name: _shape(schema, schemas) for name, schema in schemas.items()}
+
+
+def _shape(schema: dict, schemas: dict) -> Shape:
+    """Flattens `allOf` and `$ref`, so ContractDetail compares with the app's flat model."""
+    if "$ref" in schema:
+        return _shape(schemas[schema["$ref"].rsplit("/", 1)[-1]], schemas)
+    shape: Shape = {
+        "properties": sorted(schema.get("properties", {})),
+        "required": sorted(schema.get("required", [])),
+        "enum": sorted(schema.get("enum", [])),
+    }
+    for part in schema.get("allOf", []):
+        for key, values in _shape(part, schemas).items():
+            shape[key] = sorted({*shape[key], *values})
+    return shape
 
 
 @pytest.fixture(scope="module")
-def generated() -> Operations:
-    return _operations(Harness().app.openapi())
+def contract_spec() -> dict:
+    return yaml.safe_load(CONTRACT.read_text())
+
+
+@pytest.fixture(scope="module")
+def generated_spec() -> dict:
+    return Harness().app.openapi()
+
+
+@pytest.fixture(scope="module")
+def contract(contract_spec: dict) -> Operations:
+    return _operations(contract_spec)
+
+
+@pytest.fixture(scope="module")
+def generated(generated_spec: dict) -> Operations:
+    return _operations(generated_spec)
 
 
 def test_operations_match(contract: Operations, generated: Operations):
@@ -82,3 +115,13 @@ def test_app_documents_no_error_missing_from_the_contract(contract: Operations, 
 def test_never_returned_exceptions_are_still_needed(generated: Operations):
     stale = {op: sorted(codes - generated.get(op, set())) for op, codes in NEVER_RETURNED.items()}
     assert {op: codes for op, codes in stale.items() if codes} == {}, "drop exceptions FastAPI no longer adds"
+
+
+def test_shared_schemas_match(contract_spec: dict, generated_spec: dict):
+    ours, theirs = _shapes(contract_spec), _shapes(generated_spec)
+    mismatched = {
+        name: {key: (ours[name][key], theirs[name][key]) for key in ours[name] if ours[name][key] != theirs[name][key]}
+        for name in ours.keys() & theirs.keys()
+        if ours[name] != theirs[name]
+    }
+    assert mismatched == {}, "(openapi.yaml, app) schemas differ"
