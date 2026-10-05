@@ -1,5 +1,9 @@
 # Anti-Scope Creep
 
+[![CI](https://github.com/vadimvvlasov/anti-scope-creep/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vadimvvlasov/anti-scope-creep/actions/workflows/ci.yml)
+
+**Live:** https://anti-scope-creep.vadimvlasov.workers.dev (register any email; the analyzer is still the stub, see below)
+
 ## Problem
 
 Freelancers and small businesses sign contracts without reading the fine print in
@@ -34,9 +38,11 @@ plain English and get an answer without writing SQL.
   guardrails: read-only access, single SELECT only, enforced row limit — so the
   agent can't modify data or return unbounded results
 
-## Current status: Phase 1 (local MVP)
+## Current status: Phase 2 (deployed MVP)
 
-Phase 1 is a thin end-to-end slice that runs locally:
+The Phase 1 slice now runs in the cloud, with CI/CD around it.
+
+What the app does today:
 
 - React frontend (built in Lovable) with all five screens and a services layer
   (`frontend/src/services/api.ts`) that switches between the real API and an
@@ -51,8 +57,17 @@ Phase 1 is a thin end-to-end slice that runs locally:
 - History Search answers from mock data in mock mode; the real backend returns
   `501` (`History search is coming soon.`) until the text-to-SQL agent phase
 
-Not in Phase 1: Docker Compose for the app, CI/CD, deployment, monitoring, the LLM
-analyzer, the fine-tuned classifier, the text-to-SQL agent.
+Added in Phase 2:
+
+- Docker images and `compose.yaml`: `make up` starts the whole system locally
+- Playwright end-to-end tests, run in CI against the built stack
+- CI on every pull request: backend and frontend tests, e2e, Semgrep, Docker build,
+  and a check that `openapi.yaml` matches the routes the backend declares
+- Automatic deploy of `main` to a dev environment and a manual, approved promotion
+  of the same image to prod (see [Deploy](#deploy))
+
+Not yet: the LLM analyzer, the fine-tuned classifier, the text-to-SQL agent,
+monitoring.
 
 Product rules live in [`docs/spec.md`](docs/spec.md), infrastructure and phases in
 [`docs/architecture.md`](docs/architecture.md).
@@ -118,6 +133,71 @@ one contract, for checking that another user's contract returns `404`.
 
 To run the frontend without a backend, set `VITE_USE_MOCK=true` in `frontend/.env`.
 
+## Deploy
+
+| | Frontend | Backend | Database |
+|---|---|---|---|
+| **prod** | https://anti-scope-creep.vadimvlasov.workers.dev | https://anti-scope-creep-prod.w7ype86rjt6a6.eu-central-1.cs.amazonlightsail.com | Neon branch `production` |
+| **dev** | https://anti-scope-creep-dev.vadimvlasov.workers.dev | Lightsail service `anti-scope-creep-dev`, created on deploy and deleted every night | Neon branch `dev` |
+
+The frontend is static files on Cloudflare Workers. The backend is one container
+on an AWS Lightsail container service (`eu-central-1`). The database is Neon
+Postgres in the same region. The cloud databases start empty, without demo accounts.
+Details and the reasoning behind these choices are in
+[`docs/architecture.md`](docs/architecture.md), sections 2, 3 and 7.
+
+### Workflows
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `ci.yml` | pull requests, pushes to `main` | backend, frontend, e2e, scripts, Semgrep, Docker build |
+| `deploy-dev.yml` | CI passed on `main`, or by hand | builds the backend image once (`ghcr.io/vadimvvlasov/anti-scope-creep-backend:sha-<short-sha>`) and deploys it to dev |
+| `promote-prod.yml` | by hand, with an image tag | deploys an image that already ran in dev to prod, without a rebuild, after approval |
+| `deploy.yml` | called by the two above | runs migrations, deploys to Lightsail, builds and deploys the frontend, runs a smoke test |
+| `dev-down.yml` | every night, or by hand | deletes the dev Lightsail service (it is billed until deleted) |
+
+### Promote to prod
+
+1. Wait until `deploy-dev` is green for the commit you want. Its image tag is
+   `sha-` plus the first 7 characters of the commit.
+2. Actions → **Promote to prod** → Run workflow, enter the tag (for example
+   `sha-ce88559`). Or: `gh workflow run promote-prod.yml -f image_tag=sha-ce88559`.
+3. The first job checks that the tag belongs to a commit on `main` and that the image
+   exists. Then the run waits for approval: Review deployments → `prod` → Approve.
+
+Migrations run before the new container takes traffic, so they must stay
+backward-compatible with the running version.
+
+### Secrets and settings
+
+Everything lives in GitHub Environments `dev` and `prod`, never in the repository.
+Both environments accept deployments only from `main`; `prod` also needs a reviewer.
+
+- Secrets: `DATABASE_URL` (Neon pooled endpoint), `MIGRATIONS_DATABASE_URL` (Neon
+  direct endpoint, for Alembic), `JWT_SECRET` (different per environment),
+  `CLOUDFLARE_API_TOKEN`
+- Variables: `AWS_ROLE_ARN`, `AWS_REGION`, `LIGHTSAIL_SERVICE`, `CORS_ORIGINS`,
+  `CLOUDFLARE_ACCOUNT_ID`
+
+GitHub Actions reaches AWS only through OIDC roles, one per environment, with no
+access keys. The dev role can create, deploy to and delete only services tagged
+`env=dev`. The prod role can only deploy to the service tagged `env=prod`.
+
+### Smoke test
+
+`python3 scripts/smoke.py <backend URL>` checks `/health/ready`, registers a new
+user, uploads a short contract, waits for the analysis, and deletes the contract.
+The deploy workflows run it after every deployment.
+
+### Cleanup
+
+The only paid resource is the prod Lightsail service (Nano, $7 per month). It is
+billed until deleted, and the prod role cannot delete it, so delete it by hand:
+
+```bash
+aws lightsail delete-container-service --service-name anti-scope-creep-prod --region eu-central-1
+```
+
 ## Tests
 
 ```bash
@@ -129,7 +209,7 @@ End-to-end tests (Playwright, Chromium) drive the real frontend and backend:
 
 ```bash
 make up
-(cd frontend && npx playwright install chromium)   # once
+(cd frontend && npm ci && npx playwright install chromium)   # once: Playwright and its browser
 make e2e
 ```
 
@@ -157,6 +237,8 @@ Run from the repository root.
 | `make dev-frontend` | Start the frontend dev server on `http://localhost:8080` |
 | `make test` | Run backend and frontend tests |
 | `make lint` | Lint the frontend with ESLint |
+| `python3 scripts/smoke.py <URL>` | Smoke test a deployed backend |
+| `python3 -m unittest discover -s scripts` | Run the script tests |
 
 ## Repository layout
 
@@ -168,3 +250,5 @@ Run from the repository root.
 | `docs/spec.md` | Product specification: screens, API, data model, acceptance criteria |
 | `docs/architecture.md` | Hosting, CI/CD, LLM provider, agent layer, phases |
 | `docs/screenshots/` | Screenshots used in this README |
+| `scripts/` | Smoke test and helper scripts (Python standard library only) |
+| `.github/workflows/` | CI and deploy workflows |
