@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
 import { inputTypeLabel, StatusBadge } from "@/components/badges";
 import { ContractReader } from "@/components/contract-reader";
+import { ExportMenu } from "@/components/export-menu";
 import { AnalysisResults, AnalysisStatePanel, FindingFilterToggle } from "@/components/risk-panel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -234,6 +235,7 @@ function ContractDetailsPage() {
         </div>
         <div className="flex items-center gap-3">
           <StatusBadge status={contract.status} />
+          <ExportMenu contractId={contract.id} hasResults={contract.analyzed_at !== null} />
           <Button
             variant="ghost"
             size="sm"
