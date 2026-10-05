@@ -16,3 +16,15 @@ export async function registerInUi(page: Page): Promise<string> {
   await expect(page).toHaveURL(/\/history$/);
   return email;
 }
+
+/** Pastes a contract on New Analysis and waits for the analysis to finish. */
+export async function pasteContract(page: Page, text: string, title: string) {
+  await page.getByRole("navigation").getByRole("link", { name: "New Analysis" }).click();
+  await page.getByRole("tab", { name: "Paste text" }).click();
+  await page.getByPlaceholder("Paste the contract text here…").fill(text);
+  await page.locator("#title").fill(title);
+  await page.getByRole("button", { name: "Analyze contract" }).click();
+  await expect(page).toHaveURL(/\/contracts\/[0-9a-f-]{36}$/);
+  // The page polls every 2 s while the analysis runs.
+  await expect(page.getByRole("heading", { name: "Findings" })).toBeVisible({ timeout: 60_000 });
+}

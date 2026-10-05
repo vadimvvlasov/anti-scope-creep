@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { Loader2, Copy, RefreshCw, Trash2, ArrowLeft } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Loader2, Trash2, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
-import { inputTypeLabel, RiskBadge, StatusBadge } from "@/components/badges";
+import { inputTypeLabel, StatusBadge } from "@/components/badges";
+import { ContractReader } from "@/components/contract-reader";
+import { AnalysisResults, AnalysisStatePanel, FindingFilterToggle } from "@/components/risk-panel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,7 +20,9 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useRequireAuth } from "@/hooks/useAuth";
-import { api, isApiError, RISK_CATEGORY_LABELS, type ContractDetail } from "@/services/api";
+import { useFindingSelection } from "@/hooks/useFindingSelection";
+import { filterFindings } from "@/lib/highlights";
+import { api, isApiError, type ContractDetail, type Finding } from "@/services/api";
 
 export const Route = createFileRoute("/contracts/$id")({
   head: () => ({
@@ -40,6 +44,7 @@ export const Route = createFileRoute("/contracts/$id")({
 
 const POLL_MS = 2000;
 const POLL_WINDOW_MS = 5 * 60 * 1000;
+const NO_FINDINGS: Finding[] = [];
 
 function ContractDetailsPage() {
   const { id } = Route.useParams();
@@ -50,6 +55,20 @@ function ContractDetailsPage() {
   const [deleting, setDeleting] = useState(false);
   const [titleDraft, setTitleDraft] = useState<string | null>(null);
   const pollStartedAt = useRef<number>(Date.now());
+  const {
+    filter,
+    setFilter,
+    selectedId,
+    pulseId,
+    readerRef,
+    riskRef,
+    selectFromCard,
+    selectFromHighlight,
+  } = useFindingSelection();
+  const visibleFindings = useMemo(
+    () => filterFindings(contract?.findings ?? NO_FINDINGS, filter),
+    [contract?.findings, filter],
+  );
 
   // Initial load + 2s polling while analyzing, with a 5-minute window.
   useEffect(() => {
@@ -226,107 +245,50 @@ function ContractDetailsPage() {
         </div>
       </div>
 
-      {contract.status === "analyzing" && (
-        <div className="mt-6 rounded-xl border border-border bg-card p-6">
-          {timedOut ? (
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm">Analysis is taking longer than expected</p>
-              <Button variant="outline" size="sm" onClick={() => void refetchOnce(true)}>
-                Check again
-              </Button>
-            </div>
-          ) : (
-            <p className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="size-4 animate-spin" /> Analyzing contract…
-            </p>
+      {showResults && contract.findings.length > 0 && (
+        <FindingFilterToggle value={filter} onChange={setFilter} />
+      )}
+
+      <div className="mt-6 flex flex-col gap-6 lg:grid lg:grid-cols-[11fr_9fr] lg:items-start">
+        <section
+          ref={readerRef}
+          aria-label="Contract text"
+          className="order-2 rounded-xl border border-border bg-card p-6 lg:order-1 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto"
+        >
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            Contract text
+          </h2>
+          <ContractReader
+            sourceText={contract.source_text}
+            findings={showResults ? visibleFindings : NO_FINDINGS}
+            selectedId={selectedId}
+            pulseId={pulseId}
+            onSelect={selectFromHighlight}
+          />
+        </section>
+
+        <section
+          ref={riskRef}
+          aria-label="Risk panel"
+          className="order-1 space-y-6 lg:order-2 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:p-1"
+        >
+          <AnalysisStatePanel
+            contract={contract}
+            timedOut={timedOut}
+            onCheckAgain={() => void refetchOnce(true)}
+            onRetry={retry}
+          />
+          {showResults && (
+            <AnalysisResults
+              contract={contract}
+              findings={visibleFindings}
+              selectedId={selectedId}
+              onSelect={selectFromCard}
+              onCopyEmail={copyEmail}
+            />
           )}
-        </div>
-      )}
-
-      {contract.status === "failed" && (
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-risk-high-soft p-6">
-          <p className="text-sm text-risk-high">Analysis failed. Please try again.</p>
-          <Button size="sm" onClick={retry}>
-            <RefreshCw className="size-4" /> Retry Analysis
-          </Button>
-        </div>
-      )}
-
-      {showResults && contract.status !== "done" && contract.analyzed_at && (
-        <p className="mt-6 rounded-md bg-muted px-4 py-3 text-xs text-muted-foreground">
-          Showing results from the previous analysis on{" "}
-          {new Date(contract.analyzed_at).toLocaleString()}.
-        </p>
-      )}
-
-      {showResults && (
-        <>
-          {contract.risk_summary && (
-            <section className="mt-6 rounded-xl border border-border bg-card p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Risk summary
-              </h2>
-              <div className="mt-3 flex flex-wrap items-center gap-6">
-                <RiskBadge level={contract.risk_summary.overall_risk_level} />
-                <div className="flex gap-6 text-sm">
-                  <span>
-                    <strong>{contract.risk_summary.high_count}</strong> high
-                  </span>
-                  <span>
-                    <strong>{contract.risk_summary.medium_count}</strong> medium
-                  </span>
-                  <span>
-                    <strong>{contract.risk_summary.low_count}</strong> low
-                  </span>
-                </div>
-              </div>
-            </section>
-          )}
-
-          <section className="mt-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Findings
-            </h2>
-            {contract.findings.length === 0 ? (
-              <p className="mt-3 rounded-xl border border-border bg-card p-6 text-sm">
-                No high-risk clauses detected
-              </p>
-            ) : (
-              <ul className="mt-3 space-y-3">
-                {contract.findings.map((f) => (
-                  <li key={f.id} className="rounded-xl border border-border bg-card p-5">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-medium">{RISK_CATEGORY_LABELS[f.category]}</p>
-                      <RiskBadge level={f.risk_level} />
-                    </div>
-                    <blockquote className="mt-3 border-l-2 border-accent pl-4 text-sm italic text-muted-foreground">
-                      {f.quoted_text}
-                    </blockquote>
-                    <p className="mt-3 text-sm">{f.explanation}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-
-          {contract.email_draft && (
-            <section className="mt-6 rounded-xl border border-border bg-card p-6">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  Client email
-                </h2>
-                <Button variant="outline" size="sm" onClick={copyEmail}>
-                  <Copy className="size-4" /> Copy to Clipboard
-                </Button>
-              </div>
-              <p className="mt-3 font-medium">{contract.email_draft.subject}</p>
-              <pre className="mt-3 whitespace-pre-wrap font-sans text-sm text-muted-foreground">
-                {contract.email_draft.body}
-              </pre>
-            </section>
-          )}
-        </>
-      )}
+        </section>
+      </div>
 
       <LegalDisclaimer className="mt-10" />
 
