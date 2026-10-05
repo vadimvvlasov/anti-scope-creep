@@ -43,6 +43,8 @@ class Store(Protocol):
 
     def get_user_by_email(self, email: str) -> UserRecord | None: ...
 
+    def update_password_hash(self, user_id: UUID, password_hash: str) -> None: ...
+
     def add_contract(self, contract: ContractRecord) -> None: ...
 
     def get_contract(self, user_id: UUID, contract_id: UUID) -> ContractRecord | None: ...
@@ -108,6 +110,10 @@ class SqlStore:
 
     def get_user_by_email(self, email: str) -> UserRecord | None:
         return self._one_user(users.c.email == email)
+
+    def update_password_hash(self, user_id: UUID, password_hash: str) -> None:
+        with self._engine.begin() as conn:
+            conn.execute(update(users).where(users.c.id == user_id).values(password_hash=password_hash))
 
     def _one_user(self, condition: Any) -> UserRecord | None:
         with self._engine.connect() as conn:

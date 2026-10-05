@@ -70,6 +70,11 @@ def user(store):
     return user
 
 
+def test_update_password_hash(store, user):
+    store.update_password_hash(user.id, "new-hash")
+    assert store.get_user(user.id).password_hash == "new-hash"
+
+
 def test_duplicate_email_is_rejected(store, user):
     with pytest.raises(DuplicateEmailError):
         store.add_user(make_user(email=user.email))

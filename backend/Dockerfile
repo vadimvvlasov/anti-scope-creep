@@ -27,6 +27,13 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
+# Each argon2 hash allocates 19 MiB. By default glibc keeps freed large blocks in the
+# allocating thread's arena, so the ~40 request threads each kept one: 64 registrations grew
+# the process from 62 MiB to 829 MiB and the 512 MB Lightsail container was killed. A fixed
+# mmap threshold returns large blocks to the OS on free; fewer arenas limit the rest.
+ENV MALLOC_MMAP_THRESHOLD_=131072 \
+    MALLOC_ARENA_MAX=2
+
 RUN useradd --system --uid 10001 --no-create-home --shell /usr/sbin/nologin app
 
 WORKDIR /app
