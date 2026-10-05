@@ -314,6 +314,7 @@ When status is `analyzing` or `failed` but results from an earlier successful an
 - A finding with `null` offsets has no highlight; its card notes `Not located in the contract text`.
 - Highlights are keyboard-focusable buttons (Enter/Space) labeled `<category label>, <risk level> risk`.
 - Filter toggle: `Show all risks` (default) / `High & medium only`. It hides low-risk highlights and low-risk cards together; Risk Summary counts do not change. Not persisted.
+- When the filter hides every finding, the Findings list shows `No high- or medium-risk findings. Low-risk findings are hidden by the filter.` instead of an empty list.
 
 #### Scroll sync
 

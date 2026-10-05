@@ -48,6 +48,9 @@
   --color-risk-medium-soft: var(--risk-medium-soft);
   --color-risk-low: var(--risk-low);
   --color-risk-low-soft: var(--risk-low-soft);
+  --color-highlight-high: var(--highlight-high);
+  --color-highlight-medium: var(--highlight-medium);
+  --color-highlight-low: var(--highlight-low);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -92,6 +95,11 @@
   --risk-low: oklch(0.5 0.1 155);
   --risk-low-soft: oklch(0.95 0.035 155);
 
+  /* Contract Reader highlight backgrounds (docs/spec.md "Contract Reader and highlights"). */
+  --highlight-high: #fee2e2;
+  --highlight-medium: #fef3c7;
+  --highlight-low: #e0f2fe;
+
   --chart-1: oklch(0.52 0.19 27);
   --chart-2: oklch(0.58 0.13 70);
   --chart-3: oklch(0.5 0.1 155);
@@ -134,6 +142,10 @@
   --risk-medium-soft: oklch(0.34 0.06 75);
   --risk-low: oklch(0.7 0.11 155);
   --risk-low-soft: oklch(0.32 0.05 155);
+
+  --highlight-high: oklch(0.36 0.09 27);
+  --highlight-medium: oklch(0.38 0.07 75);
+  --highlight-low: oklch(0.36 0.06 240);
 
   --sidebar: oklch(0.25 0.033 255);
   --sidebar-foreground: oklch(0.96 0.008 95);
@@ -179,4 +191,23 @@
 @utility risk-chip-low {
   background-color: var(--risk-low-soft);
   color: var(--risk-low);
+}
+
+/* A clicked finding's highlight pulses for ~1.5 s; reduced motion gets a static outline. */
+@keyframes highlight-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+}
+
+@utility highlight-pulse {
+  animation: highlight-pulse 0.5s ease-in-out 3;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    outline: 2px solid var(--ring);
+  }
 }
