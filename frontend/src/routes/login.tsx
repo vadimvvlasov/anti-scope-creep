@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { ShieldCheck } from "lucide-react";
 
+import { AuthorBar, SiteFooter } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,54 +40,60 @@ function LoginPage() {
   }, [user, navigate]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <ShieldCheck className="mx-auto size-8 text-accent" />
-          <h1 className="mt-3 text-2xl font-semibold">Anti-Scope Creep</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Contract risk review for freelancers and small businesses.
-          </p>
-        </div>
-
-        {sessionExpired && (
-          <div className="mb-4 rounded-md bg-risk-medium-soft px-4 py-3 text-sm text-risk-medium">
-            {SESSION_EXPIRED_MESSAGE}
+    <div className="flex min-h-screen flex-col bg-background">
+      <header>
+        <AuthorBar />
+      </header>
+      <main className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md">
+          <div className="mb-8 text-center">
+            <ShieldCheck className="mx-auto size-8 text-accent" />
+            <h1 className="mt-3 text-2xl font-semibold">Anti-Scope Creep</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Contract risk review for freelancers and small businesses.
+            </p>
           </div>
-        )}
 
-        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-          <Tabs value={tab} onValueChange={(v) => setTab(v as "login" | "register")}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
-            </TabsList>
-            <TabsContent value="login">
-              <AuthForm
-                mode="login"
-                onSubmit={login}
-                onClearBanner={clearSessionExpired}
-                onSwitchToLogin={() => setTab("login")}
-              />
-            </TabsContent>
-            <TabsContent value="register">
-              <AuthForm
-                mode="register"
-                onSubmit={register}
-                onClearBanner={clearSessionExpired}
-                onSwitchToLogin={() => setTab("login")}
-              />
-            </TabsContent>
-          </Tabs>
+          {sessionExpired && (
+            <div className="mb-4 rounded-md bg-risk-medium-soft px-4 py-3 text-sm text-risk-medium">
+              {SESSION_EXPIRED_MESSAGE}
+            </div>
+          )}
+
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <Tabs value={tab} onValueChange={(v) => setTab(v as "login" | "register")}>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="login">Login</TabsTrigger>
+                <TabsTrigger value="register">Register</TabsTrigger>
+              </TabsList>
+              <TabsContent value="login">
+                <AuthForm
+                  mode="login"
+                  onSubmit={login}
+                  onClearBanner={clearSessionExpired}
+                  onSwitchToLogin={() => setTab("login")}
+                />
+              </TabsContent>
+              <TabsContent value="register">
+                <AuthForm
+                  mode="register"
+                  onSubmit={register}
+                  onClearBanner={clearSessionExpired}
+                  onSwitchToLogin={() => setTab("login")}
+                />
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          {USE_MOCK && (
+            <p className="mt-4 text-center text-xs text-muted-foreground">
+              Demo mode — sign in with <span className="font-mono">demo@example.com</span> /{" "}
+              <span className="font-mono">password123</span>
+            </p>
+          )}
         </div>
-
-        {USE_MOCK && (
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Demo mode — sign in with <span className="font-mono">demo@example.com</span> /{" "}
-            <span className="font-mono">password123</span>
-          </p>
-        )}
-      </div>
+      </main>
+      <SiteFooter />
     </div>
   );
 }
