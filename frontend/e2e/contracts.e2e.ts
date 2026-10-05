@@ -1,7 +1,8 @@
-import { expect, test, type APIRequestContext, type Page } from "@playwright/test";
+import { expect, test, type APIRequestContext } from "@playwright/test";
+
+import { PASSWORD, registerInUi, uniqueEmail } from "./helpers";
 
 const API_URL = process.env.E2E_API_URL ?? "http://localhost:8000";
-const PASSWORD = "password123";
 
 // English, so language detection accepts it; the stub analyzer finds several risks in it.
 const CONTRACT_TEXT = [
@@ -12,21 +13,6 @@ const CONTRACT_TEXT = [
   "The Freelancer assigns all intellectual property upon delivery.",
   "Either party may terminate this agreement with seven days written notice.",
 ].join(" ");
-
-function uniqueEmail(): string {
-  return `e2e-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@example.com`;
-}
-
-async function registerInUi(page: Page): Promise<string> {
-  const email = uniqueEmail();
-  await page.goto("/login");
-  await page.getByRole("tab", { name: "Register" }).click();
-  await page.locator("#register-email").fill(email);
-  await page.locator("#register-password").fill(PASSWORD);
-  await page.getByRole("button", { name: "Create account" }).click();
-  await expect(page).toHaveURL(/\/history$/);
-  return email;
-}
 
 async function contractOfAnotherUser(request: APIRequestContext): Promise<string> {
   const auth = await request.post(`${API_URL}/auth/register`, {
