@@ -216,7 +216,7 @@ A user can permanently delete a contract they own when status is `done` or `fail
 The authenticated app has a top navigation bar with: **History**, **New Analysis**, **History Search**, the author badge, a **Methodology & Privacy** link, the user's email, and **Log out**.
 
 Every screen, including Login / Register, has:
-- the **author badge** in the header: `Engineered by Vadim Vlasov | AI & LegalTech`, with icon links to GitHub (`https://github.com/vadimvvlasov`) and LinkedIn (URL supplied by the author; not rendered until set). Links open in a new tab (`rel="noopener noreferrer"`). On narrow screens it may shorten to `Vadim Vlasov`;
+- the **author badge** in the header: `Engineered by Vadim Vlasov | AI Engineer`, with icon links to GitHub (`https://github.com/vadimvvlasov`) and LinkedIn (`https://www.linkedin.com/in/vadim-vlasov-181503b6`). Links open in a new tab (`rel="noopener noreferrer"`). On narrow screens it may shorten to `Vadim Vlasov`;
 - a **footer** with a `Methodology & Privacy` link. Both links open the [Methodology & Privacy dialog](#6-methodology--privacy-dialog).
 
 ### 1. Login / Register
@@ -407,9 +407,9 @@ A modal dialog (a drawer on narrow screens) opened from the header and footer li
 
 **About the author**
 
-> Anti-Scope Creep is designed and built by Vadim Vlasov, an engineer focused on AI engineering and software architecture.
+> Anti-Scope Creep is designed and built by Vadim Vlasov, an ML engineer with five years of production computer vision at Agro Software (fieldstat.ai): field boundary segmentation on Sentinel-2 imagery across five countries, with pipeline stages running on Airflow and AWS. Before that, thirteen years of R&D in in-line inspection of gas pipelines. Now focused on LLM applications: RAG, agents, and evaluation.
 
-followed by the GitHub and LinkedIn links from the author badge. The author may replace this paragraph with a longer bio of their own.
+followed by the GitHub and LinkedIn links from the author badge.
 
 **How the analysis works**
 
