@@ -50,6 +50,8 @@ test("app screens have the author badge and the dialog closes on a click outside
 }) => {
   await registerInUi(page);
   await expectAuthorBadge(page);
+  // The footer moves down when the list replaces the loading spinner; click it after that.
+  await expect(page.getByText("No contracts yet")).toBeVisible();
 
   await openFrom(page, "contentinfo");
   await expect(dialog(page)).toBeVisible();
