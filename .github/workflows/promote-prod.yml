@@ -1,0 +1,62 @@
+name: Promote to prod
+
+# By hand, after approval: the same image that runs in dev goes to prod, no rebuild.
+# The prod Lightsail service is permanent; the prod deploy role cannot create or delete it.
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Backend image tag already deployed to dev (sha-<7 hex>)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      image: ${{ steps.check.outputs.image }}
+      sha: ${{ steps.check.outputs.sha }}
+    steps:
+      - name: Check the tag, its commit on main and the image in ghcr
+        id: check
+        env:
+          TAG: ${{ inputs.image_tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ ! "$TAG" =~ ^sha-[0-9a-f]{7}$ ]]; then
+            echo "image_tag must look like sha-<7 hex>, got: $TAG" >&2; exit 1
+          fi
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/${TAG#sha-}" --jq .sha)
+          # Only commits that are on main: "ahead" means main has the commit plus newer ones.
+          status=$(gh api "repos/$GITHUB_REPOSITORY/compare/$sha...main" --jq .status)
+          if [[ "$status" != identical && "$status" != ahead ]]; then
+            echo "Commit $sha is not on main (compare status: $status)" >&2; exit 1
+          fi
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/anti-scope-creep-backend:$TAG"
+          if ! docker manifest inspect "$image" > /dev/null; then
+            echo "Image $image is not in ghcr; deploy that commit to dev first" >&2; exit 1
+          fi
+          echo "Promoting $image ($sha)"
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: resolve
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: prod
+      image: ${{ needs.resolve.outputs.image }}
+      ref: ${{ needs.resolve.outputs.sha }}
+    secrets: inherit
