@@ -9,6 +9,8 @@ import type {
   ContractDetail,
   ContractPage,
   CreateContractInput,
+  ExportedFile,
+  ExportFormat,
   HistoryQueryResult,
   ListContractsParams,
   User,
@@ -73,7 +75,15 @@ class HttpApiClient implements ApiClient {
     path: string,
     init: RequestInit & { auth?: boolean; expectEmpty?: boolean } = {},
   ): Promise<T> {
-    const { auth = true, expectEmpty = false, ...rest } = init;
+    const { expectEmpty = false, ...rest } = init;
+    const response = await this.send(path, rest);
+    if (expectEmpty || response.status === 204) return undefined as T;
+    return (await response.json()) as T;
+  }
+
+  /** Sends the request; non-2xx responses become ApiError (401 also runs the global handler). */
+  private async send(path: string, init: RequestInit & { auth?: boolean }): Promise<Response> {
+    const { auth = true, ...rest } = init;
     const headers = new Headers(rest.headers);
     if (auth) {
       const token = getToken();
@@ -101,9 +111,7 @@ class HttpApiClient implements ApiClient {
       if (response.status === 401) handleUnauthorized(error);
       throw error;
     }
-
-    if (expectEmpty || response.status === 204) return undefined as T;
-    return (await response.json()) as T;
+    return response;
   }
 
   private json<T>(path: string, method: string, body: unknown, auth = true) {
@@ -181,7 +189,24 @@ class HttpApiClient implements ApiClient {
   queryHistory(question: string) {
     return this.json<HistoryQueryResult>("/query", "POST", { question });
   }
+
+  async exportReport(id: string, format: ExportFormat): Promise<ExportedFile> {
+    const response = await this.send(`/contracts/${encodeURIComponent(id)}/export`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ format }),
+    });
+    const filename =
+      filenameFromDisposition(response.headers.get("content-disposition")) ?? `report.${format}`;
+    return { blob: await response.blob(), filename };
+  }
 }
+
+/** Reads `filename="..."` from a Content-Disposition header. */
+export const filenameFromDisposition = (header: string | null): string | null => {
+  const match = header?.match(/filename="([^"]+)"/);
+  return match ? match[1]! : null;
+};
 
 /* ----------------- mock wrapper with the 401 handler --------------- */
 

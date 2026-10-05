@@ -46,6 +46,9 @@ def make_finding(contract_id, level=RiskLevel.HIGH):
         risk_level=level,
         quoted_text="quote",
         explanation="why",
+        suggested_change="change",
+        start_char=None,
+        end_char=None,
     )
 
 

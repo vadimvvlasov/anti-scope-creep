@@ -14,7 +14,11 @@ from app.models import RiskCategory, RiskLevel
 
 def finding(level: RiskLevel) -> FindingDraft:
     return FindingDraft(
-        category=RiskCategory.SCOPE_CREEP, risk_level=level, quoted_text="q", explanation="e"
+        category=RiskCategory.SCOPE_CREEP,
+        risk_level=level,
+        quoted_text="q",
+        explanation="e",
+        suggested_change="s",
     )
 
 
@@ -47,11 +51,23 @@ def test_result_rejects_email_without_high_or_medium_findings(findings):
     assert AnalysisResult(findings=findings, email_draft=None).email_draft is None
 
 
-def test_finding_and_email_length_limits():
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"quoted_text": ""},
+        {"explanation": "e" * 2001},
+        {"suggested_change": ""},
+        {"suggested_change": "s" * 2001},
+    ],
+)
+def test_finding_length_limits(overrides):
+    fields = dict(category="scope_creep", risk_level="low", quoted_text="q", explanation="e", suggested_change="s")
+    FindingDraft(**fields)  # the baseline is valid, so each case fails only on its override
     with pytest.raises(ValidationError):
-        FindingDraft(category="scope_creep", risk_level="low", quoted_text="", explanation="e")
-    with pytest.raises(ValidationError):
-        FindingDraft(category="scope_creep", risk_level="low", quoted_text="q", explanation="e" * 2001)
+        FindingDraft(**(fields | overrides))
+
+
+def test_email_length_limits():
     with pytest.raises(ValidationError):
         EmailDraftContent(subject="s" * 201, body="b")
 

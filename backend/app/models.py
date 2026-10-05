@@ -90,6 +90,10 @@ class FindingRecord:
     risk_level: RiskLevel
     quoted_text: str
     explanation: str
+    suggested_change: str
+    # Code-point offsets of the quote in source_text; both None when it was not located.
+    start_char: int | None
+    end_char: int | None
 
 
 @dataclass(frozen=True)
@@ -152,7 +156,7 @@ class User(BaseModel):
 
 class AuthResponse(BaseModel):
     access_token: str
-    token_type: Literal["bearer"] = "bearer"
+    token_type: Literal["bearer"]
     expires_in: int
     user: User
 
@@ -161,6 +165,12 @@ class RenameContractRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     title: TrimmedTitle
+
+
+class ExportReportRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    format: Literal["pdf", "docx"]
 
 
 class RiskSummary(BaseModel):
@@ -189,6 +199,9 @@ class Finding(BaseModel):
     risk_level: RiskLevel
     quoted_text: str
     explanation: str
+    suggested_change: str
+    start_char: int | None
+    end_char: int | None
 
 
 class EmailDraft(BaseModel):
@@ -199,6 +212,7 @@ class EmailDraft(BaseModel):
 
 
 class ContractDetail(ContractSummary):
+    source_text: str
     risk_summary: RiskSummary | None
     findings: list[Finding]
     email_draft: EmailDraft | None

@@ -62,6 +62,11 @@ export interface Finding {
   risk_level: RiskLevel;
   quoted_text: string;
   explanation: string;
+  /** Proposed counter-clause, used in the exported report. */
+  suggested_change: string;
+  /** Offsets into source_text in Unicode code points (end exclusive); both null when not located. */
+  start_char: number | null;
+  end_char: number | null;
 }
 
 export interface EmailDraft {
@@ -72,6 +77,7 @@ export interface EmailDraft {
 }
 
 export interface ContractDetail extends ContractSummary {
+  source_text: string;
   risk_summary: RiskSummary | null;
   findings: Finding[];
   email_draft: EmailDraft | null;
@@ -93,6 +99,14 @@ export interface HistoryQueryResult {
   rows: (string | number | null)[][];
   row_count: number;
   truncated: boolean;
+}
+
+export type ExportFormat = "pdf" | "docx";
+
+/** A downloaded report: the file and the name from Content-Disposition. */
+export interface ExportedFile {
+  blob: Blob;
+  filename: string;
 }
 
 export interface CreateContractInput {
@@ -118,6 +132,7 @@ export interface ApiClient {
   retryAnalysis(id: string): Promise<ContractDetail>;
   deleteContract(id: string): Promise<void>;
   queryHistory(question: string): Promise<HistoryQueryResult>;
+  exportReport(id: string, format: ExportFormat): Promise<ExportedFile>;
 }
 
 export const LEGAL_DISCLAIMER =

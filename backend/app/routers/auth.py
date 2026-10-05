@@ -17,7 +17,7 @@ def to_user(record: UserRecord) -> User:
 
 def _auth_response(context: AppContext, user: UserRecord) -> AuthResponse:
     token = create_access_token(user.id, context.settings.jwt_secret, context.clock())
-    return AuthResponse(access_token=token, expires_in=TOKEN_TTL_SECONDS, user=to_user(user))
+    return AuthResponse(access_token=token, token_type="bearer", expires_in=TOKEN_TTL_SECONDS, user=to_user(user))
 
 
 @router.post("/register", status_code=status.HTTP_201_CREATED, response_model=AuthResponse)

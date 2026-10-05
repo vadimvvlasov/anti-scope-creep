@@ -108,6 +108,12 @@ contracts = Table(
     Index("ix_contracts_user_id_created_at", "user_id", "created_at"),
 )
 
+# Both offsets are null (quote not located) or they form a non-empty range.
+OFFSETS_CHECK = (
+    "(start_char IS NULL AND end_char IS NULL) "
+    "OR (start_char IS NOT NULL AND end_char IS NOT NULL AND start_char >= 0 AND end_char > start_char)"
+)
+
 risk_findings = Table(
     "risk_findings",
     metadata,
@@ -119,6 +125,10 @@ risk_findings = Table(
     Column("risk_level", _enum(RiskLevel, "risk_level"), nullable=False),
     Column("quoted_text", Text, nullable=False),
     Column("explanation", Text, nullable=False),
+    Column("suggested_change", Text, nullable=False),
+    Column("start_char", Integer, nullable=True),
+    Column("end_char", Integer, nullable=True),
+    CheckConstraint(OFFSETS_CHECK, name="offsets"),
 )
 
 email_drafts = Table(

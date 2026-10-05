@@ -5,14 +5,16 @@ queue later). The job decides *what* happens and commits only under its run ID.
 """
 
 import logging
+from collections.abc import Iterable
 from typing import Protocol
 from uuid import UUID, uuid4
 
 from fastapi import BackgroundTasks
 
-from app.analyzer import AnalysisResult
+from app.analyzer import AnalysisResult, FindingDraft
 from app.context import AppContext
 from app.models import EmailDraftRecord, FindingRecord
+from app.quotes import locate_quote
 
 logger = logging.getLogger(__name__)
 
@@ -48,10 +50,7 @@ def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
         store.fail_analysis(contract_id, run_id, context.clock())
         return
     now = context.clock()
-    findings = [
-        FindingRecord(id=uuid4(), contract_id=contract_id, **finding.model_dump())
-        for finding in result.findings
-    ]
+    findings = place_findings(contract_id, contract.source_text, result.findings)
     email = (
         EmailDraftRecord(id=uuid4(), contract_id=contract_id, created_at=now, **result.email_draft.model_dump())
         if result.email_draft
@@ -59,3 +58,18 @@ def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     )
     if not store.complete_analysis(contract_id, run_id, findings, email, now):
         logger.info("Discarded result of superseded run %s for contract %s", run_id, contract_id)
+
+
+def place_findings(
+    contract_id: UUID, source_text: str, drafts: Iterable[FindingDraft]
+) -> list[FindingRecord]:
+    """Finding records for one contract, with the offsets of their quotes in its text."""
+    records = []
+    for draft in drafts:
+        start, end = locate_quote(source_text, draft.quoted_text)
+        records.append(
+            FindingRecord(
+                id=uuid4(), contract_id=contract_id, start_char=start, end_char=end, **draft.model_dump()
+            )
+        )
+    return records

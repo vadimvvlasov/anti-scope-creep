@@ -6,6 +6,7 @@ status rules. Demo login: demo@example.com / password123.
 """
 
 import asyncio
+import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from uuid import UUID, uuid4
@@ -25,7 +26,7 @@ from app.models import (
     RiskLevel,
     UserRecord,
 )
-from app.runner import run_analysis
+from app.runner import place_findings, run_analysis
 
 DEMO_EMAIL = "demo@example.com"
 OTHER_EMAIL = "other@example.com"
@@ -118,6 +119,35 @@ _EMAIL_BULLETS: dict[RiskCategory, str] = {
     C.UNFAVORABLE_PAYMENT_TERMS: "Payment terms: the payment period in the agreement is longer than usual. I propose payment within 30 days of the invoice date.",
 }
 
+# Proposed counter-clause per category for the non-stub findings (same as the frontend mock).
+_SUGGESTED_CHANGES: dict[RiskCategory, str] = {
+    C.SCOPE_CREEP: "The Contractor shall perform the services listed in Exhibit A. Any additional work requires a written change order agreed by both parties, including the fee and timeline.",
+    C.UNLIMITED_REVISIONS: "The fee includes two rounds of revisions per deliverable. Further revisions will be billed at the Contractor's hourly rate.",
+    C.ONE_SIDED_TERMINATION: "Either party may terminate this Agreement on fourteen days' written notice. The Client shall pay for all work completed up to the termination date.",
+    C.IP_TRANSFER_BEFORE_PAYMENT: "Ownership of the deliverables transfers to the Client once all invoices under this Agreement have been paid in full.",
+    C.UNCAPPED_LIABILITY: "The Contractor's total liability arising out of or in connection with this Agreement shall not exceed the total fees paid under this Agreement.",
+    C.UNFAVORABLE_PAYMENT_TERMS: "Invoices are payable within 30 days of the invoice date.",
+}
+
+# Contract text sections, the same as the frontend mock, so both show the same agreement.
+_SECTION_TITLES: dict[RiskCategory, str] = {
+    C.SCOPE_CREEP: "Scope of Services",
+    C.UNLIMITED_REVISIONS: "Revisions",
+    C.ONE_SIDED_TERMINATION: "Termination",
+    C.IP_TRANSFER_BEFORE_PAYMENT: "Intellectual Property",
+    C.UNCAPPED_LIABILITY: "Liability",
+    C.UNFAVORABLE_PAYMENT_TERMS: "Payment",
+}
+_NEUTRAL_SECTIONS: tuple[tuple[str, str], ...] = (
+    ("Services", "The Contractor shall provide the services described in Exhibit A."),
+    ("Fees", "The Client shall pay the fees set out in Exhibit B."),
+    (
+        "Confidentiality",
+        "Each party shall keep the other party's confidential information secret and use it only for the purposes of this Agreement.",
+    ),
+    ("Governing Law", "This Agreement is governed by the laws of England and Wales."),
+)
+
 
 @dataclass(frozen=True)
 class SeedContract:
@@ -204,7 +234,7 @@ def _seed_contract(
         analyzed_at = created + timedelta(minutes=1)
         run_id = uuid4()
         store.start_analysis(user_id, contract.id, run_id, created)
-        findings, email = _results(contract.id, spec, analyzed_at)
+        findings, email = _results(contract, spec, analyzed_at)
         store.complete_analysis(contract.id, run_id, findings, email, analyzed_at)
     run_id = uuid4()
     if spec.status == S.FAILED:
@@ -218,7 +248,6 @@ def _seed_contract(
 
 def _contract_record(user_id: UUID, spec: SeedContract, created: datetime) -> ContractRecord:
     pasted = spec.input == "text"
-    clauses = [_CLAUSES[key][0] for key in spec.findings]
     return ContractRecord(
         id=uuid4(),
         user_id=user_id,
@@ -226,28 +255,57 @@ def _contract_record(user_id: UUID, spec: SeedContract, created: datetime) -> Co
         title=spec.title,
         file_type=FileType.PDF if spec.input == "pdf" else FileType.TXT,
         file_size=None if pasted else 120_000 + spec.days_ago * 517,
-        source_text="\n\n".join([f"Sample contract: {spec.title}.", *clauses]),
+        source_text=contract_text(spec.title, _seed_drafts(spec)),
         status=ContractStatus.UPLOADED,
         created_at=created,
         updated_at=created,
     )
 
 
+def contract_text(title: str, drafts: list[FindingDraft]) -> str:
+    """A short realistic agreement containing every draft's quote verbatim among neutral clauses."""
+    heading = re.sub(r"\.(pdf|txt)$", "", title, flags=re.IGNORECASE).upper()
+    sections = [*_NEUTRAL_SECTIONS[:2], *((_SECTION_TITLES[d.category], d.quoted_text) for d in drafts)]
+    sections += _NEUTRAL_SECTIONS[2:]
+    body = "\n\n".join(f"{i}. {name}\n{clause}" for i, (name, clause) in enumerate(sections, start=1))
+    return "\n\n".join(
+        [
+            heading,
+            'This Agreement is made between the Client and the Contractor (together, the "Parties").',
+            body,
+            "Signed for the Client: ____________________\nSigned for the Contractor: ____________________",
+        ]
+    )
+
+
+def _seed_drafts(spec: SeedContract) -> list[FindingDraft]:
+    """Findings the contract text must contain. A pending run completes with the stub fixture."""
+    if spec.stub or spec.status == S.ANALYZING:
+        return list(STUB_FINDINGS)
+    return [_finding_draft(*key) for key in spec.findings]
+
+
 def _results(
-    contract_id: UUID, spec: SeedContract, analyzed_at: datetime
+    contract: ContractRecord, spec: SeedContract, analyzed_at: datetime
 ) -> tuple[list[FindingRecord], EmailDraftRecord | None]:
-    drafts = list(STUB_FINDINGS) if spec.stub else [_finding_draft(*key) for key in spec.findings]
-    findings = [FindingRecord(id=uuid4(), contract_id=contract_id, **d.model_dump()) for d in drafts]
+    drafts = _seed_drafts(spec)
+    findings = place_findings(contract.id, contract.source_text, drafts)
     content = STUB_EMAIL if spec.stub else _email_content(drafts)
     if content is None:
         return findings, None
-    email = EmailDraftRecord(id=uuid4(), contract_id=contract_id, created_at=analyzed_at, **content.model_dump())
+    email = EmailDraftRecord(id=uuid4(), contract_id=contract.id, created_at=analyzed_at, **content.model_dump())
     return findings, email
 
 
 def _finding_draft(category: RiskCategory, level: RiskLevel) -> FindingDraft:
     quoted_text, explanation = _CLAUSES[(category, level)]
-    return FindingDraft(category=category, risk_level=level, quoted_text=quoted_text, explanation=explanation)
+    return FindingDraft(
+        category=category,
+        risk_level=level,
+        quoted_text=quoted_text,
+        explanation=explanation,
+        suggested_change=_SUGGESTED_CHANGES[category],
+    )
 
 
 def _email_content(findings: list[FindingDraft]) -> EmailDraftContent | None:

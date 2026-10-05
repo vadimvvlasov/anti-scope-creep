@@ -4,7 +4,10 @@ import type {
   AuthResponse,
   ContractDetail,
   ContractPage,
+  ContractSummary,
   CreateContractInput,
+  ExportedFile,
+  ExportFormat,
   HistoryQueryResult,
   ListContractsParams,
   RiskCategory,
@@ -18,10 +21,14 @@ import {
   createSeed,
   iso,
   mockId,
+  SAMPLE_AGREEMENT,
   sortFindings,
   type MockContract,
   type MockUser,
 } from "./seed";
+import { renderDocx } from "./docx";
+import { renderPdf } from "./pdf";
+import { buildReportBlocks, REPORT_FOOTER, reportFilename } from "./report";
 
 const ANALYSIS_MS = 5000;
 const DAY = 24 * 60 * 60 * 1000;
@@ -32,7 +39,6 @@ const latency = () => sleep(300 + Math.floor(Math.random() * 500));
 const toPublic = (c: MockContract): ContractDetail => {
   const {
     user_id: _u,
-    source_text: _s,
     pending_until: _p,
     pending_outcome: _o,
     pending_findings: _f,
@@ -40,6 +46,12 @@ const toPublic = (c: MockContract): ContractDetail => {
     ...rest
   } = c;
   return { ...rest, findings: [...rest.findings] };
+};
+
+// List items never carry the contract text (spec "API data shapes").
+const toListItem = (c: MockContract): ContractSummary => {
+  const { source_text: _s, ...rest } = toPublic(c);
+  return rest;
 };
 
 export interface MockApiOptions {
@@ -191,7 +203,7 @@ export class MockApiClient implements ApiClient {
     }
     c.pending_until = this.now() + ANALYSIS_MS;
     c.pending_outcome = "done";
-    c.pending_findings = buildStubFindings();
+    c.pending_findings = buildStubFindings(c.source_text);
   }
 
   async createContract(input: CreateContractInput): Promise<ContractDetail> {
@@ -276,7 +288,7 @@ export class MockApiClient implements ApiClient {
       risk_summary: null,
       findings: [],
       email_draft: null,
-      source_text: text || `Extracted text placeholder for ${filename}.`,
+      source_text: text || SAMPLE_AGREEMENT,
       pending_until: null,
       pending_outcome: null,
       pending_findings: [],
@@ -307,7 +319,7 @@ export class MockApiClient implements ApiClient {
     const total = mine.length;
     const start = (page - 1) * pageSize;
     return {
-      items: mine.slice(start, start + pageSize).map(toPublic),
+      items: mine.slice(start, start + pageSize).map(toListItem),
       total_count: total,
       page,
       page_size: pageSize,
@@ -357,6 +369,27 @@ export class MockApiClient implements ApiClient {
       );
     }
     this.contracts = this.contracts.filter((c) => c.id !== contract.id);
+  }
+
+  /* ------------------------- report export ------------------------- */
+
+  async exportReport(id: string, format: ExportFormat): Promise<ExportedFile> {
+    await latency();
+    if (format !== "pdf" && format !== "docx") {
+      throw new ApiError(422, "VALIDATION_ERROR", "format must be pdf or docx.");
+    }
+    const contract = this.owned(id);
+    if (contract.analyzed_at === null) {
+      throw new ApiError(
+        409,
+        "NO_ANALYSIS_RESULTS",
+        "This contract has no analysis results to export yet.",
+      );
+    }
+    const blocks = buildReportBlocks(toPublic(contract), iso(this.now()));
+    const blob =
+      format === "pdf" ? renderPdf(blocks, REPORT_FOOTER) : renderDocx(blocks, REPORT_FOOTER);
+    return { blob, filename: reportFilename(contract.title, format) };
   }
 
   /* ------------------------- history query ------------------------- */

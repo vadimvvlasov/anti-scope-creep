@@ -300,3 +300,91 @@ describe("history query", () => {
     expect(clarify.rows).toEqual([]);
   });
 });
+
+describe("split-screen viewer data", () => {
+  const sliceByCodePoints = (text: string, start: number, end: number) =>
+    Array.from(text).slice(start, end).join("");
+
+  it("returns source_text with located findings for every seeded contract", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const page = await client.listContracts({ page_size: 50 });
+    expect(page.items.every((c) => !("source_text" in c))).toBe(true);
+    for (const item of page.items) {
+      const c = await client.getContract(item.id);
+      expect(c.source_text.length).toBeGreaterThan(0);
+      for (const f of c.findings) {
+        expect(f.suggested_change.length).toBeGreaterThan(0);
+        expect(sliceByCodePoints(c.source_text, f.start_char!, f.end_char!)).toBe(f.quoted_text);
+      }
+    }
+  }, 60_000);
+
+  it("locates the stub fixture in an uploaded file's placeholder text", async () => {
+    let now = 3_000_000;
+    const { client } = makeClient(() => now);
+    await login(client);
+    const created = await client.createContract({ file: file("a.pdf") });
+    now += 6000;
+    const done = await client.getContract(created.id);
+    expect(done.findings.every((f) => f.start_char !== null && f.end_char !== null)).toBe(true);
+  });
+
+  it("leaves offsets null when pasted text lacks the fixture quotes", async () => {
+    let now = 4_000_000;
+    const { client } = makeClient(() => now);
+    await login(client);
+    const created = await client.createContract({ text: "A contract", title: "Test" });
+    expect(created.source_text).toBe("A contract");
+    now += 6000;
+    const done = await client.getContract(created.id);
+    expect(done.findings.map((f) => [f.start_char, f.end_char])).toEqual([
+      [null, null],
+      [null, null],
+      [null, null],
+    ]);
+  });
+});
+
+describe("report export", () => {
+  const titled = async (client: MockApiClient, title: string) =>
+    (await client.listContracts({ page_size: 50 })).items.find((c) => c.title === title)!;
+
+  it("exports a PDF and a DOCX named after the contract", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const contract = await titled(client, "Website Redesign Agreement.pdf");
+    const pdf = await client.exportReport(contract.id, "pdf");
+    expect(pdf.filename).toBe("Website Redesign Agreement.pdf - Counter-proposal.pdf");
+    expect(pdf.blob.type).toBe("application/pdf");
+    expect(new TextDecoder().decode((await pdf.blob.arrayBuffer()).slice(0, 5))).toBe("%PDF-");
+
+    const docx = await client.exportReport(contract.id, "docx");
+    expect(docx.filename).toBe("Website Redesign Agreement.pdf - Counter-proposal.docx");
+    const bytes = new Uint8Array(await docx.blob.arrayBuffer());
+    expect([bytes[0], bytes[1]]).toEqual([0x50, 0x4b]); // "PK": a ZIP container
+  });
+
+  it("returns 409 NO_ANALYSIS_RESULTS before the first successful analysis", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const contract = await titled(client, "Consulting Agreement Q3.pdf");
+    await expect(client.exportReport(contract.id, "pdf")).rejects.toMatchObject({
+      status: 409,
+      code: "NO_ANALYSIS_RESULTS",
+    });
+  });
+
+  it("exports previous results of a failed contract and hides other users' contracts", async () => {
+    const { client } = makeClient();
+    await client.login(OTHER_EMAIL, DEMO_PASSWORD);
+    const theirs = (await client.listContracts()).items[0]!;
+    await login(client);
+    const failed = await titled(client, "Video Production Contract.pdf");
+    await expect(client.exportReport(failed.id, "docx")).resolves.toHaveProperty("filename");
+    await expect(client.exportReport(theirs.id, "pdf")).rejects.toMatchObject({
+      status: 404,
+      code: "CONTRACT_NOT_FOUND",
+    });
+  });
+});

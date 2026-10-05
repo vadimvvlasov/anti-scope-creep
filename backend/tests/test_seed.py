@@ -60,12 +60,29 @@ def test_seeded_results_follow_the_email_rule(seeded):
     for detail in details:
         if detail["analyzed_at"] is None:
             continue
-        findings = [FindingDraft(**{k: v for k, v in f.items() if k != "id"}) for f in detail["findings"]]
+        findings = [FindingDraft(**{k: v for k, v in f.items() if k not in ("id", "start_char", "end_char")}) for f in detail["findings"]]
         email = detail["email_draft"]
         content = EmailDraftContent(subject=email["subject"], body=email["body"]) if email else None
         AnalysisResult(findings=findings, email_draft=content)  # raises if the rule is broken
         actionable = sum(f["risk_level"] != "low" for f in detail["findings"])
         assert (email["body"].count("\n- ") if email else 0) == actionable
+
+
+def test_seeded_findings_are_located_in_a_realistic_contract_text(seeded):
+    *_, details = seeded
+    for detail in details:
+        text = detail["source_text"]
+        assert text.startswith(detail["title"].removesuffix(".pdf").removesuffix(".txt").upper() + "\n\n")
+        assert "Signed for the Contractor:" in text
+        for finding in detail["findings"]:
+            assert finding["suggested_change"]
+            assert text[finding["start_char"] : finding["end_char"]] == finding["quoted_text"]
+
+
+def test_pending_seed_contract_text_contains_the_stub_quotes(seeded):
+    *_, details = seeded
+    pending = by_title(details, "Illustration License Agreement.pdf")
+    assert all(f.quoted_text in pending["source_text"] for f in StubAnalyzer().analyze("").findings)
 
 
 def test_special_seed_rows(seeded):

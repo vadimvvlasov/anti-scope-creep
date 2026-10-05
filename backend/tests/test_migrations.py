@@ -12,7 +12,7 @@ from alembic.migration import MigrationContext
 from sqlalchemy import inspect, insert, text
 from sqlalchemy.exc import IntegrityError
 
-from app.db import build_engine, contracts, email_drafts, metadata, users
+from app.db import build_engine, contracts, email_drafts, metadata, risk_findings, users
 from tests.database import DATABASE_URLS, fresh_engine
 
 ALEMBIC_INI = Path(__file__).resolve().parents[1] / "alembic.ini"
@@ -93,3 +93,41 @@ def test_deleting_a_contract_row_cascades_to_its_results(engine):
         conn.execute(insert(email_drafts).values(id=uuid4(), contract_id=contract["id"], subject="s", body="b", created_at=NOW))
         conn.execute(text("DELETE FROM contracts"))
         assert conn.execute(text("SELECT count(*) FROM email_drafts")).scalar_one() == 0
+
+
+def test_0002_backfills_suggested_change_and_offsets_of_existing_findings(empty_engine):
+    with empty_engine.begin() as conn:
+        _migrate(conn, "0001")
+        contract = _contract_values(_user(conn), source_text="1. Fees\nInvoices are payable within 60 days.")
+        conn.execute(insert(contracts).values(**contract))
+        for quote in ("Invoices are payable within 60 days.", "Not in the text."):
+            # Only the 0001 columns: the insert names them, so the newer ones are not needed.
+            conn.execute(
+                insert(risk_findings).values(
+                    id=uuid4(), contract_id=contract["id"], category="unfavorable_payment_terms",
+                    risk_level="medium", quoted_text=quote, explanation="why",
+                )
+            )
+        _migrate(conn, "0002")
+        rows = conn.execute(
+            text("SELECT quoted_text, suggested_change, start_char, end_char FROM risk_findings ORDER BY quoted_text")
+        ).all()
+
+    assert [tuple(row) for row in rows] == [
+        ("Invoices are payable within 60 days.", "Invoices are payable within 30 days of the invoice date.", 8, 44),
+        ("Not in the text.", "Invoices are payable within 30 days of the invoice date.", None, None),
+    ]
+
+
+@pytest.mark.parametrize("offsets", [(5, None), (None, 5), (5, 5), (-1, 3)])
+def test_database_rejects_invalid_offsets(engine, offsets):
+    start, end = offsets
+    with pytest.raises(IntegrityError), engine.begin() as conn:
+        contract = _contract_values(_user(conn))
+        conn.execute(insert(contracts).values(**contract))
+        conn.execute(
+            insert(risk_findings).values(
+                id=uuid4(), contract_id=contract["id"], category="scope_creep", risk_level="low",
+                quoted_text="q", explanation="e", suggested_change="s", start_char=start, end_char=end,
+            )
+        )
