@@ -14,7 +14,6 @@ export interface MockUser extends User {
 
 export interface MockContract extends ContractDetail {
   user_id: string;
-  source_text: string;
   // When set, the analysis completes at this timestamp with `pending_outcome`.
   pending_until: number | null;
   pending_outcome: "done" | "failed" | null;
@@ -37,7 +36,10 @@ const DAY = 24 * 60 * 60 * 1000;
 /* MVP stub analyzer fixture                                          */
 /* ------------------------------------------------------------------ */
 
-export const STUB_FINDINGS: Omit<Finding, "id">[] = [
+/** A finding before it is placed in a contract text (no id, no offsets). */
+export type FindingDraft = Omit<Finding, "id" | "start_char" | "end_char">;
+
+export const STUB_FINDINGS: FindingDraft[] = [
   {
     category: "uncapped_liability",
     risk_level: "high",
@@ -45,6 +47,8 @@ export const STUB_FINDINGS: Omit<Finding, "id">[] = [
       "Contractor shall be liable for all losses, damages, costs, and claims arising from the services, without limitation.",
     explanation:
       "You would be responsible for any loss connected to the work with no upper limit, so a single claim could exceed the total contract value.",
+    suggested_change:
+      "The Contractor's total liability arising out of or in connection with this Agreement shall not exceed the total fees paid under this Agreement.",
   },
   {
     category: "unfavorable_payment_terms",
@@ -52,6 +56,7 @@ export const STUB_FINDINGS: Omit<Finding, "id">[] = [
     quoted_text: "Invoices are payable within 60 days of receipt.",
     explanation:
       "Payment can arrive up to two months after you invoice, which is well beyond the common 30-day standard and delays your cash flow.",
+    suggested_change: "Invoices are payable within 30 days of the invoice date.",
   },
   {
     category: "unlimited_revisions",
@@ -60,6 +65,8 @@ export const STUB_FINDINGS: Omit<Finding, "id">[] = [
       "The Client may request reasonable revisions to the deliverables during the project.",
     explanation:
       "The number of revision rounds is not stated, which leaves some room for extra work, although revisions are limited to what is reasonable.",
+    suggested_change:
+      "The Client may request up to two rounds of revisions to each deliverable; further revisions will be billed at the Contractor's hourly rate.",
   },
 ];
 
@@ -76,8 +83,65 @@ I am happy to discuss these points. Please let me know if these changes work for
 
 Best regards`;
 
-export const buildStubFindings = (): Finding[] =>
-  STUB_FINDINGS.map((f) => ({ ...f, id: mockId("fin") }));
+/* ------------------------------------------------------------------ */
+/* Finding offsets and contract texts                                  */
+/* ------------------------------------------------------------------ */
+
+const codePoints = (s: string) => Array.from(s).length;
+
+/** First exact occurrence of `quote` in `text`, in Unicode code points (spec "Finding offsets"). */
+export const locateQuote = (
+  text: string,
+  quote: string,
+): Pick<Finding, "start_char" | "end_char"> => {
+  const index = text.indexOf(quote);
+  if (index < 0) return { start_char: null, end_char: null };
+  const start = codePoints(text.slice(0, index));
+  return { start_char: start, end_char: start + codePoints(quote) };
+};
+
+export const placeFindings = (drafts: FindingDraft[], text: string): Finding[] =>
+  drafts.map((d) => ({ ...d, id: mockId("fin"), ...locateQuote(text, d.quoted_text) }));
+
+const SECTION_TITLES: Record<RiskCategory, string> = {
+  scope_creep: "Scope of Services",
+  unlimited_revisions: "Revisions",
+  one_sided_termination: "Termination",
+  ip_transfer_before_payment: "Intellectual Property",
+  uncapped_liability: "Liability",
+  unfavorable_payment_terms: "Payment",
+};
+
+const NEUTRAL_SECTIONS: Array<[string, string]> = [
+  ["Services", "The Contractor shall provide the services described in Exhibit A."],
+  ["Fees", "The Client shall pay the fees set out in Exhibit B."],
+  [
+    "Confidentiality",
+    "Each party shall keep the other party's confidential information secret and use it only for the purposes of this Agreement.",
+  ],
+  ["Governing Law", "This Agreement is governed by the laws of England and Wales."],
+];
+
+/** A short realistic agreement containing every draft's quote verbatim among neutral clauses. */
+export const buildContractText = (title: string, drafts: FindingDraft[]): string => {
+  const heading = title.replace(/\.(pdf|txt)$/i, "").toUpperCase();
+  const sections: Array<[string, string]> = [...NEUTRAL_SECTIONS.slice(0, 2)];
+  for (const d of drafts) sections.push([SECTION_TITLES[d.category], d.quoted_text]);
+  sections.push(...NEUTRAL_SECTIONS.slice(2));
+  const body = sections.map(([name, clause], i) => `${i + 1}. ${name}\n${clause}`).join("\n\n");
+  return [
+    heading,
+    'This Agreement is made between the Client and the Contractor (together, the "Parties").',
+    body,
+    "Signed for the Client: ____________________\nSigned for the Contractor: ____________________",
+  ].join("\n\n");
+};
+
+/** source_text the mock uses for uploaded files: it contains the stub fixture quotes. */
+export const SAMPLE_AGREEMENT = buildContractText("Services Agreement", STUB_FINDINGS);
+
+export const buildStubFindings = (sourceText: string): Finding[] =>
+  placeFindings(STUB_FINDINGS, sourceText);
 
 export const buildEmailDraft = (findings: Finding[], createdAt: string): EmailDraft | null => {
   const actionable = findings.filter((f) => f.risk_level === "high" || f.risk_level === "medium");
@@ -265,11 +329,26 @@ const CLAUSES: Record<RiskCategory, Record<RiskLevel, ClauseSeed>> = {
   },
 };
 
-export const makeFinding = (category: RiskCategory, level: RiskLevel): Finding => ({
-  id: mockId("fin"),
+// Proposed counter-clause per category, used for the seeded (non-stub) findings.
+const SUGGESTED_CHANGES: Record<RiskCategory, string> = {
+  scope_creep:
+    "The Contractor shall perform the services listed in Exhibit A. Any additional work requires a written change order agreed by both parties, including the fee and timeline.",
+  unlimited_revisions:
+    "The fee includes two rounds of revisions per deliverable. Further revisions will be billed at the Contractor's hourly rate.",
+  one_sided_termination:
+    "Either party may terminate this Agreement on fourteen days' written notice. The Client shall pay for all work completed up to the termination date.",
+  ip_transfer_before_payment:
+    "Ownership of the deliverables transfers to the Client once all invoices under this Agreement have been paid in full.",
+  uncapped_liability:
+    "The Contractor's total liability arising out of or in connection with this Agreement shall not exceed the total fees paid under this Agreement.",
+  unfavorable_payment_terms: "Invoices are payable within 30 days of the invoice date.",
+};
+
+export const seedDraft = (category: RiskCategory, level: RiskLevel): FindingDraft => ({
   category,
   risk_level: level,
   ...CLAUSES[category][level],
+  suggested_change: SUGGESTED_CHANGES[category],
 });
 
 /* ------------------------------------------------------------------ */
@@ -497,11 +576,19 @@ const DEMO_SPECS: SeedSpec[] = [
   },
 ];
 
+// Findings the seeded contract text must contain: the stub fixture for stub results and for
+// the contract that is still analyzing (it completes with the fixture), else the spec's list.
+const seedDrafts = (spec: SeedSpec): FindingDraft[] =>
+  spec.stub || spec.status === "analyzing"
+    ? STUB_FINDINGS
+    : spec.findings.map(([c, l]) => seedDraft(c, l));
+
 const buildContract = (spec: SeedSpec, userId: string, now: number): MockContract => {
   const created = now - spec.daysAgo * DAY - 3600_000;
-  const findings = spec.stub
-    ? buildStubFindings()
-    : sortFindings(spec.findings.map(([c, l]) => makeFinding(c, l)));
+  const drafts = seedDrafts(spec);
+  const sourceText = buildContractText(spec.title, drafts);
+  const findings =
+    spec.status === "analyzing" ? [] : sortFindings(placeFindings(drafts, sourceText));
   const hasResults =
     spec.status === "done" || (spec.status === "failed" && spec.previousSuccess === true);
   const analyzedAt = hasResults ? iso(created + 60_000) : null;
@@ -524,10 +611,10 @@ const buildContract = (spec: SeedSpec, userId: string, now: number): MockContrac
     email_draft: hasResults
       ? (spec.stub ? buildEmailDraft : buildSeedEmailDraft)(findings, analyzedAt ?? iso(created))
       : null,
-    source_text: `Mock contract text for ${spec.title}.`,
+    source_text: sourceText,
     pending_until: spec.status === "analyzing" ? now + 5000 : null,
     pending_outcome: spec.status === "analyzing" ? "done" : null,
-    pending_findings: spec.status === "analyzing" ? buildStubFindings() : [],
+    pending_findings: spec.status === "analyzing" ? buildStubFindings(sourceText) : [],
     pending_email: null,
   };
 };
