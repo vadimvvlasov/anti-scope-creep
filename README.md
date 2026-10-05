@@ -209,7 +209,7 @@ End-to-end tests (Playwright, Chromium) drive the real frontend and backend:
 
 ```bash
 make up
-(cd frontend && npx playwright install chromium)   # once
+(cd frontend && npm ci && npx playwright install chromium)   # once: Playwright and its browser
 make e2e
 ```
 
