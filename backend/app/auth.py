@@ -1,5 +1,7 @@
 """Password hashing, JWT access tokens, and the current-user dependency."""
 
+import threading
+from dataclasses import replace
 from datetime import datetime, timedelta
 from functools import cache
 from typing import Annotated
@@ -19,18 +21,34 @@ from app.store import DuplicateEmailError, Store
 TOKEN_TTL_SECONDS = 24 * 60 * 60
 JWT_ALGORITHM = "HS256"
 
-_hasher = PasswordHasher()
+# argon2id with OWASP's 19 MiB profile instead of argon2-cffi's default 64 MiB: on a 512 MB
+# Lightsail nano container, eight concurrent registrations at 64 MiB each ran it out of memory.
+_hasher = PasswordHasher(memory_cost=19 * 1024, time_cost=2, parallelism=1)
+# Sync routes run in a thread pool, so cap how many hashes use memory at once; others wait.
+# Two slots stay small even for a legacy 64 MiB hash.
+HASH_CONCURRENCY = 2
+_hash_slots = threading.BoundedSemaphore(HASH_CONCURRENCY)
 _bearer = HTTPBearer(auto_error=False)
 
 
 def hash_password(password: str) -> str:
-    return _hasher.hash(password)
+    with _hash_slots:
+        return _hasher.hash(password)
 
 
 def verify_password(password_hash: str, password: str) -> bool:
     try:
-        return _hasher.verify(password_hash, password)
+        with _hash_slots:
+            return _hasher.verify(password_hash, password)
     except (VerificationError, InvalidHashError):
+        return False
+
+
+def needs_rehash(password_hash: str) -> bool:
+    """True for hashes made with other parameters, e.g. before the 19 MiB profile."""
+    try:
+        return _hasher.check_needs_rehash(password_hash)
+    except InvalidHashError:
         return False
 
 
@@ -71,6 +89,9 @@ def authenticate(store: Store, email: str, password: str) -> UserRecord:
         raise AppError(ErrorCode.INVALID_CREDENTIALS)
     if not verify_password(user.password_hash, password):
         raise AppError(ErrorCode.INVALID_CREDENTIALS)
+    if needs_rehash(user.password_hash):
+        user = replace(user, password_hash=hash_password(password))
+        store.update_password_hash(user.id, user.password_hash)
     return user
 
 
