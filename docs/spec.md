@@ -15,6 +15,8 @@ The MVP uses a deterministic stub analyzer so the complete product workflow work
 
 The MVP frontend also includes a **History Search** screen for natural-language questions over the user's contract history. In the MVP it runs against the frontend mock only; the real backend answers with a stub until the text-to-SQL agent phase (see [History Search](#5-history-search)).
 
+Contract Details is a split-screen viewer: the contract text with findings highlighted in place, next to the risk cards and email. An author badge and a **Methodology & Privacy** dialog explain who built the product and how data is handled. Users can export a **counter-proposal report** (PDF/DOCX); in the MVP only the mock builds it, the real backend answers with a stub. Paid plans are a [later phase](#pro-tier-and-white-labeled-reports).
+
 This document is also the input prompt for Lovable, which generates the React frontend. Everything the frontend needs (screens, data shapes, API operations, error codes, mock behavior) is specified here.
 
 ### Fixed technology decisions
@@ -44,7 +46,7 @@ Hosting, CI/CD, database operations, the LLM provider setup, and the agent/obser
 
 ### Legal positioning
 
-The Upload / Analyze and Contract Details screens must display this disclaimer:
+The Upload / Analyze and Contract Details screens and the footer of every exported report must display this disclaimer:
 
 > Anti-Scope Creep uses automated AI analysis to identify potential commercial contract risks and does not constitute professional legal advice.
 
@@ -66,6 +68,7 @@ A user can:
 - retry analysis for their own contracts;
 - delete their own completed/failed contracts;
 - copy generated email drafts to the clipboard;
+- export a counter-proposal report (PDF or DOCX) for their own analyzed contracts (mock only in the MVP);
 - ask natural-language questions about their own contract history (mock only in the MVP).
 
 There are no team/workspace roles, administrators, reviewers, or shared contracts in the MVP.
@@ -200,11 +203,21 @@ A user can permanently delete a contract they own when status is `done` or `fail
 4. The result shows a short answer, a results table, and (collapsed by default) the SQL that produced it.
 5. In the MVP the mock implementation answers from its seed data. The real backend returns `501 FEATURE_NOT_AVAILABLE` until the text-to-SQL agent phase; the UI then shows `History search is coming soon.`
 
+### 10. Export a counter-proposal report
+
+1. On Contract Details with results (`analyzed_at` not null), user picks `Export report` → `PDF` or `DOCX`.
+2. Frontend sends `POST /contracts/{id}/export`; the browser downloads the returned file.
+3. The real backend returns `501 FEATURE_NOT_AVAILABLE` in the MVP; the UI shows `Report export is coming soon.`
+
 ---
 
 ## Screens
 
-The authenticated app has a top navigation bar with: **History**, **New Analysis**, **History Search**, the user's email, and **Log out**.
+The authenticated app has a top navigation bar with: **History**, **New Analysis**, **History Search**, the author badge, a **Methodology & Privacy** link, the user's email, and **Log out**.
+
+Every screen, including Login / Register, has:
+- the **author badge** in the header: `Engineered by Vadim Vlasov | AI & LegalTech`, with icon links to GitHub (`https://github.com/vadimvvlasov`) and LinkedIn (URL supplied by the author; not rendered until set). Links open in a new tab (`rel="noopener noreferrer"`). On narrow screens it may shorten to `Vadim Vlasov`;
+- a **footer** with a `Methodology & Privacy` link. Both links open the [Methodology & Privacy dialog](#6-methodology--privacy-dialog).
 
 ### 1. Login / Register
 
@@ -270,20 +283,44 @@ The legal disclaimer must be visible on this screen.
 
 ### 4. Contract Details
 
-Purpose: display the result of a single analysis.
+Purpose: display the result of a single analysis next to the contract text it came from.
 
 Header:
 - editable title (inline edit, save on Enter/blur, cancel on Escape);
 - input type, created date, `analyzed_at` when present;
 - status badge;
+- `Export report` menu with `PDF` and `DOCX` (enabled only when `analyzed_at` is not null; see [Export controls](#export-controls));
 - Delete button (disabled while `analyzing`).
 
-State handling:
+#### Split layout
+
+- **Left: Contract Reader** — the full `source_text` with findings highlighted. Always shown, whatever the status.
+- **Right: Risk panel** — the state panels below, then Risk Summary, Findings, and Client Email.
+
+At **1024 px and wider** the panels sit side by side (left ~55%), each scrolling independently. Below 1024 px they stack, Risk panel first; scroll sync then scrolls the page.
+
+State handling (Risk panel):
 - `analyzing`: progress/loading panel `Analyzing contract…` and automatic polling every 2 seconds. After 5 minutes: `Analysis is taking longer than expected` plus `Check again`.
 - `failed`: error panel `Analysis failed. Please try again.` plus `Retry Analysis`.
 - `done`: the sections below.
 
-When status is `analyzing` or `failed` but results from an earlier successful analysis exist (`analyzed_at` is not null), the sections below are still shown under a notice `Showing results from the previous analysis on <analyzed_at>.`
+When status is `analyzing` or `failed` but results from an earlier successful analysis exist (`analyzed_at` is not null), the sections below and the highlights are still shown under a notice `Showing results from the previous analysis on <analyzed_at>.`
+
+#### Contract Reader and highlights
+
+- `source_text` is rendered read-only as plain text with line breaks preserved, never as HTML or Markdown.
+- A finding with non-null offsets highlights `source_text[start_char:end_char]` (offsets are Unicode code points, see the `Finding` type). Backgrounds: `high` soft red `#FEE2E2`, `medium` soft amber `#FEF3C7`, `low` soft blue `#E0F2FE` (dark mode: darker equivalents, readable contrast). Risk badges keep their own colors.
+- Overlapping highlights take the color of the most severe finding.
+- A finding with `null` offsets has no highlight; its card notes `Not located in the contract text`.
+- Highlights are keyboard-focusable buttons (Enter/Space) labeled `<category label>, <risk level> risk`.
+- Filter toggle: `Show all risks` (default) / `High & medium only`. It hides low-risk highlights and low-risk cards together; Risk Summary counts do not change. Not persisted.
+
+#### Scroll sync
+
+- **Clicking a finding card** smoothly scrolls the Contract Reader to its highlight and pulses a border around it for ~1.5 s.
+- **Clicking a highlight** smoothly scrolls the Risk panel to its card. On overlaps it picks the most severe finding (ties: first listed).
+- The clicked finding is marked selected in both panels; one at a time.
+- With `prefers-reduced-motion`: no smooth scroll, a static outline instead of the pulse.
 
 #### Risk Summary
 
@@ -300,13 +337,14 @@ Each finding card shows:
 - category label (see [Clause categories](#clause-categories-with-examples));
 - risk level badge;
 - exact quoted clause text (styled as a quote);
-- concise plain-English explanation.
+- concise plain-English explanation;
+- `Not located in the contract text` when its offsets are `null`.
+
+The proposed counter-clause (`suggested_change`) is not shown on the card; it appears in the exported report.
 
 Multiple findings are allowed in the same category.
 
 If there are no findings: `No high-risk clauses detected`.
-
-The full `source_text` is **not** rendered and is not returned by the API.
 
 #### Client Email
 
@@ -327,6 +365,11 @@ The email must:
 - use neutral wording such as `the agreement` and `the relevant clause`;
 - never mention AI analysis, internal risk levels, or numeric scores;
 - never invent project or party names.
+
+#### Export controls
+
+- `Export report` (`PDF` / `DOCX`) is disabled with the tooltip `Export is available after the first successful analysis.` while `analyzed_at` is `null`, and shows a spinner while an export runs.
+- On success the file downloads under the API's filename. On `501 FEATURE_NOT_AVAILABLE` show `Report export is coming soon.`; on other errors the API `message`.
 
 The legal disclaimer must be visible on this screen.
 
@@ -356,6 +399,42 @@ Error states:
 - `422 QUERY_NOT_SUPPORTED` / `422 QUERY_TOO_EXPENSIVE`: show the API `message` next to the input, keep the question so the user can rephrase;
 - other errors: show the API `message`.
 
+### 6. Methodology & Privacy dialog
+
+Purpose: who built the product, how the analysis works, what happens to contract data. Every statement must be true of the running system.
+
+A modal dialog (a drawer on narrow screens) opened from the header and footer links; closes on Escape, the close button, or a click outside. No API call. Copy:
+
+**About the author**
+
+> Anti-Scope Creep is designed and built by Vadim Vlasov, an engineer focused on AI engineering and software architecture.
+
+followed by the GitHub and LinkedIn links from the author badge. The author may replace this paragraph with a longer bio of their own.
+
+**How the analysis works**
+
+> Anti-Scope Creep checks contracts for six risks common in freelance work: scope creep, unlimited revisions, one-sided termination, IP transfer before payment, uncapped liability, and long payment terms.
+>
+> Three of them relate to clause types in CUAD (Contract Understanding Atticus Dataset), a public dataset of commercial contracts labeled with 41 legal clause categories: uncapped liability and liability caps, termination for convenience, and IP ownership assignment. Scope creep, revisions, and payment terms are additions specific to freelance contracts. Anti-Scope Creep is not evaluated against the CUAD benchmark.
+>
+> A clause is flagged only when an explicit provision creates the risk. If a clause does not clearly meet a category's threshold, no finding is produced. Severity follows a fixed matrix: for example, payment within 45–60 days is medium risk, and 90 days or more is high risk.
+>
+> Automated analysis can miss risks or flag them incorrectly. It is not legal advice.
+
+While the MVP stub analyzer is active, this section starts with:
+
+> This version uses a demonstration analyzer that returns the same sample findings for every contract. The rules below describe the analyzer that replaces it.
+
+**Your data**
+
+> - Uploaded files are read in memory. The original PDF or TXT file is discarded right after its text is extracted and is never stored.
+> - The extracted contract text is stored in your account so you can return to the results. Only you can see your contracts.
+> - Deleting a contract removes its text, findings, and email draft from the application database.
+> - Your contract text is not used to train AI models.
+> - In this version, contract text is not sent to any third-party AI provider.
+
+The dialog must not claim that contract text is never stored, that it is anonymized, or that the analysis cannot be wrong. The texts that change when the LLM analyzer is enabled are listed in [LLM analyzer (Groq)](#llm-analyzer-groq).
+
 ---
 
 ## Data model (with field types and validation limits)
@@ -382,7 +461,7 @@ The initial implementation may use an in-memory repository, but the model must m
 | `title` | string | required, 1–250 characters after trimming | User-editable. File uploads default to filename; pasted text requires user input. |
 | `file_type` | enum | `pdf` or `txt` | Pasted text uses `txt`. |
 | `file_size` | integer bytes / nullable | `0..5,242,880`; `null` for pasted text | Size of the uploaded file; the file itself is not persisted. |
-| `source_text` | text | required, 1–30,000 characters after extraction/normalization | Full extracted/pasted contract text. Not exposed via API. |
+| `source_text` | text | required, 1–30,000 characters after extraction/normalization | Full extracted/pasted contract text. Returned only in `ContractDetail` (Contract Reader); never in list responses. |
 | `status` | enum | `uploaded`, `analyzing`, `done`, `failed` | State machine defined below. |
 | `created_at` | datetime (UTC) | required | Creation timestamp. |
 | `updated_at` | datetime (UTC) | required | Updated on every contract mutation/status change. |
@@ -411,8 +490,9 @@ For a successful analysis with zero findings, `overall_risk_level` is `low` and 
 | `risk_level` | enum | `low`, `medium`, `high` | Must conform to the deterministic severity matrix. |
 | `quoted_text` | text | required, 1–10,000 characters | Exact text selected from the analyzed contract content. |
 | `explanation` | text | required, 1–2,000 characters | Short, plain-English explanation. |
-
-There is no offset/location field in the MVP.
+| `suggested_change` | text | required, 1–2,000 characters | Proposed counter-clause: replacement wording the freelancer can offer for the quoted clause. Same wording rules as the email (neutral, no invented names, no mention of AI or risk levels). Used in the exported report. |
+| `start_char` | integer / nullable | `0 ≤ start_char < end_char`; `null` together with `end_char` | Start of the quoted passage in `source_text`. See [Finding offsets](#finding-offsets). |
+| `end_char` | integer / nullable | `end_char ≤` length of `source_text`; `null` together with `start_char` | End of the quoted passage (exclusive). |
 
 Multiple findings per category are explicitly allowed.
 
@@ -511,6 +591,9 @@ interface Finding {
   risk_level: RiskLevel;
   quoted_text: string;
   explanation: string;
+  suggested_change: string;    // proposed counter-clause, used in the exported report
+  start_char: number | null;   // offsets into source_text in Unicode code points;
+  end_char: number | null;     // both null when the quote was not located
 }
 
 interface EmailDraft {
@@ -521,6 +604,7 @@ interface EmailDraft {
 }
 
 interface ContractDetail extends ContractSummary {
+  source_text: string;              // full contract text for the Contract Reader
   risk_summary: RiskSummary | null; // null until first successful analysis
   findings: Finding[];              // sorted high -> medium -> low; [] until first success
   email_draft: EmailDraft | null;
@@ -544,6 +628,12 @@ interface HistoryQueryResult {
   truncated: boolean;          // true when the server row limit (100) was hit
 }
 
+type ExportFormat = "pdf" | "docx";
+
+interface ExportReportRequest {
+  format: ExportFormat;
+}
+
 interface ApiError {
   error: {
     code: string;              // UPPER_SNAKE_CASE, see Error handling
@@ -552,7 +642,7 @@ interface ApiError {
 }
 ```
 
-`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text`, `user_id`, `analysis_started_at`, and `analysis_run_id` are never returned.
+`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text` is returned only in `ContractDetail`, never in `ContractSummary` list items. `user_id`, `analysis_started_at`, and `analysis_run_id` are never returned.
 
 In `HistoryQueryResult`, `sql` is `null` when no query was executed (the question needed clarification); `columns` and `rows` are then empty and `answer` holds the clarifying question.
 
@@ -574,6 +664,7 @@ Base URL comes from `VITE_API_URL`. All paths below are relative to it. Every pa
 | 8 | Retry analysis | `POST /contracts/{id}/retry` | — | `202` `ContractDetail` (status `analyzing`) | `404 CONTRACT_NOT_FOUND`, `409 ANALYSIS_IN_PROGRESS` |
 | 9 | Delete contract | `DELETE /contracts/{id}` | — | `204` no body | `404 CONTRACT_NOT_FOUND`, `409 CONTRACT_ANALYSIS_IN_PROGRESS` |
 | 10 | History query | `POST /query` | JSON `{ question }` | `200` `HistoryQueryResult` | `501 FEATURE_NOT_AVAILABLE` (real backend in MVP), `422 VALIDATION_ERROR`, `422 QUERY_NOT_SUPPORTED`, `422 QUERY_TOO_EXPENSIVE` |
+| 11 | Export report | `POST /contracts/{id}/export` | JSON `ExportReportRequest` `{ format }` | `200` file (PDF or DOCX) | `404 CONTRACT_NOT_FOUND`, `409 NO_ANALYSIS_RESULTS`, `422 VALIDATION_ERROR`, `501 FEATURE_NOT_AVAILABLE` (real backend in MVP) |
 
 Logout is client-side only and has no API operation.
 
@@ -611,6 +702,31 @@ Any protected operation can also return `401 UNAUTHORIZED`.
 - MVP mock: returns a `HistoryQueryResult` built from the mock's own data (see [Mock behavior](#mock-behavior)).
 - Later phase: implemented by the guarded text-to-SQL agent; the response shape does not change. This endpoint is the **only** entry point to history querying: the MCP server calls it too (see [Agent/MCP layer](#agentmcp-layer)).
 
+**`POST /contracts/{id}/export`**
+- Body: `{ "format": "pdf" | "docx" }`. Unknown fields or another format return `422 VALIDATION_ERROR`.
+- Allowed in any status once `analyzed_at` is not null; the report reflects the last successful analysis. Without results: `409 NO_ANALYSIS_RESULTS`.
+- Success: `200` with the file as the body (not JSON):
+  - `Content-Type: application/pdf` or `application/vnd.openxmlformats-officedocument.wordprocessingml.document`;
+  - `Content-Disposition: attachment; filename="<name>"`, where `<name>` is `<title> - Counter-proposal.<pdf|docx>`. In the title part, every character other than ASCII letters, digits, space, `.`, `_`, and `-` is replaced with `_`, and it is cut to 100 characters.
+- Errors use the usual JSON envelope.
+- MVP real backend: validates auth, input, and ownership, then returns `501 FEATURE_NOT_AVAILABLE` with message `Report export is coming soon.`
+- MVP mock: builds the file (see [Mock behavior](#mock-behavior)).
+- Later phase: the backend generates the file; the request and response do not change (see [Backend report export](#backend-report-export)).
+
+Report content, in order (A4 portrait; the DOCX holds the same content as editable text and tables):
+1. **Header:** contract title, `Analyzed <analyzed_at>`, `Exported <export time>`, and the overall risk level. There is no numeric score.
+2. **Executive Summary:** a table with one row each for High, Medium, and Low and their finding counts, plus a Total row, followed by the sentence `Overall risk: <High|Medium|Low>.`
+3. **Protocol of Disagreements:** a three-column table, one row per `high` and `medium` finding, sorted `high -> medium` and then in findings order:
+
+   | Client's Original Clause | Identified Risk & Explanation | Proposed Counter-Clause |
+   |---|---|---|
+   | `quoted_text` | category label and risk level (e.g. `Uncapped liability (High)`), then `explanation` | `suggested_change` |
+
+   `low` findings are counted in the summary but not listed, as in the email. Without `high`/`medium` findings, the section says `No clauses require negotiation.`
+4. **Client Cover Letter:** the email draft subject and body, line breaks and bullets preserved. Left out when `email_draft` is `null`.
+
+Every page footer shows `Generated by Anti-Scope Creep` and the legal disclaimer.
+
 ### Frontend polling
 
 While a contract is `analyzing`, the frontend polls `GET /contracts/{id}` every **2 seconds**.
@@ -627,7 +743,7 @@ On timeout the UI shows `Analysis is taking longer than expected` and a `Check a
 
 For any contract operation on a contract the authenticated user does not own, return `404 Not Found` with `CONTRACT_NOT_FOUND`, never `403 Forbidden`. The response must be identical to the response for a contract ID that does not exist.
 
-This applies to get, rename, retry, and delete. List and history queries only ever include the authenticated user's contracts.
+This applies to get, rename, retry, delete, and export. List and history queries only ever include the authenticated user's contracts.
 
 ### API implementation constraints
 
@@ -645,7 +761,8 @@ This applies to get, rename, retry, and delete. List and history queries only ev
 - `src/services/api.ts` is the **only** module that components, pages, and hooks import to talk to the backend. No `fetch`, `axios`, or URL building anywhere else.
 - `api.ts` defines:
   - the TypeScript types from [API data shapes](#api-data-shapes);
-  - an `ApiClient` interface with one method per API operation (`register`, `login`, `getMe`, `logout`, `createContract`, `listContracts`, `getContract`, `renameContract`, `retryAnalysis`, `deleteContract`, `queryHistory`);
+  - an `ApiClient` interface with one method per API operation (`register`, `login`, `getMe`, `logout`, `createContract`, `listContracts`, `getContract`, `renameContract`, `retryAnalysis`, `deleteContract`, `queryHistory`, `exportReport`);
+  - `exportReport(id, format)` resolves to `{ blob: Blob; filename: string }`, the filename taken from `Content-Disposition`; the UI turns it into a download;
   - an `ApiError` class carrying `status`, `code`, and `message` parsed from the error envelope;
   - the HTTP implementation of `ApiClient`;
   - token storage helpers (`localStorage` key `asc_access_token`);
@@ -666,8 +783,9 @@ The mock is a complete, realistic, in-memory implementation of `ApiClient`, so t
 - Data lives in memory and resets on page reload; the token persists in `localStorage`. After a reload, a mock token is still accepted for the seeded demo user.
 - Auth: register/login with the same validation rules; issues a fake token string; expired/unknown tokens produce `401 UNAUTHORIZED`.
 - Ownership: contracts of another user return `404 CONTRACT_NOT_FOUND`.
-- Upload validation: exactly one input, `.pdf`/`.txt` extension, ≤ 5 MB, ≤ 30,000 characters, title rules. The mock does not parse PDFs; it uses a placeholder `source_text`.
-- Analysis simulation: a new or retried contract stays `analyzing` for about 5 seconds, then becomes `done` with the [stub analyzer fixture](#mvp-stub-analyzer).
+- Upload validation: exactly one input, `.pdf`/`.txt` extension, ≤ 5 MB, ≤ 30,000 characters, title rules. The mock does not read files: a file's `source_text` is a short sample agreement containing the three stub fixture quotes. Pasted text is stored as typed.
+- Analysis simulation: a new or retried contract stays `analyzing` for about 5 seconds, then becomes `done` with the [stub analyzer fixture](#mvp-stub-analyzer). Offsets: first exact occurrence of `quoted_text` in `source_text`, else `null`.
+- Export: builds an openable PDF/DOCX with the [report content](#operation-details) as plain text and simple tables, named per the API rule; `409 NO_ANALYSIS_RESULTS` without results. Never `501`.
 - Test triggers (mock only), matched in pasted text or filename:
   - `simulate-failure` → analysis ends in `failed`;
   - `simulate-slow` → stays `analyzing` indefinitely, to exercise the 5-minute timeout;
@@ -700,7 +818,9 @@ The demo account starts with **23 contracts**, so pagination is visible at the d
 | 7 | `Video Production Contract.pdf` | PDF | `failed` | 18 days ago | previous success kept: 1 high `ip_transfer_before_payment` | yes |
 | 8–23 | Varied realistic titles (e.g. `Logo Design Agreement.pdf`, `SEO Services Contract.txt`, `Data Migration SOW.pdf`) | mixed | `done` | spread over the last 90 days | deterministic mix across all six categories and all levels, including at least two `uncapped_liability` findings this month | when high/medium exist |
 
-All quoted clauses and explanations in the seed are realistic English contract language, consistent with the category examples below.
+All quoted clauses, explanations, and suggested changes in the seed are realistic English contract language, consistent with the category examples below.
+
+Every seeded contract has a realistic `source_text`: a short agreement (parties, scope, fees, term, and signature sections) that contains each of its findings' `quoted_text` verbatim among neutral clauses. Seeded findings therefore always have offsets.
 
 ---
 
@@ -851,9 +971,19 @@ Include one bullet for every high and medium finding. Exclude all low findings.
 
 If the result contains zero findings or only low findings, `email_draft` must be `null`.
 
+### Finding offsets
+
+`start_char` and `end_char` locate a finding's passage in `source_text` for the Contract Reader.
+
+- Offsets count **Unicode code points** from the start of `source_text`, 0-based; `end_char` is exclusive. (Python string indices match; JavaScript code must convert from UTF-16 units, e.g. with `Array.from`.)
+- They are set when the analysis result is committed and stored with the finding.
+- **MVP:** the passage is the first exact occurrence of `quoted_text` in `source_text`, so `source_text[start_char:end_char] == quoted_text`.
+- **LLM analyzer:** the passage is the match found by quote verification, which compares after normalizing whitespace and quote/dash characters; the slice may differ from `quoted_text` in those characters only.
+- When the quote is not found, both are `null`. The finding is still stored and shown, without a highlight. (In the LLM phase such findings are dropped by quote verification, so `null` offsets come only from the MVP stub.)
+
 ### MVP stub analyzer
 
-The MVP analyzer does **not** parse contract text and does **not** use regex/keyword rules. It always returns the same fixture, so frontend and backend can be tested deterministically. The backend stub and the frontend mock use this exact fixture.
+The MVP analyzer does **not** analyze contract text and does **not** use regex/keyword rules. It always returns the same fixture, so frontend and backend can be tested deterministically. The backend stub and the frontend mock use this exact fixture. The only use of `source_text` is locating the fixture quotes to set offsets (see [Finding offsets](#finding-offsets)).
 
 Findings:
 
@@ -862,6 +992,14 @@ Findings:
 | 1 | `uncapped_liability` | `high` | Contractor shall be liable for all losses, damages, costs, and claims arising from the services, without limitation. | You would be responsible for any loss connected to the work with no upper limit, so a single claim could exceed the total contract value. |
 | 2 | `unfavorable_payment_terms` | `medium` | Invoices are payable within 60 days of receipt. | Payment can arrive up to two months after you invoice, which is well beyond the common 30-day standard and delays your cash flow. |
 | 3 | `unlimited_revisions` | `low` | The Client may request reasonable revisions to the deliverables during the project. | The number of revision rounds is not stated, which leaves some room for extra work, although revisions are limited to what is reasonable. |
+
+`suggested_change` per finding:
+
+| # | `suggested_change` |
+|---|---|
+| 1 | The Contractor's total liability arising out of or in connection with this Agreement shall not exceed the total fees paid under this Agreement. |
+| 2 | Invoices are payable within 30 days of the invoice date. |
+| 3 | The Client may request up to two rounds of revisions to each deliverable; further revisions will be billed at the Contractor's hourly rate. |
 
 Email draft:
 
@@ -995,7 +1133,9 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Contract not owned by user / not found | 404 | `CONTRACT_NOT_FOUND` | `Contract not found.` Never reveals whether another user's contract exists. |
 | Unknown path (not an API operation) | 404 | `NOT_FOUND` | `The requested resource does not exist.` |
 | HTTP method not supported for the path | 405 | `METHOD_NOT_ALLOWED` | `This method is not allowed for this resource.` |
+| Export requested for a contract without a successful analysis | 409 | `NO_ANALYSIS_RESULTS` | `This contract has no analysis results to export yet.` |
 | History search not available on the real backend yet | 501 | `FEATURE_NOT_AVAILABLE` | `History search is coming soon.` |
+| Report export not available on the real backend yet | 501 | `FEATURE_NOT_AVAILABLE` | `Report export is coming soon.` |
 | Question is off-topic, unsafe, or cannot be answered from contract history | 422 | `QUERY_NOT_SUPPORTED` | `This question can't be answered from your contract history. Try rephrasing it.` (text-to-SQL phase; emulated by the mock) |
 | Generated query exceeds the cost check or the statement timeout | 422 | `QUERY_TOO_EXPENSIVE` | `This question is too broad. Try narrowing it down, for example to a date range.` (text-to-SQL phase; emulated by the mock) |
 | Background analysis failure or stale analysis | — | — | Not an HTTP error: contract status becomes `failed`; the UI shows the failed state with Retry Analysis. |
@@ -1044,20 +1184,28 @@ Risk findings and email draft are committed together. If either analysis or requ
 - Multi-file or batch uploads.
 - Original binary file retention.
 - In-app contract text editing.
-- Contract download/reconstruction.
+- Downloading or reconstructing the original contract file (the counter-proposal report is a separate document).
 
 ### Analysis and negotiation features
 
 - Real LLM analysis in the MVP.
 - Contract comparison.
-- Redlining or tracked changes.
-- Automatic contract rewriting.
+- Redlining or tracked changes in the contract file (the report proposes replacement wording per clause only).
+- Automatic rewriting of the whole contract.
 - In-app email editing.
 - Email draft regeneration endpoints.
 - Multiple email draft versions/history.
 - Lawyer review workflows.
 - Professional legal advice.
 - Additional clause categories beyond the six MVP categories.
+- Report generation on the real backend (the mock builds reports in the MVP).
+
+### Plans and billing
+
+- Free/Pro plans, payments, and usage limits.
+- White-labeled reports (custom logo, custom header text, removing the default footer).
+
+See [Pro tier and white-labeled reports](#pro-tier-and-white-labeled-reports).
 
 ### History and analytics
 
@@ -1108,6 +1256,8 @@ Requirements:
 - Provider rate-limit responses are retried with backoff inside the task. When retries are exhausted, or on failed validation or other provider errors, the analysis fails with the same transactional failure behavior as the MVP.
 - The frontend API contract remains unchanged.
 - Before this analyzer is enabled, the Upload / Analyze screen must also state that contract text is sent to a third-party AI provider for analysis, and `docs/ai-data-policy.md` must describe what is sent, to whom, and what is stored.
+- Each finding also gets a `suggested_change` (the proposed counter-clause), generated as structured data with the findings and validated the same way. Placeholders in it are restored before it is stored. Offsets come from quote verification (see [Finding offsets](#finding-offsets)).
+- When this analyzer is enabled, the [Methodology & Privacy dialog](#6-methodology--privacy-dialog) changes: the demonstration-analyzer notice is removed; `How the analysis works` adds `Every quoted clause is checked against your contract text, and findings whose quote cannot be found are dropped.`; and in `Your data` the line `In this version, contract text is not sent to any third-party AI provider.` is replaced with `To analyze a contract, its text is sent to Groq, a third-party AI provider. Party names and contact details are replaced with placeholders where detected, but this is not full anonymization. See the AI data policy for what the provider retains.` The dialog links to the published AI data policy.
 
 Pseudonymization rules:
 - Replaced with stable placeholders: names of the parties and signatories (taken from the preamble, party definitions, and signature block), email addresses, phone numbers, URLs, bank account / IBAN numbers, and tax or company registration IDs. Placeholders are typed and numbered, e.g. `[PARTY_A]`, `[PERSON_1]`, `[EMAIL_1]`.
@@ -1124,6 +1274,7 @@ The LLM prompt must explicitly encode:
 - exact quoted clause requirement;
 - copy placeholders such as `[PARTY_A]` verbatim, never invent or expand them;
 - concise plain-English explanations;
+- one `suggested_change` per finding: replacement wording for the quoted clause, following the email wording rules;
 - negotiation email rules.
 
 ### CUAD / LoRA classifier (stretch goal)
@@ -1194,6 +1345,23 @@ The agent layer must preserve:
 - single-SELECT enforcement;
 - server-side result limits.
 
+### Backend report export
+
+Implement `POST /contracts/{id}/export` on the backend, replacing the `501` stub. The request, the response, the [report content](#operation-details), and the frontend do not change.
+
+- The file is generated in memory per request and streamed back; it is never stored.
+- The PDF/DOCX libraries are chosen when this phase starts (new dependencies need approval).
+- Generation is synchronous. A contract is at most 30,000 characters, so a report stays small.
+
+### Pro tier and white-labeled reports
+
+A paid plan on top of the MVP, specified in full before it is built. Intended split:
+
+- **Free:** interactive analysis, the split-screen viewer, copying the email draft.
+- **Pro:** unlimited PDF/DOCX report exports, and white-labeled reports: a custom freelancer/agency logo, custom header text, and no default `Generated by Anti-Scope Creep` footer. The legal disclaimer stays in every report.
+
+Open points to settle in that specification: the payment provider; how a user's plan is stored and exposed (e.g. a `plan` field on `User`); whether Free keeps a limited number of exports; the error code for a gated export; and logo upload limits (format, size, dimensions). `ExportReportRequest` will gain optional branding fields; existing requests stay valid.
+
 ### Deployment
 
 After the local MVP is stable:
@@ -1253,3 +1421,7 @@ The MVP is complete when all of the following are true:
 26. The frontend shows the required legal disclaimer on Upload / Analyze and Contract Details.
 27. The Client Email section has a working `Copy to Clipboard` button.
 28. `openapi.yaml` describes the frontend-facing API contract without exposing backend implementation details.
+29. `ContractDetail` includes `source_text`; every finding includes `suggested_change` and offsets that are either both `null` or a valid code-point range whose slice of `source_text` equals `quoted_text`.
+30. Contract Details shows the split layout: the Contract Reader with severity-colored highlights, the Risk panel with cards and email, scroll sync in both directions, the `Show all risks` / `High & medium only` filter, and the stacked layout below 1024 px.
+31. Every screen shows the author badge and a footer; the Methodology & Privacy dialog opens from both and contains only the accurate copy specified here.
+32. Against the mock, `Export report` downloads an openable PDF and DOCX with the header, Executive Summary, Protocol of Disagreements, and Client Cover Letter; it is disabled without results. Against the real backend it shows `Report export is coming soon.` on `501`.
