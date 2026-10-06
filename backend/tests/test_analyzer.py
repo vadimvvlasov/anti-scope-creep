@@ -9,6 +9,8 @@ from app.analyzer import (
     StubAnalyzer,
     build_analyzer,
 )
+from app.config import Settings
+from app.groq_analyzer import GroqAnalyzer
 from app.models import RiskCategory, RiskLevel
 
 
@@ -72,7 +74,15 @@ def test_email_length_limits():
         EmailDraftContent(subject="s" * 201, body="b")
 
 
-def test_unknown_analyzer_is_rejected():
-    assert isinstance(build_analyzer("stub"), StubAnalyzer)
+def test_build_analyzer_by_name():
+    assert isinstance(build_analyzer(Settings(jwt_secret="x")), StubAnalyzer)
+    groq = build_analyzer(Settings(jwt_secret="x", analyzer="groq", groq_api_key="gsk_test"))
+    assert isinstance(groq, GroqAnalyzer)
     with pytest.raises(ValueError):
-        build_analyzer("groq")
+        build_analyzer(Settings(jwt_secret="x", analyzer="other"))
+
+
+def test_groq_needs_an_api_key_at_startup():
+    with pytest.raises(ValueError, match="GROQ_API_KEY"):
+        Settings.from_env({"DATABASE_URL": "x", "ANALYZER": "groq"})
+    assert Settings.from_env({"DATABASE_URL": "x", "ANALYZER": "groq", "GROQ_API_KEY": "k"}).analyzer == "groq"

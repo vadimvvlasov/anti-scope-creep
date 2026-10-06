@@ -56,7 +56,7 @@ def create_app(
     context = AppContext(
         settings=settings,
         store=store or _sql_store(settings),
-        analyzer=analyzer or build_analyzer(settings.analyzer),
+        analyzer=analyzer or build_analyzer(settings),
         clock=clock,
     )
     pending_runs = seed_demo_data(context) if settings.seed_demo_data else []
