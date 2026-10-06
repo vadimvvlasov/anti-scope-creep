@@ -1,6 +1,7 @@
+import { readFile } from "node:fs/promises";
+
 import { expect, test } from "@playwright/test";
 
-import { EXPORT_COMING_SOON } from "../src/lib/export";
 import { pasteContract, registerInUi } from "./helpers";
 
 const TEXT = [
@@ -8,17 +9,26 @@ const TEXT = [
   "Invoices are payable within 60 days of receipt.",
 ].join(" ");
 
-test("export on the real backend says it is coming soon (501)", async ({ page }) => {
+// File signatures: a PDF starts with %PDF, a DOCX is a ZIP archive (PK).
+const FORMATS = [
+  { label: "PDF", extension: "pdf", magic: "%PDF" },
+  { label: "DOCX", extension: "docx", magic: "PK" },
+];
+
+test("export on the real backend downloads the report", async ({ page }) => {
   await registerInUi(page);
   await pasteContract(page, TEXT, "E2E export");
 
   const exportButton = page.getByRole("button", { name: "Export report" });
-  for (const format of ["PDF", "DOCX"]) {
+  for (const { label, extension, magic } of FORMATS) {
     await exportButton.click();
-    await page.getByRole("menuitem", { name: format }).click();
-    // One toast, even on the second export: it replaces the first.
-    await expect(page.getByText(EXPORT_COMING_SOON)).toHaveCount(1);
-    await expect(page.getByText(EXPORT_COMING_SOON)).toBeVisible();
+    const [download] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByRole("menuitem", { name: label }).click(),
+    ]);
+    expect(download.suggestedFilename()).toBe(`E2E export - Counter-proposal.${extension}`);
+    const content = await readFile((await download.path())!);
+    expect(content.subarray(0, magic.length).toString("latin1")).toBe(magic);
     await expect(exportButton).toBeEnabled();
   }
 });

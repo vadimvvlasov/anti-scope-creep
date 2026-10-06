@@ -8,6 +8,7 @@ from app.context import AppContext, get_context
 from app.errors import AppError, ErrorCode
 from app.extraction import MAX_FILE_BYTES, UploadedFile, build_contract_input
 from app.models import ContractDetail, ContractPage, ExportReportRequest, RenameContractRequest
+from app.report import MEDIA_TYPES
 from app.runner import AnalysisRunner, BackgroundTasksRunner
 from app.services import ContractService
 
@@ -91,8 +92,24 @@ def retry_analysis(id: str, user: CurrentUser, service: Service) -> ContractDeta
     return service.retry(user.id, parse_contract_id(id))
 
 
-@router.post("/{id}/export")
-def export_report(id: str, body: ExportReportRequest, user: CurrentUser, service: Service) -> None:
-    """MVP: auth, input, and ownership are checked, then the feature reports itself unavailable."""
-    service.get(user.id, parse_contract_id(id))
-    raise AppError(ErrorCode.FEATURE_NOT_AVAILABLE, "Report export is coming soon.")
+@router.post(
+    "/{id}/export",
+    response_class=Response,
+    responses={
+        200: {
+            "description": "The report file.",
+            "content": {
+                media_type: {"schema": {"type": "string", "format": "binary"}}
+                for media_type in MEDIA_TYPES.values()
+            },
+        }
+    },
+)
+def export_report(id: str, body: ExportReportRequest, user: CurrentUser, service: Service) -> Response:
+    """The counter-proposal report of the last successful analysis, as a file download."""
+    report = service.export(user.id, parse_contract_id(id), body.format)
+    return Response(
+        content=report.content,
+        media_type=report.media_type,
+        headers={"Content-Disposition": f'attachment; filename="{report.filename}"'},
+    )

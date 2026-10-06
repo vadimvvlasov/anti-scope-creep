@@ -207,7 +207,7 @@ A user can permanently delete a contract they own when status is `done` or `fail
 
 1. On Contract Details with results (`analyzed_at` not null), user picks `Export report` → `PDF` or `DOCX`.
 2. Frontend sends `POST /contracts/{id}/export`; the browser downloads the returned file.
-3. The real backend returns `501 FEATURE_NOT_AVAILABLE` in the MVP; the UI shows `Report export is coming soon.`
+3. If the backend answers `501 FEATURE_NOT_AVAILABLE`, the UI shows `Report export is coming soon.` (the MVP backend did; it now generates the file).
 
 ---
 
@@ -710,7 +710,7 @@ Any protected operation can also return `401 UNAUTHORIZED`.
   - `Content-Type: application/pdf` or `application/vnd.openxmlformats-officedocument.wordprocessingml.document`;
   - `Content-Disposition: attachment; filename="<name>"`, where `<name>` is `<title> - Counter-proposal.<pdf|docx>`. In the title part, every character other than ASCII letters, digits, space, `.`, `_`, and `-` is replaced with `_`, and it is cut to 100 characters.
 - Errors use the usual JSON envelope.
-- MVP real backend: validates auth, input, and ownership, then returns `501 FEATURE_NOT_AVAILABLE` with message `Report export is coming soon.`
+- Real backend: validates auth, input, and ownership, then generates the file (see [Backend report export](#backend-report-export)). The MVP backend returned `501 FEATURE_NOT_AVAILABLE` with message `Report export is coming soon.`
 - MVP mock: builds the file (see [Mock behavior](#mock-behavior)).
 - Later phase: the backend generates the file; the request and response do not change (see [Backend report export](#backend-report-export)).
 
@@ -1351,7 +1351,7 @@ The agent layer must preserve:
 Implement `POST /contracts/{id}/export` on the backend, replacing the `501` stub. The request, the response, the [report content](#operation-details), and the frontend do not change.
 
 - The file is generated in memory per request and streamed back; it is never stored.
-- The PDF/DOCX libraries are chosen when this phase starts (new dependencies need approval).
+- Libraries (approved 2026-10-06): `fpdf2` for PDF, with DejaVu Sans embedded so that non-Latin-1 characters render, and `python-docx` for DOCX.
 - Generation is synchronous. A contract is at most 30,000 characters, so a report stays small.
 
 ### Pro tier and white-labeled reports
