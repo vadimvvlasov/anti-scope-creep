@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 logger = logging.getLogger(__name__)
 
 DEFAULT_CORS_ORIGINS = ("http://localhost:8080", "http://localhost:5173")
-SUPPORTED_ANALYZERS = ("stub",)
+SUPPORTED_ANALYZERS = ("stub", "groq")
 # Deployed images carry their tag (sha-<7 hex>) in APP_VERSION; everything else is "local".
 DEFAULT_VERSION = "local"
 
@@ -34,6 +34,8 @@ class Settings:
         analyzer = env.get("ANALYZER", "stub")
         if analyzer not in SUPPORTED_ANALYZERS:
             raise ValueError(f"Unsupported ANALYZER {analyzer!r}; expected one of {SUPPORTED_ANALYZERS}")
+        if analyzer == "groq" and not env.get("GROQ_API_KEY", "").strip():
+            raise ValueError("ANALYZER=groq requires GROQ_API_KEY")
         return cls(
             jwt_secret=_jwt_secret(env),
             database_url=_database_url(env),

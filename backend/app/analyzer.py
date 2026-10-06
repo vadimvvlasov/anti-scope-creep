@@ -1,10 +1,13 @@
 """Contract analyzers: the interface, the validated result, and the MVP stub."""
 
-from typing import Protocol
+from typing import TYPE_CHECKING, Protocol
 
 from pydantic import BaseModel, Field, model_validator
 
 from app.models import RiskCategory, RiskLevel
+
+if TYPE_CHECKING:
+    from app.config import Settings
 
 
 class FindingDraft(BaseModel):
@@ -113,7 +116,16 @@ class StubAnalyzer:
         return AnalysisResult(findings=list(STUB_FINDINGS), email_draft=STUB_EMAIL)
 
 
-def build_analyzer(name: str) -> Analyzer:
-    if name == "stub":
+def build_analyzer(settings: "Settings") -> Analyzer:
+    """The analyzer named by ANALYZER. The Groq client gets one limiter for the process."""
+    if settings.analyzer == "stub":
         return StubAnalyzer()
-    raise ValueError(f"Unknown analyzer {name!r}")
+    if settings.analyzer == "groq":
+        # Imported here: the Groq modules import this one.
+        from app.groq_analyzer import GroqAnalyzer
+        from app.groq_client import GroqClient
+        from app.ratelimit import TokenBucketLimiter
+
+        limiter = TokenBucketLimiter(settings.groq_tokens_per_minute, settings.groq_requests_per_minute)
+        return GroqAnalyzer(GroqClient(settings.groq_api_key, limiter, settings.groq_model))
+    raise ValueError(f"Unknown analyzer {settings.analyzer!r}")
