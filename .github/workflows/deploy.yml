@@ -72,15 +72,18 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       # Vite inlines VITE_* at build time, so the frontend is rebuilt for every environment.
+      # Its footer shows the backend image tag (sha-<7 hex>): both come from the same commit.
       - name: Build and deploy the frontend
         working-directory: frontend
         env:
+          IMAGE: ${{ inputs.image }}
           VITE_API_URL: ${{ steps.backend.outputs.url }}
           VITE_USE_MOCK: "false"
           WRANGLER_ENV: ${{ inputs.wrangler-env }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          export VITE_APP_VERSION="${IMAGE##*:}"
           npm ci
           npm run build
           npx --yes wrangler@4.147.0 deploy ${WRANGLER_ENV:+--env "$WRANGLER_ENV"}
@@ -88,4 +91,17 @@ jobs:
       - name: Smoke test
         env:
           API_URL: ${{ steps.backend.outputs.url }}
-        run: python3 scripts/smoke.py "$API_URL"
+          IMAGE: ${{ inputs.image }}
+          ENVIRONMENT: ${{ inputs.environment }}
+        # The expected version comes from the image (pulled by the migrate step): images built
+        # before GET /version existed have no APP_VERSION, and a rollback to one must still pass.
+        run: |
+          expected=$(docker image inspect "$IMAGE" \
+            --format '{{range .Config.Env}}{{println .}}{{end}}' | sed -n 's/^APP_VERSION=//p')
+          if [[ -n "$expected" ]]; then
+            python3 scripts/smoke.py "$API_URL" --expect-version "$expected"
+          else
+            echo "::notice::$IMAGE has no APP_VERSION; version check skipped"
+            python3 scripts/smoke.py "$API_URL"
+          fi
+          echo "Deployed \`${IMAGE##*:}\` to **$ENVIRONMENT**: $API_URL" >> "$GITHUB_STEP_SUMMARY"

@@ -36,6 +36,23 @@ def test_readiness_is_503_when_store_is_unreachable():
     assert response.json() == {"status": "unavailable"}
 
 
+def test_version_is_local_without_auth_by_default(client):
+    response = client.get("/version")
+    assert response.status_code == 200
+    assert response.json() == {"version": "local"}
+
+
+def test_version_is_the_image_tag_from_app_version():
+    env = {"DATABASE_URL": "postgresql://x", "APP_VERSION": "sha-a702387", "SEED_DEMO_DATA": "false"}
+    app = create_app(Settings.from_env(env), store=UnreachableStore())
+
+    assert TestClient(app).get("/version").json() == {"version": "sha-a702387"}
+
+
+def test_blank_app_version_falls_back_to_local():
+    assert Settings.from_env({"DATABASE_URL": "postgresql://x", "APP_VERSION": " "}).version == "local"
+
+
 def test_invalid_json_uses_error_envelope(client):
     response = client.post(
         "/auth/login", content="{not json", headers={"Content-Type": "application/json"}

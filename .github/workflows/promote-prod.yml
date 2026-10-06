@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       image_tag:
-        description: Backend image tag already deployed to dev (sha-<7 hex>)
-        required: true
+        description: Backend image tag already deployed to dev (sha-<7 hex>). Empty = the last successful dev deploy
+        required: false
         type: string
 
 permissions:
@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
     outputs:
       image: ${{ steps.check.outputs.image }}
       sha: ${{ steps.check.outputs.sha }}
@@ -32,6 +33,16 @@ jobs:
           TAG: ${{ inputs.image_tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          if [[ -z "$TAG" ]]; then
+            # Dev is deleted at night, so ask the deploy history, not the dev service.
+            dev_sha=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy-dev.yml \
+              --status success --limit 1 --json headSha --jq '.[0].headSha // empty')
+            if [[ -z "$dev_sha" ]]; then
+              echo "No successful deploy-dev run found; pass image_tag" >&2; exit 1
+            fi
+            TAG="sha-${dev_sha::7}"
+            echo "image_tag is empty; using the last dev deploy: $TAG"
+          fi
           if [[ ! "$TAG" =~ ^sha-[0-9a-f]{7}$ ]]; then
             echo "image_tag must look like sha-<7 hex>, got: $TAG" >&2; exit 1
           fi
@@ -46,6 +57,7 @@ jobs:
             echo "Image $image is not in ghcr; deploy that commit to dev first" >&2; exit 1
           fi
           echo "Promoting $image ($sha)"
+          echo "Promoting \`$TAG\` ($sha) to prod" >> "$GITHUB_STEP_SUMMARY"
           echo "image=$image" >> "$GITHUB_OUTPUT"
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
 

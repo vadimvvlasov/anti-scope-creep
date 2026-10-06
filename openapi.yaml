@@ -17,7 +17,8 @@ info:
       on `code`, never on `message`. Messages are safe to show to end users.
 
     Authentication: every operation except `POST /auth/register`, `POST /auth/login`,
-    and the `/health` probes requires `Authorization: Bearer <token>` (JWT, HS256, 24-hour lifetime). Any protected
+    the `/health` probes, and `GET /version` requires `Authorization: Bearer <token>`
+    (JWT, HS256, 24-hour lifetime). Any protected
     operation can return `401 UNAUTHORIZED`. Logout is client-side only and has no API
     operation.
 
@@ -39,7 +40,9 @@ tags:
   - name: query
     description: Natural-language questions over the user's contract history.
   - name: operations
-    description: Liveness and readiness probes (see `docs/architecture.md`). Not used by the frontend.
+    description: >-
+      Liveness and readiness probes (see `docs/architecture.md`) and the deployed version.
+      Not used by the frontend.
 
 paths:
   /health:
@@ -83,6 +86,25 @@ paths:
                 $ref: "#/components/schemas/HealthStatus"
               example:
                 status: unavailable
+
+  /version:
+    get:
+      tags: [operations]
+      operationId: getVersion
+      summary: Deployed version
+      description: >-
+        The image tag the backend was built as: `sha-<7 hex>` of the commit, or `local`
+        for images built without a tag (local compose, tests). The deploy smoke test checks it.
+      security: []
+      responses:
+        "200":
+          description: The version of the running backend.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VersionInfo"
+              example:
+                version: sha-a702387
 
   /auth/register:
     post:
@@ -1008,6 +1030,15 @@ components:
         status:
           type: string
           enum: [ok, unavailable]
+
+    VersionInfo:
+      type: object
+      required: [version]
+      additionalProperties: false
+      properties:
+        version:
+          type: string
+          description: "`sha-<7 hex>` for deployed images, `local` otherwise."
 
     ErrorResponse:
       type: object

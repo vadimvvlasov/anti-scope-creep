@@ -16,10 +16,17 @@ CONTRACT_ID = "3f2b9c1e-0000-4000-8000-000000000000"
 class FakeApi:
     """Scripted backend: readiness and the contract status sequence are configurable."""
 
-    def __init__(self, ready_after: int = 0, statuses: tuple[str, ...] = ("analyzing", "done"), findings: int = 3):
+    def __init__(
+        self,
+        ready_after: int = 0,
+        statuses: tuple[str, ...] = ("analyzing", "done"),
+        findings: int = 3,
+        version: str = "sha-a702387",
+    ):
         self.ready_after = ready_after
         self.statuses = list(statuses)
         self.findings = findings
+        self.version = version
         self.requests: list[tuple[str, str, dict]] = []
 
     def handle(self, method: str, path: str, headers: dict, body: bytes) -> tuple[int, dict | None]:
@@ -29,6 +36,8 @@ class FakeApi:
                 self.ready_after -= 1
                 return 503, {"status": "unavailable"}
             return 200, {"status": "ok"}
+        if (method, path) == ("GET", "/version"):
+            return 200, {"version": self.version}
         if (method, path) == ("POST", "/auth/register"):
             return 201, {"access_token": "token", "user": {"email": json.loads(body)["email"]}}
         if headers.get("Authorization") != "Bearer token":
@@ -74,13 +83,13 @@ def serve(api: FakeApi) -> ThreadingHTTPServer:
 
 
 class SmokeTest(unittest.TestCase):
-    def run_smoke(self, api: FakeApi, timeout: str = "5") -> tuple[int, str, str]:
+    def run_smoke(self, api: FakeApi, timeout: str = "5", *extra: str) -> tuple[int, str, str]:
         server = serve(api)
         self.addCleanup(server.shutdown)
         url = f"http://127.0.0.1:{server.server_address[1]}/"
         out, err = io.StringIO(), io.StringIO()
         with redirect_stdout(out), redirect_stderr(err):
-            code = main([url, "--timeout", timeout, "--interval", "0.01"])
+            code = main([url, "--timeout", timeout, "--interval", "0.01", *extra])
         return code, out.getvalue(), err.getvalue()
 
     def test_full_flow_passes_and_deletes_the_contract(self):
@@ -99,6 +108,18 @@ class SmokeTest(unittest.TestCase):
         code, _, err = self.run_smoke(FakeApi(findings=0))
         self.assertEqual(code, 1)
         self.assertIn("findings or the email draft are missing", err)
+
+    def test_expected_version_passes(self):
+        code, out, err = self.run_smoke(FakeApi(), "5", "--expect-version", "sha-a702387")
+        self.assertEqual(code, 0, err)
+        self.assertIn("ok  version: sha-a702387", out)
+
+    def test_other_version_exits_non_zero_before_registering(self):
+        api = FakeApi(version="sha-0000000")
+        code, _, err = self.run_smoke(api, "5", "--expect-version", "sha-a702387")
+        self.assertEqual(code, 1)
+        self.assertIn("expected sha-a702387, the service runs sha-0000000", err)
+        self.assertNotIn(("POST", "/auth/register"), [(m, p) for m, p, _ in api.requests])
 
     def test_backend_that_never_gets_ready_times_out(self):
         code, _, err = self.run_smoke(FakeApi(ready_after=10_000), timeout="0.3")

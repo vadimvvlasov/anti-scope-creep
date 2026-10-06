@@ -232,7 +232,7 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
   - `api_errors_total{code}`
   - `history_queries_total{route,outcome}`
 - **Alerts:** analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s.
-- **Health:** `GET /health` returns `200` without touching the database; `GET /health/ready` checks the database. These are operational endpoints, listed in `openapi.yaml` but not used by the frontend.
+- **Health:** `GET /health` returns `200` without touching the database; `GET /health/ready` checks the database. `GET /version` returns the image tag (`APP_VERSION`, `sha-<short-sha>`, `local` for untagged builds). These are operational endpoints, listed in `openapi.yaml` but not used by the frontend; the frontend footer shows its own build tag, which comes from the same commit.
 
 Grafana Cloud free tier (metrics, logs, traces with limited retention) is enough for this project.
 
@@ -257,12 +257,12 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
    - end-to-end: Playwright against backend + Postgres + built frontend (integration-testing criterion);
    - Semgrep scan, with results saved as a workflow artifact.
 2. **`deploy-dev.yml`** (after CI passes on `main`):
-   - build the image once, tag it `sha-<short-sha>`, and push it to `ghcr.io`;
+   - build the image once, tag it `sha-<short-sha>` (also baked in as `APP_VERSION`), and push it to `ghcr.io`;
    - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
    - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral; its default domain stays the same, because the random part is per account and Region), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
    - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
-   - smoke test: `GET /health/ready`, register + upload + poll with the stub.
-3. **`promote-prod.yml`** (`workflow_dispatch` with an image tag, GitHub Environment `prod` with a required reviewer):
+   - smoke test: `GET /health/ready`, `GET /version` equals the image's `APP_VERSION`, register + upload + poll with the stub.
+3. **`promote-prod.yml`** (`workflow_dispatch` with an optional image tag, GitHub Environment `prod` with a required reviewer; an empty tag means the head commit of the last successful `deploy-dev` run):
    - reuses the **same image** tested in dev;
    - migrations on the Neon `main` branch;
    - deploys it to the Lightsail container service `anti-scope-creep-prod`;
