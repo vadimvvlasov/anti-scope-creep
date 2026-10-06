@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING, Protocol
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from app.models import RiskCategory, RiskLevel
 
@@ -10,7 +10,13 @@ if TYPE_CHECKING:
     from app.config import Settings
 
 
+# Validation errors must not echo contract text (quotes, model output) into logs.
+NO_INPUT_IN_ERRORS = ConfigDict(hide_input_in_errors=True)
+
+
 class FindingDraft(BaseModel):
+    model_config = NO_INPUT_IN_ERRORS
+
     category: RiskCategory
     risk_level: RiskLevel
     quoted_text: str = Field(min_length=1, max_length=10_000)
@@ -19,6 +25,8 @@ class FindingDraft(BaseModel):
 
 
 class EmailDraftContent(BaseModel):
+    model_config = NO_INPUT_IN_ERRORS
+
     subject: str = Field(min_length=1, max_length=200)
     body: str = Field(min_length=1, max_length=5_000)
 
@@ -28,6 +36,8 @@ class AnalysisResult(BaseModel):
 
     The email must exist exactly when at least one `high` or `medium` finding exists.
     """
+
+    model_config = NO_INPUT_IN_ERRORS
 
     findings: list[FindingDraft]
     email_draft: EmailDraftContent | None
