@@ -69,6 +69,9 @@ def create_app(
         allow_origins=list(settings.cors_origins),
         allow_methods=["GET", "POST", "PATCH", "DELETE"],
         allow_headers=["Authorization", "Content-Type"],
+        # The frontend reads the export filename from Content-Disposition; browsers hide
+        # response headers from cross-origin scripts unless they are exposed.
+        expose_headers=["Content-Disposition"],
     )
     register_error_handlers(app)
     for router in (health.router, version.router, auth.router, contracts.router, query.router):
