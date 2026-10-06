@@ -1,6 +1,7 @@
 """Contract use cases: status flow, the stale-analysis rule, and response mapping."""
 
 import math
+from dataclasses import dataclass
 from datetime import timedelta
 from uuid import UUID, uuid4
 
@@ -20,10 +21,20 @@ from app.models import (
     RiskLevel,
     RiskSummary,
 )
+from app.report import MEDIA_TYPES, ExportFormat, report_blocks, report_filename
+from app.report_docx import render_docx
+from app.report_pdf import render_pdf
 from app.runner import AnalysisRunner
 from app.store import ContractBusyError
 
 _RISK_ORDER = {RiskLevel.HIGH: 0, RiskLevel.MEDIUM: 1, RiskLevel.LOW: 2}
+
+
+@dataclass(frozen=True)
+class ExportedReport:
+    content: bytes
+    media_type: str
+    filename: str
 
 
 class ContractService:
@@ -64,6 +75,15 @@ class ContractService:
     def get(self, user_id: UUID, contract_id: UUID) -> ContractDetail:
         self._fail_stale(user_id)
         return self._detail(self._require(self._store.get_contract(user_id, contract_id)))
+
+    def export(self, user_id: UUID, contract_id: UUID, export_format: ExportFormat) -> ExportedReport:
+        """The report of the last successful analysis, built in memory (docs/spec.md, export)."""
+        detail = self.get(user_id, contract_id)
+        if detail.analyzed_at is None:
+            raise AppError(ErrorCode.NO_ANALYSIS_RESULTS)
+        blocks = report_blocks(detail, self._clock())
+        content = render_pdf(blocks) if export_format == "pdf" else render_docx(blocks)
+        return ExportedReport(content, MEDIA_TYPES[export_format], report_filename(detail.title, export_format))
 
     def rename(self, user_id: UUID, contract_id: UUID, title: str) -> ContractDetail:
         self._fail_stale(user_id)

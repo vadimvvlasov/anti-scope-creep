@@ -475,9 +475,8 @@ paths:
         email draft, when present). Allowed in any status once `analyzed_at` is not null.
         Content is defined in `docs/spec.md`.
 
-        MVP backend: validates authentication, input, and ownership, then returns
-        `501 FEATURE_NOT_AVAILABLE`. The `200` response is the contract for the frontend
-        mock and for the later backend-export phase.
+        The backend builds the file in memory per request (PDF with fpdf2, DOCX with
+        python-docx) and never stores it. The frontend mock builds the same content.
       requestBody:
         required: true
         content:
@@ -522,16 +521,6 @@ paths:
           $ref: "#/components/responses/ValidationError"
         "500":
           $ref: "#/components/responses/InternalError"
-        "501":
-          description: Report export is not available on the backend yet (MVP).
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example:
-                error:
-                  code: FEATURE_NOT_AVAILABLE
-                  message: Report export is coming soon.
 
   /query:
     post:

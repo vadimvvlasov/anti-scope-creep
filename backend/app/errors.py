@@ -28,6 +28,7 @@ class ErrorCode(StrEnum):
     CONTRACT_ANALYSIS_IN_PROGRESS = "CONTRACT_ANALYSIS_IN_PROGRESS"
     ANALYSIS_IN_PROGRESS = "ANALYSIS_IN_PROGRESS"
     CONTRACT_NOT_FOUND = "CONTRACT_NOT_FOUND"
+    NO_ANALYSIS_RESULTS = "NO_ANALYSIS_RESULTS"
     FEATURE_NOT_AVAILABLE = "FEATURE_NOT_AVAILABLE"
     NOT_FOUND = "NOT_FOUND"
     METHOD_NOT_ALLOWED = "METHOD_NOT_ALLOWED"
@@ -61,6 +62,7 @@ _DEFAULTS: dict[ErrorCode, tuple[int, str]] = {
     ),
     ErrorCode.ANALYSIS_IN_PROGRESS: (409, "An analysis is already running for this contract."),
     ErrorCode.CONTRACT_NOT_FOUND: (404, "Contract not found."),
+    ErrorCode.NO_ANALYSIS_RESULTS: (409, "This contract has no analysis results to export yet."),
     ErrorCode.FEATURE_NOT_AVAILABLE: (501, "History search is coming soon."),
     ErrorCode.NOT_FOUND: (404, "The requested resource does not exist."),
     ErrorCode.METHOD_NOT_ALLOWED: (405, "This method is not allowed for this resource."),
