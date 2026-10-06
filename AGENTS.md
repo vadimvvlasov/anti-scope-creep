@@ -57,7 +57,7 @@ Scripts (Python standard library only):
 
 - `python3 scripts/build_lovable_prompt.py -o <FILE>` - build the Lovable prompt from `docs/spec.md`
 - `python3 -m unittest discover -s scripts` - run script tests
-- `python3 scripts/smoke.py <BACKEND-URL>` - smoke test a deployed backend (health, register, upload, poll, delete)
+- `python3 scripts/smoke.py <BACKEND-URL> [--expect-version sha-<7 hex>]` - smoke test a deployed backend (health, version, register, upload, poll, delete)
 
 ## Workflow
 

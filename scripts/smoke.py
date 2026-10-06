@@ -1,12 +1,14 @@
 """Smoke test of a deployed backend: the full stub analysis flow through the public API.
 
-Steps: wait for GET /health/ready, register a fresh user, paste a short English
-contract, poll it every 2 s until `done`, check that it has findings and an email
-draft, then delete the contract. Exits non-zero with a message on the first failure.
+Steps: wait for GET /health/ready, optionally check GET /version, register a fresh
+user, paste a short English contract, poll it every 2 s until `done`, check that it has
+findings and an email draft, then delete the contract. Exits non-zero with a message on
+the first failure.
 
 Usage:
     python3 scripts/smoke.py https://anti-scope-creep-dev.example.cs.amazonlightsail.com
     python3 scripts/smoke.py http://localhost:8000 --timeout 60
+    python3 scripts/smoke.py <BACKEND-URL> --expect-version sha-a702387
 """
 
 import argparse
@@ -92,6 +94,13 @@ def wait_until_ready(api: Api, deadline: float, interval: float) -> None:
     raise SmokeError(f"health: /health/ready did not return 200 in time (last: {last})")
 
 
+def check_version(api: Api, expected: str) -> None:
+    """The service answers from the image that was just deployed, not an older one."""
+    actual = _expect(api.call("GET", "/version"), 200, "version").get("version")
+    if actual != expected:
+        raise SmokeError(f"version: expected {expected}, the service runs {actual}")
+
+
 def wait_until_analyzed(api: Api, contract_id: str, deadline: float, interval: float) -> dict:
     while time.monotonic() < deadline:
         contract = _expect(api.call("GET", f"/contracts/{contract_id}"), 200, "poll")
@@ -103,11 +112,14 @@ def wait_until_analyzed(api: Api, contract_id: str, deadline: float, interval: f
     raise SmokeError(f"analysis: contract {contract_id} was not done in time")
 
 
-def run(base_url: str, timeout: float = 120.0, interval: float = 2.0) -> None:
+def run(base_url: str, timeout: float = 120.0, interval: float = 2.0, expect_version: str | None = None) -> None:
     api = Api(base_url)
     deadline = time.monotonic() + timeout
     wait_until_ready(api, deadline, interval)
     print("ok  health: ready")
+    if expect_version:
+        check_version(api, expect_version)
+        print(f"ok  version: {expect_version}")
 
     email = f"smoke-{int(time.time())}-{secrets.token_hex(3)}@example.com"
     auth = _expect(api.call("POST", "/auth/register", {"email": email, "password": secrets.token_urlsafe(16)}), 201, "register")
@@ -129,9 +141,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("base_url", help="API base URL, e.g. https://<service>.<id>.<region>.cs.amazonlightsail.com")
     parser.add_argument("--timeout", type=float, default=120.0, help="seconds for the whole run (default 120)")
     parser.add_argument("--interval", type=float, default=2.0, help="seconds between polls (default 2)")
+    parser.add_argument("--expect-version", help="fail unless GET /version returns this, e.g. sha-a702387")
     args = parser.parse_args(argv)
     try:
-        run(args.base_url, args.timeout, args.interval)
+        run(args.base_url, args.timeout, args.interval, args.expect_version)
     except SmokeError as error:
         print(f"FAIL {error}", file=sys.stderr)
         return 1
