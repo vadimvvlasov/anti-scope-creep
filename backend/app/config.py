@@ -4,7 +4,7 @@ import logging
 import os
 import secrets
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +23,11 @@ class Settings:
     cors_origins: tuple[str, ...] = DEFAULT_CORS_ORIGINS
     seed_demo_data: bool = True
     version: str = DEFAULT_VERSION
+    # Groq (docs/architecture.md, section 4). The key never appears in repr or logs.
+    groq_api_key: str = field(default="", repr=False)
+    groq_model: str = "openai/gpt-oss-120b"
+    groq_tokens_per_minute: int = 8_000
+    groq_requests_per_minute: int = 30
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] = os.environ) -> "Settings":
@@ -37,6 +42,10 @@ class Settings:
             cors_origins=_split_origins(env.get("CORS_ORIGINS")),
             seed_demo_data=_parse_bool(env.get("SEED_DEMO_DATA", "true")),
             version=env.get("APP_VERSION", "").strip() or DEFAULT_VERSION,
+            groq_api_key=env.get("GROQ_API_KEY", "").strip(),
+            groq_model=env.get("GROQ_MODEL", "").strip() or "openai/gpt-oss-120b",
+            groq_tokens_per_minute=int(env.get("GROQ_TOKENS_PER_MINUTE", "8000")),
+            groq_requests_per_minute=int(env.get("GROQ_REQUESTS_PER_MINUTE", "30")),
         )
 
 
