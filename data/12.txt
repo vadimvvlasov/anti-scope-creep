@@ -1,0 +1,157 @@
+================================================================================
+JOINT VENTURE AND STRATEGIC PARTNERSHIP AGREEMENT
+CONTRACT REFERENCE ID: CONTRACT-2026008-JV_AGREEMENT
+================================================================================
+
+THIS JOINT VENTURE AND STRATEGIC PARTNERSHIP AGREEMENT (this "Agreement") is entered into and made effective as of October 15, 2026 (the "Effective Date"), by and between:
+
+PARTIES TO THIS AGREEMENT:
+
+1. Aura Medical Systems & Devices Corp., a corporation organized and existing under the laws of its jurisdiction of incorporation, having its principal place of business at 100 Technology Plaza, Suite 500 (Corporate Registration No: US-CA-9900112, Tax ID/EIN: EIN 99-0011223, Official Web Domain: https://www.auramedical.com), represented herein by its authorized signatory, Michael Chang, serving in the capacity of Chief Technology Officer (Email: m.chang@auramedical.com, Direct Tel: +1 (555) 018-3344, Personal Identification No: ID/Passport N-5544332), hereinafter referred to as "Party A" or "Client" or "Company";
+
+AND
+
+2. Kinetix Artificial Intelligence Inc., a commercial enterprise organized and existing under the laws of its jurisdiction of registration, having its principal corporate offices at 500 Innovation Boulevard, 12th Floor (Corporate Registration No: US-CA-1122998, Tax ID/VAT: EIN 11-2299887, Official Web Domain: https://www.kinetixai.ai), represented herein by its authorized officer, Claire Dupont, serving in the capacity of Head of Commercial Contracting (Email: c.dupont@kinetixai.ai, Direct Tel: +33 1 42 68 53 00, Personal Identification No: ID/Passport FR-9988776), hereinafter referred to as "Party B" or "Service Provider" or "Contractor".
+
+(Party A and Party B are hereinafter individually referred to as a "Party" and collectively referred to as the "Parties".)
+
+RECITALS:
+WHEREAS, Party A is engaged in commercial operations requiring expert technical, operational, and professional services; and
+WHEREAS, Party B possesses specialized expertise, resources, personnel, and technical capabilities to perform such services; and
+WHEREAS, Party A desires to retain Party B, and Party B agrees to be retained by Party A, upon the strict terms, conditions, covenants, and stipulations set forth in this Agreement.
+
+NOW, THEREFORE, in consideration of the mutual premises, covenants, terms, and conditions contained herein, and for other good and valuable consideration, the receipt and legal sufficiency of which are hereby acknowledged, the Parties hereby agree as follows:
+
+ARTICLE 1 - DEFINITIONS & INTERPRETATIONS
+
+1.1 Defined Terms. For all purposes of this JOINT VENTURE AND STRATEGIC PARTNERSHIP AGREEMENT (the "Agreement"), the following terms shall have the specific meanings set forth below:
+(a) "Affiliate" means, with respect to any specified Person or Entity, any other Person or Entity that directly or indirectly Controls, is Controlled by, or is under common Control with such specified Person or Entity.
+(b) "Authorized Representatives" means the primary contact officers designated by each Party. For Aura Medical Systems & Devices Corp., the primary contact shall be Michael Chang (Chief Technology Officer, Email: m.chang@auramedical.com, Phone: +1 (555) 018-3344). For Kinetix Artificial Intelligence Inc., the primary contact shall be Claire Dupont (Head of Commercial Contracting, Email: c.dupont@kinetixai.ai, Phone: +33 1 42 68 53 00).
+(c) "Applicable Law" means all applicable local, state, national, federal, and international laws, statutes, rules, regulations, orders, and decrees of governmental authorities.
+(d) "Confidential Information" means all non-public, proprietary information disclosed by either Aura Medical Systems & Devices Corp. ("Disclosing Party") to Kinetix Artificial Intelligence Inc. ("Receiving Party"), whether orally, visually, electronically, or in writing, including without limitation technical specifications, business models, financial data, and source code.
+(e) "Effective Date" means October 15, 2026, or the date of last signature hereof, whichever occurs earlier.
+(f) "Portal URL" means the official online administration site located at https://www.auramedical.com/portal or https://www.kinetixai.ai/contract-portal.
+(g) "Registration Identifiers" means corporate registration US-CA-9900112 for Aura Medical Systems & Devices Corp. and registration US-CA-1122998 for Kinetix Artificial Intelligence Inc., together with tax identification numbers EIN 99-0011223 and EIN 11-2299887.
+
+
+ARTICLE 2 - SCOPE OF WORK & PERFORMANCE STANDARDS
+
+2.1 Engagement and Performance. Aura Medical Systems & Devices Corp. hereby retains Kinetix Artificial Intelligence Inc., and Kinetix Artificial Intelligence Inc. hereby agrees to render and perform the services, deliverables, and technical obligations described in Schedule A attached hereto.
+2.2 Standard of Performance. Kinetix Artificial Intelligence Inc. shall perform all tasks in a professional, workmanlike manner, adhering to industry standards. Overall supervision shall be maintained by Claire Dupont (c.dupont@kinetixai.ai).
+2.3 Project Schedule and Milestones. Time is of the essence. Phase 1 deliverables must be submitted within 45 days following the Effective Date. Phase 2 deliverables shall be submitted within 90 days.
+2.4 Acceptance Testing and Approval Criteria. Aura Medical Systems & Devices Corp. shall have 15 business days following receipt of any deliverable to perform acceptance testing. If Aura Medical Systems & Devices Corp. identifies material non-conformities, it shall notify Claire Dupont via email at c.dupont@kinetixai.ai within 5 business days. Kinetix Artificial Intelligence Inc. shall remedy all deficiencies within 10 business days at no additional charge.
+2.5 Change Control Procedure. Either Party may request changes to the Scope of Work. No modification shall be binding unless documented in a written Change Order signed by Michael Chang on behalf of Aura Medical Systems & Devices Corp. and Claire Dupont on behalf of Kinetix Artificial Intelligence Inc..
+
+
+ARTICLE 3 - FEES, INVOICING, WIRE TRANSFERS & PAYMENT TERMS
+
+3.1 Contract Price and Compensation Structure. In full consideration for the performance of Services under this Agreement, Aura Medical Systems & Devices Corp. shall pay Kinetix Artificial Intelligence Inc. a total contract fee of $250,000.00 (Two Hundred Fifty Thousand US Dollars), payable in monthly installments of $20,833.33 each.
+3.2 Invoicing and Payment Terms. Invoices shall be issued monthly by Kinetix Artificial Intelligence Inc. to m.chang@auramedical.com. All undisputed amounts shall be paid within Net 60 days from the invoice date (or Net 30 days if paid electronically via automated wire transfer).
+3.3 Wire Transfer Details. Payments shall be wired directly to the designated bank account:
+    - Account Holder: Kinetix Artificial Intelligence Inc.
+    - Bank IBAN: DE89370400440532013000
+    - SWIFT/BIC: BUKBGB22
+    - Reference: Contract Ref #0011223-2299887
+3.4 Late Payments and Interest. Any amount not paid when due shall accrue interest at the rate of 1.5% per month (or 18% per annum), or the maximum rate permitted by Applicable Law, whichever is lower, calculated daily from the due date until paid in full.
+3.5 Taxes and Expenses. All fees are exclusive of applicable sales, value-added (VAT), or withholding taxes. Aura Medical Systems & Devices Corp. shall reimburse pre-approved out-of-pocket expenses up to a maximum cap of $15,000.00, provided such expenses are submitted with receipts.
+
+
+ARTICLE 4 - CONFIDENTIAL INFORMATION & DATA PROTECTION
+
+4.1 Duty of Confidentiality. Each Party acknowledges that in the course of performance hereunder, it may obtain Confidential Information of the other Party. The Receiving Party agrees to hold all Confidential Information in strict confidence, using at least the same degree of care as it uses for its own confidential material of like importance.
+4.2 Exceptions. Confidentiality obligations shall not apply to information that: (i) is or becomes publicly known through no breach of this Agreement; (ii) was already known to the Receiving Party prior to disclosure; (iii) is independently developed without reference to or reliance upon Confidential Information; or (iv) is required to be disclosed by law or court order, provided the Disclosing Party is given prompt notice sent to m.chang@auramedical.com or c.dupont@kinetixai.ai.
+4.3 Data Protection & GDPR Compliance. Both Aura Medical Systems & Devices Corp. and Kinetix Artificial Intelligence Inc. agree to comply with all applicable privacy regulations. Complete privacy practices and security terms are published at https://www.auramedical.com/privacy-policy and https://www.kinetixai.ai/gdpr-compliance.
+4.4 Information Security Contacts. In the event of a security incident or data breach, written notice shall be dispatched within 24 hours to Michael Chang (+1 (555) 018-3344) and Claire Dupont (+33 1 42 68 53 00).
+
+
+ARTICLE 5 - INTELLECTUAL PROPERTY & PROPRIETARY RIGHTS
+
+5.1 Ownership of Pre-Existing IP. Each Party shall retain sole and exclusive ownership of all right, title, and interest in and to its Pre-Existing Intellectual Property, patents, trademarks, and trade secrets.
+5.2 Work for Hire & Assignment. All deliverables, custom code, diagrams, and written reports created by Kinetix Artificial Intelligence Inc. specifically for Aura Medical Systems & Devices Corp. under this Agreement shall constitute "works made for hire" owned exclusively by Aura Medical Systems & Devices Corp..
+5.3 License Grant. Kinetix Artificial Intelligence Inc. hereby grants Aura Medical Systems & Devices Corp. a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, and display any pre-existing software incorporated into the deliverables.
+5.4 Patent and Trademark Indemnity. Kinetix Artificial Intelligence Inc. warrants that deliverables do not infringe any third-party IP rights. Notice of any infringement claim shall be directed to Legal Counsel Michael Chang at m.chang@auramedical.com.
+
+
+ARTICLE 6 - SERVICE LEVEL COMMITMENTS & PERFORMANCE CREDITS
+
+6.1 System Availability Target. Kinetix Artificial Intelligence Inc. warrants that the hosted platform shall maintain a monthly Service Availability Commitment of 99.9%, calculated 24 hours a day, 7 days a week, excluding scheduled maintenance.
+6.2 Scheduled Maintenance. Scheduled maintenance windows shall occur between 01:00 AM and 04:00 AM EST on Sundays. Notice shall be posted on https://www.kinetixai.ai/status at least 48 hours in advance.
+6.3 Service Credits. If availability falls below 99.9%, Aura Medical Systems & Devices Corp. shall be entitled to Service Credits calculated as follows:
+    - Availability 99.0% to 99.8%: 10% credit of monthly fee
+    - Availability 95.0% to 98.9%: 25% credit of monthly fee
+    - Availability below 95.0%: 50% credit of monthly fee
+6.4 Maximum SLA Cap. The total aggregate Service Credits in any single calendar month shall not exceed 100% of the monthly service fee payable by Aura Medical Systems & Devices Corp..
+
+
+ARTICLE 7 - INDEMNIFICATION & LIMITATIONS OF LIABILITY
+
+7.1 Indemnification by Provider. Kinetix Artificial Intelligence Inc. shall defend, indemnify, and hold harmless Aura Medical Systems & Devices Corp., its officers (Michael Chang), directors, and employees from and against any third-party claims, damages, liabilities, costs, and attorney's fees arising out of gross negligence or willful misconduct.
+7.2 Indemnification by Client. Aura Medical Systems & Devices Corp. shall defend, indemnify, and hold harmless Kinetix Artificial Intelligence Inc., its officers (Claire Dupont), directors, and employees from third-party claims arising out of unauthorized use of the platform.
+7.3 Limitation of Liability. EXCEPT FOR BREACHES OF CONFIDENTIALITY OR INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR PUNITIVE DAMAGES (INCLUDING LOSS OF PROFITS OR REVENUE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+7.4 Total Aggregate Liability Cap. IN NO EVENT SHALL EITHER PARTY'S TOTAL AGGREGATE LIABILITY EXCEED THE TOTAL FEES PAID OR PAYABLE BY Aura Medical Systems & Devices Corp. TO Kinetix Artificial Intelligence Inc. IN THE 12 MONTHS PRECEDING THE CLAIM, OR $1,000,000.00 (ONE MILLION US DOLLARS), WHICHEVER IS LESS.
+
+
+ARTICLE 8 - TERM, AUTOMATIC RENEWAL & TERMINATION RIGHTS
+
+8.1 Initial Term. This Agreement shall commence on the Effective Date (October 15, 2026) and shall remain in full force for an initial term of 36 months (3 years) ending October 14, 2029, unless terminated earlier in accordance herewith.
+8.2 Automatic Renewal. Following the Initial Term, this Agreement shall automatically renew for successive 12-month periods unless either Party provides written notice of non-renewal at least 60 days prior to the expiration of the then-current term.
+8.3 Termination for Convenience. Either Party may terminate this Agreement without cause upon 90 days prior written notice sent to m.chang@auramedical.com or c.dupont@kinetixai.ai.
+8.4 Termination for Cause. Either Party may terminate immediately upon written notice if the other Party: (i) commits a material breach and fails to cure such breach within 30 days after receiving written notice; or (ii) becomes insolvent or files for bankruptcy.
+
+
+ARTICLE 9 - GENERAL PROVISIONS, NOTICES & EXECUTION
+
+9.1 Entire Agreement. This Agreement, together with all Schedules, Exhibits, and Addenda attached hereto, constitutes the entire agreement between Aura Medical Systems & Devices Corp. and Kinetix Artificial Intelligence Inc. with respect to the subject matter hereof and supersedes all prior agreements.
+9.2 Notices. All legal notices, demands, and communications under this Agreement shall be in writing and delivered by certified mail or official corporate email to the following designated representatives:
+
+For Aura Medical Systems & Devices Corp.:
+    Attn: Michael Chang (Chief Technology Officer)
+    Address: 100 Technology Plaza, Suite 500, City Center
+    Email: m.chang@auramedical.com
+    Phone: +1 (555) 018-3344
+    Corporate Web: https://www.auramedical.com
+    Registration No: US-CA-9900112 | Tax ID: EIN 99-0011223
+    Officer ID: ID/Passport N-5544332
+
+For Kinetix Artificial Intelligence Inc.:
+    Attn: Claire Dupont (Head of Commercial Contracting)
+    Address: 500 Innovation Boulevard, 12th Floor, Metro Tower
+    Email: c.dupont@kinetixai.ai
+    Phone: +33 1 42 68 53 00
+    Corporate Web: https://www.kinetixai.ai
+    Registration No: US-CA-1122998 | Tax ID: EIN 11-2299887
+    Officer ID: ID/Passport FR-9988776
+
+9.3 Governing Law and Arbitration. This Agreement shall be governed by Delaware law. Any dispute shall be finally settled under AAA Arbitration in Wilmington, Delaware.
+9.4 Severability and Counterparts. If any provision is held invalid, remaining terms continue. Executed in counterparts including electronic signatures.
+
+
+================================================================================
+IN WITNESS WHEREOF, the Parties hereto have caused this JOINT VENTURE AND STRATEGIC PARTNERSHIP AGREEMENT to be executed by their duly authorized representatives as of the Effective Date written above.
+
+PARTY A:
+Aura Medical Systems & Devices Corp.
+Corporate Registration: US-CA-9900112 | Tax ID: EIN 99-0011223
+Official Website: https://www.auramedical.com | Bank Wire IBAN: GB33BUKB20201555555555
+
+By: __________________________________________
+Name: Michael Chang
+Title: Chief Technology Officer | Officer ID: ID/Passport N-5544332
+Email: m.chang@auramedical.com | Telephone: +1 (555) 018-3344
+Date: October 15, 2026
+
+
+PARTY B:
+Kinetix Artificial Intelligence Inc.
+Corporate Registration: US-CA-1122998 | Tax ID: EIN 11-2299887
+Official Website: https://www.kinetixai.ai | Bank Wire IBAN: DE89370400440532013000
+
+By: __________________________________________
+Name: Claire Dupont
+Title: Head of Commercial Contracting | Officer ID: ID/Passport FR-9988776
+Email: c.dupont@kinetixai.ai | Telephone: +33 1 42 68 53 00
+Date: October 15, 2026
+
+================================================================================
+END OF CONTRACT REF: CONTRACT-2026008-JV_AGREEMENT
+================================================================================
