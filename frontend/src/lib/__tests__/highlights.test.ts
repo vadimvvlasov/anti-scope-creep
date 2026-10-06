@@ -41,6 +41,17 @@ describe("buildSegments", () => {
     ]);
   });
 
+  it("highlights the original text when the quote matched after normalization", () => {
+    // The backend's locate_quote returns (2, 17) for the quote '"Fee" - Net 90.': it matches
+    // curly quotes, an em dash and a line break, and the offsets cover the original text.
+    const text = "🙂 “Fee” —\nNet 90. End.";
+    expect(shape(text, [finding("a", "high", 2, 17)])).toEqual([
+      ["🙂 ", [], null],
+      ["“Fee” —\nNet 90.", ["a"], "a"],
+      [" End.", [], null],
+    ]);
+  });
+
   it("gives overlaps to the most severe finding, ties to the first listed", () => {
     const findings = [
       finding("low", "low", 0, 10),
