@@ -1,0 +1,46 @@
+TIME AND MATERIALS (T&M) SOFTWARE DEVELOPMENT AGREEMENT
+
+This Time and Materials Software Development Agreement ("Agreement") is entered into on June 10, 2025, by and between PayStream Financial Solutions Ltd., a UK company with company number 08912345, located at 25 Bank Street, Canary Wharf, London E14 5JP ("Client"), and CloudCraft Solutions Inc., a Delaware corporation located at 1201 North Market Street, Wilmington, DE 19801 ("Provider").
+
+1. SERVICES AND HOURLY RATES
+Provider shall supply dedicated software engineering and DevOps personnel to develop and maintain Client's cross-border payment gateway API. Services shall be billed strictly on an hourly basis.
+
+Blended and Role-Based Hourly Rates (in USD):
+- Lead Software Architect: $140.00 / hour
+- Senior Full-Stack Engineer (React/Node.js): $105.00 / hour
+- QA Automation Engineer: $75.00 / hour
+- DevOps / AWS Infrastructure Specialist: $125.00 / hour
+
+2. ESTIMATES AND BUDGET CAP
+The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.
+
+3. TIMESHEETS AND INVOICING
+3.1 Time Tracking. Provider’s personnel shall log hours daily via Jira/Harvest time-tracking tools. Detailed weekly logs will be shared with Client every Monday.
+3.2 Invoicing Schedule. Invoices will be issued bi-weekly on the 1st and 15th of each calendar month. Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.
+
+4. INTELLECTUAL PROPERTY RIGHTS
+Subject to full payment of all bi-weekly invoices, Provider transfers and assigns to Client all rights, title, and ownership of all code, API documentation, and scripts generated during billed hours under this Agreement.
+
+5. NON-SOLICITATION OF PERSONNEL
+During the term of this Agreement and for twelve (12) months following termination, Client agrees not to directly or indirectly solicit, recruit, or hire any engineer, architect, or manager assigned by Provider under this Agreement without paying a placement fee equal to 30% of the candidate's first-year annual salary.
+
+6. DURATION AND TERMINATION
+6.1 Term. This Agreement commences on June 15, 2025, and continues until December 31, 2025, unless extended by mutual written agreement.
+6.2 Convenience Termination. Either party may terminate this Agreement at any time by giving fourteen (14) calendar days' advance written notice. Client shall remain liable for all hours worked up to the date of termination.
+
+7. GOVERNING LAW AND ARBITRATION
+This Agreement shall be governed by the laws of England and Wales. Any disputes shall be settled through binding arbitration in London, UK, under LCIA Rules.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of June 10, 2025.
+
+CLIENT: PayStream Financial Solutions Ltd.
+By: /s/ Oliver Chesterfield
+Name: Oliver Chesterfield
+Title: Chief Operating Officer
+Date: June 10, 2025
+
+PROVIDER: CloudCraft Solutions Inc.
+By: /s/ Alexander Petrov
+Name: Alexander Petrov
+Title: Founder & CTO
+Date: June 10, 2025

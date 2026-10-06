@@ -1,0 +1,275 @@
+MARKETING SERVICES AGREEMENT
+
+This Agreement is entered into as of 2026-06-16 by and between Blue Harbor Media Inc., a business organized under the laws of its applicable jurisdiction, and Redwood Commerce LLC.
+
+Background. Blue Harbor Media Inc. wishes to obtain the Services from Redwood Commerce LLC, and Redwood Commerce LLC agrees to provide them subject to this Agreement. The parties intend the Agreement to provide a practical framework for delivery, review, payment, confidentiality, intellectual property, and risk allocation.
+
+2.10 Campaign planning and creative strategy.
+2.11 Production of approved marketing materials.
+2.12 Content scheduling and publication support.
+2.13 Monthly performance reporting.
+2.14 Optimization recommendations based on campaign data.
+
+
+1. DEFINITIONS
+
+1.1 “Services” means the professional services, deliverables, meetings, documentation, support activities, and related work described in this Agreement and its schedules.
+
+1.2 “Deliverables” means the tangible or electronic materials expressly identified as deliverables, including drafts, reports, source files, specifications, designs, configurations, and documentation.
+
+1.3 “Business Day” means a day other than Saturday, Sunday, or a public holiday in the place where the relevant party is principally located.
+
+1.4 “Confidential Information” means non-public business, technical, financial, operational, customer, product, pricing, security, and commercial information disclosed by one party to the other.
+
+2. SERVICES AND SCOPE
+
+2.1 Contractor shall perform the Services in a professional and workmanlike manner and shall use commercially reasonable efforts to meet the milestones described in the applicable statement of work.
+
+2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.
+
+2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.
+
+2.4 Client will provide timely access to personnel, systems, credentials, content, approvals, and information reasonably necessary for performance. Delays caused by missing Client inputs may move corresponding delivery dates.
+
+2.5 Contractor will maintain reasonable project records and will identify material blockers promptly. Weekly status updates may include completed work, planned work, open decisions, risks, dependencies, and requested Client actions.
+
+2.6 The parties may hold meetings by video conference, telephone, or other agreed electronic means. Meeting notes may be used to confirm decisions but do not automatically amend commercial terms.
+
+3. PROJECT MANAGEMENT
+
+3.1 The initial project plan anticipates a discovery period followed by implementation, review, testing, and final delivery.
+
+3.2 The parties will designate representatives who may coordinate day-to-day matters. Formal amendments to this Agreement require authorization in accordance with Section 16.
+
+3.3 Contractor is not responsible for delays resulting from third-party systems, unavailable Client resources, inaccurate source materials, or changes requested after approval of a milestone.
+
+3.4 If an issue materially affects delivery, the parties will discuss a reasonable mitigation plan. Neither party is required to accept an amendment merely because the other party has requested one.
+
+4. FEES AND PAYMENT
+
+4.1 The estimated project fee is USD 24,875. Approved out-of-pocket expenses will be reimbursed at cost unless a schedule states otherwise.
+
+4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.
+
+4.3 Contractor may invoice milestone amounts of USD 7,500, USD 8,625, and USD 9,250. The parties may also agree to a fixed monthly service fee of USD 4,075.
+
+4.4 Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.
+
+4.5 Taxes imposed on a party's income are that party's responsibility. Transaction taxes, VAT, sales taxes, or similar charges will be handled as required by applicable law.
+
+5. ACCEPTANCE AND REVISIONS
+
+5.1 Client will review each material Deliverable within 10 days after receipt.
+
+5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.
+
+5.3 Contractor will correct confirmed defects that materially depart from the agreed specifications. Requests that introduce new functionality, new content, or a materially different design are treated as change requests.
+
+5.4 The parties intend to allow 3 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.
+
+6. INTELLECTUAL PROPERTY
+
+6.1 Upon full payment of the fees specifically associated with a Deliverable, Client receives the rights expressly granted for that Deliverable under this Agreement.
+
+6.2 Contractor retains ownership of pre-existing materials, tools, libraries, know-how, templates, methods, and generalized skills. To the extent such materials are embedded in a Deliverable, Contractor grants Client a non-exclusive license to use them as part of that Deliverable.
+
+6.3 Third-party materials remain subject to their applicable license terms. Contractor will identify material third-party restrictions of which it is reasonably aware.
+
+6.4 Nothing in this Agreement prevents Contractor from using generalized knowledge, ideas, techniques, or experience retained in unaided memory, provided that Confidential Information is not disclosed.
+
+7. CONFIDENTIALITY
+
+7.1 Each party shall protect the other's Confidential Information using at least reasonable care and shall use it only for purposes of this Agreement.
+
+7.2 Confidentiality obligations do not apply to information that is publicly available without breach, independently developed without use of Confidential Information, lawfully received from another source, or required to be disclosed by law.
+
+7.3 If disclosure is legally required, the receiving party will, where legally permitted, provide reasonable notice and cooperate with the disclosing party's efforts to seek protective treatment.
+
+7.4 These confidentiality obligations continue for 3 years after termination, except for trade secrets protected for so long as they remain trade secrets under applicable law.
+
+8. DATA PROTECTION AND SECURITY
+
+8.1 Each party will comply with applicable data protection and privacy laws relevant to its role.
+
+8.2 Contractor will maintain reasonable administrative, technical, and organizational safeguards appropriate to the nature of the information processed.
+
+8.3 Client remains responsible for determining the lawful basis for personal-data processing and for providing required notices unless the parties expressly agree otherwise.
+
+8.4 Security incidents affecting Client data that require notification under applicable law will be communicated without undue delay after confirmation.
+
+9. WARRANTIES
+
+9.1 Each party represents that it has authority to enter into this Agreement.
+
+9.2 Contractor warrants that the Services will be performed with reasonable professional skill and care.
+
+9.3 Except as expressly stated, the Services and Deliverables are provided without additional warranties, including implied warranties to the maximum extent permitted by law.
+
+9.4 Contractor does not warrant uninterrupted operation of third-party platforms, networks, hosting providers, or services outside Contractor's reasonable control.
+
+10. LIABILITY
+
+10.1 Except for liabilities that cannot lawfully be limited, neither party will be liable for indirect, incidental, special, exemplary, or consequential damages, including lost profits or lost business opportunities.
+
+10.2 The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.
+
+10.3 Nothing in this Section limits liability for fraud, willful misconduct, or obligations that cannot legally be excluded or limited.
+
+11. INDEMNIFICATION
+
+11.1 Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.
+
+11.2 The indemnified party must provide prompt notice and reasonable cooperation. The indemnifying party controls the defense, but may not settle a claim in a manner imposing an admission or non-monetary obligation on the indemnified party without consent.
+
+12. TERMINATION
+
+12.1 Either party may terminate this Agreement for material breach if the breach remains uncured for 15 days after written notice.
+
+12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.
+
+12.3 On termination, each party will return or securely delete Confidential Information as required by law and by the nature of the information.
+
+12.4 Sections intended by their nature to survive termination, including confidentiality, intellectual property, payment obligations, liability, and dispute provisions, will survive.
+
+13. RECORDS AND AUDIT
+
+13.1 Each party will retain relevant records for a reasonable period consistent with its legal and accounting obligations.
+
+13.2 Where an audit right is expressly granted, audits will be conducted during normal business hours and in a manner designed to minimize operational disruption.
+
+14. FORCE MAJEURE
+
+14.1 Neither party is liable for delay caused by events beyond its reasonable control, including natural disasters, widespread outages, governmental restrictions, labor disruptions, or failures of public infrastructure.
+
+14.2 The affected party will provide reasonable notice and use commercially reasonable efforts to mitigate the impact.
+
+15. NON-SOLICITATION
+
+15.1 During the term and for 11 months thereafter, neither party will knowingly solicit for employment personnel of the other party who were materially involved in the Services, except through general advertisements not targeted at such personnel.
+
+16. GENERAL
+
+16.1 Amendments must be in writing and authorized by both parties.
+
+16.2 Neither party may assign this Agreement without consent, except to a successor in connection with a merger, reorganization, or sale of substantially all relevant assets, provided that the assignee assumes the obligations.
+
+16.3 Notices may be delivered by email to the designated addresses below, provided that a party may update its notice details by written notice.
+
+16.4 This Agreement constitutes the entire agreement concerning its subject matter and supersedes prior discussions relating to that subject matter.
+
+16.5 If any provision is unenforceable, the remaining provisions remain effective, and the parties will seek a valid replacement that most closely reflects the original commercial intent.
+
+16.6 A waiver must be explicit and does not constitute a continuing waiver.
+
+17. GOVERNING LAW AND DISPUTES
+
+17.1 This Agreement is governed by the laws of the jurisdiction identified in the signature page, without regard to conflict-of-law principles.
+
+17.2 The parties will first attempt in good faith to resolve disputes through escalation between senior representatives.
+
+17.3 If escalation does not resolve a dispute within 12 days, either party may pursue remedies available under the governing law.
+
+18. NOTICES AND CONTACT DETAILS
+
+Client contact: Olivia Carter; email olivia.carter@blueharborme.example; telephone +49 30 5550 1005; website https://blueharbormedi.example.com/contracts/5.
+Contractor contact: Noah Williams; email noah.williams@redwoodcomme.example; telephone +44 20 7946 2005; website https://redwoodcommerc.example.org/legal/5.
+Client registration/reference ID: REG-2026-10005.
+Contractor registration/reference ID: CTR-2026-20005.
+Client bank account / IBAN: DE89 3704 0044 0532 0135 00.
+Contractor bank account / IBAN: GB29 NWBK 6016 1331 9268 15.
+
+19. SIGNATURES
+
+For Blue Harbor Media Inc. (“Client”):
+
+Name: Olivia Carter
+Title: Managing Director
+Email: olivia.carter@blueharborme.example
+Signature: ______________________________
+Date: 2026-06-16
+
+For Redwood Commerce LLC (“Contractor”):
+
+Name: Noah Williams
+Title: Authorized Representative
+Email: noah.williams@redwoodcomme.example
+Signature: ______________________________
+Date: 2026-06-16
+
+20. SCHEDULE A — COMMERCIAL DETAILS
+
+Project reference: REG-2026-10005
+Start date: 2026-06-16
+Target completion date: 2026-08-26
+Total estimated fee: USD 24,875
+Initial deposit: USD 5,750
+Milestone 1: USD 7,500
+Milestone 2: USD 8,625
+Milestone 3: USD 9,250
+Payment period: Net 30
+Review period: 10 days
+Revision allowance: 3 rounds
+Liability cap: USD 35,000
+Late-payment interest: 1.0%
+Notice period: 20 days
+Cure period: 15 days
+
+21. QUALITY AND HANDOVER
+
+Before final delivery, Contractor may conduct an internal quality review covering completeness of agreed Deliverables, obvious defects, documentation, and configuration. This review does not replace Client's acceptance process.
+
+Client will nominate a person responsible for consolidated feedback where reasonably practicable. Multiple independent feedback channels can increase the risk of contradictory instructions, so the parties will make reasonable efforts to consolidate comments before a revision cycle.
+
+At handover, Contractor will provide the agreed source files, credentials or access instructions that Contractor is entitled to transfer, and available documentation. Passwords and secrets will be transferred through an appropriate secure channel rather than placed in ordinary email where feasible.
+
+Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.
+
+The parties may conduct a retrospective after completion. The retrospective is intended for operational learning and does not modify contractual rights or obligations unless a formal amendment is separately executed.
+
+22. REFERENCE NOTES
+
+For administrative purposes, Blue Harbor Media Inc. may also be referred to as “Client” in purchase orders, invoices, and internal project records. Redwood Commerce LLC may also be referred to as “Contractor” or “Service Provider” in correspondence. These labels do not create additional parties.
+
+The principal contacts are Olivia Carter and Noah Williams. Questions about invoices may be sent to olivia.carter@blueharborme.example, while operational questions may be sent to noah.williams@redwoodcomme.example. The parties may use https://blueharbormedi.example.com/contracts/5 and https://redwoodcommerc.example.org/legal/5 as their respective public web addresses.
+
+The commercial figures in this Agreement are stated in USD. The total project fee of USD 24,875 is not changed merely because the parties discuss a revised timetable. Net 30 remains the agreed payment period, and the review period is 10 days.
+
+No clause in this section changes the liability cap of USD 35,000, the late-payment rate of 1.0%, or the termination notice period of 20 days.
+
+23. APPENDIX — DELIVERY PRINCIPLES
+
+The parties agree that project communications should be clear, timely, and reasonably specific. When a question requires a decision, the requesting party should explain the context, alternatives, and requested decision date. When a party cannot provide a requested input, it should identify the expected availability date or explain the constraint.
+
+The parties will avoid treating informal estimates as guaranteed deadlines unless a schedule expressly identifies the date as binding. Dependencies controlled by a third party may affect delivery even when the underlying task has been completed by the responsible party.
+
+Where a Deliverable contains configurable options, the configuration selected by Client during review becomes the baseline for the next stage unless the parties agree otherwise. Contractor may retain internal working files, test data, temporary exports, and development notes that are not part of the Deliverables, subject to confidentiality obligations.
+
+Nothing in this appendix requires either party to disclose security-sensitive credentials through an insecure channel. The parties should use appropriate access controls, least-privilege permissions, and secure transfer methods for confidential information.
+
+A party receiving a request should make a reasonable effort to acknowledge it promptly. An acknowledgment does not necessarily mean that the request has been approved, accepted, or added to scope.
+
+If the parties identify an ambiguity in an operational instruction, they should resolve it in writing where practicable. If no written clarification is available, the parties should act consistently with the agreed commercial purpose and avoid creating a material new obligation without discussion.
+
+The parties may use project-management tools, ticketing systems, shared documents, or email. Records in such systems may provide evidence of operational history, but formal contractual amendments remain subject to Section 16.
+
+The parties recognize that professional services involve judgment and that reasonable professional judgment may produce alternative approaches. Contractor will explain material trade-offs where relevant, while Client retains decisions reserved to Client under this Agreement.
+
+The final handover should identify known open items. An open item does not automatically represent a defect if it is outside the agreed scope or has been expressly accepted by Client.
+
+This appendix is intended to improve administration and interpretation of the project and should be read consistently with the commercial terms, schedules, and limitations stated elsewhere in this Agreement.
+
+24. ADDITIONAL CONTACT RECORD
+
+Client representative: Olivia Carter; olivia.carter@blueharborme.example; +49 30 5550 1005.
+Contractor representative: Noah Williams; noah.williams@redwoodcomme.example; +44 20 7946 2005.
+Client reference: REG-2026-10005; Contractor reference: CTR-2026-20005.
+Client banking reference: DE89 3704 0044 0532 0135 00; Contractor banking reference: GB29 NWBK 6016 1331 9268 15.
+Client web address: https://blueharbormedi.example.com/contracts/5; Contractor web address: https://redwoodcommerc.example.org/legal/5.
+
+25. FINAL ACKNOWLEDGMENT
+
+By signing below, each party confirms that its representative is authorized to enter into this Agreement and that the parties have had an opportunity to review the commercial terms. The parties acknowledge that amounts, percentages, dates, payment periods, durations, and liability caps are intentional commercial terms and are not merely identifying information.
+
+For clarity, the phrase “30 days” may appear in operational discussions even where the formal notice period is different. Likewise, “10%” may be used as an example in a project calculation and should not be interpreted as an identity. Net 60 is a payment-period phrase, not a personal identifier.
+
+END OF AGREEMENT

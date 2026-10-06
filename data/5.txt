@@ -1,0 +1,157 @@
+================================================================================
+SOFTWARE-AS-A-SERVICE (SaaS) SUBSCRIPTION AGREEMENT
+CONTRACT REFERENCE ID: CONTRACT-2026001-SaaS
+================================================================================
+
+THIS SOFTWARE-AS-A-SERVICE (SaaS) SUBSCRIPTION AGREEMENT (this "Agreement") is entered into and made effective as of October 15, 2026 (the "Effective Date"), by and between:
+
+PARTIES TO THIS AGREEMENT:
+
+1. Nexus Cloud Solutions Ltd., a corporation organized and existing under the laws of its jurisdiction of incorporation, having its principal place of business at 100 Technology Plaza, Suite 500 (Corporate Registration No: UK-CRN-01234567, Tax ID/EIN: VAT GB123456789, Official Web Domain: https://www.nexuscloud.co.uk), represented herein by its authorized signatory, Robert A. Vance, serving in the capacity of Chief Operations Officer (Email: r.vance@nexuscloud.co.uk, Direct Tel: +44 20 7946 0912, Personal Identification No: ID/Passport UK-887766), hereinafter referred to as "Party A" or "Client" or "Company";
+
+AND
+
+2. Synergy Software Solutions GmbH, a commercial enterprise organized and existing under the laws of its jurisdiction of registration, having its principal corporate offices at 500 Innovation Boulevard, 12th Floor (Corporate Registration No: DE-HRB-998877, Tax ID/VAT: DE-Tax-998877665, Official Web Domain: https://www.synergy-software.de), represented herein by its authorized officer, Elena Rostova, serving in the capacity of Managing Director (Email: elena.rostova@synergy-software.de, Direct Tel: +49 30 901820, Personal Identification No: ID/Passport DE-3344556), hereinafter referred to as "Party B" or "Service Provider" or "Contractor".
+
+(Party A and Party B are hereinafter individually referred to as a "Party" and collectively referred to as the "Parties".)
+
+RECITALS:
+WHEREAS, Party A is engaged in commercial operations requiring expert technical, operational, and professional services; and
+WHEREAS, Party B possesses specialized expertise, resources, personnel, and technical capabilities to perform such services; and
+WHEREAS, Party A desires to retain Party B, and Party B agrees to be retained by Party A, upon the strict terms, conditions, covenants, and stipulations set forth in this Agreement.
+
+NOW, THEREFORE, in consideration of the mutual premises, covenants, terms, and conditions contained herein, and for other good and valuable consideration, the receipt and legal sufficiency of which are hereby acknowledged, the Parties hereby agree as follows:
+
+ARTICLE 1 - DEFINITIONS & INTERPRETATIONS
+
+1.1 Defined Terms. For all purposes of this SOFTWARE-AS-A-SERVICE (SaaS) SUBSCRIPTION AGREEMENT (the "Agreement"), the following terms shall have the specific meanings set forth below:
+(a) "Affiliate" means, with respect to any specified Person or Entity, any other Person or Entity that directly or indirectly Controls, is Controlled by, or is under common Control with such specified Person or Entity.
+(b) "Authorized Representatives" means the primary contact officers designated by each Party. For Nexus Cloud Solutions Ltd., the primary contact shall be Robert A. Vance (Chief Operations Officer, Email: r.vance@nexuscloud.co.uk, Phone: +44 20 7946 0912). For Synergy Software Solutions GmbH, the primary contact shall be Elena Rostova (Managing Director, Email: elena.rostova@synergy-software.de, Phone: +49 30 901820).
+(c) "Applicable Law" means all applicable local, state, national, federal, and international laws, statutes, rules, regulations, orders, and decrees of governmental authorities.
+(d) "Confidential Information" means all non-public, proprietary information disclosed by either Nexus Cloud Solutions Ltd. ("Disclosing Party") to Synergy Software Solutions GmbH ("Receiving Party"), whether orally, visually, electronically, or in writing, including without limitation technical specifications, business models, financial data, and source code.
+(e) "Effective Date" means October 15, 2026, or the date of last signature hereof, whichever occurs earlier.
+(f) "Portal URL" means the official online administration site located at https://www.nexuscloud.co.uk/portal or https://www.synergy-software.de/contract-portal.
+(g) "Registration Identifiers" means corporate registration UK-CRN-01234567 for Nexus Cloud Solutions Ltd. and registration DE-HRB-998877 for Synergy Software Solutions GmbH, together with tax identification numbers VAT GB123456789 and DE-Tax-998877665.
+
+
+ARTICLE 2 - SCOPE OF WORK & PERFORMANCE STANDARDS
+
+2.1 Engagement and Performance. Nexus Cloud Solutions Ltd. hereby retains Synergy Software Solutions GmbH, and Synergy Software Solutions GmbH hereby agrees to render and perform the services, deliverables, and technical obligations described in Schedule A attached hereto.
+2.2 Standard of Performance. Synergy Software Solutions GmbH shall perform all tasks in a professional, workmanlike manner, adhering to industry standards. Overall supervision shall be maintained by Elena Rostova (elena.rostova@synergy-software.de).
+2.3 Project Schedule and Milestones. Time is of the essence. Phase 1 deliverables must be submitted within 45 days following the Effective Date. Phase 2 deliverables shall be submitted within 90 days.
+2.4 Acceptance Testing and Approval Criteria. Nexus Cloud Solutions Ltd. shall have 15 business days following receipt of any deliverable to perform acceptance testing. If Nexus Cloud Solutions Ltd. identifies material non-conformities, it shall notify Elena Rostova via email at elena.rostova@synergy-software.de within 5 business days. Synergy Software Solutions GmbH shall remedy all deficiencies within 10 business days at no additional charge.
+2.5 Change Control Procedure. Either Party may request changes to the Scope of Work. No modification shall be binding unless documented in a written Change Order signed by Robert A. Vance on behalf of Nexus Cloud Solutions Ltd. and Elena Rostova on behalf of Synergy Software Solutions GmbH.
+
+
+ARTICLE 3 - FEES, INVOICING, WIRE TRANSFERS & PAYMENT TERMS
+
+3.1 Contract Price and Compensation Structure. In full consideration for the performance of Services under this Agreement, Nexus Cloud Solutions Ltd. shall pay Synergy Software Solutions GmbH a total contract fee of $250,000.00 (Two Hundred Fifty Thousand US Dollars), payable in monthly installments of $20,833.33 each.
+3.2 Invoicing and Payment Terms. Invoices shall be issued monthly by Synergy Software Solutions GmbH to r.vance@nexuscloud.co.uk. All undisputed amounts shall be paid within Net 60 days from the invoice date (or Net 30 days if paid electronically via automated wire transfer).
+3.3 Wire Transfer Details. Payments shall be wired directly to the designated bank account:
+    - Account Holder: Synergy Software Solutions GmbH
+    - Bank IBAN: NL91ABNA0417164300
+    - SWIFT/BIC: BUKBGB22
+    - Reference: Contract Ref #3456789-8877665
+3.4 Late Payments and Interest. Any amount not paid when due shall accrue interest at the rate of 1.5% per month (or 18% per annum), or the maximum rate permitted by Applicable Law, whichever is lower, calculated daily from the due date until paid in full.
+3.5 Taxes and Expenses. All fees are exclusive of applicable sales, value-added (VAT), or withholding taxes. Nexus Cloud Solutions Ltd. shall reimburse pre-approved out-of-pocket expenses up to a maximum cap of $15,000.00, provided such expenses are submitted with receipts.
+
+
+ARTICLE 4 - CONFIDENTIAL INFORMATION & DATA PROTECTION
+
+4.1 Duty of Confidentiality. Each Party acknowledges that in the course of performance hereunder, it may obtain Confidential Information of the other Party. The Receiving Party agrees to hold all Confidential Information in strict confidence, using at least the same degree of care as it uses for its own confidential material of like importance.
+4.2 Exceptions. Confidentiality obligations shall not apply to information that: (i) is or becomes publicly known through no breach of this Agreement; (ii) was already known to the Receiving Party prior to disclosure; (iii) is independently developed without reference to or reliance upon Confidential Information; or (iv) is required to be disclosed by law or court order, provided the Disclosing Party is given prompt notice sent to r.vance@nexuscloud.co.uk or elena.rostova@synergy-software.de.
+4.3 Data Protection & GDPR Compliance. Both Nexus Cloud Solutions Ltd. and Synergy Software Solutions GmbH agree to comply with all applicable privacy regulations. Complete privacy practices and security terms are published at https://www.nexuscloud.co.uk/privacy-policy and https://www.synergy-software.de/gdpr-compliance.
+4.4 Information Security Contacts. In the event of a security incident or data breach, written notice shall be dispatched within 24 hours to Robert A. Vance (+44 20 7946 0912) and Elena Rostova (+49 30 901820).
+
+
+ARTICLE 5 - INTELLECTUAL PROPERTY & PROPRIETARY RIGHTS
+
+5.1 Ownership of Pre-Existing IP. Each Party shall retain sole and exclusive ownership of all right, title, and interest in and to its Pre-Existing Intellectual Property, patents, trademarks, and trade secrets.
+5.2 Work for Hire & Assignment. All deliverables, custom code, diagrams, and written reports created by Synergy Software Solutions GmbH specifically for Nexus Cloud Solutions Ltd. under this Agreement shall constitute "works made for hire" owned exclusively by Nexus Cloud Solutions Ltd..
+5.3 License Grant. Synergy Software Solutions GmbH hereby grants Nexus Cloud Solutions Ltd. a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, and display any pre-existing software incorporated into the deliverables.
+5.4 Patent and Trademark Indemnity. Synergy Software Solutions GmbH warrants that deliverables do not infringe any third-party IP rights. Notice of any infringement claim shall be directed to Legal Counsel Robert A. Vance at r.vance@nexuscloud.co.uk.
+
+
+ARTICLE 6 - SERVICE LEVEL COMMITMENTS & PERFORMANCE CREDITS
+
+6.1 System Availability Target. Synergy Software Solutions GmbH warrants that the hosted platform shall maintain a monthly Service Availability Commitment of 99.9%, calculated 24 hours a day, 7 days a week, excluding scheduled maintenance.
+6.2 Scheduled Maintenance. Scheduled maintenance windows shall occur between 01:00 AM and 04:00 AM EST on Sundays. Notice shall be posted on https://www.synergy-software.de/status at least 48 hours in advance.
+6.3 Service Credits. If availability falls below 99.9%, Nexus Cloud Solutions Ltd. shall be entitled to Service Credits calculated as follows:
+    - Availability 99.0% to 99.8%: 10% credit of monthly fee
+    - Availability 95.0% to 98.9%: 25% credit of monthly fee
+    - Availability below 95.0%: 50% credit of monthly fee
+6.4 Maximum SLA Cap. The total aggregate Service Credits in any single calendar month shall not exceed 100% of the monthly service fee payable by Nexus Cloud Solutions Ltd..
+
+
+ARTICLE 7 - INDEMNIFICATION & LIMITATIONS OF LIABILITY
+
+7.1 Indemnification by Provider. Synergy Software Solutions GmbH shall defend, indemnify, and hold harmless Nexus Cloud Solutions Ltd., its officers (Robert A. Vance), directors, and employees from and against any third-party claims, damages, liabilities, costs, and attorney's fees arising out of gross negligence or willful misconduct.
+7.2 Indemnification by Client. Nexus Cloud Solutions Ltd. shall defend, indemnify, and hold harmless Synergy Software Solutions GmbH, its officers (Elena Rostova), directors, and employees from third-party claims arising out of unauthorized use of the platform.
+7.3 Limitation of Liability. EXCEPT FOR BREACHES OF CONFIDENTIALITY OR INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR PUNITIVE DAMAGES (INCLUDING LOSS OF PROFITS OR REVENUE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+7.4 Total Aggregate Liability Cap. IN NO EVENT SHALL EITHER PARTY'S TOTAL AGGREGATE LIABILITY EXCEED THE TOTAL FEES PAID OR PAYABLE BY Nexus Cloud Solutions Ltd. TO Synergy Software Solutions GmbH IN THE 12 MONTHS PRECEDING THE CLAIM, OR $1,000,000.00 (ONE MILLION US DOLLARS), WHICHEVER IS LESS.
+
+
+ARTICLE 8 - TERM, AUTOMATIC RENEWAL & TERMINATION RIGHTS
+
+8.1 Initial Term. This Agreement shall commence on the Effective Date (October 15, 2026) and shall remain in full force for an initial term of 36 months (3 years) ending October 14, 2029, unless terminated earlier in accordance herewith.
+8.2 Automatic Renewal. Following the Initial Term, this Agreement shall automatically renew for successive 12-month periods unless either Party provides written notice of non-renewal at least 60 days prior to the expiration of the then-current term.
+8.3 Termination for Convenience. Either Party may terminate this Agreement without cause upon 90 days prior written notice sent to r.vance@nexuscloud.co.uk or elena.rostova@synergy-software.de.
+8.4 Termination for Cause. Either Party may terminate immediately upon written notice if the other Party: (i) commits a material breach and fails to cure such breach within 30 days after receiving written notice; or (ii) becomes insolvent or files for bankruptcy.
+
+
+ARTICLE 9 - GENERAL PROVISIONS, NOTICES & EXECUTION
+
+9.1 Entire Agreement. This Agreement, together with all Schedules, Exhibits, and Addenda attached hereto, constitutes the entire agreement between Nexus Cloud Solutions Ltd. and Synergy Software Solutions GmbH with respect to the subject matter hereof and supersedes all prior agreements.
+9.2 Notices. All legal notices, demands, and communications under this Agreement shall be in writing and delivered by certified mail or official corporate email to the following designated representatives:
+
+For Nexus Cloud Solutions Ltd.:
+    Attn: Robert A. Vance (Chief Operations Officer)
+    Address: 100 Technology Plaza, Suite 500, City Center
+    Email: r.vance@nexuscloud.co.uk
+    Phone: +44 20 7946 0912
+    Corporate Web: https://www.nexuscloud.co.uk
+    Registration No: UK-CRN-01234567 | Tax ID: VAT GB123456789
+    Officer ID: ID/Passport UK-887766
+
+For Synergy Software Solutions GmbH:
+    Attn: Elena Rostova (Managing Director)
+    Address: 500 Innovation Boulevard, 12th Floor, Metro Tower
+    Email: elena.rostova@synergy-software.de
+    Phone: +49 30 901820
+    Corporate Web: https://www.synergy-software.de
+    Registration No: DE-HRB-998877 | Tax ID: DE-Tax-998877665
+    Officer ID: ID/Passport DE-3344556
+
+9.3 Governing Law and Arbitration. This Agreement shall be governed by Delaware law. Any dispute shall be finally settled under AAA Arbitration in Wilmington, Delaware.
+9.4 Severability and Counterparts. If any provision is held invalid, remaining terms continue. Executed in counterparts including electronic signatures.
+
+
+================================================================================
+IN WITNESS WHEREOF, the Parties hereto have caused this SOFTWARE-AS-A-SERVICE (SaaS) SUBSCRIPTION AGREEMENT to be executed by their duly authorized representatives as of the Effective Date written above.
+
+PARTY A:
+Nexus Cloud Solutions Ltd.
+Corporate Registration: UK-CRN-01234567 | Tax ID: VAT GB123456789
+Official Website: https://www.nexuscloud.co.uk | Bank Wire IBAN: FR7630006000011234567890189
+
+By: __________________________________________
+Name: Robert A. Vance
+Title: Chief Operations Officer | Officer ID: ID/Passport UK-887766
+Email: r.vance@nexuscloud.co.uk | Telephone: +44 20 7946 0912
+Date: October 15, 2026
+
+
+PARTY B:
+Synergy Software Solutions GmbH
+Corporate Registration: DE-HRB-998877 | Tax ID: DE-Tax-998877665
+Official Website: https://www.synergy-software.de | Bank Wire IBAN: NL91ABNA0417164300
+
+By: __________________________________________
+Name: Elena Rostova
+Title: Managing Director | Officer ID: ID/Passport DE-3344556
+Email: elena.rostova@synergy-software.de | Telephone: +49 30 901820
+Date: October 15, 2026
+
+================================================================================
+END OF CONTRACT REF: CONTRACT-2026001-SaaS
+================================================================================

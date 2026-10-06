@@ -1,0 +1,44 @@
+FIXED-PRICE SOFTWARE DEVELOPMENT AGREEMENT
+
+This Software Development Agreement ("Agreement") is made effective as of May 01, 2025, by and between Horizon Health Systems LLC, a Massachusetts limited liability company located at 250 Boylston Street, Boston, MA 02116 ("Client"), and CodeForge Studios Inc., a New York corporation located at 450 Lexington Avenue, 12th Floor, New York, NY 10017 ("Developer").
+
+1. SCOPE OF PROJECT
+Developer agrees to design, build, test, and deploy a HIPAA-compliant Patient Telehealth Web Portal ("Software") as detailed in Exhibit A (Product Specifications). Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.
+
+2. FIXED PRICE AND MILESTONE PAYMENT SCHEDULE
+2.1 Total Fixed Price. Client agrees to pay Developer a total fixed price of $85,000.00 USD for the complete development and deployment of the Software.
+2.2 Payment Milestones:
+    - Milestone 1: UX/UI Designs & Architecture Approval (Due June 01, 2025): $17,000.00 USD (20%)
+    - Milestone 2: Core Video Chat & Scheduling Engine (Due July 15, 2025): $34,000.00 USD (40%)
+    - Milestone 3: EHR Integration & Beta Testing (Due August 31, 2025): $25,500.00 USD (30%)
+    - Milestone 4: Final Production Deployment & Handoff (Due September 30, 2025): $8,500.00 USD (10%)
+
+3. ACCEPTANCE PROCEDURE AND TESTING
+3.1 Acceptance Period. Upon delivery of each Milestone, Client shall have ten (10) business days ("Acceptance Period") to test the deliverables against Exhibit A.
+3.2 Rejection & Remediation. If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.
+
+4. INTELLECTUAL PROPERTY OWNERSHIP
+Upon full payment of the total fixed price ($85,000.00 USD), Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.
+
+5. WARRANTY AND BUG FIXING PERIOD
+Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.
+
+6. TERM AND DURATION
+The term of this Agreement shall begin on May 01, 2025, and conclude upon final deployment and payment on or before October 15, 2025.
+
+7. GOVERNING LAW
+This Agreement shall be governed by the laws of the Commonwealth of Massachusetts.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of May 01, 2025.
+
+CLIENT: Horizon Health Systems LLC
+By: /s/ Sarah Jenkins
+Name: Sarah Jenkins
+Title: VP of Digital Innovation
+Date: May 01, 2025
+
+DEVELOPER: CodeForge Studios Inc.
+By: /s/ Dmitry Sokolov
+Name: Dmitry Sokolov
+Title: Chief Executive Officer
+Date: May 01, 2025
