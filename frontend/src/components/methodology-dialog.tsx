@@ -19,7 +19,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
+  AI_DATA_POLICY_URL,
   ANALYSIS_PARAGRAPHS,
+  ANALYZER,
   AUTHOR_BIO,
   AUTHOR_LINKS,
   AUTHOR_NAME,
@@ -89,6 +91,18 @@ function MethodologyBody() {
             <li key={text}>{text}</li>
           ))}
         </ul>
+        {ANALYZER === "groq" && (
+          <p>
+            <a
+              href={AI_DATA_POLICY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              AI data policy
+            </a>
+          </p>
+        )}
       </Section>
     </div>
   );
