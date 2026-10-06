@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRequireAuth } from "@/hooks/useAuth";
+import { AI_DATA_POLICY_URL, ANALYZER, PROVIDER_NOTICE } from "@/lib/methodology";
 import { api, isApiError, MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "@/services/api";
 
 export const Route = createFileRoute("/new-analysis")({
@@ -184,6 +185,20 @@ function NewAnalysisPage() {
           <div className="rounded-md bg-risk-high-soft px-3 py-2 text-sm text-risk-high">
             {error}
           </div>
+        )}
+
+        {ANALYZER === "groq" && (
+          <p className="text-xs text-muted-foreground" data-testid="provider-notice">
+            {PROVIDER_NOTICE}{" "}
+            <a
+              href={AI_DATA_POLICY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              AI data policy
+            </a>
+          </p>
         )}
 
         <Button type="submit" disabled={busy}>

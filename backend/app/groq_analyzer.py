@@ -14,7 +14,7 @@ from typing import Any, Protocol
 
 from pydantic import BaseModel
 
-from app.analyzer import AnalysisResult, EmailDraftContent, FindingDraft
+from app.analyzer import NO_INPUT_IN_ERRORS, AnalysisResult, EmailDraftContent, FindingDraft
 from app.chunking import DEFAULT_MAX_CHARS, chunk_text
 from app.groq_client import GroqResult, strict_json_schema
 from app.models import RiskLevel
@@ -30,6 +30,8 @@ class JsonCompletion(Protocol):
 
 
 class FindingsOutput(BaseModel):
+    model_config = NO_INPUT_IN_ERRORS
+
     findings: list[FindingDraft]
 
 

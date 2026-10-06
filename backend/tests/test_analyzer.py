@@ -10,7 +10,7 @@ from app.analyzer import (
     build_analyzer,
 )
 from app.config import Settings
-from app.groq_analyzer import GroqAnalyzer
+from app.groq_analyzer import FindingsOutput, GroqAnalyzer
 from app.models import RiskCategory, RiskLevel
 
 
@@ -86,3 +86,17 @@ def test_groq_needs_an_api_key_at_startup():
     with pytest.raises(ValueError, match="GROQ_API_KEY"):
         Settings.from_env({"DATABASE_URL": "x", "ANALYZER": "groq"})
     assert Settings.from_env({"DATABASE_URL": "x", "ANALYZER": "groq", "GROQ_API_KEY": "k"}).analyzer == "groq"
+
+
+def test_validation_errors_do_not_echo_contract_text():
+    secret = "SECRET CLAUSE TEXT from the contract"
+    bad = dict(category="other", risk_level="high", quoted_text=secret, explanation=secret, suggested_change="s" * 2001)
+    for model, data in (
+        (FindingDraft, bad),
+        (EmailDraftContent, {"subject": secret * 10, "body": secret}),
+        (AnalysisResult, {"findings": [bad], "email_draft": None}),
+        (FindingsOutput, {"findings": [bad]}),
+    ):
+        with pytest.raises(ValidationError) as raised:
+            model.model_validate(data)
+        assert "SECRET" not in str(raised.value) and "sss" not in str(raised.value)
