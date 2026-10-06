@@ -63,6 +63,9 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           CORS_ORIGINS: ${{ vars.CORS_ORIGINS }}
+          ANALYZER: ${{ vars.ANALYZER }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
         run: .github/scripts/lightsail-deploy.sh
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -73,12 +76,15 @@ jobs:
 
       # Vite inlines VITE_* at build time, so the frontend is rebuilt for every environment.
       # Its footer shows the backend image tag (sha-<7 hex>): both come from the same commit.
+      # VITE_ANALYZER comes from the same variable as the backend's ANALYZER, so the dialog
+      # and the Upload notice always describe the analyzer that actually runs.
       - name: Build and deploy the frontend
         working-directory: frontend
         env:
           IMAGE: ${{ inputs.image }}
           VITE_API_URL: ${{ steps.backend.outputs.url }}
           VITE_USE_MOCK: "false"
+          VITE_ANALYZER: ${{ vars.ANALYZER || 'stub' }}
           WRANGLER_ENV: ${{ inputs.wrangler-env }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
