@@ -40,6 +40,10 @@ WORKDIR /app
 # Root-owned and read-only for the app user: the container writes nothing to disk.
 COPY --from=build /app /app
 
+# The image tag (sha-<7 hex>), set by deploy-dev.yml; served by GET /version and shown on deploy.
+ARG APP_VERSION=local
+ENV APP_VERSION=$APP_VERSION
+
 USER app
 EXPOSE 8000
 

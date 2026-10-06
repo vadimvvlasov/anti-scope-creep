@@ -246,6 +246,10 @@ class HealthStatus(BaseModel):
     status: Literal["ok", "unavailable"]
 
 
+class VersionInfo(BaseModel):
+    version: str
+
+
 class ErrorBody(BaseModel):
     code: str
     message: str

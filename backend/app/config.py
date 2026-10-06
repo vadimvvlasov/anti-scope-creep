@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_CORS_ORIGINS = ("http://localhost:8080", "http://localhost:5173")
 SUPPORTED_ANALYZERS = ("stub",)
+# Deployed images carry their tag (sha-<7 hex>) in APP_VERSION; everything else is "local".
+DEFAULT_VERSION = "local"
 
 
 @dataclass(frozen=True)
@@ -20,6 +22,7 @@ class Settings:
     analyzer: str = "stub"
     cors_origins: tuple[str, ...] = DEFAULT_CORS_ORIGINS
     seed_demo_data: bool = True
+    version: str = DEFAULT_VERSION
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] = os.environ) -> "Settings":
@@ -33,6 +36,7 @@ class Settings:
             analyzer=analyzer,
             cors_origins=_split_origins(env.get("CORS_ORIGINS")),
             seed_demo_data=_parse_bool(env.get("SEED_DEMO_DATA", "true")),
+            version=env.get("APP_VERSION", "").strip() or DEFAULT_VERSION,
         )
 
 
