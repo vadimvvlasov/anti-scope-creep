@@ -8,6 +8,7 @@ dependencies = [
     "argon2-cffi>=25.1.0",
     "email-validator>=2.3.0",
     "fastapi>=0.142.2",
+    "httpx>=0.28.1",
     "langdetect>=1.0.9",
     "psycopg[binary]>=3.3.6",
     "pyjwt>=2.15.1",
@@ -29,7 +30,6 @@ filterwarnings = [
 
 [dependency-groups]
 dev = [
-    "httpx>=0.28.1",
     "pytest>=9.1.1",
     "pyyaml>=6.0.3",
 ]

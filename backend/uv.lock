@@ -47,6 +47,7 @@ dependencies = [
     { name = "argon2-cffi" },
     { name = "email-validator" },
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "langdetect" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pyjwt" },
@@ -58,7 +59,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "httpx" },
     { name = "pytest" },
     { name = "pyyaml" },
 ]
@@ -69,6 +69,7 @@ requires-dist = [
     { name = "argon2-cffi", specifier = ">=25.1.0" },
     { name = "email-validator", specifier = ">=2.3.0" },
     { name = "fastapi", specifier = ">=0.142.2" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "langdetect", specifier = ">=1.0.9" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.6" },
     { name = "pyjwt", specifier = ">=2.15.1" },
@@ -80,7 +81,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "httpx", specifier = ">=0.28.1" },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pyyaml", specifier = ">=6.0.3" },
 ]
