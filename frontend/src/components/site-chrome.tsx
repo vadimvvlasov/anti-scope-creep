@@ -2,6 +2,7 @@ import { Info } from "lucide-react";
 
 import { AuthorLinks, MethodologyLink } from "@/components/methodology-dialog";
 import { AUTHOR_BADGE, AUTHOR_NAME, METHODOLOGY_TITLE } from "@/lib/methodology";
+import { APP_VERSION } from "@/lib/version";
 
 const LINK_CLASS =
   "inline-flex items-center gap-1 rounded text-muted-foreground transition-colors hover:text-foreground";
@@ -28,7 +29,12 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-6 text-xs">
-        <span className="text-muted-foreground">Anti-Scope Creep</span>
+        <span className="text-muted-foreground">
+          Anti-Scope Creep{" "}
+          <span className="font-mono" title="Build version">
+            {APP_VERSION}
+          </span>
+        </span>
         <MethodologyLink className={LINK_CLASS}>{METHODOLOGY_TITLE}</MethodologyLink>
       </div>
     </footer>

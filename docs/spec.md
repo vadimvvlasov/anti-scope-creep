@@ -217,7 +217,7 @@ The authenticated app has a top navigation bar with: **History**, **New Analysis
 
 Every screen, including Login / Register, has:
 - the **author badge** in the header: `Engineered by Vadim Vlasov | AI Engineer`, with icon links to GitHub (`https://github.com/vadimvvlasov`) and LinkedIn (`https://www.linkedin.com/in/vadim-vlasov-181503b6`). Links open in a new tab (`rel="noopener noreferrer"`). On narrow screens it may shorten to `Vadim Vlasov`;
-- a **footer** with a `Methodology & Privacy` link. Both links open the [Methodology & Privacy dialog](#6-methodology--privacy-dialog).
+- a **footer** with the build version (`sha-<7 hex>` of the deployed commit, `local` in local builds) and a `Methodology & Privacy` link. Both links open the [Methodology & Privacy dialog](#6-methodology--privacy-dialog).
 
 ### 1. Login / Register
 
