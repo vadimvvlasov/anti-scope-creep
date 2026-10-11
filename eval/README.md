@@ -10,8 +10,8 @@ CI never calls Groq.
 | CUAD | `gold/cuad.jsonl` | 28 commercial contracts (≤ 60,000 characters) with a clear service provider | `uncapped_liability`, `one_sided_termination`, `ip_transfer_before_payment` | Recall and precision on clause types lawyers labeled; quote verification on real-world formatting |
 | Freelance | `gold/freelance.jsonl` | 10–15 contracts from `data/` | all six | All categories, severity, the no-finding rule |
 
-`gold/cuad.draft.jsonl` is the machine-made starting point; a record moves to
-`gold/cuad.jsonl` once it is reviewed.
+`gold/cuad.draft.jsonl` is the machine-made starting point. `gold/cuad.jsonl` holds the
+labeled records: `proposed` until a person reviews them, then `reviewed`.
 
 ### CUAD subset
 
@@ -25,7 +25,10 @@ contracts deterministically (stable order by a hash of the title):
   or joint ventures have no side to speak for;
 - strata, in order: Uncapped Liability (12), Termination for Convenience (7), IP
   Ownership Assignment (7, only 5 exist), and negatives (4): a liability cap and none of
-  the three clauses.
+  the three clauses;
+- `EXCLUDED` in the script lists contracts dropped in review (employment contracts,
+  joint ventures, a financial covenant) with the reason; the next contract of the same
+  stratum takes their place.
 
 ```bash
 python3 scripts/select_cuad.py --download
@@ -43,6 +46,21 @@ mapping needs a person:
 | Cap On Liability | none | Context only (`has_liability_cap`). |
 
 Severity is not in CUAD; the reviewer sets it by the spec's severity matrix.
+
+### Labeling rules
+
+Only the provider's exposure counts; a mutual clause counts when the provider is one of
+the parties.
+
+| Category | high | medium | low | no finding |
+|---|---|---|---|---|
+| `uncapped_liability` | Provider's liability explicitly unlimited | A cap exists but excludes the provider's indemnification obligations | - | Carve-outs only for confidentiality, gross negligence, willful misconduct, fraud (market standard); consequential-damages exclusions; clauses that limit the provider's liability |
+| `one_sided_termination` | Client may terminate immediately without paying for work done | Only the client may terminate for convenience, with notice, and work done is not paid | Only the client may terminate for convenience; work done is paid | Both parties may terminate; the client pays a termination fee; termination triggered by the provider's own act |
+| `ip_transfer_before_payment` | Provider's work product passes to the client on creation or delivery, with no payment condition | Passes on partial or milestone payment | Timing ambiguous | Assignment on full payment; IP flowing to the provider; assignment of contracts, not IP |
+
+A contract with no aggregate cap at all has no clause to quote, and the analyzer must
+quote. Its limitation clause is marked `optional`: a finding there is acceptable, not
+required.
 
 ## Record format (JSONL, one contract per line)
 
@@ -66,7 +84,8 @@ Severity is not in CUAD; the reviewer sets it by the spec's severity matrix.
     }
   ],
   "has_liability_cap": true,
-  "status": "draft" | "reviewed",
+  "status": "draft" | "proposed" | "reviewed",
+  "doubtful": false,
   "notes": ""
 }
 ```
@@ -75,16 +94,23 @@ Severity is not in CUAD; the reviewer sets it by the spec's severity matrix.
 - `evaluated_categories`: only these categories are scored for this contract. A
   prediction in another category is ignored, not counted as a false positive.
 - `expected[].decision`: `pending` (draft), `finding` (the analyzer should report it, with
-  `risk_level`), or `no_finding` (the clause exists but is not a risk under the spec; a
-  prediction on it is a false positive). A reviewer may add findings CUAD did not label
-  (`cuad_label: null`).
+  `risk_level`), `no_finding` (the clause exists but is not a risk under the spec; a
+  prediction on it is a false positive), or `optional` (a finding here is neither
+  rewarded nor penalized). A reviewer may add findings CUAD did not label, quoting another
+  CUAD span (`cuad_label: "Cap On Liability"`) or the contract (`cuad_label: null`).
+- `expected[].group`: entries with the same group are one risk spread over several
+  spans (a cap and its exclusions, an assignment and its further-assurances clause). A
+  prediction on any of them matches the finding; further predictions on the same group
+  are duplicates, not false positives.
+- `status`: `draft` (machine-made), `proposed` (labeled, waiting for review), `reviewed`.
+  `doubtful` marks records the labeler was unsure about.
 - `quote`: verbatim from the contract. Offsets are not stored: the scorer locates the
   quote in the analyzed text with `locate_quote`, the same function the analyzer uses.
 
 ## Scoring (implemented with the eval runner)
 
 - A prediction matches a gold finding when the category is the same and the quote spans
-  overlap in the analyzed text.
+  overlap in the analyzed text; a group counts once.
 - Per category: precision, recall; severity accuracy on matched findings.
 - Per run: share of invalid JSON responses, share of `quote_not_found` drops, tokens and
   seconds per contract.

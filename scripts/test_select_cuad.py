@@ -43,6 +43,10 @@ class CandidateTest(unittest.TestCase):
         self.assertFalse(select_cuad.is_candidate(contract("X_Co-Branding Agreement")))
         self.assertFalse(select_cuad.is_candidate(contract("X_Service Agreement", chars=select_cuad.MAX_TEXT_CHARS + 1)))
 
+    def test_excluded_titles_are_not_candidates(self):
+        title = next(iter(select_cuad.EXCLUDED))
+        self.assertFalse(select_cuad.is_candidate(contract(title)))
+
 
 class StratumTest(unittest.TestCase):
     def test_first_matching_stratum_wins(self):

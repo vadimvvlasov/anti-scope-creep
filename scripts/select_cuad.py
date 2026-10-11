@@ -46,6 +46,20 @@ CATEGORY_MAP = {
 CAP_LABEL = "Cap On Liability"
 EVALUATED_CATEGORIES = sorted(CATEGORY_MAP.values())
 
+# Read in review and dropped: the type matched, but there is no service provider to speak for.
+EXCLUDED = {
+    "PhotronicsInc_20171219_10-QA_EX-10.28_10982650_EX-10.28_Outsourcing Agreement":
+        "three-party joint-venture arrangement; no single provider",
+    "BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT":
+        "employment contract (UK service agreement with an employee)",
+    "THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT":
+        "employment contract (UK service agreement with an executive)",
+    "SUNTRONCORP_05_17_2006-EX-10.22-MAINTENANCE AGREEMENT":
+        "financial covenant of an investor in favor of a lender, not services",
+    "WARNERCHILCOTTPLC_12_31_2003-EX-4.36-DEVELOPMENT AGREEMENT":
+        "co-development between two pharma companies; the only cap covers force majeure",
+}
+
 # Contracts per stratum, in this order; a contract lands in the first stratum it fits.
 QUOTAS = {"uncapped": 12, "termination": 7, "ip": 7, "negative": 4}
 
@@ -81,7 +95,11 @@ def contract_type(title: str) -> str:
 
 def is_candidate(contract: dict) -> bool:
     kind = contract_type(contract["title"])
-    return len(contract["text"]) <= MAX_TEXT_CHARS and any(t in kind for t in PROVIDER_TYPES)
+    return (
+        len(contract["text"]) <= MAX_TEXT_CHARS
+        and contract["title"] not in EXCLUDED
+        and any(t in kind for t in PROVIDER_TYPES)
+    )
 
 
 def stratum(contract: dict) -> str | None:
