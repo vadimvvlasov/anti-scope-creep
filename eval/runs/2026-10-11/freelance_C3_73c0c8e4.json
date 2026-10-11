@@ -1,0 +1,43 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 1079,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 46.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2137,
+   "seconds": 29.07,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "The contract treats the budget as a non‑binding estimate and does not define a change‑order process, so the client can request additional work that may exceed the budget without a clear mechanism to limit or price it.",
+      "suggested_change": "The parties shall agree in writing on any change to the scope or budget, and any such change shall be documented in a mutually executed change order specifying the revised estimate and any associated additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 643,
+   "seconds": 17.1,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, could we address the following point?\n- The relevant clause states that the budget is a non‑binding estimate and that the Provider will notify the Client if scope changes threaten to exceed $150,000.00 USD. As written, it does not define a clear change‑order process, which could leave both parties uncertain about how additional work and fees are handled. Could we modify the clause to require that any change to scope or budget be agreed in writing and documented in a mutually executed change order that specifies the revised estimate and any associated additional fees?\n\nThank you for considering these adjustments. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,94 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "start": 8048,
+   "end": 8215
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 12920,
+   "end": 12945
+  }
+ ],
+ "email": true,
+ "seconds": 101.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3959,
+   "seconds": 46.35,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "You can be kicked out at the client’s whim with no compensation, leaving you unpaid for work done.",
+      "suggested_change": "Either party may terminate this Agreement for material breach if the breach remains uncured for 15 days after written notice."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "The client receives ownership of your work before you have been fully paid, risking non‑payment after you lose the IP.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to Client upon full payment of all undisputed invoices."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+      "explanation": "The liability cap is higher than the total fees, exposing you to liability far beyond what you are paid.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement shall be capped at an amount not exceeding the total fees payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2748,
+   "seconds": 35.52,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The liability limit is higher than the total fee you will receive, so you could be liable for more than you are paid.",
+      "suggested_change": "Liability cap shall not exceed the total fees payable under this Agreement, i.e., USD 24,875."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1009,
+   "seconds": 19.24,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before signing, I’d like to suggest a few adjustments to the agreement for clarity and mutual protection:\n\n- The relevant clause currently allows the client to terminate the agreement at any time without notice or further payment. This could leave work unpaid if termination occurs abruptly. I propose that either party may terminate only for material breach that remains uncured for 15 days after written notice.\n- The clause on intellectual property states that all rights in each deliverable transfer to the client upon delivery. This means ownership would shift before full payment is received, creating a risk of non‑payment. I suggest that the transfer of rights occur upon full payment of all undisputed invoices.\n- The liability provision caps the aggregate liability of either party at USD 35,000, which exceeds the total fees and could expose me to liability far beyond the compensation. I recommend capping liability at an amount not exceeding the total fees payable under the agreement.\n- The separate liability cap of USD 35,000 similarly exceeds the total fee. To align the limit with the fee structure, the cap should not exceed the total fees payable, i.e., USD 24,875.\n\nThank you for considering these changes. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

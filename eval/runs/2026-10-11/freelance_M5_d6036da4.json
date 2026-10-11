@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13100,
+   "end": 13125
+  }
+ ],
+ "email": true,
+ "seconds": 100.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3793,
+   "seconds": 46.12,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "You can be ended by the client with short notice and won’t be paid for work you’re already doing, while you have no similar right. This heavily favors the client.",
+      "suggested_change": "Either party may terminate for convenience upon 30 days' written notice. If terminated, the Client will pay for all Services performed up to the effective termination date on a pro rata basis."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "The client gets ownership of all deliverables after only the first partial payment, leaving you without IP protection until full payment is received.",
+      "suggested_change": "All rights in Deliverables shall transfer to the Client only upon full and final payment of all invoices related to the Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2834,
+   "seconds": 35.74,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The liability cap is higher than the total fee you will receive, so you could be on the hook for more than you earn.",
+      "suggested_change": "Liability cap: the Contractor's total liability shall not exceed the total fees paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 909,
+   "seconds": 18.44,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n- The termination clause currently allows the Client to end the agreement with 20 days' notice while the Contractor has no similar right, and fees for work in progress are not payable. I propose that either party may terminate for convenience upon 30 days' written notice, and the Client will pay for all Services performed up to the effective termination date on a pro‑rata basis.\n- The ownership clause transfers all rights in the Deliverables to the Client after the first milestone invoice is paid, which leaves the Contractor without IP protection until full payment. I suggest that rights in the Deliverables shall transfer to the Client only upon full and final payment of all invoices related to those Deliverables.\n- The liability cap is set at USD 35,000, which exceeds the total fees the Contractor will receive. I recommend that the Contractor's total liability be limited to the total fees paid under the agreement.\n\nPlease let me know if these revisions are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

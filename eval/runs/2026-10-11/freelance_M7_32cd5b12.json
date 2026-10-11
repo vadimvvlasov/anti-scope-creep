@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  }
+ ],
+ "email": true,
+ "seconds": 46.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2316,
+   "seconds": 29.11,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You give up all IP rights as soon as you deliver work, but you may not be paid for up to 90 days after final acceptance, leaving you without compensation while the client owns the code.",
+      "suggested_change": "Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed for that Milestone."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "You may have to wait up to 90 days after the whole project is accepted before receiving any payment, which can strain cash flow.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the respective Milestone deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 782,
+   "seconds": 17.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to suggest a couple of adjustments:\n- The relevant clause currently transfers all intellectual property rights to the client upon delivery of each Milestone. This would give up the rights before receiving payment, which could leave the developer uncompensated. I propose that the assignment of rights occur only after receipt of full payment for each Milestone.\n- The agreement states that payment is due within ninety (90) days after the client’s final acceptance of the complete software. Waiting that long after the entire project is accepted may strain cash flow. I suggest changing the payment term to thirty (30) days after the client’s acceptance of each Milestone deliverable.\n\nPlease let me know if these revisions are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 33,000",
+   "start": 13077,
+   "end": 13102
+  }
+ ],
+ "email": true,
+ "seconds": 99.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3588,
+   "seconds": 45.24,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "You will only be paid after 90 days, which can strain cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2888,
+   "seconds": 36.53,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You will have to wait 90 days to be paid, which greatly delays cash flow and increases financial risk.",
+      "suggested_change": "Payment period: Net 30"
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 33,000",
+      "explanation": "The liability limit is higher than the total fee, exposing you to potential losses beyond what you are paid.",
+      "suggested_change": "Liability cap: not to exceed the total fees payable under this Agreement"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 782,
+   "seconds": 17.3,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I’d like to suggest a few small adjustments for clarity and practicality:\n- The relevant clause states \"Invoices are payable Net 90.\" This term would delay payment for three months, which could strain cash flow. I propose changing it to \"Invoices are payable Net 30.\"\n- The relevant clause reads \"Payment period: Net 90.\" A 90‑day payment period similarly postpones funds and creates financial pressure. I suggest revising it to \"Payment period: Net 30.\"\n- The relevant clause limits liability to \"USD 33,000.\" Because this amount exceeds the total fees payable under the agreement, it could expose me to losses beyond what I am compensated. I recommend adjusting the clause to read \"Liability cap: not to exceed the total fees payable under this Agreement.\"\n\nPlease let me know if these modifications are acceptable. I look forward to moving ahead.\n\nThank you,\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}
