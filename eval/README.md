@@ -8,7 +8,7 @@ CI never calls Groq.
 | Set | File | Contracts | Categories labeled | What it measures |
 |---|---|---|---|---|
 | CUAD | `gold/cuad.jsonl` | 28 commercial contracts (≤ 60,000 characters) with a clear service provider | `uncapped_liability`, `one_sided_termination`, `ip_transfer_before_payment` | Recall and precision on clause types lawyers labeled; quote verification on real-world formatting |
-| Freelance | `gold/freelance.jsonl` | 10–15 contracts from `data/` | all six | All categories, severity, the no-finding rule |
+| Freelance | `gold/freelance.jsonl` | 12 synthetic contracts: 3 clean controls, 1 natural positive, 7 mutants, 1 decoy | all six | Every category at high and medium, severity, boundaries, the no-finding rule |
 
 `gold/cuad.draft.jsonl` is the machine-made starting point. `gold/cuad.jsonl` holds the
 labeled records: `proposed` until a person reviews them, then `reviewed`.
@@ -69,6 +69,43 @@ the parties.
 A contract with no aggregate cap at all has no clause to quote, and the analyzer must
 quote. Its consequential-damages exclusion is still `no_finding`: quoting it as uncapped
 liability confuses a waiver of indirect damages with a missing cap on direct ones.
+
+### Freelance set (minimal pairs)
+
+The contracts in `data/` are pseudonymization fixtures generated from two templates:
+`data/24`-`data/43` differ only in the payment term and the number of revision rounds,
+and are otherwise balanced. Labeling them would give near-duplicate negatives and no
+recall signal for scope creep, revisions or payment, so the set is built by mutation
+instead. `scripts/build_freelance_set.py` takes clean bases and replaces two or three
+clauses with risky wording of a known category and severity; every other character stays
+the same, so any finding outside the replaced clauses is a false alarm. Where a term is
+repeated (Schedule A, the commercial summary), all repeats change together and form one
+gold finding.
+
+```bash
+python3 scripts/build_freelance_set.py   # writes eval/freelance/*.txt and gold/freelance.jsonl
+```
+
+| Id | Base | Planted risks |
+|---|---|---|
+| C1, C2, C3 | `data/25`, `data/2`, `data/3` | none: Net 30, 3 revision rounds, IP on full payment, mutual termination with pay; T&M with a non-binding estimate (hard case) |
+| P1 | `data/24` | payment Net 90 (high), as generated |
+| M1 | `data/25` | scope creep high (any requested service at no charge, change requests removed), unlimited revisions high |
+| M2 | `data/25` | IP on delivery high, client termination without notice or pay high |
+| M3 | `data/25` | pay-when-paid high, contractor liability without limitation high |
+| M4 | `data/25` | scope medium (reasonable changes within budget), 15 revision rounds medium, Net 60 medium |
+| M5 | `data/25` | IP on first milestone payment medium, client-only termination without pay for work in progress medium, cap excluding the contractor's indemnity medium |
+| M6 | `data/25` | Net 40 low, client-only termination with pay low |
+| D1 | `data/25` | none: decoy wording ("unlimited number of questions", "unlimited copies", "within 30 days", "terminate at any time" with pay) |
+| M7 | `data/2` | payment 90 days after final acceptance high, IP on milestone delivery high |
+
+17 gold findings; every category has a high and a medium one. Low is planted only for
+payment and termination: the spec's low thresholds for scope, revisions and IP ("minor
+vague wording") are too loose to label without dispute. Net 61-89 is not used: the
+severity matrix does not cover it.
+
+Limit: the texts are synthetic, so this set measures whether the model applies the
+spec's rules, not how it reads real contracts; that is the CUAD set's job.
 
 ## Record format (JSONL, one contract per line)
 
