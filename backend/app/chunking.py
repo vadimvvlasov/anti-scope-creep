@@ -1,6 +1,6 @@
 """Splitting a contract into chunks that fit one LLM request (docs/architecture.md, section 4).
 
-A 30,000-character contract plus the prompt and the answer exceeds the free-tier limit of
+A 60,000-character contract plus the prompt and the answer exceeds the free-tier limit of
 8,000 tokens per minute, so it is analyzed in chunks of about 12,000 characters, cut on
 paragraph boundaries. Quotes are verified against the full source text afterwards, so a
 chunk does not need to reproduce the original whitespace between paragraphs.

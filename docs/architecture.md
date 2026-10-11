@@ -133,11 +133,11 @@ Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free 
 
 ### Consequences for analysis
 
-- The product limit is **30,000 characters** (about 7,500 tokens, about 10 pages; typical freelance contracts and SOWs are 3–10 pages). The limit follows from the provider limits: 100,000 characters would take about 9 minutes per contract and allow only about 3 such contracts per day.
-- Even 7,500 tokens plus the prompt and output exceed 8,000 tokens/min, so a long contract still cannot go in one request.
-- **Chunking:** split `source_text` on paragraph boundaries into chunks of up to about 12,000 characters (about 3,000 tokens). With the system prompt (about 1,500 tokens) and structured output including reasoning (up to about 2,000 tokens), one request stays near 6,500 tokens: one chunk per minute.
-- A maximum-size contract takes 3 chunks plus the email request, so **about 3–4 minutes**. That fits inside the frontend's 5-minute polling window; `ANALYSIS_STALE_AFTER_SECONDS` defaults to 600, which leaves room for rate-limit backoff.
-- Daily budget: a maximum-size contract costs about 22,000 tokens, so about 9 maximum-size contracts per day, or many more short ones, minus history queries. Enough for development and a demo.
+- The product limit is **60,000 characters** (about 20 pages at about 2,900 characters per page, the CUAD average; typical freelance contracts and SOWs are 3–10 pages, an MSA with its SOW fits with room to spare). Raised from 30,000 on 2026-10-11: at 30,000 only 238 of the 510 CUAD contracts (47%) fit, and only 14 with an Uncapped Liability clause; at 60,000, 365 (72%) and 55. Above that, time per contract is the constraint (below), not the model context (131K tokens).
+- A long contract cannot go in one request: its tokens plus the prompt and the output exceed 8,000 tokens/min.
+- **Chunking:** split `source_text` on paragraph boundaries into chunks of up to about 12,000 characters (about 3,000 tokens). With the system prompt (about 1,500 tokens) and structured output including reasoning (up to about 2,000 tokens), one request stays near 6,500 tokens: one chunk per minute at most.
+- Measured with `gpt-oss-120b`: 30,000 characters (3 chunks plus the email) take about 11,000 tokens and 2.5 minutes; a 55,000-character CUAD contract (5 chunks plus the email) about 19,000 tokens and 3 minutes. A maximum-size contract is therefore about 21,000 tokens and **about 3.5 minutes**, inside the frontend's 5-minute polling window. Two maximum-size analyses at once share the per-minute budget and take about 7 minutes: the UI shows `Analysis is taking longer than expected`, and `ANALYSIS_STALE_AFTER_SECONDS` (600) still leaves room. 100,000 characters would take 6 minutes or more for one contract.
+- Daily budget: about 9 maximum-size contracts per day, or many more short ones (a 3,000-character contract is about 2,000 tokens), minus history queries. Enough for development and a demo.
 - A token-bucket limiter in the backend spaces requests below the per-minute limit; `429` responses are retried with exponential backoff (up to 5 attempts, honoring `retry-after`). When retries are exhausted, the analysis fails with the normal failure rule.
 - Structured output is validated with Pydantic; quotes are verified against `source_text` (spec: Quote verification). The email is generated in a final request from the verified `high` and `medium` findings.
 
@@ -365,7 +365,7 @@ Decided on 2026-09-29; backend hosting changed on 2026-10-04. No open decisions 
 
 | Topic | Decision | Revisit when |
 |---|---|---|
-| Maximum contract length | 30,000 characters, all phases | Moving to a paid LLM tier, or LoRA preselection cuts tokens per contract |
+| Maximum contract length | 60,000 characters, all phases (raised from 30,000 on 2026-10-11 for CUAD coverage, see section 4) | Moving to a paid LLM tier, or LoRA preselection cuts tokens per contract |
 | LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL | Groq changes free-tier models or limits |
 | CUAD/LoRA + MLflow | **Stretch goal**, built only after phases 1–6. Role: preselect candidate clauses before the LLM | Core phases are done before the capstone deadline |
 | Background execution | In-process `BackgroundTasks` on an always-on Lightsail container, plus the stale-analysis rule. A task queue is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics) |

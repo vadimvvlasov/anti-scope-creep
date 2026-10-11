@@ -139,5 +139,5 @@ export const LEGAL_DISCLAIMER =
   "Anti-Scope Creep uses automated AI analysis to identify potential commercial contract risks and does not constitute professional legal advice.";
 
 export const MAX_FILE_BYTES = 5 * 1024 * 1024;
-export const MAX_TEXT_LENGTH = 30000;
+export const MAX_TEXT_LENGTH = 60000;
 export const MAX_TITLE_LENGTH = 250;

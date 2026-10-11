@@ -19,7 +19,7 @@ from app.models import MAX_TITLE_LENGTH, FileType
 logger = logging.getLogger(__name__)
 
 MAX_FILE_BYTES = 5_242_880
-MAX_TEXT_CHARS = 30_000
+MAX_TEXT_CHARS = 60_000
 MAX_FILENAME_LENGTH = 255
 # Language detection thresholds: fewer letters than this cannot be classified reliably,
 # and the top language must reach this probability to count as "confidently detected".
