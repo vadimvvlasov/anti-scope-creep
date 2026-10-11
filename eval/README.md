@@ -62,7 +62,7 @@ the parties.
 
 | Category | high | medium | low | no finding |
 |---|---|---|---|---|
-| `uncapped_liability` | Provider's liability explicitly unlimited | A cap exists but excludes the provider's indemnification obligations | - | Carve-outs only for confidentiality, gross negligence, willful misconduct, fraud (market standard); consequential-damages exclusions; clauses that limit the provider's liability |
+| `uncapped_liability` | Provider's liability explicitly unlimited | A cap exists but excludes the provider's indemnification obligations | - | Carve-outs only for confidentiality, gross negligence, willful misconduct, fraud (market standard); consequential-damages exclusions; clauses that limit the provider's liability; a fixed cap up to 2x the contract value (decided 2026-10-11 after the first run; the spec's "unusually high cap" has no threshold yet) |
 | `one_sided_termination` | Client may terminate immediately without paying for work done | Only the client may terminate for convenience, with notice, and work done is not paid | Only the client may terminate for convenience; work done is paid | Both parties may terminate; the client pays a termination fee; termination triggered by the provider's own act |
 | `ip_transfer_before_payment` | Provider's work product passes to the client on creation or delivery, with no payment condition | Passes on partial or milestone payment | Timing ambiguous | Assignment on full payment; IP flowing to the provider; assignment of contracts, not IP |
 
