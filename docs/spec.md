@@ -39,7 +39,7 @@ Hosting, CI/CD, database operations, the LLM provider setup, and the agent/obser
 
 - English contracts only.
 - Maximum uploaded file size: **5 MB** (5,242,880 bytes).
-- Maximum contract text length: **30,000 characters** after extraction/normalization (applies to files and pasted text; about 10 pages). The limit is set by the LLM provider's free-tier token limits, see `docs/architecture.md`.
+- Maximum contract text length: **60,000 characters** after extraction/normalization (applies to files and pasted text; about 20 pages). The limit is set by the LLM provider's free-tier token limits, see `docs/architecture.md`.
 - No OCR in the MVP; scanned/image-only PDFs are rejected.
 - One contract per submission.
 - Users see only contracts belonging to their authenticated account.
@@ -263,7 +263,7 @@ Purpose: submit exactly one contract.
 
 Input options (tabs or segmented control):
 - **Upload file:** drag-and-drop area plus file picker; accepts `.pdf` and `.txt`.
-- **Paste text:** textarea with a live character counter (`N / 30,000`).
+- **Paste text:** textarea with a live character counter (`N / 60,000`).
 
 Fields:
 - `title` input. Required for pasted text. Optional for files; when empty, the filename is used. Max 250 characters.
@@ -272,10 +272,10 @@ Client-side checks before submitting (the server re-validates everything):
 - exactly one input source;
 - file extension `.pdf` or `.txt`;
 - file size ≤ 5 MB;
-- pasted text 1–30,000 characters;
+- pasted text 1–60,000 characters;
 - title present for pasted text, ≤ 250 characters.
 
-Helper text lists the limits: `PDF or TXT, up to 5 MB and 30,000 characters. English only. Scanned PDFs are not supported.`
+Helper text lists the limits: `PDF or TXT, up to 5 MB and 60,000 characters. English only. Scanned PDFs are not supported.`
 
 On submit: disable the button, show progress, and on `202` navigate to Contract Details of the new contract. On error, show the error `message` from the API next to the form.
 
@@ -462,7 +462,7 @@ The initial implementation may use an in-memory repository, but the model must m
 | `title` | string | required, 1–250 characters after trimming | User-editable. File uploads default to filename; pasted text requires user input. |
 | `file_type` | enum | `pdf` or `txt` | Pasted text uses `txt`. |
 | `file_size` | integer bytes / nullable | `0..5,242,880`; `null` for pasted text | Size of the uploaded file; the file itself is not persisted. |
-| `source_text` | text | required, 1–30,000 characters after extraction/normalization | Full extracted/pasted contract text. Returned only in `ContractDetail` (Contract Reader); never in list responses. |
+| `source_text` | text | required, 1–60,000 characters after extraction/normalization | Full extracted/pasted contract text. Returned only in `ContractDetail` (Contract Reader); never in list responses. |
 | `status` | enum | `uploaded`, `analyzing`, `done`, `failed` | State machine defined below. |
 | `created_at` | datetime (UTC) | required | Creation timestamp. |
 | `updated_at` | datetime (UTC) | required | Updated on every contract mutation/status change. |
@@ -676,7 +676,7 @@ Any protected operation can also return `401 UNAUTHORIZED`.
 **`POST /contracts`**
 - Exactly one of `file` or `text` must be present; otherwise `422 INVALID_CONTRACT_INPUT`.
 - `file`: `.pdf` or `.txt`, ≤ 5 MB. Extension, MIME type, and file signature are all checked.
-- `text`: 1–30,000 characters after normalization.
+- `text`: 1–60,000 characters after normalization.
 - `title`: required when `text` is used; optional for `file` (defaults to the filename); 1–250 characters after trimming.
 - The binary is discarded right after text extraction.
 - The response is the new contract with `status: "analyzing"`, `analyzed_at: null`, `risk_summary: null`, `findings: []`, `email_draft: null`.
@@ -784,7 +784,7 @@ The mock is a complete, realistic, in-memory implementation of `ApiClient`, so t
 - Data lives in memory and resets on page reload; the token persists in `localStorage`. After a reload, a mock token is still accepted for the seeded demo user.
 - Auth: register/login with the same validation rules; issues a fake token string; expired/unknown tokens produce `401 UNAUTHORIZED`.
 - Ownership: contracts of another user return `404 CONTRACT_NOT_FOUND`.
-- Upload validation: exactly one input, `.pdf`/`.txt` extension, ≤ 5 MB, ≤ 30,000 characters, title rules. The mock does not read files: a file's `source_text` is a short sample agreement containing the three stub fixture quotes. Pasted text is stored as typed.
+- Upload validation: exactly one input, `.pdf`/`.txt` extension, ≤ 5 MB, ≤ 60,000 characters, title rules. The mock does not read files: a file's `source_text` is a short sample agreement containing the three stub fixture quotes. Pasted text is stored as typed.
 - Analysis simulation: a new or retried contract stays `analyzing` for about 5 seconds, then becomes `done` with the [stub analyzer fixture](#mvp-stub-analyzer). Offsets: first exact occurrence of `quoted_text` in `source_text`, else `null`.
 - Export: builds an openable PDF/DOCX with the [report content](#operation-details) as plain text and simple tables, named per the API rule; `409 NO_ANALYSIS_RESULTS` without results. Never `501`.
 - Test triggers (mock only), matched in pasted text or filename:
@@ -1122,7 +1122,7 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Not exactly one of file/text supplied | 422 | `INVALID_CONTRACT_INPUT` | `Provide either a file or pasted text, not both.` |
 | Wrong file extension/MIME/signature | 422 | `INVALID_FILE_FORMAT` | `Only PDF and TXT files are supported.` |
 | File over 5 MB | 422 | `FILE_TOO_LARGE` | `The file is larger than 5 MB.` |
-| Contract text over 30,000 characters | 422 | `CONTRACT_TOO_LARGE` | `The contract text is longer than 30,000 characters.` |
+| Contract text over 60,000 characters | 422 | `CONTRACT_TOO_LARGE` | `The contract text is longer than 60,000 characters.` |
 | Password-protected/encrypted PDF | 422 | `ENCRYPTED_PDF_NOT_SUPPORTED` | `Password-protected PDFs are not supported.` |
 | Corrupt/unparseable PDF | 422 | `UNPARSEABLE_PDF` | `The PDF could not be read.` |
 | Scanned/image-only PDF | 422 | `PDF_TEXT_EXTRACTION_FAILED` | `No text could be extracted. Scanned PDFs are not supported.` |
@@ -1153,7 +1153,7 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 - Reject password-protected/encrypted PDFs.
 - Reject corrupted or unparseable PDFs.
 - Extract text before persistence.
-- Reject text above 30,000 characters.
+- Reject text above 60,000 characters.
 - Run lightweight language detection (`langdetect` or equivalent) after extraction/loading.
 - Accept only confidently detected English.
 - Very short or ambiguous text must be rejected rather than sent to the analyzer.
@@ -1352,7 +1352,7 @@ Implement `POST /contracts/{id}/export` on the backend, replacing the `501` stub
 
 - The file is generated in memory per request and streamed back; it is never stored.
 - Libraries (approved 2026-10-06): `fpdf2` for PDF, with DejaVu Sans embedded so that non-Latin-1 characters render, and `python-docx` for DOCX.
-- Generation is synchronous. A contract is at most 30,000 characters, so a report stays small.
+- Generation is synchronous. A contract is at most 60,000 characters, so a report stays small.
 
 ### Pro tier and white-labeled reports
 
@@ -1397,7 +1397,7 @@ The MVP is complete when all of the following are true:
 1. A new user can register and log in with email/password and receive a 24-hour HS256 JWT.
 2. Protected endpoints enforce authenticated ownership with `user_id` and return `404` for contracts owned by other users.
 3. A user can submit exactly one PDF, `.txt`, or pasted-text contract via `multipart/form-data`.
-4. File size (5 MB) and text length (30,000 characters) limits are enforced exactly as specified.
+4. File size (5 MB) and text length (60,000 characters) limits are enforced exactly as specified.
 5. PDFs are rejected when encrypted, corrupted, unparseable, or image-only.
 6. Non-English and language-undetermined text is rejected before analysis.
 7. Upload creates a contract, discards the binary, and transitions the contract to `analyzing` automatically.

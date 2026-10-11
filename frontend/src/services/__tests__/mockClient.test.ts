@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ApiError } from "../errors";
 import { MockApiClient } from "../mock/mockClient";
 import { DEMO_EMAIL, DEMO_PASSWORD, OTHER_EMAIL } from "../mock/seed";
+import { MAX_TEXT_LENGTH } from "../types";
 
 // Mid-month, so "this month" covers seeded contracts from the last few days.
 const MID_MONTH = Date.parse("2026-09-20T12:00:00Z");
@@ -130,7 +131,7 @@ describe("upload validation", () => {
       code: "VALIDATION_ERROR",
     });
     await expect(
-      client.createContract({ text: "x".repeat(30001), title: "Long" }),
+      client.createContract({ text: "x".repeat(MAX_TEXT_LENGTH + 1), title: "Long" }),
     ).rejects.toMatchObject({ code: "CONTRACT_TOO_LARGE" });
   });
 

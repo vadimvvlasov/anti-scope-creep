@@ -31,7 +31,7 @@ export const Route = createFileRoute("/new-analysis")({
 });
 
 const HELPER =
-  "PDF or TXT, up to 5 MB and 30,000 characters. English only. Scanned PDFs are not supported.";
+  "PDF or TXT, up to 5 MB and 60,000 characters. English only. Scanned PDFs are not supported.";
 
 function NewAnalysisPage() {
   useRequireAuth();
@@ -84,7 +84,7 @@ function NewAnalysisPage() {
         return;
       }
       if (text.length > MAX_TEXT_LENGTH) {
-        setError("The contract text is longer than 30,000 characters.");
+        setError("The contract text is longer than 60,000 characters.");
         return;
       }
       if (!trimmedTitle) {
@@ -163,7 +163,7 @@ function NewAnalysisPage() {
               className="font-mono text-sm"
             />
             <p className="text-right text-xs text-muted-foreground">
-              {text.length.toLocaleString()} / 30,000
+              {text.length.toLocaleString()} / 60,000
             </p>
           </TabsContent>
         </Tabs>

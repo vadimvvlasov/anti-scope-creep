@@ -43,7 +43,7 @@ _DEFAULTS: dict[ErrorCode, tuple[int, str]] = {
     ErrorCode.INVALID_CONTRACT_INPUT: (422, "Provide either a file or pasted text, not both."),
     ErrorCode.INVALID_FILE_FORMAT: (422, "Only PDF and TXT files are supported."),
     ErrorCode.FILE_TOO_LARGE: (422, "The file is larger than 5 MB."),
-    ErrorCode.CONTRACT_TOO_LARGE: (422, "The contract text is longer than 30,000 characters."),
+    ErrorCode.CONTRACT_TOO_LARGE: (422, "The contract text is longer than 60,000 characters."),
     ErrorCode.ENCRYPTED_PDF_NOT_SUPPORTED: (422, "Password-protected PDFs are not supported."),
     ErrorCode.UNPARSEABLE_PDF: (422, "The PDF could not be read."),
     ErrorCode.PDF_TEXT_EXTRACTION_FAILED: (

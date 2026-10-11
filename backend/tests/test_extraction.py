@@ -137,7 +137,7 @@ def test_pdf_without_text_is_rejected():
 # -- text length and language ------------------------------------------------------
 
 
-def test_text_limit_is_30000_characters_after_normalization():
+def test_text_limit_is_60000_characters_after_normalization():
     at_limit = (ENGLISH_CONTRACT + " ") * (MAX_TEXT_CHARS // (len(ENGLISH_CONTRACT) + 1))
     at_limit = at_limit + "x" * (MAX_TEXT_CHARS - len(at_limit))
     assert len(check_text(at_limit)) == MAX_TEXT_CHARS

@@ -12,11 +12,11 @@ def test_a_short_text_is_one_chunk():
     assert chunk_text("First paragraph.\n\nSecond paragraph.") == ["First paragraph.\n\nSecond paragraph."]
 
 
-def test_a_30000_character_contract_fits_in_three_chunks_on_paragraph_boundaries():
-    paragraphs = [paragraph(n, 1_500) for n in range(20)]
+def test_a_60000_character_contract_fits_in_six_chunks_on_paragraph_boundaries():
+    paragraphs = [paragraph(n, 1_500) for n in range(40)]
     chunks = chunk_text("\n\n".join(paragraphs))
 
-    assert len(chunks) == 3
+    assert len(chunks) == 6
     assert all(len(c) <= DEFAULT_MAX_CHARS for c in chunks)
     assert [p for c in chunks for p in c.split("\n\n")] == paragraphs  # nothing lost, order kept
 

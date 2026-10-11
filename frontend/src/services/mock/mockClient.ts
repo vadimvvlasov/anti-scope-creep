@@ -250,7 +250,7 @@ export class MockApiClient implements ApiClient {
         throw new ApiError(
           422,
           "CONTRACT_TOO_LARGE",
-          "The contract text is longer than 30,000 characters.",
+          "The contract text is longer than 60,000 characters.",
         );
       }
       trigger = text;
