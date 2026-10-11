@@ -26,9 +26,17 @@ contracts deterministically (stable order by a hash of the title):
 - strata, in order: Uncapped Liability (12), Termination for Convenience (7), IP
   Ownership Assignment (7, only 5 exist), and negatives (4): a liability cap and none of
   the three clauses;
-- `EXCLUDED` in the script lists contracts dropped in review (employment contracts,
-  joint ventures, a financial covenant) with the reason; the next contract of the same
-  stratum takes their place.
+- `EXCLUDED` in the script lists the seven contracts dropped in review, with the reason:
+  two employment contracts, a three-party joint venture, a joint-venture supply deal
+  between related companies, an intra-group agreement, a lender covenant, and a pharma
+  co-development. The next contract of the same stratum takes their place.
+
+Reviewed 2026-10-11: 28 contracts, 847,215 characters. 13 gold findings in 10 contracts
+(`uncapped_liability` medium 5, `ip_transfer_before_payment` high 5,
+`one_sided_termination` low 2 and medium 1), 27 CUAD spans that are `no_finding`, and 18
+contracts with no gold finding at all. This set mostly measures false alarms; with 13
+findings, recall moves by 8 points per miss, so recall and severity rest on the
+freelance set.
 
 ```bash
 python3 scripts/select_cuad.py --download
@@ -59,8 +67,8 @@ the parties.
 | `ip_transfer_before_payment` | Provider's work product passes to the client on creation or delivery, with no payment condition | Passes on partial or milestone payment | Timing ambiguous | Assignment on full payment; IP flowing to the provider; assignment of contracts, not IP |
 
 A contract with no aggregate cap at all has no clause to quote, and the analyzer must
-quote. Its limitation clause is marked `optional`: a finding there is acceptable, not
-required.
+quote. Its consequential-damages exclusion is still `no_finding`: quoting it as uncapped
+liability confuses a waiver of indirect damages with a missing cap on direct ones.
 
 ## Record format (JSONL, one contract per line)
 

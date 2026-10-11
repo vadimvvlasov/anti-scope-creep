@@ -48,6 +48,10 @@ EVALUATED_CATEGORIES = sorted(CATEGORY_MAP.values())
 
 # Read in review and dropped: the type matched, but there is no service provider to speak for.
 EXCLUDED = {
+    "Loop Industries, Inc. - Marketing Agreement":
+        "joint-venture supply arrangement between related companies, not vendor-client",
+    "FEDERATEDGOVERNMENTINCOMESECURITIESINC_04_28_2020-EX-99.SERV AGREE-SERVICES AGREEMENT":
+        "intra-group agreement between affiliates of one fund group, not vendor-client",
     "PhotronicsInc_20171219_10-QA_EX-10.28_10982650_EX-10.28_Outsourcing Agreement":
         "three-party joint-venture arrangement; no single provider",
     "BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT":
