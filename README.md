@@ -2,7 +2,8 @@
 
 [![CI](https://github.com/vadimvvlasov/anti-scope-creep/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vadimvvlasov/anti-scope-creep/actions/workflows/ci.yml)
 
-**Live:** https://anti-scope-creep.vadimvlasov.workers.dev (register any email; the analyzer is still the stub, see below)
+**Live:** https://anti-scope-creep.vadimvlasov.workers.dev (register any email; contracts are analyzed by the Groq LLM analyzer, see the
+[AI data policy](docs/ai-data-policy.md))
 
 ## Problem
 
@@ -51,9 +52,10 @@ What the app does today:
   auth with 24-hour JWTs, contract upload (PDF, TXT, pasted text), background
   analysis, findings, client email draft, history with pagination
 - PostgreSQL through SQLAlchemy, schema managed by Alembic migrations
-- Deterministic stub analyzer: every contract gets the same fixture findings from
-  [`docs/spec.md`](docs/spec.md). The LLM analyzer and the risk classifier replace
-  it in later phases
+- LLM analyzer on Groq (`openai/gpt-oss-120b`) in dev and prod: names and contact
+  details are pseudonymized before the call, and a finding whose quote is not in the
+  contract is dropped. Locally (`ANALYZER=stub`, the default) a deterministic stub
+  returns the fixture findings from [`docs/spec.md`](docs/spec.md)
 - History Search answers from mock data in mock mode; the real backend returns
   `501` (`History search is coming soon.`) until the text-to-SQL agent phase
 
@@ -66,7 +68,7 @@ Added in Phase 2:
 - Automatic deploy of `main` to a dev environment and a manual, approved promotion
   of the same image to prod (see [Deploy](#deploy))
 
-Not yet: the LLM analyzer, the fine-tuned classifier, the text-to-SQL agent,
+Not yet: the fine-tuned classifier, the text-to-SQL agent,
 monitoring.
 
 Product rules live in [`docs/spec.md`](docs/spec.md), infrastructure and phases in
