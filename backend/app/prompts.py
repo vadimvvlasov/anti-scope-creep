@@ -22,12 +22,16 @@ findings, and an empty list is a correct answer.
 CATEGORIES AND SEVERITY (risk_level):
 1. scope_creep - scope is open-ended, deliverables are undefined, or additional work can be \
 requested without a defined change-order mechanism.
-   high: open-ended scope and no change-order mechanism. medium: ambiguous scope, but some \
-boundaries exist. low: minor vague wording while deliverables are otherwise defined.
+   high: no change-order mechanism, so any extra work can be requested at no charge. medium: \
+the freelancer must accept changes without extra pay, but a boundary exists (for example \
+reasonable changes within the overall budget, with a written change request beyond it). low: \
+minor vague wording while deliverables are otherwise defined. If every scope change requires a \
+written change order with its own price, it is not a finding.
 2. unlimited_revisions - revisions are explicitly unlimited, have no meaningful cap, or the \
 allowance is unusually high or materially ambiguous.
-   high: explicitly unlimited or no meaningful limitation. medium: ambiguous or unusually high \
-cap. low: minor flexibility beyond a normal revision process.
+   high: explicitly unlimited or no limit at all. medium: 6 or more revision rounds, or an \
+otherwise materially ambiguous allowance. low: 4 or 5 rounds, or "reasonable" revisions with no \
+number. Up to 3 rounds is a normal process and not a finding.
 3. one_sided_termination - the client can terminate immediately without compensation, has \
 materially stronger termination rights without equivalent protection for the freelancer, or \
 completed work is not paid pro rata after termination.
@@ -36,14 +40,23 @@ notice but limited protection. low: uneven but otherwise standard termination la
 termination right that both parties have on the same terms is not one-sided and is not a finding.
 4. ip_transfer_before_payment - intellectual property transfers before the freelancer is paid \
 in full.
-   high: IP transfers before full payment (for example on delivery or on creation). medium: IP \
-transfers on partial or milestone payment. low: minor timing ambiguity around transfer. \
-Transfer "upon full payment" is not a finding.
+   high: IP transfers before full payment (for example on delivery or on creation). Transfer on \
+creation includes work-made-for-hire wording and present assignments of all right, title and \
+interest in work the freelancer conceives or develops, when no payment condition applies. \
+medium: IP transfers on partial or milestone payment. low: minor timing ambiguity around \
+transfer. Transfer "upon full payment" is not a finding.
 5. uncapped_liability - explicitly unlimited liability, no monetary cap where one is normally \
 expected, or a cap that is unusually high or has major exclusions.
-   high: explicit unlimited liability or missing monetary cap. medium: unusually high cap or \
-major exclusions. low: minor unfavorable liability wording. A cap at or below the fees paid \
-under the agreement is not a finding.
+   Only the freelancer's exposure counts; a mutual clause counts when the freelancer is a party. \
+high: explicit unlimited liability or missing monetary cap. medium: a cap exists but the \
+freelancer's indemnification obligations are excluded from it, or a fixed cap is above 2x the \
+contract value. low: minor unfavorable liability wording. Not a finding: carve-outs only for \
+confidentiality, gross negligence, willful misconduct or fraud; an exclusion of consequential or \
+indirect damages; a cap at or below the fees paid under the agreement, unless the freelancer's \
+indemnification obligations are excluded from it; a fixed cap up to 2x the contract value. When \
+the contract value cannot be determined from the text (time-and-materials, hourly rates, a \
+non-binding estimate), a fixed cap is not a finding because of its size; the indemnification \
+exclusion rule still applies.
 6. unfavorable_payment_terms - payment later than 30 days, conditional or deferred payment, or \
 payment that depends on an indefinite or client-controlled event.
    high: Net 90 or longer, indefinite or conditional payment (for example "paid when the client \
