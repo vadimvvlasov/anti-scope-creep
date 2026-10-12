@@ -33,13 +33,13 @@ PROVIDERS = {
 }
 
 
-def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ):
+def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ, temperature: float | None = None):
     """The client for one provider; key, model and limits come from <PREFIX>_* variables."""
     prefix, url, model, rpm, tpm = PROVIDERS[provider]
     limiter = TokenBucketLimiter(int(env.get(f"{prefix}_TOKENS_PER_MINUTE", tpm)),
                                  int(env.get(f"{prefix}_REQUESTS_PER_MINUTE", rpm)))
     return GroqClient(env[f"{prefix}_API_KEY"], limiter, env.get(f"{prefix}_MODEL", model),
-                      max_completion_tokens=max_output_tokens, api_url=url)
+                      max_completion_tokens=max_output_tokens, api_url=url, temperature=temperature)
 
 
 def score(run_dir: Path, set_name: str) -> dict:
@@ -106,11 +106,12 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--chunk-chars", type=int, default=DEFAULT_MAX_CHARS,
                          help=f"characters per request (default {DEFAULT_MAX_CHARS}); 60000 sends a contract whole")
     run_cmd.add_argument("--max-output-tokens", type=int, default=2_000, help="per request, thinking included")
+    run_cmd.add_argument("--temperature", type=float, help="sampling temperature; default: not sent, the provider's default")
     args = parser.parse_args(argv)
     run_dir = EVAL_DIR / "runs" / args.run
     for set_name in args.set or SETS:
         if args.command == "run":
-            client = llm_client(args.provider, args.max_output_tokens)
+            client = llm_client(args.provider, args.max_output_tokens, temperature=args.temperature)
             done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars)
             print(f"{set_name}: {done} contracts analyzed")
         else:

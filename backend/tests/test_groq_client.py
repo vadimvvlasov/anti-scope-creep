@@ -88,6 +88,15 @@ def test_api_url_sends_the_same_request_to_another_endpoint():
     assert str(request.url) == url and json.loads(request.content)["model"] == "gemini-3.5-flash-lite"
 
 
+def test_temperature_is_sent_only_when_set():
+    default, zero = Script(ok()), Script(ok())
+    client(default)[0].complete_json(MESSAGES, "hi", SCHEMA)
+    client(zero, temperature=0.0)[0].complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert "temperature" not in json.loads(default.requests[0].content)
+    assert json.loads(zero.requests[0].content)["temperature"] == 0.0
+
+
 def test_an_error_wrapped_in_a_list_keeps_its_message():
     error = [{"error": {"code": 400, "message": "User location is not supported for the API use."}}]
     groq, _ = client(Script(httpx.Response(400, json=error)))

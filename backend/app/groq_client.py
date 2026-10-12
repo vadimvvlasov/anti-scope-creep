@@ -85,6 +85,7 @@ class GroqClient:
         base_delay: float = 2.0,
         max_completion_tokens: int = 2_000,
         api_url: str = API_URL,
+        temperature: float | None = None,
     ):
         if not api_key:
             raise ValueError("GROQ_API_KEY is not set")
@@ -97,6 +98,7 @@ class GroqClient:
         self._base_delay = base_delay
         self._max_completion_tokens = max_completion_tokens
         self._api_url = api_url
+        self._temperature = temperature
 
     def __repr__(self) -> str:
         return f"GroqClient(model={self._model!r})"
@@ -114,6 +116,8 @@ class GroqClient:
                 "json_schema": {"name": schema_name, "strict": True, "schema": schema},
             },
         }
+        if self._temperature is not None:  # otherwise the provider's default applies
+            body["temperature"] = self._temperature
         estimate = _estimate_tokens(messages) + self._max_completion_tokens
         last = "no attempt"
         for attempt in range(1, self._max_attempts + 1):
