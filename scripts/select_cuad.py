@@ -65,6 +65,17 @@ EXCLUDED = {
         "financial covenant of an investor in favor of a lender, not services",
     "WARNERCHILCOTTPLC_12_31_2003-EX-4.36-DEVELOPMENT AGREEMENT":
         "co-development between two pharma companies; the only cap covers force majeure",
+    # Dropped in the held-out review (2026-10-12).
+    "MPLXLP_06_17_2015-EX-10.1-TRANSPORTATION SERVICES AGREEMENT":
+        "related-party agreement between affiliates of the Marathon group, not vendor-client",
+    "IbioInc_20200313_8-K_EX-10.1_12052678_EX-10.1_Development Agreement":
+        "joint development and joint-venture arrangement; iBio's pay is mostly a minority stake and revenue share, not a vendor-client deal",
+    "PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement":
+        "related-party agreement: Memorial Resource and PennTex are under common control of NGP (PennTex 10-K 2015, Item 13), not vendor-client",
+    "TRUENORTHENERGYCORP_02_08_2007-EX-10.1-DEVELOPMENT AGREEMENT":
+        "oil and gas farm-in: the company pays drilling costs for a working interest; no service provider",
+    "ENTERPRISEPRODUCTSPARTNERSLP_07_08_1998-EX-10.3-TRANSPORTATION CONTRACT":
+        "intra-group agreement: the carrier is a division of Enterprise Products Company, the shipper is Enterprise Products Operating L.P., not vendor-client",
 }
 
 # Contracts per stratum, in this order; a contract lands in the first stratum it fits.

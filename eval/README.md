@@ -38,9 +38,40 @@ contracts with no gold finding at all. This set mostly measures false alarms; wi
 findings, recall moves by 8 points per miss, so recall and severity rest on the
 freelance set.
 
+2026-10-12: one finding added in adjudication. In the Xpresspa marketing agreement the
+indemnification exception in 10.06 covers the $2M aggregate cap, so `uncapped_liability`
+medium; CUAD labels the clause Cap On Liability only. The set now has 14 gold findings.
+
 ```bash
 python3 scripts/select_cuad.py --download
 python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl
+```
+
+### Held-out CUAD set
+
+The prompt rules were tuned on the 28 contracts above, so metrics on them are in-sample.
+The held-out set is labeled the same way and is not used to change the prompt.
+
+- `gold/cuad-holdout.jsonl`: 20 contracts up to 60,000 characters (strata uncapped 8,
+  termination 6, negatives 6; no unused IP contract fits the limit). 5 gold findings,
+  5 `optional` entries, 4 contracts marked `doubtful`.
+- `gold/cuad-holdout-long.jsonl`: 6 contracts of 60,000-150,000 characters (IP 2, uncapped
+  2, termination 1, negative 1) for a text limit raised for Gemini; 150,000 characters
+  cover 93% of CUAD. 5 gold findings. The runner still applies the 60,000 product limit,
+  so this layer runs only after the limit depends on the provider.
+- Contracts of a company that already has one in a gold set are skipped (rules tuned on a
+  deal carry over to its sibling documents), amendments and addenda are never candidates,
+  and five contracts were dropped in review (`EXCLUDED`: related parties under common
+  control, joint ventures, an oil and gas farm-in). Reviewed 2026-10-12.
+
+```bash
+python3 scripts/select_cuad.py -o eval/gold/cuad-holdout.draft.jsonl \
+    --exclude eval/gold/cuad.jsonl --exclude eval/gold/cuad.draft.jsonl \
+    --quota uncapped=8 --quota termination=6 --quota negative=6
+python3 scripts/select_cuad.py -o eval/gold/cuad-holdout-long.draft.jsonl \
+    --exclude eval/gold/cuad.jsonl --exclude eval/gold/cuad.draft.jsonl \
+    --exclude eval/gold/cuad-holdout.draft.jsonl --min-chars 60000 --max-chars 150000 \
+    --quota ip=4 --quota uncapped=2 --quota termination=1 --quota negative=1
 ```
 
 CUAD labels whether a clause exists, not whether it is a risk for a freelancer, so the
@@ -68,7 +99,12 @@ the parties.
 
 A contract with no aggregate cap at all has no clause to quote, and the analyzer must
 quote. Its consequential-damages exclusion is still `no_finding`: quoting it as uncapped
-liability confuses a waiver of indirect damages with a missing cap on direct ones.
+liability confuses a waiver of indirect damages with a missing cap on direct ones. An
+indemnification clause in such a contract is not a finding either.
+
+`optional` is used where a finding and no finding are both defensible: a contract that
+contradicts itself (one clause assigns IP at once, another on full payment), or a literal
+trigger the reviewer doubts (IP of an endorser's inputs to the client's own product).
 
 ### Freelance set (minimal pairs)
 
@@ -156,6 +192,8 @@ spec's rules, not how it reads real contracts; that is the CUAD set's job.
 
 - A prediction matches a gold finding when the category is the same and the quote spans
   overlap in the analyzed text; a group counts once.
+- A prediction on an `optional` entry is neither a true nor a false positive, and a missed
+  `optional` entry is not a false negative.
 - Per category: precision, recall; severity accuracy on matched findings.
 - Per run: share of invalid JSON responses, share of `quote_not_found` drops, tokens and
   seconds per contract.
