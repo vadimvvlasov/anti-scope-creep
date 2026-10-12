@@ -77,6 +77,17 @@ def test_a_request_asks_for_strict_json_with_low_reasoning():
     assert limiter.acquired == [len("Find risks." + CONTRACT) // 4 + 1 + 2_000]
 
 
+def test_api_url_sends_the_same_request_to_another_endpoint():
+    script = Script(ok())
+    url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    groq, _ = client(script, api_url=url, model="gemini-3.5-flash-lite")
+
+    groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    request = script.requests[0]
+    assert str(request.url) == url and json.loads(request.content)["model"] == "gemini-3.5-flash-lite"
+
+
 def test_429_waits_for_retry_after_then_succeeds():
     script = Script(httpx.Response(429, headers={"retry-after": "7"}), ok())
     sleeps: list[float] = []

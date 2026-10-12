@@ -4,7 +4,8 @@ One call = one request for a JSON object that matches a schema. The client space
 with the shared token-bucket limiter, retries 429 and 5xx with exponential backoff
 (honoring `retry-after`), and never logs the API key, the request or the response body:
 they contain (pseudonymized) contract text. Logs carry only status, attempt, model,
-token counts and timing.
+token counts and timing. `api_url` points the same request at another OpenAI-compatible
+endpoint; the eval uses it for Gemini (evaluation/__main__.py).
 """
 
 import json
@@ -83,6 +84,7 @@ class GroqClient:
         max_attempts: int = 5,
         base_delay: float = 2.0,
         max_completion_tokens: int = 2_000,
+        api_url: str = API_URL,
     ):
         if not api_key:
             raise ValueError("GROQ_API_KEY is not set")
@@ -94,6 +96,7 @@ class GroqClient:
         self._max_attempts = max_attempts
         self._base_delay = base_delay
         self._max_completion_tokens = max_completion_tokens
+        self._api_url = api_url
 
     def __repr__(self) -> str:
         return f"GroqClient(model={self._model!r})"
@@ -128,7 +131,7 @@ class GroqClient:
 
     def _post(self, body: dict[str, Any]) -> tuple[httpx.Response | None, str]:
         try:
-            response = self._http.post(API_URL, json=body, headers=self._headers)
+            response = self._http.post(self._api_url, json=body, headers=self._headers)
         except httpx.TransportError as error:
             return None, type(error).__name__
         return response, f"HTTP {response.status_code}"

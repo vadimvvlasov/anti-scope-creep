@@ -1,6 +1,7 @@
 """Phase 3 eval of the Groq analyzer (eval/README.md). Runs locally; CI never calls Groq.
 
     uv run python -m evaluation run --set freelance --run 2026-10-11   # needs GROQ_API_KEY
+    uv run python -m evaluation run --run gemini-whole --provider gemini --chunk-chars 60000 --max-output-tokens 8000
     uv run python -m evaluation score --run 2026-10-11                   # cache only, no tokens
 """
 
@@ -12,19 +13,31 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+from app.chunking import DEFAULT_MAX_CHARS
+from app.groq_client import API_URL as GROQ_API_URL
+from app.groq_client import DEFAULT_MODEL, GroqClient
+from app.ratelimit import TokenBucketLimiter
 from evaluation.runner import EVAL_DIR, cache_path, contract_text, load_gold, run
 from evaluation.scoring import Prediction, score_contract, summarize
 
 SETS = ("freelance", "cuad")
+# Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
+# Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
+# project (checked 2026-10-12 for gemini-3.5-flash-lite: 15 RPM, 250K input TPM, 500 RPD).
+PROVIDERS = {
+    "groq": ("GROQ", GROQ_API_URL, DEFAULT_MODEL, 30, 8_000),
+    "gemini": ("GEMINI", "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+               "gemini-3.5-flash-lite", 15, 250_000),
+}
 
 
-def groq_client():
-    from app.groq_client import DEFAULT_MODEL, GroqClient
-    from app.ratelimit import TokenBucketLimiter
-
-    limiter = TokenBucketLimiter(int(os.environ.get("GROQ_TOKENS_PER_MINUTE", "8000")),
-                                 int(os.environ.get("GROQ_REQUESTS_PER_MINUTE", "30")))
-    return GroqClient(os.environ["GROQ_API_KEY"], limiter, os.environ.get("GROQ_MODEL", DEFAULT_MODEL))
+def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ):
+    """The client for one provider; key, model and limits come from <PREFIX>_* variables."""
+    prefix, url, model, rpm, tpm = PROVIDERS[provider]
+    limiter = TokenBucketLimiter(int(env.get(f"{prefix}_TOKENS_PER_MINUTE", tpm)),
+                                 int(env.get(f"{prefix}_REQUESTS_PER_MINUTE", rpm)))
+    return GroqClient(env[f"{prefix}_API_KEY"], limiter, env.get(f"{prefix}_MODEL", model),
+                      max_completion_tokens=max_output_tokens, api_url=url)
 
 
 def score(run_dir: Path, set_name: str) -> dict:
@@ -85,12 +98,19 @@ def main(argv: list[str] | None = None) -> int:
         cmd = sub.add_parser(name)
         cmd.add_argument("--run", required=True, help="run name, the folder under eval/runs/")
         cmd.add_argument("--set", choices=SETS, action="append", help="default: all sets")
-    sub.choices["run"].add_argument("--limit", type=int, help="analyze at most this many contracts")
+    run_cmd = sub.choices["run"]
+    run_cmd.add_argument("--limit", type=int, help="analyze at most this many contracts")
+    run_cmd.add_argument("--provider", choices=PROVIDERS, default="groq")
+    run_cmd.add_argument("--chunk-chars", type=int, default=DEFAULT_MAX_CHARS,
+                         help=f"characters per request (default {DEFAULT_MAX_CHARS}); 60000 sends a contract whole")
+    run_cmd.add_argument("--max-output-tokens", type=int, default=2_000, help="per request, thinking included")
     args = parser.parse_args(argv)
     run_dir = EVAL_DIR / "runs" / args.run
     for set_name in args.set or SETS:
         if args.command == "run":
-            print(f"{set_name}: {run(set_name, run_dir, groq_client(), args.limit)} contracts analyzed")
+            client = llm_client(args.provider, args.max_output_tokens)
+            done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars)
+            print(f"{set_name}: {done} contracts analyzed")
         else:
             result = score(run_dir, set_name)
             (run_dir / f"summary-{set_name}.json").write_text(json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8")

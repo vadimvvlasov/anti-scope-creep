@@ -18,6 +18,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
+from app.chunking import DEFAULT_MAX_CHARS
 from app.extraction import check_text
 from app.groq_analyzer import GroqAnalyzer, JsonCompletion
 from app.groq_client import GroqError, GroqResult
@@ -90,7 +91,7 @@ def cache_path(run_dir: Path, record_id: str) -> Path:
     return run_dir / f"{slug}_{hashlib.sha1(record_id.encode()).hexdigest()[:8]}.json"
 
 
-def analyze_record(record: dict, client: JsonCompletion) -> dict:
+def analyze_record(record: dict, client: JsonCompletion, max_chunk_chars: int = DEFAULT_MAX_CHARS) -> dict:
     """Analyze one contract. Output that fails the schema (Groq's 400 or Pydantic) is a model
     failure and is cached; any other provider error propagates and stops the run."""
     text = contract_text(record)
@@ -101,7 +102,7 @@ def analyze_record(record: dict, client: JsonCompletion) -> dict:
     started = time.monotonic()
     entry: dict[str, Any] = {"id": record["id"], "chars": len(text)}
     try:
-        result = GroqAnalyzer(recorder).analyze(text)
+        result = GroqAnalyzer(recorder, max_chunk_chars).analyze(text)
         entry["findings"] = [_finding(text, f) for f in result.findings]
         entry["email"] = result.email_draft is not None
     except ValidationError as error:
@@ -122,7 +123,8 @@ def _finding(text: str, finding) -> dict:
             "quoted_text": finding.quoted_text, "start": start, "end": end}
 
 
-def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None = None, log=print) -> int:
+def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None = None, log=print,
+        max_chunk_chars: int = DEFAULT_MAX_CHARS) -> int:
     """Analyze the set's contracts that are not cached yet; return how many were analyzed."""
     run_dir.mkdir(parents=True, exist_ok=True)
     done = 0
@@ -132,7 +134,7 @@ def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None 
             continue
         if limit is not None and done >= limit:
             break
-        entry = analyze_record(record, client)
+        entry = analyze_record(record, client, max_chunk_chars)
         path.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
         done += 1
         tokens = sum(c["tokens"] or 0 for c in entry["calls"])
