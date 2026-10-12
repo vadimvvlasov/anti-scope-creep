@@ -22,26 +22,40 @@ plain English and get an answer without writing SQL.
 ## How it works for the user
 
 1. Upload a contract (PDF/text) through the web app
-2. Get back a list of flagged clauses in seconds — category, risk level, and the
-   exact quoted text
-3. Ask questions about your contract history in natural language (e.g. "which
-   contracts this month had uncapped liability?") — the system translates the
-   question into SQL and answers it
+2. Get back a list of flagged clauses: category, risk level, the exact quoted text,
+   an explanation and a suggested change, plus a draft email to the client. A short
+   contract takes seconds; a long one (about 55,000 characters) takes about three
+   minutes on the free LLM tier
+3. Export the result as a PDF or DOCX report
+4. Ask questions about your contract history in natural language (e.g. "which
+   contracts this month had uncapped liability?"), and the system translates the
+   question into SQL and answers it. Planned: today this screen runs on mock data
 
-## How it's built (target design)
+## How it's built
 
-- An LLM extracts risky clauses from the contract text
-- A small fine-tuned classifier (trained on real legal data — the CUAD dataset)
-  scores each clause's risk category — cheaper and faster than calling a large
-  LLM per clause
-- Findings are stored in Postgres
-- History questions go through a dedicated text-to-SQL agent, sandboxed behind
-  guardrails: read-only access, single SELECT only, enforced row limit — so the
-  agent can't modify data or return unbounded results
+Working today:
 
-## Current status: Phase 2 (deployed MVP)
+- An LLM (Groq, `openai/gpt-oss-120b`) reads the contract in chunks and returns
+  findings as strict JSON: category, risk level, the quoted clause, an explanation
+  and a suggested change, plus a draft email to the client
+- Party and signatory names, emails, phone numbers, URLs, bank and tax IDs and
+  street addresses are replaced with placeholders before the text leaves the
+  backend, and restored in the answer
+- Every quote is checked against the contract text; a finding whose quote is not
+  there is dropped, so the user can click any finding and see the real clause
+- Contracts, analyses and findings are stored in Postgres
 
-The Phase 1 slice now runs in the cloud, with CI/CD around it.
+Planned:
+
+- History questions through a text-to-SQL agent behind guardrails: read-only
+  access, a single SELECT, an enforced row limit
+- A small classifier fine-tuned on the CUAD dataset to preselect risky clauses
+  before the LLM call, which cuts tokens per contract
+
+## Current status: Phase 3 (LLM analyzer)
+
+The deployed app analyzes real contracts with the Groq LLM analyzer. CI/CD, dev and
+prod environments come from Phase 2.
 
 What the app does today:
 
@@ -56,8 +70,21 @@ What the app does today:
   details are pseudonymized before the call, and a finding whose quote is not in the
   contract is dropped. Locally (`ANALYZER=stub`, the default) a deterministic stub
   returns the fixture findings from [`docs/spec.md`](docs/spec.md)
+- Report export as PDF or DOCX: summary, a table of high and medium findings with
+  proposed counter-clauses, and the client email
 - History Search answers from mock data in mock mode; the real backend returns
   `501` (`History search is coming soon.`) until the text-to-SQL agent phase
+
+Added in Phase 3:
+
+- The Groq analyzer behind `ANALYZER=groq`: chunking, strict structured output,
+  a token bucket for the free-tier limits, retries with `retry-after`
+- Pseudonymization before every LLM call and quote verification after it
+- [AI data policy](docs/ai-data-policy.md) and a notice on the upload screen that
+  the contract text goes to a third-party AI provider
+- An offline eval with hand-labeled gold sets (CUAD contracts and synthetic
+  freelance contracts): precision, recall and severity per category, see
+  [`eval/README.md`](eval/README.md). It runs locally; CI never calls the LLM
 
 Added in Phase 2:
 
@@ -68,11 +95,54 @@ Added in Phase 2:
 - Automatic deploy of `main` to a dev environment and a manual, approved promotion
   of the same image to prod (see [Deploy](#deploy))
 
-Not yet: the fine-tuned classifier, the text-to-SQL agent,
-monitoring.
+Not yet: the text-to-SQL agent, the fine-tuned classifier, monitoring.
 
 Product rules live in [`docs/spec.md`](docs/spec.md), infrastructure and phases in
 [`docs/architecture.md`](docs/architecture.md).
+
+## AI-assisted development
+
+The project is built spec-first, with AI tools doing most of the typing and a person
+deciding, reviewing and verifying. The full process with real prompts is in
+[`docs/ai-workflow.md`](docs/ai-workflow.md).
+
+- **Spec first.** The product spec was worked out in a ChatGPT dialogue and saved as
+  [`docs/spec.md`](docs/spec.md). It is the source of truth for every later step.
+- **Frontend from the spec.** `scripts/build_lovable_prompt.py` turns the spec into a
+  Lovable prompt; Lovable generated the React app with a mock services layer.
+- **Contract from the frontend.** [`openapi.yaml`](openapi.yaml) was written from the
+  frontend's API client, then the FastAPI backend was built against it. A test checks
+  that the backend routes match the contract.
+- **Backend and infrastructure with Claude Code.** [`AGENTS.md`](AGENTS.md) (read by
+  Claude Code through `CLAUDE.md`) and [`frontend/AGENTS.md`](frontend/AGENTS.md) give
+  the agent the commands, layout and rules: follow the spec and stop if it is unclear,
+  no new dependencies without asking, no secrets in the repository, stay inside the task.
+- **One step, one prompt, one pull request.** Each phase is planned as a list of steps.
+  Each step gets one prompt, a feature branch and a PR; CI must be green before merge.
+- **Human review and verification.** Every step has a checklist: new tests, the full
+  suite, a manual check in the browser on dev, the smoke test after deploy. The LLM
+  analyzer is checked against gold sets labeled by hand, not by the model.
+
+## Where to find what
+
+Course rubric items and where they live in this repository:
+
+| Item | Where |
+|---|---|
+| Product spec | [`docs/spec.md`](docs/spec.md) |
+| Agent instructions | [`AGENTS.md`](AGENTS.md), [`frontend/AGENTS.md`](frontend/AGENTS.md), `CLAUDE.md` |
+| AI-assisted workflow | [AI-assisted development](#ai-assisted-development), [`docs/ai-workflow.md`](docs/ai-workflow.md) |
+| Architecture | [`docs/architecture.md`](docs/architecture.md) |
+| Frontend and its tests | `frontend/`, `frontend/src/**/__tests__/` |
+| API contract | [`openapi.yaml`](openapi.yaml) |
+| Backend and its tests | `backend/`, `backend/tests/` |
+| Database and migrations | `backend/migrations/`, [Deploy](#deploy) for dev and prod |
+| Containers | `backend/Dockerfile`, `frontend/Dockerfile`, [`compose.yaml`](compose.yaml) |
+| Integration tests | `frontend/e2e/` (Playwright), [Tests](#tests) |
+| Deployment | [Deploy](#deploy) |
+| CI/CD | `.github/workflows/`, [Workflows](#workflows) |
+| AI data policy | [`docs/ai-data-policy.md`](docs/ai-data-policy.md) |
+| LLM eval | [`eval/README.md`](eval/README.md) |
 
 ## Screenshots
 
@@ -260,6 +330,10 @@ Run from the repository root.
 | `openapi.yaml` | API contract between frontend and backend |
 | `docs/spec.md` | Product specification: screens, API, data model, acceptance criteria |
 | `docs/architecture.md` | Hosting, CI/CD, LLM provider, agent layer, phases |
+| `docs/ai-data-policy.md` | What contract data goes to the LLM provider and what is kept |
+| `docs/ai-workflow.md` | How the project was built with AI tools, with real prompts |
 | `docs/screenshots/` | Screenshots used in this README |
+| `eval/` | Gold sets and how the LLM analyzer is measured |
+| `data/` | Synthetic contracts: pseudonymization fixtures and the base of the freelance eval set |
 | `scripts/` | Smoke test and helper scripts (Python standard library only) |
 | `.github/workflows/` | CI and deploy workflows |
