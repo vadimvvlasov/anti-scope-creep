@@ -1,0 +1,18 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [],
+ "email": false,
+ "seconds": 1.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11211,
+   "seconds": 1.05,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

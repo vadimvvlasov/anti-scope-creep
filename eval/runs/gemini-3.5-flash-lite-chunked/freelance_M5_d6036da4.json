@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9143,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  }
+ ],
+ "email": true,
+ "seconds": 3.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3476,
+   "seconds": 1.44,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "If the client terminates the contract for convenience, you will not be paid for any work that is currently in progress, meaning you could perform services without receiving compensation.",
+      "suggested_change": "Client will pay Contractor for all Services performed and Deliverables in progress up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Intellectual property ownership transfers to the client after only the first milestone payment, leaving subsequent work unprotected before you are paid in full.",
+      "suggested_change": "Upon receipt of full payment for the applicable Deliverables, the Client owns all rights in such Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2402,
+   "seconds": 0.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 564,
+   "seconds": 1.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to request a few adjustments before signing:\n\n- Regarding the clause stating that fees for services in progress at termination are not payable, this means I might not be paid for work already underway if the contract ends early. I propose changing this so that the client pays for all services performed and deliverables in progress up to the termination date.\n- Regarding the clause about intellectual property transferring upon payment of the first milestone invoice, this assigns ownership before subsequent work is fully paid for. I propose that the client owns the rights to applicable deliverables only upon receipt of full payment for them.\n\nThank you for considering these updates. I look forward to moving forward.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,58 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [],
+ "email": false,
+ "seconds": 38.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3433,
+   "seconds": 1.3,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3279,
+   "seconds": 0.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3360,
+   "seconds": 0.92,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3238,
+   "seconds": 0.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2711,
+   "seconds": 0.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2572,
+   "seconds": 33.58,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

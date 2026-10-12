@@ -1,0 +1,75 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+   "start": 13986,
+   "end": 14239
+  }
+ ],
+ "email": true,
+ "seconds": 54.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3216,
+   "seconds": 0.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3363,
+   "seconds": 16.79,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+      "explanation": "Your payment depends on getting a tax exemption approval from a third-party authority, which is outside of your control and can delay your money indefinitely without being considered late payment.",
+      "suggested_change": "Payments shall be made in accordance with the agreed terms regardless of tax exemption approvals, provided that any required statutory tax withholdings are deducted and remitted by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3320,
+   "seconds": 33.27,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3051,
+   "seconds": 1.24,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1987,
+   "seconds": 0.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 497,
+   "seconds": 1.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are doing well. I have reviewed the agreement and would like to propose a few small adjustments before I sign it. - Regarding the clause stating 'For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.', since waiting for a third-party tax authority approval is outside of my control and could delay payment indefinitely, I suggest changing this so that payments are made according to the agreed schedule while the client handles any required statutory tax withholdings. Let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

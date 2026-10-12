@@ -1,0 +1,137 @@
+{
+ "set": "cuad",
+ "contracts": 28,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 3,
+   "precision": 1.0,
+   "recall": 0.4,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 1,
+   "fp": 2,
+   "fn": 2,
+   "precision": 0.333,
+   "recall": 0.333,
+   "severity_accuracy": 0.0
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 5,
+   "precision": 0.0,
+   "recall": 0.0,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 3,
+   "fp": 3,
+   "fn": 10,
+   "precision": 0.5,
+   "recall": 0.231,
+   "severity_accuracy": 0.667
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 7,
+  "findings_kept": 7,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 7273,
+  "tokens_max": 14141,
+  "seconds_mean": 2.5,
+  "seconds_max": 12.0
+ },
+ "false_positives": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "In the event that CRO believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, CRO will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to CRO.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "The Developer shall indemnify and hold harmless the Client and its officers, members, managers, employees, agents, contractors, sub licensees, affiliates, subsidiaries, successors and assigns from and against any and all damages, liabilities, costs, expenses, claims, and/or judgments, including, without limitation, reasonable attorneys' fees and disbursements (collectively, the \"Claims\") that any of them may suffer from or incur and that arise or result primarily from (i) any gross negligence or willful misconduct of the Developer arising from or connected with the Developer's carrying out of its duties under this Agreement, or (ii) the Developer's breach of any of its obligations, agreements, or duties under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  }
+ ]
+}

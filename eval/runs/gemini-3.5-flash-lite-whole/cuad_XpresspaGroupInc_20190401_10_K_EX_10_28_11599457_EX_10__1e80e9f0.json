@@ -1,0 +1,18 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [],
+ "email": false,
+ "seconds": 1.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12143,
+   "seconds": 1.05,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

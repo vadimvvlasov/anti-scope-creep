@@ -1,0 +1,18 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [],
+ "email": false,
+ "seconds": 5.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8948,
+   "seconds": 5.77,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

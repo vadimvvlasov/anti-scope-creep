@@ -1,0 +1,66 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3737,
+   "end": 3896
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 50.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3369,
+   "seconds": 1.28,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment is due 60 days after invoicing, which is longer than the standard 30-day term and creates cash flow delays for you.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2500,
+   "seconds": 16.41,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "Payment is due within 60 days, which exceeds the standard 30-day window and delays your cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 636,
+   "seconds": 33.07,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. Before I sign, I would like to request a couple of small adjustments: - Regarding the clause stating \"Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\", payment is due 60 days after invoicing, which is longer than the standard 30-day term and creates cash flow delays for you, so I propose changing it to: Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law. - Regarding the clause stating \"Payment period: Net 60\", payment is due within 60 days, which exceeds the standard 30-day window and delays your cash flow, so I propose changing it to: Payment period: Net 30. Thank you for your understanding, and I look forward to moving forward. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

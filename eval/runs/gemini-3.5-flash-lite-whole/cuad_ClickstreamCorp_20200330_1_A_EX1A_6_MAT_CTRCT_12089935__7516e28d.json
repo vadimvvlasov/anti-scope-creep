@@ -1,0 +1,57 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+   "start": 2339,
+   "end": 2496
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The Developer shall indemnify and hold harmless the Client and its officers, members, managers, employees, agents, contractors, sub licensees, affiliates, subsidiaries, successors and assigns from and against any and all damages, liabilities, costs, expenses, claims, and/or judgments, including, without limitation, reasonable attorneys' fees and disbursements (collectively, the \"Claims\") that any of them may suffer from or incur and that arise or result primarily from (i) any gross negligence or willful misconduct of the Developer arising from or connected with the Developer's carrying out of its duties under this Agreement, or (ii) the Developer's breach of any of its obligations, agreements, or duties under this Agreement.",
+   "start": 17134,
+   "end": 17868
+  }
+ ],
+ "email": true,
+ "seconds": 3.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8334,
+   "seconds": 2.02,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+      "explanation": "The client can terminate the agreement at any time with short notice, while your right to terminate is severely restricted, creating an unbalanced termination structure.",
+      "suggested_change": "Either Party may terminate this Agreement upon providing thirty (30) days' prior written notice to the other Party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The Developer shall indemnify and hold harmless the Client and its officers, members, managers, employees, agents, contractors, sub licensees, affiliates, subsidiaries, successors and assigns from and against any and all damages, liabilities, costs, expenses, claims, and/or judgments, including, without limitation, reasonable attorneys' fees and disbursements (collectively, the \"Claims\") that any of them may suffer from or incur and that arise or result primarily from (i) any gross negligence or willful misconduct of the Developer arising from or connected with the Developer's carrying out of its duties under this Agreement, or (ii) the Developer's breach of any of its obligations, agreements, or duties under this Agreement.",
+      "explanation": "Your indemnification obligation is broad and lacks a monetary cap, exposing you to potentially unlimited financial liability.",
+      "suggested_change": "The Developer's total liability under this Agreement shall be limited to the total fees actually paid by the Client to the Developer under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 745,
+   "seconds": 1.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI am looking forward to getting started. Before signing the agreement, I would like to propose a few adjustments to the relevant clause to ensure the terms work well for both of us:\n\n- Regarding the clause stating that the client can terminate the agreement at any time with short notice while your right to terminate is restricted, this creates an unbalanced termination structure. I propose changing this so that either party may terminate the agreement upon providing thirty days' prior written notice to the other party.\n- Regarding the clause outlining your indemnification obligations, this is broad and lacks a monetary cap, exposing you to potentially unlimited financial liability. I propose adding that the developer's total liability under the agreement shall be limited to the total fees actually paid by the client to the developer under the agreement.\n\nThank you for considering these updates. Please let me know if these changes work for you so we can finalize the paperwork.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  }
+ ],
+ "email": true,
+ "seconds": 2.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5006,
+   "seconds": 1.5,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "This makes your payment conditional on an event outside your control (when the client's customer pays them), which can delay your money indefinitely.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your liability is completely uncapped while the client's liability is limited, exposing you to severe financial risk.",
+      "suggested_change": "Each party's total aggregate liability arising out of or relating to this Agreement shall be capped at the total fees paid or payable by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 619,
+   "seconds": 1.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the contract. I am looking forward to working together, but before I sign, I would like to request a couple of adjustments to the agreement:\n\n- Regarding the payment terms in the relevant clause (\"Invoices are payable within 15 days after Client receives payment from its own customer.\"), since this makes payment conditional on an external event, I propose changing it to: \"Invoices are payable within 30 days after receipt of the invoice.\"\n- Regarding the liability in the relevant clause (\"Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.\"), as this leaves liability completely uncapped, I propose changing it to: \"Each party's total aggregate liability arising out of or relating to this Agreement shall be capped at the total fees paid or payable by the Client under this Agreement.\"\n\nPlease let me know if these updates work for you so we can proceed with signing. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

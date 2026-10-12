@@ -1,0 +1,43 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+   "start": 7053,
+   "end": 7335
+  }
+ ],
+ "email": true,
+ "seconds": 2.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5804,
+   "seconds": 1.29,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation as a work made for hire, before you are guaranteed to receive full payment.",
+      "suggested_change": "The Contractor shall retain ownership of all intellectual property until the Client has paid all fees due under this Agreement in full, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 553,
+   "seconds": 1.44,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. Thank you for sending over the contract. Before I sign it, I would like to request a few adjustments to the terms. Here is the point I would like to discuss: - Regarding the clause stating that 'CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\"... shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein', intellectual property rights transfer to the client immediately upon creation as a work made for hire, before you are guaranteed to receive full payment. I propose that the Contractor shall retain ownership of all intellectual property until the Client has paid all fees due under this Agreement in full, at which point ownership shall transfer to the Client. Please let me know if this works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

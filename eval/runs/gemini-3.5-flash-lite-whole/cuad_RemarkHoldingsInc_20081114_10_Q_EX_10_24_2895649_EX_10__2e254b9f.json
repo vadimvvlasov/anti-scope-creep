@@ -1,0 +1,18 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [],
+ "email": false,
+ "seconds": 1.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14141,
+   "seconds": 1.57,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

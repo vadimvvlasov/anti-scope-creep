@@ -1,0 +1,80 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28030,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 5.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2891,
+   "seconds": 0.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3166,
+   "seconds": 1.23,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "except that if the default is by Supplier that creates an immediate public food safety risk, PNC may terminate this Agreement immediately without regard to any period for correction.",
+      "explanation": "The client can terminate the agreement immediately without giving you an opportunity to fix an alleged food safety issue.",
+      "suggested_change": "If the default is by Supplier that creates an immediate public food safety risk, PNC may terminate this Agreement if such risk is not corrected within a reasonable time after written notice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3438,
+   "seconds": 1.15,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Excluding confidentiality breaches and broad indemnification obligations from the liability cap exposes you to potentially unlimited financial risk.",
+      "suggested_change": "The Liability Cap shall apply to all claims and liabilities arising under this Agreement, including indemnification."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1742,
+   "seconds": 0.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 425,
+   "seconds": 1.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, Thank you for sending over the agreement. I have reviewed the terms and would like to propose a few minor adjustments before signing. - Regarding the relevant clause, excluding confidentiality breaches and broad indemnification obligations from the liability cap exposes us to potentially unlimited financial risk; therefore, I suggest updating it so that the liability cap shall apply to all claims and liabilities arising under this agreement, including indemnification. I look forward to moving forward once these points are addressed. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

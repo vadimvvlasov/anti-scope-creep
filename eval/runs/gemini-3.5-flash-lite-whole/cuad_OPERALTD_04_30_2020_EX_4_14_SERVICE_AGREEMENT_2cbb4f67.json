@@ -1,0 +1,43 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 2.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5355,
+   "seconds": 1.28,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Payment is due within 45 days after invoice confirmation, which exceeds the standard 30-day term and delays your receipt of funds.",
+      "suggested_change": "After the Client confirms that invoice contents are correct, the Client shall pay within thirty (30) days after confirming thus."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 454,
+   "seconds": 0.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope this email finds you well. I have reviewed the agreement and would like to request a few adjustments before signing. - Regarding the clause stating: 'After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.' Payment is due within 45 days after invoice confirmation, which exceeds the standard 30-day term and delays your receipt of funds. Please update this to: 'After the Client confirms that invoice contents are correct, the Client shall pay within thirty (30) days after confirming thus.' Thank you for your understanding and cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

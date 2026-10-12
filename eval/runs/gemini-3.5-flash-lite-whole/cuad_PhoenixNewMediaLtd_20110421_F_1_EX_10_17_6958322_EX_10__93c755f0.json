@@ -1,0 +1,43 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "start": 16383,
+   "end": 16721
+  }
+ ],
+ "email": true,
+ "seconds": 12.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6311,
+   "seconds": 7.01,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing;",
+      "explanation": "The client can terminate the agreement immediately based on their own subjective judgment that your performance was affected, leaving you vulnerable to sudden cancellation without standard protections.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty days' prior written notice if the other party materially breaches any of its obligations hereunder and fails to cure such breach within such thirty-day period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 554,
+   "seconds": 5.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I have reviewed the agreement and would like to propose a few adjustments before signing. Specifically, regarding the relevant clause, \"8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing;\": - The client can terminate the agreement immediately based on their own subjective judgment that your performance was affected, leaving you vulnerable to sudden cancellation without standard protections. Please update this to state that: \"Either party may terminate this Agreement upon thirty days' prior written notice if the other party materially breaches any of its obligations hereunder and fails to cure such breach within such thirty-day period.\". Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,59 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+   "start": 9808,
+   "end": 9970
+  }
+ ],
+ "email": true,
+ "seconds": 15.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3368,
+   "seconds": 3.91,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+      "explanation": "Your payment depends on the client getting paid first, which means you carry the risk of delayed payments or non-payment without a clear timeline.",
+      "suggested_change": "The Distributor shall pay the Contractor all undisputed fees within thirty (30) days of receiving the applicable invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2820,
+   "seconds": 3.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2926,
+   "seconds": 3.87,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 449,
+   "seconds": 4.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI am looking forward to working together. Before signing the agreement, I would like to propose a few minor adjustments:\n\n- Regarding the clause stating that \"No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.\", this currently means payment depends on the client getting paid first, which introduces uncertainty regarding timelines. I suggest changing this so that \"The Distributor shall pay the Contractor all undisputed fees within thirty (30) days of receiving the applicable invoice.\"\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,42 @@
+{
+ "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement",
+ "chars": 35189,
+ "findings": [],
+ "email": false,
+ "seconds": 27.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3293,
+   "seconds": 3.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3320,
+   "seconds": 21.21,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3280,
+   "seconds": 1.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1259,
+   "seconds": 1.53,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}
