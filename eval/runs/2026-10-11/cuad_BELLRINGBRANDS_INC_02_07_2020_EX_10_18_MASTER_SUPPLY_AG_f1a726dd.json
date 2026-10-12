@@ -1,0 +1,123 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "A Specification may be updated from time to time by PNC in its sole discretion, provided PNC provides Supplier with reasonable prior notice on any updates (\"Change Notification\"). Within [***] from receipt of the Change Notification, Supplier will either: (1) accept the Specification change at the current price and terms; or (2) submit to PNC a proposal (\"Proposal\") setting forth the conditions of acceptance that may include a change in price and/or other terms, including documentation to support same.",
+   "start": 3784,
+   "end": 4291
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "PNC may terminate the Purchase Order in whole or in part. In the event of such a termination, Supplier shall continue performance of any nonterminated portion of the Purchase Order, or any nonterminated Purchase Orders, and the quantity of Ingredient ordered and so terminated shall be deducted against any relevant Master Purchase Commitment.",
+   "start": 9520,
+   "end": 9863
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "7.2 Except for a Party's gross negligence or intentional acts or omissions and its obligations of indemnity under this Agreement, under no circumstances will either Party be liable to the other Party for [***].",
+   "start": 23893,
+   "end": 24103
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "9.1.2 The Liability Cap will not apply to intentional misconduct and/or gross negligence.",
+   "start": 28187,
+   "end": 28276
+  }
+ ],
+ "email": true,
+ "seconds": 184.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3643,
+   "seconds": 43.95,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "A Specification may be updated from time to time by PNC in its sole discretion, provided PNC provides Supplier with reasonable prior notice on any updates (\"Change Notification\"). Within [***] from receipt of the Change Notification, Supplier will either: (1) accept the Specification change at the current price and terms; or (2) submit to PNC a proposal (\"Proposal\") setting forth the conditions of acceptance that may include a change in price and/or other terms, including documentation to support same.",
+      "explanation": "You must accept any specification changes that PNC makes or negotiate a new price, giving PNC unilateral power to alter the work scope.",
+      "suggested_change": "Any change to the Specifications must be agreed in writing by both Parties, and shall be subject to a mutually agreed change order process including price adjustments."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "PNC may terminate the Purchase Order in whole or in part. In the event of such a termination, Supplier shall continue performance of any nonterminated portion of the Purchase Order, or any nonterminated Purchase Orders, and the quantity of Ingredient ordered and so terminated shall be deducted against any relevant Master Purchase Commitment.",
+      "explanation": "The client can cancel orders without any guarantee of payment for work already performed, leaving you without compensation.",
+      "suggested_change": "Either Party may terminate a Purchase Order upon [X] days' written notice, and the terminating Party shall pay for all work performed and costs incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3630,
+   "seconds": 43.73,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "except that if the default is by Supplier that creates an immediate public food safety risk, PNC may terminate this Agreement immediately without regard to any period for correction.",
+      "explanation": "You could be kicked out of the contract instantly for a food‑safety issue while the client has no similar right, leaving you without any chance to remedy or be paid for work done.",
+      "suggested_change": "Either Party may terminate this Agreement for cause only after providing written notice and a reasonable cure period of [X] days, except that termination for an immediate public food safety risk shall require written notice and, if practicable, an opportunity to cure."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3971,
+   "seconds": 45.26,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "7.2 Except for a Party's gross negligence or intentional acts or omissions and its obligations of indemnity under this Agreement, under no circumstances will either Party be liable to the other Party for [***].",
+      "explanation": "You could be held liable for any amount if you are grossly negligent or act intentionally, because the clause removes any liability limitation for those cases.",
+      "suggested_change": "Except for a Party's gross negligence or intentional acts or omissions and its obligations of indemnity under this Agreement, liability of either Party to the other Party shall be limited to the Liability Cap set forth in Section 9.1."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "9.1.2 The Liability Cap will not apply to intentional misconduct and/or gross negligence.",
+      "explanation": "The contract excludes the liability cap for intentional misconduct or gross negligence, leaving you exposed to unlimited damages in those situations.",
+      "suggested_change": "The Liability Cap will apply to all claims, including those arising from intentional misconduct and gross negligence, except where prohibited by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1958,
+   "seconds": 29.46,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1198,
+   "seconds": 21.93,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a few adjustments before we sign:\n- The relevant clause on specification updates currently allows unilateral changes by PNC. I propose that any change to the Specifications be agreed in writing by both parties and follow a mutually‑agreed change order process, including any price adjustments.\n- The termination clause permits PNC to end a purchase order without guaranteeing payment for work already performed. I suggest that either party may terminate a purchase order upon [X] days’ written notice, and the terminating party shall pay for all work performed and costs incurred up to the effective termination date.\n- The liability limitation clause excludes the liability cap for gross negligence or intentional acts, leaving unlimited exposure. I recommend that, except for a party’s gross negligence, intentional acts or omissions and its indemnity obligations, liability be limited to the Liability Cap set out in Section 9.1.\n- The provision in Section 9.1.2 states that the Liability Cap does not apply to intentional misconduct or gross negligence. I propose that the Liability Cap apply to all claims, including those arising from intentional misconduct and gross negligence, except where prohibited by applicable law.\n\nPlease let me know if these revisions are acceptable. I look forward to finalizing the agreement.\n\nThank you,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

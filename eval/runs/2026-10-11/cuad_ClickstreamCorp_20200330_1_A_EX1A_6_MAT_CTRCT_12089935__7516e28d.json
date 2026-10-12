@@ -1,0 +1,97 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+   "start": 2339,
+   "end": 2568
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "The developer will fix any bugs that may come up from the original contract after the 90 days warranty has passed.",
+   "start": 10049,
+   "end": 10163
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The source code belongs to the client and will be delivered as soon as the project is fully finished.",
+   "start": 31026,
+   "end": 31127
+  }
+ ],
+ "email": true,
+ "seconds": 175.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3475,
+   "seconds": 41.3,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+      "explanation": "You can be terminated by the client with only 7 days’ notice while you can only quit for non‑payment, giving the client much stronger exit rights.",
+      "suggested_change": "Either Party may terminate this Agreement upon thirty (30) days written notice to the other Party, provided that any material breach is not cured within the notice period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3155,
+   "seconds": 39.53,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "The developer will fix any bugs that may come up from the original contract after the 90 days warranty has passed.",
+      "explanation": "You are obligated to correct bugs indefinitely after the warranty period, which can lead to endless work with no limit or extra compensation.",
+      "suggested_change": "The Developer shall remedy any bugs discovered during the Support Period; thereafter, the Developer will provide bug fixes only for a period of ninety (90) days following delivery, or as otherwise agreed in writing for additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3353,
+   "seconds": 41.99,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2538,
+   "seconds": 32.66,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The source code belongs to the client and will be delivered as soon as the project is fully finished.",
+      "explanation": "You must give the client the source code before you have received the final payment, which exposes you to the risk of not being paid after delivering valuable IP.",
+      "suggested_change": "The source code shall be transferred to the Client only after the Client has paid the final invoice in full."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 913,
+   "seconds": 19.56,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a few adjustments before signing:\n- The agreement currently allows the client to terminate with only a 7‑day notice while the developer can cancel only for non‑payment. I propose that either party may terminate upon thirty (30) days written notice, provided any material breach is not cured within that period.\n- The relevant clause requires the developer to fix bugs indefinitely after the 90‑day warranty. I suggest limiting bug fixes to the 90‑day Support Period, with any additional fixes to be provided only under a separate written agreement and compensation.\n- The clause on source code ownership states that the code will be delivered as soon as the project is finished, which could occur before final payment. I recommend that the source code be transferred only after the client has paid the final invoice in full.\n\nPlease let me know if these revisions are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

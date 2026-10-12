@@ -1,0 +1,74 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT shall have the duties, authorities and responsibilities as are required by CONSULTANT's position commensurate with the duties, authorities and responsibilities of persons in similar capacities in similarly sized companies, and such other duties, authorities and responsibilities as may reasonably be assigned to CONSULTANT as the Chief Executive Officer or the Board of Directors of the REIT (the \"Board of Directors\" or the \"Board\") shall designate from time to time that are not inconsistent with CONSULTANT's position and that are consistent with the bylaws of the REIT and/or the limited partnership agreement of the REIT's operating partnership, Medalist Diversified Holdings, L.P., each as may be amended from time to time, including, but not limited to, managing the affairs of the Company.",
+   "start": 22452,
+   "end": 23260
+  }
+ ],
+ "email": true,
+ "seconds": 133.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3367,
+   "seconds": 41.85,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "You must redo any part of the work whenever the client asks, with no limit on how many times. This can force you to work for free beyond the agreed scope.",
+      "suggested_change": "The Client may request revisions, but such revisions shall be limited to [X] rounds per deliverable and any additional revisions shall be compensated at the rates set forth in the Statement of Work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3165,
+   "seconds": 40.75,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2341,
+   "seconds": 31.33,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT shall have the duties, authorities and responsibilities as are required by CONSULTANT's position commensurate with the duties, authorities and responsibilities of persons in similar capacities in similarly sized companies, and such other duties, authorities and responsibilities as may reasonably be assigned to CONSULTANT as the Chief Executive Officer or the Board of Directors of the REIT (the \"Board of Directors\" or the \"Board\") shall designate from time to time that are not inconsistent with CONSULTANT's position and that are consistent with the bylaws of the REIT and/or the limited partnership agreement of the REIT's operating partnership, Medalist Diversified Holdings, L.P., each as may be amended from time to time, including, but not limited to, managing the affairs of the Company.",
+      "explanation": "You are required to perform any duties the company or its board assigns, without any defined limit or change‑order process, so the scope can expand indefinitely.",
+      "suggested_change": "CONSULTANT shall perform only the duties expressly set forth in the attached Statement of Work; any additional duties shall require a written change order signed by both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 916,
+   "seconds": 19.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n\n- The relevant clause on completeness of work product currently allows unlimited revisions at the client's discretion. This could require extensive unpaid rework. I propose that revisions be limited to a reasonable number of rounds per deliverable, with any additional changes compensated at the rates outlined in the Statement of Work.\n- The clause describing the consultant's duties gives the company broad authority to assign any responsibilities without limit. This may lead to scope creep. I suggest that the consultant perform only the duties expressly set out in the attached Statement of Work, and that any additional duties be added through a written change order signed by both parties.\n\nThank you for considering these changes. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

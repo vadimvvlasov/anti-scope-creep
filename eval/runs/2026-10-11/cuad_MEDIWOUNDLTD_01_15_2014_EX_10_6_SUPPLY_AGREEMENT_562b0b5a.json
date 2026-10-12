@@ -1,0 +1,104 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "CBC shall defend and assume responsibility for any suit, claim or other action by a third party alleging that MediWound's use of Bromelain SP infringes any patents or other rights of such third party.",
+   "start": 32779,
+   "end": 32979
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "10.1 MediWound may terminate this Agreement at any time, by 6 (six) months prior notice in writing.",
+   "start": 39032,
+   "end": 39131
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR BREACH OF CONFIDENTIALITY OBLIGATION HEREUNDER, AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR SPECIAL, PUNITIVE, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF USE, DATA OR LOST PROFITS, EVEN IF IT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, WHETHER UNDER THIS AGREEMENT, IN TORT OR OTHERWISE.",
+   "start": 35383,
+   "end": 35779
+  }
+ ],
+ "email": true,
+ "seconds": 227.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3597,
+   "seconds": 43.14,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3517,
+   "seconds": 44.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3874,
+   "seconds": 45.56,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "CBC shall defend and assume responsibility for any suit, claim or other action by a third party alleging that MediWound's use of Bromelain SP infringes any patents or other rights of such third party.",
+      "explanation": "You must cover any third‑party infringement claim without any monetary limit, which could expose you to unlimited costs.",
+      "suggested_change": "CBC shall defend and assume responsibility for any suit, claim or other action by a third party alleging that MediWound's use of Bromelain SP infringes any patents or other rights of such third party, subject to a liability cap equal to the total fees paid by MediWound under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3725,
+   "seconds": 42.84,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "10.1 MediWound may terminate this Agreement at any time, by 6 (six) months prior notice in writing.",
+      "explanation": "You can be terminated by the client with only six months’ notice while you must give 24 months, giving the client much more power to end the deal early.",
+      "suggested_change": "Either party may terminate this Agreement upon providing six (6) months prior written notice to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR BREACH OF CONFIDENTIALITY OBLIGATION HEREUNDER, AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR SPECIAL, PUNITIVE, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF USE, DATA OR LOST PROFITS, EVEN IF IT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, WHETHER UNDER THIS AGREEMENT, IN TORT OR OTHERWISE.",
+      "explanation": "The agreement limits only certain types of damages but does not place any overall monetary cap on your liability, leaving you exposed to unlimited liability for other claims.",
+      "suggested_change": "Each party's total aggregate liability arising out of or related to this Agreement shall not exceed the total fees paid by the Client to the Contractor under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2201,
+   "seconds": 30.9,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1030,
+   "seconds": 21.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to suggest a few adjustments for clarity and balance:\n\n- The relevant clause currently requires CBC to defend and assume responsibility for any third‑party infringement claim without any monetary limit. This could expose CBC to unlimited costs. I propose adding a liability cap equal to the total fees paid by MediWound under the agreement.\n- The termination clause allows MediWound to end the agreement with six months’ notice while the contractor must give twenty‑four months. This creates an imbalance in termination rights. I suggest wording the clause so that either party may terminate the agreement upon providing six (6) months prior written notice to the other party.\n- The limitation of liability clause excludes many types of damages but does not set an overall monetary cap, leaving the parties exposed to unlimited liability for other claims. I recommend adding a total aggregate liability cap that does not exceed the total fees paid by the Client to the Contractor under the agreement.\n\nPlease let me know if these revisions are acceptable. I look forward to finalizing the agreement.\n\nThank you,\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

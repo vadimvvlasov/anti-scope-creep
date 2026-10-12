@@ -1,0 +1,74 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "perform other services reasonably contemplated in writing by S2K and the Distributor.",
+   "start": 2179,
+   "end": 2264
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Any and all claims, losses, cost or expenses shall be limited to actual and direct costs. In no event shall any party be responsible to the other for indirect, special or consequential damages.",
+   "start": 19427,
+   "end": 19620
+  }
+ ],
+ "email": true,
+ "seconds": 143.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3704,
+   "seconds": 44.65,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "perform other services reasonably contemplated in writing by S2K and the Distributor.",
+      "explanation": "You could be asked to do additional work that isn’t defined, with no formal change‑order process, which may increase your workload and costs.",
+      "suggested_change": "S2K shall perform only the services listed in Exhibit X. Any additional services must be agreed in writing by both parties and documented in a signed change order."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3332,
+   "seconds": 40.1,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Any and all claims, losses, cost or expenses shall be limited to actual and direct costs. In no event shall any party be responsible to the other for indirect, special or consequential damages.",
+      "explanation": "You could be liable for all direct damages with no monetary ceiling, while you cannot recover indirect or consequential losses from the other side.",
+      "suggested_change": "Each party’s liability shall be limited to the total fees paid under this Agreement and shall not exceed that amount; neither party shall be liable for indirect, special, or consequential damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3161,
+   "seconds": 39.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 833,
+   "seconds": 18.74,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I’d like to clarify a couple of points:\n\n- The relevant clause currently allows me to \"perform other services reasonably contemplated in writing by S2K and the Distributor.\" This could require additional work that isn’t defined and has no formal change‑order process, potentially increasing workload and costs. I propose that S2K shall perform only the services listed in Exhibit X, and any additional services must be agreed in writing by both parties and documented in a signed change order.\n\n- The clause limiting liability states that \"Any and all claims, losses, cost or expenses shall be limited to actual and direct costs. In no event shall any party be responsible to the other for indirect, special or consequential damages.\" As written, each party could be liable for all direct damages with no monetary ceiling, while indirect or consequential losses cannot be recovered. I suggest that each party’s liability be limited to the total fees paid under this agreement and shall not exceed that amount; neither party shall be liable for indirect, special, or consequential damages.\n\nPlease let me know if these adjustments are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}
