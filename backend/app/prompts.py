@@ -56,7 +56,9 @@ indirect damages; a cap at or below the fees paid under the agreement, unless th
 indemnification obligations are excluded from it; a fixed cap up to 2x the contract value. When \
 the contract value cannot be determined from the text (time-and-materials, hourly rates, a \
 non-binding estimate), a fixed cap is not a finding because of its size; the indemnification \
-exclusion rule still applies.
+exclusion rule still applies. That rule applies only to an aggregate cap on direct damages: an \
+exclusion of consequential or indirect damages with an indemnification carve-out, and an \
+indemnification clause on its own, are not findings.
 6. unfavorable_payment_terms - payment later than 30 days, conditional or deferred payment, or \
 payment that depends on an indefinite or client-controlled event.
    high: Net 90 or longer, indefinite or conditional payment (for example "paid when the client \
