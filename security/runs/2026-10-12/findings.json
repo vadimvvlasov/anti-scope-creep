@@ -249,7 +249,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "The one-PR-per-step rule and green CI before merge exist only as a convention in AGENTS.md; anyone with a token, including a coding agent, can push to main and trigger deploy-dev. Add a ruleset: pull request required, CI checks required, no force push.",
-      "fix_ref": null,
+      "fix_ref": "ruleset 24937486 \"main: PR with green CI\" (2026-10-12)",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null
