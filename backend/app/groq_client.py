@@ -164,9 +164,13 @@ def _estimate_tokens(messages: list[dict[str, str]]) -> int:
 
 def _error_message(response: httpx.Response) -> str:
     """The provider's short error message only: the error body may also carry the failed
-    generation (model output), which must not end up in logs or exceptions."""
+    generation (model output), which must not end up in logs or exceptions. Gemini wraps
+    the error object in a one-element list."""
     try:
-        message = str(response.json()["error"]["message"])
+        payload = response.json()
+        if isinstance(payload, list) and payload:
+            payload = payload[0]
+        message = str(payload["error"]["message"])
     except (ValueError, KeyError, TypeError):
         return "no error message"
     return message[:200]

@@ -88,6 +88,14 @@ def test_api_url_sends_the_same_request_to_another_endpoint():
     assert str(request.url) == url and json.loads(request.content)["model"] == "gemini-3.5-flash-lite"
 
 
+def test_an_error_wrapped_in_a_list_keeps_its_message():
+    error = [{"error": {"code": 400, "message": "User location is not supported for the API use."}}]
+    groq, _ = client(Script(httpx.Response(400, json=error)))
+
+    with pytest.raises(GroqError, match="User location is not supported"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+
 def test_429_waits_for_retry_after_then_succeeds():
     script = Script(httpx.Response(429, headers={"retry-after": "7"}), ok())
     sleeps: list[float] = []
