@@ -48,9 +48,11 @@ class VerifiedFinding:
 
 
 class GroqAnalyzer:
-    def __init__(self, client: JsonCompletion, max_chunk_chars: int = DEFAULT_MAX_CHARS):
+    def __init__(self, client: JsonCompletion, max_chunk_chars: int = DEFAULT_MAX_CHARS,
+                 findings_prompt: str = FINDINGS_SYSTEM_PROMPT):
         self._client = client
         self._max_chunk_chars = max_chunk_chars
+        self._findings_prompt = findings_prompt  # the eval swaps in other prompt versions
 
     def analyze(self, source_text: str) -> AnalysisResult:
         text, mapping = pseudonymize(source_text)
@@ -68,7 +70,7 @@ class GroqAnalyzer:
     def _findings(self, chunk: str, index: int, total: int) -> list[FindingDraft]:
         header = f"Contract text, part {index + 1} of {total}:\n\n" if total > 1 else "Contract text:\n\n"
         messages = [
-            {"role": "system", "content": FINDINGS_SYSTEM_PROMPT},
+            {"role": "system", "content": self._findings_prompt},
             {"role": "user", "content": header + chunk},
         ]
         result = self._client.complete_json(messages, "contract_findings", FINDINGS_SCHEMA)

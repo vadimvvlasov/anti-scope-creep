@@ -3,6 +3,8 @@
     uv run python -m evaluation run --set freelance --run 2026-10-11   # needs GROQ_API_KEY
     uv run python -m evaluation run --run gemini-whole --provider gemini --chunk-chars 60000 --max-output-tokens 8000
     uv run python -m evaluation score --run 2026-10-11                   # cache only, no tokens
+    uv run python -m evaluation run --set cuad-holdout --run v3-holdout --provider gemini \
+        --findings-prompt ../eval/prompts/findings-v3.txt                # an older prompt version
 """
 
 import argparse
@@ -16,11 +18,13 @@ from pathlib import Path
 from app.chunking import DEFAULT_MAX_CHARS
 from app.groq_client import API_URL as GROQ_API_URL
 from app.groq_client import DEFAULT_MODEL, GroqClient
+from app.prompts import FINDINGS_SYSTEM_PROMPT
 from app.ratelimit import TokenBucketLimiter
 from evaluation.runner import EVAL_DIR, cache_path, contract_text, load_gold, run
 from evaluation.scoring import Prediction, score_contract, summarize
 
-SETS = ("freelance", "cuad")
+SETS = ("freelance", "cuad", "cuad-holdout")
+DEFAULT_SETS = ("freelance", "cuad")  # the held-out set runs only when named
 # Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
 # Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
 # project (checked 2026-10-12 for gemini-3.5-flash-lite: 15 RPM, 250K input TPM, 500 RPD).
@@ -107,12 +111,15 @@ def main(argv: list[str] | None = None) -> int:
                          help=f"characters per request (default {DEFAULT_MAX_CHARS}); 60000 sends a contract whole")
     run_cmd.add_argument("--max-output-tokens", type=int, default=2_000, help="per request, thinking included")
     run_cmd.add_argument("--temperature", type=float, help="sampling temperature; default: not sent, the provider's default")
+    run_cmd.add_argument("--findings-prompt", type=Path,
+                         help="text file with the findings system prompt; default: the one in app/prompts.py")
     args = parser.parse_args(argv)
     run_dir = EVAL_DIR / "runs" / args.run
-    for set_name in args.set or SETS:
+    for set_name in args.set or DEFAULT_SETS:
         if args.command == "run":
             client = llm_client(args.provider, args.max_output_tokens, temperature=args.temperature)
-            done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars)
+            prompt = args.findings_prompt.read_text(encoding="utf-8") if args.findings_prompt else FINDINGS_SYSTEM_PROMPT
+            done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars, findings_prompt=prompt)
             print(f"{set_name}: {done} contracts analyzed")
         else:
             result = score(run_dir, set_name)

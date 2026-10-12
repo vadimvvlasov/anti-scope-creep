@@ -83,6 +83,25 @@ def test_chunk_size_is_passed_to_the_analyzer(p1):
     assert len(small.sizes) > 1 and len(whole.sizes) == 1
 
 
+class PromptClient(FakeClient):
+    """Records the system prompt of every findings request."""
+
+    def __init__(self):
+        super().__init__("x")
+        self.prompts = set()
+
+    def complete_json(self, messages, schema_name, schema):
+        if schema_name == "contract_findings":
+            self.prompts.add(messages[0]["content"])
+        return super().complete_json(messages, schema_name, schema)
+
+
+def test_another_findings_prompt_reaches_the_model(p1):
+    client = PromptClient()
+    runner.analyze_record(p1, client, findings_prompt="Find nothing.")
+    assert client.prompts == {"Find nothing."}
+
+
 def test_gemini_client_uses_its_key_model_endpoint_and_output_limit():
     from evaluation.__main__ import llm_client
 
