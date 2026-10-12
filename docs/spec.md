@@ -944,10 +944,10 @@ Detection is based on a **strict contractual trigger**: flag a category only whe
 | Category | High | Medium | Low |
 |---|---|---|---|
 | Scope ambiguity / scope creep | Open-ended scope + no change-order mechanism | Ambiguous scope with boundaries | Minor vague wording |
-| Unlimited revisions | Explicitly unlimited / no meaningful limit | Ambiguous or unusually high cap | Minor flexibility beyond normal process |
+| Unlimited revisions | Explicitly unlimited / no meaningful limit | Ambiguous or unusually high cap (6 or more rounds) | Minor flexibility beyond normal process (4–5 rounds, or "reasonable" revisions with no number) |
 | Termination | Immediate client termination without compensation | One-sided termination with notice but limited protection | Uneven standard terms |
 | IP transfer | Transfers before full payment | Transfers on partial milestone | Minor timing ambiguity |
-| Uncapped liability | Explicit unlimited liability or missing monetary cap | Unusually high cap / major exclusions | Minor unfavorable wording |
+| Uncapped liability | Explicit unlimited liability or missing monetary cap | Unusually high cap (above 2x the contract value) / major exclusions (the freelancer's indemnification obligations are excluded from the cap) | Minor unfavorable wording |
 | Payment terms | Net 90+ / conditional or indefinite payment | Net 45–60 | Net 31–44 |
 
 Rules:
@@ -955,6 +955,12 @@ Rules:
 - Risk level is part of the finding and must be one of `low`, `medium`, or `high`.
 - Multiple findings may exist in the same category.
 - Standard Net 30 or shorter payment terms produce no payment-risk finding.
+
+Category clarifications (they refine the matrix above; where they apply, they decide):
+- **Scope creep.** `high`: no change-order mechanism, so any extra work can be requested at no charge. `medium`: the freelancer must accept changes without extra pay, but a boundary exists (for example "reasonable changes within the overall budget", with a written change request beyond it). Not a finding: every scope change requires a written change order with its own price.
+- **Unlimited revisions.** Up to 3 revision rounds is a normal process and not a finding; 4–5 rounds is `low`; 6 or more rounds is `medium`; explicitly unlimited revisions or no limit at all is `high`. "Reasonable" revisions without a number are `low`.
+- **IP transfer.** A transfer "on creation" includes work-made-for-hire wording and present assignments of all right, title and interest in work conceived or developed by the freelancer, when no payment condition applies; these are `high`.
+- **Uncapped liability.** Only the freelancer's exposure counts; a mutual clause counts when the freelancer is a party. `medium`: a cap exists but the freelancer's indemnification obligations are excluded from it, or a fixed cap is above 2x the contract value. Not a finding: carve-outs only for confidentiality, gross negligence, willful misconduct or fraud (market standard); an exclusion of consequential or indirect damages; a cap at or below the fees paid under the agreement, unless the freelancer's indemnification obligations are excluded from it; a fixed cap up to 2x the contract value. When the contract value cannot be determined from the text (time-and-materials, hourly rates, a non-binding estimate), a fixed cap is not a finding because of its size; the indemnification exclusion rule still applies.
 
 ### Overall contract risk
 
