@@ -1,0 +1,73 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+   "start": 7336,
+   "end": 7564
+  }
+ ],
+ "email": true,
+ "seconds": 25.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3378,
+   "seconds": 6.36,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "This clause gives the client the right to demand unlimited revisions and alterations to your work without any cap or extra pay.",
+      "suggested_change": "Completeness of work product shall be determined upon delivery, and the Contractor agrees to make reasonable revisions requested by the Client within the scope of work."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+      "explanation": "Your intellectual property rights transfer to the client immediately upon creation rather than upon full payment, which removes your leverage to ensure you are paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the final deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3053,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2027,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 674,
+   "seconds": 7.89,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I have reviewed the agreement and would like to suggest a couple of small adjustments before I sign it. \n\n- Regarding the clause stating that 'Completeness of work product shall be determined by REIT in its sole discretion', this currently allows for unlimited revisions without extra pay. I propose changing this to: 'Completeness of work product shall be determined upon delivery, and the Contractor agrees to make reasonable revisions requested by the Client within the scope of work.'\n- Regarding the clause stating that 'CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest', this transfers my intellectual property rights before payment is received. I propose changing this to: 'Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the final deliverables.'\n\nPlease let me know if these updates work for you so we can move forward.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

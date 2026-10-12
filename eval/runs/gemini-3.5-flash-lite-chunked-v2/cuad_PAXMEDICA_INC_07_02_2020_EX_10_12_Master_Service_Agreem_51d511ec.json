@@ -1,0 +1,80 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+   "start": 6742,
+   "end": 7256
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CRO agrees that during the term of this Agreement and for a period of three years thereafter: (a) to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to CRO which CRO develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which CRO will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+   "start": 8545,
+   "end": 9142
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  }
+ ],
+ "email": true,
+ "seconds": 18.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3619,
+   "seconds": 6.61,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+      "explanation": "Your liability is capped at the fees received, but your indemnification obligations and IP claims are excluded from this cap, exposing you to potentially unlimited liability.",
+      "suggested_change": "Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement shall be limited to the fees received by the Contractor under this Agreement, and such cap shall apply to all claims including indemnification."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_A] agrees that during the term of this Agreement and for a period of three years thereafter: (a) to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to [PARTY_A] which [PARTY_A] develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which [PARTY_A] will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+      "explanation": "Intellectual property is assigned to the Client upon creation or development, which means you transfer ownership before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable Services, the Contractor agrees to assign to the Client all right, title, and interest in the specific deliverables created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3044,
+   "seconds": 5.52,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation or delivery, rather than upon full payment, which means you could lose ownership rights if the client fails to pay.",
+      "suggested_change": "Ownership of all deliverables and work products shall remain with the Contractor until the Client has made full payment of all amounts due under this Agreement, upon which ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1150,
+   "seconds": 5.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few minor adjustments before we move forward with signing:- Your liability is capped at the fees received, but your indemnification obligations and IP claims are excluded from this cap, exposing you to potentially unlimited liability. To address this, please update the relevant clause to ensure the cap applies to all claims including indemnification as follows: Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement shall be limited to the fees received by the Contractor under this Agreement, and such cap shall apply to all claims including indemnification.- Intellectual property is assigned to the Client upon creation or development, which means you transfer ownership before you are guaranteed full payment. To address this, please update the relevant clause to ensure ownership transfers only upon payment as follows: Upon receipt of full payment for the applicable Services, the Contractor agrees to assign to the Client all right, title, and interest in the specific deliverables created under this Agreement.- Intellectual property rights transfer to the client immediately upon creation or delivery, rather than upon full payment, which means you could lose ownership rights if the client fails to pay. To address this, please update the relevant clause to protect ownership until payment is complete as follows: Ownership of all deliverables and work products shall remain with the Contractor until the Client has made full payment of all amounts due under this Agreement, upon which ownership shall transfer to the Client.Thank you for your understanding, and I look forward to finalizing this soon. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

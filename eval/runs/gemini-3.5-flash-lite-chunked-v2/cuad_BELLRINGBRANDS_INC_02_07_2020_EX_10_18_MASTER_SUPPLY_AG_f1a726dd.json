@@ -1,0 +1,80 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28030,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 30.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3148,
+   "seconds": 6.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3441,
+   "seconds": 6.15,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "except that if the default is by Supplier that creates an immediate public food safety risk, PNC may terminate this Agreement immediately without regard to any period for correction.",
+      "explanation": "The client can terminate the agreement immediately without a cure period if they believe your default creates a food safety risk, leaving you without an opportunity to fix the issue or receive compensation for completed work.",
+      "suggested_change": "Except that if the default is by the Contractor that creates an immediate public food safety risk, the Client may terminate this Agreement upon written notice if such risk is not remedied within a reasonable cure period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3696,
+   "seconds": 5.93,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Your liability is not capped because your indemnification obligations under Section 7.1 are excluded from the overall liability cap.",
+      "suggested_change": "The Liability Cap will apply to all claims and obligations under this Agreement, except for gross negligence and intentional misconduct."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1998,
+   "seconds": 6.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 478,
+   "seconds": 5.42,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically: - Regarding the clause \"9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.\", your liability is not capped because your indemnification obligations under Section 7.1 are excluded from the overall liability cap; please update this so that the Liability Cap will apply to all claims and obligations under this Agreement, except for gross negligence and intentional misconduct. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

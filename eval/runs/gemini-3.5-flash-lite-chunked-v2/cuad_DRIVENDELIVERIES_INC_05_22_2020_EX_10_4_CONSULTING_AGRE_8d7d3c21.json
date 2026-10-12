@@ -1,0 +1,59 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+   "start": 8064,
+   "end": 8313
+  }
+ ],
+ "email": true,
+ "seconds": 24.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2855,
+   "seconds": 6.59,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+      "explanation": "You are required to assign all intellectual property rights immediately upon creation without making the transfer conditional on receiving full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable Services, the Contractor hereby assigns to the Client all right, title, and interest in and to the Inventions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2859,
+   "seconds": 5.51,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3233,
+   "seconds": 6.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 534,
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are having a great week. I am looking forward to getting started, but I would like to propose a few small adjustments to the agreement before I sign.\n\n- Regarding the clause stating: \"Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.\" This currently requires assigning intellectual property rights immediately upon creation without making the transfer conditional on receiving full payment. Please update this to: \"Upon receipt of full payment for the applicable Services, the Contractor hereby assigns to the Client all right, title, and interest in and to the Inventions.\"\n\nPlease let me know if these adjustments work for you so we can move forward.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
