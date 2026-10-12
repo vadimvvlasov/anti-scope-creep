@@ -1,0 +1,51 @@
+{
+ "id": "cuad:XACCT Technologies, Inc.SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 14193,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "XACCT may suspend or terminate Product Maintenance and Support Services          if Licensee fails to timely pay Product Maintenance and Support Service          fees as provided in this Agreement. XACCT may also terminate Support          Services if Licensee breaches any provision of this Agreement or the          License Agreement and such breach is not remedied within thirty (30)          days after Licensee receives written notice of the breach. XACCT shall          also have the right not to renew this Agreement with respect to any          Product by providing written notice of such election at least sixty          (60) days prior to the termination of Support Services for such          Product, provided that XACCT no longer generally provides Support          Services for such Product, or no longer provides the specific Support\n\n\n\n\n\n         Services previously offered.",
+   "start": 9467,
+   "end": 10357
+  }
+ ],
+ "email": true,
+ "seconds": 91.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3980,
+   "seconds": 46.42,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "XACCT may suspend or terminate Product Maintenance and Support Services if Licensee fails to timely pay Product Maintenance and Support Service fees as provided in this Agreement. XACCT may also terminate Support Services if Licensee breaches any provision of this Agreement or the License Agreement and such breach is not remedied within thirty (30) days after Licensee receives written notice of the breach. XACCT shall also have the right not to renew this Agreement with respect to any Product by providing written notice of such election at least sixty (60) days prior to the termination of Support Services for such Product, provided that XACCT no longer generally provides Support Services for such Product, or no longer provides the specific Support Services previously offered.",
+      "explanation": "You can have the services ended by the client for non‑payment or breach with no obligation to pay for work already done, and the client can refuse renewal unilaterally. This creates an imbalance in termination rights.",
+      "suggested_change": "Either party may terminate this Agreement for cause upon thirty (30) days' written notice if the other party breaches a material provision and fails to cure the breach within that period. Upon termination, each party shall be paid for services performed up to the effective termination date, and the client shall provide at least sixty (60) days' notice if it does not wish to renew."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1413,
+   "seconds": 25.09,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 841,
+   "seconds": 19.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before I sign the agreement, I would like to suggest a small amendment to the termination clause:\n\n- The current wording allows XACCT to end support services for non‑payment or breach without any obligation to compensate for work already performed, and it lets XACCT refuse renewal unilaterally. To create a more balanced arrangement, I propose that either party may terminate the agreement for cause upon thirty (30) days' written notice if the other party breaches a material provision and does not cure the breach within that period. Upon termination, each party should be paid for services performed up to the effective termination date, and the client should provide at least sixty (60) days' notice if it does not wish to renew.\n\nPlease let me know if these adjustments are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

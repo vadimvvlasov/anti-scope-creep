@@ -1,0 +1,80 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "10.3. INTERSECT shall also have the right to suspend further performance under this Agreement and/or terminate this agreement in its entirety, without liability except for unpaid previously delivered API that conforms with the terms hereof, if: (i) HOVIONE loses any approval(s) from the US FDA required to perform its obligations under this Agreement or if HOVIONE is involved in felonious or fraudulent activities.",
+   "start": 24599,
+   "end": 25015
+  }
+ ],
+ "email": true,
+ "seconds": 181.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4090,
+   "seconds": 44.33,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "During the term of this Agreement and subject to the terms of this Agreement, [PARTY_A] shall purchase * of its annual API requirement, from [PARTY_B] and [PARTY_B] shall manufacture and supply API to [PARTY_A] (or a third party designated by [PARTY_A]) in such quantities as from time to time may be ordered by [PARTY_A].",
+      "explanation": "You must supply any amount the client orders, without a clear upper limit or defined change‑order process, which can lead to unexpected large orders.",
+      "suggested_change": "During the term of this Agreement, [PARTY_A] shall purchase up to [maximum percentage] of its annual API requirement, and any additional quantities shall be subject to a written change order signed by both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3032,
+   "seconds": 38.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3965,
+   "seconds": 44.75,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "10.3. [PARTY_A] shall also have the right to suspend further performance under this Agreement and/or terminate this agreement in its entirety, without liability except for unpaid previously delivered API that conforms with the terms hereof, if: (i) [PARTY_B] loses any approval(s) from the US FDA required to perform its obligations under this Agreement or if [PARTY_B] is involved in felonious or fraudulent activities.",
+      "explanation": "You can be terminated by the client at any time for broad reasons and owe no damages, while the client’s termination rights are more limited. This creates an imbalance that could leave you uncompensated for work already done.",
+      "suggested_change": "[Party_A] shall have the right to suspend further performance and terminate this Agreement only after providing written notice and a cure period of thirty (30) days, and any termination shall be subject to payment for all services performed and costs incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2469,
+   "seconds": 34.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 703,
+   "seconds": 18.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign, I would like to suggest a minor amendment to the agreement:\n\n- The relevant clause (10.3) currently allows termination without liability for broad reasons. I propose that the clause be revised so that termination by [PARTY_A] requires written notice and a thirty‑day cure period, and that any termination be accompanied by payment for all services performed and costs incurred up to the effective termination date.\n\nThank you for considering these adjustments. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

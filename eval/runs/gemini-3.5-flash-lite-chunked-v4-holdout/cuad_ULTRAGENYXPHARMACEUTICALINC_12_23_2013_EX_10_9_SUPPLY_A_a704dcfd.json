@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT",
+ "chars": 14592,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+   "start": 4133,
+   "end": 4327
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence.",
+   "start": 8744,
+   "end": 8848
+  }
+ ],
+ "email": true,
+ "seconds": 18.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4377,
+   "seconds": 6.52,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+      "explanation": "Although title transfers upon full payment here, the physical delivery and handover of goods occur before payment is finalized, creating risks regarding control of goods before payment.",
+      "suggested_change": "Transfer of title with respect to any Product shall pass upon delivery, provided that the Client has paid all undisputed amounts due for such Product."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence.",
+      "explanation": "Limiting liability exclusively to intentional misconduct or gross negligence means ordinary negligence is completely excluded, creating an unusual liability structure.",
+      "suggested_change": "The Contractor's total aggregate liability arising out of or in connection with this Agreement shall be limited to the total fees paid by the Client under this Agreement in the 12 months preceding the claim, except in cases of gross negligence or willful misconduct."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2327,
+   "seconds": 4.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 600,
+   "seconds": 6.73,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. Before I sign, I would like to propose a few minor adjustments for clarity and balance: - Regarding the clause stating that title transfers only after full payment and settlement of all claims, while physical delivery happens earlier, I propose updating this so that title passes upon delivery, provided that the relevant amounts for the product have been paid. - Regarding the limitation of liability clause which currently only covers intentional misconduct or gross negligence, I suggest revising it to limit the total aggregate liability to the fees paid under the agreement in the preceding 12 months, excluding cases of gross negligence or willful misconduct. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MARTINMIDSTREAMPARTNERSLP_01_23_2004-EX-10.3-TRANSPORTATION SERVICES AGREEMENT",
+ "chars": 13995,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Owner covenants and agrees to fully defend, protect, indemnify and hold harmless Charterer and its affiliates from and against each and every claim, demand, cause of action, liability, damage, cost or expense (including, but not limited to, reasonable attorney's fees and expenses incurred in the defense of Charterer), resulting from any damage to property or injury or death to persons caused, directly or indirectly, by Owner's acts or omissions in connection with Owner's provision of marine transportation services hereunder, except to the extent caused, directly or indirectly, by the acts or omissions of Charterer.",
+   "start": 8696,
+   "end": 9318
+  }
+ ],
+ "email": true,
+ "seconds": 89.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3826,
+   "seconds": 44.51,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Owner covenants and agrees to fully defend, protect, indemnify and hold harmless Charterer and its affiliates from and against each and every claim, demand, cause of action, liability, damage, cost or expense (including, but not limited to, reasonable attorney's fees and expenses incurred in the defense of Charterer), resulting from any damage to property or injury or death to persons caused, directly or indirectly, by Owner's acts or omissions in connection with Owner's provision of marine transportation services hereunder, except to the extent caused, directly or indirectly, by the acts or omissions of Charterer.",
+      "explanation": "You must cover all losses and legal costs caused by your work with no monetary limit, which could expose you to very large expenses.",
+      "suggested_change": "Owner shall indemnify Charterer for claims arising from Owner's acts or omissions, subject to a liability cap equal to the total fees paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1697,
+   "seconds": 26.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 653,
+   "seconds": 18.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment before I sign:\n\n- The relevant clause currently requires the Owner to indemnify the Charterer without any monetary limit. This could expose the Owner to unlimited liability. I propose that the indemnity be limited to an amount equal to the total fees paid under the agreement.\n\nThank you for considering these changes. I look forward to finalizing the contract.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

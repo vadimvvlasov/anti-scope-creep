@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 45.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4108,
+   "seconds": 16.77,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Intellectual property ownership assigns to the client immediately upon creation rather than waiting for full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in the deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4797,
+   "seconds": 18.0,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 465,
+   "seconds": 10.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are doing well. I am looking forward to getting started, but I would like to request a few adjustments to the agreement before I sign it. - Regarding the relevant clause concerning intellectual property ownership, the agreement currently assigns ownership immediately upon creation rather than waiting for full payment. I propose changing this so that the rights transfer upon receipt of full payment for the applicable services. Thank you for understanding, and I look forward to finalizing this soon. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

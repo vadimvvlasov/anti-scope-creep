@@ -1,0 +1,59 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq.",
+   "start": 11252,
+   "end": 11540
+  }
+ ],
+ "email": true,
+ "seconds": 7.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3952,
+   "seconds": 3.74,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3970,
+   "seconds": 1.73,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq.",
+      "explanation": "Ownership of your work passes to the client immediately upon creation as a work made for hire, before you are guaranteed payment.",
+      "suggested_change": "The Works shall remain the property of the Contractor until the Client has paid for them in full."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3756,
+   "seconds": 1.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 474,
+   "seconds": 1.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a few small changes to the relevant clause before I sign. - Regarding the clause stating that the agreement treats the work as a \"work made for hire\", ownership of the work passes to the client immediately upon creation as a work made for hire, before you are guaranteed payment. I propose that the Works shall remain the property of the Contractor until the Client has paid for them in full. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

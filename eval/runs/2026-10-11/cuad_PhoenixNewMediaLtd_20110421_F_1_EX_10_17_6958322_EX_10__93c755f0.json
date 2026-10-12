@@ -1,0 +1,74 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The Program Content to be licensed by Party A to Party B shall be as set forth in Exhibit 1 hereto, as updated from time to time. If the Program  Content required by Party B is beyond that listed on Exhibit 1, as updated from time to time, Party B shall send its written request to  Party A promptly and the latter shall license the Program Content described in the preceding phrase to Party B to the extent it has power  to do so in accordance with this Agreement.",
+   "start": 7731,
+   "end": 8196
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "start": 17087,
+   "end": 17411
+  }
+ ],
+ "email": true,
+ "seconds": 134.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3990,
+   "seconds": 45.32,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The Program Content to be licensed by Party A to Party B shall be as set forth in Exhibit 1 hereto, as updated from time to time. If the Program Content required by Party B is beyond that listed on Exhibit 1, as updated from time to time, Party B shall send its written request to Party A promptly and the latter shall license the Program Content described in the preceding phrase to Party B to the extent it has power to do so in accordance with this Agreement.",
+      "explanation": "You can be asked for additional content beyond the listed exhibit at any time, without a clear change‑order process or limit, which may expand your work unexpectedly.",
+      "suggested_change": "The Program Content to be licensed by the Contractor shall be limited to the items listed in Exhibit 1 as of the Effective Date. Any additional content requested by the Client shall require a written change order signed by both parties, specifying the scope, fees, and timeline for the additional work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3936,
+   "seconds": 46.8,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by the termination of this Agreement.",
+      "explanation": "You can be terminated at any time by the client without any payment for work already performed, leaving you uncompensated for effort and expenses.",
+      "suggested_change": "Either Party may terminate this Agreement upon written notice, provided that the terminating Party shall pay the non‑terminating Party all undisputed fees for services performed up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1275,
+   "seconds": 22.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 905,
+   "seconds": 20.36,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to clarify a couple of points:\n\n- The relevant clause about the Program Content currently allows requests for additional items beyond Exhibit 1 at any time. I propose limiting the licensed content to the items listed in Exhibit 1 as of the Effective Date, and requiring a written change order signed by both parties for any extra content, with clear scope, fees, and timeline.\n- The termination clause states that no compensation or indemnification is required when either party terminates unilaterally. I suggest amending it so that either party may terminate with written notice, and the terminating party must pay all undisputed fees for services performed up to the effective termination date.\n\nPlease let me know if these adjustments are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

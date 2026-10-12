@@ -1,0 +1,50 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [],
+ "email": false,
+ "seconds": 76.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3775,
+   "seconds": 14.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3754,
+   "seconds": 6.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3655,
+   "seconds": 17.52,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4179,
+   "seconds": 21.5,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3245,
+   "seconds": 16.49,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

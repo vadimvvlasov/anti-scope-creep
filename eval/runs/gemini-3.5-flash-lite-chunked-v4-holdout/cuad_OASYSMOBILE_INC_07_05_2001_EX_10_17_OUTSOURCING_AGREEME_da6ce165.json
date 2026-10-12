@@ -1,0 +1,75 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 35.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4258,
+   "seconds": 5.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4129,
+   "seconds": 6.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4067,
+   "seconds": 5.71,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4353,
+   "seconds": 6.46,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00 Net ninety (90) days from the Effective Date of this Agreement.",
+      "explanation": "Payment is due ninety days from the effective date, which exposes you to cash flow delays exceeding acceptable terms.",
+      "suggested_change": "The Client shall pay all undisputed invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4268,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 425,
+   "seconds": 6.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. I am looking forward to getting started, but I would like to request a few adjustments to the agreement before signing. - Regarding the clause stating '$ 115,250.00 Net ninety (90) days from the Effective Date of this Agreement.', waiting ninety days for payment creates cash flow difficulties; I propose changing this so that the client pays all undisputed invoices within thirty days of receipt. Thank you for understanding, and I look forward to finalizing this soon. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,83 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.03. Beginning on February 28, 2019, XSPA may terminate this Agreement immediately, upon written notice, if Calm has not purchased and funded the purchase of the Second Closing Shares (as defined in the Series E Preferred Stock Purchase Agreement dated as of even date herewith by and between XSPA and Calm) by December 31, 2018.",
+   "start": 40471,
+   "end": 40802
+  }
+ ],
+ "email": true,
+ "seconds": 194.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3108,
+   "seconds": 1.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3363,
+   "seconds": 21.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3039,
+   "seconds": 38.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3425,
+   "seconds": 43.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3845,
+   "seconds": 45.6,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.03. Beginning on February 28, 2019, XSPA may terminate this Agreement immediately, upon written notice, if Calm has not purchased and funded the purchase of the Second Closing Shares (as defined in the Series E Preferred Stock Purchase Agreement dated as of even date herewith by and between XSPA and Calm) by December 31, 2018.",
+      "explanation": "You could lose the contract instantly if a financing condition isn’t met, with no right to compensation for work already performed.",
+      "suggested_change": "Either Party may terminate this Agreement upon written notice only after a material breach, and the terminating Party shall pay the other Party all undisputed fees earned up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1640,
+   "seconds": 28.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 640,
+   "seconds": 15.25,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you are well. Before I sign the agreement, I would like to clarify a few points:\n- The relevant clause allows termination immediately if a financing condition is not met, which could end the contract without compensation for work already performed. I propose that either Party may terminate the agreement upon written notice only after a material breach, and the terminating Party shall pay the other Party all undisputed fees earned up to the effective date of termination.\n\nThank you for reviewing these suggestions. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

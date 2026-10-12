@@ -1,0 +1,295 @@
+{
+ "set": "cuad",
+ "contracts": 28,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 4,
+   "fn": 4,
+   "precision": 0.2,
+   "recall": 0.2,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 9,
+   "fn": 1,
+   "precision": 0.182,
+   "recall": 0.667,
+   "severity_accuracy": 0.0
+  },
+  "uncapped_liability": {
+   "tp": 1,
+   "fp": 8,
+   "fn": 5,
+   "precision": 0.111,
+   "recall": 0.167,
+   "severity_accuracy": 0.0
+  },
+  "all": {
+   "tp": 4,
+   "fp": 21,
+   "fn": 10,
+   "precision": 0.16,
+   "recall": 0.286,
+   "severity_accuracy": 0.25
+  }
+ },
+ "run": {
+  "failed": 1,
+  "invalid_output": 1,
+  "findings_returned": 47,
+  "findings_kept": 40,
+  "dropped": {
+   "quote_not_found": 7
+  },
+  "quote_not_found_rate": 0.149,
+  "tokens_mean": 11149,
+  "tokens_max": 20382,
+  "seconds_mean": 140.8,
+  "seconds_max": 239.7
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT IN CASES OF GROSS NEGLIGENCE, WILLFUL MISCONDUCT OR FRAUD, INDEMNIFICATION CLAIMS UNDER SECTION 5 OR BREACHES OF SECTION 2 (TRADEMARKS), 8 (CONFIDENTIALITY), OR 9 (NO AGENCY RELATIONSHIP), IN NO EVENT SHALL EITHER PARTY OR ITS OFFICERS, DIRECTORS, OR EMPLOYEES BE LIABLE TO THE OTHER PARTY IN CONNECTION WITH THE SUBJECT MATTER HEREOF, FOR ANY SPECIAL, INDIRECT, CONSEQUENTIAL OR PUNITIVE DAMAGES OF ANY KIND, LOST PROFITS OR LOST REVENUE, WHETHER ARISING IN CONTRACT, TORT, NEGLIGENCE, STATUTE, OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY THEREOF. IN NO EVENT SHALL THE NON-BREACHING PARTY BE ENTITLED TO EQUITABLE OR INJUNCTIVE RELIEF OF ANY KIND.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:AlliedEsportsEntertainmentInc_20190815_8-K_EX-10.19_11788293_EX-10.19_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "PNC may terminate the Purchase Order in whole or in part. In the event of such a termination, Supplier shall continue performance of any nonterminated portion of the Purchase Order, or any nonterminated Purchase Orders, and the quantity of Ingredient ordered and so terminated shall be deducted against any relevant Master Purchase Commitment.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "7.2 Except for a Party's gross negligence or intentional acts or omissions and its obligations of indemnity under this Agreement, under no circumstances will either Party be liable to the other Party for [***].",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "CBC shall defend and assume responsibility for any suit, claim or other action by a third party alleging that MediWound's use of Bromelain SP infringes any patents or other rights of such third party.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "10.1 MediWound may terminate this Agreement at any time, by 6 (six) months prior notice in writing.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT FOR BREACH OF CONFIDENTIALITY OBLIGATION HEREUNDER, AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR SPECIAL, PUNITIVE, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF USE, DATA OR LOST PROFITS, EVEN IF IT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, WHETHER UNDER THIS AGREEMENT, IN TORT OR OTHERWISE.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Type I Materials are those, created during the Service performance period,       in which Customer will have all right, title, and interest (including       ownership of copyright). IBM will retain one copy of the Materials.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "In the event that CRO believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, CRO will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to CRO.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Licensor shall be solely responsible for the Titles and any and all legal liability resulting from the Titles, excluding any legal liability caused by Licensee's breach of this Agreement or gross negligence with regards to the Titles. Without limiting the generality of the foregoing, Licensor shall be solely responsible for any and all royalties and other fees payable to any applicable licensor(s) or any third party for distribution of the Titles by Licensee (including, without limitation, residuals and clearances or other payments to guilds or unions and rights for music clearances, such as performance rights, synchronization rights and mechanical rights), and all other fees, payments and obligations arising out of the activities contemplated by this Agreement, and Licensee shall have no responsibility or liability for any such royalties or fees.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Neither party shall be liable to the other pursuant to this Agreement for any amounts representing loss of profit, loss of business or indirect, consequential, exemplary, or punitive damages of the other party.  The foregoing shall not limit the indemnification, defense and hold harmless obligations set forth in this Agreement other than those set forth in Section 5.4 and shall not apply with respect to damages or losses arising from the wrongful termination of this Agreement by LMG, willful misconduct, gross negligence or breach of LMG's obligations under Section 3. 8.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:REGANHOLDINGCORP_03_31_2008-EX-10-LICENSE AND HOSTING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "The source code belongs to the client and will be delivered as soon as the project is fully finished.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Any and all claims, losses, cost or expenses shall be limited to actual and direct costs. In no event shall any party be responsible to the other for indirect, special or consequential damages.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "12.03. Beginning on February 28, 2019, XSPA may terminate this Agreement immediately, upon written notice, if Calm has not purchased and funded the purchase of the Second Closing Shares (as defined in the Series E Preferred Stock Purchase Agreement dated as of even date herewith by and between XSPA and Calm) by December 31, 2018.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "PACIFICAP ENTERTAINMENT AGREES that all television shows, DVD Magazines, Internet Streaming Video Television Shows, Television Shorts, Radio Shows, Radio Shorts, Cell Phone Video Clips, Caller ID Video Clips, Promotional Commercials, Websites, Streaming Video Commercials, Streaming Video Highlight Shows, 24 Hour Nostalgia Sports Network, DVD Program Package, Television Show Series, stock footage library, and print promotional posters, created and or produced with any content provided by PACIFICAP ENTERTAINMENT are wholly owned by THE HENRY FILM AND ENTERTAINMENT CORPORATION.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Owner covenants and agrees to fully defend, protect, indemnify and hold harmless Charterer and its affiliates from and against each and every claim, demand, cause of action, liability, damage, cost or expense (including, but not limited to, reasonable attorney's fees and expenses incurred in the defense of Charterer), resulting from any damage to property or injury or death to persons caused, directly or indirectly, by Owner's acts or omissions in connection with Owner's provision of marine transportation services hereunder, except to the extent caused, directly or indirectly, by the acts or omissions of Charterer.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:MARTINMIDSTREAMPARTNERSLP_01_23_2004-EX-10.3-TRANSPORTATION SERVICES AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "XACCT may suspend or terminate Product Maintenance and Support Services          if Licensee fails to timely pay Product Maintenance and Support Service          fees as provided in this Agreement. XACCT may also terminate Support          Services if Licensee breaches any provision of this Agreement or the          License Agreement and such breach is not remedied within thirty (30)          days after Licensee receives written notice of the breach. XACCT shall          also have the right not to renew this Agreement with respect to any          Product by providing written notice of such election at least sixty          (60) days prior to the termination of Support Services for such          Product, provided that XACCT no longer generally provides Support          Services for such Product, or no longer provides the specific Support\n\n\n\n\n\n         Services previously offered.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:XACCT Technologies, Inc.SUPPORT AND MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "10.3. INTERSECT shall also have the right to suspend further performance under this Agreement and/or terminate this agreement in its entirety, without liability except for unpaid previously delivered API that conforms with the terms hereof, if: (i) HOVIONE loses any approval(s) from the US FDA required to perform its obligations under this Agreement or if HOVIONE is involved in felonious or fraudulent activities.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+   "category": "uncapped_liability",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  },
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  }
+ ]
+}
