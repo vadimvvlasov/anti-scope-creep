@@ -37,6 +37,7 @@ class ContractScore:
     false_positives: list[dict] = field(default_factory=list)
     false_negatives: list[Unit] = field(default_factory=list)
     duplicates: int = 0
+    optional: int = 0  # predictions on `optional` units: neither rewarded nor penalized
 
 
 def overlaps(a: Span, b: Span) -> bool:
@@ -60,11 +61,14 @@ def score_contract(record: dict, text: str, predictions: list[Prediction]) -> Co
     evaluated = set(record["evaluated_categories"])
     units = gold_units(record, text)
     findings = [u for u in units if u.decision == "finding"]
+    optional = [u for u in units if u.decision == "optional"]
     score = ContractScore(record["id"])
     matched: set[int] = set()
     for prediction in (p for p in predictions if p.category in evaluated):
         unit = _match(prediction, findings)
-        if unit is None:
+        if unit is None and _match(prediction, optional) is not None:
+            score.optional += 1
+        elif unit is None:
             score.false_positives.append(_false_positive(prediction, units))
         elif id(unit) in matched:
             score.duplicates += 1

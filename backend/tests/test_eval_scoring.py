@@ -42,6 +42,13 @@ def test_prediction_on_a_no_finding_span_is_flagged_and_other_categories_are_ign
     assert len(score.false_positives) == 1 and score.false_positives[0]["on_no_finding"]
 
 
+def test_an_optional_unit_is_neither_rewarded_nor_penalized():
+    gold = record(entry("unlimited_revisions", "Revisions are unlimited.", decision="optional"))
+    hit = score_contract(gold, TEXT, [predict("unlimited_revisions", "unlimited")])
+    assert hit.optional == 1 and not hit.true_positives and not hit.false_positives and not hit.false_negatives
+    assert not score_contract(gold, TEXT, []).false_negatives
+
+
 def test_summary_computes_precision_recall_and_severity():
     gold = record(entry("unfavorable_payment_terms", "Net 90 applies.", level="high"), entry("unlimited_revisions", "Revisions are unlimited."))
     score = score_contract(gold, TEXT, [predict("unfavorable_payment_terms", "Net 90", level="medium"), predict("one_sided_termination", "Either party")])
