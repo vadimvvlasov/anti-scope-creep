@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28030,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 4.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5742,
+   "seconds": 1.27,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4171,
+   "seconds": 1.24,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Your liability is capped overall, but indemnification obligations are excluded from that cap, exposing you to potentially unlimited damages for indemnity claims.",
+      "suggested_change": "The Liability Cap shall apply to all claims and obligations under this Agreement, including indemnification."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 430,
+   "seconds": 1.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the contract. I am looking forward to working together, but I would like to request a few adjustments before signing the agreement. - Regarding the relevant clause, the current terms exclude indemnification obligations from the liability cap, which could expose me to unlimited damages. I propose modifying this so that the liability cap applies to all claims and obligations under the agreement, including indemnification. Please let me know if these adjustments are acceptable to you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

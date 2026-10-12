@@ -1,0 +1,67 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+   "start": 22545,
+   "end": 22808
+  }
+ ],
+ "email": true,
+ "seconds": 30.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3668,
+   "seconds": 4.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2978,
+   "seconds": 4.35,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3793,
+   "seconds": 6.15,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+      "explanation": "Your indemnification and confidentiality obligations are excluded from the overall liability cap, exposing you to potentially unlimited damages in those areas.",
+      "suggested_change": "The limitation of liability shall apply to all claims and damages arising under this Agreement, including indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2513,
+   "seconds": 6.15,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 482,
+   "seconds": 9.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. - Regarding the relevant clause (\"PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY...\"), your indemnification and confidentiality obligations are currently excluded from the overall liability cap, exposing you to potentially unlimited damages in those areas; I propose changing this so that the limitation of liability applies to all claims and damages arising under this agreement, including indemnification obligations. Please let me know if these adjustments work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

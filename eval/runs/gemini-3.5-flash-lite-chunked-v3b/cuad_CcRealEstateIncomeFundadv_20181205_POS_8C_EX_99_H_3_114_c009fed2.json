@@ -1,0 +1,59 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+   "start": 9808,
+   "end": 9970
+  }
+ ],
+ "email": true,
+ "seconds": 25.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3668,
+   "seconds": 6.01,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+      "explanation": "Your payment depends on an indefinite, client-controlled event (receiving payments from the Fund), which creates a significant risk of delayed or missed payments.",
+      "suggested_change": "The Distributor shall pay the Contractor within 30 days of receiving the applicable invoice, regardless of whether the Distributor has received payment from the Fund."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3112,
+   "seconds": 4.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3213,
+   "seconds": 8.26,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 484,
+   "seconds": 6.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am looking forward to getting started, and I just have a couple of quick notes regarding the agreement before I sign. - Regarding the clause stating that 'No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable,' my payment currently depends on an indefinite event outside of my control, so I would like to adjust this to ensure timely payment. Please update this to read: 'The Distributor shall pay the Contractor within 30 days of receiving the applicable invoice, regardless of whether the Distributor has received payment from the Fund.' Thank you for understanding, and I look forward to moving forward soon. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

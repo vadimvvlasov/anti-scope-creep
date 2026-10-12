@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  }
+ ],
+ "email": true,
+ "seconds": 11.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5301,
+   "seconds": 5.89,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Intellectual property ownership transfers to the client before you have been fully paid for all deliverables.",
+      "suggested_change": "Upon full payment of all fees due under this Agreement, the Client owns all rights in all Deliverables."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "The client can terminate the contract at any time without cause and you are not paid for the services or work in progress up to that date.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice. The Client shall pay the Contractor for all Services performed and Deliverables completed up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 702,
+   "seconds": 5.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I am looking forward to working together, and I just have a couple of quick adjustments to propose before I sign:\n\n- Regarding the clause stating \"Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.\": Intellectual property ownership transfers to the client before you have been fully paid for all deliverables. I propose we change this to: \"Upon full payment of all fees due under this Agreement, the Client owns all rights in all Deliverables.\"\n- Regarding the clause stating \"Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.\": The client can terminate the contract at any time without cause and you are not paid for the services or work in progress up to that date. I propose we change this to: \"Either party may terminate this Agreement for convenience upon 20 days' written notice. The Client shall pay the Contractor for all Services performed and Deliverables completed up to the effective date of termination.\"\n\nPlease let me know if these updates work for you so we can move forward.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

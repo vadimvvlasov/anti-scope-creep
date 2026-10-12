@@ -1,0 +1,94 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables.",
+   "start": 4880,
+   "end": 4980
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 17.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3709,
+   "seconds": 6.31,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables.",
+      "explanation": "Allowing 15 rounds of revisions is unusually high and exposes you to endless rework without extra compensation.",
+      "suggested_change": "The parties agree to include up to two rounds of revisions for each principal creative Deliverable."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Net 60 payment terms require you to wait up to two months to get paid, which negatively impacts your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2887,
+   "seconds": 5.73,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "The contract includes 15 rounds of revisions, which is an unusually high and burdensome allowance that can trap you in endless changes without extra pay.",
+      "suggested_change": "Revision allowance: 3 rounds"
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You are required to wait 60 days after invoicing to receive payment, which ties up your cash flow for too long.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 772,
+   "seconds": 5.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before signing. Regarding the clause stating 'The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables.', allowing 15 rounds of revisions is unusually high and exposes you to endless rework without extra compensation; please update this so that the parties agree to include up to two rounds of revisions for each principal creative Deliverable. Regarding the clause stating 'Invoices are payable Net 60.', Net 60 payment terms require you to wait up to two months to get paid, which negatively impacts your cash flow; please update this so that invoices are payable Net 30. Regarding the clause stating 'Revision allowance: 15 rounds', the contract includes 15 rounds of revisions, which is an unusually high and burdensome allowance that can trap you in endless changes without extra pay; please update this to read revision allowance: 3 rounds. Regarding the clause stating 'Payment period: Net 60', you are required to wait 60 days after invoicing to receive payment, which ties up your cash flow for too long; please update this to read payment period: Net 30. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

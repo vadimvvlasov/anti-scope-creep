@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 22.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3833,
+   "seconds": 4.78,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause forces you to perform extra work requested by the client without any additional pay.",
+      "suggested_change": "The Client may request additional services, which the Contractor will perform subject to a mutually agreed written change order detailing the scope and additional fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "This exposes you to endless revision cycles without extra compensation until the client is fully satisfied.",
+      "suggested_change": "The Client may request up to two rounds of revisions per Deliverable, after which additional revisions will be billed at the Contractor's standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2656,
+   "seconds": 8.6,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The contract explicitly allows an unlimited number of revisions, which can trap you in endless changes without additional compensation.",
+      "suggested_change": "Revision allowance: up to 3 rounds of revisions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 710,
+   "seconds": 8.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically: - Regarding the clause stating 'Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.', this forces you to perform extra work requested by the client without any additional pay. I propose changing this so that the Client may request additional services, which the Contractor will perform subject to a mutually agreed written change order detailing the scope and additional fees. - Regarding the clause stating 'Client may request unlimited revisions until Client is fully satisfied with each Deliverable.', this exposes you to endless revision cycles without extra compensation until the client is fully satisfied. I propose changing this so that the Client may request up to two rounds of revisions per Deliverable, after which additional revisions will be billed at the Contractor's standard hourly rate. - Regarding the clause stating 'Revision allowance: unlimited', the contract explicitly allows an unlimited number of revisions, which can trap you in endless changes without additional compensation. I propose changing this to revision allowance: up to 3 rounds of revisions. Please let me know if these adjustments are acceptable so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

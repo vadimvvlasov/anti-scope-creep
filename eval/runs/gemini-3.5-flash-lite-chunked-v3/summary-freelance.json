@@ -1,0 +1,114 @@
+{
+ "set": "freelance",
+ "contracts": 12,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.667,
+   "severity_accuracy": 0.5
+  },
+  "scope_creep": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.6
+  },
+  "unlimited_revisions": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.5
+  },
+  "all": {
+   "tp": 15,
+   "fp": 0,
+   "fn": 2,
+   "precision": 1.0,
+   "recall": 0.882,
+   "severity_accuracy": 0.733
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 21,
+  "findings_kept": 21,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 5786,
+  "tokens_max": 7401,
+  "seconds_mean": 10.3,
+  "seconds_max": 35.9
+ },
+ "false_positives": [],
+ "false_negatives": [
+  {
+   "id": "freelance:M4",
+   "category": "scope_creep",
+   "risk_level": "medium"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "freelance:M4",
+   "category": "unlimited_revisions",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M4",
+   "category": "unfavorable_payment_terms",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "unfavorable_payment_terms",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

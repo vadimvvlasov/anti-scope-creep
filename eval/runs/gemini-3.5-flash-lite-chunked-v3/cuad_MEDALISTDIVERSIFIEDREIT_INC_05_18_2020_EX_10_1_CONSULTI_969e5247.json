@@ -1,0 +1,73 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+   "start": 7053,
+   "end": 7335
+  }
+ ],
+ "email": true,
+ "seconds": 14.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3461,
+   "seconds": 2.09,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "This clause allows the client to demand an unlimited number of revisions and alterations with no cap and no extra pay, based entirely on their own discretion.",
+      "suggested_change": "Completeness of work product shall be determined by mutual agreement, and the Contractor shall be entitled to reasonable revision rounds as defined in the Statement of Work, with additional changes subject to extra fees."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation or delivery (as a work made for hire) rather than upon full payment, creating a risk that you are unpaid and lose your rights.",
+      "suggested_change": "Upon receipt of full payment for the applicable deliverables, all right, title, and interest in the copyrightable Work Product shall transfer to the Company."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3098,
+   "seconds": 9.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2067,
+   "seconds": 1.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 717,
+   "seconds": 1.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. Before I sign, I would like to propose a few minor adjustments to better align our expectations:\n\n- Regarding the clause stating that completeness shall be determined by the client in its sole discretion, with unlimited required revisions: This allows the client to demand an unlimited number of revisions and alterations with no cap and no extra pay, based entirely on their own discretion. Please update this so that completeness is determined by mutual agreement, and the Contractor is entitled to reasonable revision rounds as defined in the Statement of Work, with additional changes subject to extra fees.\n\n- Regarding the clause concerning the work made for hire status: Intellectual property rights transfer to the client immediately upon creation or delivery rather than upon full payment, creating a risk that you are unpaid and lose your rights. Please modify this so that upon receipt of full payment for the applicable deliverables, all right, title, and interest in the copyrightable Work Product shall transfer to the Company.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

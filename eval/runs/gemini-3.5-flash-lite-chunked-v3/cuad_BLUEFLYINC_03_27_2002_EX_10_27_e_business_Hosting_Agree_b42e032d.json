@@ -1,0 +1,42 @@
+{
+ "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+ "chars": 37351,
+ "findings": [],
+ "email": false,
+ "seconds": 24.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3483,
+   "seconds": 5.87,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3572,
+   "seconds": 6.25,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3545,
+   "seconds": 5.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1334,
+   "seconds": 6.66,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

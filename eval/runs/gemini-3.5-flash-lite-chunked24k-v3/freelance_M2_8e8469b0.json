@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 3.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5250,
+   "seconds": 1.79,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Your intellectual property rights transfer to the client upon delivery, before you have been paid in full, which removes your leverage to secure payment.",
+      "suggested_change": "All intellectual property rights in each Deliverable transfer to Client upon receipt of full payment of all fees due under this Agreement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can terminate the agreement immediately without notice and without paying you for completed work, leaving you uncompensated for your time and efforts.",
+      "suggested_change": "Either party may terminate this Agreement upon providing 30 days' prior written notice to the other party, and the Client shall pay the Contractor for all Services performed and Deliverables created up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 578,
+   "seconds": 1.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the contract. I am looking forward to working together, but I would like to propose a few small adjustments to the agreement before signing. - Regarding the clause stating \"All intellectual property rights in each Deliverable transfer to Client upon delivery.\", this currently transfers ownership before payment is complete; I propose changing this so that rights transfer upon receipt of full payment. - Regarding the clause stating \"Client may terminate this Agreement at any time, without notice and without further payment.\", this leaves completed work uncompensated; I propose that either party can terminate with 30 days' notice and that the client pays for all services performed up to that date. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

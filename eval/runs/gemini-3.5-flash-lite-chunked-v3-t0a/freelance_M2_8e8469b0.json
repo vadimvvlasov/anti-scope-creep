@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 4.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3852,
+   "seconds": 1.67,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Intellectual property ownership transfers to the client upon delivery, before you are guaranteed to receive full payment for your work.",
+      "suggested_change": "All intellectual property rights in each Deliverable transfer to Client upon receipt of full payment for the applicable Services."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can terminate the contract immediately without notice and without paying for completed or in-progress work, leaving you without compensation.",
+      "suggested_change": "Client may terminate this Agreement for convenience upon 30 days' written notice, provided that Client pays for all Services performed and expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2568,
+   "seconds": 1.25,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 585,
+   "seconds": 1.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are doing well. I am reviewing the agreement and would like to propose a few minor adjustments before signing. Specifically: - Regarding the clause \"All intellectual property rights in each Deliverable transfer to Client upon delivery.\", ownership transfers before payment is guaranteed. I suggest changing this to: \"All intellectual property rights in each Deliverable transfer to Client upon receipt of full payment for the applicable Services.\". - Regarding the clause \"Client may terminate this Agreement at any time, without notice and without further payment.\", this allows termination without paying for completed work. I suggest changing this to: \"Client may terminate this Agreement for convenience upon 30 days' written notice, provided that Client pays for all Services performed and expenses incurred up to the effective date of termination.\". Thank you for understanding, and I look forward to getting started. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

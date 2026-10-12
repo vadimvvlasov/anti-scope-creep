@@ -1,0 +1,73 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing; and",
+   "start": 16383,
+   "end": 16725
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "start": 17087,
+   "end": 17411
+  }
+ ],
+ "email": true,
+ "seconds": 33.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3698,
+   "seconds": 6.49,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4082,
+   "seconds": 12.18,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing; and",
+      "explanation": "The client can terminate the agreement immediately based on its own subjective judgment that your performance is adversely affected, which creates a high termination risk without equivalent protection for you.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days' prior written notice in the event of a material breach by the other party that remains uncured."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by the termination of this Agreement.",
+      "explanation": "This provision allows the client to terminate the contract without paying any compensation or for completed work, leaving you unprotected.",
+      "suggested_change": "Upon termination of this Agreement by either party, the Client shall pay the Contractor for all work performed and expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1347,
+   "seconds": 4.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 646,
+   "seconds": 9.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I have reviewed the agreement and would like to propose a few minor adjustments before signing. Specifically: - Regarding the clause stating that the agreement can be terminated based on a subjective judgment of performance, I suggest that either party may terminate the agreement upon thirty days' prior written notice in the event of a material breach by the other party that remains uncured. - Regarding the clause addressing compensation upon termination, I propose that upon termination of the agreement by either party, the client shall pay the contractor for all work performed and expenses incurred up to the effective date of termination. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

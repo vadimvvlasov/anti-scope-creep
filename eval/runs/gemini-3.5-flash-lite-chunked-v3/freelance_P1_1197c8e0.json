@@ -1,0 +1,66 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 10.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3616,
+   "seconds": 1.12,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms mean you will wait up to three months to get paid for your work, which creates a significant cash flow risk.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2800,
+   "seconds": 1.17,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Payment is due 90 days after invoicing, which is much longer than the standard 30 days and severely delays your cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 497,
+   "seconds": 8.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. Before I sign, I would like to request a few adjustments to the terms.\n\n- Regarding the clause \"Invoices are payable Net 90.\", waiting up to three months to get paid creates a significant cash flow risk, so I propose changing this to: \"Invoices are payable Net 30.\"\n- Regarding the clause \"Payment period: Net 90\", a 90-day payment window severely delays cash flow compared to standard terms, so I propose changing this to: \"Payment period: Net 30\"\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

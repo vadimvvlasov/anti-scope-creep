@@ -1,0 +1,43 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  }
+ ],
+ "email": true,
+ "seconds": 5.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5088,
+   "seconds": 4.17,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "This clause assigns your intellectual property rights to the client upon creation rather than upon full payment, meaning you lose ownership before you are guaranteed to be paid.",
+      "suggested_change": "Upon full payment of all fees due under this Agreement, all deliverables and work products developed by the Contractor in the performance of Services shall belong exclusively to the Client, and the Contractor hereby assigns such rights upon receipt of final payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 642,
+   "seconds": 1.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. Before I sign, I would like to propose a few small adjustments: - Regarding the relevant clause stating \"(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;\", this assigns your intellectual property rights to the client upon creation rather than upon full payment, meaning you lose ownership before you are guaranteed to be paid. I suggest changing this to: Upon full payment of all fees due under this Agreement, all deliverables and work products developed by the Contractor in the performance of Services shall belong exclusively to the Client, and the Contractor hereby assigns such rights upon receipt of final payment. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

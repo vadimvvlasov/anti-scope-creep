@@ -1,0 +1,59 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm, such Product Collateral IP (or aspect thereof) shall be deemed \"works made for hire\" for Calm within the meaning of the U.S. Copyright Law and/or other applicable comparable laws or, if they do not so qualify, all ownership rights thereto shall be, and are hereby, assigned to Calm.",
+   "start": 31383,
+   "end": 31759
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5786,
+   "seconds": 9.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6292,
+   "seconds": 3.28,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm, such Product Collateral IP (or aspect thereof) shall be deemed \"works made for hire\" for Calm within the meaning of the U.S. Copyright Law and/or other applicable comparable laws or, if they do not so qualify, all ownership rights thereto shall be, and are hereby, assigned to Calm.",
+      "explanation": "Intellectual property rights transfer to the client upon creation or delivery rather than upon full payment, which means you could lose your rights before getting paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable work, all intellectual property rights in the Product Collateral IP shall be assigned to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2895,
+   "seconds": 9.11,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 517,
+   "seconds": 2.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before signing.\n\n- Regarding the clause stating that 'If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm...', the intellectual property rights transfer to the client upon creation or delivery rather than upon full payment, which means you could lose your rights before getting paid. I suggest updating this so that 'Upon receipt of full payment for the applicable work, all intellectual property rights in the Product Collateral IP shall be assigned to the Client.'\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

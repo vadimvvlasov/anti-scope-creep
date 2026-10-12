@@ -1,0 +1,73 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "- These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand",
+   "start": 1046,
+   "end": 1158
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+   "start": 8064,
+   "end": 8313
+  }
+ ],
+ "email": true,
+ "seconds": 28.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3018,
+   "seconds": 6.34,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "- These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand",
+      "explanation": "The phrase \"not limited to\" makes the scope open-ended, meaning the client can request additional marketing tasks without a guaranteed change order or extra pay.",
+      "suggested_change": "These Services shall include Marketing guidance and support, limited to Graphics, Web, Social, and Brand."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+      "explanation": "Your intellectual property assigns to the company immediately upon creation or disclosure, before you are guaranteed to receive full payment for your work.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, Consultant assigns to the Company all right, title, and interest in and to the Inventions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2899,
+   "seconds": 7.89,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3273,
+   "seconds": 8.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 589,
+   "seconds": 5.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a couple of small adjustments before I sign. - Regarding the clause stating that the services are \"not limited to\" graphics, web, social, and brand, this leaves the scope too open-ended. I propose updating this to specify that the services are limited to those listed areas. - Regarding the clause concerning the assignment of inventions, this assigns rights immediately before payment is guaranteed. I propose updating this so that the assignment of rights takes effect upon receipt of full payment for the applicable services. Thank you for your understanding, and I look forward to getting started."
+   }
+  }
+ ],
+ "dropped": []
+}

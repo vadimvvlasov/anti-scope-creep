@@ -1,0 +1,26 @@
+{
+ "id": "cuad:PFSFUNDS_06_26_2020-EX-99.H OTH MAT CONT-SERVICES AGREEMENT",
+ "chars": 15052,
+ "findings": [],
+ "email": false,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3495,
+   "seconds": 8.27,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1823,
+   "seconds": 9.02,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

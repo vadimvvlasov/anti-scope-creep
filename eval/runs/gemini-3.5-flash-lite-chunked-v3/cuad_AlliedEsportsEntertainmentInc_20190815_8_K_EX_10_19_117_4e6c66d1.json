@@ -1,0 +1,42 @@
+{
+ "id": "cuad:AlliedEsportsEntertainmentInc_20190815_8-K_EX-10.19_11788293_EX-10.19_Content License Agreement",
+ "chars": 35504,
+ "findings": [],
+ "email": false,
+ "seconds": 4.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3532,
+   "seconds": 1.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3663,
+   "seconds": 1.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3615,
+   "seconds": 1.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1430,
+   "seconds": 0.82,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,74 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+   "start": 8064,
+   "end": 8313
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.",
+   "start": 17937,
+   "end": 18137
+  }
+ ],
+ "email": true,
+ "seconds": 24.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2905,
+   "seconds": 6.79,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.",
+      "explanation": "You are required to assign all intellectual property rights to the Company upon creation rather than upon receiving full payment, which leaves you unprotected if the client fails to pay.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the Inventions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2899,
+   "seconds": 5.24,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3422,
+   "seconds": 6.44,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.",
+      "explanation": "The client can terminate the agreement immediately without notice if they claim you breached it, while you do not have equivalent immediate termination rights.",
+      "suggested_change": "Either Party may terminate this Agreement immediately upon written notice if the other Party materially breaches this Agreement and fails to cure such breach within thirty (30) days of receiving notice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 782,
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am looking forward to working together, and I have reviewed the agreement. Before signing, I would like to propose a few minor adjustments for clarity and balance: - Regarding the clause addressing the assignment of inventions, which states \"Consultant also agrees to promptly make full written disclosure to the Company of any Inventions and to deliver and assign (or cause to be assigned) and irrevocably assigns fully to the Company all right, title and interest in and to the Inventions.\": currently, this requires assigning all rights upon creation rather than upon receiving full payment. I propose changing this to: \"Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the Inventions.\"; - Regarding the clause addressing termination, which states \"The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.\": currently, the client can terminate immediately without notice for a breach, while I do not have equivalent rights. I propose changing this to: \"Either Party may terminate this Agreement immediately upon written notice if the other Party materially breaches this Agreement and fails to cure such breach within thirty (30) days of receiving notice.\". Thank you for considering these updates, and please let me know if these modifications work for you so we can move forward. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

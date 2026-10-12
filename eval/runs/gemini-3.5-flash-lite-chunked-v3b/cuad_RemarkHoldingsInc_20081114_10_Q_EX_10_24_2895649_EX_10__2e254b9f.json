@@ -1,0 +1,83 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+   "start": 46923,
+   "end": 47272
+  }
+ ],
+ "email": true,
+ "seconds": 55.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3725,
+   "seconds": 6.34,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3566,
+   "seconds": 7.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3652,
+   "seconds": 4.51,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3530,
+   "seconds": 7.48,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3234,
+   "seconds": 7.89,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+      "explanation": "Your liability is capped at the fees paid or payable, but your indemnification obligations are excluded from this cap, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "10.1 Except for either party's violation of the confidentiality obligations, neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2864,
+   "seconds": 9.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 571,
+   "seconds": 11.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to propose a few minor adjustments before signing. - Regarding the limitation of liability, the relevant clause currently excludes indemnification obligations from the liability cap, which could expose me to unlimited financial risk. I propose modifying the agreement to include all obligations under the standard liability cap as follows: 10.1 Except for either party's violation of the confidentiality obligations, neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this agreement. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

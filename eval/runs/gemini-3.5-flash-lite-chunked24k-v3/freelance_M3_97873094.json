@@ -1,0 +1,43 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  }
+ ],
+ "email": true,
+ "seconds": 8.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5169,
+   "seconds": 7.14,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Your payment depends on when the client's customer pays them, which creates a conditional payment risk and can delay your money indefinitely.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 438,
+   "seconds": 1.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am looking forward to getting started, but I would like to request a few adjustments to the agreement before signing. Specifically, regarding the clause \"Invoices are payable within 15 days after Client receives payment from its own customer.\", your payment depends on when the client's customer pays them, which creates a conditional payment risk and can delay your money indefinitely. Therefore, please change this to: \"Invoices are payable within 30 days after receipt of the invoice.\". Please let me know if these updates work for you so we can finalize the paperwork. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

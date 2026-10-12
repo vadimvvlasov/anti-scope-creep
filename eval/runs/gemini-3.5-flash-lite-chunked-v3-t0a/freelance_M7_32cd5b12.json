@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  }
+ ],
+ "email": true,
+ "seconds": 12.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2246,
+   "seconds": 7.04,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment within ninety days is a very long wait and creates cash flow issues for you.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the applicable milestone deliverables."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You transfer your intellectual property upon delivery rather than upon receiving full payment, which removes your leverage if the client fails to pay.",
+      "suggested_change": "Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest in and to the deliverables developed under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 567,
+   "seconds": 5.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a couple of adjustments to the relevant clause sections before I sign. - Regarding the payment terms, payment within ninety days creates a significant delay, so I propose modifying the clause so that payment is due within thirty days after acceptance of the applicable milestone deliverables. - Regarding the intellectual property assignment, transferring rights upon delivery rather than upon full payment removes necessary protection, so I propose that the assignment take effect upon receipt of full payment for each milestone. Thank you for considering these updates, and I look forward to finalizing the paperwork soon."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,66 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 3.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3610,
+   "seconds": 1.46,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms force you to wait three months to get paid, which creates cash flow issues.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2799,
+   "seconds": 1.13,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Net 90 payment terms mean you will wait up to three months after invoicing to get paid, which can create cash flow problems.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 503,
+   "seconds": 1.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Here are the items I would like to discuss: - Regarding the clause stating \"Invoices are payable Net 90.\", waiting three months to get paid creates cash flow issues, so I propose changing it to: Invoices are payable Net 30. - Regarding the clause stating \"Payment period: Net 90\", waiting up to three months after invoicing can create cash flow problems, so I propose changing it to: Payment period: Net 30. Please let me know if these modifications work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

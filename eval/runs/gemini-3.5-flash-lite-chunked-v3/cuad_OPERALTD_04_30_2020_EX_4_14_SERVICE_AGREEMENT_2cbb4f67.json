@@ -1,0 +1,51 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 6.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3253,
+   "seconds": 1.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4852,
+   "seconds": 4.33,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Payment takes up to 45 days after invoice confirmation, which delays your cash flow beyond standard 30-day terms.",
+      "suggested_change": "PC Financial shall pay all undisputed invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 430,
+   "seconds": 1.1,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope this email finds you well. I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the clause stating \"After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.\": Payment takes up to 45 days after invoice confirmation, which delays your cash flow beyond standard 30-day terms. I propose that PC Financial shall pay all undisputed invoices within thirty (30) days of receipt. Thank you for your time and understanding. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

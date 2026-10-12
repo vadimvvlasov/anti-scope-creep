@@ -1,0 +1,26 @@
+{
+ "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement",
+ "chars": 18138,
+ "findings": [],
+ "email": false,
+ "seconds": 8.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3643,
+   "seconds": 6.18,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2453,
+   "seconds": 2.56,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

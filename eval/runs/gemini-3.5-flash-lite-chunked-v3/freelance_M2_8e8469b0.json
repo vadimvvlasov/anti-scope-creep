@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5117,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8946,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 3.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3861,
+   "seconds": 1.51,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Your intellectual property rights transfer to the client upon delivery, before you are guaranteed to receive full payment for your work.",
+      "suggested_change": "All intellectual property rights in each Deliverable transfer to the Client upon receipt of full payment for that Deliverable."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can terminate the agreement immediately without notice and without paying for completed work, leaving you without fair compensation.",
+      "suggested_change": "The Client may terminate this Agreement at any time upon 15 days' written notice, and shall pay the Contractor for all Services performed and Deliverables created up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2563,
+   "seconds": 1.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 563,
+   "seconds": 1.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. I am looking forward to working together, and I just have a couple of quick requests regarding the agreement before I sign. Regarding clause 6.1, where it states that intellectual property rights transfer upon delivery, I would like to propose that the rights transfer upon receipt of full payment for that Deliverable. Additionally, regarding clause 12.2 concerning termination without notice or payment, I propose that the Client may terminate this Agreement at any time upon 15 days' written notice, and shall pay the Contractor for all Services performed and Deliverables created up to the effective date of termination. Please let me know if these adjustments are acceptable to you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

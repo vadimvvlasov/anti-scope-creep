@@ -1,0 +1,82 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+   "start": 2336,
+   "end": 2568
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  }
+ ],
+ "email": true,
+ "seconds": 22.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3237,
+   "seconds": 4.95,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+      "explanation": "The Client can terminate the contract on short notice, but your termination rights are severely restricted to non-payment situations only, creating a one-sided arrangement.",
+      "suggested_change": "Either Party may terminate this Agreement upon seven (7) days' prior written notice to the other Party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3073,
+   "seconds": 5.64,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Intellectual property transfers to the client upon creation rather than upon full payment, meaning you lose rights to your work before getting paid.",
+      "suggested_change": "The Contractor shall retain ownership of all intellectual property until the Contractor has been paid in full for the Services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3349,
+   "seconds": 3.89,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2433,
+   "seconds": 4.7,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 599,
+   "seconds": 3.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. Before I sign, I would like to propose a few minor adjustments to the agreement:\n- Regarding the termination terms in the relevant clause, the current wording only allows the client to cancel freely while restricting my termination rights; I suggest we modify this so that either party may terminate the agreement upon seven days' prior written notice.\n- Regarding the intellectual property terms, the current clause transfers ownership upon creation rather than upon full payment; I suggest we update this so that the contractor retains ownership of all intellectual property until paid in full for the services.\nThank you for your understanding, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

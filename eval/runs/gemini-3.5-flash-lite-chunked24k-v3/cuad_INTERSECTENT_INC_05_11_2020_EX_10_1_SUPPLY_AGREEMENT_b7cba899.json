@@ -1,0 +1,51 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+   "start": 22442,
+   "end": 22808
+  }
+ ],
+ "email": true,
+ "seconds": 18.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6456,
+   "seconds": 6.35,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+      "explanation": "Your indemnification obligations are carved out from the limitation of liability, meaning your exposure for indemnity claims is completely uncapped.",
+      "suggested_change": "The limitation of liability shall apply to all claims under this Agreement, including indemnification obligations, except for breaches of confidentiality."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4158,
+   "seconds": 5.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 486,
+   "seconds": 5.95,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am looking forward to getting started. Before signing the agreement, I would like to propose a few small adjustments. Specifically: - Regarding the limitation of liability, the relevant clause currently carves out indemnification obligations, which leaves exposure for indemnity claims completely uncapped. I propose that we update the agreement so that the limitation of liability applies to all claims, including indemnification obligations, while keeping the exception for breaches of confidentiality. Thank you for your time and understanding, and I look forward to finalizing this soon."
+   }
+  }
+ ],
+ "dropped": []
+}
