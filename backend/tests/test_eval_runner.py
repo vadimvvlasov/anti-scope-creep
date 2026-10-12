@@ -89,7 +89,7 @@ def test_gemini_client_uses_its_key_model_endpoint_and_output_limit():
     client = llm_client("gemini", 8_000, env={"GEMINI_API_KEY": "test-key", "GEMINI_MODEL": "gemini-3.1-flash-lite"})
     assert client._api_url.startswith("https://generativelanguage.googleapis.com/v1beta/openai/")
     assert client._model == "gemini-3.1-flash-lite" and client._max_completion_tokens == 8_000
-    assert client._limiter._capacity == (250_000.0, 15.0)
+    assert client._limiter._capacity == (250_000.0, 10.0)
 
 
 def test_groq_stays_the_default_provider():

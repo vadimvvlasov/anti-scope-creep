@@ -24,10 +24,12 @@ SETS = ("freelance", "cuad")
 # Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
 # Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
 # project (checked 2026-10-12 for gemini-3.5-flash-lite: 15 RPM, 250K input TPM, 500 RPD).
+# The limiter runs at 10 RPM: at 15, a run started right after another one got HTTP 429
+# (the provider still counted the previous run's last minute).
 PROVIDERS = {
     "groq": ("GROQ", GROQ_API_URL, DEFAULT_MODEL, 30, 8_000),
     "gemini": ("GEMINI", "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-               "gemini-3.5-flash-lite", 15, 250_000),
+               "gemini-3.5-flash-lite", 10, 250_000),
 }
 
 
