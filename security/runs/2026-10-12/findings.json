@@ -1,0 +1,276 @@
+{
+  "run": "2026-10-12",
+  "commit": "8cbbb0a (origin/main); fixes on branch sec/audit",
+  "tools": {
+    "semgrep": "1.178.0, config p/default (CI artifact for main, local run after fixes)",
+    "pip-audit": "backend runtime dependencies from uv export (40 packages)",
+    "npm audit": "frontend, --omit=dev (504 packages)",
+    "model review": "Claude, read-only review of PR #23 (model-review-pr23.md)"
+  },
+  "dependency_audit": {
+    "pip-audit": "no known vulnerabilities",
+    "npm audit": "0 vulnerabilities"
+  },
+  "findings": [
+    {
+      "id": "SG-1",
+      "source": "semgrep",
+      "rule": "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+      "title": "Actions referenced by mutable tags",
+      "severity": "warning",
+      "locations": [
+        ".github/workflows/ci.yml:38,55,56,69,76,77,92,105,113,116"
+      ],
+      "count": 10,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "A tag can be repointed by the action owner. All actions are now pinned to a full commit SHA with the version in a comment, as the deploy workflows already were.",
+      "fix_ref": "branch sec/audit",
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "SG-2",
+      "source": "semgrep",
+      "rule": "yaml.github-actions.security.secrets-inherit.secrets-inherit",
+      "title": "Reusable deploy workflow receives every secret",
+      "severity": "error",
+      "locations": [
+        ".github/workflows/deploy-dev.yml:62",
+        ".github/workflows/promote-prod.yml:74"
+      ],
+      "count": 2,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "deploy.yml now declares the five secrets it uses and the callers pass them by name. GitHub requires passing environment secrets explicitly, so deploy-dev must be checked after merge.",
+      "fix_ref": "branch sec/audit",
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "SG-3",
+      "source": "semgrep",
+      "rule": "package_managers.uv.uv-missing-dependency-cooldown.uv-missing-dependency-cooldown",
+      "title": "No dependency cooldown for uv",
+      "severity": "medium",
+      "locations": [
+        "backend/pyproject.toml"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "exclude-newer = \"7 days\" added. Relocking moved markupsafe 3.0.3 to 3.0.4, sqlalchemy 2.1.2 to 2.1.3 and tzdata 2026.4 to 2026.5, all older than 7 days; the backend suite passes.",
+      "fix_ref": "branch sec/audit",
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "SG-4",
+      "source": "semgrep",
+      "rule": "package_managers.bun.bun-missing-minimum-release-age.bun-missing-minimum-release-age",
+      "title": "Bun minimum release age is 24 hours, not 7 days",
+      "severity": "medium",
+      "locations": [
+        "frontend/bunfig.toml:4"
+      ],
+      "count": 1,
+      "disposition": "accept",
+      "disposition_status": "confirmed",
+      "rationale": "bunfig.toml is used only by Lovable's bun install. CI and the frontend image install with npm ci from package-lock.json. The Lovable-managed file already has a 24-hour guard; 7 days would block packages Lovable adds. Revisit if bun becomes part of CI.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "SG-5",
+      "source": "semgrep",
+      "rule": "generic.nginx.security.header-redefinition.header-redefinition",
+      "title": "add_header in a location block",
+      "severity": "warning",
+      "locations": [
+        "frontend/nginx.conf:8"
+      ],
+      "count": 1,
+      "disposition": "false_positive",
+      "disposition_status": "confirmed",
+      "rationale": "The server block sets no headers, so nothing is overwritten. The only add_header (Cache-Control for hashed assets) is the intended one.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "SG-6",
+      "source": "semgrep",
+      "rule": "python.lang.security.audit.dynamic-urllib-use-detected.dynamic-urllib-use-detected",
+      "title": "urllib with a non-literal URL",
+      "severity": "warning",
+      "locations": [
+        "scripts/select_cuad.py:75",
+        "scripts/smoke.py:64"
+      ],
+      "count": 2,
+      "disposition": "accept",
+      "disposition_status": "confirmed",
+      "rationale": "select_cuad.py opens the constant CUAD_ZIP_URL. smoke.py builds the URL from the backend URL its operator passes on the command line. No user input reaches either, and both are local or CI tools, not part of the app.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-1",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "Bracketed tokens in the contract make findings disappear",
+      "severity": "medium",
+      "locations": [
+        "backend/app/pseudonymize.py:73",
+        "backend/app/groq_analyzer.py:108-113"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "Real correctness and manipulation risk: template tokens like [CLIENT_NAME] or a hostile [REF_1] drop correct findings silently. Register existing bracket tokens as identity mappings; add a test and an eval case.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-2",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "No per-user cap on analyses; the shared quota and threadpool can be exhausted",
+      "severity": "medium",
+      "locations": [
+        "backend/app/runner.py:33-34",
+        "backend/app/ratelimit.py:41-48",
+        "backend/app/routers/contracts.py:50-59"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "Open registration plus a shared 200K tokens/day Groq quota: one user can block analyses for everyone. Cap analyses in flight per user and per day; a dedicated executor is deferred to the next phase.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-3",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "Contract text is not framed as untrusted data",
+      "severity": "medium",
+      "locations": [
+        "backend/app/prompts.py:68-69",
+        "backend/app/groq_analyzer.py:69-90"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "The counterparty writes the contract, so prompt injection is in scope. Frame the contract as untrusted data with delimiters and add injection cases to the eval. Done after the prompt v4 decision to keep the eval comparable.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-4",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "One overlong field fails the whole analysis",
+      "severity": "low",
+      "locations": [
+        "backend/app/groq_analyzer.py:75,96,119",
+        "backend/app/runner.py:47-51"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "Validate findings one by one after restore and drop invalid ones with a logged reason, as with quote_not_found.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-5",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "Superseded or stale runs keep calling Groq",
+      "severity": "low",
+      "locations": [
+        "backend/app/runner.py:40-51",
+        "backend/app/groq_client.py:83-127"
+      ],
+      "count": 1,
+      "disposition": "defer",
+      "disposition_status": "confirmed",
+      "rationale": "Wastes tokens only under queueing; MR-2 removes most of the cause. Revisit with the worker queue.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "MR-6",
+      "source": "model-review",
+      "rule": "pr23",
+      "title": "Validation errors logged contract text",
+      "severity": "info",
+      "locations": [
+        "backend/app/analyzer.py"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "Already fixed in cccdeb7 (hide_input_in_errors on all models), before this audit.",
+      "fix_ref": "cccdeb7",
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "GH-1",
+      "source": "manual",
+      "rule": "repository-settings",
+      "title": "main has no branch protection or ruleset",
+      "severity": "medium",
+      "locations": [
+        "GitHub repository settings"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "The one-PR-per-step rule and green CI before merge exist only as a convention in AGENTS.md; anyone with a token, including a coding agent, can push to main and trigger deploy-dev. Add a ruleset: pull request required, CI checks required, no force push.",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    },
+    {
+      "id": "AG-1",
+      "source": "manual",
+      "rule": "agent-capabilities",
+      "title": "The local coding agent runs with the developer's AWS and GitHub credentials",
+      "severity": "medium",
+      "locations": [
+        "capability-table.md"
+      ],
+      "count": 1,
+      "disposition": "fix",
+      "disposition_status": "confirmed",
+      "rationale": "Claude Code runs in the developer's shell, where the AWS CLI is configured for an IAM user and gh is logged in. Today only permission prompts stand between the agent and those credentials. Deny aws and gh merge/secret commands in the project permissions and document it (agent extension pack).",
+      "fix_ref": null,
+      "decided_by": "Vadim Vlasov",
+      "decided_at": "2026-10-12",
+      "related_incident": null
+    }
+  ]
+}
