@@ -164,6 +164,47 @@ def test_content_that_is_not_a_json_object_fails(content):
         groq.complete_json(MESSAGES, "hi", SCHEMA)
 
 
+def cut(partial: str = '{"findings": [{"category": "scope') -> httpx.Response:
+    """An answer stopped at the output cap: unfinished JSON, finish_reason "length"."""
+    return httpx.Response(200, json={"choices": [{"message": {"content": partial}, "finish_reason": "length"}],
+                                     "usage": {"total_tokens": 2_500, "completion_tokens": 2_000}})
+
+
+def test_a_result_reports_output_tokens_and_finish_reason():
+    response = httpx.Response(200, json={"choices": [{"message": {"content": '{"text": "hi"}'}, "finish_reason": "stop"}],
+                                         "usage": {"total_tokens": 900, "completion_tokens": 300}})
+    groq, _ = client(Script(response))
+
+    result = groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert (result.completion_tokens, result.finish_reason, result.max_completion_tokens) == (300, "stop", 2_000)
+
+
+def test_a_cut_answer_is_asked_again_with_twice_the_budget():
+    script = Script(cut(), ok())
+    groq, limiter = client(script)
+
+    result = groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert result.content == {"text": "hi"} and result.max_completion_tokens == 4_000
+    assert [json.loads(r.content)["max_completion_tokens"] for r in script.requests] == [2_000, 4_000]
+    assert limiter.acquired[1] - limiter.acquired[0] == 2_000  # the limiter reserves the bigger budget
+
+
+def test_a_second_cut_fails_and_the_partial_answer_is_never_parsed():
+    groq, _ = client(Script(cut(), cut()))
+    with pytest.raises(GroqError, match="cut at max_completion_tokens=4000"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+
+def test_a_budget_already_at_the_retry_cap_is_not_retried():
+    script = Script(cut())
+    groq, _ = client(script, max_completion_tokens=8_000)
+    with pytest.raises(GroqError, match="cut at max_completion_tokens=8000"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+    assert len(script.requests) == 1
+
+
 def test_logs_carry_no_key_and_no_contract_text(caplog):
     caplog.set_level(logging.DEBUG)
     groq, _ = client(Script(httpx.Response(429, headers={"retry-after": "1"}), ok()))

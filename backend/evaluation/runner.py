@@ -31,6 +31,8 @@ CUAD_JSON = EVAL_DIR / ".cache" / "CUADv1.json"
 _DROPPED = re.compile(r"Dropped a (\w+) finding: (\w+)")
 # Groq rejects a generation that does not match the strict JSON schema with HTTP 400.
 _INVALID_JSON = "Failed to validate JSON"
+# The client gives up when the output is cut at the token cap even after its one retry.
+_TRUNCATED = "output was cut at max_completion_tokens"
 
 
 def load_gold(set_name: str) -> list[dict]:
@@ -70,6 +72,8 @@ class RecordingClient:
         started = time.monotonic()
         result = self.inner.complete_json(messages, schema_name, schema)
         self.calls.append({"schema": schema_name, "tokens": result.total_tokens,
+                           "output_tokens": result.completion_tokens, "output_budget": result.max_completion_tokens,
+                           "finish_reason": result.finish_reason,
                            "seconds": round(time.monotonic() - started, 2), "content": result.content})
         return result
 
@@ -94,8 +98,9 @@ def cache_path(run_dir: Path, record_id: str) -> Path:
 
 def analyze_record(record: dict, client: JsonCompletion, max_chunk_chars: int = DEFAULT_MAX_CHARS,
                    findings_prompt: str = FINDINGS_SYSTEM_PROMPT) -> dict:
-    """Analyze one contract. Output that fails the schema (Groq's 400 or Pydantic) is a model
-    failure and is cached; any other provider error propagates and stops the run."""
+    """Analyze one contract. Output that fails the schema (Groq's 400 or Pydantic) or is cut
+    at the token cap twice is a model failure and is cached; any other provider error
+    propagates and stops the run."""
     text = contract_text(record)
     recorder, drops = RecordingClient(client), DropCollector()
     logger = logging.getLogger("app.groq_analyzer")
@@ -110,9 +115,12 @@ def analyze_record(record: dict, client: JsonCompletion, max_chunk_chars: int = 
     except ValidationError as error:
         entry["error"] = {"type": "invalid_output", "message": str(error).splitlines()[0][:200]}
     except GroqError as error:
-        if _INVALID_JSON not in str(error):
+        if _INVALID_JSON in str(error):
+            entry["error"] = {"type": "invalid_json", "message": str(error)[:200]}
+        elif _TRUNCATED in str(error):
+            entry["error"] = {"type": "truncated", "message": str(error)[:200]}
+        else:
             raise
-        entry["error"] = {"type": "invalid_json", "message": str(error)[:200]}
     finally:
         logger.removeHandler(drops)
     entry.update(seconds=round(time.monotonic() - started, 1), calls=recorder.calls, dropped=drops.dropped)
