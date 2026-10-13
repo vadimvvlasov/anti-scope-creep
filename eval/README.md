@@ -201,6 +201,33 @@ spec's rules, not how it reads real contracts; that is the CUAD set's job.
   becomes a gold finding (`decision: finding`, noted in `reason`), so the gold is not
   biased toward CUAD's labels only.
 
+## Reproduce the numbers
+
+Every model answer is cached in `eval/runs/<run>/`, one JSON file per contract, and
+committed. Scoring reads only the cache and the gold sets, so it needs no API key and
+spends no tokens. CUAD texts are not committed: download them once.
+
+```bash
+python3 scripts/select_cuad.py --download    # CUAD into eval/.cache/ (about 40 MB)
+cd backend
+uv run python -m evaluation score --run gemini-3.5-flash-lite-chunked-v4                        # freelance and CUAD
+uv run python -m evaluation score --run gemini-3.5-flash-lite-chunked-v4-holdout --set cuad-holdout
+```
+
+The held-out set is scored only when named with `--set cuad-holdout`. For prompt v4 the
+first command prints precision 0.944, recall 1.0, severity 0.882 on freelance and 0.625,
+0.714, 0.9 on CUAD; the second prints 0.5, 0.8, 0.75 on the held-out set, the numbers
+behind the v4 decision.
+
+A new run calls the provider and needs its key: `GROQ_API_KEY` (default provider) or
+`GEMINI_API_KEY` with `--provider gemini`. A stopped run continues from its cache.
+
+```bash
+uv run python -m evaluation run --set freelance --run my-run                       # Groq, the current prompt
+uv run python -m evaluation run --set cuad-holdout --run my-run-holdout --provider gemini \
+    --findings-prompt ../eval/prompts/findings-v3.txt                               # an older prompt version
+```
+
 ## Attribution
 
 CUAD v1 by The Atticus Project, licensed under
