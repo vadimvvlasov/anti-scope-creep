@@ -39,10 +39,14 @@ URLs are in the README (Environments). Prod backend:
 
 ## Logs
 
-Backend (owner's AWS credentials; the agent has none by design):
+Backend (owner's AWS credentials; the agent has none by design). The commands use a
+named profile for the project's AWS account (`aws configure --profile asc-prod`):
+`--profile` wins over `AWS_ACCESS_KEY_ID` in the environment, which may belong to
+another account on the same machine. Check with
+`aws sts get-caller-identity --profile asc-prod` before reading anything.
 
 ```bash
-aws lightsail get-container-log --region eu-central-1 \
+aws lightsail get-container-log --profile asc-prod --region eu-central-1 \
   --service-name anti-scope-creep-prod --container-name backend \
   --start-time "$(date -u -d '-1 hour' +%FT%TZ)" \
   --query 'logEvents[].[createdAt,message]' --output text
@@ -51,14 +55,15 @@ aws lightsail get-container-log --region eu-central-1 \
 Service and deployment state:
 
 ```bash
-aws lightsail get-container-services --region eu-central-1 --service-name anti-scope-creep-prod \
+aws lightsail get-container-services --profile asc-prod --region eu-central-1 --service-name anti-scope-creep-prod \
   --query 'containerServices[0].{state:state,deployment:currentDeployment.state,image:currentDeployment.containers.backend.image}'
 ```
 
 Both commands need read permissions that a plain IAM user does not have by default
 (the CI deploy roles have their own). Without them AWS answers `AccessDeniedException ...
-is not authorized to perform: lightsail:GetContainerLog`. A read-only inline policy for
-the person on call:
+is not authorized to perform: lightsail:GetContainerLog`; if the ARN in that message
+shows an unexpected account, the profile is wrong, not the permissions. A read-only
+inline policy for a separate on-call IAM user (not the Terraform or deploy identity):
 
 ```json
 {
