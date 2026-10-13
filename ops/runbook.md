@@ -49,8 +49,12 @@ another account on the same machine. Check with
 aws lightsail get-container-log --profile asc-prod --region eu-central-1 \
   --service-name anti-scope-creep-prod --container-name backend \
   --start-time "$(date -u -d '-1 hour' +%FT%TZ)" \
-  --query 'logEvents[].[createdAt,message]' --output text
+  --query 'logEvents[].[createdAt,message]' --output text | grep -v '"GET /health'
 ```
+
+Lightsail health checks hit `/health` every few seconds, hence the `grep -v`. The answer
+is paged oldest first: a wide `--start-time` returns only its oldest page (the response
+has a `nextPageToken`), so keep the window narrow or set `--end-time`.
 
 Service and deployment state:
 
