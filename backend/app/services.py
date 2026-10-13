@@ -42,9 +42,13 @@ class ContractService:
         self._store = context.store
         self._clock = context.clock
         self._stale_after = timedelta(seconds=context.settings.analysis_stale_after_seconds)
+        self._max_running = context.settings.analysis_max_running_per_user
+        self._daily_limit = context.settings.analysis_daily_limit_per_user
         self._runner = runner
 
     def create(self, user_id: UUID, data: ContractInput) -> ContractDetail:
+        self._fail_stale(user_id)
+        self._check_limits(user_id)
         now = self._clock()
         contract = ContractRecord(
             id=uuid4(),
@@ -92,6 +96,10 @@ class ContractService:
 
     def retry(self, user_id: UUID, contract_id: UUID) -> ContractDetail:
         self._fail_stale(user_id)
+        record = self._require(self._store.get_contract(user_id, contract_id))
+        if record.status == ContractStatus.ANALYZING:
+            raise AppError(ErrorCode.ANALYSIS_IN_PROGRESS)
+        self._check_limits(user_id)
         return self._start_analysis(user_id, contract_id)
 
     def delete(self, user_id: UUID, contract_id: UUID) -> None:
@@ -110,8 +118,24 @@ class ContractService:
         except ContractBusyError:
             raise AppError(ErrorCode.ANALYSIS_IN_PROGRESS) from None
         record = self._require(record)
+        self._store.add_analysis_start(user_id, record.analysis_started_at)
         self._runner.schedule(record.id, run_id)
         return self._detail(record)
+
+    def _check_limits(self, user_id: UUID) -> None:
+        """At most the running limit at once per user, and the daily limit in a rolling 24 hours.
+
+        A soft cap: two requests at the same moment can both pass. It protects the shared
+        LLM quota from one account, not from a determined attacker (security/, MR-2).
+        """
+        if 0 < self._max_running <= self._store.count_running_analyses(user_id):
+            raise AppError(ErrorCode.ANALYSIS_ALREADY_RUNNING)
+        since = self._clock() - timedelta(hours=24)
+        if 0 < self._daily_limit <= self._store.count_analysis_starts(user_id, since):
+            raise AppError(
+                ErrorCode.DAILY_ANALYSIS_LIMIT_REACHED,
+                f"You have reached the limit of {self._daily_limit} analyses in 24 hours. Please try again later.",
+            )
 
     def _fail_stale(self, user_id: UUID) -> None:
         now = self._clock()
