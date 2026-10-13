@@ -3,6 +3,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { Upload, FileText } from "lucide-react";
 
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
+import { ProDialog } from "@/components/pro-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRequireAuth } from "@/hooks/useAuth";
 import { AI_DATA_POLICY_URL, ANALYZER, PROVIDER_NOTICE } from "@/lib/methodology";
+import { analytics } from "@/services/analytics";
 import { api, isApiError, MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "@/services/api";
 
 export const Route = createFileRoute("/new-analysis")({
@@ -41,6 +43,7 @@ function NewAnalysisPage() {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [limitReached, setLimitReached] = useState(false);
   // Why the last picked file was rejected, so submitting without a file repeats it.
   const [fileError, setFileError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -102,8 +105,10 @@ function NewAnalysisPage() {
       const contract = await api.createContract(
         mode === "file" ? { file, title: trimmedTitle || null } : { text, title: trimmedTitle },
       );
+      analytics.track("analysis_started", { input: mode });
       void navigate({ to: "/contracts/$id", params: { id: contract.id } });
     } catch (err) {
+      setLimitReached(isApiError(err) && err.code === "DAILY_ANALYSIS_LIMIT_REACHED");
       setError(isApiError(err) ? err.message : "Something went wrong. Please try again.");
     } finally {
       setBusy(false);
@@ -184,6 +189,16 @@ function NewAnalysisPage() {
         {error && (
           <div className="rounded-md bg-risk-high-soft px-3 py-2 text-sm text-risk-high">
             {error}
+            {limitReached && (
+              <ProDialog
+                placement="daily_limit"
+                trigger={
+                  <Button type="button" variant="link" size="sm" className="h-auto px-1">
+                    Need more? See Pro
+                  </Button>
+                }
+              />
+            )}
           </div>
         )}
 

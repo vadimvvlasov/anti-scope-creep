@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { analytics } from "@/services/analytics";
 import { api, getToken, setUnauthorizedHandler, type User } from "@/services/api";
 
 interface AuthContextValue {
@@ -48,7 +49,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     api
       .getMe()
       .then((me) => {
-        if (active) setUser(me);
+        if (!active) return;
+        analytics.identify(me.id);
+        setUser(me);
       })
       .catch(() => {
         if (active) setUser(null);
@@ -63,18 +66,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, password: string) => {
     const res = await api.login(email, password);
+    analytics.identify(res.user.id);
     setUser(res.user);
     setSessionExpired(false);
   }, []);
 
   const register = useCallback(async (email: string, password: string) => {
     const res = await api.register(email, password);
+    analytics.identify(res.user.id);
+    analytics.track("signup_completed");
     setUser(res.user);
     setSessionExpired(false);
   }, []);
 
   const logout = useCallback(() => {
     api.logout();
+    analytics.reset();
     setUser(null);
     void navigate({ to: "/login" });
   }, [navigate]);

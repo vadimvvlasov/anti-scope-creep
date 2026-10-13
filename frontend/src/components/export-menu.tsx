@@ -16,6 +16,7 @@ import {
   EXPORT_DISABLED_HINT,
   exportErrorMessage,
 } from "@/lib/export";
+import { analytics } from "@/services/analytics";
 import { api, type ExportFormat } from "@/services/api";
 
 const FORMATS: { format: ExportFormat; label: string }[] = [
@@ -37,6 +38,7 @@ export function ExportMenu({
     setExporting(true);
     try {
       downloadFile(await api.exportReport(contractId, format));
+      analytics.track("report_exported", { format });
     } catch (error) {
       const message = exportErrorMessage(error);
       // One toast per kind: repeated clicks replace it instead of stacking copies.

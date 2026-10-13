@@ -23,6 +23,7 @@ import {
 import { useRequireAuth } from "@/hooks/useAuth";
 import { useFindingSelection } from "@/hooks/useFindingSelection";
 import { filterFindings } from "@/lib/highlights";
+import { analytics } from "@/services/analytics";
 import { api, isApiError, type ContractDetail, type Finding } from "@/services/api";
 
 export const Route = createFileRoute("/contracts/$id")({
@@ -135,6 +136,7 @@ function ContractDetailsPage() {
   const retry = async () => {
     try {
       const next = await api.retryAnalysis(id);
+      analytics.track("analysis_started", { input: "retry" });
       setContract(next);
       pollStartedAt.current = Date.now();
       setTimedOut(false);

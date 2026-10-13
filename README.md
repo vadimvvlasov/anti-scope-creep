@@ -148,6 +148,7 @@ Course rubric items and where they live in this repository:
 | LLM eval | [`eval/README.md`](eval/README.md) |
 | Security audit | [`security/README.md`](security/README.md): scanner, dependency audit, model review, a decision per finding |
 | Operations | [`ops/README.md`](ops/README.md): runbook and diagnoses of real incidents |
+| Product analytics | [`docs/analytics.md`](docs/analytics.md): funnel events by acquisition channel, the Pro demand test |
 
 ## Screenshots
 
