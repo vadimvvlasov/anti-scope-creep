@@ -1,0 +1,116 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm, such Product Collateral IP (or aspect thereof) shall be deemed \"works made for hire\" for Calm within the meaning of the U.S. Copyright Law and/or other applicable comparable laws or, if they do not so qualify, all ownership rights thereto shall be, and are hereby, assigned to Calm.",
+   "start": 31383,
+   "end": 31759
+  }
+ ],
+ "email": true,
+ "seconds": 41.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3558,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3841,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3524,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.74,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4395,
+   "output_tokens": 456,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm, such Product Collateral IP (or aspect thereof) shall be deemed \"works made for hire\" for Calm within the meaning of the U.S. Copyright Law and/or other applicable comparable laws or, if they do not so qualify, all ownership rights thereto shall be, and are hereby, assigned to Calm.",
+      "explanation": "Your work product is assigned to the client immediately upon creation or delivery, even before you receive payment.",
+      "suggested_change": "Ownership of all Product Collateral IP shall transfer to the Client only upon receipt of full payment of all fees due under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO EACH PARTY'S INDEMNIFICATION OBLIGATIONS UNDER THIS AGREEMENT, (A) UNDER NO CIRCUMSTANCE AND UNDER NO LEGAL THEORY (TORT, CONTRACT, OR OTHERWISE), SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR ANY LOST PROFITS, LOSS OF OPPORTUNITY OR OTHER SPECIAL, PUNITIVE, INDIRECT, OR CONSEQUENTIAL DAMAGES SUFFERED BY THE OTHER PARTY ARISING IN CONNECTION WITH THIS AGREEMENT; AND (B) THE MAXIMUM LIABILITY OF EACH PARTY IN ANY WAY RELATED TO THIS AGREEMENT SHALL NOT EXCEED $2,000,000.00 (EXCLUDING ANY AMOUNTS DUE AND PAYABLE PURSUANT TO SECTION 8 HEREUNDER).",
+      "explanation": "Your indemnification obligations are completely excluded from the overall liability cap, exposing you to unlimited financial risk for those claims.",
+      "suggested_change": "The maximum liability of each Party in any way related to this Agreement, including under any indemnification obligations, shall not exceed $2,000,000.00."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4110,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2191,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.21,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 505,
+   "output_tokens": 145,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.82,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I have reviewed the agreement and would like to propose a few small adjustments before I sign. - Regarding the relevant clause stating that \"If any Product Collateral IP (or any aspect thereof) are not designed and/or created by Calm...\", your work product is assigned to the client immediately upon creation or delivery, even before you receive payment. I suggest we change this so that Ownership of all Product Collateral IP shall transfer to the Client only upon receipt of full payment of all fees due under this Agreement. Thank you for your understanding and cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

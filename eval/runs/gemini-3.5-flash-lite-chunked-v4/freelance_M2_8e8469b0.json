@@ -1,0 +1,88 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.",
+   "start": 8380,
+   "end": 8537
+  }
+ ],
+ "email": true,
+ "seconds": 6.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4399,
+   "output_tokens": 323,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.68,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Your intellectual property rights transfer to the client upon delivery before you have been paid in full.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to Client upon receipt of full payment."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract immediately without notice and without paying for your work, while you do not have the same right.",
+      "suggested_change": "Either party may terminate this Agreement upon 30 days' prior written notice, and Client shall pay Contractor for all Services performed up to the effective date of termination."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.",
+      "explanation": "Your indemnification obligations for third-party claims are not explicitly capped or subjected to the overall liability limit, creating an open-ended risk.",
+      "suggested_change": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to the overall liability cap set forth herein."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3042,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.12,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 834,
+   "output_tokens": 340,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.67,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are doing well. I have reviewed the agreement and would like to propose a few minor adjustments before we move forward with signing:\n\n- Regarding the clause stating 'All intellectual property rights in each Deliverable transfer to Client upon delivery.', your intellectual property rights transfer to the client upon delivery before you have been paid in full. I propose we update this to: 'All intellectual property rights in each Deliverable shall transfer to Client upon receipt of full payment.'\n- Regarding the clause stating 'Client may terminate this Agreement at any time, without notice and without further payment.', the client can end the contract immediately without notice and without paying for your work, while you do not have the same right. I propose we update this to: 'Either party may terminate this Agreement upon 30 days' prior written notice, and Client shall pay Contractor for all Services performed up to the effective date of termination.'\n- Regarding the clause stating 'Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.', your indemnification obligations for third-party claims are not explicitly capped or subjected to the overall liability limit, creating an open-ended risk. I propose we update this to: 'Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to the overall liability cap set forth herein.'\n\nThank you for understanding, and I look forward to finalizing this soon.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

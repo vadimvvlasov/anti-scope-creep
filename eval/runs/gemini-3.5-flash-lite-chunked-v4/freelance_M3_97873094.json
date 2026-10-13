@@ -1,0 +1,89 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 110.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4233,
+   "output_tokens": 239,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.28,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Payment is conditional on the client receiving funds from its customer, which can indefinitely delay your payment.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your total liability for direct damages has no ceiling, exposing you to unlimited financial risk.",
+      "suggested_change": "Each party's total aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3298,
+   "output_tokens": 120,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 102.92,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment depends on an event the client controls (being paid by their customer), which means you might wait indefinitely to get paid.",
+      "suggested_change": "Payment shall be made within 15 days of the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 725,
+   "output_tokens": 265,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before signing. Specifically: - Regarding the clause \"Invoices are payable within 15 days after Client receives payment from its own customer.\", payment being conditional on the client receiving funds can indefinitely delay payment, so I propose changing it to: Invoices are payable within 30 days after receipt of the invoice. - Regarding the clause \"Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.\", having no ceiling on liability exposes me to unlimited financial risk, so I propose changing it to: Each party's total aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement. - Regarding the clause \"Payment period: 15 days after Client is paid by its customer\", the payment depending on an event the client controls means I might wait indefinitely, so I propose changing it to: Payment shall be made within 15 days of the invoice date. Please let me know if these updates work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

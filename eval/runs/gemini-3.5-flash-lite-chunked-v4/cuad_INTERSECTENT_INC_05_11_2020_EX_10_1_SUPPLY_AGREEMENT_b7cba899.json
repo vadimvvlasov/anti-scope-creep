@@ -1,0 +1,82 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+   "start": 22442,
+   "end": 22808
+  }
+ ],
+ "email": true,
+ "seconds": 31.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4142,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.12,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3452,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4286,
+   "output_tokens": 190,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+      "explanation": "Your indemnification and confidentiality obligations are excluded from the overall liability cap, meaning your exposure for those claims is completely unlimited.",
+      "suggested_change": "The limitation of liability shall apply to all claims and damages under this Agreement, including indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2987,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 562,
+   "output_tokens": 205,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to propose a few minor adjustments before signing. - Regarding the clause stating: 'THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.', your indemnification and confidentiality obligations are currently excluded from the overall liability cap, meaning your exposure for those claims is completely unlimited. I propose that we change this so that the limitation of liability shall apply to all claims and damages under this Agreement, including indemnification obligations. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

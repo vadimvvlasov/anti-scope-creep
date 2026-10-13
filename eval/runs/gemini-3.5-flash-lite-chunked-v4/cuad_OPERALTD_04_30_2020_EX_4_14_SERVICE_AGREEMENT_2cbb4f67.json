@@ -1,0 +1,74 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Mobimagic shall indemnify and hold harmless PC Financial and its officers, direct0l8 and Affiliates, (\"PCF Indemnified Parties\") against any cost, penalty, loss or damage arising out of or related to the Services, or Mobimagic's breach of this Agreement or applicable law.",
+   "start": 15045,
+   "end": 15317
+  }
+ ],
+ "email": true,
+ "seconds": 4.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3723,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.05,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4216,
+   "output_tokens": 302,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.87,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Payment is due within 45 days after invoice confirmation, which creates a delay longer than the standard 30 days.",
+      "suggested_change": "PC Financial shall pay all undisputed invoices within thirty (30) days of receipt."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_C] shall indemnify and hold harmless PC Financial and its officers, direct0l8 and Affiliates, (\"PCF Indemnified Parties\") against any cost, penalty, loss or damage arising out of or related to the Services, or [PARTY_C]'s breach of this Agreement or applicable law.",
+      "explanation": "Your indemnification obligations are taken out of the liability cap and have no separate limit, exposing you to potentially unlimited claims.",
+      "suggested_change": "The Contractor's total aggregate liability for all claims arising under this Agreement shall be subject to the limitation of liability set forth herein, which shall apply to indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 714,
+   "output_tokens": 272,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. I am looking forward to working together, but I would like to request a couple of adjustments before signing.\n\n- Regarding the clause \"After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.\", payment is due within 45 days after invoice confirmation, which creates a delay longer than the standard 30 days. Please update this so that PC Financial shall pay all undisputed invoices within thirty (30) days of receipt.\n- Regarding the clause \"[PARTY_C] shall indemnify and hold harmless PC Financial and its officers, direct0l8 and Affiliates, (\"PCF Indemnified Parties\") against any cost, penalty, loss or damage arising out of or related to the Services, or [PARTY_C]'s breach of this Agreement or applicable law.\", your indemnification obligations are taken out of the liability cap and have no separate limit, exposing you to potentially unlimited claims. Please update this so that the Contractor's total aggregate liability for all claims arising under this Agreement shall be subject to the limitation of liability set forth herein, which shall apply to indemnification obligations.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

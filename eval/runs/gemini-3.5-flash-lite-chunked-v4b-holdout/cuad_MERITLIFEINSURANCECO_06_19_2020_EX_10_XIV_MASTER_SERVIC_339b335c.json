@@ -1,0 +1,60 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "start": 14388,
+   "end": 14703
+  }
+ ],
+ "email": true,
+ "seconds": 4.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3607,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4022,
+   "output_tokens": 188,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.33,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+      "explanation": "Your indemnification or other obligations under Paragraph 9 are excluded from the liability cap, leaving you exposed to unlimited damages for those claims.",
+      "suggested_change": "Except with respect to your indemnification obligations, your maximum liability to the Client shall be limited to the fees paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 505,
+   "output_tokens": 150,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.54,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am reviewing the agreement and have one minor point to discuss before signing. - Regarding the clause starting with 'EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF', your indemnification or other obligations under Paragraph 9 are excluded from the liability cap, leaving you exposed to unlimited damages for those claims. I propose changing this to: 'Except with respect to your indemnification obligations, your maximum liability to the Client shall be limited to the fees paid under this Agreement.' I look forward to finalizing this. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

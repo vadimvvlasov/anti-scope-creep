@@ -1,0 +1,75 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 3.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4078,
+   "output_tokens": 100,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.18,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms are very long and can severely hurt your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3274,
+   "output_tokens": 109,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.03,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Net 90 payment terms require you to wait up to 90 days to receive your money, which severely impacts your cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 479,
+   "output_tokens": 145,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. Before I sign, I would like to propose a few minor adjustments: - Regarding the clause \"Invoices are payable Net 90.\", this payment period is quite long and can impact cash flow, so I propose changing it to: \"Invoices are payable Net 30.\". - Regarding the clause \"Payment period: Net 90\", waiting up to 90 days creates cash flow challenges, so I propose changing it to: \"Payment period: Net 30\". Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

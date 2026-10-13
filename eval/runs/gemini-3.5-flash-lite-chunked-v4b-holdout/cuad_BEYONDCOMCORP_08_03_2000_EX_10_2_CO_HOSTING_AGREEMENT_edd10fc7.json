@@ -1,0 +1,93 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  }
+ ],
+ "email": true,
+ "seconds": 36.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4045,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3538,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4148,
+   "output_tokens": 131,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Claims under Section 9, which include intellectual property indemnification and warranties, are completely excluded from the liability cap, exposing you to unlimited financial risk for those claims.",
+      "suggested_change": "The liability of a party to the other for direct damages under this Agreement shall not exceed Fifteen Million Dollars in the aggregate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4144,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3930,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 509,
+   "output_tokens": 187,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. Thank you for sending over the contract. I have reviewed the agreement and would like to propose a few minor adjustments before I sign. Specifically, regarding the relevant clause stating: 'EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.' - Claims under Section 9, which include intellectual property indemnification and warranties, are completely excluded from the liability cap, exposing you to unlimited financial risk for those claims. To address this, I suggest we modify this so that: 'The liability of a party to the other for direct damages under this Agreement shall not exceed Fifteen Million Dollars in the aggregate.' Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,97 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) Distributor receives a carrier statement saying how much Distributor will be paid; (2) 30-45 days later the Carrier pays Distributor; (3) when Distributor is paid by a carrier, Distributor makes royalty payments to IMNTV.",
+   "start": 19615,
+   "end": 19938
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Pricing of Service     a. TBD subject to Carrier's pricing policy and IMNTV acceptance of terms",
+   "start": 39442,
+   "end": 39537
+  }
+ ],
+ "email": true,
+ "seconds": 29.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3753,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3846,
+   "output_tokens": 219,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.55,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) [PARTY_B] receives a carrier statement saying how much [PARTY_B] will be paid; (2) 30-45 days later the Carrier pays [PARTY_B]; (3) when [PARTY_B] is paid by a carrier, [PARTY_B] makes royalty payments to IMNTV.",
+      "explanation": "Your payments depend on when the third-party carrier pays the client, which can take 30 to 45 days or longer, making your payment timeline uncertain and delayed.",
+      "suggested_change": "The Client shall make royalty payments to the Contractor within thirty (30) days following the end of each calendar quarter, regardless of carrier payment timing."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3657,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2205,
+   "output_tokens": 135,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.86,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Pricing of Service     a. TBD subject to Carrier's pricing policy and IMNTV acceptance of terms",
+      "explanation": "The pricing and payment terms are left completely undecided (TBD), meaning you are agreeing to provide services and content without a locked-in rate.",
+      "suggested_change": "Pricing for the service shall be mutually agreed upon in writing by both parties prior to the commencement of commercial services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 650,
+   "output_tokens": 167,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope this email finds you well. I have reviewed the agreement and would like to propose a few adjustments before signing. Specifically: - Regarding the clause about timing of payments, the current wording ties my payment to when the third-party carrier pays, which creates uncertainty; I propose that the agreement state that the client shall make royalty payments to the contractor within thirty days following the end of each calendar quarter, regardless of carrier payment timing. - Regarding the pricing clause, leaving the pricing completely undecided means we would proceed without a locked-in rate; I propose that pricing for the service shall be mutually agreed upon in writing by both parties prior to the commencement of commercial services. Thank you for considering these updates. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

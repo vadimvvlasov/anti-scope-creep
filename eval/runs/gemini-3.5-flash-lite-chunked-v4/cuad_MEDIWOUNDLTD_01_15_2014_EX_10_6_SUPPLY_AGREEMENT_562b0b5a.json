@@ -1,0 +1,93 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+   "start": 13986,
+   "end": 14239
+  }
+ ],
+ "email": true,
+ "seconds": 65.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3978,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 11.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4109,
+   "output_tokens": 156,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+      "explanation": "Payment is conditional upon receiving a tax exemption approval from a third-party tax authority, meaning your payment can be delayed indefinitely without breaching the contract.",
+      "suggested_change": "Payments shall be made in accordance with the agreed payment terms, regardless of tax exemption approvals."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4086,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3813,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2752,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 463,
+   "output_tokens": 143,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 30.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically, regarding the relevant clause starting with 'For avoidance of doubt, payments will be made only after receiving exemption', payment is conditional upon receiving a tax exemption approval from a third-party tax authority, meaning your payment can be delayed indefinitely without breaching the contract. To address this, please change it so that payments shall be made in accordance with the agreed payment terms, regardless of tax exemption approvals. Please let me know if this works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

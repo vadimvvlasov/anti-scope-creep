@@ -1,0 +1,60 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "start": 14388,
+   "end": 14703
+  }
+ ],
+ "email": true,
+ "seconds": 4.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3093,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3552,
+   "output_tokens": 232,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.94,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+      "explanation": "Your liability is capped at the fees paid, but your obligations under Paragraph 9 (which covers independent contractor status and related tax responsibilities) are excluded from this cap, exposing you to potentially unlimited liability for those matters.",
+      "suggested_change": "Except with respect to Contractor's indemnification obligations, Contractor's maximum liability to Company arising for any reason relating to Contractor's performance of Services under a Statement of Work shall be limited to the amount of fees paid to Contractor for the performance of such services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 501,
+   "output_tokens": 102,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. I am looking forward to getting started, but I would like to request a few adjustments to the agreement before signing. - Regarding the relevant clause where my liability is capped at the fees paid, the exception for obligations under Paragraph 9 exposes me to potentially unlimited liability; I propose changing this so that liability is capped except for standard indemnification obligations."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,133 @@
+{
+ "set": "cuad",
+ "contracts": 28,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.8,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 1,
+   "fn": 0,
+   "precision": 0.75,
+   "recall": 1.0,
+   "severity_accuracy": 0.667
+  },
+  "uncapped_liability": {
+   "tp": 3,
+   "fp": 5,
+   "fn": 3,
+   "precision": 0.375,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 10,
+   "fp": 6,
+   "fn": 4,
+   "precision": 0.625,
+   "recall": 0.714,
+   "severity_accuracy": 0.9
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 24,
+  "findings_kept": 21,
+  "dropped": {
+   "quote_not_found": 3
+  },
+  "quote_not_found_rate": 0.125,
+  "tokens_mean": 12051,
+  "tokens_max": 23887,
+  "seconds_mean": 21.1,
+  "seconds_max": 65.6
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Mobimagic shall indemnify and hold harmless PC Financial and its officers, direct0l8 and Affiliates, (\"PCF Indemnified Parties\") against any cost, penalty, loss or damage arising out of or related to the Services, or Mobimagic's breach of this Agreement or applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT FOR DAMAGES FOR WHICH A PARTY IS RESPONSIBLE PURSUANT TO ITS INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 10 ABOVE, EACH PARTY SPECIFICALLY DISCLAIMS ALL LIABILITY FOR AND SHALL IN NO EVENT BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES, EXPENSES, LOST PROFITS, LOST SAVINGS, INTERRUPTIONS OF BUSINESS OR OTHER DAMAGES OF ANY KIND OR CHARACTER WHATSOEVER ARISING OUT OF OR RELATED TO THIS AGREEMENT OR RESULTING FROM THE MANUFACTURE, HANDLING. MARKETING, SALE, DISTRIBUTION OR USE OF LICENSED PRODUCT REGARDLESS OF THE FORM OF ACTION, WHETHER IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF SUCH PARTY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "In the event of any breach of this Agreement by any Party  hereto, the breaching Party shall indemnify the other Party for all of such other Parties losses arising therefrom, which losses shall  include only direct losses, reasonable expenses and reasonable attorney fees.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "low"
+  }
+ ]
+}

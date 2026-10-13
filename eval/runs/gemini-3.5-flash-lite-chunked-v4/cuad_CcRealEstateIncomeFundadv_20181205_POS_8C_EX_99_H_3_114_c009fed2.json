@@ -1,0 +1,43 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [],
+ "email": false,
+ "seconds": 17.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4000,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.29,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3582,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3692,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.93,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

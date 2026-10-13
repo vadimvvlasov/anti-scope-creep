@@ -1,0 +1,93 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 35.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4258,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.71,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4125,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.74,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4067,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4349,
+   "output_tokens": 125,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date of this Agreement.",
+      "explanation": "Payment terms of Net 90 days create cash flow delays for your business.",
+      "suggested_change": "The Client shall pay all undisputed invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4272,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 439,
+   "output_tokens": 150,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing.\n\n- Regarding the clause \"$ 115,250.00      Net ninety (90) days from the Effective Date of this Agreement.\", the current payment terms of Net 90 days create cash flow delays for your business. I propose modifying this so that the client shall pay all undisputed invoices within thirty (30) days of receipt.\n\nPlease let me know if these adjustments work for you.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

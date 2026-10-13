@@ -1,0 +1,95 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28030,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 30.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3657,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.58,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3916,
+   "output_tokens": 132,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.06,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "except that if the default is by Supplier that creates an immediate public food safety risk, PNC may terminate this Agreement immediately without regard to any period for correction.",
+      "explanation": "Only the Client has the right to terminate the contract immediately for a food safety risk without a cure period, while your right to terminate is subject to standard notice and cure periods.",
+      "suggested_change": "Either Party may terminate this Agreement immediately if the other Party commits a material breach that creates an immediate public safety risk and cannot be cured."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4211,
+   "output_tokens": 149,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Your indemnification obligations and potential confidentiality breaches are excluded from the liability cap, meaning your financial exposure for these claims is completely uncapped.",
+      "suggested_change": "The Liability Cap shall apply to all claims and obligations under this Agreement, including indemnification and confidentiality."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2508,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.72,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 425,
+   "output_tokens": 109,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are doing well. I am writing to propose a few minor adjustments to the agreement before I sign it. - Regarding the relevant clause where your indemnification obligations and potential confidentiality breaches are excluded from the liability cap, meaning your financial exposure for these claims is completely uncapped, I suggest updating it so that the Liability Cap shall apply to all claims and obligations under this Agreement, including indemnification and confidentiality. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

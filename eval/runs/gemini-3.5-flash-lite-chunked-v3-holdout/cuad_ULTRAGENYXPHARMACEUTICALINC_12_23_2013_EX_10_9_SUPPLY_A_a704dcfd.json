@@ -1,0 +1,60 @@
+{
+ "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT",
+ "chars": 14592,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+   "start": 4133,
+   "end": 4327
+  }
+ ],
+ "email": true,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3749,
+   "output_tokens": 145,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.09,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+      "explanation": "This is actually favorable to you as the freelancer (it protects title until full payment), so no finding is generated here according to the strict rules.",
+      "suggested_change": "Transfer of title with respect to any Product shall be subject to full payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1857,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 457,
+   "output_tokens": 148,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before signing.\n\n- Regarding the clause stating that \"Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement,\" I suggest simplifying this to ensure transfer of title occurs upon full payment without broader claim conditions. Therefore, the proposed change is: \"Transfer of title with respect to any Product shall be subject to full payment.\"\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

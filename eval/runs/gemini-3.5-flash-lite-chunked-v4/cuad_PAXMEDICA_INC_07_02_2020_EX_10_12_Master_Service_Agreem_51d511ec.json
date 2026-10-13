@@ -1,0 +1,103 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "4.2. Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by CRO, Client shall pay all sums owing to CRO, but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which CRO is committed to pay.",
+   "start": 4132,
+   "end": 4527
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "5.4. Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+   "start": 6737,
+   "end": 7256
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 CRO agrees that during the term of this Agreement and for a period of three years thereafter: (a) to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to CRO which CRO develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which CRO will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+   "start": 8541,
+   "end": 9142
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  }
+ ],
+ "email": true,
+ "seconds": 14.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4256,
+   "output_tokens": 603,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.54,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "4.2. Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by [PARTY_A], Client shall pay all sums owing to [PARTY_A], but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which [PARTY_A] is committed to pay.",
+      "explanation": "Only the client may terminate without cause, but because work done and termination costs are fully paid, this is a low-risk finding.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days' written notice without cause."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "5.4. Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+      "explanation": "Your indemnification obligations and intellectual property claims are carved out from the liability cap, exposing you to unlimited financial risk for those claims.",
+      "suggested_change": "Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement shall be limited to the sum of all amounts received from Client in terms of this Agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 [PARTY_A] agrees that during the term of this Agreement and for a period of three years thereafter: (a) to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to [PARTY_A] which [PARTY_A] develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which [PARTY_A] will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+      "explanation": "Intellectual property ownership of your work product transfers immediately upon creation or development without a condition that you have been paid in full.",
+      "suggested_change": "Upon receipt of full payment for the applicable Services, [PARTY_A] agrees to assign to Client all inventions specifically derived from the work assigned by Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3540,
+   "output_tokens": 218,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "Intellectual property ownership transfers to the client immediately upon creation or delivery, before you are guaranteed payment.",
+      "suggested_change": "All intellectual property rights in the deliverables shall remain with the Contractor until the Client has paid all undisputed invoices in full, upon which such rights shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1083,
+   "output_tokens": 291,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Thank you for sending over the agreement. I have reviewed the document and would like to propose a few minor adjustments before we proceed with signing.- Regarding the liability cap in the relevant clause, your indemnification obligations and intellectual property claims are carved out from the liability cap, exposing you to unlimited financial risk for those claims. I propose modifying this so that notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement shall be limited to the sum of all amounts received from Client in terms of this Agreement.- Regarding the intellectual property assignment, intellectual property ownership of your work product transfers immediately upon creation or development without a condition that you have been paid in full. I propose modifying this so that upon receipt of full payment for the applicable Services, [PARTY_A] agrees to assign to Client all inventions specifically derived from the work assigned by Client.- Regarding the works made for hire provision, intellectual property ownership transfers to the client immediately upon creation or delivery, before you are guaranteed payment. I propose modifying this so that all intellectual property rights in the deliverables shall remain with the Contractor until the Client has paid all undisputed invoices in full, upon which such rights shall transfer to the Client.Please let me know if these adjustments work for you so we can finalize the agreement. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

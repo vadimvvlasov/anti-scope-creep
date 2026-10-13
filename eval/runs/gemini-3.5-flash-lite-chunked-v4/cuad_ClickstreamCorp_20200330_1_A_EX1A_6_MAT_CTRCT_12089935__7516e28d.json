@@ -1,0 +1,111 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+   "start": 2336,
+   "end": 2496
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The developer will fix any bugs that may come up from the original contract after the 90 days warranty has passed.",
+   "start": 10049,
+   "end": 10163
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  }
+ ],
+ "email": true,
+ "seconds": 30.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3690,
+   "output_tokens": 147,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.09,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+      "explanation": "Only the client has the right to terminate the agreement without cause, while your right to terminate is restricted to lack of payment.",
+      "suggested_change": "Either Party may terminate this Agreement at any time upon providing seven (7) days' written notice to the other Party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3662,
+   "output_tokens": 264,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.87,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The developer will fix any bugs that may come up from the original contract after the 90 days warranty has passed.",
+      "explanation": "You are required to fix bugs indefinitely after the warranty period without additional pay.",
+      "suggested_change": "Any bug fixes requested after the expiration of the 90-day warranty period shall be billed at the Contractor's standard hourly rate."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Ownership of your work passes to the client immediately upon creation or delivery, regardless of whether you have been paid.",
+      "suggested_change": "Ownership of all deliverables shall remain with the Contractor until the Client has made full payment of all fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3827,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2903,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 652,
+   "output_tokens": 247,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically: - Regarding the clause stating \"The developer will fix any bugs that may come up from the original contract after the 90 days warranty has passed.\", this currently means you are required to fix bugs indefinitely after the warranty period without additional pay. Please update this so that any bug fixes requested after the expiration of the 90-day warranty period shall be billed at the Contractor's standard hourly rate. - Regarding the clause stating \"The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.\", ownership of your work passes to the client immediately upon creation or delivery, regardless of whether you have been paid. Please update this so that ownership of all deliverables shall remain with the Contractor until the Client has made full payment of all fees due under this Agreement. Thank you for your understanding, and I look forward to finalizing this. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

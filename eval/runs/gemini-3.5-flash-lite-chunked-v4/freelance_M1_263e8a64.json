@@ -1,0 +1,89 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 5.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4322,
+   "output_tokens": 253,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.72,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform extra services requested by the client without receiving any additional payment.",
+      "suggested_change": "The Contractor shall perform any additional services requested by the Client that are outside the scope of this Agreement only pursuant to a mutually agreed written change order specifying the additional fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand an endless number of revisions without a cap, which can trap you in perpetual work for a fixed price.",
+      "suggested_change": "The Client may request up to two (2) rounds of revisions per Deliverable. Any further revisions shall be billed at the Contractor's standard hourly rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3099,
+   "output_tokens": 69,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.05,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "Revisions are explicitly unlimited, meaning the client can request changes indefinitely without additional pay.",
+      "suggested_change": "The Contractor will provide up to three (3) rounds of revisions per Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 727,
+   "output_tokens": 266,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I am looking forward to working together. Before I sign the agreement, I would like to propose a few small adjustments. Specifically, regarding the clause stating \"Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.\", you are required to perform extra services requested by the client without receiving any additional payment. I propose changing this to: The Contractor shall perform any additional services requested by the Client that are outside the scope of this Agreement only pursuant to a mutually agreed written change order specifying the additional fees. Regarding the clause stating \"Client may request unlimited revisions until Client is fully satisfied with each Deliverable.\", the client can demand an endless number of revisions without a cap, which can trap you in perpetual work for a fixed price. I propose changing this to: The Client may request up to two (2) rounds of revisions per Deliverable. Any further revisions shall be billed at the Contractor's standard hourly rates. Regarding the clause stating \"Revision allowance: unlimited\", revisions are explicitly unlimited, meaning the client can request changes indefinitely without additional pay. I propose changing this to: The Contractor will provide up to three (3) rounds of revisions per Deliverable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,97 @@
+{
+ "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+ "chars": 40597,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice. (b) Fusion discontinues the trial or terminates the program, Fusion may terminate this agreement by giving [***] written notice to CPDC",
+   "start": 24886,
+   "end": 25270
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR DAMAGES FOR WHICH A PARTY IS RESPONSIBLE PURSUANT TO ITS INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 10 ABOVE, EACH PARTY SPECIFICALLY DISCLAIMS ALL LIABILITY FOR AND SHALL IN NO EVENT BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES, EXPENSES, LOST PROFITS, LOST SAVINGS, INTERRUPTIONS OF BUSINESS OR OTHER DAMAGES OF ANY KIND OR CHARACTER WHATSOEVER ARISING OUT OF OR RELATED TO THIS AGREEMENT OR RESULTING FROM THE MANUFACTURE, HANDLING. MARKETING, SALE, DISTRIBUTION OR USE OF LICENSED PRODUCT REGARDLESS OF THE FORM OF ACTION, WHETHER IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF SUCH PARTY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "start": 31758,
+   "end": 32454
+  }
+ ],
+ "email": true,
+ "seconds": 29.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3775,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.48,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3803,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4000,
+   "output_tokens": 189,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.25,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice. (b) Fusion discontinues the trial or terminates the program, Fusion may terminate this agreement by giving [***] written notice to CPDC",
+      "explanation": "Only the client has the right to terminate the agreement without cause, while you do not have a matching right.",
+      "suggested_change": "Either party may terminate this Agreement without cause by providing at least [***] prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3911,
+   "output_tokens": 291,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.25,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR DAMAGES FOR WHICH A PARTY IS RESPONSIBLE PURSUANT TO ITS INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 10 ABOVE, EACH PARTY SPECIFICALLY DISCLAIMS ALL LIABILITY FOR AND SHALL IN NO EVENT BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES, EXPENSES, LOST PROFITS, LOST SAVINGS, INTERRUPTIONS OF BUSINESS OR OTHER DAMAGES OF ANY KIND OR CHARACTER WHATSOEVER ARISING OUT OF OR RELATED TO THIS AGREEMENT OR RESULTING FROM THE MANUFACTURE, HANDLING. MARKETING, SALE, DISTRIBUTION OR USE OF LICENSED PRODUCT REGARDLESS OF THE FORM OF ACTION, WHETHER IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF SUCH PARTY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "explanation": "Your indemnification obligations are carved out from the liability cap, meaning your potential liability for those claims is completely uncapped and exposes you to major financial risk.",
+      "suggested_change": "The Contractor's total liability under this Agreement shall be subject to a single aggregate cap equal to the total fees paid under this Agreement, and all claims, including indemnification, shall be subject to this limit."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 653,
+   "output_tokens": 195,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.63,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are doing well. I am writing to propose a few minor adjustments to the agreement before I sign it:\n\n- Regarding the clause \"EXCEPT FOR DAMAGES FOR WHICH A PARTY IS RESPONSIBLE PURSUANT TO ITS INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 10 ABOVE...\", your indemnification obligations are carved out from the liability cap, meaning your potential liability for those claims is completely uncapped and exposes you to major financial risk. I propose that: The Contractor's total liability under this Agreement shall be subject to a single aggregate cap equal to the total fees paid under this Agreement, and all claims, including indemnification, shall be subject to this limit.\n\nThank you for your time and understanding. I look forward to moving forward.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

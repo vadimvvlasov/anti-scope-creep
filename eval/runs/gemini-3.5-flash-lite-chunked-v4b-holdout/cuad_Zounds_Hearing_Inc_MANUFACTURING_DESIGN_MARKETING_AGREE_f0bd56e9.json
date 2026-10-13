@@ -1,0 +1,93 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Title of the product will transfer to the Manufacturer at the shipping dock of the manufacturing facility.",
+   "start": 5821,
+   "end": 5927
+  }
+ ],
+ "email": true,
+ "seconds": 36.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4023,
+   "output_tokens": 136,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.15,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Title of the product will transfer to the Manufacturer at the shipping dock of the manufacturing facility.",
+      "explanation": "Ownership of the products transfers to the Client at the shipping dock before full payment is completed, as the remaining balance and royalties are due after shipment.",
+      "suggested_change": "Title to the products shall remain with the Contractor until the Contractor has received full payment of all amounts due for such products."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3174,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3853,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3958,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2535,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 427,
+   "output_tokens": 127,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.55,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to request a few adjustments before signing. - Regarding the relevant clause where ownership of the products transfers to the Client at the shipping dock before full payment is completed, as the remaining balance and royalties are due after shipment, please update this so that title to the products shall remain with the Contractor until the Contractor has received full payment of all amounts due for such products. Thank you for your understanding, and I look forward to moving forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,60 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+   "start": 11417,
+   "end": 11538
+  }
+ ],
+ "email": true,
+ "seconds": 18.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3321,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2443,
+   "output_tokens": 152,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.5,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+      "explanation": "If you terminate the agreement, you must hand over all intellectual property and work done to the Client immediately, potentially before receiving final payment for that work.",
+      "suggested_change": "In case Developer terminates the agreement, it shall handover the entire project related IPR and work done till date to VAL upon receipt of all pending payments for work performed."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 482,
+   "output_tokens": 166,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few small adjustments before I sign. - Regarding the clause \"In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.\", if I terminate the agreement, I am currently required to hand over all intellectual property and work done to the client immediately, potentially before receiving final payment for that work. I would suggest changing this so that in case Developer terminates the agreement, it shall handover the entire project related IPR and work done till date to VAL upon receipt of all pending payments for work performed. Please let me know if this works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,86 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8373,
+   "end": 8696
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by Reed's, are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of Reed's.",
+   "start": 10186,
+   "end": 10820
+  }
+ ],
+ "email": true,
+ "seconds": 23.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3380,
+   "output_tokens": 191,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.96,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation rather than upon full payment, which creates a risk that you may not be paid for your work.",
+      "suggested_change": "Upon receipt of full payment for the applicable Deliverables, the Contractor hereby assigns to the Client all right, title, and interest in such Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3003,
+   "output_tokens": 244,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by [PARTY_D], are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of [PARTY_D].",
+      "explanation": "Intellectual property ownership transfers to the client immediately upon creation as a work-made-for-hire, before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable Deliverables, all Intellectual Property created by the Contractor in connection with the Deliverables shall become the property of the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3297,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 770,
+   "output_tokens": 210,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a couple of adjustments before signing. Specifically: - Regarding the clause stating that Intellectual property rights transfer to the client immediately upon creation rather than upon full payment, which creates a risk that you may not be paid for your work, I propose: Upon receipt of full payment for the applicable Deliverables, the Contractor hereby assigns to the Client all right, title, and interest in such Deliverables. - Regarding the clause stating that Intellectual property ownership transfers to the client immediately upon creation as a work-made-for-hire, before you are guaranteed full payment, I propose: Upon receipt of full payment for the applicable Deliverables, all Intellectual Property created by the Contractor in connection with the Deliverables shall become the property of the Client. Please let me know if these updates work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

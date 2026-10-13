@@ -1,0 +1,93 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 37.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3740,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3610,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 9.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3557,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.98,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3858,
+   "output_tokens": 148,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.76,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+      "explanation": "Payment is due ninety days after the effective date, which forces you to wait longer than thirty days for your money.",
+      "suggested_change": "The second installment of $115,250.00 shall be due and payable Net thirty (30) days from invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3758,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.31,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 489,
+   "output_tokens": 177,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the contract. I am looking forward to working together, but I would like to request a minor adjustment to the agreement before I sign. Specifically, in the relevant clause regarding payment terms, payment is currently set at ninety days from the effective date. - Regarding the clause stating '$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.', waiting ninety days creates cash flow delays, so I propose updating this to state that the second installment of $115,250.00 shall be due and payable Net thirty (30) days from invoice date. Please let me know if this works for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

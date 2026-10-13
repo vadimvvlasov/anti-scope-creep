@@ -1,0 +1,74 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The Consultant may terminate the Consultation Period at any time upon thirty (30) days' written notice.",
+   "start": 4722,
+   "end": 4825
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 18.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3735,
+   "output_tokens": 327,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.03,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The Consultant may terminate the Consultation Period at any time upon thirty (30) days' written notice.",
+      "explanation": "The contract allows the company to terminate immediately under certain circumstances or upon notice, while you are required to give 30 days' notice, creating an uneven termination structure.",
+      "suggested_change": "Either party may terminate the Consultation Period at any time upon thirty (30) days' written notice to the other party."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Intellectual property is assigned immediately upon creation rather than upon full payment, which means the company could own your work before you are fully paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all Inventions and any and all related intellectual property rights."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3279,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.24,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 747,
+   "output_tokens": 281,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I have reviewed the agreement and would like to request a few adjustments before signing:\n\n- Regarding the clause \"The Consultant may terminate the Consultation Period at any time upon thirty (30) days' written notice.\": The contract allows the company to terminate immediately under certain circumstances or upon notice, while you are required to give 30 days' notice, creating an uneven termination structure. Please update it to: Either party may terminate the Consultation Period at any time upon thirty (30) days' written notice to the other party.\n- Regarding the clause \"The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.\": Intellectual property is assigned immediately upon creation rather than upon full payment, which means the company could own your work before you are fully paid. Please update it to: Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all Inventions and any and all related intellectual property rights.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
