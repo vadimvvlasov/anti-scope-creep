@@ -228,11 +228,19 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 - **Metrics:**
   - `analyses_total{outcome=done|failed|stale}`
   - `analysis_duration_seconds`
-  - `llm_requests_total{model,status}`, `llm_tokens_total{model}`, `llm_rate_limited_total`
+  - `llm_requests_total{model,status}`, `llm_tokens_total{model,kind=input|output}`, `llm_rate_limited_total`
+  - `llm_request_duration_seconds{model}` (one chunk or the email request: shows whether a slow analysis is the model or the queue in front of it)
+  - `llm_output_truncated_total{model,retried}`: answers cut at `max_completion_tokens` (`finish_reason: "length"`, section 4)
+  - `llm_cost_usd_total{model}`: from token usage and the price per model, once prod runs on a paid tier
   - `findings_dropped_total{reason=quote_not_found|placeholder_not_restored}`
   - `api_errors_total{code}`
   - `history_queries_total{route,outcome}`
-- **Alerts:** analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s.
+- **Alerts:**
+  - analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s;
+  - LLM daily budget: on Groq free, `llm_tokens_total` over the last 24 h above 80 % of the 200,000 tokens/day quota, so analyses do not start failing at the end of the day without warning; on a paid tier, a budget alert in the provider's billing console instead;
+  - any truncated answer that failed after its retry.
+- **Who gets an alert:** two contact points in Grafana. The on-call agent gets the webhook (see On-call agent); a person gets an email (or Telegram) for every alert at the same time. The agent never replaces the human notification: it can misclassify, and only a person merges and promotes.
+- **Local stack before Grafana Cloud:** the `grafana/otel-lgtm` image (Grafana, Prometheus, Loki and Tempo with an OTLP endpoint in one container) as an optional service in `compose.yaml`. Instrumentation, dashboards and alert rules are checked locally on all three signals without spending the cloud free-tier limits; switching to Grafana Cloud changes only `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS`.
 - **Health:** `GET /health` returns `200` without touching the database; `GET /health/ready` checks the database. `GET /version` returns the image tag (`APP_VERSION`, `sha-<short-sha>`, `local` for untagged builds). These are operational endpoints, listed in `openapi.yaml` but not used by the frontend; the frontend footer shows its own build tag, which comes from the same commit.
 
 Grafana Cloud free tier (metrics, logs, traces with limited retention) is enough for this project.
