@@ -1,0 +1,65 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [],
+ "email": false,
+ "seconds": 30.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3767,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.36,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3682,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.65,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3615,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3857,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1360,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

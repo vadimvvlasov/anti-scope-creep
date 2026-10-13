@@ -1,0 +1,32 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [],
+ "email": false,
+ "seconds": 11.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3835,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.49,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2814,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.44,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

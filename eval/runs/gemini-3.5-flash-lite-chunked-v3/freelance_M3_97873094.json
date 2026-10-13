@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 4.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3763,
+   "seconds": 1.61,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Your payment depends on when the client gets paid by someone else, which is an indefinite event outside of your control.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your liability is completely unlimited, exposing you to potentially massive financial risk if something goes wrong.",
+      "suggested_change": "The aggregate liability of either party arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2837,
+   "seconds": 1.43,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment depends on an outside event (the client being paid by their customer), which means you might experience indefinite payment delays through no fault of your own.",
+      "suggested_change": "Payments shall be made by the Client within thirty (30) days following the receipt of an approved invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 780,
+   "seconds": 1.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are doing well. I am looking forward to getting started. Before I sign the agreement, I would like to propose a few small adjustments to the relevant clause sections: - Regarding \"Invoices are payable within 15 days after Client receives payment from its own customer.\", your payment depends on when the client gets paid by someone else, which is an indefinite event outside of your control. I propose changing this so that invoices are payable within 30 days after receipt of the invoice. - Regarding \"Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.\", your liability is completely unlimited, exposing you to potentially massive financial risk if something goes wrong. I propose changing this so that the aggregate liability of either party arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement. - Regarding \"Payment period: 15 days after Client is paid by its customer\", your payment depends on an outside event (the client being paid by their customer), which means you might experience indefinite payment delays through no fault of your own. I propose changing this so that payments shall be made by the Client within thirty (30) days following the receipt of an approved invoice. Please let me know if these updates work for you so we can finalize the paperwork. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

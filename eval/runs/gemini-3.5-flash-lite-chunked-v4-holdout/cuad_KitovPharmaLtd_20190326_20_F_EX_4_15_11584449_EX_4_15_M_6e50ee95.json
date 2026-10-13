@@ -1,0 +1,58 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [],
+ "email": false,
+ "seconds": 84.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4317,
+   "seconds": 5.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3760,
+   "seconds": 15.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3704,
+   "seconds": 21.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3498,
+   "seconds": 11.36,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3883,
+   "seconds": 16.59,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2955,
+   "seconds": 13.31,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

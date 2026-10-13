@@ -1,0 +1,18 @@
+{
+ "id": "cuad:XACCT Technologies, Inc.SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 14193,
+ "findings": [],
+ "email": false,
+ "seconds": 6.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3449,
+   "seconds": 5.98,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

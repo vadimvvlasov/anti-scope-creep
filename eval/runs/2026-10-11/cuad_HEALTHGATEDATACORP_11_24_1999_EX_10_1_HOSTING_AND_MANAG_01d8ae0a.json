@@ -1,0 +1,34 @@
+{
+ "id": "cuad:HEALTHGATEDATACORP_11_24_1999-EX-10.1-HOSTING AND MANAGEMENT AGREEMENT - Escrow Agreement",
+ "chars": 35612,
+ "findings": [],
+ "email": false,
+ "seconds": 132.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3162,
+   "seconds": 45.3,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3461,
+   "seconds": 45.05,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3153,
+   "seconds": 42.29,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

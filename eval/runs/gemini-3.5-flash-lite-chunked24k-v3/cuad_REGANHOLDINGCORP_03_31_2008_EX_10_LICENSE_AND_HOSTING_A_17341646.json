@@ -1,0 +1,34 @@
+{
+ "id": "cuad:REGANHOLDINGCORP_03_31_2008-EX-10-LICENSE AND HOSTING AGREEMENT",
+ "chars": 55889,
+ "findings": [],
+ "email": false,
+ "seconds": 14.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5907,
+   "seconds": 4.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5818,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2959,
+   "seconds": 3.89,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

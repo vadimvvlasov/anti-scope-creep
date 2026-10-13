@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  }
+ ],
+ "email": true,
+ "seconds": 2.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4938,
+   "seconds": 1.67,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform extra work requested by the client for free, which can lead to endless unpaid tasks.",
+      "suggested_change": "Any additional services requested by the Client outside the scope of this Agreement shall be subject to a separate written change order and charged at the Contractor's standard rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand an endless number of revisions without additional pay until they are satisfied, tying up your time indefinitely.",
+      "suggested_change": "Client may request up to two (2) rounds of revisions for each Deliverable within the review period. Additional revisions will be billed at the Contractor's standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 637,
+   "seconds": 1.16,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Regarding the relevant clause stating that the Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge, this means I would be required to perform extra work for free, which can lead to endless unpaid tasks. I propose that any additional services requested by the Client outside the scope of this Agreement shall be subject to a separate written change order and charged at the Contractor's standard rates. Additionally, regarding the clause stating that the Client may request unlimited revisions until Client is fully satisfied with each Deliverable, the client can demand an endless number of revisions without additional pay until they are satisfied, tying up your time indefinitely. I propose that the Client may request up to two (2) rounds of revisions for each Deliverable within the review period, with additional revisions billed at the Contractor's standard hourly rate. Please let me know if these adjustments work for you so we can finalize the agreement. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

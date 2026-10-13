@@ -1,0 +1,104 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+   "start": 46923,
+   "end": 47272
+  }
+ ],
+ "email": true,
+ "seconds": 42.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4195,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.68,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4041,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.12,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4126,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.11,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3999,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3681,
+   "output_tokens": 213,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.47,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+      "explanation": "Your liability is capped at the fees paid or payable, but indemnification obligations are excluded from that cap, leaving your potential damages from third-party claims completely uncapped.",
+      "suggested_change": "Except for confidentiality obligations, neither party's total liability under this Agreement shall exceed the total fees paid or payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3334,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.16,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 511,
+   "output_tokens": 131,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 0.93,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before we move forward with signing. - Regarding the limitation of liability, the agreement currently excludes indemnification obligations from the liability cap, which leaves potential damages uncapped. I propose that we modify the relevant clause so that neither party's total liability exceeds the total fees paid or payable under this Agreement, excluding only confidentiality obligations. Thank you for your time and understanding, and I look forward to finalizing this soon. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

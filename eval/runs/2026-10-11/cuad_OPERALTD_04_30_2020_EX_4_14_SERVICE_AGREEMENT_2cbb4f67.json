@@ -1,0 +1,66 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "2.2 Mobimagic will provide the system / platform maintenance services and data processing services to PC Financial.",
+   "start": 2802,
+   "end": 2917
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 103.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3608,
+   "seconds": 42.11,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "2.2 [PARTY_C] will provide the system / platform maintenance services and data processing services to PC Financial.",
+      "explanation": "You are required to deliver maintenance and data processing services without any defined limits or a change‑order process, so the client could keep requesting more work.",
+      "suggested_change": "2.2 [PARTY_C] will provide the system/platform maintenance services and data processing services to PC Financial as specifically described in Schedule A, and any additional services shall be subject to a written change order signed by both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3743,
+   "seconds": 43.12,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "You will have to wait up to 45 days after the invoice is approved before receiving payment, which is longer than the usual 30‑day window and can hurt cash flow.",
+      "suggested_change": "PC Financial shall pay the invoice within 30 days of receipt of a correct invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 807,
+   "seconds": 17.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before signing, I would like to clarify a couple of points in the agreement:\n\n- The relevant clause 2.2 states that [PARTY_C] will provide system/platform maintenance services and data processing services to PC Financial. As written, there is no limit or change‑order process, which could lead to open‑ended requests. I propose that the clause read: “[PARTY_C] will provide the system/platform maintenance services and data processing services to PC Financial as specifically described in Schedule A, and any additional services shall be subject to a written change order signed by both parties.”\n- The payment clause currently requires PC Financial to pay within 45 days after confirming invoice contents. This payment period exceeds the typical 30‑day term and may affect cash flow. I suggest revising it to: “PC Financial shall pay the invoice within 30 days of receipt of a correct invoice.”\n\nThank you for considering these adjustments. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

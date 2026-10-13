@@ -1,0 +1,43 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [],
+ "email": false,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3483,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.37,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3330,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3286,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,75 @@
+{
+ "id": "cuad:REGANHOLDINGCORP_03_31_2008-EX-10-LICENSE AND HOSTING AGREEMENT",
+ "chars": 55889,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.",
+   "start": 52500,
+   "end": 52677
+  }
+ ],
+ "email": true,
+ "seconds": 35.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3463,
+   "seconds": 5.47,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3541,
+   "seconds": 6.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3521,
+   "seconds": 5.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3398,
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3088,
+   "seconds": 6.74,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.",
+      "explanation": "You are required to indemnify the Client for compliance failures without any monetary cap or limitation, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing, subject to the overall limitation of liability set forth in this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 540,
+   "seconds": 5.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few minor adjustments before signing. Specifically: - Regarding the clause stating \"LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.\", this currently requires me to indemnify the Client for compliance failures without any monetary cap, which exposes me to unlimited financial risk. I propose changing this to: \"LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing, subject to the overall limitation of liability set forth in this Agreement.\". Please let me know if these adjustments are acceptable to you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

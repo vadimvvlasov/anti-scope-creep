@@ -1,0 +1,73 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+   "start": 7053,
+   "end": 7335
+  }
+ ],
+ "email": true,
+ "seconds": 23.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3440,
+   "seconds": 4.77,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "This clause allows the client to request an unlimited number of revisions and alterations with no cap, and subjectively determines when the work is complete.",
+      "suggested_change": "The Contractor shall provide up to two (2) rounds of revisions at no additional cost, provided such requests are made within fourteen (14) days of delivery."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein.",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation as a work made for hire, before you are guaranteed to receive payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, all right, title, and interest in the final deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3098,
+   "seconds": 7.47,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2067,
+   "seconds": 6.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 637,
+   "seconds": 4.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the relevant clause on work completion, since an unlimited number of revisions is difficult to manage, I propose that the agreement be updated so that the contractor shall provide up to two rounds of revisions at no additional cost, provided such requests are made within fourteen days of delivery. - Regarding the relevant clause on intellectual property, to ensure fair terms, I propose that upon receipt of full payment for the applicable services, all right, title, and interest in the final deliverables shall transfer to the client. Please let me know if these adjustments work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

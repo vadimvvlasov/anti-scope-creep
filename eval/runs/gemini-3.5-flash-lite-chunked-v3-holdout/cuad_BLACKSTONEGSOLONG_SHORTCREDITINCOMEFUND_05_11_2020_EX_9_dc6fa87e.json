@@ -1,0 +1,65 @@
+{
+ "id": "cuad:BLACKSTONEGSOLONG-SHORTCREDITINCOMEFUND_05_11_2020-EX-99.(K)(1)-SERVICE AGREEMENT",
+ "chars": 52334,
+ "findings": [],
+ "email": false,
+ "seconds": 29.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3549,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3510,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4126,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.4,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3365,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.59,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2140,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

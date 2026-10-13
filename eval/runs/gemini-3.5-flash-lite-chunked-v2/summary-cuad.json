@@ -1,0 +1,149 @@
+{
+ "set": "cuad",
+ "contracts": 28,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 1,
+   "fp": 5,
+   "fn": 2,
+   "precision": 0.167,
+   "recall": 0.333,
+   "severity_accuracy": 0.0
+  },
+  "uncapped_liability": {
+   "tp": 4,
+   "fp": 3,
+   "fn": 2,
+   "precision": 0.571,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 10,
+   "fp": 8,
+   "fn": 4,
+   "precision": 0.556,
+   "recall": 0.714,
+   "severity_accuracy": 0.9
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 23,
+  "findings_kept": 22,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.043,
+  "tokens_mean": 10369,
+  "tokens_max": 20910,
+  "seconds_mean": 20.8,
+  "seconds_max": 42.2
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT FOR THE ABOVE INDEMNIFICATION OBLIGATIONS AND FOR BREACHES OF SECTION 14, NEITHER PARTY SHALL BE LIABLE TO THE OTHER FOR ANY INCIDENTAL, CONSEQUENTIAL, SPECIAL OR PUNITIVE DAMAGES ARISING OUT OF THIS AGREEMENT (INCLUDING, BUT NOT LIMITED TO, LOSS OF PROFITS), WHETHER IN AN ACTION OR ARISING OUT OF BREACH OF CONTRACT, TORT OR ANY OTHER CAUSE OF ACTION EVEN IF SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:REGANHOLDINGCORP_03_31_2008-EX-10-LICENSE AND HOSTING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notwithstanding the foregoing, EHS or EHN may immediately terminate the Services Term without notice should Dr. Murray be in breach of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "4. By the Client at any time and without prior notice, if the Developer is convicted of any crime or offense, fails or refuses to comply with the written policies or reasonable directives of the Client, or is guilty of serious misconduct in connection with performance under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  }
+ ]
+}

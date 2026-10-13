@@ -1,0 +1,18 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [],
+ "email": false,
+ "seconds": 1.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8300,
+   "seconds": 1.05,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

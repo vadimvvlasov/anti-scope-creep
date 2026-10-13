@@ -1,0 +1,58 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [],
+ "email": false,
+ "seconds": 23.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2796,
+   "seconds": 3.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3075,
+   "seconds": 4.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2763,
+   "seconds": 3.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3177,
+   "seconds": 4.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3349,
+   "seconds": 4.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1425,
+   "seconds": 3.89,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 30.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3739,
+   "seconds": 6.53,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "This is a \"pay-if-paid\" clause, meaning you might not get paid for your work until the client's customer pays them, which introduces indefinite delays outside of your control.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your liability is completely uncapped and unlimited, exposing you to potentially massive financial risk if something goes wrong.",
+      "suggested_change": "Contractor's total aggregate liability arising out of or relating to this Agreement shall be limited to the total fees paid to Contractor under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2790,
+   "seconds": 5.94,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment depends on an indefinite event (the client getting paid by their customer), which means you might wait a very long time or never get paid.",
+      "suggested_change": "Payment shall be made within 30 days of the Contractor's invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 742,
+   "seconds": 18.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but before I sign, I would like to propose a few small adjustments: - Regarding the clause stating \"Invoices are payable within 15 days after Client receives payment from its own customer.\", this ties payment to an outside event which introduces delays. I suggest changing this to: \"Invoices are payable within 30 days after receipt of invoice.\" - Regarding the clause stating \"Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.\", this leaves liability completely uncapped. I suggest changing this to: \"Contractor's total aggregate liability arising out of or relating to this Agreement shall be limited to the total fees paid to Contractor under this Agreement.\" - Regarding the clause stating \"Payment period: 15 days after Client is paid by its customer\", this makes payment dependent on an indefinite event. I suggest changing this to: \"Payment shall be made within 30 days of the Contractor's invoice.\" Please let me know if these updates work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

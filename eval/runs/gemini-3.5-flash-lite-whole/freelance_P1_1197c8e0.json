@@ -1,0 +1,43 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3810,
+   "end": 3969
+  }
+ ],
+ "email": true,
+ "seconds": 2.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4860,
+   "seconds": 1.38,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 90 payment terms mean you will wait up to three months to get paid for your work, which creates a significant cash flow risk.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.5% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 504,
+   "seconds": 1.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. I am looking forward to getting started, but I would like to request a few adjustments to the agreement before signing. - Regarding the clause stating: 'Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.', Net 90 payment terms mean waiting up to three months to get paid, so please change this to: 'Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.5% per month to the extent permitted by applicable law.' Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

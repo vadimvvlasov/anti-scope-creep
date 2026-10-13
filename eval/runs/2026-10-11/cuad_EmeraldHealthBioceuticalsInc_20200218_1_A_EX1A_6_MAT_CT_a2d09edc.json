@@ -1,0 +1,65 @@
+{
+ "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 16459,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Provide such other services related to the foregoing as EHS may reasonably request from time to time.",
+   "start": 1204,
+   "end": 1305
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+   "start": 2618,
+   "end": 2990
+  }
+ ],
+ "email": true,
+ "seconds": 95.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4348,
+   "seconds": 46.38,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Provide such other services related to the foregoing as EHS may reasonably request from time to time.",
+      "explanation": "You may be asked to do additional work beyond the listed services without a clear process, leading to extra unpaid effort.",
+      "suggested_change": "Provide such other services related to the foregoing only upon a written change order signed by both parties."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+      "explanation": "All IP created for the products transfers to the clients immediately, even though you are still being paid only monthly and royalties later, so you lose IP before full compensation.",
+      "suggested_change": "EHS and EHN shall obtain exclusive rights in and to all ingredients, product specifications, goodwill, and other intellectual property rights associated with any Product(s) only upon full payment of all fees and accrued royalties due to Dr. Murray."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2054,
+   "seconds": 30.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 830,
+   "seconds": 19.3,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before I sign, I’d like to suggest a couple of small adjustments to the agreement:\n\n- The relevant clause currently allows additional services to be requested by EHS without a defined process. This could result in extra work that isn’t accounted for. Please change it to: “Provide such other services related to the foregoing only upon a written change order signed by both parties.”\n- The relevant clause grants exclusive rights to all ingredients, product specifications, goodwill, and other intellectual property to EHS and EHN immediately, even though full payment and royalties are still pending. To ensure the rights are transferred only after compensation, please modify it to: “EHS and EHN shall obtain exclusive rights in and to all ingredients, product specifications, goodwill, and other intellectual property rights associated with any Product(s) only upon full payment of all fees and accrued royalties due to Dr. Murray.”\n\nThank you for considering these revisions. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

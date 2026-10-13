@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "(b) Indemnity by Consultant. Consultant hereby agrees to indemnify and hold harmless the Company and each person and affiliate associated with the Company against any and all losses, claims, damages, liabilities and expenses (including reasonable costs of investigation and legal counsel fees) to the extent not funded by applicable insurance, in addition to any liability the Consultant may otherwise have, arising out of, related to or based upon: (i) Any breach by Consultant of any representation, warranty or covenant contained in or made pursuant to this Agreement; or (ii) Any violation of law, rule or regulation by Consultant or Consultant's agents, employees, representatives or affiliates.",
+   "start": 19864,
+   "end": 20564
+  }
+ ],
+ "email": true,
+ "seconds": 11.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5790,
+   "seconds": 2.31,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "(b) Indemnity by Consultant. Consultant hereby agrees to indemnify and hold harmless the Company and each person and affiliate associated with the Company against any and all losses, claims, damages, liabilities and expenses (including reasonable costs of investigation and legal counsel fees) to the extent not funded by applicable insurance, in addition to any liability the Consultant may otherwise have, arising out of, related to or based upon: (i) Any breach by Consultant of any representation, warranty or covenant contained in or made pursuant to this Agreement; or (ii) Any violation of law, rule or regulation by Consultant or Consultant's agents, employees, representatives or affiliates.",
+      "explanation": "You are required to indemnify the client for any breach or violation without any monetary cap or limitation, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "The Contractor's total aggregate liability under this Agreement shall be limited to the total fees paid to the Contractor under this Agreement, excluding any liability arising from gross negligence or willful misconduct."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1557,
+   "seconds": 5.54,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 564,
+   "seconds": 3.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few small adjustments before signing. Specifically, regarding the relevant clause, you are required to indemnify the client for any breach or violation without any monetary cap or limitation, exposing you to potentially unlimited financial risk. To make this work, I suggest the following change: The Contractor's total aggregate liability under this Agreement shall be limited to the total fees paid to the Contractor under this Agreement, excluding any liability arising from gross negligence or willful misconduct. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

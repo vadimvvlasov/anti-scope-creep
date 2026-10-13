@@ -1,0 +1,57 @@
+{
+ "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 11322,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+   "start": 6550,
+   "end": 7095
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+   "start": 2429,
+   "end": 2965
+  }
+ ],
+ "email": true,
+ "seconds": 11.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3927,
+   "seconds": 6.38,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+      "explanation": "The termination cure period is unequal, giving you only 10 days to fix an issue while giving the client 30 days.",
+      "suggested_change": "Either party may terminate this Agreement if the other party fails to meet a material obligation and fails to rectify such failure within 30 days of receiving written notice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+      "explanation": "Your indemnification obligations are broad and do not appear to be subject to an overall liability cap, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "The Contractor's total aggregate liability under this Agreement, including under any indemnification obligations, shall be limited to the total fees paid by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 712,
+   "seconds": 5.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sending over the agreement. Before I sign, I would like to request a couple of adjustments. - Regarding the termination clause, the cure period is currently unequal, giving 10 days for one party and 30 days for the other; I propose making the cure period 30 days for both parties. - Regarding the relevant clause on indemnification, the obligations are very broad without an overall liability cap; I propose limiting the total aggregate liability under the agreement to the total fees paid. Please let me know if these changes work for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

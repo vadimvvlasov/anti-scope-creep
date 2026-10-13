@@ -46,6 +46,9 @@ Backend (use uv for dependency management):
 - `uv run alembic upgrade head` - apply migrations to `DATABASE_URL`
 - `uv run alembic revision --autogenerate -m "<change>"` - draft a migration (review it before committing)
 - `TEST_DATABASE_URL=<throwaway-postgres-url> uv run pytest` - also run database tests on PostgreSQL
+- `GROQ_API_KEY=<key> uv run python -m evaluation run --run <name> [--set freelance|cuad] [--limit N]` - run the Groq analyzer over the eval gold sets; results are cached in `eval/runs/<name>/`, and a rerun skips cached contracts (local only, never in CI)
+- `GEMINI_API_KEY=<key> uv run python -m evaluation run --run <name> --provider gemini [--chunk-chars N] [--max-output-tokens N]` - the same analyzer on Gemini (`GEMINI_MODEL`, default `gemini-3.5-flash-lite`) through its OpenAI-compatible endpoint; `--chunk-chars 60000` sends a contract in one request
+- `uv run python -m evaluation score --run <name> [--set freelance|cuad]` - compute precision, recall and severity accuracy from the cache, no tokens
 
 Frontend:
 

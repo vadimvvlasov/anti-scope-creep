@@ -1,0 +1,100 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 2,
+   "fp": 2,
+   "fn": 1,
+   "precision": 0.5,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.5
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 2,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 4,
+   "fp": 4,
+   "fn": 1,
+   "precision": 0.5,
+   "recall": 0.8,
+   "severity_accuracy": 0.75
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 14,
+  "findings_kept": 14,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 13880,
+  "tokens_max": 22117,
+  "seconds_mean": 41.1,
+  "seconds_max": 84.2
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Title of the product will transfer to the Manufacturer at the shipping dock of the manufacturing facility.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "low"
+  }
+ ]
+}

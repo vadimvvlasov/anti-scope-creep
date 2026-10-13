@@ -1,0 +1,85 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "start": 16389,
+   "end": 16721
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "In the event of any breach of this Agreement by any Party  hereto, the breaching Party shall indemnify the other Party for all of such other Parties losses arising therefrom, which losses shall  include only direct losses, reasonable expenses and reasonable attorney fees.",
+   "start": 15090,
+   "end": 15362
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4177,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.57,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4509,
+   "output_tokens": 309,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 15.37,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing;",
+      "explanation": "Either party can terminate if the other's performance is adversely affected in their reasonable judgment, but because termination requires no compensation for work done under Section 8.3, this creates a termination risk.",
+      "suggested_change": "In the event that either Party terminates this Agreement, the Client shall pay the Contractor for all services performed and costs incurred up to the effective date of termination."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "In the event of any breach of this Agreement by any Party hereto, the breaching Party shall indemnify the other Party for all of such other Parties losses arising therefrom, which losses shall include only direct losses, reasonable expenses and reasonable attorney fees.",
+      "explanation": "Your liability for direct losses is not subject to a maximum financial cap, exposing you to potentially unlimited damages.",
+      "suggested_change": "The Contractor's total aggregate liability for all claims arising out of or relating to this Agreement shall be limited to the total fees paid by the Client to the Contractor under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1816,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 454,
+   "output_tokens": 121,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. Before signing, I would like to propose a small adjustment to the agreement. - Regarding the relevant clause, the current wording leaves liability for direct losses without a financial cap. I suggest updating this section so that the Contractor's total aggregate liability for all claims arising out of or relating to this Agreement shall be limited to the total fees paid by the Client to the Contractor under this Agreement. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

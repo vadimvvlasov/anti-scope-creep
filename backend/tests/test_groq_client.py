@@ -77,6 +77,34 @@ def test_a_request_asks_for_strict_json_with_low_reasoning():
     assert limiter.acquired == [len("Find risks." + CONTRACT) // 4 + 1 + 2_000]
 
 
+def test_api_url_sends_the_same_request_to_another_endpoint():
+    script = Script(ok())
+    url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    groq, _ = client(script, api_url=url, model="gemini-3.5-flash-lite")
+
+    groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    request = script.requests[0]
+    assert str(request.url) == url and json.loads(request.content)["model"] == "gemini-3.5-flash-lite"
+
+
+def test_temperature_is_sent_only_when_set():
+    default, zero = Script(ok()), Script(ok())
+    client(default)[0].complete_json(MESSAGES, "hi", SCHEMA)
+    client(zero, temperature=0.0)[0].complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert "temperature" not in json.loads(default.requests[0].content)
+    assert json.loads(zero.requests[0].content)["temperature"] == 0.0
+
+
+def test_an_error_wrapped_in_a_list_keeps_its_message():
+    error = [{"error": {"code": 400, "message": "User location is not supported for the API use."}}]
+    groq, _ = client(Script(httpx.Response(400, json=error)))
+
+    with pytest.raises(GroqError, match="User location is not supported"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+
 def test_429_waits_for_retry_after_then_succeeds():
     script = Script(httpx.Response(429, headers={"retry-after": "7"}), ok())
     sleeps: list[float] = []
@@ -134,6 +162,47 @@ def test_content_that_is_not_a_json_object_fails(content):
     groq, _ = client(Script(response))
     with pytest.raises(GroqError, match="not a JSON object"):
         groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+
+def cut(partial: str = '{"findings": [{"category": "scope') -> httpx.Response:
+    """An answer stopped at the output cap: unfinished JSON, finish_reason "length"."""
+    return httpx.Response(200, json={"choices": [{"message": {"content": partial}, "finish_reason": "length"}],
+                                     "usage": {"total_tokens": 2_500, "completion_tokens": 2_000}})
+
+
+def test_a_result_reports_output_tokens_and_finish_reason():
+    response = httpx.Response(200, json={"choices": [{"message": {"content": '{"text": "hi"}'}, "finish_reason": "stop"}],
+                                         "usage": {"total_tokens": 900, "completion_tokens": 300}})
+    groq, _ = client(Script(response))
+
+    result = groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert (result.completion_tokens, result.finish_reason, result.max_completion_tokens) == (300, "stop", 2_000)
+
+
+def test_a_cut_answer_is_asked_again_with_twice_the_budget():
+    script = Script(cut(), ok())
+    groq, limiter = client(script)
+
+    result = groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert result.content == {"text": "hi"} and result.max_completion_tokens == 4_000
+    assert [json.loads(r.content)["max_completion_tokens"] for r in script.requests] == [2_000, 4_000]
+    assert limiter.acquired[1] - limiter.acquired[0] == 2_000  # the limiter reserves the bigger budget
+
+
+def test_a_second_cut_fails_and_the_partial_answer_is_never_parsed():
+    groq, _ = client(Script(cut(), cut()))
+    with pytest.raises(GroqError, match="cut at max_completion_tokens=4000"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+
+def test_a_budget_already_at_the_retry_cap_is_not_retried():
+    script = Script(cut())
+    groq, _ = client(script, max_completion_tokens=8_000)
+    with pytest.raises(GroqError, match="cut at max_completion_tokens=8000"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+    assert len(script.requests) == 1
 
 
 def test_logs_carry_no_key_and_no_contract_text(caplog):

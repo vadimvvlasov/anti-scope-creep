@@ -1,0 +1,18 @@
+{
+ "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 11322,
+ "findings": [],
+ "email": false,
+ "seconds": 1.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3539,
+   "seconds": 1.79,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

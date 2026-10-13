@@ -1,0 +1,60 @@
+{
+ "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+ "chars": 40597,
+ "error": {
+  "type": "invalid_json",
+  "message": "Groq returned HTTP 400: Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details."
+ },
+ "seconds": 189.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3307,
+   "seconds": 40.87,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3404,
+   "seconds": 44.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3664,
+   "seconds": 42.4,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice.",
+      "explanation": "You can be kicked out of the contract at any time without cause while the client does not have a matching right, leaving you unpaid for work already done.",
+      "suggested_change": "Either Party may terminate this Agreement without cause by providing the other Party with at least thirty (30) days written notice, and the terminating Party shall pay for all Services performed up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3621,
+   "seconds": 40.55,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "AS THE PARTIES INTEND COMPLETE INDEMNIFICATION, ALL COSTS AND EXPENSES OF ENFORCING ANY PROVISION OF THIS SECTION 10 SHALL ALSO BE REIMBURSED BY THE INDEMNITOR.",
+      "explanation": "You could be required to pay the other party’s full legal costs and any damages they incur, with no monetary limit, which could exceed the fees you receive.",
+      "suggested_change": "The indemnifying party shall be liable for costs and expenses of enforcing this section only up to an amount equal to the total fees paid under this Agreement."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

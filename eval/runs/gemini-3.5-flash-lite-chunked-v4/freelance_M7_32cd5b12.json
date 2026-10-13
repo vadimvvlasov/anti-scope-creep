@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  }
+ ],
+ "email": true,
+ "seconds": 3.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2716,
+   "output_tokens": 277,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.72,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment within ninety days is very late and delays your cash flow significantly.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the applicable milestone."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "Your intellectual property is transferred upon delivery rather than upon full payment, which creates a risk if the client fails to pay.",
+      "suggested_change": "Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest in and to the custom deliverables created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 562,
+   "output_tokens": 148,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. Before I sign, I would like to propose a few minor adjustments for review: - Regarding the payment terms, waiting ninety days after final acceptance creates a significant delay for cash flow. I suggest that the agreement be updated so that payment is made within thirty days of acceptance for each milestone. - Regarding the intellectual property clause, transferring rights upon delivery rather than full payment could cause complications. I propose modifying the relevant clause to state that rights are assigned upon receipt of full payment for each milestone. Thank you for considering these updates, and I look forward to finalizing the paperwork soon. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

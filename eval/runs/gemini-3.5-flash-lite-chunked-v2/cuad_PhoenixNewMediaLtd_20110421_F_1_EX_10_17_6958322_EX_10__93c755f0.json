@@ -1,0 +1,73 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing;",
+   "start": 16383,
+   "end": 16721
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "start": 17087,
+   "end": 17411
+  }
+ ],
+ "email": true,
+ "seconds": 24.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3663,
+   "seconds": 5.49,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4025,
+   "seconds": 7.24,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing;",
+      "explanation": "The client can terminate the contract immediately based on their own subjective judgment that your performance is adversely affected, creating a one-sided risk for you.",
+      "suggested_change": "Either party may terminate this Agreement upon material breach by the other party that remains uncured after written notice."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by the termination of this Agreement.",
+      "explanation": "If the client terminates the contract, no compensation or indemnification is required, meaning you might not get paid for completed work.",
+      "suggested_change": "Upon termination by either party, the Client shall pay the Contractor for all work performed and expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1307,
+   "seconds": 4.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 636,
+   "seconds": 6.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope this email finds you well. I have reviewed the agreement and would like to propose a few minor adjustments before we proceed with signing.\n\n- Regarding the clause stating that the unaffected party may terminate the agreement based on a subjective judgment of performance, I would prefer to clarify this so that either party may terminate upon an uncured material breach.\n- Regarding the clause stating that no compensation is required upon unilateral termination, I propose adding that the client shall pay for all work performed and expenses incurred up to the effective date of termination.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

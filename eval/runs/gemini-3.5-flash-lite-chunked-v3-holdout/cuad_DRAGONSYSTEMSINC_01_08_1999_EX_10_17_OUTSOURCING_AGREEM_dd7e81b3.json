@@ -1,0 +1,77 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "start": 3741,
+   "end": 3976
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "MMI shall at its own expense obtain and maintain with an insurer adequate insurance coverage in respect of any Dragon Systems property under the care, custody or control of MMI. MMI shall immediately notify Dragon Systems in writing of any theft, loss or damage to any Dragon Systems property and shall indemnify Dragon Systems in respect of the same.",
+   "start": 6682,
+   "end": 7033
+  }
+ ],
+ "email": true,
+ "seconds": 12.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3375,
+   "output_tokens": 418,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.96,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Dragon Systems can terminate the agreement without cause on 60 days notice, but you do not have a matching right to terminate without cause.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall reimburse [PARTY_A] and hold [PARTY_A] harmless from any liabilities or obligations imposed upon [PARTY_A] resulting directly or indirectly from [PARTY_B]'s or its employees or agents activities under this Agreement.",
+      "explanation": "Your indemnification obligations are completely uncapped, exposing you to potentially unlimited financial risk for claims arising from your activities.",
+      "suggested_change": "The Contractor's total liability under this indemnification provision shall be subject to the overall limitation of liability under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall at its own expense obtain and maintain with an insurer adequate insurance coverage in respect of any [PARTY_A] property under the care, custody or control of [PARTY_B]. [PARTY_B] shall immediately notify [PARTY_A] in writing of any theft, loss or damage to any [PARTY_A] property and shall indemnify [PARTY_A] in respect of the same.",
+      "explanation": "You are required to fully indemnify the client for any theft, loss, or damage to their property without any monetary cap.",
+      "suggested_change": "The Contractor's liability for loss or damage to the Client's property shall be subject to the overall limitation of liability under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 832,
+   "output_tokens": 240,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am looking forward to getting started, but before signing the agreement, I would like to propose a few minor adjustments to ensure the terms are balanced for both parties. Specifically: - Regarding the termination clause, Dragon Systems can terminate without cause on 60 days notice, but I do not have a matching right; I propose that either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party. - Regarding the indemnification obligations, my responsibilities are currently completely uncapped; I propose that the Contractor's total liability under this indemnification provision shall be subject to the overall limitation of liability under this Agreement. - Regarding the property loss clause, I am required to fully indemnify for theft, loss, or damage to property without any monetary cap; I propose that the Contractor's liability for loss or damage to the Client's property shall be subject to the overall limitation of liability under this Agreement. Please let me know if these adjustments are acceptable so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

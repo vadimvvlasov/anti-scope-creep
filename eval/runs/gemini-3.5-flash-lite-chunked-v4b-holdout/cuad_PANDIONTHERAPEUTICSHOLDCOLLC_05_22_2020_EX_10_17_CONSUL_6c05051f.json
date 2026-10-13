@@ -1,0 +1,60 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 18.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4117,
+   "output_tokens": 195,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.2,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "You assign your intellectual property rights immediately upon creation, before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment, the Contractor hereby assigns to the Client all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3793,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 563,
+   "output_tokens": 205,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed the terms and would like to propose a few minor adjustments before signing. - Regarding the relevant clause (\"The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.\"), you assign your intellectual property rights immediately upon creation, before you are guaranteed full payment. I suggest modifying this to state: Upon receipt of full payment, the Contractor hereby assigns to the Client all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights. Please let me know if these adjustments work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

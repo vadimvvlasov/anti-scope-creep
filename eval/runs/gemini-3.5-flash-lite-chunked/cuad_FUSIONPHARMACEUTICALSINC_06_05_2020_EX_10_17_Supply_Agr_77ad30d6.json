@@ -1,0 +1,42 @@
+{
+ "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+ "chars": 40597,
+ "findings": [],
+ "email": false,
+ "seconds": 15.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3009,
+   "seconds": 3.48,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3042,
+   "seconds": 4.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3054,
+   "seconds": 4.07,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2863,
+   "seconds": 3.9,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

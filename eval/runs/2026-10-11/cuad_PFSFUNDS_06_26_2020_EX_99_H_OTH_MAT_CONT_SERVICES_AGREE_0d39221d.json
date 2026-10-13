@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PFSFUNDS_06_26_2020-EX-99.H OTH MAT CONT-SERVICES AGREEMENT",
+ "chars": 15052,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "and such other action with respect to the Fund as may be necessary in the opinion of the Adviser to perform its duties hereunder.",
+   "start": 3639,
+   "end": 3768
+  }
+ ],
+ "email": true,
+ "seconds": 91.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3868,
+   "seconds": 45.72,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "and such other action with respect to the Fund as may be necessary in the opinion of the Adviser to perform its duties hereunder.",
+      "explanation": "You may be asked to do any additional work the Adviser thinks is necessary, without a clear limit or change‑order process, which can expand your workload unpredictably.",
+      "suggested_change": "The Adviser shall perform only the services listed in Schedule A and shall not be required to perform any additional actions unless a written change order, signed by both parties, specifies the new work and any associated compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1863,
+   "seconds": 28.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 643,
+   "seconds": 17.47,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the draft and would like to suggest a clarification before signing:\n- The relevant clause states that the Adviser may take \"any other action with respect to the Fund as may be necessary in the opinion of the Adviser to perform its duties hereunder.\" This could require additional work without a clear limit or change‑order process, which may expand the workload unpredictably. I propose that the agreement specify that the Adviser shall perform only the services listed in Schedule A and shall not be required to perform any additional actions unless a written change order, signed by both parties, outlines the new work and any associated compensation.\n\nThank you for considering these adjustments.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13023,
+   "end": 13048
+  }
+ ],
+ "email": true,
+ "seconds": 98.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3623,
+   "seconds": 44.78,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "You will have to wait 60 days to receive payment, which can strain your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2876,
+   "seconds": 35.97,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You will be paid within 60 days, which is longer than the typical 30‑day term and can delay cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The liability limit is higher than the total fee, leaving you exposed to losses beyond what you are paid.",
+      "suggested_change": "Liability cap: USD 24,875"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 759,
+   "seconds": 17.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before I sign the agreement, I would like to ask for a few adjustments:\n- The relevant clause states \"Invoices are payable Net 60.\" This means payment would be delayed for 60 days, which could strain cash flow. I propose changing it to \"Invoices are payable Net 30.\"\n- The relevant clause reads \"Payment period: Net 60.\" A 60‑day payment term is longer than the usual 30‑day term and may delay cash flow. I suggest revising it to \"Payment period: Net 30.\"\n- The relevant clause specifies \"Liability cap: USD 35,000.\" This limit exceeds the total fee, leaving exposure beyond what is paid. I recommend adjusting it to \"Liability cap: USD 24,875.\"\n\nThank you for considering these updates. I look forward to moving forward.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

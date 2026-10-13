@@ -1,0 +1,80 @@
+{
+ "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement",
+ "chars": 35189,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Licensor shall be solely responsible for the Titles and any and all legal liability resulting from the Titles, excluding any legal liability caused by Licensee's breach of this Agreement or gross negligence with regards to the Titles. Without limiting the generality of the foregoing, Licensor shall be solely responsible for any and all royalties and other fees payable to any applicable licensor(s) or any third party for distribution of the Titles by Licensee (including, without limitation, residuals and clearances or other payments to guilds or unions and rights for music clearances, such as performance rights, synchronization rights and mechanical rights), and all other fees, payments and obligations arising out of the activities contemplated by this Agreement, and Licensee shall have no responsibility or liability for any such royalties or fees.",
+   "start": 7930,
+   "end": 8789
+  }
+ ],
+ "email": true,
+ "seconds": 172.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3875,
+   "seconds": 39.43,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Licensor shall be solely responsible for the Titles and any and all legal liability resulting from the Titles, excluding any legal liability caused by Licensee's breach of this Agreement or gross negligence with regards to the Titles. Without limiting the generality of the foregoing, Licensor shall be solely responsible for any and all royalties and other fees payable to any applicable licensor(s) or any third party for distribution of the Titles by Licensee (including, without limitation, residuals and clearances or other payments to guilds or unions and rights for music clearances, such as performance rights, synchronization rights and mechanical rights), and all other fees, payments and obligations arising out of the activities contemplated by this Agreement, and Licensee shall have no responsibility or liability for any such royalties or fees.",
+      "explanation": "You (the Licensor) must bear all legal and financial liabilities for the content with no monetary cap, which could expose you to unlimited costs.",
+      "suggested_change": "Licensor shall be responsible for legal liability and royalties arising from the Titles up to an amount not exceeding the total fees payable under this Agreement, and each party shall bear liability for its own breach or negligence."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3927,
+   "seconds": 44.32,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "If, during the Term, Licensor develops or obtains the rights to license any live action or animated feature‑length motion picture (each an \"Additional Title\"), Licensor shall give Licensee the first right of negotiation for each Additional Title... Licensor will promptly provide written notice to Licensee in which Licensor lists each Additional Title. Should Licensee agree to be the vendor for an Additional Title, Licensor and Licensee will negotiate in good faith to mutually agree upon the pricing and terms for each Additional Title in an amendment to this Agreement.",
+      "explanation": "You may be required to provide new titles and negotiate pricing for each one without a defined limit or clear change‑order process, which can expand your workload unexpectedly.",
+      "suggested_change": "Any Additional Title shall be subject to a separate written amendment that specifies the scope, deliverables, pricing, and a mutually agreed change‑order procedure."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3584,
+   "seconds": 43.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1485,
+   "seconds": 25.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 767,
+   "seconds": 19.39,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the draft and would like to suggest a small amendment before I sign:\n\n- The relevant clause currently places unlimited liability on the Licensor for all royalties and fees related to the Titles. In plain terms, this means the Licensor could be responsible for costs that far exceed the total fees under the agreement, which may be unreasonable. I propose that the Licensor’s responsibility be limited to an amount not exceeding the total fees payable under the agreement, and that each party bear liability for its own breach or negligence.\n\nThank you for considering these changes. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

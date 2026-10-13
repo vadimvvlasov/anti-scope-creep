@@ -1,0 +1,86 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand - These Services will include updates to investor decks, customer sales decks and other marketing material available to the public",
+   "start": 1048,
+   "end": 1289
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.",
+   "start": 17937,
+   "end": 18137
+  }
+ ],
+ "email": true,
+ "seconds": 139.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3143,
+   "seconds": 39.53,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant agrees that all right, title, and interest in and to any material, notes, records, drawings, designs, inventions, improvements, developments, discoveries and trade secrets conceived, discovered, authored, invented, developed or reduced to practice by Consultant, solely or in collaboration with others, whether or not patentable or copyrightable, during the term of this Agreement and arising out of, or in connection with, performing the Services under this Agreement ... are the sole property of the Company.",
+      "explanation": "You must assign all IP you create to the Company even before you have received the full amount of your consulting fees, which exposes you to losing ownership without guaranteed payment.",
+      "suggested_change": "Consultant shall assign to the Company all rights in Inventions only after the Company has paid all undisputed fees accrued up to the date of such assignment."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand - These Services will include updates to investor decks, customer sales decks and other marketing material available to the public",
+      "explanation": "The description uses “not limited to,” which lets the Company request additional marketing work beyond the listed items without a clear change‑order process.",
+      "suggested_change": "These Services shall include Marketing guidance and support limited to the items listed above; any additional services shall require a written change order signed by both Parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2859,
+   "seconds": 38.5,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3547,
+   "seconds": 43.31,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "The Company may terminate this Agreement immediately and without prior notice if Consultant refuses to or is unable to perform the Services or is in breach of any material provision of this Agreement.",
+      "explanation": "You can be fired on the spot with no notice and no guaranteed payment, while the other party only gets 30 days’ notice. This creates a high risk of losing income abruptly.",
+      "suggested_change": "The Company may terminate this Agreement only upon providing thirty (30) days’ prior written notice, unless the Consultant is in material breach, in which case termination shall be effective upon written notice specifying the breach."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 851,
+   "seconds": 18.42,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I would like to ask for a couple of clarifications to the agreement:\n- The relevant clause currently states that the services include marketing guidance and support “not limited to” the listed items. This wording could allow the Company to request additional marketing work beyond those items without a clear change‑order process. I propose that the clause be revised to limit the services to the items listed, with any additional services requiring a written change order signed by both parties.\n- The relevant clause permits the Company to terminate the agreement immediately and without prior notice if the Consultant refuses to perform or breaches a material provision. This creates a risk of abrupt termination without notice or guaranteed payment, while the other party receives only 30 days’ notice. I suggest that termination be allowed only with thirty (30) days’ prior written notice, except in cases of material breach, where termination would be effective upon written notice specifying the breach.\n\nPlease let me know if these adjustments are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

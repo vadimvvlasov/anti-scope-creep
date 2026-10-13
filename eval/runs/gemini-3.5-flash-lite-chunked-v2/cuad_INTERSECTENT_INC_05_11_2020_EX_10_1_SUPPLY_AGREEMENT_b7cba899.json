@@ -1,0 +1,42 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [],
+ "email": false,
+ "seconds": 24.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3628,
+   "seconds": 6.66,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2938,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3591,
+   "seconds": 6.14,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2473,
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

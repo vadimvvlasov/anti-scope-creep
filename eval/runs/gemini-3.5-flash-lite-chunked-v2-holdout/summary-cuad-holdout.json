@@ -1,0 +1,98 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 2,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.5,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 2,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 3,
+   "fp": 4,
+   "fn": 2,
+   "precision": 0.429,
+   "recall": 0.6,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 14,
+  "findings_kept": 14,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 11993,
+  "tokens_max": 19028,
+  "seconds_mean": 22.6,
+  "seconds_max": 49.2
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "The Consultant may terminate the Consultation Period at any time upon thirty (30) days' written notice.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "11.4 Intellectual Property Rights. Except as otherwise expressly provided in this Section 11,4, all inventions, discoveries, and trade secrets whether or not patentable, that are made by Subcontractor or Manufacturer, either alone or with others, in the course of its performance of its obligations under this Agreement (collectively, \"Inventions\") will become the exclusive property of Subcontractor.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": []
+}

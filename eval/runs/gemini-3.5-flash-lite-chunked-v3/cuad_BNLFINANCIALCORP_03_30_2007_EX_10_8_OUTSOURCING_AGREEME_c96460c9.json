@@ -1,0 +1,42 @@
+{
+ "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+ "chars": 39863,
+ "findings": [],
+ "email": false,
+ "seconds": 23.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3560,
+   "seconds": 5.99,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3517,
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3438,
+   "seconds": 6.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2569,
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

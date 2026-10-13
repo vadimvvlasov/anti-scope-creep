@@ -943,18 +943,28 @@ Detection is based on a **strict contractual trigger**: flag a category only whe
 
 | Category | High | Medium | Low |
 |---|---|---|---|
-| Scope ambiguity / scope creep | Open-ended scope + no change-order mechanism | Ambiguous scope with boundaries | Minor vague wording |
-| Unlimited revisions | Explicitly unlimited / no meaningful limit | Ambiguous or unusually high cap | Minor flexibility beyond normal process |
-| Termination | Immediate client termination without compensation | One-sided termination with notice but limited protection | Uneven standard terms |
+| Scope ambiguity / scope creep | Open-ended scope + no change-order mechanism | Unpaid changes up to a boundary | Minor vague wording |
+| Unlimited revisions | Explicitly unlimited / no meaningful limit | Ambiguous or unusually high cap (6 or more rounds) | Minor flexibility beyond normal process (4–5 rounds, or "reasonable" revisions with no number) |
+| Termination | Only the client may terminate without cause, immediately, and work done is not paid | Only the client may terminate without cause, with notice, and work done is not paid | Only the client may terminate without cause and work done is paid; or the freelancer may terminate only under a condition the client controls |
 | IP transfer | Transfers before full payment | Transfers on partial milestone | Minor timing ambiguity |
-| Uncapped liability | Explicit unlimited liability or missing monetary cap | Unusually high cap / major exclusions | Minor unfavorable wording |
-| Payment terms | Net 90+ / conditional or indefinite payment | Net 45–60 | Net 31–44 |
+| Uncapped liability | Explicit unlimited liability | Unusually high cap (above 2x the contract value) / major exclusions (the freelancer's indemnification obligations are excluded from the cap) | Minor unfavorable wording |
+| Payment terms | Net 90+ / conditional or indefinite payment | Net 45–89 | Net 31–44 |
 
 Rules:
 - If the clause does not clearly meet one of the thresholds, **do not create a finding**.
 - Risk level is part of the finding and must be one of `low`, `medium`, or `high`.
 - Multiple findings may exist in the same category.
 - Standard Net 30 or shorter payment terms produce no payment-risk finding.
+- Direction: a provision is a risk only when it burdens the freelancer. Its mirror image is not a finding (rights or IP flowing to the freelancer, the freelancer's own termination right, limits on or uncapped obligations of the client).
+- Independence: a "not a finding" rule of one category never removes a finding of another category, even in the same passage.
+
+Category clarifications (they refine the matrix above; where they apply, they decide):
+- **Scope creep.** `high`: no change-order mechanism, so any extra work can be requested at no charge. `medium`: the freelancer must accept changes or extra work without extra pay up to a boundary (a budget, a number of hours, or a threshold above which a written change request applies). Not a finding: every scope change requires a written change order with its own price; extra work is paid at hourly or time-and-materials rates, and an estimate of the total is not a fixed scope.
+- **Unlimited revisions.** Up to 3 revision rounds is a normal process and not a finding; 4–5 rounds is `low`; 6 or more rounds is `medium`; explicitly unlimited revisions or no limit at all is `high`. "Reasonable" revisions without a number are `low`. When the text states a number of rounds, the number alone decides.
+- **Termination.** Both parties may terminate without cause (even with different notice periods): not a finding. The freelancer's own right, termination only for breach or insolvency, and a termination fee that compensates the freelancer are not findings either.
+- **IP transfer.** A transfer "on creation" includes work-made-for-hire wording and present assignments of all right, title and interest in work conceived or developed by the freelancer, when no payment condition applies; these are `high`, also when only the handover of files waits for payment. Not a finding: transfer upon full payment or of each part once it is invoiced and paid; the freelancer keeping its own pre-existing tools; transfer of existing assets that are not the freelancer's work (licenses, regulatory filings, domain names, contracts).
+- **Uncapped liability.** Only the freelancer's exposure counts; a mutual clause counts when the freelancer is a party. Decided in order: (a) a clause that only excludes types of damages (consequential, indirect, lost profits) is not a cap and, whatever its exceptions, never an uncapped-liability finding; (b) `high`: the text states the freelancer's liability is unlimited; (c) `medium`: the freelancer's indemnification, IP-infringement or third-party claims are taken out of the aggregate cap without a separate limit; exceptions only for confidentiality, gross negligence, willful misconduct, fraud, death or personal injury, liability the law does not allow to limit, or amounts the client owes are not findings, nor is an exception with its own cap; (d) `medium`: a fixed cap above 2x the contract value; a cap at or below the fees or up to 2x is not a finding, and when the contract value cannot be determined (time-and-materials, hourly rates, an estimate) the size of a fixed cap is not a finding; (e) a contract with no aggregate cap is not a finding: there is no clause to quote (decided 2026-10-12, matching the eval gold).
+- **Payment terms.** "Net N" means payment within N days of the invoice or delivery. Net 45–89 is `medium` (decided 2026-10-12; the matrix had no level for Net 61–89).
 
 ### Overall contract risk
 

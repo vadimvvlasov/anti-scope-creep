@@ -1,0 +1,43 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [],
+ "email": false,
+ "seconds": 5.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3383,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3345,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3126,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.02,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

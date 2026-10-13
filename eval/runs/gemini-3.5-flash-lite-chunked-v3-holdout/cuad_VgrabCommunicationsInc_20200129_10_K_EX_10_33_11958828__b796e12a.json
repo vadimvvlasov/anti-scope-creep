@@ -1,0 +1,60 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+   "start": 11417,
+   "end": 11538
+  }
+ ],
+ "email": true,
+ "seconds": 18.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3361,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2489,
+   "output_tokens": 158,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.02,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+      "explanation": "If you terminate the agreement, you are forced to hand over all intellectual property and work done up to that point immediately, even if you have not been fully paid for it.",
+      "suggested_change": "In case Developer terminates the agreement, it shall handover the entire project related IPR and work done till date to the Client upon receipt of all pending payments for work completed."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 496,
+   "output_tokens": 174,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.24,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically: - Regarding the clause stating 'In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.', if you terminate the agreement, you are forced to hand over all intellectual property and work done up to that point immediately, even if you have not been fully paid for it. Therefore, I propose changing this to: 'In case Developer terminates the agreement, it shall handover the entire project related IPR and work done till date to the Client upon receipt of all pending payments for work completed.' Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

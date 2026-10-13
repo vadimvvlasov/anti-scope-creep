@@ -1,0 +1,66 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "PC Financial shall pay a monthly Fee to Mobimagic in accordance with this Agreement and within the timeline as permitted under the prevailing India regulations.",
+   "start": 6262,
+   "end": 6422
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 3.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3091,
+   "seconds": 1.18,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "PC Financial shall pay a monthly Fee to [PARTY_C] in accordance with this Agreement and within the timeline as permitted under the prevailing India regulations.",
+      "explanation": "Payment is tied to an indefinite or regulatory timeline rather than a clear net-30 day term, which can cause significant payment delays.",
+      "suggested_change": "PC Financial shall pay all undisputed invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3286,
+   "seconds": 1.22,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Payment is due within 45 days, which is longer than the standard 30 days and creates cash flow delays.",
+      "suggested_change": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within thirty (30) days after confirming thus."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 541,
+   "seconds": 1.03,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a couple of adjustments before I sign. - Regarding the clause stating that payment will follow prevailing regulations, this is currently too vague and could lead to delays; I propose changing it so that PC Financial shall pay all undisputed invoices within thirty days of receipt. - Regarding the clause allowing forty-five days for payment after invoice confirmation, this is longer than my standard terms; I propose updating this to thirty days after confirmation. Thank you for your understanding and cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

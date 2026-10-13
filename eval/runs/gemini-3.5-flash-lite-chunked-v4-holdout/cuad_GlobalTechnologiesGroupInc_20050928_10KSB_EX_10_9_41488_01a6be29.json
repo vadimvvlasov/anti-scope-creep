@@ -1,0 +1,67 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) Distributor receives a carrier statement saying how much Distributor will be paid; (2) 30-45 days later the Carrier pays Distributor; (3) when Distributor is paid by a carrier, Distributor makes royalty payments to IMNTV.",
+   "start": 19615,
+   "end": 19938
+  }
+ ],
+ "email": true,
+ "seconds": 17.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4266,
+   "seconds": 1.21,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4362,
+   "seconds": 1.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) [PARTY_B] receives a carrier statement saying how much [PARTY_B] will be paid; (2) 30-45 days later the Carrier pays [PARTY_B]; (3) when [PARTY_B] is paid by a carrier, [PARTY_B] makes royalty payments to IMNTV.",
+      "explanation": "Your payments are deferred until the carrier pays the client, which can take 30 to 45 days or longer after the statement, creating uncertainty in your cash flow.",
+      "suggested_change": "The Client shall pay all undisputed royalties within thirty (30) days of the end of each calendar quarter, regardless of when the Client receives payment from wireless carriers."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4171,
+   "seconds": 1.7,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2588,
+   "seconds": 5.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 531,
+   "seconds": 7.05,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. Before I sign, I would like to propose a few small adjustments regarding the payment terms.\n\n- Regarding the relevant clause where payments are tied to carrier disbursements, your payments are deferred until the carrier pays the client, which can take 30 to 45 days or longer after the statement, creating uncertainty in your cash flow. I propose we change this so that The Client shall pay all undisputed royalties within thirty (30) days of the end of each calendar quarter, regardless of when the Client receives payment from wireless carriers.\n\nBest regards,\nLooking forward to getting started."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,75 @@
+{
+ "id": "cuad:REGANHOLDINGCORP_03_31_2008-EX-10-LICENSE AND HOSTING AGREEMENT",
+ "chars": 55889,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.",
+   "start": 52500,
+   "end": 52677
+  }
+ ],
+ "email": true,
+ "seconds": 36.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3507,
+   "seconds": 6.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3581,
+   "seconds": 5.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3561,
+   "seconds": 6.44,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3438,
+   "seconds": 5.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3134,
+   "seconds": 6.86,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by LMG's failure to comply with the foregoing.",
+      "explanation": "You are required to indemnify the client for compliance failures, and this obligation is not subject to an overall liability cap, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "LMG shall indemnify, defend, and hold TAG harmless from and against any and all claims, actions, or damages arising from or caused by Lmg's failure to comply with the foregoing, subject to the overall limitation of liability set forth in this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 455,
+   "seconds": 5.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed the document and would like to request one small adjustment before I sign it. - Regarding the indemnity obligation in the relevant clause, the current wording does not limit the financial risk to the overall liability cap. I propose updating this section so that it is subject to the overall limitation of liability set forth in the agreement. Please let me know if this adjustment works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

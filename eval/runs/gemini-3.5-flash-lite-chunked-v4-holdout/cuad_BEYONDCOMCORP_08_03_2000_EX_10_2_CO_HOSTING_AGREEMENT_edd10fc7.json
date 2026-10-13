@@ -1,0 +1,50 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [],
+ "email": false,
+ "seconds": 64.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4045,
+   "seconds": 12.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3542,
+   "seconds": 22.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4026,
+   "seconds": 12.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4145,
+   "seconds": 6.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3930,
+   "seconds": 10.26,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

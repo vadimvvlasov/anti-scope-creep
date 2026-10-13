@@ -1,0 +1,59 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 5.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4180,
+   "seconds": 1.48,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform extra work that is not specifically mentioned in the contract without guaranteed extra pay, as long as it is deemed necessary for the company's best interests.",
+      "suggested_change": "The Contractor shall provide only the specific services set forth in this Agreement, and any additional services shall require a written change order agreed upon by both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3787,
+   "seconds": 1.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3870,
+   "seconds": 1.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 496,
+   "seconds": 1.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, Thank you for sending over the agreement. I have reviewed it and would like to propose a few small changes before I sign. - Regarding the clause stating 'and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.', this requires performing extra work without guaranteed extra pay as long as it is deemed necessary; please update this so that 'The Contractor shall provide only the specific services set forth in this Agreement, and any additional services shall require a written change order agreed upon by both parties.' Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

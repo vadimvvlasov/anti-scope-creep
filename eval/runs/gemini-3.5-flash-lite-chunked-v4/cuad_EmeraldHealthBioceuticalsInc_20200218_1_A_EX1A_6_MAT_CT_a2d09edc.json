@@ -1,0 +1,32 @@
+{
+ "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 16459,
+ "findings": [],
+ "email": false,
+ "seconds": 11.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4525,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.71,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2567,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.91,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

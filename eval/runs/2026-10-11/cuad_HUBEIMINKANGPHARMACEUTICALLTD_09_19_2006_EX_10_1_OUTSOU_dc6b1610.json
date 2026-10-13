@@ -1,0 +1,43 @@
+{
+ "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 11322,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+   "start": 6550,
+   "end": 7095
+  }
+ ],
+ "email": true,
+ "seconds": 62.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3966,
+   "seconds": 45.32,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "DGT shall be entitled to terminate this Agreement if Dolphin fails to meet its requirements and material obligation hereunder and only after DGT have given Dolphin written notice of such failure and only after Dolphin has not rectified such failure within 10 days of the notice. Dolphin shall be entitled to terminate this Agreement only after DGT fails to meet a material obligation hereunder and only after Dolphin has given DGT written notice of such failure and only after the DGT has not rectified such failure within 30 days of the notice.",
+      "explanation": "You can be kicked out with only 10 days to fix a problem, while you have 30 days to cure the client’s breach, giving the client a stronger termination right.",
+      "suggested_change": "Either party may terminate this Agreement after providing written notice of a material breach and a reasonable cure period of not less than thirty (30) days for the breaching party to remedy the failure."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 689,
+   "seconds": 17.11,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign, I’d like to suggest a small amendment to the termination clause:\n\n- The current clause gives DGT a ten‑day cure period while giving Dolphin a thirty‑day period, which creates an imbalance. I propose wording that allows either party to terminate after written notice of a material breach, with a reasonable cure period of at least thirty (30) days for the breaching party to remedy the issue.\n\nThank you for considering these changes. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

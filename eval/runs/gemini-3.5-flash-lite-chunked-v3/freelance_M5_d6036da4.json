@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+   "start": 8103,
+   "end": 8294
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9143,
+   "end": 9223
+  }
+ ],
+ "email": true,
+ "seconds": 23.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3919,
+   "seconds": 6.51,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Intellectual property for all deliverables transfers upon payment of only the first milestone, which means the client owns future deliverables before you have been paid for them.",
+      "suggested_change": "Client shall own all rights in the Deliverables only upon receipt of full and final payment for those Deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+      "explanation": "Your liability is capped, but your indemnification obligations are completely excluded from that cap, exposing you to unlimited financial risk for indemnified claims.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, including any indemnification obligations."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "If the client terminates the contract for convenience, you do not get paid for any work or services currently in progress, leaving you uncompensated for completed efforts.",
+      "suggested_change": "Client shall pay Contractor for all Services performed and Deliverables created up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2694,
+   "seconds": 15.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 740,
+   "seconds": 1.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to propose a few minor adjustments before I sign. Specifically:- Regarding the relevant clause on intellectual property, transferring rights to all deliverables upon payment of only the first milestone leaves future deliverables owned before full payment. I propose that the client shall own all rights in the deliverables only upon receipt of full and final payment for those deliverables.- Regarding the relevant clause on liability, indemnification obligations are excluded from the cap, which exposes me to unlimited financial risk. I propose that the aggregate liability of either party arising from this agreement is capped at USD 35,000, including any indemnification obligations.- Regarding the relevant clause on termination fees, services in progress at termination would not be payable, leaving work uncompensated. I propose that the client shall pay the contractor for all services performed and deliverables created up to the effective date of termination. Thank you for your understanding, and I look forward to finalizing this soon."
+   }
+  }
+ ],
+ "dropped": []
+}

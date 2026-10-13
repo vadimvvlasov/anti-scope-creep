@@ -1,0 +1,100 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will create and provide to Reed's the Deliverables. Reed's will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8267,
+   "end": 8696
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by Reed's, are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of Reed's.",
+   "start": 10395,
+   "end": 10820
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES",
+   "start": 17591,
+   "end": 17839
+  }
+ ],
+ "email": true,
+ "seconds": 40.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3448,
+   "output_tokens": 219,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.13,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will create and provide to [PARTY_D] the Deliverables. [PARTY_D] will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation rather than upon full payment, which means you could lose ownership rights even if you are not paid.",
+      "suggested_change": "Upon receipt of full payment, the Contractor will and hereby does assign to the Client all worldwide right, title, and interest in and to the Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3190,
+   "output_tokens": 391,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 11.26,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by [PARTY_D], are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of [PARTY_D].",
+      "explanation": "Intellectual property transfers to the client upon creation as a work-made-for-hire before you are guaranteed full payment.",
+      "suggested_change": "Ownership of the Work Product shall remain with the Contractor until the Contractor has received full payment of all fees due under this Agreement, upon which ownership shall transfer to the Client."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES",
+      "explanation": "Your indemnification obligations are excluded from the limitation of liability, exposing you to potentially uncapped financial risks for third-party claims.",
+      "suggested_change": "In no event shall either party be liable to the other for any indirect, incidental, or consequential damages, and each party's total aggregate liability under this Agreement shall be limited to the total fees paid or payable hereunder."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3338,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 938,
+   "output_tokens": 228,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.54,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. I am looking forward to getting started on this project and have reviewed the agreement. Could we make a few adjustments before signing?\n\n- Regarding the intellectual property transfer, the current wording assigns the rights immediately upon creation rather than upon full payment. I propose updating this so that the rights transfer to the client only upon receipt of full payment.\n- Similarly, the clause defining the deliverables as works-made-for-hire transfers ownership before payment is guaranteed. I suggest modifying this to state that ownership remains with the contractor until all fees due under the agreement are paid.\n- Concerning liability, the current terms exclude indemnification obligations from the limitation of liability, which could expose me to uncapped financial risks. I suggest updating this so that total aggregate liability for both parties is limited to the total fees paid or payable under the agreement.\n\nThank you for your understanding, and I look forward to moving forward once these points are addressed.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

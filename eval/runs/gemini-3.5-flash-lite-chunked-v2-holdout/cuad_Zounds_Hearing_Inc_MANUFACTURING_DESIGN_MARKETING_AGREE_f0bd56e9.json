@@ -1,0 +1,93 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "11.4 Intellectual Property Rights. Except as otherwise expressly provided in this Section 11,4, all inventions, discoveries, and trade secrets whether or not patentable, that are made by Subcontractor or Manufacturer, either alone or with others, in the course of its performance of its obligations under this Agreement (collectively, \"Inventions\") will become the exclusive property of Subcontractor.",
+   "start": 28208,
+   "end": 28609
+  }
+ ],
+ "email": true,
+ "seconds": 36.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3382,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 8.71,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2655,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3557,
+   "output_tokens": 223,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.96,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "11.4 Intellectual Property Rights. Except as otherwise expressly provided in this Section 11,4, all inventions, discoveries, and trade secrets whether or not patentable, that are made by Subcontractor or Manufacturer, either alone or with others, in the course of its performance of its obligations under this Agreement (collectively, \"Inventions\") will become the exclusive property of Subcontractor.",
+      "explanation": "This clause assigns intellectual property rights immediately upon creation rather than upon receipt of full payment, meaning the client could own the work before you are paid.",
+      "suggested_change": "Except as otherwise expressly provided in this Section, all inventions, discoveries, and trade secrets made by the Contractor in the course of performing this Agreement shall become the exclusive property of the Client only upon receipt of full payment for the applicable deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3439,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2020,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 629,
+   "output_tokens": 242,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope this email finds you well. I have reviewed the agreement and would like to propose a few minor adjustments before we proceed with signing.\n\n- Regarding the relevant clause (\"11.4 Intellectual Property Rights. Except as otherwise expressly provided in this Section 11,4, all inventions, discoveries, and trade secrets whether or not patentable, that are made by Subcontractor or Manufacturer, either alone or with others, in the course of its performance of its obligations under this Agreement (collectively, \"Inventions\") will become the exclusive property of Subcontractor.\"), this assigns intellectual property rights immediately upon creation rather than upon receipt of full payment, meaning the client could own the work before you are paid. We propose changing this to: \"Except as otherwise expressly provided in this Section, all inventions, discoveries, and trade secrets made by the Contractor in the course of performing this Agreement shall become the exclusive property of the Client only upon receipt of full payment for the applicable deliverables.\"\n\nPlease let me know if these adjustments work for you.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

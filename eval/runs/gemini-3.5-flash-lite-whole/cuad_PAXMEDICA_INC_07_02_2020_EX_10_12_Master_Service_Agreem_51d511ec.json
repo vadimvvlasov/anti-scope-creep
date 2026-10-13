@@ -1,0 +1,57 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "In the event that CRO believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, CRO will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to CRO.",
+   "start": 13430,
+   "end": 13699
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9354,
+   "end": 9832
+  }
+ ],
+ "email": true,
+ "seconds": 2.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4955,
+   "seconds": 1.88,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "In the event that [PARTY_A] believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, [PARTY_A] will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to [PARTY_A].",
+      "explanation": "The Client can terminate the agreement immediately without liability if a conflict of interest arises, while the Contractor lacks equivalent rights.",
+      "suggested_change": "In the event that a conflict of interest arises, either party may terminate this Agreement upon thirty (30) days' written notice, and the Client shall pay for all services performed up to the date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "Intellectual property and work products automatically belong to the Client upon creation rather than upon full payment, which could leave you unpaid for completed work.",
+      "suggested_change": "All deliverables and work products developed by the Contractor in the performance of Services under this Agreement shall belong to the Client upon receipt of full payment for such deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 677,
+   "seconds": 1.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed the document and would like to propose a few minor adjustments before signing. Specifically, regarding the relevant clause concerning conflicts of interest, the current wording allows the client to terminate immediately without liability, and I suggest modifying this so that either party may terminate upon thirty days' written notice with payment for services performed. Additionally, regarding the relevant clause addressing intellectual property, I propose that the deliverables belong to the client upon receipt of full payment rather than automatically upon creation. Please let me know if these adjustments are acceptable to you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

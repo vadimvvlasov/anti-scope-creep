@@ -1,0 +1,71 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 23.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3658,
+   "output_tokens": 164,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.76,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "This clause forces you to perform unspecified extra work beyond your defined duties without guaranteed additional pay, as long as the company considers it necessary.",
+      "suggested_change": "The Consultant shall provide the services specifically set forth herein, and any additional services shall be agreed upon in writing by both parties with corresponding adjustments to compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3273,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3356,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 453,
+   "output_tokens": 121,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically, regarding the relevant clause, it currently requires performing unspecified extra work without guaranteed additional pay. I propose changing this so that the agreement specifies the consultant shall provide the services set forth herein, and any additional services shall be agreed upon in writing by both parties with corresponding adjustments to compensation. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

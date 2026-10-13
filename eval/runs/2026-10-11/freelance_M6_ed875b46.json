@@ -1,0 +1,94 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9026,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13147,
+   "end": 13172
+  }
+ ],
+ "email": true,
+ "seconds": 99.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3988,
+   "seconds": 45.92,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "You can only end the contract for a breach, while the client can end it at any time with short notice, leaving you with less control over the relationship.",
+      "suggested_change": "Either party may terminate for convenience upon 20 days' written notice, and the terminating party shall pay the other party any fees for Services performed up to the effective termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Payment is due 40 days after invoicing, which is longer than the standard 30‑day period and can delay your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2862,
+   "seconds": 35.75,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "You will be paid 40 days after invoicing, which is longer than the usual 30‑day window and can delay cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The contract limits your liability to $35,000, which is higher than the total fee and could expose you to losses beyond what you are paid.",
+      "suggested_change": "Liability cap: USD 24,875 (an amount not exceeding the total fees payable under this Agreement)"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 787,
+   "seconds": 17.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\nI hope you are well. Before I sign the agreement, I would like to suggest a couple of adjustments for mutual clarity:\n\n- The relevant clause on termination currently allows the client to end the contract for convenience with 20 days' notice while the contractor can only terminate for a material breach. To provide equal footing, I propose that either party may terminate for convenience upon 20 days' written notice, and the terminating party shall pay the other party any fees for services performed up to the effective termination date.\n- The liability cap is set at USD 35,000, which exceeds the total fee payable under the agreement. I suggest revising the cap to USD 24,875, an amount that does not exceed the total fees payable.\n\nPlease let me know if these revisions are acceptable. I look forward to moving ahead.\n\nThank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

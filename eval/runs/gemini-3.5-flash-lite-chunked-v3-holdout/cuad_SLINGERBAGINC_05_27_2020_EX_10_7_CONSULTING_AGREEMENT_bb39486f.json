@@ -1,0 +1,59 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  }
+ ],
+ "email": false,
+ "seconds": 17.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3672,
+   "output_tokens": 138,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.47,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "This clause is vaguely worded and could be interpreted to require extra work outside the defined scope without additional compensation.",
+      "suggested_change": "The Consultant will provide the services specifically mentioned herein."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3309,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3392,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.74,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

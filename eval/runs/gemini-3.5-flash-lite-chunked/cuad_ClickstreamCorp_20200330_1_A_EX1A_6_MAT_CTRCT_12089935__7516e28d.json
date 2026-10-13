@@ -1,0 +1,96 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+   "start": 2336,
+   "end": 2568
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "4. By the Client at any time and without prior notice, if the Developer is convicted of any crime or offense, fails or refuses to comply with the written policies or reasonable directives of the Client, or is guilty of serious misconduct in connection with performance under this Agreement.",
+   "start": 2845,
+   "end": 3135
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  }
+ ],
+ "email": true,
+ "seconds": 20.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3111,
+   "seconds": 4.56,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "2. Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+      "explanation": "The client can terminate the agreement unilaterally with short notice, while your termination rights are severely restricted to non-payment only, creating a heavily unbalanced arrangement.",
+      "suggested_change": "Either Party may terminate this Agreement at any time upon providing thirty (30) days' prior written notice to the other Party."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "4. By the Client at any time and without prior notice, if the Developer is convicted of any crime or offense, fails or refuses to comply with the written policies or reasonable directives of the Client, or is guilty of serious misconduct in connection with performance under this Agreement.",
+      "explanation": "The client can terminate you immediately without notice based on broad or subjective criteria, leaving you without adequate protection.",
+      "suggested_change": "The Client may terminate this Agreement immediately upon written notice if the Contractor commits a material breach of this Agreement that remains uncured after fifteen (15) days of receiving written notice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2812,
+   "seconds": 3.48,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Intellectual property rights transfer to the client upon creation as a work-for-hire rather than upon full payment, meaning you could lose your rights to the work before you are paid.",
+      "suggested_change": "The Developer expressly acknowledges and agrees that any and all proprietary materials prepared by the Developer under this Agreement shall be considered works for hire and the exclusive property of the Client upon receipt of full payment for such materials."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3061,
+   "seconds": 3.69,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2141,
+   "seconds": 3.79,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 784,
+   "seconds": 4.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I have reviewed the agreement and would like to propose a few minor adjustments before we move forward with signing. Specifically, regarding the relevant clause concerning termination rights, the current wording is unbalanced, and I propose that either party may terminate the agreement upon thirty days' notice. Additionally, concerning the clause about immediate termination for misconduct, the criteria are too broad, and I propose requiring a written notice and a cure period for material breaches. Finally, regarding the clause on proprietary materials, intellectual property rights should transfer only upon receipt of full payment, and I propose updating the language to reflect this. Please let me know if these adjustments work for you so we can finalize the contract. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

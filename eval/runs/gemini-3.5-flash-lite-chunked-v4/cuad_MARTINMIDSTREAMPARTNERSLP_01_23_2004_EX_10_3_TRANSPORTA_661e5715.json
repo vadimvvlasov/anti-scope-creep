@@ -1,0 +1,32 @@
+{
+ "id": "cuad:MARTINMIDSTREAMPARTNERSLP_01_23_2004-EX-10.3-TRANSPORTATION SERVICES AGREEMENT",
+ "chars": 13995,
+ "findings": [],
+ "email": false,
+ "seconds": 12.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3899,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2206,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.43,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

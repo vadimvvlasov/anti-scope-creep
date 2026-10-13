@@ -1,0 +1,57 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  }
+ ],
+ "email": true,
+ "seconds": 2.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5032,
+   "seconds": 1.61,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "The client can terminate the contract for convenience at any time, but you cannot. Additionally, completed work and services in progress at the termination date are not paid, leaving you uncompensated for your time and effort.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice. Client shall pay Contractor for all Services performed and Deliverables created up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Intellectual property ownership transfers to the client after only the first milestone payment, leaving subsequent and final deliverables transferred before you are paid in full.",
+      "suggested_change": "Upon payment in full of all fees due under this Agreement, Client shall own all rights in all Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 579,
+   "seconds": 1.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed the document and would like to propose a few small adjustments before signing. - Regarding the termination terms, the current wording prevents me from terminating and does not cover work in progress, so I suggest updating the relevant clause so that either party may terminate with notice and I am compensated for work performed. - Regarding the intellectual property clause, ownership currently transfers after the first milestone, so I propose that ownership transfers upon payment in full for the services. Thank you for your understanding, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

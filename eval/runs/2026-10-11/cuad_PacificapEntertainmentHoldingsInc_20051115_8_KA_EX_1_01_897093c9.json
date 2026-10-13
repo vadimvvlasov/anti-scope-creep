@@ -1,0 +1,63 @@
+{
+ "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement",
+ "chars": 18138,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "PACIFICAP ENTERTAINMENT AGREES that all television shows, DVD Magazines, Internet Streaming Video Television Shows, Television Shorts, Radio Shows, Radio Shorts, Cell Phone Video Clips, Caller ID Video Clips, Promotional Commercials, Websites, Streaming Video Commercials, Streaming Video Highlight Shows, 24 Hour Nostalgia Sports Network, DVD Program Package, Television Show Series, stock footage library, and print promotional posters, created and or produced with any content provided by PACIFICAP ENTERTAINMENT are wholly owned by THE HENRY FILM AND ENTERTAINMENT CORPORATION.",
+   "start": 1540,
+   "end": 2121
+  }
+ ],
+ "email": true,
+ "seconds": 98.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4503,
+   "seconds": 51.05,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "PACIFICAP ENTERTAINMENT AGREES that all television shows, DVD Magazines, Internet Streaming Video Television Shows, Television Shorts, Radio Shows, Radio Shorts, Cell Phone Video Clips, Caller ID Video Clips, Promotional Commercials, Websites, Streaming Video Commercials, Streaming Video Highlight Shows, 24 Hour Nostalgia Sports Network, DVD Program Package, Television Show Series, stock footage library, and print promotional posters, created and or produced with any content provided by PACIFICAP ENTERTAINMENT are wholly owned by THE HENRY FILM AND ENTERTAINMENT CORPORATION.",
+      "explanation": "You give all newly created works to the client before you receive any payment, so you lose the IP rights without compensation.",
+      "suggested_change": "All television shows, DVD Magazines, Internet Streaming Video Television Shows, Television Shorts, Radio Shows, Radio Shorts, Cell Phone Video Clips, Caller ID Video Clips, Promotional Commercials, Websites, Streaming Video Commercials, Streaming Video Highlight Shows, 24 Hour Nostalgia Sports Network, DVD Program Package, Television Show Series, stock footage library, and print promotional posters, created and/or produced with any content provided by the Contractor shall remain the property of the Contractor until full payment of all amounts due under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "PACIFICAP ENTERTAINMENT, at its own expense, will indemnify, defend and hold harmless Michael Henry, THE HENRY FILM AND ENTERTAINMENT CORPORATION, its Affiliates and their employees, representatives, agents and agent affiliates, against any claim, suit, action, or other proceeding ... PACIFICAP ENTERTAINMENT will pay any and all costs, damages, and expenses, including, but not limited to, reasonable attorneys' fees and costs awarded against or otherwise incurred by Michael Henry, Melba Henry, THE HENRY FILM AND ENTERTAINMENT CORPORATION or any employees, representatives, agents and agent affiliates in connection with or arising from any such claim, suit, action or proceeding.",
+      "explanation": "You must cover all claims and costs for the client without any limit, which could expose you to unlimited financial liability.",
+      "suggested_change": "The Contractor shall indemnify, defend and hold harmless the Client for claims arising from the Contractor's breach of this Agreement, provided that the Contractor's liability shall be limited to the total fees paid by the Client under this Agreement, and shall not include consequential or punitive damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2555,
+   "seconds": 27.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 774,
+   "seconds": 19.82,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the draft and would like to suggest a small amendment before signing:\n\n- The agreement currently states that all listed works created with content provided by PACIFICAP ENTERTAINMENT are wholly owned by THE HENRY FILM AND ENTERTAINMENT CORPORATION. This would transfer ownership to the client before any payment is received, which could leave the contractor without compensation for the intellectual property. I propose that the relevant clause be changed so that those works remain the property of the Contractor until full payment of all amounts due under the agreement.\n\nThank you for considering these changes. I look forward to finalizing the contract.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Title of the product will transfer to the Manufacturer at the shipping dock of the manufacturing facility.",
+   "start": 5821,
+   "end": 5927
+  }
+ ],
+ "email": true,
+ "seconds": 35.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4023,
+   "seconds": 5.97,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Title of the product will transfer to the Manufacturer at the shipping dock of the manufacturing facility.",
+      "explanation": "Ownership of the products transfers to the Client at the shipping dock before full payment is completed, as the remaining balance and royalties are due after shipment.",
+      "suggested_change": "Title to the products shall remain with the Contractor until the Contractor has received full payment of all amounts due for such products."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3174,
+   "seconds": 5.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3857,
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3954,
+   "seconds": 5.95,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2535,
+   "seconds": 6.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 398,
+   "seconds": 5.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed the terms and would like to request a few adjustments before signing. - Regarding the relevant clause where ownership transfers at the shipping dock, this occurs before full payment is completed; I propose that title to the products shall remain with the Contractor until the Contractor has received full payment of all amounts due for such products. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

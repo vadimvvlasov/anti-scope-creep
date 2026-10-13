@@ -1,0 +1,73 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that CONSULTANT's rights in all discoveries, concepts, ideas, inventions, innovations, improvements, developments, methods, designs, analyses, drawings, reports, patent applications, copyrightable work and mask work (whether or not including any Proprietary Information) and all registrations or applications related thereto, all other proprietary information and all similar or related information (whether or not patentable) which relate to the Company's actual or anticipated business, research and development or existing or future products or services and which were or are conceived, developed, contributed to or made or reduced to practice by CONSULTANT (whether alone or jointly with others) while under contract with the Company, whether before or after the date of this Agreement (\"Work Product\"), belong to the Company.",
+   "start": 5822,
+   "end": 6676
+  }
+ ],
+ "email": true,
+ "seconds": 16.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3250,
+   "seconds": 4.99,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "This clause gives the client the right to demand an unlimited number of revisions and changes based on subjective approval, with no extra pay or clear endpoint.",
+      "suggested_change": "Completeness of work product shall be determined upon reasonable mutual agreement, and the Contractor shall be entitled to reasonable revisions within the defined scope of work, with additional changes subject to a mutually agreed change order."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that CONSULTANT's rights in all discoveries, concepts, ideas, inventions, innovations, improvements, developments, methods, designs, analyses, drawings, reports, patent applications, copyrightable work and mask work (whether or not including any Proprietary Information) and all registrations or applications related thereto, all other proprietary information and all similar or related information (whether or not patentable) which relate to the Company's actual or anticipated business, research and development or existing or future products or services and which were or are conceived, developed, contributed to or made or reduced to practice by CONSULTANT (whether alone or jointly with others) while under contract with the Company, whether before or after the date of this Agreement (\"Work Product\"), belong to the Company.",
+      "explanation": "Intellectual property ownership transfers immediately upon creation rather than upon full payment, which could leave you without work rights if the client fails to pay.",
+      "suggested_change": "Upon full payment of all fees due under this Agreement, all right, title, and interest in the final Work Product shall transfer to the Company."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2806,
+   "seconds": 2.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1775,
+   "seconds": 3.95,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 732,
+   "seconds": 4.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the contract. I am looking forward to working together, and I just have a couple of small suggestions regarding the agreement before I sign it. - Regarding the clause stating that completeness of the work product is determined solely by the client with unlimited revisions, I suggest we clarify that completeness is determined upon reasonable mutual agreement and that additional changes outside the defined scope are subject to a mutually agreed change order. - Regarding the clause concerning the immediate transfer of intellectual property upon creation, I propose that all rights in the final work product transfer to the company only upon full payment of all fees due under the agreement. Please let me know if these adjustments work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

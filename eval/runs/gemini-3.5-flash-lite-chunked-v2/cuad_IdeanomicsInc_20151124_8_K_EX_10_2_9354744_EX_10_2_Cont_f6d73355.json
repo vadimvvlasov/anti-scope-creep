@@ -1,0 +1,67 @@
+{
+ "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement",
+ "chars": 35189,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR THE ABOVE INDEMNIFICATION OBLIGATIONS AND FOR BREACHES OF SECTION 14, NEITHER PARTY SHALL BE LIABLE TO THE OTHER FOR ANY INCIDENTAL, CONSEQUENTIAL, SPECIAL OR PUNITIVE DAMAGES ARISING OUT OF THIS AGREEMENT (INCLUDING, BUT NOT LIMITED TO, LOSS OF PROFITS), WHETHER IN AN ACTION OR ARISING OUT OF BREACH OF CONTRACT, TORT OR ANY OTHER CAUSE OF ACTION EVEN IF SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "start": 26622,
+   "end": 27053
+  }
+ ],
+ "email": true,
+ "seconds": 30.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3541,
+   "seconds": 6.07,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3572,
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3747,
+   "seconds": 6.96,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR THE ABOVE INDEMNIFICATION OBLIGATIONS AND FOR BREACHES OF SECTION 14, NEITHER PARTY SHALL BE LIABLE TO THE OTHER FOR ANY INCIDENTAL, CONSEQUENTIAL, SPECIAL OR PUNITIVE DAMAGES ARISING OUT OF THIS AGREEMENT (INCLUDING, BUT NOT LIMITED TO, LOSS OF PROFITS), WHETHER IN AN ACTION OR ARISING OUT OF BREACH OF CONTRACT, TORT OR ANY OTHER CAUSE OF ACTION EVEN IF SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "explanation": "Your indemnification obligations and confidentiality breaches are excluded from the limitation of liability, which exposes you to potentially unlimited damages in those areas.",
+      "suggested_change": "Except for liability arising from gross negligence or willful misconduct, each party's total aggregate liability under this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1511,
+   "seconds": 5.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 552,
+   "seconds": 6.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. Before I sign, I would like to request a few adjustments for clarity and fairness.\n\n- Regarding the relevant clause (\"EXCEPT FOR THE ABOVE INDEMNIFICATION OBLIGATIONS...\"), your indemnification obligations and confidentiality breaches are excluded from the limitation of liability, which exposes you to potentially unlimited damages in those areas. I propose we update this by stating: \"Except for liability arising from gross negligence or willful misconduct, each party's total aggregate liability under this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement.\"\n\nBest regards,\nLooking forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

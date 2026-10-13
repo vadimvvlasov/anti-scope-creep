@@ -1,0 +1,93 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+   "start": 8668,
+   "end": 8802
+  }
+ ],
+ "email": true,
+ "seconds": 42.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3919,
+   "output_tokens": 153,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.33,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+      "explanation": "Ownership of Derivative Works vests in the client from inception before any payment terms or conditions are fulfilled, presenting an intellectual property risk for you as the creator.",
+      "suggested_change": "Upon full payment of all applicable fees, ownership of all right, title, and interest in and to the Derivative Works shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3759,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3655,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.48,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4179,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.59,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3250,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 466,
+   "output_tokens": 149,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the clause \"For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.\", as ownership currently vests in the client from inception before payment, I propose changing this to: \"Upon full payment of all applicable fees, ownership of all right, title, and interest in and to the Derivative Works shall transfer to the Client.\" Thank you for your understanding, and I look forward to finalizing this. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

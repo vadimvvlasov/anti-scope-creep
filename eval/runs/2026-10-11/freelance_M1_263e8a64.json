@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 99.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3789,
+   "seconds": 45.72,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You have to do any extra work the client asks for without extra pay, which can expand the project indefinitely.",
+      "suggested_change": "Contractor shall perform additional services requested by the Client only if the parties agree in writing to the scope and any applicable additional fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless changes, which can consume unlimited time and resources.",
+      "suggested_change": "Client may request revisions within the scope of the Deliverable, limited to [specify number] revisions per Deliverable, after which additional revisions will be subject to a mutually agreed change order and fee."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2585,
+   "seconds": 34.72,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "You can be asked to make unlimited changes, which can consume time and cost without extra compensation.",
+      "suggested_change": "Revision allowance: limited to a maximum of three revision cycles per Deliverable, unless additional revisions are agreed upon in writing and compensated."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 839,
+   "seconds": 19.03,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I’d like to clarify a few points:\n- The relevant clause currently states that I shall perform any additional services the Client reasonably requests during the Term at no additional charge. This could require unlimited extra work without compensation. I propose that additional services be performed only if the parties agree in writing to the scope and any applicable additional fees.\n- The agreement allows the Client to request unlimited revisions until fully satisfied with each Deliverable. Unlimited revisions may consume excessive time and resources. I suggest limiting revisions to the scope of the Deliverable, with a set number of revisions per Deliverable, after which any further changes would be handled through a mutually agreed change order and fee.\n- The revision allowance is listed as \"unlimited.\" Unlimited changes can impact schedule and cost. I recommend limiting the revision allowance to a maximum of three revision cycles per Deliverable, unless additional revisions are agreed upon in writing and compensated.\n\nPlease let me know if these adjustments work for you.\n\nThank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

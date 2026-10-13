@@ -1,0 +1,49 @@
+{
+ "id": "cuad:HUBEIMINKANGPHARMACEUTICALLTD_09_19_2006-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 11322,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+   "start": 2429,
+   "end": 2965
+  }
+ ],
+ "email": true,
+ "seconds": 11.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4225,
+   "output_tokens": 221,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.3,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Dolphin hereby indemnifies, holds harmless and defends DGT, its Board of Directors, officers, and agents against any and all claims (including all legal fees and disbursements incurred in association therewith) arising out of the exercise of any rights under this Agreement including, without limiting the generality of the foregoing, against any damages or losses, consequential or otherwise, arising from or out of the use of DGT's products under this Agreement by Dolphin or their customers or end-users howsoever the same may arise.",
+      "explanation": "Your indemnification obligations are completely taken out of any liability cap, exposing you to unlimited financial risk from third-party claims.",
+      "suggested_change": "The Contractor shall indemnify the Client against third-party claims directly caused by the Contractor's gross negligence or willful misconduct, subject to the overall limitation of liability."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 521,
+   "output_tokens": 133,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a good week. I am looking forward to getting started, but before signing the agreement, I would like to propose a few small adjustments for clarity and balance. Specifically:- Regarding the relevant clause, the current indemnification terms expose me to unlimited financial risk from third-party claims; I propose updating this so that my indemnification is limited to direct damages caused by gross negligence or willful misconduct and remains subject to the overall liability cap. Please let me know if these adjustments work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

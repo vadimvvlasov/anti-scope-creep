@@ -1,0 +1,18 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [],
+ "email": false,
+ "seconds": 0.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 1667,
+   "seconds": 0.81,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 18.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3777,
+   "seconds": 6.35,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "You are subjected to a conditional 'pay-when-paid' term, meaning your payment depends on an indefinite or client-controlled event rather than your own work.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your liability is completely uncapped while the client's liability is limited, exposing you to unlimited financial risk.",
+      "suggested_change": "Each party's aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2831,
+   "seconds": 5.72,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment is conditioned on the Client getting paid by someone else, which creates a high risk of delayed or missing income if their customer pays late or not at all.",
+      "suggested_change": "Payment shall be made within 15 days of the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 745,
+   "seconds": 5.93,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. Specifically: - Regarding the clause \"Invoices are payable within 15 days after Client receives payment from its own customer.\", I would like to avoid a pay-when-paid term, and propose changing it to: \"Invoices are payable within 30 days after receipt of the invoice.\". - Regarding the clause \"Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.\", my liability is currently uncapped, and I propose changing it to: \"Each party's aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid or payable by the Client under this Agreement.\". - Regarding the clause \"Payment period: 15 days after Client is paid by its customer\", this creates delays tied to third parties, and I propose changing it to: \"Payment shall be made within 15 days of the invoice date.\". Please let me know if these updates work for you so we can finalize the paperwork. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

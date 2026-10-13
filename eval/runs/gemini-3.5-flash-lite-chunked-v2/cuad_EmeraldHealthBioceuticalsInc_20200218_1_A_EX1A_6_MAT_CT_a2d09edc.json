@@ -1,0 +1,51 @@
+{
+ "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 16459,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding the foregoing, EHS or EHN may immediately terminate the Services Term without notice should Dr. Murray be in breach of this Agreement.",
+   "start": 7462,
+   "end": 7612
+  }
+ ],
+ "email": true,
+ "seconds": 17.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4162,
+   "seconds": 6.18,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding the foregoing, EHS or EHN may immediately terminate the Services Term without notice should Dr. Murray be in breach of this Agreement.",
+      "explanation": "The client can immediately terminate the agreement without notice or an opportunity to cure if you commit any breach, while you do not have equivalent termination rights.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days' written notice if the other party materially breaches any provision of this Agreement and fails to cure such breach within that thirty-day period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2057,
+   "seconds": 6.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 456,
+   "seconds": 4.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before I sign. - Regarding the relevant clause stating that the agreement can be terminated immediately without notice, this creates an imbalance as there is no equivalent right for both parties; I propose modifying this so that either party may terminate the agreement upon thirty days' written notice if the other party materially breaches any provision and fails to cure such breach within that period. Thank you for considering these updates, and I look forward to finalizing the paperwork soon."
+   }
+  }
+ ],
+ "dropped": []
+}

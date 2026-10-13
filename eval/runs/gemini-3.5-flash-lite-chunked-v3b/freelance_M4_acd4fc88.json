@@ -1,0 +1,94 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3737,
+   "end": 3896
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 20.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3798,
+   "seconds": 7.93,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "You are required to provide up to 15 rounds of revisions, which is an excessive number that can trap you in endless rework without additional compensation.",
+      "suggested_change": "The parties agree to include up to two rounds of revisions for each principal Deliverable. Additional revisions will be performed pursuant to a written change order at the Contractor's standard hourly rates."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment is due in 60 days, which forces you to wait too long to receive your money.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2893,
+   "seconds": 6.86,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "You are required to provide up to 15 rounds of revisions, which is an excessive amount of work that can trap you in endless changes without additional pay.",
+      "suggested_change": "Revision allowance: 3 rounds"
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You will be paid within 60 days after invoicing, which forces you to wait two months for your money and creates cash flow risks.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 956,
+   "seconds": 5.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before signing. Specifically: - Regarding the clause stating \"The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.\", you are required to provide up to 15 rounds of revisions, which is an excessive number that can trap you in endless rework without additional compensation. I suggest changing this so that the parties agree to include up to two rounds of revisions for each principal Deliverable, with additional revisions performed pursuant to a written change order at the Contractor's standard hourly rates. - Regarding the clause stating \"Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\", payment is due in 60 days, which forces you to wait too long to receive your money. I suggest updating the terms so that invoices are payable Net 30. - Regarding the clause stating \"Revision allowance: 15 rounds\", you are required to provide up to 15 rounds of revisions, which is an excessive amount of work that can trap you in endless changes without additional pay. I propose updating the revision allowance to 3 rounds. - Regarding the clause stating \"Payment period: Net 60\", you will be paid within 60 days after invoicing, which forces you to wait two months for your money and creates cash flow risks. I propose changing the payment period to Net 30. Please let me know if these adjustments work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

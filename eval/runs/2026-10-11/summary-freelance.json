@@ -1,0 +1,164 @@
+{
+ "set": "freelance",
+ "contracts": 12,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.333
+  },
+  "scope_creep": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.5,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 1,
+   "fp": 6,
+   "fn": 1,
+   "precision": 0.143,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "unlimited_revisions": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 14,
+   "fp": 7,
+   "fn": 3,
+   "precision": 0.667,
+   "recall": 0.824,
+   "severity_accuracy": 0.857
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 26,
+  "findings_kept": 26,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 6015,
+  "tokens_max": 7716,
+  "seconds_mean": 72.0,
+  "seconds_max": 101.1
+ },
+ "false_positives": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 33,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M2"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 35,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M2"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 35,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M4"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 35,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M5"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 35,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M6"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "freelance:M4",
+   "category": "scope_creep",
+   "risk_level": "medium"
+  },
+  {
+   "id": "freelance:M4",
+   "category": "unlimited_revisions",
+   "risk_level": "medium"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "freelance:M5",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

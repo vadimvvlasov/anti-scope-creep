@@ -1,0 +1,26 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [],
+ "email": false,
+ "seconds": 23.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3562,
+   "seconds": 2.42,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2671,
+   "seconds": 21.04,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,66 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 6.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3608,
+   "seconds": 1.35,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms force you to wait three months to get paid, creating cash flow strain.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2799,
+   "seconds": 2.49,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Net 90 payment terms mean you will not be paid until 90 days after invoicing, which significantly delays your cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 489,
+   "seconds": 2.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to request a few adjustments before signing. Here are the points I would like to discuss: - Regarding the clause \"Invoices are payable Net 90.\", waiting three months for payment creates cash flow strain, so I propose changing this to: Invoices are payable Net 30. - Regarding the clause \"Payment period: Net 90\", this timeline significantly delays cash flow, so I propose changing this to: Payment period: Net 30. Please let me know if these adjustments are acceptable to you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

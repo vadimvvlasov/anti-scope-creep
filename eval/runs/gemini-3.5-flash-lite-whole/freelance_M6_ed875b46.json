@@ -1,0 +1,43 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3949
+  }
+ ],
+ "email": true,
+ "seconds": 2.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4896,
+   "seconds": 1.29,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment terms of Net 40 are longer than the standard 30 days, delaying your receipt of funds.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 498,
+   "seconds": 0.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to propose a small adjustment before signing:\n\n- Regarding the clause \"Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\", the payment terms of Net 40 are longer than the standard 30 days, delaying your receipt of funds. Please change this to: \"Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\"\n\nBest regards, looking forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

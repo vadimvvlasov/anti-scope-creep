@@ -1,0 +1,94 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by CRO, Client shall pay all sums owing to CRO, but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which CRO is committed to pay.",
+   "start": 4137,
+   "end": 4527
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to CRO which CRO develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which CRO will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+   "start": 8643,
+   "end": 9142
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "In the event that CRO believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, CRO will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to CRO.",
+   "start": 13430,
+   "end": 13699
+  }
+ ],
+ "email": true,
+ "seconds": 101.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3976,
+   "seconds": 42.45,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by [PARTY_A], Client shall pay all sums owing to [PARTY_A], but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which [PARTY_A] is committed to pay.",
+      "explanation": "You can be kicked out of the project at any time without cause, and you only get paid for work already done, not for lost opportunity or future deliverables.",
+      "suggested_change": "Either party may terminate this Agreement on thirty (30) days written notice if the other materially breaches this Agreement; otherwise termination may only occur with mutually agreed compensation for work performed and reasonable costs incurred."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "to disclose and assign to Client as its exclusive property all inventions and technical or business innovations specifically derived from the work assigned by Client to [PARTY_A] which [PARTY_A] develops or conceives, solely or in conjunction with others (1) that are based on or involve information of Client, (2) that relate to, constitute, result from, or include the work in which [PARTY_A] will be engaged for Client, or (3) that are otherwise made through the use of any time, facilities or materials of Client;",
+      "explanation": "All inventions you create during the contract automatically become the client’s property, even if you haven’t been fully paid.",
+      "suggested_change": "The Contractor retains ownership of all inventions and innovations it creates, and grants the Client a non‑exclusive, royalty‑free license to use them for the purpose of the Services, unless separate compensation is agreed."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3394,
+   "seconds": 36.74,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "You must transfer all IP to the Client regardless of whether you have been paid, which leaves you without protection of your compensation before losing ownership.",
+      "suggested_change": "(b) All deliverables and work products shall be owned by the Client only upon receipt of full payment for the services that produced them; until such payment is made, [PARTY_A] retains all right, title, and interest in the deliverables."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "In the event that [PARTY_A] believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, [PARTY_A] will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to [PARTY_A].",
+      "explanation": "The Client can end the contract instantly for a conflict of interest and you receive no compensation, giving the client a much stronger termination right.",
+      "suggested_change": "Either party may terminate this Agreement upon written notice of a material conflict of interest, provided that the terminating party pays the other party for all services performed up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1403,
+   "seconds": 22.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to request a few modest adjustments for clarity and balance:\n\n- The current termination clause allows the Client to end the agreement without cause and only pay for work already performed. I propose that either party may terminate with thirty (30) days written notice only if the other materially breaches, and otherwise termination should include mutually agreed compensation for work performed and reasonable costs incurred.\n- The invention assignment clause makes all inventions developed during the project the Client’s exclusive property, even if I have not been fully paid. I suggest that I retain ownership of all inventions and grant the Client a non‑exclusive, royalty‑free license to use them for the Services, unless we agree on separate compensation.\n- The IP clause states that all deliverables are works made for hire and belong to the Client regardless of payment. I recommend that ownership of deliverables transfer to the Client only after full payment for the services that produced them; until then, I retain all right, title, and interest.\n- The conflict‑of‑interest clause gives the Client the unilateral right to terminate immediately without liability. I propose that either party may terminate upon written notice of a material conflict of interest, provided the terminating party pays for all services performed up to the effective termination date.\n\nThank you for considering these revisions. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3209,
+   "seconds": 1.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3541,
+   "seconds": 3.68,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Payment is due within 45 days after invoice confirmation, which is slower than the standard 30 days and creates cash flow delays.",
+      "suggested_change": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within thirty (30) days after confirming thus."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 421,
+   "seconds": 12.48,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to request one small adjustment before I sign. - Regarding the relevant clause stating that payment is due within 45 days after invoice confirmation, this is a bit longer than my standard terms and impacts cash flow, so I propose modifying it to state that payment shall be made within thirty (30) days. Thank you for understanding, and I look forward to moving forward. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

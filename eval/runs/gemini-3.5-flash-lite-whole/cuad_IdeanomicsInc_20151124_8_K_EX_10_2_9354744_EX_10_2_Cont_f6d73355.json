@@ -1,0 +1,18 @@
+{
+ "id": "cuad:IdeanomicsInc_20151124_8-K_EX-10.2_9354744_EX-10.2_Content License Agreement",
+ "chars": 35189,
+ "findings": [],
+ "email": false,
+ "seconds": 1.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8483,
+   "seconds": 0.97,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

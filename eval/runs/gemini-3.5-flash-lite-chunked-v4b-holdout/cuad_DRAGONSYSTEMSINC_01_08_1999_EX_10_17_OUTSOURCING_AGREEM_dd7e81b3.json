@@ -1,0 +1,77 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "start": 3741,
+   "end": 3976
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payments will be due in US dollars within 30 days after delivery, or when agreed after delivery of installments or the receipt of invoice by Dragon Systems, which ever is later.",
+   "start": 2693,
+   "end": 2870
+  }
+ ],
+ "email": true,
+ "seconds": 12.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3774,
+   "output_tokens": 343,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.42,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the client has the right to terminate the contract without cause, which is one-sided.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] shall reimburse [PARTY_A] and hold [PARTY_A] harmless from any liabilities or obligations imposed upon [PARTY_A] resulting directly or indirectly from [PARTY_B]'s or its employees or agents activities under this Agreement.",
+      "explanation": "Your indemnification obligations are broad and have no separate limit or cap.",
+      "suggested_change": "The Contractor's total liability under the indemnity provisions shall be subject to the overall liability cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payments will be due in US dollars within 30 days after delivery, or when agreed after delivery of installments or the receipt of invoice by [PARTY_A], which ever is later.",
+      "explanation": "Payment can be delayed depending on when the invoice is received by the client, which can make the timeline uncertain.",
+      "suggested_change": "Payments will be due in US dollars within 30 days after the receipt of the invoice by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 587,
+   "output_tokens": 165,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.63,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good week. I am looking forward to working together, and I have a couple of small suggestions regarding the agreement before I sign it. - Regarding the indemnity provisions, the current obligations are broad and have no separate limit or cap, so I propose that the Contractor's total liability under the indemnity provisions shall be subject to the overall liability cap. - Regarding the payment terms, payment can currently be delayed depending on when the invoice is received by the client, making the timeline uncertain, so I propose that payments will be due in US dollars within 30 days after the receipt of the invoice by the Client. Please let me know if these adjustments work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

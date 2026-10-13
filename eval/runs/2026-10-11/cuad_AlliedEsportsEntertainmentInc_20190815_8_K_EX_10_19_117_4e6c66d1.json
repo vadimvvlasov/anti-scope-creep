@@ -1,0 +1,95 @@
+{
+ "id": "cuad:AlliedEsportsEntertainmentInc_20190815_8-K_EX-10.19_11788293_EX-10.19_Content License Agreement",
+ "chars": 35504,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT IN CASES OF GROSS NEGLIGENCE, WILLFUL MISCONDUCT OR FRAUD, INDEMNIFICATION CLAIMS UNDER SECTION 5 OR BREACHES OF SECTION 2 (TRADEMARKS), 8 (CONFIDENTIALITY), OR 9 (NO AGENCY RELATIONSHIP), IN NO EVENT SHALL EITHER PARTY OR ITS OFFICERS, DIRECTORS, OR EMPLOYEES BE LIABLE TO THE OTHER PARTY IN CONNECTION WITH THE SUBJECT MATTER HEREOF, FOR ANY SPECIAL, INDIRECT, CONSEQUENTIAL OR PUNITIVE DAMAGES OF ANY KIND, LOST PROFITS OR LOST REVENUE, WHETHER ARISING IN CONTRACT, TORT, NEGLIGENCE, STATUTE, OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY THEREOF. IN NO EVENT SHALL THE NON-BREACHING PARTY BE ENTITLED TO EQUITABLE OR INJUNCTIVE RELIEF OF ANY KIND.",
+   "start": 21930,
+   "end": 22591
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "EXHIBIT A MARKETING AND PROMOTIONAL ACTIVITIES (the parties mutually agree to provide additional details and commitments)",
+   "start": 34559,
+   "end": 34680
+  }
+ ],
+ "email": true,
+ "seconds": 177.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3776,
+   "seconds": 42.78,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "the parties desire to work cooperatively, but independently, to use commercially reasonable efforts to engage in the marketing and promotional activities described in [PARTY_A], including, but not limited to Zynga promoting the WPT brand in a WPT‑branded Zynga Poker Tournament Mode, and WPT promoting the Zynga brand in WPT Tournaments and WPT Invitational Tournaments.",
+      "explanation": "The clause leaves the exact scope of work open‑ended (“marketing and promotional activities…including, but not limited to”), so the client could request additional tasks beyond what you expect without a clear change‑order process.",
+      "suggested_change": "The parties shall perform only the specific marketing and promotional activities listed in Exhibit A. Any additional work must be agreed in writing and shall be subject to a mutually executed change order specifying the scope, deliverables, and additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4184,
+   "seconds": 45.84,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT IN CASES OF GROSS NEGLIGENCE, WILLFUL MISCONDUCT OR FRAUD, INDEMNIFICATION CLAIMS UNDER SECTION 5 OR BREACHES OF SECTION 2 (TRADEMARKS), 8 (CONFIDENTIALITY), OR 9 (NO AGENCY RELATIONSHIP), IN NO EVENT SHALL EITHER PARTY OR ITS OFFICERS, DIRECTORS, OR EMPLOYEES BE LIABLE TO THE OTHER PARTY IN CONNECTION WITH THE SUBJECT MATTER HEREOF, FOR ANY SPECIAL, INDIRECT, CONSEQUENTIAL OR PUNITIVE DAMAGES OF ANY KIND, LOST PROFITS OR LOST REVENUE, WHETHER ARISING IN CONTRACT, TORT, NEGLIGENCE, STATUTE, OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY THEREOF. IN NO EVENT SHALL THE NON-BREACHING PARTY BE ENTITLED TO EQUITABLE OR INJUNCTIVE RELIEF OF ANY KIND.",
+      "explanation": "You could be on the hook for unlimited direct damages because the clause does not place any monetary cap on liability. This creates a high financial risk.",
+      "suggested_change": "Except for gross negligence, willful misconduct, fraud, or breach of confidentiality, each party's liability for direct damages shall be limited to an amount not exceeding the total fees paid under this Agreement in the twelve months preceding the claim."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3599,
+   "seconds": 44.3,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1598,
+   "seconds": 24.86,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "EXHIBIT A MARKETING AND PROMOTIONAL ACTIVITIES (the parties mutually agree to provide additional details and commitments)",
+      "explanation": "The clause leaves the scope of marketing activities undefined and relies on future mutual agreement, allowing the client to request additional work without a clear change‑order process.",
+      "suggested_change": "The parties shall define in this Exhibit a specific list of marketing and promotional activities, and any additional activities shall require a written change order signed by both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 933,
+   "seconds": 19.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the draft agreement and would like to suggest a few adjustments before signing:\n- The relevant clause limits liability only for gross negligence, willful misconduct, fraud, or breach of confidentiality, but it does not cap direct damages. To manage risk, I propose that each party’s liability for direct damages be limited to an amount not exceeding the total fees paid under this Agreement in the twelve months preceding the claim.\n- Exhibit A refers to marketing and promotional activities that will be defined by mutual agreement later, which could lead to undefined scope and additional work without a clear process. I suggest that the exhibit list specific marketing activities, and that any additional activities require a written change order signed by both parties.\n\nPlease let me know if these changes are acceptable. Thank you for your attention.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

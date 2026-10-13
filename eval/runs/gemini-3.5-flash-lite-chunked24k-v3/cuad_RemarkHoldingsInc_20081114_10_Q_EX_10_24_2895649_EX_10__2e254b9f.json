@@ -1,0 +1,59 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+   "start": 46923,
+   "end": 47272
+  }
+ ],
+ "email": true,
+ "seconds": 13.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6745,
+   "seconds": 6.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6027,
+   "seconds": 4.29,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4223,
+   "seconds": 1.36,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "10.1 EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+      "explanation": "Your liability is capped at the fees paid or payable, but indemnification obligations are excluded from this cap, leaving you exposed to potentially unlimited damages.",
+      "suggested_change": "Except for either party's violation of the confidentiality obligations, neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 560,
+   "seconds": 1.31,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few small adjustments before signing. - Regarding the limitation of liability, the relevant clause currently excludes indemnification obligations from the liability cap, which leaves me exposed to unlimited damages. I propose modifying this so that the overall cap applies to all claims except confidentiality breaches, as follows: \"Except for either party's violation of the confidentiality obligations, neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this agreement.\" Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

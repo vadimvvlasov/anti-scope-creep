@@ -1,0 +1,77 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+   "start": 1120,
+   "end": 1227
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "start": 3741,
+   "end": 3976
+  }
+ ],
+ "email": true,
+ "seconds": 12.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3325,
+   "output_tokens": 408,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.94,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+      "explanation": "The contract allows for potential extensions of the services without defining a clear change-order process or pricing mechanism for additional work.",
+      "suggested_change": "Any extension of services beyond the initial three products shall be agreed upon in a written change order detailing the additional work and applicable fees."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the Client has the right to terminate the agreement without cause, leaving you without equivalent protection.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall reimburse [PARTY_A] and hold [PARTY_A] harmless from any liabilities or obligations imposed upon [PARTY_A] resulting directly or indirectly from [PARTY_B]'s or its employees or agents activities under this Agreement.",
+      "explanation": "Your indemnification and liability obligations are completely uncapped, exposing you to potentially unlimited financial risk.",
+      "suggested_change": "The Contractor's total liability under this Agreement shall be capped at the total fees paid by the Client under this Agreement, excluding indemnification obligations for third-party intellectual property infringement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 736,
+   "output_tokens": 209,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.73,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the contract. Before I sign, I would like to propose a few small adjustments to the agreement:\n\n- Regarding the clause allowing for potential extensions, the agreement currently does not define how extra work is handled; I propose that any extension of services beyond the initial three products shall be agreed upon in a written change order detailing the additional work and applicable fees.\n- Regarding the termination clause, only one party can terminate without cause; I propose that either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party.\n- Regarding the indemnification clause, the liability is currently uncapped; I propose that the Contractor's total liability under this Agreement shall be capped at the total fees paid by the Client under this Agreement, excluding indemnification obligations for third-party intellectual property infringement.\n\nLooking forward to hearing from you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

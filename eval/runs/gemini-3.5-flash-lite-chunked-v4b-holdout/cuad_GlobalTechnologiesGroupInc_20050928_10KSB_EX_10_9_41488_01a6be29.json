@@ -1,0 +1,82 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) Distributor receives a carrier statement saying how much Distributor will be paid; (2) 30-45 days later the Carrier pays Distributor; (3) when Distributor is paid by a carrier, Distributor makes royalty payments to IMNTV.",
+   "start": 19615,
+   "end": 19938
+  }
+ ],
+ "email": true,
+ "seconds": 30.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4271,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.72,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4343,
+   "output_tokens": 202,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.56,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) [PARTY_B] receives a carrier statement saying how much [PARTY_B] will be paid; (2) 30-45 days later the Carrier pays [PARTY_B]; (3) when [PARTY_B] is paid by a carrier, [PARTY_B] makes royalty payments to IMNTV.",
+      "explanation": "Payment is tied to when the client gets paid by wireless carriers, creating a delay of 30 to 45 days or more, which falls into the medium risk window for payment terms.",
+      "suggested_change": "The Client will make royalty payments to the Contractor within thirty (30) days following the end of each calendar quarter, regardless of when the Client receives payment from carriers."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4171,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2588,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 530,
+   "output_tokens": 140,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to request one adjustment before signing. - Regarding the clause starting with \"(d) Summary of Timing\", payment is tied to when the client gets paid by wireless carriers, creating a delay of 30 to 45 days or more; please update this so that the Client will make royalty payments to the Contractor within thirty (30) days following the end of each calendar quarter, regardless of when the Client receives payment from carriers. Let me know if this works for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,26 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [],
+ "email": false,
+ "seconds": 16.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5457,
+   "seconds": 5.98,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3213,
+   "seconds": 10.85,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 5.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3852,
+   "seconds": 2.39,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform extra work requested by the client without receiving any additional payment, which can lead to unpaid labor.",
+      "suggested_change": "The Contractor shall perform any additional services requested by the Client only pursuant to a mutually agreed written change order specifying the adjusted fees and schedule."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand an endless number of revisions without extra pay, keeping you trapped in a loop of modifications.",
+      "suggested_change": "The Client may request up to two (2) rounds of revisions for each Deliverable at no additional charge, after which additional revisions will be billed at the Contractor's standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2656,
+   "seconds": 1.23,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "Your revision allowance is explicitly unlimited, which means the client could demand endless changes without extra pay.",
+      "suggested_change": "Revision allowance: up to three rounds of revisions per Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 690,
+   "seconds": 1.31,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before signing. Specifically: - Regarding the clause stating that 'Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.', this means extra work would be uncompensated. I propose changing this so that any additional services are performed pursuant to a mutually agreed written change order specifying adjusted fees. - Regarding the clause stating that 'Client may request unlimited revisions until Client is fully satisfied with each Deliverable.', this creates an open-ended obligation. I propose updating this to allow up to two rounds of revisions per deliverable at no additional charge, with further revisions billed at my standard rate. - Regarding the clause stating 'Revision allowance: unlimited', this again opens up endless modifications. I propose amending this to specify a revision allowance of up to three rounds per deliverable. Please let me know if these updates work for you so we can finalize the contract. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

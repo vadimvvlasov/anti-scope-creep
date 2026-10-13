@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3878,
+   "seconds": 10.18,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Intellectual property rights transfer to the client as soon as deliverables are handed over, before you have received full payment. If the client refuses to pay, they still own the work.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon receipt of full payment for such Deliverables."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can cancel the contract immediately at any time without paying for work completed up to that point. You are left unprotected with no compensation for your efforts.",
+      "suggested_change": "The Client may terminate this Agreement at any time upon 15 days written notice, and shall pay the Contractor pro rata for all Services performed and Deliverables created up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2563,
+   "seconds": 6.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 621,
+   "seconds": 6.86,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. I am looking forward to working together, but before I sign, I would like to request a couple of small adjustments to the relevant clause sections to ensure a fair working relationship.\n\n- Regarding the clause stating \"All intellectual property rights in each Deliverable transfer to Client upon delivery.\", this means the rights transfer before I receive full payment. I propose changing this so that rights transfer upon receipt of full payment for such Deliverables.\n- Regarding the clause stating \"Client may terminate this Agreement at any time, without notice and without further payment.\", this leaves me uncompensated if the contract is cancelled suddenly. I propose changing this so that the agreement may be terminated with 15 days written notice and payment for work performed up to that date.\n\nThank you for understanding, and I look forward to getting started soon.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

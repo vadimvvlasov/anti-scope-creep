@@ -1,0 +1,71 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 23.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4178,
+   "output_tokens": 170,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.98,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform extra work that is not specifically listed in the agreement if the company considers it necessary, without a guaranteed increase in pay.",
+      "suggested_change": "The Contractor shall provide only the specific services set forth in this Agreement, and any additional services requested by the Client shall be subject to a separate written agreement and additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3787,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3865,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.75,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 483,
+   "output_tokens": 145,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.03,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. I am looking forward to working together, but I would like to propose a few small adjustments before I sign. Specifically, regarding the relevant clause, you are required to perform extra work that is not specifically listed in the agreement if the company considers it necessary, without a guaranteed increase in pay; I suggest modifying this so that the Contractor shall provide only the specific services set forth in this Agreement, and any additional services requested by the Client shall be subject to a separate written agreement and additional compensation. Thank you for understanding, and I look forward to finalizing this. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,80 @@
+{
+ "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+ "chars": 37351,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Type I Materials are those, created during the Service performance period,       in which Customer will have all right, title, and interest (including       ownership of copyright). IBM will retain one copy of the Materials.",
+   "start": 14141,
+   "end": 14365
+  }
+ ],
+ "email": true,
+ "seconds": 177.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3683,
+   "seconds": 45.11,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment ... for convenience at the end of any calendar month by: a. providing at least one month's prior written notice to IBM; and b. paying the applicable early termination charges, if any, specified in Attachment A and applicable Service Option Attachments.",
+      "explanation": "You must keep providing services after the client gives one‑month notice and only receive the early‑termination fees set in the attachments, which may not cover the value of work already performed.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon at least thirty (30) days’ written notice, provided that the terminating party pays a pro‑rata amount for services performed up to the termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3765,
+   "seconds": 44.95,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Type I Materials are those, created during the Service performance period, in which Customer will have all right, title, and interest (including ownership of copyright). IBM will retain one copy of the Materials.",
+      "explanation": "You transfer full ownership of the work to the client as soon as it is created, even though you have not yet been paid in full, which puts you at risk of not being compensated.",
+      "suggested_change": "Type I Materials are those, created during the Service performance period, in which the Contractor will retain all right, title, and interest (including ownership of copyright) until full payment has been received from the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3556,
+   "seconds": 44.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1247,
+   "seconds": 23.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 636,
+   "seconds": 18.21,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment before I sign:\n\n- The relevant clause currently states that the Customer will receive full ownership of the Materials as soon as they are created. This could leave the Contractor without compensation if payment is not yet complete. I propose that the clause be changed so that the Contractor retains all rights, title, and interest in the Materials until full payment has been received from the Client.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

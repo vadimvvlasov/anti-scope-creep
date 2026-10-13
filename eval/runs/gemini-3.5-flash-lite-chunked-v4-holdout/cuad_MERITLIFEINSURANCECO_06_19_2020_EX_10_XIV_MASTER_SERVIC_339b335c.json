@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "start": 14388,
+   "end": 14703
+  }
+ ],
+ "email": true,
+ "seconds": 62.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3611,
+   "seconds": 19.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4054,
+   "seconds": 20.34,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+      "explanation": "Your liability is capped at the fees paid, but obligations under Paragraph 9 (or another referenced section) are taken out of that cap and have no separate limit.",
+      "suggested_change": "Except with respect to confidentiality and indemnification obligations, Contractor's maximum liability to Company arising for any reason relating to Contractor's performance of services under a Statement of Work shall be limited to the amount of fees paid to Contractor for the performance of such services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 629,
+   "seconds": 22.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. I have reviewed the agreement and would like to propose a few minor adjustments before I sign. Specifically, regarding the clause: \"EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.\" - Your liability is capped at the fees paid, but obligations under Paragraph 9 (or another referenced section) are taken out of that cap and have no separate limit, so please update this to: \"Except with respect to confidentiality and indemnification obligations, Contractor's maximum liability to Company arising for any reason relating to Contractor's performance of services under a Statement of Work shall be limited to the amount of fees paid to Contractor for the performance of such services.\" Please let me know if these adjustments work for you so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

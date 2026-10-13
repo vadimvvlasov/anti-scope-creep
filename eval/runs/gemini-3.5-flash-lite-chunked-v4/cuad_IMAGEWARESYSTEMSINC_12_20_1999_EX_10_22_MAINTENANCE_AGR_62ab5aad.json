@@ -1,0 +1,32 @@
+{
+ "id": "cuad:IMAGEWARESYSTEMSINC_12_20_1999-EX-10.22-MAINTENANCE AGREEMENT",
+ "chars": 21778,
+ "findings": [],
+ "email": false,
+ "seconds": 12.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3924,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.74,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3628,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.56,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

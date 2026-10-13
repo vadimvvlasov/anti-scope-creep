@@ -1,0 +1,65 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "In the event that CRO believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, CRO will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to CRO.",
+   "start": 13430,
+   "end": 13699
+  }
+ ],
+ "email": true,
+ "seconds": 8.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2896,
+   "seconds": 0.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2965,
+   "seconds": 3.68,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "Intellectual property rights transfer to the client immediately upon creation or delivery, rather than upon receipt of full payment, which means you could lose your work without being paid.",
+      "suggested_change": "All deliverables and work products developed by the Contractor under this Agreement shall belong to the Client upon full payment of all applicable fees due for such work."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "In the event that [PARTY_A] believes that there is presently any such conflict, or any such conflict arises during the term of this Agreement, [PARTY_A] will immediately notify Client which may, at its sole discretion, immediately terminate this Agreement without liability to [PARTY_A].",
+      "explanation": "The client can terminate the agreement immediately without liability if a conflict of interest is raised, leaving you without compensation for completed work.",
+      "suggested_change": "In the event that the Contractor notifies the Client of a conflict of interest, the Client may terminate this Agreement upon written notice, and the Client shall pay the Contractor for all services rendered and expenses incurred up to the date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 764,
+   "seconds": 3.58,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I am looking forward to working together, and I just have a couple of quick requests regarding the terms before I sign.\n\n- Regarding the intellectual property clause: Intellectual property rights transfer to the client immediately upon creation or delivery, rather than upon receipt of full payment, which means you could lose your work without being paid. Please modify this so that all deliverables developed under this Agreement shall belong to the Client upon full payment of all applicable fees due for such work.\n- Regarding the termination clause: The client can terminate the agreement immediately without liability if a conflict of interest is raised, leaving you without compensation for completed work. Please update this so that in the event of termination due to a conflict of interest, the Client shall pay for all services rendered and expenses incurred up to the date of termination.\n\nThank you for understanding, and I look forward to getting started.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

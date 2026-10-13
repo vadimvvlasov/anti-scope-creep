@@ -1,0 +1,111 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 2,
+   "precision": 0.5,
+   "recall": 0.333,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 4,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 2,
+   "fp": 5,
+   "fn": 3,
+   "precision": 0.286,
+   "recall": 0.4,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 11,
+  "findings_kept": 11,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 12045,
+  "tokens_max": 19273,
+  "seconds_mean": 20.4,
+  "seconds_max": 40.7
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "MMI shall at its own expense obtain and maintain with an insurer adequate insurance coverage in respect of any Dragon Systems property under the care, custody or control of MMI. MMI shall immediately notify Dragon Systems in writing of any theft, loss or damage to any Dragon Systems property and shall indemnify Dragon Systems in respect of the same.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Transfer of title with respect to any Product shall be subject to full payment and settlement of all claims Cremer may have against Ultragenyx in connection with the execution of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": []
+}

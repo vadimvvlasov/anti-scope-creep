@@ -68,6 +68,37 @@ class SelectTest(unittest.TestCase):
         self.assertEqual([c["title"] for _, c in first], [c["title"] for _, c in again])
 
 
+class HoldoutTest(unittest.TestCase):
+    def test_excluded_ids_are_skipped_and_the_next_contracts_are_taken(self):
+        pool = [contract(f"C{n}_Service Agreement", Uncapped_Liability=True) for n in range(6)]
+        first = [c["title"] for _, c in select_cuad.select(pool, {"uncapped": 3})]
+        rest = select_cuad.select(pool, {"uncapped": 3}, exclude_ids=frozenset("cuad:" + t for t in first))
+        self.assertEqual(len(rest), 3)
+        self.assertFalse({c["title"] for _, c in rest} & set(first))
+
+    def test_other_contracts_of_an_excluded_company_are_skipped(self):
+        gold, sibling, other = (contract(t, Uncapped_Liability=True) for t in (
+            "AcmeInc_2015_EX-10.1_Service Agreement", "AcmeInc_2016_EX-10.2_Hosting Agreement",
+            "BetaCorp_2016_EX-10.1_Service Agreement"))
+        picked = select_cuad.select([gold, sibling, other], {"uncapped": 5}, exclude_ids=frozenset({"cuad:" + gold["title"]}))
+        self.assertEqual([c["title"] for _, c in picked], [other["title"]])
+
+    def test_amendments_are_not_candidates(self):
+        self.assertFalse(select_cuad.is_candidate(contract("ADMA, LLC -  Amendment #3 to Manufacturing Agreement")))
+
+    def test_the_size_window_excludes_its_lower_bound(self):
+        short, edge, long = (contract(f"{n}_Service Agreement", chars=c, Uncapped_Liability=True)
+                             for n, c in (("S", 1_000), ("E", 60_000), ("L", 90_000)))
+        picked = select_cuad.select([short, edge, long], {"uncapped": 5}, min_chars=60_000, max_chars=150_000)
+        self.assertEqual([c["title"] for _, c in picked], ["L_Service Agreement"])
+
+    def test_quotas_keep_their_order_and_reject_unknown_strata(self):
+        self.assertEqual(list(select_cuad.parse_quotas(["negative=6", "uncapped=8"]).items()),
+                         [("negative", 6), ("uncapped", 8)])
+        with self.assertRaises(SystemExit):
+            select_cuad.parse_quotas(["long=3"])
+
+
 class DraftRecordTest(unittest.TestCase):
     def test_mapped_spans_become_pending_candidates_and_the_cap_is_a_flag(self):
         record = select_cuad.draft_record("uncapped", contract("X_Service Agreement", Uncapped_Liability=True, Cap_On_Liability=True))

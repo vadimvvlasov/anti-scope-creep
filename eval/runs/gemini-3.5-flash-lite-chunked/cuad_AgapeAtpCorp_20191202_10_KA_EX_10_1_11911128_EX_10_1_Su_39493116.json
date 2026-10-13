@@ -1,0 +1,26 @@
+{
+ "id": "cuad:AgapeAtpCorp_20191202_10-KA_EX-10.1_11911128_EX-10.1_Supply Agreement",
+ "chars": 20693,
+ "findings": [],
+ "email": false,
+ "seconds": 7.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3387,
+   "seconds": 3.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2792,
+   "seconds": 3.9,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

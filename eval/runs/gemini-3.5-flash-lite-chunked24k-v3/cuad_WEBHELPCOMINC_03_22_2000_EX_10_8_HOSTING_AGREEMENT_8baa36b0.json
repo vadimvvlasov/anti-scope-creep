@@ -1,0 +1,18 @@
+{
+ "id": "cuad:WEBHELPCOMINC_03_22_2000-EX-10.8-HOSTING AGREEMENT",
+ "chars": 19257,
+ "findings": [],
+ "email": false,
+ "seconds": 2.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5035,
+   "seconds": 2.83,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -11,6 +11,9 @@ before payment, or how severe an exception to a liability cap is.
 Usage:
     python3 scripts/select_cuad.py --download                # fetch data.zip into eval/.cache
     python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl
+    # held-out set: skip contracts already in a gold set, own quotas and size window
+    python3 scripts/select_cuad.py -o eval/gold/cuad-holdout.draft.jsonl --exclude eval/gold/cuad.jsonl \
+        --quota uncapped=8 --quota termination=6 --quota negative=6
 """
 
 import argparse
@@ -62,12 +65,25 @@ EXCLUDED = {
         "financial covenant of an investor in favor of a lender, not services",
     "WARNERCHILCOTTPLC_12_31_2003-EX-4.36-DEVELOPMENT AGREEMENT":
         "co-development between two pharma companies; the only cap covers force majeure",
+    # Dropped in the held-out review (2026-10-12).
+    "MPLXLP_06_17_2015-EX-10.1-TRANSPORTATION SERVICES AGREEMENT":
+        "related-party agreement between affiliates of the Marathon group, not vendor-client",
+    "IbioInc_20200313_8-K_EX-10.1_12052678_EX-10.1_Development Agreement":
+        "joint development and joint-venture arrangement; iBio's pay is mostly a minority stake and revenue share, not a vendor-client deal",
+    "PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement":
+        "related-party agreement: Memorial Resource and PennTex are under common control of NGP (PennTex 10-K 2015, Item 13), not vendor-client",
+    "TRUENORTHENERGYCORP_02_08_2007-EX-10.1-DEVELOPMENT AGREEMENT":
+        "oil and gas farm-in: the company pays drilling costs for a working interest; no service provider",
+    "ENTERPRISEPRODUCTSPARTNERSLP_07_08_1998-EX-10.3-TRANSPORTATION CONTRACT":
+        "intra-group agreement: the carrier is a division of Enterprise Products Company, the shipper is Enterprise Products Operating L.P., not vendor-client",
 }
 
 # Contracts per stratum, in this order; a contract lands in the first stratum it fits.
 QUOTAS = {"uncapped": 12, "termination": 7, "ip": 7, "negative": 4}
 
 _LABEL = re.compile(r'related to "([^"]+)"')
+# An amendment or addendum refers to a base contract it does not contain.
+_AMENDMENT = re.compile(r"amendment|addendum", re.IGNORECASE)
 
 
 def download(cache_dir: Path = CACHE_DIR) -> Path:
@@ -97,11 +113,13 @@ def contract_type(title: str) -> str:
     return title.rsplit("_", 1)[-1].strip().lower()
 
 
-def is_candidate(contract: dict) -> bool:
+def is_candidate(contract: dict, min_chars: int = 0, max_chars: int = MAX_TEXT_CHARS) -> bool:
+    """Fits the size window (min_chars, max_chars] and has a service provider to speak for."""
     kind = contract_type(contract["title"])
     return (
-        len(contract["text"]) <= MAX_TEXT_CHARS
+        min_chars < len(contract["text"]) <= max_chars
         and contract["title"] not in EXCLUDED
+        and not _AMENDMENT.search(contract["title"])
         and any(t in kind for t in PROVIDER_TYPES)
     )
 
@@ -119,15 +137,28 @@ def stratum(contract: dict) -> str | None:
     return None
 
 
+def company(title: str) -> str:
+    """The filer the title starts with: "IdeanomicsInc_2016..." and "IdeanomicsInc_2015..." match."""
+    head = re.split(r"_| - ", title, maxsplit=1)[0]
+    return re.sub(r"[^a-z0-9]", "", head.lower())
+
+
 def _order_key(title: str) -> str:
     """Stable pseudo-random order: the same subset on every run, no seed to keep."""
     return hashlib.sha256(title.encode()).hexdigest()
 
 
-def select(contracts: list[dict], quotas: dict[str, int] = QUOTAS) -> list[tuple[str, dict]]:
+def select(contracts: list[dict], quotas: dict[str, int] = QUOTAS, *, min_chars: int = 0,
+           max_chars: int = MAX_TEXT_CHARS, exclude_ids: frozenset[str] = frozenset()) -> list[tuple[str, dict]]:
+    """Per stratum, the first `quota` candidates in a stable order. A held-out set passes the
+    ids of the gold sets in `exclude_ids`: those contracts and others of the same companies
+    are skipped, since rules tuned on one deal can carry over to its sibling documents."""
+    excluded_companies = {company(i.removeprefix("cuad:")) for i in exclude_ids}
     picked = []
     for name, quota in quotas.items():
-        pool = sorted((c for c in contracts if is_candidate(c) and stratum(c) == name),
+        pool = sorted((c for c in contracts
+                       if is_candidate(c, min_chars, max_chars) and stratum(c) == name
+                       and company(c["title"]) not in excluded_companies),
                       key=lambda c: _order_key(c["title"]))
         picked.extend((name, c) for c in pool[:quota])
     return picked
@@ -161,11 +192,29 @@ def draft_record(name: str, contract: dict) -> dict:
     }
 
 
+def parse_quotas(items: list[str]) -> dict[str, int]:
+    """["uncapped=8", "negative=6"] -> {"uncapped": 8, "negative": 6}, order kept."""
+    quotas = {}
+    for item in items:
+        name, _, count = item.partition("=")
+        if name not in QUOTAS or not count.isdigit():
+            raise SystemExit(f"bad --quota {item!r}: expected one of {list(QUOTAS)}=N")
+        quotas[name] = int(count)
+    return quotas
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--download", action="store_true", help=f"fetch CUAD into {CACHE_DIR}")
     parser.add_argument("--cuad", type=Path, default=CUAD_JSON, help="path to CUADv1.json")
     parser.add_argument("-o", "--output", type=Path, help="write draft gold records (JSONL) here")
+    parser.add_argument("--exclude", type=Path, action="append", default=[],
+                        help="gold JSONL whose contracts are skipped (repeatable)")
+    parser.add_argument("--quota", action="append", default=[], metavar="STRATUM=N",
+                        help=f"contracts per stratum, in the given order (repeatable; default {QUOTAS})")
+    parser.add_argument("--min-chars", type=int, default=0, help="only contracts longer than this")
+    parser.add_argument("--max-chars", type=int, default=MAX_TEXT_CHARS,
+                        help=f"only contracts up to this length (default {MAX_TEXT_CHARS}, the product limit)")
     args = parser.parse_args(argv)
     if args.download:
         print(f"saved {download()}")
@@ -174,13 +223,17 @@ def main(argv: list[str] | None = None) -> int:
     if not args.cuad.exists():
         print(f"{args.cuad} not found; run with --download first", file=sys.stderr)
         return 1
-    picked = select(load_contracts(args.cuad))
+    quotas = parse_quotas(args.quota) if args.quota else QUOTAS
+    exclude_ids = frozenset(json.loads(line)["id"] for path in args.exclude
+                            for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+    picked = select(load_contracts(args.cuad), quotas, min_chars=args.min_chars, max_chars=args.max_chars,
+                    exclude_ids=exclude_ids)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as out:
         for name, contract in picked:
             out.write(json.dumps(draft_record(name, contract), ensure_ascii=False) + "\n")
     chars = sum(len(c["text"]) for _, c in picked)
-    counts = {name: sum(1 for n, _ in picked if n == name) for name in QUOTAS}
+    counts = {name: sum(1 for n, _ in picked if n == name) for name in quotas}
     print(f"{len(picked)} contracts {counts}, {chars:,} characters -> {args.output}")
     return 0
 

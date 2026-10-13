@@ -1,0 +1,71 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever (but which may only be used during the Term and, subject to the limitations and conditions set forth in this Agreement, thereafter).",
+   "start": 16228,
+   "end": 16534
+  }
+ ],
+ "email": true,
+ "seconds": 23.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4238,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.36,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4154,
+   "output_tokens": 177,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.55,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever (but which may only be used during the Term and, subject to the limitations and conditions set forth in this Agreement, thereafter).",
+      "explanation": "Ownership of your work passes to the client immediately upon creation or delivery, rather than waiting until you are paid in full.",
+      "suggested_change": "Ownership of the Results and Proceeds and Advertising Materials shall remain with the Contractor until the Contractor has been paid in full for the applicable services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2748,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 542,
+   "output_tokens": 201,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are having a great week. I am looking forward to getting started on the project, and I just have one quick note regarding the agreement before I sign.\n\n- Regarding the clause \"All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever (but which may only be used during the Term and, subject to the limitations and conditions set forth in this Agreement, thereafter).\", it appears that ownership of the work passes immediately rather than upon full payment. I propose changing this to: \"Ownership of the Results and Proceeds and Advertising Materials shall remain with the Contractor until the Contractor has been paid in full for the applicable services.\"\n\nThank you for understanding, and I look forward to moving ahead.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

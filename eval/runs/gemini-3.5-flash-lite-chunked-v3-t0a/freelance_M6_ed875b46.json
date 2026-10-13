@@ -1,0 +1,66 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  }
+ ],
+ "email": true,
+ "seconds": 18.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3630,
+   "seconds": 6.55,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Net 40 payment terms mean you will wait longer than 30 days to get paid, which negatively impacts your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2793,
+   "seconds": 5.33,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "Payment is due in 40 days, which exceeds the standard 30-day term and creates a short cash flow delay.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 401,
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am looking forward to working together, but I would like to request a minor adjustment before signing. - Regarding the clause \"Invoices are payable Net 40.\", Net 40 payment terms mean you will wait longer than 30 days to get paid, which negatively impacts your cash flow. Please change this to: Invoices are payable Net 30. Thank you for understanding, and please let me know if this adjustment works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

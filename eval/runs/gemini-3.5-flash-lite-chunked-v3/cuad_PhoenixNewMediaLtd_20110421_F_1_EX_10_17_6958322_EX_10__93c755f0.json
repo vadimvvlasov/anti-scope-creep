@@ -1,0 +1,73 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is,  in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party  may terminate this Agreement upon notifying the other Party in writing; and",
+   "start": 16383,
+   "end": 16725
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate  this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by  the termination of this Agreement.",
+   "start": 17087,
+   "end": 17411
+  }
+ ],
+ "email": true,
+ "seconds": 25.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3698,
+   "seconds": 1.39,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4094,
+   "seconds": 9.01,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.2.4 one Party's performance of its obligations hereunder (including but not limited to such Party's ability to perform this Agreement) is, in the reasonable judgment of the other Party, adversely affected by the occurrence of any event, then the unaffected Party may terminate this Agreement upon notifying the other Party in writing; and",
+      "explanation": "The Client can terminate the contract immediately based on its own subjective judgment that your ability to perform has been adversely affected by any event, creating a high risk of abrupt cancellation without fair cause.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days' prior written notice in the event of a material breach by the other party that remains uncured."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "8.3 No compensation or indemnification will be required to be made by one Party to the other Party when one Party exercises its right to terminate this Agreement unilaterally pursuant to this Article Eight and no rights or interests of the terminating Party will be adversely affected by the termination of this Agreement.",
+      "explanation": "If the contract is terminated, you are explicitly denied any compensation or indemnification, meaning you may not get paid for work already completed or expenses incurred.",
+      "suggested_change": "Upon termination by the Client for convenience, the Client shall pay the Contractor for all services performed and expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 1347,
+   "seconds": 4.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 755,
+   "seconds": 9.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few adjustments before signing. Specifically: \n\n- Regarding the clause allowing termination based on subjective judgment: The Client can terminate the contract immediately based on its own subjective judgment that your ability to perform has been adversely affected by any event, creating a high risk of abrupt cancellation without fair cause. I propose we update this so that: Either party may terminate this Agreement upon thirty (30) days' prior written notice in the event of a material breach by the other party that remains uncured.\n\n- Regarding the clause addressing compensation upon termination: If the contract is terminated, you are explicitly denied any compensation or indemnification, meaning you may not get paid for work already completed or expenses incurred. I propose we update this so that: Upon termination by the Client for convenience, the Client shall pay the Contractor for all services performed and expenses incurred up to the effective date of termination.\n\nThank you for your time and understanding. I look forward to moving forward once these details are settled. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}
