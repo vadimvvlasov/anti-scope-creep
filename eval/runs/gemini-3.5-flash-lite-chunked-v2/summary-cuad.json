@@ -20,20 +20,20 @@
    "severity_accuracy": 0.0
   },
   "uncapped_liability": {
-   "tp": 3,
-   "fp": 4,
+   "tp": 4,
+   "fp": 3,
    "fn": 2,
-   "precision": 0.429,
-   "recall": 0.6,
+   "precision": 0.571,
+   "recall": 0.667,
    "severity_accuracy": 1.0
   },
   "all": {
-   "tp": 9,
-   "fp": 9,
+   "tp": 10,
+   "fp": 8,
    "fn": 4,
-   "precision": 0.5,
-   "recall": 0.692,
-   "severity_accuracy": 0.889
+   "precision": 0.556,
+   "recall": 0.714,
+   "severity_accuracy": 0.9
   }
  },
  "run": {
@@ -82,14 +82,6 @@
    "on_no_finding": false,
    "gold_category_here": null,
    "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement"
-  },
-  {
-   "category": "uncapped_liability",
-   "risk_level": "medium",
-   "quote": "EXCEPT WITH RESPECT TO EACH PARTY'S INDEMNIFICATION OBLIGATIONS UNDER THIS AGREEMENT, (A) UNDER NO CIRCUMSTANCE AND UNDER NO LEGAL THEORY (TORT, CONTRACT, OR OTHERWISE), SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR ANY LOST PROFITS, LOSS OF OPPORTUNITY OR OTHER SPECIAL, PUNITIVE, INDIRECT, OR CONSEQUENTIAL DAMAGES SUFFERED BY THE OTHER PARTY ARISING IN CONNECTION WITH THIS AGREEMENT; AND (B) THE MAXIMUM LIABILITY OF EACH PARTY IN ANY WAY RELATED TO THIS AGREEMENT SHALL NOT EXCEED $2,000,000.00 (EXCLUDING ANY AMOUNTS DUE AND PAYABLE PURSUANT TO SECTION ​8 HEREUNDER).",
-   "on_no_finding": false,
-   "gold_category_here": null,
-   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement"
   },
   {
    "category": "one_sided_termination",
