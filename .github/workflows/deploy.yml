@@ -2,7 +2,8 @@ name: Deploy
 
 # Reusable: deploy a backend image that is already in ghcr to one environment.
 # Neon migrations, the Lightsail container service, the frontend Worker, a smoke test.
-# Called by deploy-dev.yml and promote-prod.yml; secrets come from the GitHub Environment.
+# Called by deploy-dev.yml and promote-prod.yml. The secrets live in the GitHub Environment;
+# callers pass them by name (not `secrets: inherit`), so this workflow gets only these five.
 on:
   workflow_call:
     inputs:
@@ -26,6 +27,19 @@ on:
         description: Wrangler environment (dev); empty deploys the top-level prod Worker
         type: string
         default: ""
+    # Not `required: true`: the callers have no environment, so the values resolve only
+    # inside the deploy job (environment: inputs.environment).
+    secrets:
+      DATABASE_URL:
+        required: false
+      MIGRATIONS_DATABASE_URL:
+        required: false
+      JWT_SECRET:
+        required: false
+      GROQ_API_KEY:
+        required: false
+      CLOUDFLARE_API_TOKEN:
+        required: false
 
 permissions:
   contents: read

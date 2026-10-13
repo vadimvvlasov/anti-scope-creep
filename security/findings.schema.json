@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Security audit run",
+  "type": "object",
+  "required": ["run", "commit", "tools", "findings"],
+  "properties": {
+    "run": {"type": "string", "description": "Run date, YYYY-MM-DD; also the folder name under runs/"},
+    "commit": {"type": "string", "description": "Commit or branch the run looked at"},
+    "tools": {"type": "object", "additionalProperties": {"type": "string"}},
+    "dependency_audit": {"type": "object", "additionalProperties": {"type": "string"}},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "rule", "title", "severity", "locations", "disposition", "disposition_status", "rationale"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^(SG|MR|DEP|GH|AG)-[0-9]+$", "description": "SG Semgrep, MR model review, DEP dependency audit, GH repository settings, AG agent capabilities"},
+          "source": {"enum": ["semgrep", "model-review", "dependency-audit", "manual"]},
+          "rule": {"type": "string", "description": "Scanner rule id, reviewed PR, or the area checked by hand"},
+          "title": {"type": "string"},
+          "severity": {"enum": ["critical", "error", "high", "medium", "warning", "low", "info"]},
+          "locations": {"type": "array", "items": {"type": "string"}},
+          "count": {"type": "integer", "minimum": 1, "description": "How many scanner results this finding groups"},
+          "disposition": {"enum": ["fix", "accept", "false_positive", "defer"]},
+          "disposition_status": {"enum": ["proposed", "confirmed"], "description": "proposed by the auditor (tool or model), confirmed only by a person"},
+          "rationale": {"type": "string"},
+          "fix_ref": {"type": ["string", "null"], "description": "Commit, branch or PR with the fix"},
+          "decided_by": {"type": ["string", "null"], "description": "The person who confirmed the disposition"},
+          "decided_at": {"type": ["string", "null"], "description": "YYYY-MM-DD"},
+          "related_incident": {"type": ["string", "null"], "description": "Incident id under ops/incidents/, when the finding came from or led to one"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
