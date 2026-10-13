@@ -126,6 +126,8 @@ def test_gemini_client_uses_its_key_model_endpoint_and_output_limit():
     assert client._model == "gemini-3.1-flash-lite" and client._max_completion_tokens == 8_000
     assert client._limiter._capacity == (250_000.0, 10.0) and client._temperature is None
     assert llm_client("gemini", env={"GEMINI_API_KEY": "test-key"}, temperature=0.0)._temperature == 0.0
+    assert client._reasoning_effort == "low"
+    assert llm_client("groq", env={"GROQ_API_KEY": "test-key"}, reasoning_effort="medium")._reasoning_effort == "medium"
 
 
 def test_groq_stays_the_default_provider():

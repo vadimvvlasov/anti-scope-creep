@@ -96,6 +96,7 @@ class GroqClient:
         max_completion_tokens: int = 2_000,
         api_url: str = API_URL,
         temperature: float | None = None,
+        reasoning_effort: str = "low",
     ):
         if not api_key:
             raise ValueError("GROQ_API_KEY is not set")
@@ -109,6 +110,7 @@ class GroqClient:
         self._max_completion_tokens = max_completion_tokens
         self._api_url = api_url
         self._temperature = temperature
+        self._reasoning_effort = reasoning_effort
 
     def __repr__(self) -> str:
         return f"GroqClient(model={self._model!r})"
@@ -137,7 +139,7 @@ class GroqClient:
         body = {
             "model": self._model,
             "messages": messages,
-            "reasoning_effort": "low",
+            "reasoning_effort": self._reasoning_effort,
             "max_completion_tokens": budget,
             "response_format": {
                 "type": "json_schema",

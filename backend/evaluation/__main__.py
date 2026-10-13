@@ -5,6 +5,7 @@
     uv run python -m evaluation score --run 2026-10-11                   # cache only, no tokens
     uv run python -m evaluation run --set cuad-holdout --run v3-holdout --provider gemini \
         --findings-prompt ../eval/prompts/findings-v3.txt                # an older prompt version
+    uv run python -m evaluation run --set freelance --run groq-v4-medium --reasoning-effort medium
 """
 
 import argparse
@@ -37,13 +38,15 @@ PROVIDERS = {
 }
 
 
-def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ, temperature: float | None = None):
+def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ, temperature: float | None = None,
+               reasoning_effort: str = "low"):
     """The client for one provider; key, model and limits come from <PREFIX>_* variables."""
     prefix, url, model, rpm, tpm = PROVIDERS[provider]
     limiter = TokenBucketLimiter(int(env.get(f"{prefix}_TOKENS_PER_MINUTE", tpm)),
                                  int(env.get(f"{prefix}_REQUESTS_PER_MINUTE", rpm)))
     return GroqClient(env[f"{prefix}_API_KEY"], limiter, env.get(f"{prefix}_MODEL", model),
-                      max_completion_tokens=max_output_tokens, api_url=url, temperature=temperature)
+                      max_completion_tokens=max_output_tokens, api_url=url, temperature=temperature,
+                      reasoning_effort=reasoning_effort)
 
 
 def score(run_dir: Path, set_name: str) -> dict:
@@ -111,13 +114,17 @@ def main(argv: list[str] | None = None) -> int:
                          help=f"characters per request (default {DEFAULT_MAX_CHARS}); 60000 sends a contract whole")
     run_cmd.add_argument("--max-output-tokens", type=int, default=2_000, help="per request, thinking included")
     run_cmd.add_argument("--temperature", type=float, help="sampling temperature; default: not sent, the provider's default")
+    run_cmd.add_argument("--reasoning-effort", default="low",
+                         help="reasoning effort sent to the provider (Groq gpt-oss: low, medium, high; "
+                              "Gemini also minimal); default: low, as in the app")
     run_cmd.add_argument("--findings-prompt", type=Path,
                          help="text file with the findings system prompt; default: the one in app/prompts.py")
     args = parser.parse_args(argv)
     run_dir = EVAL_DIR / "runs" / args.run
     for set_name in args.set or DEFAULT_SETS:
         if args.command == "run":
-            client = llm_client(args.provider, args.max_output_tokens, temperature=args.temperature)
+            client = llm_client(args.provider, args.max_output_tokens, temperature=args.temperature,
+                                reasoning_effort=args.reasoning_effort)
             prompt = args.findings_prompt.read_text(encoding="utf-8") if args.findings_prompt else FINDINGS_SYSTEM_PROMPT
             done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars, findings_prompt=prompt)
             print(f"{set_name}: {done} contracts analyzed")

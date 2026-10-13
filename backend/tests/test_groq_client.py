@@ -97,6 +97,15 @@ def test_temperature_is_sent_only_when_set():
     assert json.loads(zero.requests[0].content)["temperature"] == 0.0
 
 
+def test_reasoning_effort_is_low_unless_set():
+    default, medium = Script(ok()), Script(ok())
+    client(default)[0].complete_json(MESSAGES, "hi", SCHEMA)
+    client(medium, reasoning_effort="medium")[0].complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert json.loads(default.requests[0].content)["reasoning_effort"] == "low"
+    assert json.loads(medium.requests[0].content)["reasoning_effort"] == "medium"
+
+
 def test_an_error_wrapped_in_a_list_keeps_its_message():
     error = [{"error": {"code": 400, "message": "User location is not supported for the API use."}}]
     groq, _ = client(Script(httpx.Response(400, json=error)))
