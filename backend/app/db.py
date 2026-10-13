@@ -143,6 +143,17 @@ email_drafts = Table(
     Column("created_at", UtcDateTime, nullable=False),
 )
 
+# One row per analysis a user starts (upload or retry), for the per-user daily cap.
+# Rows outlive their contract, so deleting a contract does not give the quota back.
+analysis_starts = Table(
+    "analysis_starts",
+    metadata,
+    Column("id", Uuid, primary_key=True),
+    Column("user_id", Uuid, ForeignKey("users.id", ondelete="CASCADE"), nullable=False),
+    Column("started_at", UtcDateTime, nullable=False),
+    Index("ix_analysis_starts_user_id_started_at", "user_id", "started_at"),
+)
+
 
 def build_engine(database_url: str) -> Engine:
     """Create the engine for DATABASE_URL (e.g. `postgresql+psycopg://...`)."""

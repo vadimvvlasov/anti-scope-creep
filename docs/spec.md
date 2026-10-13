@@ -1141,6 +1141,8 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Duplicate registration email | 409 | `EMAIL_ALREADY_EXISTS` | `An account with this email already exists.` plus link to Login. |
 | Delete while analyzing | 409 | `CONTRACT_ANALYSIS_IN_PROGRESS` | `This contract cannot be deleted while analysis is running.` |
 | Retry while analyzing | 409 | `ANALYSIS_IN_PROGRESS` | `An analysis is already running for this contract.` |
+| Upload or retry while another analysis of the user runs | 429 | `ANALYSIS_ALREADY_RUNNING` | `Another analysis is still running. Try again when it finishes.` |
+| Upload or retry over the per-user daily limit | 429 | `DAILY_ANALYSIS_LIMIT_REACHED` | `You have reached the limit of 5 analyses in 24 hours. Please try again later.` |
 | Contract not owned by user / not found | 404 | `CONTRACT_NOT_FOUND` | `Contract not found.` Never reveals whether another user's contract exists. |
 | Unknown path (not an API operation) | 404 | `NOT_FOUND` | `The requested resource does not exist.` |
 | HTTP method not supported for the path | 405 | `METHOD_NOT_ALLOWED` | `This method is not allowed for this resource.` |
@@ -1167,6 +1169,7 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 - Run lightweight language detection (`langdetect` or equivalent) after extraction/loading.
 - Accept only confidently detected English.
 - Very short or ambiguous text must be rejected rather than sent to the analyzer.
+- Per-user caps protect the shared LLM quota: one analysis running at a time, at most 5 started (upload or retry) in a rolling 24 hours, deleted contracts included. Server settings `ANALYSIS_MAX_RUNNING_PER_USER`, `ANALYSIS_DAILY_LIMIT_PER_USER` (0 = off).
 
 ### Atomicity rule
 

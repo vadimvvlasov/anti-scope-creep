@@ -10,13 +10,13 @@ from collections.abc import Sequence
 from dataclasses import asdict, replace
 from datetime import datetime
 from typing import Any, Protocol
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from sqlalchemy import Connection, Row, delete, func, insert, select, update
 from sqlalchemy.engine import Engine
 from sqlalchemy.exc import IntegrityError
 
-from app.db import contracts, email_drafts, risk_findings, users
+from app.db import analysis_starts, contracts, email_drafts, risk_findings, users
 from app.models import (
     ContractRecord,
     ContractStatus,
@@ -83,6 +83,12 @@ class Store(Protocol):
     def get_findings(self, contract_id: UUID) -> list[FindingRecord]: ...
 
     def get_email_draft(self, contract_id: UUID) -> EmailDraftRecord | None: ...
+
+    def count_running_analyses(self, user_id: UUID) -> int: ...
+
+    def add_analysis_start(self, user_id: UUID, now: datetime) -> None: ...
+
+    def count_analysis_starts(self, user_id: UUID, since: datetime) -> int: ...
 
 
 class SqlStore:
@@ -240,6 +246,26 @@ class SqlStore:
         with self._engine.connect() as conn:
             row = conn.execute(query).first()
         return EmailDraftRecord(**row._mapping) if row else None
+
+    # -- per-user analysis limits ---------------------------------------------
+
+    def count_running_analyses(self, user_id: UUID) -> int:
+        query = select(func.count()).select_from(contracts).where(
+            contracts.c.user_id == user_id, contracts.c.status == ContractStatus.ANALYZING
+        )
+        with self._engine.connect() as conn:
+            return conn.execute(query).scalar_one()
+
+    def add_analysis_start(self, user_id: UUID, now: datetime) -> None:
+        with self._engine.begin() as conn:
+            conn.execute(insert(analysis_starts).values(id=uuid4(), user_id=user_id, started_at=now))
+
+    def count_analysis_starts(self, user_id: UUID, since: datetime) -> int:
+        query = select(func.count()).select_from(analysis_starts).where(
+            analysis_starts.c.user_id == user_id, analysis_starts.c.started_at >= since
+        )
+        with self._engine.connect() as conn:
+            return conn.execute(query).scalar_one()
 
 
 def _owned(user_id: UUID, contract_id: UUID) -> tuple[Any, ...]:

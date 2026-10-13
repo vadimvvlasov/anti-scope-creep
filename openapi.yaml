@@ -301,6 +301,8 @@ paths:
                     error:
                       code: LANGUAGE_UNDETERMINED
                       message: The contract language could not be determined. Please provide more text.
+        "429":
+          $ref: "#/components/responses/AnalysisLimit"
         "500":
           $ref: "#/components/responses/InternalError"
 
@@ -456,6 +458,8 @@ paths:
                 error:
                   code: ANALYSIS_IN_PROGRESS
                   message: An analysis is already running for this contract.
+        "429":
+          $ref: "#/components/responses/AnalysisLimit"
         "500":
           $ref: "#/components/responses/InternalError"
 
@@ -609,6 +613,27 @@ components:
         format: uuid
 
   responses:
+    AnalysisLimit:
+      description: |
+        A per-user analysis cap is reached; nothing is stored or started. Codes:
+        `ANALYSIS_ALREADY_RUNNING` (another of the user's analyses is still running) and
+        `DAILY_ANALYSIS_LIMIT_REACHED` (the user started the daily limit of analyses in
+        the last 24 hours). Both limits are server settings.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            ANALYSIS_ALREADY_RUNNING:
+              value:
+                error:
+                  code: ANALYSIS_ALREADY_RUNNING
+                  message: Another analysis is still running. Try again when it finishes.
+            DAILY_ANALYSIS_LIMIT_REACHED:
+              value:
+                error:
+                  code: DAILY_ANALYSIS_LIMIT_REACHED
+                  message: You have reached the limit of 5 analyses in 24 hours. Please try again later.
     Unauthorized:
       description: Missing, invalid, or expired access token.
       content:
@@ -1064,6 +1089,8 @@ components:
         - EMAIL_ALREADY_EXISTS
         - CONTRACT_ANALYSIS_IN_PROGRESS
         - ANALYSIS_IN_PROGRESS
+        - ANALYSIS_ALREADY_RUNNING
+        - DAILY_ANALYSIS_LIMIT_REACHED
         - CONTRACT_NOT_FOUND
         - NO_ANALYSIS_RESULTS
         - FEATURE_NOT_AVAILABLE

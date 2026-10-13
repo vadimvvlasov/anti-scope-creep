@@ -27,6 +27,8 @@ class ErrorCode(StrEnum):
     EMAIL_ALREADY_EXISTS = "EMAIL_ALREADY_EXISTS"
     CONTRACT_ANALYSIS_IN_PROGRESS = "CONTRACT_ANALYSIS_IN_PROGRESS"
     ANALYSIS_IN_PROGRESS = "ANALYSIS_IN_PROGRESS"
+    ANALYSIS_ALREADY_RUNNING = "ANALYSIS_ALREADY_RUNNING"
+    DAILY_ANALYSIS_LIMIT_REACHED = "DAILY_ANALYSIS_LIMIT_REACHED"
     CONTRACT_NOT_FOUND = "CONTRACT_NOT_FOUND"
     NO_ANALYSIS_RESULTS = "NO_ANALYSIS_RESULTS"
     FEATURE_NOT_AVAILABLE = "FEATURE_NOT_AVAILABLE"
@@ -61,6 +63,14 @@ _DEFAULTS: dict[ErrorCode, tuple[int, str]] = {
         "This contract cannot be deleted while analysis is running.",
     ),
     ErrorCode.ANALYSIS_IN_PROGRESS: (409, "An analysis is already running for this contract."),
+    ErrorCode.ANALYSIS_ALREADY_RUNNING: (
+        429,
+        "Another analysis is still running. Try again when it finishes.",
+    ),
+    ErrorCode.DAILY_ANALYSIS_LIMIT_REACHED: (
+        429,
+        "You have reached the limit of analyses for the last 24 hours. Please try again later.",
+    ),
     ErrorCode.CONTRACT_NOT_FOUND: (404, "Contract not found."),
     ErrorCode.NO_ANALYSIS_RESULTS: (409, "This contract has no analysis results to export yet."),
     ErrorCode.FEATURE_NOT_AVAILABLE: (501, "History search is coming soon."),
