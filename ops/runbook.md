@@ -55,6 +55,23 @@ aws lightsail get-container-services --region eu-central-1 --service-name anti-s
   --query 'containerServices[0].{state:state,deployment:currentDeployment.state,image:currentDeployment.containers.backend.image}'
 ```
 
+Both commands need read permissions that a plain IAM user does not have by default
+(the CI deploy roles have their own). Without them AWS answers `AccessDeniedException ...
+is not authorized to perform: lightsail:GetContainerLog`. A read-only inline policy for
+the person on call:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Sid": "ReadLightsailContainerLogsAndState",
+    "Effect": "Allow",
+    "Action": ["lightsail:GetContainerLog", "lightsail:GetContainerServices"],
+    "Resource": "arn:aws:lightsail:eu-central-1:<account-id>:*"
+  }]
+}
+```
+
 Lines worth searching for: `Analysis failed for contract`, `Groq <model> attempt`,
 `Dropped a <category> finding`, `HTTP 429`.
 
