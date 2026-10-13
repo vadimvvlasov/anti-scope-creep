@@ -16,7 +16,7 @@ from sqlalchemy import Connection, Row, delete, func, insert, select, update
 from sqlalchemy.engine import Engine
 from sqlalchemy.exc import IntegrityError
 
-from app.db import analysis_starts, contracts, email_drafts, risk_findings, users
+from app.db import analysis_starts, contracts, email_drafts, events, risk_findings, users
 from app.models import (
     ContractRecord,
     ContractStatus,
@@ -89,6 +89,10 @@ class Store(Protocol):
     def add_analysis_start(self, user_id: UUID, now: datetime) -> None: ...
 
     def count_analysis_starts(self, user_id: UUID, since: datetime) -> int: ...
+
+    def add_event(
+        self, event: str, distinct_id: str, properties: dict[str, Any], now: datetime
+    ) -> None: ...
 
 
 class SqlStore:
@@ -266,6 +270,15 @@ class SqlStore:
         )
         with self._engine.connect() as conn:
             return conn.execute(query).scalar_one()
+
+    # -- product analytics -----------------------------------------------------
+
+    def add_event(
+        self, event: str, distinct_id: str, properties: dict[str, Any], now: datetime
+    ) -> None:
+        row = dict(id=uuid4(), received_at=now, event=event, distinct_id=distinct_id, properties=properties)
+        with self._engine.begin() as conn:
+            conn.execute(insert(events).values(**row))
 
 
 def _owned(user_id: UUID, contract_id: UUID) -> tuple[Any, ...]:

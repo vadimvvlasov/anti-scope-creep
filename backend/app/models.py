@@ -242,6 +242,50 @@ class HistoryQueryResult(BaseModel):
     truncated: bool
 
 
+class AnalyticsEventName(StrEnum):
+    """The funnel events of docs/analytics.md; anything else is rejected."""
+
+    PAGEVIEW = "pageview"
+    IDENTIFY = "identify"
+    SIGNUP_COMPLETED = "signup_completed"
+    ANALYSIS_STARTED = "analysis_started"
+    REPORT_EXPORTED = "report_exported"
+    PRO_CTA_CLICKED = "pro_cta_clicked"
+    PRO_WAITLIST_JOINED = "pro_waitlist_joined"
+
+
+EventText = Annotated[str, StringConstraints(max_length=100)]
+
+
+class EventProperties(BaseModel):
+    """The only properties an event may carry (docs/analytics.md). Fixed keys and short
+    values, so the table cannot hold contract data or anything else."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    path: EventText | None = None
+    utm_source: EventText | None = None
+    utm_medium: EventText | None = None
+    utm_campaign: EventText | None = None
+    utm_content: EventText | None = None
+    referrer_host: EventText | None = None
+    anon_id: EventText | None = None
+    input: Literal["file", "text", "retry"] | None = None
+    format: Literal["pdf", "docx"] | None = None
+    placement: Literal["header", "daily_limit"] | None = None
+    price_usd: int | None = Field(default=None, ge=0, le=10_000)
+
+
+class AnalyticsEvent(BaseModel):
+    """One product event from the frontend."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    event: AnalyticsEventName
+    distinct_id: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9-]{1,64}$")]
+    properties: EventProperties = Field(default_factory=EventProperties)
+
+
 class HealthStatus(BaseModel):
     status: Literal["ok", "unavailable"]
 

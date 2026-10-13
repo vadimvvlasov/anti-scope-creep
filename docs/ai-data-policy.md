@@ -5,7 +5,7 @@ application stores. It applies when the LLM analyzer is enabled (`ANALYZER=groq`
 Methodology & Privacy dialog and the Upload screen link here. Rules come from
 `docs/spec.md` ("LLM analyzer (Groq)", "Pseudonymization rules").
 
-Last updated: 2026-10-06.
+Last updated: 2026-10-13.
 
 ## In short
 
@@ -95,6 +95,11 @@ project's Groq console settings:
 - The backend runs on AWS Lightsail in `eu-central-1` (Frankfurt).
 - Application logs contain no contract text, prompts or model output: only statuses,
   timings, token counts, and the category and reason of a dropped finding.
+- Usage statistics: page views and a few product events (sign-up, analysis started,
+  report exported, interest in a paid plan) with the link's campaign tags are stored in the
+  same database. No third-party analytics service, no cookies, no IP addresses. They
+  identify an account by its ID, never by email, and never include contract text, titles,
+  file names or results. Details in [`analytics.md`](analytics.md).
 
 ## Accuracy
 

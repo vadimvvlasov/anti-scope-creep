@@ -1,13 +1,14 @@
 """Application-wide collaborators, created once per app and shared by requests."""
 
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
 from fastapi import Request
 
 from app.analyzer import Analyzer
 from app.config import Settings
+from app.event_limits import EventLimiter
 from app.store import Store
 
 Clock = Callable[[], datetime]
@@ -23,6 +24,7 @@ class AppContext:
     store: Store
     analyzer: Analyzer
     clock: Clock = utc_now
+    event_limiter: EventLimiter = field(default_factory=EventLimiter)
 
 
 def get_context(request: Request) -> AppContext:

@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ShieldCheck, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { ProButton } from "@/components/pro-dialog";
 import { AuthorBar, SiteFooter } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -46,6 +47,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-3">
+            <ProButton />
             <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
             <Button variant="ghost" size="sm" onClick={logout}>
               <LogOut className="size-4" /> Log out
