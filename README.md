@@ -82,6 +82,9 @@ Added in Phase 3:
 - Pseudonymization before every LLM call and quote verification after it
 - [AI data policy](docs/ai-data-policy.md) and a notice on the upload screen that
   the contract text goes to a third-party AI provider
+- Findings prompt v4: per-category decision rules, chosen on a held-out CUAD set that
+  was not used to tune it. An answer cut at the output token cap is never parsed: it is
+  asked again once with a doubled budget, then the analysis fails
 - An offline eval with hand-labeled gold sets (CUAD contracts and synthetic
   freelance contracts): precision, recall and severity per category, see
   [`eval/README.md`](eval/README.md). It runs locally; CI never calls the LLM
@@ -143,6 +146,8 @@ Course rubric items and where they live in this repository:
 | CI/CD | `.github/workflows/`, [Workflows](#workflows) |
 | AI data policy | [`docs/ai-data-policy.md`](docs/ai-data-policy.md) |
 | LLM eval | [`eval/README.md`](eval/README.md) |
+| Security audit | [`security/README.md`](security/README.md): scanner, dependency audit, model review, a decision per finding |
+| Operations | [`ops/README.md`](ops/README.md): runbook and diagnoses of real incidents |
 
 ## Screenshots
 

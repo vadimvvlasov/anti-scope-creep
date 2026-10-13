@@ -11,7 +11,8 @@ decision on every finding. How a run works is in [`audit-brief.md`](audit-brief.
 | `runs/YYYY-MM-DD/` | one audit run: raw tool output and `findings.json` |
 
 Related: the [AI data policy](../docs/ai-data-policy.md) (what contract data goes to the
-LLM provider) and [`docs/architecture.md`](../docs/architecture.md), section 9.
+LLM provider), [`docs/architecture.md`](../docs/architecture.md), section 9, and
+[`ops/`](../ops/README.md) (runbook and incident diagnoses).
 
 ## Latest run: 2026-10-12
 
