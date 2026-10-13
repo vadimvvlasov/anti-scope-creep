@@ -1,18 +1,20 @@
 /**
- * Product analytics: a handful of funnel events sent to PostHog, nothing else.
+ * Product analytics: a handful of funnel events sent to our own backend (`POST /events`).
  *
- * - Off unless VITE_POSTHOG_KEY is set at build time (local, tests, e2e send nothing).
- * - No SDK, no autocapture, no session recording, no cookies: one POST per event.
+ * - Off unless VITE_ANALYTICS is "true" at build time (local, tests, e2e send nothing),
+ *   and always off with the mock API.
+ * - No third party, no SDK, no cookies: one POST per event to the API the app already uses,
+ *   so ad blockers that block analytics hosts do not hide visitors.
  * - Events carry only what docs/analytics.md lists. Never contract text, titles,
- *   filenames, findings or emails.
+ *   filenames, findings or emails. The backend rejects any other event or property shape.
  * - Attribution (UTM parameters and the referring host) is read once per browser tab
  *   on the first page and added to every event of that tab.
  */
 
-export const DEFAULT_POSTHOG_HOST = "https://eu.i.posthog.com";
+import { API_URL, USE_MOCK } from "@/services/api";
 
 export type AnalyticsEvent =
-  | "$pageview"
+  | "pageview"
   | "signup_completed"
   | "analysis_started"
   | "report_exported"
@@ -41,15 +43,15 @@ export function attributionFrom(
   }
   try {
     const host = referrer ? new URL(referrer).host : "";
-    if (host && host !== ownHost) result["referrer_host"] = host;
+    if (host && host !== ownHost) result["referrer_host"] = host.slice(0, MAX_VALUE_LENGTH);
   } catch {
     // An unparseable referrer is no attribution.
   }
   return result;
 }
 
-/** The page URL without its query string and fragment: UTM values go in their own properties. */
-export const pageUrl = (origin: string, pathname: string): string => `${origin}${pathname}`;
+/** The page path without its query string and fragment: UTM values go in their own properties. */
+export const pagePath = (pathname: string): string => pathname.slice(0, MAX_VALUE_LENGTH);
 
 interface StorageLike {
   getItem(key: string): string | null;
@@ -58,20 +60,21 @@ interface StorageLike {
 }
 
 export interface AnalyticsDeps {
-  key: string;
-  host: string;
+  /** The backend's `/events` URL; empty turns analytics off. */
+  endpoint: string;
   storage: StorageLike | null;
   send: (url: string, body: string) => void;
   newId: () => string;
-  now: () => Date;
-  url: () => string;
+  path: () => string;
 }
 
 export class Analytics {
+  private lastPage: string | null = null;
+
   constructor(private readonly deps: AnalyticsDeps) {}
 
   get enabled(): boolean {
-    return this.deps.key.length > 0;
+    return this.deps.endpoint.length > 0;
   }
 
   /** Keeps the first attribution of the tab; later pages do not overwrite it. */
@@ -91,13 +94,13 @@ export class Analytics {
     }
   }
 
-  /** Signed-in events use the user ID; the anonymous ID of the tab is merged into it once. */
+  /** Signed-in events use the user ID; one `identify` links the tab's anonymous ID to it. */
   identify(userId: string): void {
     const storage = this.deps.storage;
     if (storage?.getItem(USER_ID_KEY) === userId) return;
     const anonymousId = this.anonymousId();
     storage?.setItem(USER_ID_KEY, userId);
-    this.post("$identify", userId, { $anon_distinct_id: anonymousId });
+    this.post("identify", userId, { anon_id: anonymousId });
   }
 
   reset(): void {
@@ -105,14 +108,16 @@ export class Analytics {
     this.deps.storage?.removeItem(ANON_ID_KEY);
   }
 
+  /** One `pageview` per path change: a remount of the tracker on the same page sends nothing. */
+  trackPageview(): void {
+    const path = this.deps.path();
+    if (path === this.lastPage) return;
+    this.lastPage = path;
+    this.track("pageview");
+  }
+
   track(event: AnalyticsEvent, properties: EventProperties = {}): void {
-    const userId = this.deps.storage?.getItem(USER_ID_KEY);
-    this.post(
-      event,
-      userId ?? this.anonymousId(),
-      properties,
-      userId === null || userId === undefined,
-    );
+    this.post(event, this.deps.storage?.getItem(USER_ID_KEY) ?? this.anonymousId(), properties);
   }
 
   private anonymousId(): string {
@@ -124,28 +129,15 @@ export class Analytics {
     return id;
   }
 
-  private post(
-    event: string,
-    distinctId: string,
-    properties: EventProperties,
-    anonymous = false,
-  ): void {
+  private post(event: string, distinctId: string, properties: EventProperties): void {
     if (!this.enabled) return;
     const body = {
-      api_key: this.deps.key,
       event,
       distinct_id: distinctId,
-      timestamp: this.deps.now().toISOString(),
-      properties: {
-        ...this.attribution(),
-        ...properties,
-        $current_url: this.deps.url(),
-        // Anonymous visitors are counted without a person profile.
-        ...(anonymous ? { $process_person_profile: false } : {}),
-      },
+      properties: { ...this.attribution(), ...properties, path: this.deps.path() },
     };
     try {
-      this.deps.send(`${this.deps.host.replace(/\/$/, "")}/i/v0/e/`, JSON.stringify(body));
+      this.deps.send(this.deps.endpoint, JSON.stringify(body));
     } catch {
       // Analytics never breaks the app.
     }
@@ -161,9 +153,9 @@ function browserAnalytics(): Analytics {
   } catch {
     storage = null;
   }
+  const enabled = inBrowser && !USE_MOCK && env?.["VITE_ANALYTICS"] === "true";
   const analytics = new Analytics({
-    key: (inBrowser && env?.["VITE_POSTHOG_KEY"]?.trim()) || "",
-    host: env?.["VITE_POSTHOG_HOST"]?.trim() || DEFAULT_POSTHOG_HOST,
+    endpoint: enabled ? `${API_URL}/events` : "",
     storage,
     send: (url, body) => {
       void fetch(url, {
@@ -174,8 +166,7 @@ function browserAnalytics(): Analytics {
       }).catch(() => undefined);
     },
     newId: () => crypto.randomUUID(),
-    now: () => new Date(),
-    url: () => pageUrl(window.location.origin, window.location.pathname),
+    path: () => pagePath(window.location.pathname),
   });
   if (inBrowser) {
     analytics.rememberAttribution(

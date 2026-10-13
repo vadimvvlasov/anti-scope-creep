@@ -17,6 +17,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Integer,
+    JSON,
     MetaData,
     String,
     Table,
@@ -152,6 +153,19 @@ analysis_starts = Table(
     Column("user_id", Uuid, ForeignKey("users.id", ondelete="CASCADE"), nullable=False),
     Column("started_at", UtcDateTime, nullable=False),
     Index("ix_analysis_starts_user_id_started_at", "user_id", "started_at"),
+)
+
+# Product analytics events (docs/analytics.md): event name, an anonymous or account ID and
+# a few typed properties. No contract data, no email, no IP address.
+events = Table(
+    "events",
+    metadata,
+    Column("id", Uuid, primary_key=True),
+    Column("received_at", UtcDateTime, nullable=False),
+    Column("event", String(32), nullable=False),
+    Column("distinct_id", String(64), nullable=False),
+    Column("properties", JSON, nullable=False),
+    Index("ix_events_received_at", "received_at"),
 )
 
 

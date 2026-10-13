@@ -17,7 +17,7 @@ info:
       on `code`, never on `message`. Messages are safe to show to end users.
 
     Authentication: every operation except `POST /auth/register`, `POST /auth/login`,
-    the `/health` probes, and `GET /version` requires `Authorization: Bearer <token>`
+    the `/health` probes, `GET /version` and `POST /events` requires `Authorization: Bearer <token>`
     (JWT, HS256, 24-hour lifetime). Any protected
     operation can return `401 UNAUTHORIZED`. Logout is client-side only and has no API
     operation.
@@ -39,6 +39,8 @@ tags:
     description: Contract upload, analysis results, history, rename, retry, delete, and report export.
   - name: query
     description: Natural-language questions over the user's contract history.
+  - name: analytics
+    description: Product funnel events from the frontend (see `docs/analytics.md`).
   - name: operations
     description: >-
       Liveness and readiness probes (see `docs/architecture.md`) and the deployed version.
@@ -594,6 +596,39 @@ paths:
                   code: FEATURE_NOT_AVAILABLE
                   message: History search is coming soon.
 
+  /events:
+    post:
+      tags: [analytics]
+      operationId: recordEvent
+      summary: Record one product analytics event
+      description: |
+        No login: visitors are counted before they sign up. The event name and the property
+        keys come from fixed lists, with short values, so the table cannot hold contract data.
+
+        Spam limits (30 events per client IP per minute, 5,000 per UTC day in total) drop
+        extra events quietly: the response is still `204`.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsEvent"
+            example:
+              event: pageview
+              distinct_id: 0b6f6c2e-6a43-4c1e-9f3e-0d2b2c1a9e11
+              properties:
+                path: /new-analysis
+                utm_source: reddit
+                utm_medium: comment
+      responses:
+        "204":
+          description: Stored, or dropped by the spam limits.
+        "422":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1035,6 +1070,65 @@ components:
         format:
           type: string
           enum: [pdf, docx]
+
+    AnalyticsEventName:
+      type: string
+      enum:
+        - pageview
+        - identify
+        - signup_completed
+        - analysis_started
+        - report_exported
+        - pro_cta_clicked
+        - pro_waitlist_joined
+
+    AnalyticsEvent:
+      type: object
+      required: [event, distinct_id]
+      additionalProperties: false
+      properties:
+        event:
+          $ref: "#/components/schemas/AnalyticsEventName"
+        distinct_id:
+          type: string
+          pattern: "^[A-Za-z0-9-]{1,64}$"
+          description: The tab's anonymous ID, or the account ID (a UUID) after sign-in.
+        properties:
+          $ref: "#/components/schemas/EventProperties"
+
+    EventProperties:
+      type: object
+      description: >-
+        The only properties an event may carry, all optional. Fixed keys and short values,
+        so the table cannot hold contract data.
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          maxLength: 100
+          description: Page path without the query string.
+        utm_source: { type: string, maxLength: 100 }
+        utm_medium: { type: string, maxLength: 100 }
+        utm_campaign: { type: string, maxLength: 100 }
+        utm_content: { type: string, maxLength: 100 }
+        referrer_host: { type: string, maxLength: 100 }
+        anon_id:
+          type: string
+          maxLength: 100
+          description: On `identify`, the tab's anonymous ID that now belongs to the account.
+        input:
+          type: string
+          enum: [file, text, retry]
+        format:
+          type: string
+          enum: [pdf, docx]
+        placement:
+          type: string
+          enum: [header, daily_limit]
+        price_usd:
+          type: integer
+          minimum: 0
+          maximum: 10000
 
     HealthStatus:
       type: object

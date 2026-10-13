@@ -99,8 +99,8 @@ jobs:
           VITE_API_URL: ${{ steps.backend.outputs.url }}
           VITE_USE_MOCK: "false"
           VITE_ANALYZER: ${{ vars.ANALYZER || 'stub' }}
-          # Product analytics (docs/analytics.md): a public PostHog key; empty turns it off.
-          VITE_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          # Product analytics (docs/analytics.md): funnel events to this backend's POST /events.
+          VITE_ANALYTICS: "true"
           WRANGLER_ENV: ${{ inputs.wrangler-env }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

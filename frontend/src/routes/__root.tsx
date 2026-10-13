@@ -128,11 +128,11 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-/** One `$pageview` per route change; the path only, never the query string. */
+/** One `pageview` per route change; the path only, never the query string. */
 function PageviewTracker() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   useEffect(() => {
-    analytics.track("$pageview");
+    analytics.trackPageview();
   }, [pathname]);
   return null;
 }
