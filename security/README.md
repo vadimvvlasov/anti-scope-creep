@@ -30,8 +30,8 @@ All 14 findings with dispositions: [`findings.json`](runs/2026-10-12/findings.js
 | Disposition | Findings |
 |---|---|
 | fixed in this run | SG-1 action pinning, SG-2 explicit secrets, SG-3 uv cooldown; MR-6 was fixed earlier (`cccdeb7`) |
-| fixed after the run | GH-1 ruleset on `main`: pull request and green CI required, no force push or deletion |
-| fix planned | MR-1 bracket tokens, MR-2 per-user analysis cap, MR-3 prompt injection framing, MR-4 per-finding validation, AG-1 agent permissions |
+| fixed after the run | GH-1 ruleset on `main`: pull request and green CI required, no force push or deletion; MR-2 per-user analysis caps (PR #37) |
+| fix planned | MR-1 bracket tokens, MR-3 prompt injection framing, MR-4 per-finding validation, AG-1 agent permissions |
 | accepted | SG-4 Bun 24-hour guard (Lovable only), SG-6 urllib with operator-supplied URLs |
 | false positive | SG-5 nginx header redefinition |
 | deferred | MR-5 stale runs keep calling Groq |

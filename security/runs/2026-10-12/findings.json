@@ -156,7 +156,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "Open registration plus a shared 200K tokens/day Groq quota: one user can block analyses for everyone. Cap analyses in flight per user and per day; a dedicated executor is deferred to the next phase.",
-      "fix_ref": null,
+      "fix_ref": "PR #37 (per-user caps: 1 running, 5 per 24 hours)",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null
