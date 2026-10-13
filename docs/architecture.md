@@ -362,7 +362,7 @@ parts of phase 6 that the rubric scores come before phases 4 and 5:
 ### Rubric coverage
 
 The [2026 rubric](https://github.com/DataTalksClub/ai-dev-tools-zoomcamp/tree/main/project)
-has 14 criteria, 30 points in total. Status as of 2026-10-12.
+has 14 criteria, 30 points in total. Status as of 2026-10-13.
 
 | Criterion | Max | Where it is covered | Evidence | Status |
 |---|---|---|---|---|
@@ -378,7 +378,7 @@ has 14 criteria, 30 points in total. Status as of 2026-10-12.
 | Deployment | 2 | section 7, README Deploy | live URLs on Lightsail and `workers.dev`, smoke test after every deploy | done |
 | CI/CD | 2 | `.github/workflows/` | CI on every PR; `deploy-dev` after CI on `main`; approved `promote-prod` | done |
 | Agent extension pack | 2 | `docs/agent-extension-pack.md`, `docs/permissions.md`, `mcp-server/` | reusable workflow, subagent, MCP server, hook, permission notes | planned |
-| Security, audit, DevOps hardening | 2 | `security/`, `ops/`, [`ai-data-policy.md`](ai-data-policy.md), section 9 | Semgrep in CI and data policy exist; PR audit output, dependency audit, agent security notes and a diagnosis log are planned | partly |
+| Security, audit, DevOps hardening | 2 | [`security/`](../security/README.md), [`ops/`](../ops/README.md), [`ai-data-policy.md`](ai-data-policy.md), section 9 | Semgrep in CI; audit run 2026-10-12 (scanner, dependency audit, model review, a decision per finding); agent capability table; runbook checked against prod and two incident diagnoses | done |
 | Reproducibility | 2 | README Run locally, Tests, Deploy | a pass from a fresh clone | planned |
 
 ## Decisions
