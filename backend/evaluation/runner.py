@@ -72,6 +72,7 @@ class RecordingClient:
         started = time.monotonic()
         result = self.inner.complete_json(messages, schema_name, schema)
         self.calls.append({"schema": schema_name, "tokens": result.total_tokens,
+                           "prompt_tokens": result.prompt_tokens,
                            "output_tokens": result.completion_tokens, "output_budget": result.max_completion_tokens,
                            "finish_reason": result.finish_reason,
                            "seconds": round(time.monotonic() - started, 2), "content": result.content})

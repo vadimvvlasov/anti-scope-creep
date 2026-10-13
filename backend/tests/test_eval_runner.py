@@ -67,11 +67,13 @@ def test_each_call_records_its_output_tokens_budget_and_finish_reason(p1):
     class Reporting(FakeClient):
         def complete_json(self, messages, schema_name, schema):
             content = super().complete_json(messages, schema_name, schema).content
-            return GroqResult(content, 1000, completion_tokens=250, finish_reason="stop", max_completion_tokens=2_000)
+            return GroqResult(content, 1000, completion_tokens=250, finish_reason="stop", max_completion_tokens=2_000,
+                              prompt_tokens=700)
 
     entry = runner.analyze_record(p1, Reporting("Invoices are payable Net 90."))
     call = entry["calls"][0]
     assert (call["output_tokens"], call["output_budget"], call["finish_reason"]) == (250, 2_000, "stop")
+    assert call["prompt_tokens"] == 700
 
 
 def test_other_provider_errors_stop_the_run(p1):
@@ -126,6 +128,8 @@ def test_gemini_client_uses_its_key_model_endpoint_and_output_limit():
     assert client._model == "gemini-3.1-flash-lite" and client._max_completion_tokens == 8_000
     assert client._limiter._capacity == (250_000.0, 10.0) and client._temperature is None
     assert llm_client("gemini", env={"GEMINI_API_KEY": "test-key"}, temperature=0.0)._temperature == 0.0
+    assert client._reasoning_effort == "low"
+    assert llm_client("groq", env={"GROQ_API_KEY": "test-key"}, reasoning_effort="medium")._reasoning_effort == "medium"
 
 
 def test_groq_stays_the_default_provider():

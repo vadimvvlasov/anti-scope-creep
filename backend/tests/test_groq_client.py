@@ -97,6 +97,15 @@ def test_temperature_is_sent_only_when_set():
     assert json.loads(zero.requests[0].content)["temperature"] == 0.0
 
 
+def test_reasoning_effort_is_low_unless_set():
+    default, medium = Script(ok()), Script(ok())
+    client(default)[0].complete_json(MESSAGES, "hi", SCHEMA)
+    client(medium, reasoning_effort="medium")[0].complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert json.loads(default.requests[0].content)["reasoning_effort"] == "low"
+    assert json.loads(medium.requests[0].content)["reasoning_effort"] == "medium"
+
+
 def test_an_error_wrapped_in_a_list_keeps_its_message():
     error = [{"error": {"code": 400, "message": "User location is not supported for the API use."}}]
     groq, _ = client(Script(httpx.Response(400, json=error)))
@@ -172,12 +181,13 @@ def cut(partial: str = '{"findings": [{"category": "scope') -> httpx.Response:
 
 def test_a_result_reports_output_tokens_and_finish_reason():
     response = httpx.Response(200, json={"choices": [{"message": {"content": '{"text": "hi"}'}, "finish_reason": "stop"}],
-                                         "usage": {"total_tokens": 900, "completion_tokens": 300}})
+                                         "usage": {"total_tokens": 900, "prompt_tokens": 500, "completion_tokens": 300}})
     groq, _ = client(Script(response))
 
     result = groq.complete_json(MESSAGES, "hi", SCHEMA)
 
     assert (result.completion_tokens, result.finish_reason, result.max_completion_tokens) == (300, "stop", 2_000)
+    assert result.prompt_tokens == 500
 
 
 def test_a_cut_answer_is_asked_again_with_twice_the_budget():
