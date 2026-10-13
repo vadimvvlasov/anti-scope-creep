@@ -335,39 +335,52 @@ Lightsail container services pull images from public registries, so the image is
 | 6 | Agent extension pack, security artifacts, README reproducibility | Submission-ready |
 | Stretch | CUAD/LoRA classifier + MLflow | Clause preselection before the LLM |
 
-Deadlines: Project 1 on 2026-10-27 (at least phases 1–2), capstone on 2026-11-15.
+Deadlines: Project 1 on 2026-10-27 (00:00 CET), Project 2 on 2026-11-17. The project is
+submitted to Project 1; phases 4–5 in full are planned for Project 2.
 
 This order moves the Groq analyzer ahead of LoRA: it is cheaper to build, makes the product real sooner, and the free-tier limits it exposes give LoRA a concrete purpose (preselection).
 
+### Project 1 submission
+
+The 2026 rubric has no separate observability criterion: operations count only as an
+"operational diagnosis output" inside the security criterion. So for Project 1 the
+parts of phase 6 that the rubric scores come before phases 4 and 5:
+
+- phase 4 is reduced to a runbook and one real diagnosis log in `ops/`; Grafana Cloud
+  and alerts move to Project 2;
+- the agent extension pack gets a thin MCP server over the existing API; the text-to-SQL
+  graph behind `/query` stays in phase 5 for Project 2.
+
 ### Rubric coverage
 
-| Rubric criterion | Where it is covered | Evidence |
-|---|---|---|
-| Problem description | README, `docs/spec.md` | README sections |
-| AI-assisted development workflow | `AGENTS.md`, spec-driven process, agent logs | README section + commit history |
-| Technologies / architecture | this document | diagrams |
-| Frontend (+ tests) | Phase 1 | `npm test` in CI |
-| API contract (OpenAPI) | Phase 1 | `openapi.yaml` |
-| Backend (+ tests) | Phase 1 | `pytest` in CI |
-| Database integration | Phase 1–2 | Alembic migrations, Neon |
-| Containerization | Phase 2 | `Dockerfile`, local compose |
-| Integration testing | Phase 1–2 | Playwright e2e in CI |
-| Deployment | Phase 2 | Lightsail + `workers.dev` URLs |
-| CI/CD pipeline | Phase 2 | `.github/workflows/` |
-| Agent extension pack | Phase 6 | subagents/skills in repo |
-| Security / audit / DevOps hardening | Phases 4 and 6 | Semgrep artifact, PR audit output, `docs/permissions.md`, on-call diagnosis log, `docs/ai-data-policy.md` |
-| Reproducibility | Phase 6 | README setup → run → test → deploy |
+The [2026 rubric](https://github.com/DataTalksClub/ai-dev-tools-zoomcamp/tree/main/project)
+has 14 criteria, 30 points in total. Status as of 2026-10-12.
 
----
+| Criterion | Max | Where it is covered | Evidence | Status |
+|---|---|---|---|---|
+| Problem description | 2 | [README](../README.md), [`spec.md`](spec.md) | Problem, What it does, How it works for the user | done |
+| AI-assisted workflow | 2 | [README](../README.md#ai-assisted-development), [`ai-workflow.md`](ai-workflow.md), [`AGENTS.md`](../AGENTS.md) | tools and roles, context files, a real step prompt and its checklist, verification per layer | done |
+| Technologies and architecture | 2 | this document, sections 1–9 | frontend, backend, database, containers, CI/CD and how they connect | done |
+| Frontend | 3 | `frontend/`, all API calls in `src/services/api.ts` | Vitest in `src/**/__tests__/`, `npm test` in CI | done |
+| API contract | 2 | [`openapi.yaml`](../openapi.yaml), written from the frontend API client | `backend/tests/test_openapi_contract.py` compares it with the backend routes | done |
+| Backend | 3 | `backend/` | pytest in CI, on SQLite and PostgreSQL | done |
+| Database | 2 | section 3, `backend/migrations/` | Alembic; local Postgres, Neon branches `dev` and `production` | done |
+| Containerization | 2 | `backend/Dockerfile`, `frontend/Dockerfile`, `compose.yaml` | `make up` starts the whole system | done |
+| Integration testing | 2 | `frontend/e2e/` | Playwright against the `make up` stack, a separate CI job | done |
+| Deployment | 2 | section 7, README Deploy | live URLs on Lightsail and `workers.dev`, smoke test after every deploy | done |
+| CI/CD | 2 | `.github/workflows/` | CI on every PR; `deploy-dev` after CI on `main`; approved `promote-prod` | done |
+| Agent extension pack | 2 | `docs/agent-extension-pack.md`, `docs/permissions.md`, `mcp-server/` | reusable workflow, subagent, MCP server, hook, permission notes | planned |
+| Security, audit, DevOps hardening | 2 | `security/`, `ops/`, [`ai-data-policy.md`](ai-data-policy.md), section 9 | Semgrep in CI and data policy exist; PR audit output, dependency audit, agent security notes and a diagnosis log are planned | partly |
+| Reproducibility | 2 | README Run locally, Tests, Deploy | a pass from a fresh clone | planned |
 
 ## Decisions
 
-Decided on 2026-09-29; backend hosting changed on 2026-10-04. No open decisions right now.
+Decided on 2026-09-29; backend hosting changed on 2026-10-04; the LLM provider plan on 2026-10-12. No open decisions right now.
 
 | Topic | Decision | Revisit when |
 |---|---|---|
-| Maximum contract length | 60,000 characters, all phases (raised from 30,000 on 2026-10-11 for CUAD coverage, see section 4) | Moving to a paid LLM tier, or LoRA preselection cuts tokens per contract |
-| LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL | Groq changes free-tier models or limits |
+| Maximum contract length | 60,000 characters, all phases (raised from 30,000 on 2026-10-11 for CUAD coverage, see section 4) | Moving prod to Gemini: 150,000 characters for Gemini, 60,000 for Groq |
+| LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL in dev and prod. The eval also runs Gemini 3.5 Flash-Lite. After the Project 1 submission prod moves to Gemini on a paid tier: the free tier forbids confidential data and serving users in the EEA, Switzerland or the UK ([terms](https://ai.google.dev/gemini-api/terms)) | Project 1 is submitted (2026-10-27), or Groq changes free-tier models or limits |
 | CUAD/LoRA + MLflow | **Stretch goal**, built only after phases 1–6. Role: preselect candidate clauses before the LLM | Core phases are done before the capstone deadline |
 | Background execution | In-process `BackgroundTasks` on an always-on Lightsail container, plus the stale-analysis rule. A task queue is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics) |
 | Backend hosting | AWS Lightsail container services (Nano, `eu-central-1`), paid from AWS Free Tier credits. Google Cloud Run was the first choice, but a Google Cloud billing account could not be created (`OR_BACR2_59`) | The credits run out (about 2027-05) or Lightsail pricing changes |
