@@ -53,6 +53,7 @@ class GroqResult:
     completion_tokens: int | None = None
     finish_reason: str | None = None
     max_completion_tokens: int | None = None  # the output budget of the request that answered
+    prompt_tokens: int | None = None  # Gemini: total - prompt - completion = thinking tokens
 
 
 def strict_json_schema(model: type[BaseModel]) -> dict[str, Any]:
@@ -188,7 +189,8 @@ class GroqClient:
         logger.info("Groq %s attempt %d: HTTP 200, %s tokens (%s output of %d), finish %s, %d ms",
                     self._model, attempt, tokens, completion, budget, finish_reason, elapsed_ms)
         return GroqResult(content=content, total_tokens=tokens, completion_tokens=completion,
-                          finish_reason=finish_reason, max_completion_tokens=budget)
+                          finish_reason=finish_reason, max_completion_tokens=budget,
+                          prompt_tokens=usage.get("prompt_tokens"))
 
     def _delay(self, attempt: int, response: httpx.Response | None) -> float:
         retry_after = response.headers.get("retry-after") if response is not None else None

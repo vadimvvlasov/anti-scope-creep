@@ -181,12 +181,13 @@ def cut(partial: str = '{"findings": [{"category": "scope') -> httpx.Response:
 
 def test_a_result_reports_output_tokens_and_finish_reason():
     response = httpx.Response(200, json={"choices": [{"message": {"content": '{"text": "hi"}'}, "finish_reason": "stop"}],
-                                         "usage": {"total_tokens": 900, "completion_tokens": 300}})
+                                         "usage": {"total_tokens": 900, "prompt_tokens": 500, "completion_tokens": 300}})
     groq, _ = client(Script(response))
 
     result = groq.complete_json(MESSAGES, "hi", SCHEMA)
 
     assert (result.completion_tokens, result.finish_reason, result.max_completion_tokens) == (300, "stop", 2_000)
+    assert result.prompt_tokens == 500
 
 
 def test_a_cut_answer_is_asked_again_with_twice_the_budget():

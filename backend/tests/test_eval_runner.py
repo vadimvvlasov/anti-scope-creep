@@ -67,11 +67,13 @@ def test_each_call_records_its_output_tokens_budget_and_finish_reason(p1):
     class Reporting(FakeClient):
         def complete_json(self, messages, schema_name, schema):
             content = super().complete_json(messages, schema_name, schema).content
-            return GroqResult(content, 1000, completion_tokens=250, finish_reason="stop", max_completion_tokens=2_000)
+            return GroqResult(content, 1000, completion_tokens=250, finish_reason="stop", max_completion_tokens=2_000,
+                              prompt_tokens=700)
 
     entry = runner.analyze_record(p1, Reporting("Invoices are payable Net 90."))
     call = entry["calls"][0]
     assert (call["output_tokens"], call["output_budget"], call["finish_reason"]) == (250, 2_000, "stop")
+    assert call["prompt_tokens"] == 700
 
 
 def test_other_provider_errors_stop_the_run(p1):
