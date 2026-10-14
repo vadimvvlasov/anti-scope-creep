@@ -11,6 +11,10 @@ endpoint; the eval uses it for Gemini (evaluation/__main__.py).
 (`finish_reason: "length"`) is not valid JSON, so it is asked again once with twice the
 budget, up to MAX_RETRY_COMPLETION_TOKENS; a second cut fails the call. A truncated
 answer is never parsed, so the cap cannot silently drop findings.
+
+A `400` "Failed to validate JSON" (`json_validate_failed`) means this one generation broke
+the schema, so it is asked again once; a second one fails the call. Every other `400`
+(for example a schema outside the strict subset) fails at once: asking again cannot fix it.
 """
 
 import json
@@ -35,6 +39,8 @@ MAX_DELAY_SECONDS = 60.0
 CHARS_PER_TOKEN = 4
 MAX_RETRY_COMPLETION_TOKENS = 4_000
 TRUNCATED = "length"
+INVALID_JSON_CODE = "json_validate_failed"
+INVALID_JSON_MESSAGE = "Failed to validate JSON"
 
 # Strict mode accepts a subset of JSON Schema; length limits are validated by Pydantic afterwards.
 _UNSUPPORTED_KEYWORDS = frozenset(
@@ -136,7 +142,8 @@ class GroqClient:
 
     def _request(self, messages: list[dict[str, str]], schema_name: str, schema: dict[str, Any],
                  budget: int) -> GroqResult:
-        """One request with retries on 429, 5xx and network errors."""
+        """One request with retries on 429, 5xx and network errors, and one more try after
+        a generation that failed JSON validation."""
         body = {
             "model": self._model,
             "messages": messages,
@@ -151,12 +158,18 @@ class GroqClient:
             body["temperature"] = self._temperature
         estimate = _estimate_tokens(messages) + budget
         last = "no attempt"
+        invalid_json_retried = False
         for attempt in range(1, self._max_attempts + 1):
             self._limiter.acquire(estimate)
             started = time.monotonic()
             response, last = self._post(body)
             if response is not None and response.status_code == 200:
                 return self._parse(response, attempt, started, budget)
+            if response is not None and not invalid_json_retried and _is_invalid_json(response):
+                invalid_json_retried = True
+                logger.warning("Groq %s attempt %d: generated JSON failed validation; asking again once",
+                               self._model, attempt)
+                continue
             if response is not None and response.status_code not in RETRY_STATUSES:
                 raise GroqError(f"Groq returned HTTP {response.status_code}: {_error_message(response)}")
             logger.warning("Groq %s attempt %d failed: %s", self._model, attempt, last)
@@ -203,6 +216,22 @@ class GroqClient:
 
 def _estimate_tokens(messages: list[dict[str, str]]) -> int:
     return math.ceil(sum(len(m.get("content", "")) for m in messages) / CHARS_PER_TOKEN)
+
+
+def _is_invalid_json(response: httpx.Response) -> bool:
+    """A 400 for one generation that broke the schema, recognized by the error code or,
+    if the code is missing, by the start of the message."""
+    if response.status_code != 400:
+        return False
+    try:
+        payload = response.json()
+        if isinstance(payload, list) and payload:
+            payload = payload[0]
+        error = payload["error"]
+        return (error.get("code") == INVALID_JSON_CODE
+                or str(error.get("message", "")).startswith(INVALID_JSON_MESSAGE))
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return False
 
 
 def _error_message(response: httpx.Response) -> str:
