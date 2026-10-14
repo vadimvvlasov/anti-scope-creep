@@ -84,10 +84,16 @@ Added in Phase 3:
   the contract text goes to a third-party AI provider
 - Findings prompt v4: per-category decision rules, chosen on a held-out CUAD set that
   was not used to tune it. An answer cut at the output token cap is never parsed: it is
-  asked again once with a doubled budget, then the analysis fails
+  asked again once with a doubled budget, then the analysis fails. A generation that
+  fails the provider's JSON validation (`400 json_validate_failed`) is also asked again
+  once
 - An offline eval with hand-labeled gold sets (CUAD contracts and synthetic
   freelance contracts): precision, recall and severity per category, see
-  [`eval/README.md`](eval/README.md). It runs locally; CI never calls the LLM
+  [`eval/README.md`](eval/README.md). It runs locally; CI never calls the LLM.
+  Results in [`docs/eval.md`](docs/eval.md): with prompt v4 on Gemini 3.5 Flash-Lite,
+  precision 0.94 and recall 1.0 on the freelance set and recall 0.8 on the held-out
+  CUAD set. Groq `gpt-oss-120b`, which runs in dev and prod until the course
+  submission, raises noticeably more false alarms on commercial contracts
 
 Added in Phase 2:
 

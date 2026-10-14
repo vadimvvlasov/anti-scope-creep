@@ -130,6 +130,9 @@ Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free 
 - With equal limits, `gpt-oss-120b` stays the choice: it is the largest of the three. `qwen/qwen3.8-27b` replaced `qwen3-32b` and has not been benchmarked for this project; compare it in the Phase 3 eval if quality is a problem.
 - It is a reasoning model: request `reasoning_effort: "low"` so reasoning tokens do not eat the per-minute budget.
 - Trade-off: analysis and history queries share one quota of 200,000 tokens/day. The limiter below covers both.
+- Limits are counted per model inside the organization (checked 2026-10-06: a request to `gpt-oss-20b` did not lower the `gpt-oss-120b` counter). So `gpt-oss-20b` can serve as a fallback when the daily quota of `gpt-oss-120b` runs out; same provider, same ZDR and data policy. Its quality has not been measured yet.
+- The dev, prod and local keys are separate for revoking and accounting, not for quota: all keys of the organization share the same limits.
+- The daily token limit is a rolling bucket, not a counter reset at midnight: it refills at about 139 tokens/min (200,000 / 1,440), about 8,300 tokens/hour. The response headers show only the per-minute token budget and the daily requests; the daily token state is visible only in a `429` ("tokens per day (TPD): Limit 200000, Used …, Requested …", seen 2026-10-14). An eval run draws from the same bucket as prod, so Groq eval runs go in portions of about 100,000 tokens with hours in between, never right before a demo.
 
 ### Consequences for analysis
 
@@ -396,7 +399,7 @@ Decided on 2026-09-29; backend hosting changed on 2026-10-04; the LLM provider p
 
 ## Facts to re-verify
 
-Checked on 2026-09-29 (Lightsail and AWS rows on 2026-10-04); re-check before the LLM phase.
+Checked on 2026-09-29 (Lightsail and AWS rows on 2026-10-04). Groq rows re-checked on 2026-10-06 at the start of the LLM phase (limits per model, ZDR enabled for the organization); the rolling daily token bucket observed on 2026-10-14.
 
 | Fact | Source |
 |---|---|
