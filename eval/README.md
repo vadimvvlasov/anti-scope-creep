@@ -8,7 +8,7 @@ CI never calls Groq.
 | Set | File | Contracts | Categories labeled | What it measures |
 |---|---|---|---|---|
 | CUAD | `gold/cuad.jsonl` | 28 commercial contracts (≤ 60,000 characters) with a clear service provider | `uncapped_liability`, `one_sided_termination`, `ip_transfer_before_payment` | Recall and precision on clause types lawyers labeled; quote verification on real-world formatting |
-| Freelance | `gold/freelance.jsonl` | 12 synthetic contracts: 3 clean controls, 1 natural positive, 7 mutants, 1 decoy | all six | Every category at high and medium, severity, boundaries, the no-finding rule |
+| Freelance | `gold/freelance.jsonl` | 13 synthetic contracts: 3 clean controls, 1 natural positive, 8 mutants, 1 decoy | all six | Every category at high and medium, severity, boundaries, the no-finding rule |
 
 `gold/cuad.draft.jsonl` is the machine-made starting point. `gold/cuad.jsonl` holds the
 labeled records: `proposed` until a person reviews them, then `reviewed`.
@@ -86,6 +86,19 @@ mapping needs a person:
 
 Severity is not in CUAD; the reviewer sets it by the spec's severity matrix.
 
+#### Known misses (v4, Gemini 3.5 Flash-Lite)
+
+Two errors repeat across held-out runs at every reasoning effort (2026-10-14: low, medium
+and high, two runs each). The labels were rechecked against the contract text and the prompt
+rules; both are model errors. They stay in the prompt's blind spot on purpose: a rule or
+example aimed at these contracts would make the held-out numbers in-sample. A fix for the
+same pattern is tested on a freelance mutant first.
+
+| Contract | Error | Why the label holds | Freelance mutant |
+|---|---|---|---|
+| Vgrab, development agreement | missed `ip_transfer_before_payment` (5 of 6 runs; found once at high) | "All Intellectual Property during the project is owned by VAL, and will be turned over ... after the fulfillment of all commercial obligations": ownership passes during the project, only the handover waits for payment (high by the IP rule) | M8 |
+| BEYONDCOM, co-hosting agreement | false `uncapped_liability` on "except for claims under Section 9" (5 of 6 runs) | the provider's own indemnity in 9(b) has a separate cap ("to the extent of the compensation received"), and an exception with its own cap is not a finding; both clauses are in the same chunk | none yet |
+
 ### Labeling rules
 
 Only the provider's exposure counts; a mutual clause counts when the provider is one of
@@ -134,8 +147,9 @@ python3 scripts/build_freelance_set.py   # writes eval/freelance/*.txt and gold/
 | M6 | `data/25` | Net 40 low, client-only termination with pay low |
 | D1 | `data/25` | none: decoy wording ("unlimited number of questions", "unlimited copies", "within 30 days", "terminate at any time" with pay) |
 | M7 | `data/2` | payment 90 days after final acceptance high, IP on milestone delivery high |
+| M8 | `data/25` | IP owned by the client from creation, only the file handover waits for full payment, high |
 
-17 gold findings; every category has a high and a medium one. Low is planted only for
+18 gold findings; every category has a high and a medium one. Low is planted only for
 payment and termination: the spec's low thresholds for scope, revisions and IP ("minor
 vague wording") are too loose to label without dispute. Net 61-89 is not used: the
 severity matrix does not cover it.

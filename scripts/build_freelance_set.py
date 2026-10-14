@@ -162,6 +162,12 @@ MUTANTS = {
              "Upon delivery of each Milestone, Developer assigns to Client"),
         ]),
     ]),
+    "M8": ("data/25.txt", [
+        clause("ip_transfer_before_payment", "6.1", "6.1 All intellectual property rights in the Deliverables belong to Client from the moment they are "
+               "created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the "
+               "project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+               "high", "Ownership passes on creation; only the handover of files waits for payment (the pattern of a held-out miss, reworded)."),
+    ]),
 }
 
 
