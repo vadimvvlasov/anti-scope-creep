@@ -1,0 +1,75 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "(c) The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2084,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 15.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5546,
+   "prompt_tokens": 4008,
+   "output_tokens": 210,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.13,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "(c) The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform additional unspecified services without extra pay, and there is no change-order mechanism to ensure you are compensated for extra work.",
+      "suggested_change": "The Consultant shall provide the services specified herein, and any additional services requested by the Company shall be subject to a mutually agreed written change order and additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4711,
+   "prompt_tokens": 3778,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.38,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4542,
+   "prompt_tokens": 3861,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1915,
+   "prompt_tokens": 378,
+   "output_tokens": 112,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working together, but I would like to request a small modification before signing: - The relevant clause requires performing additional unspecified services without extra pay and lacks a change-order mechanism, so please update this section to state that the Consultant shall provide the services specified herein, and any additional services requested by the Company shall be subject to a mutually agreed written change order and additional compensation. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

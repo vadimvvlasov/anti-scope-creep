@@ -1,0 +1,75 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11621,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 19.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5259,
+   "prompt_tokens": 3948,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.75,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5419,
+   "prompt_tokens": 3795,
+   "output_tokens": 104,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.33,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Ownership of your work is assigned to the client immediately upon creation, before you are guaranteed to receive full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable Deliverables, the Contractor assigns to the Client all intellectual property rights in such Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5171,
+   "prompt_tokens": 3751,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1425,
+   "prompt_tokens": 300,
+   "output_tokens": 130,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.48,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have one small suggestion for the relevant clause. - Regarding the section stating 'To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works,' this currently assigns ownership before payment is guaranteed. I propose modifying it to ensure ownership transfers upon payment: 'Upon receipt of full payment for the applicable Deliverables, the Contractor assigns to the Client all intellectual property rights in such Deliverables.' Please let me know if this adjustment works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

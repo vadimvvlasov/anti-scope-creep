@@ -1,0 +1,99 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 72.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5902,
+   "prompt_tokens": 4249,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6316,
+   "prompt_tokens": 4120,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.24,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6968,
+   "prompt_tokens": 4062,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8484,
+   "prompt_tokens": 4224,
+   "output_tokens": 146,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.92,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+      "explanation": "A payment term of 90 days significantly delays your receipt of payment and increases your cash flow risk.",
+      "suggested_change": "The second installment of $115,250.00 shall be paid Net 30 days from the Effective Date of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5976,
+   "prompt_tokens": 4263,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.22,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2223,
+   "prompt_tokens": 310,
+   "output_tokens": 115,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good day. Before I sign the agreement, I would like to propose a small adjustment. - Regarding the payment terms in the relevant clause, a ninety-day period causes a significant delay in receiving funds, so I propose changing it to: The second installment of $115,250.00 shall be paid Net 30 days from the Effective Date of this Agreement. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

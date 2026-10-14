@@ -1,0 +1,75 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 51.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6711,
+   "prompt_tokens": 4233,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.59,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6622,
+   "prompt_tokens": 3977,
+   "output_tokens": 171,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.87,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "The contract grants ownership of your work product to the client immediately without conditioning it on full payment, meaning they could own your work even if you are never paid.",
+      "suggested_change": "Upon full payment of all compensation due to the Contractor hereunder, all right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall become the absolute property of the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4387,
+   "prompt_tokens": 2739,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2594,
+   "prompt_tokens": 335,
+   "output_tokens": 119,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am writing to propose a minor update to the agreement before we proceed. - Regarding the relevant clause, the agreement grants ownership of your work product to the client immediately without conditioning it on full payment, meaning they could own your work even if you are never paid; I propose changing this to: Upon full payment of all compensation due to the Contractor hereunder, all right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall become the absolute property of the Client. Thank you, and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

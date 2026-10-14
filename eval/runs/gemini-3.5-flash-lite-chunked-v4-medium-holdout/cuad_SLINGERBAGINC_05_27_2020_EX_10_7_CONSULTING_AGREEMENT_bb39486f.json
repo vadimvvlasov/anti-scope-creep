@@ -1,0 +1,46 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [],
+ "email": false,
+ "seconds": 13.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5766,
+   "prompt_tokens": 4008,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.44,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5034,
+   "prompt_tokens": 3778,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.34,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4428,
+   "prompt_tokens": 3861,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.65,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

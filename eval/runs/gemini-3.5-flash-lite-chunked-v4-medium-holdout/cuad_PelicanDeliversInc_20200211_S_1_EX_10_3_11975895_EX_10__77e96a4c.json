@@ -1,0 +1,75 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11621,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 28.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5679,
+   "prompt_tokens": 3948,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5480,
+   "prompt_tokens": 3795,
+   "output_tokens": 108,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 11.95,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Ownership of your work transfers to the client immediately upon creation or delivery rather than waiting until you receive full payment.",
+      "suggested_change": "Upon receipt of full payment of all Fees due under this Agreement, Developer assigns and transfers to Client all copyright and other intellectual property ownership in the Works."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5278,
+   "prompt_tokens": 3751,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1255,
+   "prompt_tokens": 304,
+   "output_tokens": 93,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.1,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to get started, but I would like to suggest a quick adjustment before I sign. - Regarding the relevant clause, the current terms transfer ownership of the work immediately rather than upon receiving full payment. I propose updating this so that ownership transfers upon receipt of full payment of all fees due under the agreement. Thank you for your understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

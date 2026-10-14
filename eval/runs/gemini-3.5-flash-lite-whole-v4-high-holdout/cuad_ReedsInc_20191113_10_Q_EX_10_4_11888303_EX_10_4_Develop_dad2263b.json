@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8373,
+   "end": 8696
+  }
+ ],
+ "email": true,
+ "seconds": 17.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11817,
+   "prompt_tokens": 7484,
+   "output_tokens": 190,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.92,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "Ownership of your work product transfers immediately upon creation and without any payment condition, exposing you to the risk of losing rights to your intellectual property.",
+      "suggested_change": "Upon receipt of full payment therefor, Company will and hereby does irrevocably assign to the Client all worldwide right, title and interest in and to the Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2462,
+   "prompt_tokens": 354,
+   "output_tokens": 99,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a minor suggestion before we move forward. - Regarding the relevant clause, the current terms transfer ownership immediately without confirming payment; I propose changing this so that upon receipt of full payment therefor, Company will and hereby does irrevocably assign to the Client all worldwide right, title and interest in and to the Deliverables. Thank you for your time and cooperation. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,75 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2088,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 56.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7480,
+   "prompt_tokens": 4008,
+   "output_tokens": 221,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.0,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform unspecified additional services without any guaranteed extra pay, and there is no change-order mechanism to adjust your compensation for out-of-scope tasks.",
+      "suggested_change": "The Contractor shall perform the services specifically set forth herein, and any additional services requested by the Client shall be set forth in a written change order specifying the mutually agreed scope of work and corresponding compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6259,
+   "prompt_tokens": 3778,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.15,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5120,
+   "prompt_tokens": 3861,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.65,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1961,
+   "prompt_tokens": 389,
+   "output_tokens": 92,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I am looking forward to moving forward and have one small suggestion regarding the agreement. - Regarding the relevant clause, it currently requires performing unspecified additional services without guaranteed extra compensation, and I propose modifying it so that any additional services are set forth in a written change order specifying the mutually agreed scope of work and corresponding compensation. Thank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

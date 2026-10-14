@@ -1,0 +1,87 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+   "start": 18598,
+   "end": 18769
+  }
+ ],
+ "email": true,
+ "seconds": 50.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6190,
+   "prompt_tokens": 4262,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6864,
+   "prompt_tokens": 4141,
+   "output_tokens": 128,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 25.91,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+      "explanation": "Your payments are conditional and delayed until the client receives payment from third-party wireless carriers, tying your cash flow to external collections.",
+      "suggested_change": "All payments hereunder shall be payable to IMNTV in United States Dollars within thirty (30) days following the end of each calendar quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6089,
+   "prompt_tokens": 4162,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4512,
+   "prompt_tokens": 2584,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1803,
+   "prompt_tokens": 316,
+   "output_tokens": 106,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to request a minor update before signing. - Regarding the relevant clause, the current wording makes payments conditional on collections from third-party wireless carriers, tying cash flow to external factors; I propose changing this so that all payments are payable within thirty (30) days following the end of each calendar quarter. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

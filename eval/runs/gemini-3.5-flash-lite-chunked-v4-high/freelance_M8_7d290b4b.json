@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 39.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6915,
+   "prompt_tokens": 4003,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.55,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "Ownership of your work passes to the Client upon creation before you are paid, leaving you unprotected if payment is delayed or withheld.",
+      "suggested_change": "Intellectual property rights in the Deliverables shall transfer to the Client upon receipt of full payment of all applicable fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4853,
+   "prompt_tokens": 3159,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.15,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2987,
+   "prompt_tokens": 298,
+   "output_tokens": 108,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.21,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working with you, but I would like to request a small adjustment to the relevant clause before signing. - Under the current terms, ownership of the work passes upon creation before payment is received, leaving me unprotected if payment is delayed; I propose changing this so that intellectual property rights shall transfer to the client upon receipt of full payment of all applicable fees. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

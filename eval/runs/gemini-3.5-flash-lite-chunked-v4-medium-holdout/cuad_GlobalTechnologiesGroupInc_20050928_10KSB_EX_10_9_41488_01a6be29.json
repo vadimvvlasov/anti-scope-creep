@@ -1,0 +1,87 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+   "start": 18598,
+   "end": 18769
+  }
+ ],
+ "email": true,
+ "seconds": 27.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5243,
+   "prompt_tokens": 4262,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5798,
+   "prompt_tokens": 4141,
+   "output_tokens": 167,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.26,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+      "explanation": "You are only paid when the client receives payment from wireless carriers, which makes your payment conditional and forces you to wait for third-party collections.",
+      "suggested_change": "The Client shall pay all amounts to the Contractor on a quarterly basis within thirty (30) days following the end of each calendar quarter, regardless of when the Client receives payments from third-party carriers."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5601,
+   "prompt_tokens": 4162,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.68,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4029,
+   "prompt_tokens": 2584,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1695,
+   "prompt_tokens": 331,
+   "output_tokens": 128,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed the terms and would like to request an adjustment to the relevant clause. - Regarding the payment terms, the current wording makes payment conditional on third-party collections and forces a wait for wireless carriers. I propose updating the agreement so that the Client shall pay all amounts to the Contractor on a quarterly basis within thirty (30) days following the end of each calendar quarter, regardless of when the Client receives payments from third-party carriers. Thank you for your time, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

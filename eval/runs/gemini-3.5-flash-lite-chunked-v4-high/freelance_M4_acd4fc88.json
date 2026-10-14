@@ -1,0 +1,120 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 2001,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 21.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6870,
+   "prompt_tokens": 3966,
+   "output_tokens": 403,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.05,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You are required to accept scope changes and perform extra work without additional pay as long as they fit within the overall project budget.",
+      "suggested_change": "Any changes to the scope of work requested by the Client that alter the agreed Deliverables or increase the workload will be documented in a written change request and billed at the Contractor's standard rates or as mutually agreed."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "The contract allows 15 rounds of revisions, which is excessive and can trap you in endless work without extra compensation.",
+      "suggested_change": "The parties will include up to 2 rounds of revisions for the principal creative Deliverables. Additional revisions will be billed at the Contractor's standard hourly rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Net 60 payment terms require you to wait up to 60 days to get paid, which can create significant cash flow challenges for your business.",
+      "suggested_change": "Invoices are payable Net 30 from the date of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5501,
+   "prompt_tokens": 3160,
+   "output_tokens": 158,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.14,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "The contract permits 15 rounds of revisions, which exposes you to excessive unpaid iteration work.",
+      "suggested_change": "The Client is entitled to up to three rounds of revisions per Deliverable, and any additional rounds will be charged at the Contractor's standard hourly rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "Payment is due 60 days after invoicing, which ties up your cash flow for an extended period.",
+      "suggested_change": "Payment terms are Net 30 from the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3162,
+   "prompt_tokens": 670,
+   "output_tokens": 327,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.38,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed the terms and would like to propose a few adjustments before we sign: - Regarding the clause addressing scope changes, the text requires accepting scope changes and performing extra work without additional pay within the project budget; I propose modifying this so that any changes to the scope of work requested by the Client that alter the agreed Deliverables or increase the workload will be documented in a written change request and billed at the Contractor's standard rates or as mutually agreed. - Concerning the clause allowing 15 rounds of ordinary revisions, this is excessive and can trap me in endless work without extra compensation; I propose that the parties will include up to 2 rounds of revisions for the principal creative Deliverables, with additional revisions billed at the Contractor's standard hourly rate. - Regarding the Net 60 payment terms, waiting up to 60 days to get paid can create significant cash flow challenges for my business; I propose that invoices are payable Net 30 from the date of the invoice. - Concerning the revision allowance of 15 rounds, this exposes me to excessive unpaid iteration work; I propose that the Client is entitled to up to three rounds of revisions per Deliverable, and any additional rounds will be charged at the Contractor's standard hourly rate. - Regarding the payment period of Net 60, this ties up cash flow for an extended period; I propose that payment terms are Net 30 from the invoice date. Thank you for your time and flexibility, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

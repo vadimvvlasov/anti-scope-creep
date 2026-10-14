@@ -1,0 +1,63 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+   "start": 14200,
+   "end": 14323
+  }
+ ],
+ "email": true,
+ "seconds": 22.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5915,
+   "prompt_tokens": 3602,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.99,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7185,
+   "prompt_tokens": 3834,
+   "output_tokens": 141,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.71,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+      "explanation": "This clause makes a present assignment of intellectual property rights before you are guaranteed final payment, leaving you unprotected if payment is withheld.",
+      "suggested_change": "Upon receipt of final payment for the applicable Services, Contractor shall assign to Company all right, title and interest to the completed deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2515,
+   "prompt_tokens": 305,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and have one quick note before signing. - Regarding the relevant clause covering works in progress, the agreement assigns intellectual property rights before final payment is guaranteed, leaving payment unprotected. I propose updating this section so that upon receipt of final payment for the applicable Services, Contractor shall assign to Company all right, title and interest to the completed deliverables. Please let me know if this change is acceptable."
+   }
+  }
+ ],
+ "dropped": []
+}

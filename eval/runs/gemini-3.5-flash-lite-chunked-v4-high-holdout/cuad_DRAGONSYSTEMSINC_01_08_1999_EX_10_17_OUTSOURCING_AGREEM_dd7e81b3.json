@@ -1,0 +1,51 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 20.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6818,
+   "prompt_tokens": 3431,
+   "output_tokens": 114,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 15.03,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the Client can terminate the contract without cause, and the text does not ensure payment for work you have completed or costs incurred upon such termination.",
+      "suggested_change": "Either party may terminate this agreement without cause upon sixty days written notice, and the Client shall pay the Contractor for all services rendered through the date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2221,
+   "prompt_tokens": 313,
+   "output_tokens": 99,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.74,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! Thank you for sharing the agreement. I have one minor suggestion before signing: - Regarding the relevant clause, the current terms allow only one side to terminate without cause and do not guarantee payment for completed work, so I propose modifying it so that either party may terminate without cause upon sixty days written notice, with the Client paying the Contractor for all services rendered through the date of termination. Thank you and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

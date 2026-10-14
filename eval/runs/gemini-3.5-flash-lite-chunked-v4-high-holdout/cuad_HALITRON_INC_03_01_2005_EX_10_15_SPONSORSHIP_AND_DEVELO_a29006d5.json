@@ -1,0 +1,46 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [],
+ "email": false,
+ "seconds": 44.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6323,
+   "prompt_tokens": 4233,
+   "output_tokens": 9,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 27.21,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5902,
+   "prompt_tokens": 3977,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 10.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3792,
+   "prompt_tokens": 2739,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.58,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

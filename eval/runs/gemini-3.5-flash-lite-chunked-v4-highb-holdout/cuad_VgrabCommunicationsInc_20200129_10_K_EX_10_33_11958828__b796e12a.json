@@ -1,0 +1,63 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+   "start": 8849,
+   "end": 9055
+  }
+ ],
+ "email": true,
+ "seconds": 51.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6501,
+   "prompt_tokens": 3826,
+   "output_tokens": 177,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.52,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+      "explanation": "The contract states that intellectual property is owned by the client as it is created during the project, meaning your ownership rights transfer before payment is fully completed.",
+      "suggested_change": "Ownership of all intellectual property created by the Contractor pursuant to this Agreement shall remain with the Contractor until the Contractor has received full payment of all commercial obligations due under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5134,
+   "prompt_tokens": 2805,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.67,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2122,
+   "prompt_tokens": 341,
+   "output_tokens": 144,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 20.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working together, but I would like to request one minor adjustment before signing: - Regarding the relevant clause, the agreement currently states that intellectual property is owned by the client as it is created during the project, meaning ownership rights transfer before payment is fully completed. I propose the following constructive modification: Ownership of all intellectual property created by the Contractor pursuant to this Agreement shall remain with the Contractor until the Contractor has received full payment of all commercial obligations due under this Agreement, at which point ownership shall transfer to the Client. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

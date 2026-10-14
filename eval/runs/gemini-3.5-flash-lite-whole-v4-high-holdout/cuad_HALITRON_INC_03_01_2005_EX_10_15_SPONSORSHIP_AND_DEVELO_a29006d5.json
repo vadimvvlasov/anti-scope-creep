@@ -1,0 +1,51 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11937,
+   "prompt_tokens": 7650,
+   "output_tokens": 169,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.74,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "Ownership of your work product passes to the client immediately rather than upon full payment, meaning the client will own your work even if they fail to pay you.",
+      "suggested_change": "All right, title and interest in and to the Results and Proceeds and the Advertising Materials shall remain with the Contractor until all compensation due under this Agreement has been paid in full by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2044,
+   "prompt_tokens": 333,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the paperwork. I have reviewed the agreement and would like to suggest one small adjustment before we move forward. - Regarding the relevant clause, ownership currently passes immediately rather than upon full payment, meaning the work could be owned even if payment is missed. I propose changing this so that all right, title and interest in and to the Results and Proceeds and the Advertising Materials shall remain with the Contractor until all compensation due under this Agreement has been paid in full by the Client. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

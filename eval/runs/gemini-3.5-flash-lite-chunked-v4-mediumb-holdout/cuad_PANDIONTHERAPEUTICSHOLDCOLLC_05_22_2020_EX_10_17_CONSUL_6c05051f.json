@@ -1,0 +1,77 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+   "start": 681,
+   "end": 935
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 23.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6955,
+   "prompt_tokens": 3922,
+   "output_tokens": 338,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 14.34,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+      "explanation": "The agreement lacks a change-order mechanism, meaning additional services can be requested without guaranteed extra compensation.",
+      "suggested_change": "Any material changes or additions to the services specified on Schedule A shall be agreed upon in a written change order detailing any adjustments to fees and timelines."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Intellectual property rights are assigned to the client immediately upon creation rather than being conditioned upon full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the deliverables created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5311,
+   "prompt_tokens": 3784,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1770,
+   "prompt_tokens": 479,
+   "output_tokens": 183,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to review the agreement and request a couple of adjustments before signing. - Regarding the relevant clause on consulting services, the agreement lacks a change-order mechanism, meaning additional services can be requested without guaranteed extra compensation; I propose that any material changes or additions to the services specified on Schedule A shall be agreed upon in a written change order detailing any adjustments to fees and timelines. - Regarding the relevant clause on intellectual property, intellectual property rights are assigned to the client immediately upon creation rather than being conditioned upon full payment; I propose that upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the deliverables created under this Agreement. Thank you for your time, and please let me know if these updates work for you."
+   }
+  }
+ ],
+ "dropped": []
+}
