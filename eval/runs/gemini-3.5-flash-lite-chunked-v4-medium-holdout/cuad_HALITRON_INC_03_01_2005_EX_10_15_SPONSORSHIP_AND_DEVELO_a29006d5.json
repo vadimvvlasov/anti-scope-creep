@@ -1,0 +1,75 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 24.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5943,
+   "prompt_tokens": 4233,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 8.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5873,
+   "prompt_tokens": 3977,
+   "output_tokens": 158,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.43,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "Ownership of your work transfers to the Client immediately without making it conditional on full payment, meaning you could lose your rights before you are paid.",
+      "suggested_change": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall transfer to the Client only upon receipt of full payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3435,
+   "prompt_tokens": 2739,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.48,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1710,
+   "prompt_tokens": 322,
+   "output_tokens": 124,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am writing to request a minor modification to the agreement before we move forward with signing. - Regarding the relevant clause, the current wording means that ownership of the work transfers immediately without making it conditional on full payment, meaning rights could be lost before payment is received. I propose changing this to: All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall transfer to the Client only upon receipt of full payment. Thank you for your time and consideration. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

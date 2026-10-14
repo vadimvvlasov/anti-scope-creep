@@ -1,0 +1,58 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [],
+ "email": false,
+ "seconds": 34.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5348,
+   "prompt_tokens": 3700,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6572,
+   "prompt_tokens": 3619,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6693,
+   "prompt_tokens": 4054,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.2,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4615,
+   "prompt_tokens": 3422,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.01,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

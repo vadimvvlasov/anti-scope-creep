@@ -1,0 +1,70 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [],
+ "email": false,
+ "seconds": 42.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5276,
+   "prompt_tokens": 3766,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.05,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5947,
+   "prompt_tokens": 3750,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5627,
+   "prompt_tokens": 3646,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6984,
+   "prompt_tokens": 4174,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.87,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4267,
+   "prompt_tokens": 3241,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.63,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

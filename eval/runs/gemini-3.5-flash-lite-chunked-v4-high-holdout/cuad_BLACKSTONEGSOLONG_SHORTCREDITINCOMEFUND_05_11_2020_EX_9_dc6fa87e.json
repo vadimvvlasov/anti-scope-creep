@@ -1,0 +1,70 @@
+{
+ "id": "cuad:BLACKSTONEGSOLONG-SHORTCREDITINCOMEFUND_05_11_2020-EX-99.(K)(1)-SERVICE AGREEMENT",
+ "chars": 52334,
+ "findings": [],
+ "email": false,
+ "seconds": 46.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5798,
+   "prompt_tokens": 4014,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 13.37,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5827,
+   "prompt_tokens": 3980,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 10.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5378,
+   "prompt_tokens": 4069,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5435,
+   "prompt_tokens": 3830,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 12.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3301,
+   "prompt_tokens": 2610,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.59,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

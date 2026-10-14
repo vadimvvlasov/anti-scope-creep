@@ -1,0 +1,22 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [],
+ "email": false,
+ "seconds": 9.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11507,
+   "prompt_tokens": 8348,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.24,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,63 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+   "start": 14200,
+   "end": 14323
+  }
+ ],
+ "email": true,
+ "seconds": 21.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5264,
+   "prompt_tokens": 3602,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.16,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6211,
+   "prompt_tokens": 3834,
+   "output_tokens": 151,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.49,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+      "explanation": "This clause uses present assignment wording (\"hereby assigns\"), which means ownership of your work transfers immediately upon creation or termination rather than waiting for full payment.",
+      "suggested_change": "Upon receipt of final payment, Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1624,
+   "prompt_tokens": 315,
+   "output_tokens": 78,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to propose a minor adjustment to the agreement before we proceed. - Regarding the relevant clause concerning works in progress, the current wording transfers ownership immediately rather than upon full payment. I propose modifying this so that the assignment takes effect upon receipt of final payment. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

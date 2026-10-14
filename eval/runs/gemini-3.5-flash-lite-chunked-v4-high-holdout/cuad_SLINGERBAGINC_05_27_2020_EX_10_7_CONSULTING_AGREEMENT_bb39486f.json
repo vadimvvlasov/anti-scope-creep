@@ -1,0 +1,75 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2088,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 32.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6552,
+   "prompt_tokens": 4008,
+   "output_tokens": 177,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.71,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform open-ended additional duties without any change-order mechanism or guaranteed extra pay.",
+      "suggested_change": "The Contractor shall perform the services specified in this Agreement, and any additional services requested by the Client shall be subject to a separate written change order and additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5707,
+   "prompt_tokens": 3778,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4680,
+   "prompt_tokens": 3861,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2290,
+   "prompt_tokens": 369,
+   "output_tokens": 117,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 10.95,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the paperwork. Before signing the agreement, I would like to request a small revision to the relevant clause: - The current wording requires open-ended additional duties without any change-order mechanism or guaranteed extra pay, so I propose we update it to state that the Contractor shall perform the services specified in this Agreement, and any additional services requested by the Client shall be subject to a separate written change order and additional compensation. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

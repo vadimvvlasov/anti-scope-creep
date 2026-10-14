@@ -1,0 +1,87 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+   "start": 18598,
+   "end": 18769
+  }
+ ],
+ "email": true,
+ "seconds": 22.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5252,
+   "prompt_tokens": 4262,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.92,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5929,
+   "prompt_tokens": 4141,
+   "output_tokens": 156,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.56,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+      "explanation": "Your payments are conditional on the client receiving funds from third-party carriers, which means you bear the risk of delayed or defaulted payments from those carriers.",
+      "suggested_change": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis within thirty days of the end of each calendar quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5455,
+   "prompt_tokens": 4162,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.05,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3965,
+   "prompt_tokens": 2584,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1513,
+   "prompt_tokens": 320,
+   "output_tokens": 118,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am looking forward to getting started and have one quick note regarding the agreement. - Regarding the relevant clause on payment terms, the current wording makes payments conditional on receiving funds from third-party carriers, which means I would bear the risk of delayed or defaulted payments; I propose changing this so that all payments are payable to IMNTV in United States Dollars on a quarterly basis within thirty days of the end of each calendar quarter. Thank you for your consideration and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

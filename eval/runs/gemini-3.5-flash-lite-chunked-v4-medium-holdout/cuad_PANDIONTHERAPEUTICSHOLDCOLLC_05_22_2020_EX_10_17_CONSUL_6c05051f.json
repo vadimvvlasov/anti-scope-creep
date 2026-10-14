@@ -1,0 +1,77 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+   "start": 681,
+   "end": 935
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 25.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6360,
+   "prompt_tokens": 3922,
+   "output_tokens": 356,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 15.33,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+      "explanation": "The agreement allows the client to request additional unspecified services without a change-order mechanism or extra compensation, risking unpaid work.",
+      "suggested_change": "The Contractor shall perform the services specified in Schedule A. Any changes or additional services requested by the Client shall be agreed upon in a written change order specifying the adjusted scope and fees."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Intellectual property is assigned immediately upon creation rather than upon receipt of full payment, transferring your rights before you are guaranteed to be paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the deliverables created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4873,
+   "prompt_tokens": 3784,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.89,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2201,
+   "prompt_tokens": 497,
+   "output_tokens": 168,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.05,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the scope of work, the agreement currently allows for requesting additional unspecified tasks without a corresponding change in compensation. I propose that any changes or additional services requested by the client should be agreed upon in a written change order specifying the adjusted scope and fees. - Regarding the intellectual property clause, rights are assigned immediately upon creation rather than upon receipt of full payment. I propose that upon receipt of full payment for the applicable services, the contractor hereby assigns to the client all right, title, and interest in and to the deliverables created under the agreement. Thank you for your time and cooperation, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

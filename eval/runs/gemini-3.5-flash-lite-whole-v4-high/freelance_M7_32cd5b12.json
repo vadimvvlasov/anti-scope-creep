@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  }
+ ],
+ "email": true,
+ "seconds": 11.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5188,
+   "prompt_tokens": 2439,
+   "output_tokens": 302,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.06,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You transfer ownership of your work upon delivery rather than upon payment, meaning the client owns your work before you are paid.",
+      "suggested_change": "Upon receipt of full payment for each respective Milestone, the Contractor assigns to the Client all right, title, and interest in and to the custom software code, database schemas, and visual assets developed under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment is delayed up to 90 days and conditioned on the final acceptance of the entire software, which significantly impacts your cash flow.",
+      "suggested_change": "The Client shall pay each milestone amount within thirty (30) days following the Client's acceptance of each milestone."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2260,
+   "prompt_tokens": 439,
+   "output_tokens": 184,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a couple of adjustments before signing: - Regarding the ownership clause, the agreement transfers ownership upon delivery rather than upon payment, so I propose updating the relevant clause to read: \"Upon receipt of full payment for each respective Milestone, the Contractor assigns to the Client all right, title, and interest in and to the custom software code, database schemas, and visual assets developed under this Agreement.\" - Regarding the payment schedule clause, payment is currently delayed up to 90 days and conditioned on the final acceptance of the complete software, so I propose updating the relevant clause to read: \"The Client shall pay each milestone amount within thirty (30) days following the Client's acceptance of each milestone.\" Thank you, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

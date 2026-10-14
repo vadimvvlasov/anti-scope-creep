@@ -1,0 +1,22 @@
+{
+ "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT",
+ "chars": 14592,
+ "findings": [],
+ "email": false,
+ "seconds": 7.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7506,
+   "prompt_tokens": 4747,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.72,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

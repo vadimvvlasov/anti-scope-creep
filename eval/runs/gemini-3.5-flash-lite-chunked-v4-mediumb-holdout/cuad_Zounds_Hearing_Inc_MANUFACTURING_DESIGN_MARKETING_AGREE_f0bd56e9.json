@@ -1,0 +1,83 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [],
+ "email": false,
+ "seconds": 34.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6479,
+   "prompt_tokens": 3887,
+   "output_tokens": 121,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 15.51,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "Payment for the second installment is deferred for 60 days, which delays your cash flow beyond standard terms.",
+      "suggested_change": "The second installment will be due thirty (30) days following the Effective Date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4168,
+   "prompt_tokens": 3165,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.79,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5773,
+   "prompt_tokens": 3848,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5125,
+   "prompt_tokens": 3949,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.67,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3137,
+   "prompt_tokens": 2530,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.72,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

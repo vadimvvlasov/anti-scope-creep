@@ -1,0 +1,128 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "(vii) upon ninety (90) days prior notice in writing by Co-Host at any           time after June 30, 2000, if the term of the Web Site Services           Agreement has not been renewed for an additional term of one (1) year           or more pursuant to its terms",
+   "start": 16399,
+   "end": 16661
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "$2,000,000 on or before\n\n\n\n\n\n       September 30, 1998, and the balance within sixty (60) days of the           execution of this Agreement.",
+   "start": 31968,
+   "end": 32108
+  }
+ ],
+ "email": true,
+ "seconds": 43.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5016,
+   "prompt_tokens": 4036,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.71,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5758,
+   "prompt_tokens": 3533,
+   "output_tokens": 181,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.81,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "(vii) upon ninety (90) days prior notice in writing by Co-Host at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms",
+      "explanation": "Only the Client can terminate the agreement without cause under this provision, while you do not have a corresponding right. Because completed work is still paid, this creates a minor imbalance.",
+      "suggested_change": "Either party may terminate this Agreement upon ninety (90) days prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6837,
+   "prompt_tokens": 4017,
+   "output_tokens": 297,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 13.56,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+      "explanation": "Your liability cap excludes Section 9 claims, meaning your indemnification and IP infringement obligations have no limit and expose you to uncapped financial exposure.",
+      "suggested_change": "The liability of a party to the other for direct damages shall not exceed fifteen million dollars, inclusive of all claims under Section 9 hereof."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "$2,000,000 on or before           September 30, 1998, and the balance within sixty (60) days of the           execution of this Agreement.",
+      "explanation": "Payment is delayed to 60 days, which exceeds standard 30-day payment terms and impacts your cash flow.",
+      "suggested_change": "The balance shall be payable within thirty (30) days of the execution of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5192,
+   "prompt_tokens": 4140,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4798,
+   "prompt_tokens": 3926,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.49,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1487,
+   "prompt_tokens": 437,
+   "output_tokens": 149,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.3,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I hope this email finds you well. Before signing the agreement, I would like to propose a couple of adjustments: - Regarding the liability provisions in the relevant clause, the current terms leave certain claims uncapped; I propose updating this so that the liability of a party to the other for direct damages shall not exceed fifteen million dollars, inclusive of all claims under Section 9 hereof. - Regarding the payment terms in the agreement, the 60-day timeline impacts cash flow; I propose updating the text so that the balance shall be payable within thirty days of the execution of this agreement. Thank you for your time and consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

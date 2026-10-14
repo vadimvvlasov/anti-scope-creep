@@ -1,0 +1,111 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint. IP\").",
+   "start": 56882,
+   "end": 57389
+  }
+ ],
+ "email": true,
+ "seconds": 68.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4904,
+   "prompt_tokens": 4308,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4816,
+   "prompt_tokens": 3751,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4820,
+   "prompt_tokens": 3695,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 9.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4222,
+   "prompt_tokens": 3494,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.65,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4926,
+   "prompt_tokens": 3874,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 9.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5081,
+   "prompt_tokens": 2951,
+   "output_tokens": 267,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 22.83,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint. IP\").",
+      "explanation": "Ownership of your work product is shared with the client upon creation without being conditioned on full payment, meaning you lose exclusive control before you are guaranteed to be paid.",
+      "suggested_change": "Upon receipt of full payment of all applicable fees, any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by the Contractor which is related to the Product and embodied in the Deliverables... shall be jointly and equally (50%/50%) owned by the Contractor and the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1604,
+   "prompt_tokens": 431,
+   "output_tokens": 86,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.85,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the agreement and would like to propose a minor adjustment before signing. - Regarding the relevant clause, the current terms grant shared ownership of the work upon creation before full payment is guaranteed. I propose updating this so that joint ownership takes effect only upon receipt of full payment. Thank you, and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

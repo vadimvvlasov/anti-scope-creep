@@ -1,0 +1,22 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [],
+ "email": false,
+ "seconds": 8.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12864,
+   "prompt_tokens": 9850,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.6,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

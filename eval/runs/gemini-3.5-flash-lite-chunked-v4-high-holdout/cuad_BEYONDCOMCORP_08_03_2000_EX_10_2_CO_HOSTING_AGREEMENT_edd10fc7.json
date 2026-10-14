@@ -1,0 +1,113 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF",
+   "start": 25569,
+   "end": 25609
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "within sixty (60) days",
+   "start": 32040,
+   "end": 32062
+  }
+ ],
+ "email": true,
+ "seconds": 48.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5858,
+   "prompt_tokens": 4036,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6421,
+   "prompt_tokens": 3533,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.4,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8442,
+   "prompt_tokens": 4017,
+   "output_tokens": 242,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.8,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF",
+      "explanation": "Claims under Section 9 (including intellectual property infringement and indemnification) are excluded from the liability cap, leaving your financial exposure for those claims completely uncapped.",
+      "suggested_change": "The liability of a party to the other for direct damages shall not exceed fifteen million dollars in the aggregate, inclusive of any claims under Section 9 hereof."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "within sixty (60) days",
+      "explanation": "Payment of the balance is due within 60 days, which exceeds the standard 30-day payment window and negatively impacts your cash flow.",
+      "suggested_change": "within thirty (30) days of the execution of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6254,
+   "prompt_tokens": 4140,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5951,
+   "prompt_tokens": 3926,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.41,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3730,
+   "prompt_tokens": 382,
+   "output_tokens": 186,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.88,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. I have reviewed the agreement and would like to request a couple of changes before signing. - Regarding the relevant clause stating 'EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF', claims under Section 9 are excluded from the liability cap, leaving financial exposure completely uncapped; I propose updating this to 'The liability of a party to the other for direct damages shall not exceed fifteen million dollars in the aggregate, inclusive of any claims under Section 9 hereof.' - Regarding the relevant clause stating 'within sixty (60) days', payment is due within 60 days, which exceeds the standard 30-day payment window and negatively impacts cash flow; I propose updating this to 'within thirty (30) days of the execution of this Agreement.' Thank you for your consideration. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

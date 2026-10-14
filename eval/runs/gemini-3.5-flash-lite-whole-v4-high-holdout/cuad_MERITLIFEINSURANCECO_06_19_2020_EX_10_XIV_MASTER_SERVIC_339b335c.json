@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "start": 14388,
+   "end": 14703
+  }
+ ],
+ "email": true,
+ "seconds": 15.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9810,
+   "prompt_tokens": 5783,
+   "output_tokens": 210,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.37,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+      "explanation": "Your liability is generally capped at the fees paid, but obligations under the independent contractor section are excluded from this limit, leaving your liability for those matters uncapped.",
+      "suggested_change": "Contractor's maximum liability to Company arising for any reason relating to Contractor's performance of Services under a Statement of Work shall be limited to the amount of fees paid to Contractor for the performance of such services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2187,
+   "prompt_tokens": 377,
+   "output_tokens": 82,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.11,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am writing to share a quick thought regarding the agreement before we sign. - Regarding the relevant clause, the current draft excludes certain obligations from the liability cap, which leaves liability uncapped for those matters. I propose modifying this section so that the maximum liability is consistently limited to the fees paid for the services. Thank you for your time."
+   }
+  }
+ ],
+ "dropped": []
+}

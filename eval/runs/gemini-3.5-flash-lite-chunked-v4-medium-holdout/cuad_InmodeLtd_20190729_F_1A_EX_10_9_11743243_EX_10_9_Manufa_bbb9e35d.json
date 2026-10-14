@@ -1,0 +1,87 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.",
+   "start": 19406,
+   "end": 19533
+  }
+ ],
+ "email": true,
+ "seconds": 29.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5571,
+   "prompt_tokens": 3700,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5435,
+   "prompt_tokens": 3619,
+   "output_tokens": 104,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.16,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.",
+      "explanation": "Title to the products passes to the Client upon delivery or invoicing, whichever comes first, which can occur before you have received full payment.",
+      "suggested_change": "Title to the Products shall pass to the Client only upon receipt of full payment by the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5429,
+   "prompt_tokens": 4054,
+   "output_tokens": 5,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.9,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4068,
+   "prompt_tokens": 3422,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.58,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1540,
+   "prompt_tokens": 300,
+   "output_tokens": 107,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sending over the agreement. I have a minor suggestion regarding the terms before I sign. - Regarding the relevant clause stating 'Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.', title to the work can pass before full payment is received. I propose changing this to: 'Title to the Products shall pass to the Client only upon receipt of full payment by the Contractor.' Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

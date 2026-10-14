@@ -1,0 +1,38 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": false,
+ "seconds": 14.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6291,
+   "prompt_tokens": 3431,
+   "output_tokens": 131,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 13.99,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the client can terminate the contract without cause, giving them a unilateral exit right while you remain bound.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

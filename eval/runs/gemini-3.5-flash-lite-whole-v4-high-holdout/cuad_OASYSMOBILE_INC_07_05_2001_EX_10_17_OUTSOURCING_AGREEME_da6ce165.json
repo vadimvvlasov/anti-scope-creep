@@ -1,0 +1,22 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [],
+ "email": false,
+ "seconds": 15.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19570,
+   "prompt_tokens": 14327,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.44,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

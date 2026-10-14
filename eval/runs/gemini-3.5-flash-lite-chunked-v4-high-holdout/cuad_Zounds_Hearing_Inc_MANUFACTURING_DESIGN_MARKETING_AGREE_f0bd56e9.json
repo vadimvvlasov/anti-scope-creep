@@ -1,0 +1,83 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [],
+ "email": false,
+ "seconds": 84.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6880,
+   "prompt_tokens": 3887,
+   "output_tokens": 129,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 34.11,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "The second installment of the Technology Access Fee is deferred for 60 days, delaying your full compensation beyond the standard 30-day limit.",
+      "suggested_change": "The second installment will be due thirty (30) days following the first installment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4958,
+   "prompt_tokens": 3165,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 15.15,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5773,
+   "prompt_tokens": 3848,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 8.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5878,
+   "prompt_tokens": 3949,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3368,
+   "prompt_tokens": 2530,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 8.01,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

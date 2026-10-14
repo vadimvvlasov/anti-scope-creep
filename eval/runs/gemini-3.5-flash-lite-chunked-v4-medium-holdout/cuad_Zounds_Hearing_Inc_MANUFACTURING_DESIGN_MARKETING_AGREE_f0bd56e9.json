@@ -1,0 +1,86 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory.",
+   "start": 20970,
+   "end": 21148
+  }
+ ],
+ "email": false,
+ "seconds": 34.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5634,
+   "prompt_tokens": 3887,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.42,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4434,
+   "prompt_tokens": 3165,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5850,
+   "prompt_tokens": 3848,
+   "output_tokens": 138,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 13.03,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory.",
+      "explanation": "Only the client has the right to terminate the agreement without cause, although your incurred costs and product costs are covered.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon thirty days prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5311,
+   "prompt_tokens": 3949,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.38,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3100,
+   "prompt_tokens": 2530,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.4,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

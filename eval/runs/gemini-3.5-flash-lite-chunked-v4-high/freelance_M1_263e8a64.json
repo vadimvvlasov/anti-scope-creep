@@ -1,0 +1,92 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 37.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6648,
+   "prompt_tokens": 4069,
+   "output_tokens": 253,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.32,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform extra work requested by the client without any additional compensation, which can severely impact your profitability.",
+      "suggested_change": "The Contractor shall perform any additional services requested by the Client during the Term only upon agreement on a separate written change order and associated fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand an endless number of changes until they are personally satisfied, exposing you to open-ended time commitments for a fixed fee.",
+      "suggested_change": "The Client may request up to three rounds of revisions for each Deliverable, and any further revisions will be billed on a time and materials basis."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5540,
+   "prompt_tokens": 3030,
+   "output_tokens": 65,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.73,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The agreement specifies an unlimited revision allowance, which can require you to perform endless modifications without additional compensation.",
+      "suggested_change": "Revision allowance: Up to three rounds of revisions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3429,
+   "prompt_tokens": 457,
+   "output_tokens": 191,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have a few small suggestions before signing: - Regarding the relevant clause about performing additional services at no additional charge, since uncompensated extra work can impact the project, I propose that: The Contractor shall perform any additional services requested by the Client during the Term only upon agreement on a separate written change order and associated fees. - Regarding the relevant clause allowing unlimited revisions until full satisfaction, as open-ended time commitments for a fixed fee can be difficult to manage, I propose that: The Client may request up to three rounds of revisions for each Deliverable, and any further revisions will be billed on a time and materials basis. - Regarding the relevant clause specifying an unlimited revision allowance, to ensure clarity on workload, I propose that: Revision allowance: Up to three rounds of revisions. Thank you for your time, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

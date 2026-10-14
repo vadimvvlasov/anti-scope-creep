@@ -1,0 +1,75 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11541,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 29.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5876,
+   "prompt_tokens": 3948,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6428,
+   "prompt_tokens": 3795,
+   "output_tokens": 164,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.59,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Intellectual property ownership of your work transfers to the client upon creation rather than upon full payment. This creates a risk that the client can own your work without paying you.",
+      "suggested_change": "Upon receipt of full payment for the applicable Deliverables, the Developer assigns to the Client the intellectual property rights in such Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5680,
+   "prompt_tokens": 3751,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1832,
+   "prompt_tokens": 328,
+   "output_tokens": 86,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed it and would like to propose one adjustment before we move forward. - Regarding the relevant clause on intellectual property, the current wording transfers ownership upon creation rather than upon full payment. I propose modifying this so that ownership transfers upon receipt of full payment for the applicable Deliverables. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

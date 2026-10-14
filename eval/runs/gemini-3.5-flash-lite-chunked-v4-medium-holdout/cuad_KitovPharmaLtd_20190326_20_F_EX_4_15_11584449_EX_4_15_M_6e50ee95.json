@@ -1,0 +1,111 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint. IP\").",
+   "start": 56882,
+   "end": 57389
+  }
+ ],
+ "email": true,
+ "seconds": 32.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4779,
+   "prompt_tokens": 4308,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.44,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4744,
+   "prompt_tokens": 3751,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.68,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4823,
+   "prompt_tokens": 3695,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4042,
+   "prompt_tokens": 3494,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4840,
+   "prompt_tokens": 3874,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.17,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5618,
+   "prompt_tokens": 2951,
+   "output_tokens": 215,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 12.53,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint. IP\").",
+      "explanation": "Ownership of the work product passes to include the client without being conditioned on full payment, leaving you vulnerable if payment is delayed.",
+      "suggested_change": "Upon receipt of full payment, any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by the Contractor which is related to the Product and embodied in the Deliverables shall be jointly and equally owned by the Contractor and the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2021,
+   "prompt_tokens": 412,
+   "output_tokens": 164,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.39,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I hope this email finds you well. I have reviewed the agreement and would like to propose a small adjustment before we sign. - In the relevant clause, ownership of the work product passes to include the client without being conditioned on full payment, which leaves the provider vulnerable if payment is delayed. I propose modifying this so that ownership transfer is conditioned on full payment, as follows: Upon receipt of full payment, any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by the Contractor which is related to the Product and embodied in the Deliverables shall be jointly and equally owned by the Contractor and the Client. Thank you for your understanding, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

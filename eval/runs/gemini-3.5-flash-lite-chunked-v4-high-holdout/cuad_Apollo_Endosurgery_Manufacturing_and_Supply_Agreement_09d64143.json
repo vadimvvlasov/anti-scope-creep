@@ -1,0 +1,70 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [],
+ "email": false,
+ "seconds": 26.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6162,
+   "prompt_tokens": 4232,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5871,
+   "prompt_tokens": 4147,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.33,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6006,
+   "prompt_tokens": 4080,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6244,
+   "prompt_tokens": 4322,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2665,
+   "prompt_tokens": 1825,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.24,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

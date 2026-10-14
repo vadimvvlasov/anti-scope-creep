@@ -1,0 +1,75 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 26.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5752,
+   "prompt_tokens": 4233,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.16,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5916,
+   "prompt_tokens": 3977,
+   "output_tokens": 153,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 11.57,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "This clause transfers ownership of your work to the client immediately without making it conditional on you receiving full payment.",
+      "suggested_change": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall remain with the Contractor until the Contractor has been paid in full."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3535,
+   "prompt_tokens": 2739,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1649,
+   "prompt_tokens": 317,
+   "output_tokens": 91,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 7.18,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to suggest one small modification before I sign: - The relevant clause currently transfers ownership of the work immediately without making it conditional on receiving full payment, and I propose updating it so that ownership remains with the contractor until full payment is received. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

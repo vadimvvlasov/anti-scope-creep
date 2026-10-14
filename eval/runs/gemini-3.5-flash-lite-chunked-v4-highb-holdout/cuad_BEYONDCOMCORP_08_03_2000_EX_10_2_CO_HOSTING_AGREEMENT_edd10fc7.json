@@ -1,0 +1,99 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  }
+ ],
+ "email": true,
+ "seconds": 55.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5929,
+   "prompt_tokens": 4036,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5958,
+   "prompt_tokens": 3533,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.07,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6832,
+   "prompt_tokens": 4017,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.5,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+      "explanation": "Your indemnification and IP infringement obligations under Section 9 are excluded from the overall liability cap, leaving your exposure for those claims completely uncapped.",
+      "suggested_change": "The liability of a party to the other for direct damages shall not exceed Fifteen Million Dollars in the aggregate, including any claims under Section 9 hereof."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6317,
+   "prompt_tokens": 4140,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5004,
+   "prompt_tokens": 3926,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1843,
+   "prompt_tokens": 325,
+   "output_tokens": 110,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good day. I am writing to suggest a quick update to the agreement before we proceed. - In the relevant clause regarding liability, claims under Section 9 are excluded from the overall cap, which leaves potential exposure completely uncapped; I propose we change this so that the liability of a party to the other for direct damages shall not exceed Fifteen Million Dollars in the aggregate, including any claims under Section 9 hereof. Thank you for considering this adjustment."
+   }
+  }
+ ],
+ "dropped": []
+}

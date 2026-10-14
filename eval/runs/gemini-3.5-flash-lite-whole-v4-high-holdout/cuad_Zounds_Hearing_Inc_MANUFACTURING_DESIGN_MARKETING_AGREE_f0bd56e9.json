@@ -1,0 +1,65 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory.",
+   "start": 20970,
+   "end": 21148
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2465,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 20.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16269,
+   "prompt_tokens": 10788,
+   "output_tokens": 305,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.24,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory.",
+      "explanation": "Only the Client has the right to terminate the agreement without cause, while your termination rights are restricted to breach or insolvency, though cancellation charges and incurred costs are paid.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon sixty (60) days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "Payment of the second installment is deferred for 60 days, which exceeds the standard 30-day term and creates a cash flow delay for you.",
+      "suggested_change": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following the first installment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2460,
+   "prompt_tokens": 329,
+   "output_tokens": 93,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed the terms and would like to request a small adjustment before signing: - Regarding the payment terms in the relevant clause, deferring the second installment for sixty days creates a cash flow delay, so I propose modifying it so that the second installment is due thirty days following the first installment. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

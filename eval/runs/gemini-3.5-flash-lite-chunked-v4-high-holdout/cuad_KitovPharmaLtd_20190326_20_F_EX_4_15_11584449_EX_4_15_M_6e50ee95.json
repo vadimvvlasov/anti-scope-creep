@@ -1,0 +1,82 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [],
+ "email": false,
+ "seconds": 33.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4943,
+   "prompt_tokens": 4308,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5337,
+   "prompt_tokens": 3751,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.44,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5620,
+   "prompt_tokens": 3695,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4139,
+   "prompt_tokens": 3494,
+   "output_tokens": 9,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.2,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5554,
+   "prompt_tokens": 3874,
+   "output_tokens": 4,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.89,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4955,
+   "prompt_tokens": 2951,
+   "output_tokens": 9,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 11.87,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}
