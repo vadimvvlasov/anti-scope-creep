@@ -157,6 +157,37 @@ def test_a_schema_error_fails_at_once_without_the_failed_generation():
     assert len(script.requests) == 1
 
 
+def invalid_json(code: str | None = "json_validate_failed") -> httpx.Response:
+    error = {"message": "Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.",
+             "type": "invalid_request_error", "failed_generation": CONTRACT}
+    if code is not None:
+        error["code"] = code
+    return httpx.Response(400, json={"error": error})
+
+
+@pytest.mark.parametrize("code", ["json_validate_failed", None])
+def test_a_generation_that_failed_json_validation_is_asked_again(code, caplog):
+    script = Script(invalid_json(code), ok())
+    groq, _ = client(script)
+
+    with caplog.at_level(logging.INFO, logger="app.groq_client"):
+        result = groq.complete_json(MESSAGES, "hi", SCHEMA)
+
+    assert result.content == {"text": "hi"}
+    assert len(script.requests) == 2
+    assert CONTRACT not in caplog.text
+
+
+def test_a_second_failed_json_validation_fails_without_the_failed_generation():
+    script = Script(invalid_json(), invalid_json())
+    groq, _ = client(script)
+
+    with pytest.raises(GroqError, match="HTTP 400: Failed to validate JSON") as raised:
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+    assert CONTRACT not in str(raised.value)
+    assert len(script.requests) == 2
+
+
 def test_a_rejected_key_is_not_retried():
     script = Script(httpx.Response(401, json={"error": {"message": "Invalid API Key"}}))
     groq, _ = client(script)
