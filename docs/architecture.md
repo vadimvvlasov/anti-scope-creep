@@ -384,7 +384,7 @@ has 14 criteria, 30 points in total. Status as of 2026-10-13.
 | CI/CD | 2 | `.github/workflows/` | CI on every PR; `deploy-dev` after CI on `main`; approved `promote-prod` | done |
 | Agent extension pack | 2 | [`agent-extension-pack.md`](agent-extension-pack.md), [`permissions.md`](permissions.md), `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/` | `AGENTS.md`; eval-run skill; api-contract-reviewer subagent; read-only MCP server; guard hook (AG-1); Claude Code plugin; hook and MCP tests in CI | done |
 | Security, audit, DevOps hardening | 2 | [`security/`](../security/README.md), [`ops/`](../ops/README.md), [`ai-data-policy.md`](ai-data-policy.md), section 9 | Semgrep in CI; audit run 2026-10-12 (scanner, dependency audit, model review, a decision per finding); agent capability table; runbook checked against prod and two incident diagnoses | done |
-| Reproducibility | 2 | README Run locally, Tests, Deploy | a pass from a fresh clone | planned |
+| Reproducibility | 2 | README Run locally, Tests, Deploy, Deploy your own copy | fresh clone from GitHub on 2026-10-15: `make up` and the demo login, `make install` + `make test` (358 backend, 71 frontend), `make lint`, `make e2e` (11), the hot-reload dev setup; the gaps found (install before tests, `make down` before dev mode, Playwright system libraries, missing deploy secrets, no bootstrap steps) were fixed in the README | done |
 
 ## Decisions
 
