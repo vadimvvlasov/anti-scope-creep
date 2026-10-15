@@ -1,0 +1,51 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2465,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15134,
+   "prompt_tokens": 10852,
+   "output_tokens": 133,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.71,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "Payment of the second installment is due sixty days after the Effective Date, delaying your funds beyond the standard 30-day window and creating cash flow risk.",
+      "suggested_change": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following the first installment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2211,
+   "prompt_tokens": 329,
+   "output_tokens": 151,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. I am writing to propose a minor adjustment to the agreement before we sign. - Regarding the clause stating that the first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date, the current timing delays funds beyond the standard thirty-day window. I propose the following modification: The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following the first installment. Please let me know if this adjustment is acceptable so we can proceed. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

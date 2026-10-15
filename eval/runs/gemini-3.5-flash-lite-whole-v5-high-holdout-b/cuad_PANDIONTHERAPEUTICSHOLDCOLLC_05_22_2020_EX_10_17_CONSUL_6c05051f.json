@@ -1,0 +1,65 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+   "start": 681,
+   "end": 1063
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9648,
+   "prompt_tokens": 6117,
+   "output_tokens": 385,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.58,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+      "explanation": "The agreement requires you to perform additional consulting and related services requested by the company without any change-order mechanism or additional pay structure, creating a risk of uncompensated extra work.",
+      "suggested_change": "The Contractor agrees to perform the services specified on Schedule A. Any additional or extra services requested by the Client shall be subject to a separate written change order detailing the scope and corresponding compensation."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Ownership of your work product transfers immediately upon creation through present assignment language before you receive full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor shall assign to the Client all right, title, and interest in the deliverables created specifically for the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3411,
+   "prompt_tokens": 526,
+   "output_tokens": 155,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a couple of adjustments before signing.\n- Regarding the relevant clause, the arrangement creates the possibility of uncompensated extra work without a change-order mechanism; I propose that any additional or extra services requested be subject to a separate written change order detailing the scope and corresponding compensation.\n- Regarding the relevant clause, ownership of the work product transfers immediately upon creation prior to receiving full payment; I propose that upon receipt of full payment for the applicable services, the contractor shall assign to the client all right, title, and interest in the deliverables created specifically for the client under the agreement.\nThank you for your time, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+   "start": 681,
+   "end": 935
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 26.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9587,
+   "prompt_tokens": 6117,
+   "output_tokens": 366,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.24,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+      "explanation": "The contract requires you to perform unspecified consulting and related services requested by the company without a change-order mechanism, meaning extra work can be demanded without additional pay.",
+      "suggested_change": "The Contractor agrees to perform the services specified in Schedule A, and any additional services mutually agreed upon by the parties in a written change order detailing the additional fees and scope."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Ownership of your work product and intellectual property is assigned to the company immediately upon creation rather than upon full payment, leaving you unprotected if compensation is withheld.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the specific deliverables created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3116,
+   "prompt_tokens": 507,
+   "output_tokens": 206,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.91,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the scope of services, the relevant clause requires me to perform unspecified tasks without a change-order mechanism, meaning extra work can be demanded without additional pay. I propose changing this to: The Contractor agrees to perform the services specified in Schedule A, and any additional services mutually agreed upon by the parties in a written change order detailing the additional fees and scope. - Regarding the intellectual property rights, the relevant clause assigns ownership of my work immediately upon creation rather than upon full payment, leaving me unprotected if compensation is withheld. I propose changing this to: Upon receipt of full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in and to the specific deliverables created under this Agreement. Please let me know if these revisions work for you so we can finalize the paperwork. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

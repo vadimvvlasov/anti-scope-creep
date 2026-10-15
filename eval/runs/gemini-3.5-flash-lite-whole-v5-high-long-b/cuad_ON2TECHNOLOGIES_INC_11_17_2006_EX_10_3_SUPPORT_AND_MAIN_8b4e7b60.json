@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 61392,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+   "start": 22240,
+   "end": 22423
+  }
+ ],
+ "email": true,
+ "seconds": 24.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 18689,
+   "prompt_tokens": 14379,
+   "output_tokens": 161,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.1,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation and as a work made for hire, prior to full payment, exposing you to financial risk if payment is delayed.",
+      "suggested_change": "Ownership of the Incorporated Technology Works shall transfer to the Client only upon receipt of full payment for the applicable deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2286,
+   "prompt_tokens": 325,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good day. Before I sign the agreement, I would like to suggest a modification to the relevant clause. - Regarding the clause where ownership transfers immediately upon creation before full payment, this poses financial risks. I propose that ownership of the Incorporated Technology Works shall transfer to the Client only upon receipt of full payment for the applicable deliverables. Thank you for your flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

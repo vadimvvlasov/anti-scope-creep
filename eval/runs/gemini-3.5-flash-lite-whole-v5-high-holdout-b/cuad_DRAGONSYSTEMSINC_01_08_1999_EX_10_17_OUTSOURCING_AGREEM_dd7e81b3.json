@@ -1,0 +1,65 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+   "start": 1120,
+   "end": 1227
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 26.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8146,
+   "prompt_tokens": 3495,
+   "output_tokens": 272,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.33,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+      "explanation": "The agreement allows for the scope of services to be extended without a formal change-order mechanism, creating a risk that extra work could be required without agreed pricing.",
+      "suggested_change": "Initially, services will cover 3 products, as per the attached price sheets. Any extension of services must be agreed upon in writing via a change order detailing the additional fees and terms."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the client can terminate the contract without cause, leaving you bound to the agreement unless a breach occurs.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3110,
+   "prompt_tokens": 321,
+   "output_tokens": 85,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to propose a minor adjustment before signing. - Regarding the relevant clause, the agreement allows for the scope of services to be extended without a formal change-order mechanism, so I propose modifying it to state that any extension of services must be agreed upon in writing via a change order detailing the additional fees and terms. Thank you for your time."
+   }
+  }
+ ],
+ "dropped": []
+}

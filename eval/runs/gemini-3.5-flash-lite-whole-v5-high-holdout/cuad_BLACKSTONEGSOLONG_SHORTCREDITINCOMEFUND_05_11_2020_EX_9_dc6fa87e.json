@@ -1,0 +1,22 @@
+{
+ "id": "cuad:BLACKSTONEGSOLONG-SHORTCREDITINCOMEFUND_05_11_2020-EX-99.(K)(1)-SERVICE AGREEMENT",
+ "chars": 52334,
+ "findings": [],
+ "email": false,
+ "seconds": 13.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15671,
+   "prompt_tokens": 11976,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.42,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

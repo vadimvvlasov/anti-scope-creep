@@ -1,0 +1,35 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [],
+ "email": false,
+ "seconds": 14.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11218,
+   "prompt_tokens": 7548,
+   "output_tokens": 311,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.48,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by [PARTY_D], are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of [PARTY_D]. To the extent not a work-for-hire, Company, its employees, subcontractors and agents hereby sell, assign and transfer to [PARTY_D] all right, title and interest in and to the Work Product, including without limitation, all rights to Intellectual Property therein.",
+      "explanation": "The agreement assigns intellectual property ownership and designates work as made-for-hire from the moment of creation, passing ownership to the client before full consideration or compensation is received.",
+      "suggested_change": "Ownership of the Work Product shall remain with the Contractor until all applicable consideration and compensation under this Agreement and the Manufacturing and Distribution Agreement have been provided, at which time ownership shall transfer to the Client."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

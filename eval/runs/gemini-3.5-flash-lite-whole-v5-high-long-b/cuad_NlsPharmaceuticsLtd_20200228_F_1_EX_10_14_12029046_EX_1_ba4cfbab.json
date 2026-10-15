@@ -1,0 +1,65 @@
+{
+ "id": "cuad:NlsPharmaceuticsLtd_20200228_F-1_EX-10.14_12029046_EX-10.14_Development Agreement",
+ "chars": 67932,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices",
+   "start": 20604,
+   "end": 20787
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For the payments under Article 2.1(iii) above, referred to in Article 3.3, Licensor understands that any such payments may only be remitted by Licensee after this (or a corresponding) Agreement has been recorded by the Brazilian Patent and Trademark Office (\"INPI\") and registered by the Brazilian Central Bank (\"Bacen\"), as required by Brazilian law.",
+   "start": 21134,
+   "end": 21485
+  }
+ ],
+ "email": true,
+ "seconds": 37.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 24118,
+   "prompt_tokens": 16245,
+   "output_tokens": 361,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 25.71,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices",
+      "explanation": "Payment is due within 45 days of invoice issuance (Net 45), which exceeds the standard 30-day threshold and delays your cash flow.",
+      "suggested_change": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor within thirty (30) days after the issuance of the corresponding invoices."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For the payments under Article 2.1(iii) above, referred to in Article 3.3, Licensor understands that any such payments may only be remitted by Licensee after this (or a corresponding) Agreement has been recorded by the Brazilian Patent and Trademark Office (\"INPI\") and registered by the Brazilian Central Bank (\"Bacen\"), as required by Brazilian law.",
+      "explanation": "Your royalty payments are conditional and deferred until official recordation with government authorities, creating uncertainty and delaying your receipt of earned funds.",
+      "suggested_change": "Payments due under this Agreement shall be made by the Licensee in accordance with the specified payment terms regardless of regulatory recordation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3536,
+   "prompt_tokens": 498,
+   "output_tokens": 162,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a few small notes before signing. - Regarding the payment terms, the 45-day window delays cash flow, so I propose updating the relevant clause to thirty days: Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor within thirty (30) days after the issuance of the corresponding invoices. - Regarding the clause on regulatory recordation, tying payments to government registration creates uncertainty, and I suggest modifying it as follows: Payments due under this Agreement shall be made by the Licensee in accordance with the specified payment terms regardless of regulatory recordation. Please let me know if these adjustments work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

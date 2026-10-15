@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 22.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8066,
+   "prompt_tokens": 5573,
+   "output_tokens": 153,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.76,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "This clause grants the client ownership of your work as soon as it is created, before you receive payment. If the client fails to pay, they still legally own all deliverables.",
+      "suggested_change": "All intellectual property rights in the Deliverables shall remain with the Contractor until the Contractor has been paid in full, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2835,
+   "prompt_tokens": 317,
+   "output_tokens": 123,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to propose a small change before signing. - Regarding the relevant clause (\"All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.\"), this grants ownership of the work before payment is received. I propose modifying it to: \"All intellectual property rights in the Deliverables shall remain with the Contractor until the Contractor has been paid in full, at which point ownership shall transfer to the Client.\" Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,91 @@
+{
+ "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+ "chars": 145168,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "EKR may terminate this Agreement for convenience at any time upon [**] ([**]) days prior, written notice to PPI.",
+   "start": 99021,
+   "end": 99133
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Effective as of the Agreement Date, PPI hereby sells, transfers, conveys and assigns to EKR all right, title  and interest in and to [**] (the \"Transferred NDA\").",
+   "start": 18673,
+   "end": 18835
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "EKR shall pay to PPI, any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+   "start": 62601,
+   "end": 62835
+  }
+ ],
+ "email": true,
+ "seconds": 37.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 42405,
+   "prompt_tokens": 34895,
+   "output_tokens": 747,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 25.92,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "EKR may terminate this Agreement for convenience at any time upon [**] ([**]) days prior, written notice to [PARTY_D].",
+      "explanation": "Only the client has the right to terminate the agreement for convenience, leaving you without a corresponding exit right.",
+      "suggested_change": "Either Party may terminate this Agreement for convenience upon ninety (90) days prior written notice to the other Party."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Effective as of the Agreement Date, [PARTY_D] hereby sells, transfers, conveys and assigns to EKR all right, title and interest in and to [**] (the \"Transferred NDA\").",
+      "explanation": "Intellectual property ownership is transferred to the client immediately upon the agreement date before you receive full payment of deferred milestones.",
+      "suggested_change": "Effective upon receipt of full payment of all milestone amounts, [PARTY_D] hereby sells, transfers, conveys and assigns to EKR all right, title and interest in and to [**] (the \"Transferred NDA\")."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Any and all liability of [PARTY_D] to EKR howsoever arising in respect of this Agreement, the Transition Services and Inventory Agreement or the Supply Agreement and their performance, in contract tort or otherwise, shall be limited (except for death or personal injury caused by the negligence of [PARTY_D] or its employees while acting in the course of their employment) to [**] US Dollars ($[**]); provided however that such limitation shall not apply to the extent that EKR or any EKR Indemnified Party is required to pay in excess of such amount to a third party in respect of a final judgment or order obtained by the third party or as a result of [PARTY_D]'s breach of Section 7.2.12 of the Supply Agreement.",
+      "explanation": "Your overall liability cap excludes third-party claims and indemnification liabilities, exposing you to uncapped financial risk for those claims.",
+      "suggested_change": "Any and all liability of the Contractor to the Client howsoever arising in respect of this Agreement shall be limited to [**] US Dollars ($[**]), inclusive of all third-party claims and indemnification obligations."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "EKR shall pay to [PARTY_D], any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+      "explanation": "Payment terms requiring settlement within 45 days of the end of each quarter exceed the standard 30-day window, negatively impacting your cash flow.",
+      "suggested_change": "The Client shall pay all royalties and amounts due within thirty (30) days of the end of each quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3848,
+   "prompt_tokens": 583,
+   "output_tokens": 215,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.44,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am looking forward to working together. Before signing the agreement, I would like to suggest a few minor adjustments: - Regarding termination, only the client has the right to terminate for convenience, so I propose modifying the relevant clause to: Either Party may terminate this Agreement for convenience upon ninety (90) days prior written notice to the other Party. - Regarding intellectual property, the agreement transfers ownership immediately upon the agreement date before full payment, and I propose changing the relevant clause to: Effective upon receipt of full payment of all milestone amounts, [PARTY_D] hereby sells, transfers, conveys and assigns to EKR all right, title and interest in and to [**] (the 'Transferred NDA'). - Regarding payment terms, the timeline exceeds standard windows and impacts cash flow, so I propose updating the relevant clause to: The Client shall pay all royalties and amounts due within thirty (30) days of the end of each quarter. Thank you for your time and flexibility."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

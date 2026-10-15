@@ -1,0 +1,51 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 25.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6547,
+   "prompt_tokens": 3495,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.79,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the client has the right to terminate the agreement without cause, and the contract does not explicitly ensure payment for work completed or costs incurred upon such termination.",
+      "suggested_change": "Either party may terminate this agreement without cause by giving sixty (60) days written notice to the other party, and the Client shall pay the Contractor for all services rendered and expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2274,
+   "prompt_tokens": 329,
+   "output_tokens": 112,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. Before I sign, I would like to propose a minor adjustment: - Regarding the relevant clause about termination, currently only one party can end the agreement without cause and payment for completed work is not guaranteed. I propose changing this so that either party may terminate the agreement with sixty days written notice, and the client pays for all services rendered and expenses incurred up to the termination date. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

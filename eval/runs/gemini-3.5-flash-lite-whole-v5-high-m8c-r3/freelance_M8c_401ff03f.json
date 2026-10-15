@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 24.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8322,
+   "prompt_tokens": 5563,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.54,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "The contract states that work product is the client's property throughout the project as it is created, meaning ownership passes before you are fully paid.",
+      "suggested_change": "Ownership of the Work Product shall remain with the Contractor until the Client has made full payment of all commercial obligations under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2382,
+   "prompt_tokens": 309,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.36,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to our collaboration, but I would like to propose a minor adjustment before signing. - Regarding the relevant clause which states that work product becomes the client's property throughout the project, this means ownership passes before full payment is made; I would like to propose modifying this so that ownership of the work product remains with the contractor until the client has made full payment of all commercial obligations under the agreement. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

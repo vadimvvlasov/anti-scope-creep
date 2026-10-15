@@ -1,0 +1,22 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [],
+ "email": false,
+ "seconds": 20.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14442,
+   "prompt_tokens": 10268,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 20.78,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

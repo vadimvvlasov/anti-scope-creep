@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8373,
+   "end": 8696
+  }
+ ],
+ "email": true,
+ "seconds": 22.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11050,
+   "prompt_tokens": 7548,
+   "output_tokens": 153,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.33,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "The contract assigns your intellectual property rights to the client immediately upon creation rather than waiting for full payment, leaving you without ownership protection.",
+      "suggested_change": "Ownership of all Deliverables and Work Product shall remain with the Contractor until full compensation has been received, upon which ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2107,
+   "prompt_tokens": 349,
+   "output_tokens": 110,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, Thank you for sharing the agreement. I have reviewed it and would like to propose a small adjustment before signing. - Regarding the relevant clause, the agreement currently assigns intellectual property rights immediately upon creation rather than waiting for full payment. I propose updating this so that ownership of all Deliverables and Work Product shall remain with the Contractor until full compensation has been received, upon which ownership shall transfer to the Client. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

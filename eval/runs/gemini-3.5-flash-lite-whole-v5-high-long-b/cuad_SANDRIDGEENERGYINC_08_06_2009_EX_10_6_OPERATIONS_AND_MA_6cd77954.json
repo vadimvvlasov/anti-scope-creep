@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SANDRIDGEENERGYINC_08_06_2009-EX-10.6-OPERATIONS AND MAINTENANCE AGREEMENT",
+ "chars": 73119,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "provided, however, (i) Operator shall have the right to terminate this  Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner,  as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality  of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation  and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and  (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+   "start": 20280,
+   "end": 21072
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of  the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+   "start": 39159,
+   "end": 39347
+  }
+ ],
+ "email": true,
+ "seconds": 32.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21695,
+   "prompt_tokens": 17206,
+   "output_tokens": 438,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.73,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "provided, however, (i) Operator shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner, as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+      "explanation": "The client can terminate the contract without cause freely on 120 days notice, but your right to terminate without cause is restricted by a condition that the client controls (requiring a replacement operator acceptable to the client).",
+      "suggested_change": "Either party shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+      "explanation": "Payment terms of 50 days after the end of the month exceed standard 30-day terms, creating potential cash flow delays for you.",
+      "suggested_change": "Owner shall pay all invoices within 30 days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2427,
+   "prompt_tokens": 319,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.25,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for providing the agreement for review. I have looked it over and would like to suggest a small adjustment before signing:\n\n- Regarding the relevant clause on payment terms, the current timeline of 50 days after the end of the month creates potential cash flow delays, and I propose we update it so that the owner shall pay all invoices within 30 days of receipt.\n\nThank you for your flexibility, and I look forward to working together.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

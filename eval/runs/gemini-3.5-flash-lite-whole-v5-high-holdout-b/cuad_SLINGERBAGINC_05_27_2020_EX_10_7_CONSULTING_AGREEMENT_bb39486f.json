@@ -1,0 +1,38 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2351,
+   "end": 2603
+  }
+ ],
+ "email": false,
+ "seconds": 21.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11158,
+   "prompt_tokens": 8412,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 21.4,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "This clause contains vague wording that could require you to perform unspecified extra services without guaranteed additional compensation.",
+      "suggested_change": "The Contractor shall provide only the specific services set forth in this Agreement, and any additional services requested by the Client shall be agreed upon in a written change order with appropriate compensation."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

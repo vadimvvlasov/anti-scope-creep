@@ -1,0 +1,22 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [],
+ "email": false,
+ "seconds": 19.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17387,
+   "prompt_tokens": 13900,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.11,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

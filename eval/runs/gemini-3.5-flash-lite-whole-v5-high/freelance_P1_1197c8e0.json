@@ -1,0 +1,51 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  }
+ ],
+ "email": true,
+ "seconds": 16.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7822,
+   "prompt_tokens": 5554,
+   "output_tokens": 70,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.54,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Payment is due 90 days after the invoice date, which severely delays your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2107,
+   "prompt_tokens": 266,
+   "output_tokens": 80,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a small adjustment before signing. - Regarding the relevant clause stating that invoices are payable Net 90, as this delays cash flow, I propose changing the term so that invoices are payable Net 30. Thank you, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

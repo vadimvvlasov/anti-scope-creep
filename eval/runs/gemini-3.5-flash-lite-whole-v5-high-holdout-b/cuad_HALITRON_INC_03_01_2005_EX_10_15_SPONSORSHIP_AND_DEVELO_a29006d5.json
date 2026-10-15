@@ -1,0 +1,51 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 30.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11274,
+   "prompt_tokens": 7714,
+   "output_tokens": 156,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.47,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "Ownership of your work product and materials passes to the Client immediately rather than being conditioned upon your receipt of full payment.",
+      "suggested_change": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall transfer to the Client only upon receipt of full payment by the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3336,
+   "prompt_tokens": 320,
+   "output_tokens": 85,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose the following adjustment before signing: - In the relevant clause, ownership of the work product passes immediately rather than being conditioned upon receipt of full payment, and I propose modifying this so that ownership transfers only upon receipt of full payment. I look forward to your response. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

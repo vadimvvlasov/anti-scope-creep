@@ -1,0 +1,86 @@
+{
+ "set": "cuad-holdout-long",
+ "contracts": 6,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 2,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.667
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "precision": null,
+   "recall": 0.0,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 4,
+   "fp": 2,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.8,
+   "severity_accuracy": 0.75
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 11,
+  "findings_kept": 10,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.091,
+  "tokens_mean": 30036,
+  "tokens_max": 46253,
+  "seconds_mean": 32.9,
+  "seconds_max": 46.3
+ },
+ "false_positives": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Licensee acknowledges and agrees Fox shall be the exclusive owner of these rights as a work made for hire.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement1"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Effective as of the Agreement Date, PPI hereby sells, transfers, conveys and assigns to EKR all right, title  and interest in and to [**] (the \"Transferred NDA\").",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT "
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}
