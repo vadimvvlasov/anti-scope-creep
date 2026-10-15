@@ -9,6 +9,10 @@ periods, durations, dates, percentages and caps stay: the severity matrix depend
 Detection is best-effort: names are taken from party definitions, the preamble and the
 signature block, other values from conservative patterns. A missed value is sent as is.
 
+Bracketed tokens that are already in the contract ("[CLIENT_NAME]" in a template, or a
+planted "[PARTY_A]") are kept as they are and restore to themselves; new placeholders skip
+their names, so a quote that contains one is not dropped as unrestorable.
+
 The mapping lives only in memory for one analysis run. It is never logged, and its repr
 does not show the original values.
 """
@@ -83,20 +87,36 @@ class PlaceholderMap:
     _values: dict[str, str] = field(default_factory=dict)
     _placeholders: dict[str, str] = field(default_factory=dict)
     _counts: dict[str, int] = field(default_factory=dict)
+    # Tokens that were in the source text: bracketed ones restore to themselves, bare ones
+    # ("PARTY_A" without brackets) are not reported as unknown.
+    _literal: set[str] = field(default_factory=set)
+    _literal_bare: set[str] = field(default_factory=set)
+
+    def keep_literals(self, text: str) -> None:
+        self._literal.update(m.group(0) for m in _PLACEHOLDER.finditer(text))
+        self._literal_bare.update(m.group(1) for m in _BARE_PLACEHOLDER.finditer(text))
 
     def placeholder_for(self, kind: str, value: str) -> str:
         if value in self._placeholders:
             return self._placeholders[value]
-        number = self._counts.get(kind, 0) + 1
-        self._counts[kind] = number
-        suffix = _party_letter(number) if kind == "PARTY" else str(number)
-        placeholder = f"[{kind}_{suffix}]"
+        while True:
+            number = self._counts.get(kind, 0) + 1
+            self._counts[kind] = number
+            suffix = _party_letter(number) if kind == "PARTY" else str(number)
+            placeholder = f"[{kind}_{suffix}]"
+            if placeholder not in self._literal:
+                break
         self._placeholders[value] = placeholder
         self._values[placeholder] = value
         return placeholder
 
     def value_of(self, placeholder: str) -> str | None:
+        if placeholder in self._literal:
+            return placeholder
         return self._values.get(placeholder)
+
+    def is_literal_bare(self, token: str) -> bool:
+        return token in self._literal_bare
 
     def placeholder_of(self, value: str) -> str | None:
         return self._placeholders.get(value)
@@ -115,6 +135,7 @@ class PlaceholderMap:
 def pseudonymize(text: str) -> tuple[str, PlaceholderMap]:
     """The text with detected values replaced by placeholders, and the mapping."""
     mapping = PlaceholderMap()
+    mapping.keep_literals(text)
     for kind, name in _names(text):
         mapping.placeholder_for(kind, name)
     text = _replace_known(text, mapping)
@@ -148,7 +169,7 @@ def restore(text: str, mapping: PlaceholderMap) -> tuple[str, list[str]]:
         return value
 
     restored = _PLACEHOLDER.sub(_restore, text)
-    unknown.extend(m.group(1) for m in _BARE_PLACEHOLDER.finditer(text))
+    unknown.extend(m.group(1) for m in _BARE_PLACEHOLDER.finditer(text) if not mapping.is_literal_bare(m.group(1)))
     return restored, unknown
 
 

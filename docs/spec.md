@@ -1264,7 +1264,7 @@ Requirements:
 - Output: structured JSON only.
 - Validate output with Pydantic before persistence.
 - Output must contain zero or more findings using the six MVP categories and the deterministic severity matrix.
-- **Quote verification:** placeholders in each `quoted_text` are first restored to the original values; the restored quote must then occur in `source_text` after normalizing whitespace and quote/dash characters. A finding whose quote is not found, or that contains a placeholder that cannot be restored, is dropped (and logged with the reason), not persisted. Dropping a finding does not fail the analysis.
+- **Quote verification:** placeholders in each `quoted_text` are first restored to the original values; the restored quote must then occur in `source_text` after normalizing whitespace and quote/dash characters. A finding whose quote is not found, that contains a placeholder that cannot be restored, or that fails validation (an unknown category, a field over its length limit before or after placeholders are restored) is dropped (and logged with the reason), not persisted. Dropping a finding does not fail the analysis.
 - Long contracts are analyzed in chunks that fit the provider's per-request and per-minute token limits; findings from all chunks are merged and exact duplicate quotes are removed.
 - The email is generated after quote verification, from the final set of `high` and `medium` findings, as structured data validated before commit. It is generated from pseudonymized findings, and placeholders are restored before it is stored.
 - Provider rate-limit responses are retried with backoff inside the task. When retries are exhausted, or on failed validation or other provider errors, the analysis fails with the same transactional failure behavior as the MVP.
@@ -1277,6 +1277,7 @@ Pseudonymization rules:
 - Replaced with stable placeholders: names of the parties and signatories (taken from the preamble, party definitions, and signature block), email addresses, phone numbers, URLs, bank account / IBAN numbers, tax or company registration IDs, and street addresses that follow a label (`Address:`, `located at`, `residing at`, `principal place of business at`). Placeholders are typed and numbered, e.g. `[PARTY_A]`, `[PERSON_1]`, `[EMAIL_1]`, `[ADDRESS_1]`.
 - Not replaced: monetary amounts, payment periods, durations, dates, percentages, and liability caps. The severity matrix depends on them.
 - One mapping per analysis run, shared by all chunks and the email request, so the same value always gets the same placeholder.
+- Bracketed tokens that are already in the contract (a template field such as `[CLIENT_NAME]`, or a planted `[PARTY_A]`) are kept as they are and restore to themselves; new placeholders skip their names.
 - The mapping exists only in memory for the duration of the background task. It is never persisted, logged, or attached to traces.
 - Detection is best-effort (rule-based) and may miss values. `docs/ai-data-policy.md` must say so, and the UI notice must not claim the text is anonymized.
 
