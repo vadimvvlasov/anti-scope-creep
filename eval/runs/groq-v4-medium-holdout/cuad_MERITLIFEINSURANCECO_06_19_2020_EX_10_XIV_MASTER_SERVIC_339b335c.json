@@ -1,0 +1,63 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+   "start": 14200,
+   "end": 14323
+  }
+ ],
+ "email": true,
+ "seconds": 116.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4482,
+   "prompt_tokens": 3776,
+   "output_tokens": 706,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.74,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5582,
+   "prompt_tokens": 4048,
+   "output_tokens": 1534,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.41,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+      "explanation": "You transfer ownership of all works in progress to the Company without any condition that you have been paid in full, so you could lose the IP before receiving the full contract price.",
+      "suggested_change": "Contractor shall assign to Company all right, title and interest in the Works only after Contractor has received full payment of all fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1020,
+   "prompt_tokens": 474,
+   "output_tokens": 546,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 15.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment before signing:\n\n- The relevant clause assigns all rights in works in progress to the Company without linking the transfer to payment. This could cause the Contractor to lose ownership before receiving the full fee. I propose that the clause be changed so that the Contractor assigns the rights only after receiving full payment of all fees due under the agreement.\n\nPlease let me know if this adjustment works for you.\n\nThanks"
+   }
+  }
+ ],
+ "dropped": []
+}

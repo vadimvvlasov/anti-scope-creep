@@ -1,0 +1,88 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8373,
+   "end": 8696
+  }
+ ],
+ "email": true,
+ "seconds": 158.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4118,
+   "prompt_tokens": 3830,
+   "output_tokens": 288,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.95,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "You transfer all ownership of the deliverables to the client immediately, even though you have not been paid, leaving you with no control over the work you create until full payment is received.",
+      "suggested_change": "Company shall assign to [PARTY_D] all worldwide right, title, and interest in the Deliverables only upon receipt of full payment for the applicable deliverables, and shall retain ownership until such payment is made."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3835,
+   "prompt_tokens": 3419,
+   "output_tokens": 416,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.79,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), ... have been specially ordered and commissioned by [PARTY_D], are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of [PARTY_D]. To the extent not a work-for- hire, Company, its employees, subcontractors and agents hereby sell, assign and transfer to [PARTY_D] all right, title and interest in and to the Work Product, including without limitation, all rights to Intellectual Property therein.",
+      "explanation": "You transfer ownership of everything you create to the client immediately, even before you receive any payment. This gives the client full rights to your work without any payment condition.",
+      "suggested_change": "Company shall retain all right, title, and interest in the Work Product until all invoices related to the Work Product have been paid in full; upon such payment, Company hereby assigns to [PARTY_D] all right, title, and interest in the Work Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4052,
+   "prompt_tokens": 3908,
+   "output_tokens": 144,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 47.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 674,
+   "prompt_tokens": 484,
+   "output_tokens": 190,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.19,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before I sign the agreement, I would like to ask for a clarification on one clause:\n- The relevant clause currently states that the Company will irrevocably assign all worldwide rights in the Deliverables to [PARTY_D] in perpetuity without further consideration. I am concerned that this transfers ownership before payment is received, leaving me without control over my work. I propose that the Company assign those rights to [PARTY_D] only after full payment for the applicable Deliverables has been received, and retain ownership until that payment is made.\n\nThank you for reviewing these changes. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

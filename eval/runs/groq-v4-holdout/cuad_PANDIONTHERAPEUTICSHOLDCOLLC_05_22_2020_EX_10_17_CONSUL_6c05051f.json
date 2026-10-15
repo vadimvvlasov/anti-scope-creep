@@ -1,0 +1,87 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+   "start": 681,
+   "end": 1063
+  }
+ ],
+ "email": true,
+ "seconds": 119.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4703,
+   "prompt_tokens": 4021,
+   "output_tokens": 682,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.64,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+      "explanation": "You must do any services the Company asks for, even if they are outside the original scope, and the clause does not require extra payment or a change‑order process. This exposes you to unpaid extra work.",
+      "suggested_change": "The Consultant shall perform the services described in Schedule A. Any additional services requested by the Company shall be documented in a written change order signed by both parties and shall be compensated at the rates set forth in the Agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All inventions, ideas, creations, discoveries, computer programs, works of authorship, data, developments, technology, designs, innovations and improvements ... shall be the sole property of the Company. The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights ... The Consultant further acknowledges that each original work of authorship which is made by the Consultant ... within the scope of this Agreement and which is protectable by copyright is a \"work made for hire,\" as that term is defined in the United States Copyright Act.",
+      "explanation": "Ownership of everything you create under the agreement transfers to the Company automatically, without any condition that you be paid first. This gives the Company your IP before you receive compensation.",
+      "suggested_change": "All Inventions and works of authorship created by the Consultant pursuant to this Agreement shall be assigned to the Company only upon the Consultant's receipt of all compensation due under the Agreement. Until such payment is made, the Consultant retains all ownership rights."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4282,
+   "prompt_tokens": 3902,
+   "output_tokens": 380,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.38,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Company is hereby granted a nonexclusive, royalty-free, perpetual, irrevocable, transferable worldwide license with the right to grant and authorize sublicenses, to make, have made, modify, use, import, offer for sale, sell, reproduce, distribute, modify, adapt, prepare derivative works of, display, perform, and otherwise exploit such Prior Inventions, without restriction, including, without limitation, as part of or in connection with such Invention, and to practice any method related thereto.",
+      "explanation": "You give the Company a perpetual, royalty‑free license to any of your pre‑existing inventions the moment they are incorporated, even before you have been paid. This means you lose ownership and control of your own IP without compensation.",
+      "suggested_change": "The Company shall be granted a nonexclusive, royalty‑free, worldwide license to use any Prior Inventions incorporated into an Invention only after the Consultant has received full payment for the applicable Services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 672,
+   "prompt_tokens": 491,
+   "output_tokens": 181,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a small adjustment before I sign:\n\n- The relevant clause currently requires me to perform any services the Company requests, even those outside the original scope, without specifying additional compensation or a change‑order process. This could lead to unpaid extra work. I propose that the agreement state that I will perform the services described in Schedule A, and any additional services requested by the Company should be documented in a written change order signed by both parties and compensated at the rates set forth in the agreement.\n\nThank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

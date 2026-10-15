@@ -1,0 +1,74 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+   "start": 12689,
+   "end": 13244
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+   "start": 14200,
+   "end": 14323
+  }
+ ],
+ "email": true,
+ "seconds": 118.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3908,
+   "output_tokens": 180,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.39,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4589,
+   "output_tokens": 589,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.48,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+      "explanation": "You could be terminated instantly for a breach that the client defines and would not be paid anything for work already done.",
+      "suggested_change": "If either party terminates this agreement for a material breach, the terminating party shall provide written notice and the other party shall be paid all fees earned up to the effective termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+      "explanation": "All rights to your work transfer to the client even if you have not yet been fully paid for it.",
+      "suggested_change": "Ownership of any Work shall transfer to the Company only upon full payment of all undisputed fees owed to the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 785,
+   "output_tokens": 208,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the draft agreement and would like to suggest a couple of adjustments before signing:\n\n- The relevant clause currently allows termination for a bribery breach with no payment for work already performed. I propose that termination for any material breach should require written notice and that the non‑terminating party be paid for all fees earned up to the effective termination date.\n- The clause assigning all rights to works in progress transfers ownership even if payment is still outstanding. I suggest that ownership of any work should transfer to the Company only after full payment of all undisputed fees owed to me.\n\nPlease let me know if these changes are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

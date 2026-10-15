@@ -1,0 +1,89 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 113.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4569,
+   "output_tokens": 484,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.85,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You must do any extra work the client asks for without extra pay, so the client can increase your workload for free.",
+      "suggested_change": "Contractor shall perform additional services only upon a written change order signed by both parties, and such services shall be compensated at the rates agreed in the change order."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can keep asking for changes indefinitely, which can consume your time and resources without limit.",
+      "suggested_change": "Client may request up to three (3) revision rounds per Deliverable; any additional revisions shall be subject to a separate change order and may be billed at the agreed rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3418,
+   "output_tokens": 312,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.73,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The clause lets the client request any number of revision rounds at no limit, meaning you could be forced to keep revising work indefinitely without extra compensation.",
+      "suggested_change": "Revision allowance: up to three (3) revision rounds per Deliverable; additional revisions will be billed at the agreed hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 881,
+   "output_tokens": 294,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I’d like to suggest a few small adjustments for clarity and fairness:\n\n- The current clause requires the contractor to perform any additional services the client reasonably requests at no extra charge. This could lead to unlimited unpaid work. I propose that additional services be performed only upon a written change order signed by both parties, with compensation at the rates agreed in that change order.\n- The clause allowing unlimited revisions until the client is fully satisfied gives no limit on revision requests, which may consume excessive time and resources. I suggest limiting revisions to up to three (3) rounds per deliverable, with any extra revisions handled through a separate change order and billed at the agreed rates.\n- The “Revision allowance: unlimited” wording similarly permits endless revisions without extra compensation. I recommend changing this to “Revision allowance: up to three (3) revision rounds per deliverable; additional revisions will be billed at the agreed hourly rate.”\n\nPlease let me know if these modifications work for you. I look forward to finalizing the agreement.\n\nThanks and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

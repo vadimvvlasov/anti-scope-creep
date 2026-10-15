@@ -1,0 +1,48 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  }
+ ],
+ "email": false,
+ "seconds": 92.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4536,
+   "output_tokens": 497,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.34,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "You may be asked to do minor changes without extra pay, but the clause limits them to changes that do not materially increase the workload.",
+      "suggested_change": "Any clarification or amendment to the Services that could increase the workload must be documented in writing and be subject to an agreed change order with additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3492,
+   "output_tokens": 261,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.96,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

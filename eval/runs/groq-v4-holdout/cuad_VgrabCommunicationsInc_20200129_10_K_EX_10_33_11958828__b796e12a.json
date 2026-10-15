@@ -1,0 +1,78 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "CHANGE ORDERS Definition of Change Order: Any change or modification in functionality or feature or UI of the App required by VAL which is beyond agreed functional requirements considered in this Agreement will be considered as a \"Change\" in the original specifications, and that shall be agree by Developer to VAL or vice versa as a \"Change Order\" in writing.",
+   "start": 7046,
+   "end": 7406
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+   "start": 11417,
+   "end": 11538
+  }
+ ],
+ "email": true,
+ "seconds": 103.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4444,
+   "prompt_tokens": 3905,
+   "output_tokens": 539,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 46.28,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "CHANGE ORDERS Definition of Change Order: Any change or modification in functionality or feature or UI of the App required by VAL which is beyond agreed functional requirements considered in this Agreement will be considered as a \"Change\" in the original specifications, and that shall be agree by Developer to VAL or vice versa as a \"Change Order\" in writing.",
+      "explanation": "You must accept any extra features or changes requested by the client as long as they are documented in writing, but the clause does not require the client to pay extra, allowing them to add work without compensation.",
+      "suggested_change": "Any change or modification in functionality, feature, or UI of the App required by the Client that is beyond the agreed functional requirements shall be documented in a written Change Order, which must include an agreed additional fee and timeline, and shall be signed by both parties before the work commences."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3358,
+   "prompt_tokens": 2934,
+   "output_tokens": 424,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.48,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "In case Developer terminates the agreement, it shall handover the entire project related IPR, work done till date to VAL.",
+      "explanation": "You must give the client all intellectual property rights for the work even if you have not been paid in full, exposing you to loss of ownership without compensation.",
+      "suggested_change": "In case the Developer terminates the agreement, the transfer of any project‑related IPR shall occur only after all outstanding invoices have been paid in full."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 836,
+   "prompt_tokens": 613,
+   "output_tokens": 223,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.54,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to clarify a couple of points in the agreement:\n- The relevant clause on Change Orders currently allows additional work to be added without a fee. To ensure fair compensation, I propose that any change or modification in functionality, feature, or UI that is beyond the agreed functional requirements be documented in a written Change Order that includes an agreed additional fee and timeline, and that both parties sign it before the work begins.\n- The clause regarding termination by the Developer states that all project‑related IPR must be handed over to the client regardless of payment status. I suggest adjusting this so that the transfer of any project‑related IPR occurs only after all outstanding invoices have been paid in full.\n\nPlease let me know if these adjustments work for you.\n\nThank you,\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,106 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+   "start": 13834,
+   "end": 14001
+  }
+ ],
+ "email": true,
+ "seconds": 56.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4960,
+   "prompt_tokens": 4133,
+   "output_tokens": 827,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.43,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You would have to do extra work the client asks for without any extra compensation.",
+      "suggested_change": "Contractor shall perform additional services requested by the Client only pursuant to a written change order that sets forth the scope and applicable fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can keep asking for changes forever, which could delay payment and increase your workload at no cost.",
+      "suggested_change": "Client may request up to three revision rounds per Deliverable; any further revisions shall be subject to a separate written agreement and additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3921,
+   "prompt_tokens": 3154,
+   "output_tokens": 767,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 32.45,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The client may ask for unlimited revision rounds, which can force you to keep reworking without limit.",
+      "suggested_change": "Revision allowance: up to 3 revisions per deliverable."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+      "explanation": "The client can request work outside the defined scope and you must perform it as part of the Services, meaning no extra payment.",
+      "suggested_change": "Requests outside the scope will be addressed only through a written change order and may be subject to additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1676,
+   "prompt_tokens": 690,
+   "output_tokens": 986,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\n- The relevant clause requires the contractor to perform any additional services requested by the client at no extra charge. This would obligate the contractor to do extra work without compensation. I propose that the clause be revised to state that additional services will be performed only under a written change order that specifies the scope and applicable fees.\n- The relevant clause allows the client to request unlimited revisions until fully satisfied with each deliverable, which could lead to unbounded work without additional payment. I suggest limiting revisions to three rounds per deliverable, with any extra revisions requiring a separate written agreement and additional fees.\n- The relevant clause lists an unlimited revision allowance, meaning the contractor could be required to make endless changes. I recommend changing this to allow up to three revisions per deliverable.\n- The relevant clause states that requests outside the defined post‑launch support scope are treated as part of the Services, which would obligate the contractor to perform extra work without extra compensation. I propose that any work outside the scope be addressed only via a written change order and may incur additional fees.\n\nThanks for your understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

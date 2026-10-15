@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  }
+ ],
+ "email": true,
+ "seconds": 52.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3489,
+   "prompt_tokens": 2568,
+   "output_tokens": 921,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.59,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You transfer full ownership of the software to the client as soon as you deliver each milestone, even though payment may not have been received yet, exposing you to loss of IP before you are paid.",
+      "suggested_change": "Ownership of the custom software code, database schemas, and visual assets shall transfer to the Client only upon full payment of the corresponding Milestone amount."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment is required 90 days after final acceptance, which delays cash flow well beyond the typical 30‑day window.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the respective Milestone."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1235,
+   "prompt_tokens": 587,
+   "output_tokens": 648,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a couple of adjustments before signing:\n\n- The relevant clause currently transfers ownership of the custom software code, database schemas, and visual assets to the client as soon as each milestone is delivered, even if payment has not yet been received. I propose that ownership transfer only after full payment of the corresponding milestone amount.\n- The relevant clause sets the payment deadline at ninety (90) days after the client’s final acceptance of the complete software, which can create a cash‑flow delay. I propose that payment for each milestone be due within thirty (30) days after the client’s acceptance of that milestone.\n\nPlease let me know if these changes are acceptable. Thanks for your understanding.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

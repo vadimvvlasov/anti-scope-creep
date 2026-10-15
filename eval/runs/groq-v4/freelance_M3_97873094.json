@@ -1,0 +1,103 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "10.2 The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8178,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "4.2 Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3786,
+   "end": 3878
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Liability cap: USD 35,000 (Client only)",
+   "start": 13208,
+   "end": 13247
+  }
+ ],
+ "email": true,
+ "seconds": 114.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4639,
+   "output_tokens": 620,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.58,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "10.2 The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "You are liable for any loss or claim from the services with no monetary cap, while the client’s liability is limited.",
+      "suggested_change": "The aggregate liability of each party arising from this Agreement shall be capped at an amount equal to the total fees paid under this Agreement, except for liabilities that cannot be limited by law."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "4.2 Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Payment is delayed until the client gets paid from its customer, a condition the client controls, which can extend the payment period far beyond 30 days.",
+      "suggested_change": "Invoices are payable within 30 days after the Client receives the invoice, without conditioning payment on the Client’s receipt of funds from its customers."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3658,
+   "output_tokens": 415,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.14,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "You will only be paid after the Client receives payment from its own customer, which may delay or prevent your payment.",
+      "suggested_change": "Payment period: 15 days after the Client receives a valid invoice from the Contractor."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Liability cap: USD 35,000 (Client only)",
+      "explanation": "The liability cap applies only to the Client, leaving the Contractor without any limit on its potential liability.",
+      "suggested_change": "Liability cap: USD 35,000 (Client and Contractor each)."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1002,
+   "output_tokens": 313,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.36,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before signing, I would like to suggest a few adjustments to the agreement:\n\n- The relevant clause on liability currently caps the Client’s liability at USD 35,000 while leaving the Contractor uncapped. I propose that the aggregate liability of each party be capped at an amount equal to the total fees paid under the agreement, except for liabilities that cannot be limited by law.\n- The payment term in clause 4.2 ties invoicing to the Client’s receipt of funds from its customer, which could extend payment beyond 30 days. I suggest that invoices be payable within 30 days after the Client receives the invoice, without conditioning payment on the Client’s receipt of customer funds.\n- The payment period wording also links payment to the Client being paid by its customer. I recommend that the payment period be set to 15 days after the Client receives a valid invoice from the Contractor.\n- The liability cap clause currently applies only to the Client. I propose that the same USD 35,000 cap apply to both the Client and the Contractor.\n\nPlease let me know if these revisions are acceptable. I look forward to finalizing our agreement.\n\nThank you and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

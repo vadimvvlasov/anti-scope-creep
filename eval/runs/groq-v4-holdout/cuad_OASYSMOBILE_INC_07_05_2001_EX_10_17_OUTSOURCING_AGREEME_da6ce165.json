@@ -1,0 +1,114 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.4 OWNERSHIP OF DELIVERABLES. HSNS acknowledges and agrees that any and all Deliverables shall be and remain the property of E.piphany.",
+   "start": 18565,
+   "end": 18701
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date",
+   "start": 43686,
+   "end": 43748
+  }
+ ],
+ "email": true,
+ "seconds": 271.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4448,
+   "prompt_tokens": 4316,
+   "output_tokens": 132,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4606,
+   "prompt_tokens": 4206,
+   "output_tokens": 400,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.39,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.4 OWNERSHIP OF DELIVERABLES. HSNS acknowledges and agrees that any and all Deliverables shall be and remain the property of E.piphany.",
+      "explanation": "You give the client ownership of everything you create before you have been paid, so you lose control of your work without compensation.",
+      "suggested_change": "6.4 OWNERSHIP OF DELIVERABLES. Ownership of each Deliverable shall transfer to the Client only upon full payment of all invoices related to that Deliverable; until such payment, the Deliverable remains the property of the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4278,
+   "prompt_tokens": 4168,
+   "output_tokens": 110,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.07,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4405,
+   "prompt_tokens": 4123,
+   "output_tokens": 282,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.11,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date",
+      "explanation": "You will not be paid until 90 days after invoicing, which is well beyond the normal 30‑day window and can strain cash flow.",
+      "suggested_change": "$ 115,250.00      Net thirty (30) days from the Effective Date"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4287,
+   "prompt_tokens": 4152,
+   "output_tokens": 135,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.79,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 766,
+   "prompt_tokens": 534,
+   "output_tokens": 232,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n\n- The relevant clause on ownership of deliverables currently gives the client full ownership before payment is received. This means I would lose control of my work without compensation. I propose that ownership of each deliverable transfer to the client only after full payment of all invoices related to that deliverable; until then, the deliverable remains the property of the contractor.\n- The payment term listed as \"Net ninety (90) days from the Effective Date\" would delay payment well beyond the usual 30‑day window and could strain cash flow. I suggest changing the term to \"Net thirty (30) days from the Effective Date.\"\n\nPlease let me know if these modifications are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

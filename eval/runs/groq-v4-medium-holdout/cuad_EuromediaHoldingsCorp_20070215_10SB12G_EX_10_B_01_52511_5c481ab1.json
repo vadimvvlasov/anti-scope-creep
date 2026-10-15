@@ -1,0 +1,89 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Licensor shall indemnify Rogers and its affiliates from and against any and all claims, damages, liabilities, costs and expenses (including, without limitation, reasonable legal fees) arising out of or caused by:     (i) any breach by Licensor of any material term of this Agreement;     (ii) the content of any Licensed Program, trailer and/or other promotional materials provided by Licensor to Rogers hereunder (including, without limitation, any libelous, slanderous or obscene material, violations of copyright, trade- mark rights or other intellectual property rights, personality right, right of privacy or literary or dramatic right); and     (iii) any encoding or other services provided by Licensor hereunder.",
+   "start": 14566,
+   "end": 15285
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+   "start": 16761,
+   "end": 16866
+  }
+ ],
+ "email": true,
+ "seconds": 104.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4461,
+   "prompt_tokens": 4037,
+   "output_tokens": 424,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5914,
+   "prompt_tokens": 4006,
+   "output_tokens": 1908,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.55,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Licensor shall indemnify Rogers and its affiliates from and against any and all claims, damages, liabilities, costs and expenses (including, without limitation, reasonable legal fees) arising out of or caused by: (i) any breach by Licensor of any material term of this Agreement; (ii) the content of any Licensed Program, trailer and/or other promotional materials provided by Licensor to Rogers hereunder (including, without limitation, any libelous, slanderous or obscene material, violations of copyright, trade- mark rights or other intellectual property rights, personality right, right of privacy or literary or dramatic right); and (iii) any encoding or other services provided by Licensor hereunder.",
+      "explanation": "You must cover all claims and costs caused by your breach or content, with no monetary limit, exposing you to unlimited liability.",
+      "suggested_change": "Licensor shall indemnify Rogers only for direct damages arising from Licensor's breach, subject to a cumulative monetary cap equal to the total fees paid under this Agreement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+      "explanation": "Rogers can end the contract without cause after 60 days' notice, and the clause does not guarantee payment for work already performed.",
+      "suggested_change": "Either party may terminate this Agreement upon sixty (60) days' prior written notice, and any work performed up to the termination date shall be compensated at the rates set forth in this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4144,
+   "prompt_tokens": 3747,
+   "output_tokens": 397,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.26,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1324,
+   "prompt_tokens": 698,
+   "output_tokens": 626,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before signing, I would like to suggest a couple of adjustments to the agreement:\n\n- The relevant clause requires Licensor to indemnify Rogers for all claims and costs without a monetary limit. This could expose the Licensor to unlimited liability. I propose that the indemnity be limited to direct damages arising from the Licensor's breach, with a cumulative cap equal to the total fees paid under the agreement.\n- The relevant clause allows Rogers to terminate the agreement at any time with sixty (60) days' prior written notice, but it does not guarantee payment for work already performed. I propose that either party may terminate with sixty (60) days' prior written notice, and that any work performed up to the termination date be compensated at the rates set forth in the agreement.\n\nThank you for considering these changes.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

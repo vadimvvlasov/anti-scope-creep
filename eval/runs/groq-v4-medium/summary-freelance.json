@@ -1,0 +1,110 @@
+{
+ "set": "freelance",
+ "contracts": 13,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "scope_creep": {
+   "tp": 2,
+   "fp": 3,
+   "fn": 0,
+   "precision": 0.4,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.8
+  },
+  "unlimited_revisions": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 18,
+   "fp": 3,
+   "fn": 0,
+   "precision": 0.857,
+   "recall": 1.0,
+   "severity_accuracy": 0.944
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 28,
+  "findings_kept": 28,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 8776,
+  "tokens_max": 11272,
+  "seconds_mean": 84.9,
+  "seconds_max": 114.0
+ },
+ "false_positives": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  }
+ ],
+ "false_negatives": [],
+ "severity_misses": [
+  {
+   "id": "freelance:M6",
+   "category": "unfavorable_payment_terms",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

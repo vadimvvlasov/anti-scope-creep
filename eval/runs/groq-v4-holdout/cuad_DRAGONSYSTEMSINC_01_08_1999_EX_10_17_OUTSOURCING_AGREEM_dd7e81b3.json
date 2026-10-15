@@ -1,0 +1,65 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Either party shall be liable for failure or delay in performance of its duties under this Agreement except for reasons beyond such party's reasonable control. MMI shall not be liable for indirect or consequential damages unless caused by intention or gross negligence.",
+   "start": 4043,
+   "end": 4311
+  }
+ ],
+ "email": true,
+ "seconds": 4.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4193,
+   "prompt_tokens": 3507,
+   "output_tokens": 686,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.88,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "You can be terminated by the client for any reason with 60‑day notice, and the clause does not require payment for work already performed.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon sixty (60) days written notice to the other party, and any services performed up to the termination date shall be paid in full."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Either party shall be liable for failure or delay in performance of its duties under this Agreement except for reasons beyond such party's reasonable control. [PARTY_B] shall not be liable for indirect or consequential damages unless caused by intention or gross negligence.",
+      "explanation": "There is no overall limit on the amount you could be required to pay for damages, leaving your liability effectively unlimited.",
+      "suggested_change": "The Contractor’s total liability for any claim arising out of this Agreement shall not exceed the total fees paid by the Client under this Agreement, except for liability arising from gross negligence, willful misconduct, or breach of confidentiality."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 819,
+   "prompt_tokens": 563,
+   "output_tokens": 256,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 1.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to discuss a couple of clauses that need clarification.\n\n- The relevant clause currently allows termination by the client without cause with sixty (60) days written notice, but it does not guarantee payment for work already performed. I propose that either party may terminate without cause upon sixty (60) days written notice to the other party, and that any services performed up to the termination date shall be paid in full.\n- The relevant clause limits liability for indirect or consequential damages but does not set an overall cap on liability, which could leave the contractor exposed to unlimited damages. I suggest adding a cap so that the contractor’s total liability for any claim arising out of the agreement shall not exceed the total fees paid by the client, except for liability arising from gross negligence, willful misconduct, or breach of confidentiality.\n\nPlease let me know if these adjustments are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

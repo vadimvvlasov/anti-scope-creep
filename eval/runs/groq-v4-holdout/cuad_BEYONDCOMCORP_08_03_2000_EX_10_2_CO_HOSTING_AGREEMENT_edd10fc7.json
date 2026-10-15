@@ -1,0 +1,114 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "NAI reserves the right to change the URL of the Originating Locations           from time to time and agrees to give Co-Host as much notice of any           such change as is practicable.",
+   "start": 9287,
+   "end": 9474
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  }
+ ],
+ "email": true,
+ "seconds": 210.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4465,
+   "prompt_tokens": 4116,
+   "output_tokens": 349,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.9,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "NAI reserves the right to change the URL of the Originating Locations from time to time and agrees to give Co-Host as much notice of any such change as is practicable.",
+      "explanation": "You may be required to modify links or pages whenever NAI changes a URL, but the agreement provides no mechanism for additional compensation.",
+      "suggested_change": "NAI may change the URL of the Originating Locations only with at least thirty (30) days written notice, and any resulting modifications required of Co-Host shall be compensated at the rates set forth in Exhibit \"A\"."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3999,
+   "prompt_tokens": 3653,
+   "output_tokens": 346,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.22,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4621,
+   "prompt_tokens": 4084,
+   "output_tokens": 537,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.49,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "You are still liable for any infringement or related claims under Section 9 without any monetary limit, so you could face unlimited damages for those claims.",
+      "suggested_change": "Except for claims under Section 9, the liability of either party to the other for direct damages shall not exceed fifteen million dollars, and the liability for claims under Section 9 shall also be subject to the same fifteen‑million‑dollar aggregate cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4314,
+   "prompt_tokens": 4233,
+   "output_tokens": 81,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4108,
+   "prompt_tokens": 4020,
+   "output_tokens": 88,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 836,
+   "prompt_tokens": 585,
+   "output_tokens": 251,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.6,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before I sign the agreement, I would like to ask for a couple of clarifications and adjustments:\n\n- The relevant clause allows NAI to change the URL of the Originating Locations with notice “as practicable.” As it stands, there is no provision for compensation if Co‑Host must modify links or pages. I propose that NAI may change the URL only with at least thirty (30) days written notice, and that any resulting modifications required of Co‑Host be compensated at the rates set forth in Exhibit \"A.\"\n- The liability clause caps direct damages at fifteen million dollars except for claims under Section 9, which remain uncapped. To ensure both parties have the same exposure, I suggest that the liability for claims under Section 9 also be subject to the fifteen‑million‑dollar aggregate cap.\n\nThank you for considering these revisions. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

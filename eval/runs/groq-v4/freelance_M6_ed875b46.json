@@ -1,0 +1,91 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9021,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "4.2 Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3786,
+   "end": 3949
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  }
+ ],
+ "email": false,
+ "seconds": 94.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4828,
+   "output_tokens": 811,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.38,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "You may have to do minor clarifications that are not clearly defined as extra paid work, which could increase your effort without additional compensation.",
+      "suggested_change": "Any clarification or additional work that materially increases the workload shall be documented in a written change order and may be subject to additional fees."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "The client can end the agreement at will, but you will be paid for the work already performed up to termination.",
+      "suggested_change": "Either party may terminate for convenience upon 20 days' written notice, and the terminating party shall pay the other party all undisputed fees for services performed up to the effective termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "4.2 Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payments are due 40 days after invoicing, which is longer than the typical 30‑day window.",
+      "suggested_change": "Invoices are payable Net 30. Late payments may accrue interest at 1.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3642,
+   "output_tokens": 417,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.68,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "You must be paid within 40 days of invoicing, which exceeds the standard 30‑day window and delays cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

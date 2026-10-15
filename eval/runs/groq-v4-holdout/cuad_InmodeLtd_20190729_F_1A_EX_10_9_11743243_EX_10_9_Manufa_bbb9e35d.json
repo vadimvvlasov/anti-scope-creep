@@ -1,0 +1,87 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Scope Of Work Contractor will, pursuant to the written specifications given by Customer and pre approved by Contractor (\"Specifications\"), perform manufacturing services on behalf of Customer. These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+   "start": 2097,
+   "end": 2488
+  }
+ ],
+ "email": true,
+ "seconds": 207.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4261,
+   "prompt_tokens": 3823,
+   "output_tokens": 438,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.57,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Scope Of Work Contractor will, pursuant to the written specifications given by Customer and pre approved by Contractor (\"Specifications\"), perform manufacturing services on behalf of Customer. These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+      "explanation": "You are obligated to provide any manufacturing services the Customer requests that fit the broad \"but not be limited to\" language, without any requirement for a separate change order or extra compensation.",
+      "suggested_change": "Contractor shall perform only the manufacturing services expressly described in each accepted Purchase Order or written Change Order; any additional services shall require a written Change Order signed by both parties and shall be compensated at rates agreed in that Change Order."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3943,
+   "prompt_tokens": 3725,
+   "output_tokens": 218,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 45.65,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4388,
+   "prompt_tokens": 4174,
+   "output_tokens": 214,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.18,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3651,
+   "prompt_tokens": 3556,
+   "output_tokens": 95,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 693,
+   "prompt_tokens": 485,
+   "output_tokens": 208,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before I sign the agreement, I would like to suggest a small amendment to clarify the scope of work:\n- The agreement currently states that the Contractor will perform manufacturing services \"but not be limited to\" the listed items, which could obligate the Contractor to any additional services requested by the Customer without a separate change order or compensation. I propose that the relevant clause be revised to read: \"Contractor shall perform only the manufacturing services expressly described in each accepted Purchase Order or written Change Order; any additional services shall require a written Change Order signed by both parties and shall be compensated at rates agreed in that Change Order.\"\n\nThank you for considering these changes. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

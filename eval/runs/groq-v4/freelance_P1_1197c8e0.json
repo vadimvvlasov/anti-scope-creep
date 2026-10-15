@@ -1,0 +1,75 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 108.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4439,
+   "output_tokens": 435,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.01,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "You must wait up to 90 days after invoicing before receiving payment, which can strain cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3546,
+   "output_tokens": 312,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.47,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You must wait up to 90 days after invoicing before receiving payment, which is far longer than the typical 30‑day window and increases cash‑flow risk.",
+      "suggested_change": "Payment period: Net 30 days."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 665,
+   "output_tokens": 222,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.31,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before signing, I would like to suggest a couple of adjustments to the agreement:\n- The relevant clause currently states “Invoices are payable Net 90.” This would require waiting up to 90 days for payment, which could strain cash flow. I propose changing it to “Invoices are payable Net 30.”\n- The relevant clause also reads “Payment period: Net 90.” This lengthens the payment window beyond the typical 30‑day term and adds cash‑flow risk. I suggest revising it to “Payment period: Net 30 days.”\n\nThank you for considering these updates. I look forward to moving ahead.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

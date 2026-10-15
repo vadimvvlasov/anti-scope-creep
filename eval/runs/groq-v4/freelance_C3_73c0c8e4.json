@@ -1,0 +1,49 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 1143,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 54.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2940,
+   "output_tokens": 425,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.73,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "The client can request additional work that pushes costs above the estimate without any written change‑order or extra compensation, exposing you to unpaid extra effort.",
+      "suggested_change": "Any change to the scope that increases the total cost beyond the estimated budget shall require a written change order signed by both parties, and the additional work shall be billed at the applicable hourly rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 637,
+   "output_tokens": 214,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I would like to clarify a few points:\n\n- The relevant clause states that the provider shall notify the client immediately if project scope changes threaten to exceed $150,000.00 USD. In plain English, this could allow the client to request extra work that pushes costs above the estimate without a written change‑order or additional compensation, which could leave the provider covering unpaid effort. I propose that any change to the scope that increases the total cost beyond the estimated budget require a written change order signed by both parties, with the additional work billed at the applicable hourly rates.\n\nPlease let me know if these adjustments work for you.\n\nThank you,\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

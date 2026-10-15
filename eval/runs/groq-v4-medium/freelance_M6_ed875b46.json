@@ -1,0 +1,92 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9026,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  }
+ ],
+ "email": true,
+ "seconds": 109.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5117,
+   "prompt_tokens": 4065,
+   "output_tokens": 1052,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.53,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "You can be ended by the client at any time with 20‑day notice while the client cannot end the agreement for convenience, which creates an imbalance.",
+      "suggested_change": "Either party may terminate for convenience upon 20 days' written notice, and any fees for Services performed up to the termination date shall be payable."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Payment is due 40 days after invoicing, which is longer than the typical 30‑day period and delays cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3965,
+   "prompt_tokens": 3273,
+   "output_tokens": 692,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.37,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "You must wait up to 40 days after invoicing to be paid, which is longer than the typical 30‑day term and can delay cash flow.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 915,
+   "prompt_tokens": 424,
+   "output_tokens": 491,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before signing, I’d like to suggest a small amendment to the agreement:\n- The relevant clause reads “Invoices are payable Net 40.” This would extend the payment period to 40 days, which is longer than the typical 30‑day term and could affect cash flow. I propose that the clause be changed to read “Invoices are payable Net 30.”\n\nThank you for your consideration.\n"
+   }
+  }
+ ],
+ "dropped": []
+}

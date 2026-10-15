@@ -1,0 +1,89 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [],
+ "email": false,
+ "seconds": 280.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4457,
+   "output_tokens": 75,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.9,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4161,
+   "output_tokens": 303,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4045,
+   "output_tokens": 198,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 47.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3772,
+   "output_tokens": 97,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 46.69,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4495,
+   "output_tokens": 459,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.67,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "8.7 Without prejudice to any other limitation (whether effective or not) of either Party's liability, neither Party shall be liable to the other Party (whether in contract, tort (including negligence) or for breach of statutory duty or otherwise) for any loss of profits, use, opportunity, goodwill, business or anticipated savings, for any indirect, incidental, special, indirect, punitive or consequential losses (in each case, irrespective of any negligence or other act, default or omission of a Party (or its employees or agents) and regardless of whether such loss or claim was foreseeable or not and whether the other Party has been informed of the possibility of such loss). Nothing in this Section 8.7 shall operate to limit or exclude any liability under Section 8.5 with respect to a Claim, or for fraud, or for breach by a Party of the provisions of Article 7.",
+      "explanation": "You have no overall cap on your liability; the clause only limits indirect damages but leaves all direct damages unlimited, except for the exclusions listed. This means you could be on the hook for an unlimited amount of damages.",
+      "suggested_change": "Each Party's total liability for direct damages arising out of this Agreement shall be limited to an amount equal to the fees paid under this Agreement, except for liability arising from fraud, gross negligence, willful misconduct, or as otherwise required by law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3311,
+   "output_tokens": 204,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.21,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

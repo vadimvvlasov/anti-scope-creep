@@ -1,0 +1,117 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 111.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4661,
+   "output_tokens": 671,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.39,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "You may have to do extra work that the client calls a “minor clarification” without extra pay, because the clause is vague about what counts as material increase.",
+      "suggested_change": "Any clarification or change to the Services that increases the workload shall be documented in a written change order and shall be compensated at the rates set forth in the Agreement."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "The contract permits up to 15 revision rounds, which is more than six and creates a significant burden on you.",
+      "suggested_change": "The Client may request up to 3 rounds of ordinary revisions for each Deliverable; any additional revisions shall require a written change order and be compensated separately."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Payment is due 60 days after invoicing, which is longer than the standard 30‑day period and can delay your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3653,
+   "output_tokens": 428,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.87,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "You may have to provide up to 15 rounds of revisions, which can require a lot of extra work at no additional pay.",
+      "suggested_change": "Revision allowance: up to 3 rounds, with additional rounds subject to a separate fee."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "The client can delay payment up to 60 days after invoicing, which hurts cash flow.",
+      "suggested_change": "Payment period: Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 899,
+   "output_tokens": 287,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign the agreement, I’d like to suggest a few adjustments:\n- The relevant clause currently allows up to 15 rounds of ordinary revisions for the principal creative Deliverables. This creates a significant workload. I propose that the Client may request up to 3 rounds of ordinary revisions for each Deliverable; any additional revisions should require a written change order and be compensated separately.\n- The agreement states that invoices are payable Net 60. A 60‑day payment term can delay cash flow. I suggest changing this to Net 30.\n- The revision allowance is listed as 15 rounds. Providing that many revisions at no extra pay is excessive. I recommend setting the allowance to up to 3 rounds, with any extra rounds subject to a separate fee.\n- The payment period is noted as Net 60. Again, this lengthens the time before payment is received. I propose revising it to Net 30.\n\nThank you for considering these updates. I look forward to moving forward.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

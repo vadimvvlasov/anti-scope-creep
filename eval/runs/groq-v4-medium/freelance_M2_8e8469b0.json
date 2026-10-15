@@ -1,0 +1,77 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  }
+ ],
+ "email": true,
+ "seconds": 110.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5371,
+   "prompt_tokens": 4141,
+   "output_tokens": 1230,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.05,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract instantly with no notice and you won’t receive payment for work already done.",
+      "suggested_change": "Client may terminate this Agreement for cause upon 30 days’ written notice, and any work performed up to the termination date shall be paid in accordance with the Fees schedule."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work passes to the client as soon as you deliver it, even if you have not been paid.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon full payment of the applicable fees for that Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3679,
+   "prompt_tokens": 3157,
+   "output_tokens": 522,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1235,
+   "prompt_tokens": 540,
+   "output_tokens": 695,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.74,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\n- The clause states that the client may terminate this Agreement at any time, without notice and without further payment. This would allow the client to end the contract instantly and leave unpaid work. I propose that termination be allowed only for cause upon 30 days’ written notice, and that any work performed up to the termination date be paid according to the Fees schedule.\n- The clause states that all intellectual property rights in each Deliverable transfer to the Client upon delivery. This would transfer ownership before payment is received. I propose that the transfer of intellectual property rights occur only after full payment of the applicable fees for that Deliverable.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

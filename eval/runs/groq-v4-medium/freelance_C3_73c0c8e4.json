@@ -1,0 +1,51 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 1143,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 52.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3338,
+   "prompt_tokens": 2563,
+   "output_tokens": 775,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.91,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "You could be asked to do extra work beyond the estimate without any requirement for additional payment or a formal change order.",
+      "suggested_change": "Any change to the scope that would increase the estimated budget shall require a written change order signed by both parties, specifying the additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1077,
+   "prompt_tokens": 454,
+   "output_tokens": 623,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.93,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a clarification to one clause:\n\n- The relevant clause reads: \"Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.\" This could allow work beyond the budget without a formal change order or additional payment. I propose that any change to the scope that would increase the estimated budget shall require a written change order signed by both parties, specifying the additional compensation.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

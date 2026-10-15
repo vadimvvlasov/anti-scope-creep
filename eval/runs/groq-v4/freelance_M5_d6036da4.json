@@ -1,0 +1,102 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9025,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "6.1 Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5117,
+   "end": 5262
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+   "start": 8098,
+   "end": 8294
+  }
+ ],
+ "email": true,
+ "seconds": 113.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4885,
+   "output_tokens": 875,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.88,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause lets the client ask for small clarifications that could increase your work without a formal change order, creating a risk of extra unpaid work.",
+      "suggested_change": "Any change to the scope, including minor clarifications, must be documented in a written change order and may be subject to additional fees."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "The client can end the contract at any time with notice and you receive no payment for work already performed, leaving you uncompensated.",
+      "suggested_change": "Either party may terminate for convenience upon 20 days' written notice, and the Client shall pay for all Services performed up to the effective termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "6.1 Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Ownership of all deliverables transfers to the client after only the first partial payment, so you lose IP rights before receiving full compensation.",
+      "suggested_change": "Client shall own all rights in the Deliverables only upon full payment of all invoices related to those Deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+      "explanation": "Your overall liability is limited, but indemnification obligations are unlimited, exposing you to potentially large third‑party claims.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, including any indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3390,
+   "output_tokens": 165,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 913,
+   "output_tokens": 273,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a few small adjustments before signing:\n- The relevant clause on termination currently allows the Client to end the contract for convenience with 20 days' notice while the Contractor cannot, and it states that fees for services in progress are not payable. I propose that either party may terminate for convenience with 20 days' written notice, and that the Client shall pay for all services performed up to the effective termination date.\n- The clause on ownership of deliverables transfers all rights to the Client upon payment of the first milestone invoice, even for work delivered later. I suggest that the Client shall own the rights in the Deliverables only after full payment of all invoices related to those Deliverables.\n- The liability clause caps the aggregate liability at USD 35,000 but excludes the Contractor’s indemnification obligations from this cap. I recommend that the aggregate liability cap of USD 35,000 apply to all obligations, including any indemnification responsibilities.\n\nPlease let me know if these revisions are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}
