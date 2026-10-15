@@ -1,0 +1,22 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [],
+ "email": false,
+ "seconds": 14.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16332,
+   "prompt_tokens": 13061,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.35,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

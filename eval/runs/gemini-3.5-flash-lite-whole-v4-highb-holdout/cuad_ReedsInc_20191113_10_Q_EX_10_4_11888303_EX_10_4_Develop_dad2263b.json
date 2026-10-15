@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Reed's will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8327,
+   "end": 8696
+  }
+ ],
+ "email": true,
+ "seconds": 25.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12202,
+   "prompt_tokens": 7484,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.56,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_D] will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "You assign your intellectual property rights in the deliverables immediately upon creation without a condition requiring full payment first. If payment or compensation issues arise, you have already permanently transferred all rights to your work.",
+      "suggested_change": "Ownership of the Deliverables shall transfer to the Client only upon receipt of full payment and fulfillment of all compensation terms agreed between the parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1719,
+   "prompt_tokens": 370,
+   "output_tokens": 122,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.18,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to suggest a modification to the relevant clause before we proceed. - Regarding the clause where [PARTY_D] will exclusively own all Deliverables upon creation, this transfers rights before payment is completed. I propose changing it so that ownership of the Deliverables shall transfer to the Client only upon receipt of full payment and fulfillment of all compensation terms agreed between the parties. Thank you for your understanding, and please let me know if this adjustment works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

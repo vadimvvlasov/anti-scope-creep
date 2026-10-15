@@ -1,0 +1,51 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2465,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 23.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16523,
+   "prompt_tokens": 10788,
+   "output_tokens": 168,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.66,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "The second installment of the Technology Access Fee is due 60 days after the Effective Date, which delays your receipt of payment beyond the standard 30-day window.",
+      "suggested_change": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following the first installment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2221,
+   "prompt_tokens": 332,
+   "output_tokens": 104,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before signing, I have one minor suggestion regarding the relevant clause. - The second installment is currently scheduled 60 days after the Effective Date, which delays payment beyond a standard 30-day window. We propose updating the agreement so that the second installment is due thirty days following the first installment. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

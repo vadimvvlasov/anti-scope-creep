@@ -1,0 +1,51 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 15.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11314,
+   "prompt_tokens": 7650,
+   "output_tokens": 165,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.97,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "Ownership of your work and materials passes to the client immediately without being conditioned on full payment, leaving you unprotected if payment is delayed or withheld.",
+      "suggested_change": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall transfer to the Client only upon receipt of full payment of all compensation due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2216,
+   "prompt_tokens": 329,
+   "output_tokens": 78,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.42,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a minor adjustment before signing. - Regarding the relevant clause, ownership of the work passes immediately without being conditioned on full payment, and I propose modifying this so that ownership transfers to the client only upon receipt of full payment of all compensation due under the agreement. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

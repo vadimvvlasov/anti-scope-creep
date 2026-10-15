@@ -1,0 +1,152 @@
+{
+ "id": "cuad:NlsPharmaceuticsLtd_20200228_F-1_EX-10.14_12029046_EX-10.14_Development Agreement",
+ "chars": 67932,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For the payments under Article 2.1(iii) above, referred to in Article 3.3, Licensor understands that any such payments may only be remitted by Licensee after this (or a corresponding) Agreement has been recorded by the Brazilian Patent and Trademark Office (\"INPI\") and registered by the Brazilian Central Bank (\"Bacen\"), as required by Brazilian law.",
+   "start": 21134,
+   "end": 21485
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices,",
+   "start": 20604,
+   "end": 20788
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "any intellectual property, know-how, trade secrets, data, processes whether patentable or not which may arise from the Further Development Work and the Supplemental Data shall be solely owned by NLS and shall fall under NLS Intellectual Property Rights and any other rights as the case maybe, except any information that is or becomes public (non-confidential) other than as a direct or indirect result of a disclosure by Licensee or any of its representatives.",
+   "start": 26198,
+   "end": 26659
+  }
+ ],
+ "email": true,
+ "seconds": 81.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5515,
+   "prompt_tokens": 4268,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.11,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8998,
+   "prompt_tokens": 4100,
+   "output_tokens": 347,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.29,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For the payments under Article 2.1(iii) above, referred to in Article 3.3, Licensor understands that any such payments may only be remitted by Licensee after this (or a corresponding) Agreement has been recorded by the Brazilian Patent and Trademark Office (\"INPI\") and registered by the Brazilian Central Bank (\"Bacen\"), as required by Brazilian law.",
+      "explanation": "Your payments are conditional upon government registrations being completed, which delays your receipt of funds.",
+      "suggested_change": "Payments due under this Agreement shall be made by the Client within thirty (30) days of the invoice date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices,",
+      "explanation": "Payment is due within 45 days of invoice, which is later than the standard 30-day payment term.",
+      "suggested_change": "Except for Article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor within thirty (30) days after the issuance by the Licensor of the corresponding invoices."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7604,
+   "prompt_tokens": 3650,
+   "output_tokens": 232,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.19,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "any intellectual property, know-how, trade secrets, data, processes whether patentable or not which may arise from the Further Development Work and the Supplemental Data shall be solely owned by NLS and shall fall under NLS Intellectual Property Rights and any other rights as the case maybe, except any information that is or becomes public (non-confidential) other than as a direct or indirect result of a disclosure by Licensee or any of its representatives.",
+      "explanation": "The intellectual property, data, and know-how arising from your further development work become the sole property of NLS immediately upon creation without any condition requiring full payment first.",
+      "suggested_change": "Any intellectual property, know-how, trade secrets, data, and processes arising from the Further Development Work and the Supplemental Data shall remain the property of the Licensee until full payment is received from the Licensor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5406,
+   "prompt_tokens": 3951,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.35,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5151,
+   "prompt_tokens": 3511,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5606,
+   "prompt_tokens": 3688,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.73,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3558,
+   "prompt_tokens": 2896,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3517,
+   "prompt_tokens": 677,
+   "output_tokens": 264,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few minor adjustments before we proceed. - Regarding the relevant clause on payment conditions, your payments are conditional upon government registrations being completed, which delays your receipt of funds; please update it to: Payments due under this Agreement shall be made by the Client within thirty (30) days of the invoice date. - Regarding the relevant clause on payment timing, payment is due within 45 days of invoice, which is later than the standard 30-day payment term; please change it to: Except for Article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor within thirty (30) days after the issuance by the Licensor of the corresponding invoices. - Regarding the relevant clause on intellectual property ownership, the intellectual property, data, and know-how arising from further development work become sole property immediately upon creation without any condition requiring full payment first; we suggest this modification: Any intellectual property, know-how, trade secrets, data, and processes arising from the Further Development Work and the Supplemental Data shall remain the property of the Licensee until full payment is received from the Licensor. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

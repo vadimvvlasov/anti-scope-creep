@@ -1,0 +1,65 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+   "start": 681,
+   "end": 935
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+   "start": 10543,
+   "end": 10968
+  }
+ ],
+ "email": true,
+ "seconds": 22.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10383,
+   "prompt_tokens": 6053,
+   "output_tokens": 326,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.65,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+      "explanation": "The agreement requires you to perform open-ended advisory services requested by the company without a formal change-order process or guaranteed extra pay, which can lead to unpaid extra work.",
+      "suggested_change": "The Contractor agrees to perform the services specified on Schedule A, and any additional services requested by the Client shall be subject to a separate written change order detailing the additional work and compensation."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor, in the United States and elsewhere and appoints any officer of the Company as Consultant's duly authorized attorney to execute, file, prosecute and protect the same before any government agency, court or authority.",
+      "explanation": "Your intellectual property is assigned to the company immediately upon creation rather than upon receipt of payment, leaving you without leverage if payment is delayed or withheld.",
+      "suggested_change": "Upon full payment for the applicable services, the Contractor hereby assigns to the Client all right, title, and interest in the deliverables specifically created under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2516,
+   "prompt_tokens": 507,
+   "output_tokens": 147,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.94,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have a few small suggestions before I sign. - Regarding the relevant clause on consulting services, the agreement requires open-ended tasks without a formal process for extra pay, which can lead to unpaid extra work; I propose that additional services be subject to a separate written change order detailing the work and compensation. - Regarding the relevant clause on intellectual property, the current terms assign my work immediately upon creation rather than upon payment, leaving me without leverage if payment is delayed; I propose that the assignment take effect upon full payment for the applicable services. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

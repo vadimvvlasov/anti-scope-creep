@@ -1,0 +1,38 @@
+{
+ "id": "cuad:VAXCYTE,INC_05_22_2020-EX-10.19-SUPPLY AGREEMENT",
+ "chars": 99696,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "in its entirety or with respect to one or more Products, on a Product-by-Product basis, by SutroVax upon [***] days' prior written notice to Sutro for any reason.",
+   "start": 81913,
+   "end": 82075
+  }
+ ],
+ "email": false,
+ "seconds": 17.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 27927,
+   "prompt_tokens": 22794,
+   "output_tokens": 184,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.45,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "in its entirety or with respect to one or more Products, on a Product-by-Product basis, by [PARTY_B] upon [***] days' prior written notice to Sutro for any reason.",
+      "explanation": "Only the Client can terminate the contract without cause, while you lack a corresponding right. Because you are reimbursed for your work and committed costs, this is a low-level risk.",
+      "suggested_change": "Either party may terminate this Supply Agreement in its entirety or with respect to one or more Products, on a Product-by-Product basis, upon [***] days' prior written notice to the other party."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}
