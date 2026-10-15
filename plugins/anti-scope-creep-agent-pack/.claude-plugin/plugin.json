@@ -1,0 +1,15 @@
+{
+  "name": "anti-scope-creep-agent-pack",
+  "version": "0.1.0",
+  "description": "Eval workflow skill, API contract reviewer subagent, secret and credential guard hook, and a read-only MCP server for the Anti-Scope Creep project",
+  "author": {
+    "name": "Vadim Vlasov"
+  },
+  "repository": "https://github.com/vadimvvlasov/anti-scope-creep",
+  "keywords": [
+    "eval",
+    "api-review",
+    "guardrail",
+    "mcp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "anti-scope-creep",
+  "owner": {
+    "name": "Vadim Vlasov"
+  },
+  "description": "Agent extension pack for the Anti-Scope Creep project",
+  "plugins": [
+    {
+      "name": "anti-scope-creep-agent-pack",
+      "source": "./plugins/anti-scope-creep-agent-pack",
+      "description": "Eval workflow, API contract reviewer, guard hook and read-only MCP server for Anti-Scope Creep"
+    }
+  ]
+}
