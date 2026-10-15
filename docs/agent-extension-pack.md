@@ -45,10 +45,12 @@ Steps, local stack from `make up` (stub analyzer, no LLM calls in the app):
    baseline run, writes the decision rule first, checks the quota (about 4 requests),
    runs, scores and reports. The skill writes down the procedure used to accept v5 on
    2026-10-15 ([eval.md](eval.md), "Gemini configuration after the submission").
-3. **Subagent.** After a change to `ContractSummary`, `api-contract-reviewer` compares
-   the model, `openapi.yaml` and `frontend/src/services/types.ts` and runs
-   `tests/test_openapi_contract.py`; it reports a field missing from `openapi.yaml` as a
-   blocker.
+3. **Subagent.** A throwaway commit adds `finding_count` to `ContractSummary` in the
+   backend only. `api-contract-reviewer` (headless run, 2026-10-15) ran
+   `tests/test_openapi_contract.py` (1 failed) and reported: a blocker (the field is not
+   in `openapi.yaml`), two majors (not in `docs/spec.md`; never set in `services.py`, so
+   always 0) and a minor (not in the frontend types), with "revert the line" as the
+   smallest fix. It changed nothing.
 4. **MCP.** The agent calls `service_status` (health, readiness, version), then
    `list_contracts` and `get_findings` for the demo contract: categories, risk levels,
    quoted clauses; no full text, no email draft (checked over stdio against the local
