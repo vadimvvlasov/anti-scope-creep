@@ -82,7 +82,7 @@ Added in Phase 3:
 - Pseudonymization before every LLM call and quote verification after it
 - [AI data policy](docs/ai-data-policy.md) and a notice on the upload screen that
   the contract text goes to a third-party AI provider
-- Findings prompt v5: per-category decision rules, chosen on a held-out CUAD set that
+- Findings prompt v6: per-category decision rules, chosen on a held-out CUAD set that
   was not used to tune it. An answer cut at the output token cap is never parsed: it is
   asked again once with a doubled budget, then the analysis fails. A generation that
   fails the provider's JSON validation (`400 json_validate_failed`) is also asked again

@@ -32,7 +32,7 @@ From `backend/`, with the key exported in the same shell and never printed:
 set -a; source ~/.config/gemini.env; set +a     # or groq.env
 uv run python -m evaluation run --run <name> --set freelance \
   --provider gemini --reasoning-effort high --max-output-tokens 8000 \
-  --findings-prompt ../eval/prompts/findings-v5.txt >> ../eval/runs/<name>.log 2>&1
+  --findings-prompt ../eval/prompts/findings-v6.txt >> ../eval/runs/<name>.log 2>&1
 ```
 
 - `--chunk-chars 60000` sends a contract whole; long contracts need
