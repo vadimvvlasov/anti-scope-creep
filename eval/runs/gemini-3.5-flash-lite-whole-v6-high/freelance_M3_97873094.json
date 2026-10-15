@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  }
+ ],
+ "email": true,
+ "seconds": 29.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8388,
+   "prompt_tokens": 5703,
+   "output_tokens": 264,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.82,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "Your liability for damages has no ceiling, exposing you to unlimited financial risk if issues arise. You should negotiate a reasonable cap on your liability.",
+      "suggested_change": "The aggregate liability of the Contractor arising out of or relating to this Agreement shall be capped at the total fees paid by the Client under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Your payment is conditional on the client getting paid by a third party, which can delay your funds indefinitely. You should require payment within a fixed period after invoicing regardless of external payments.",
+      "suggested_change": "Invoices are payable within 30 days after receipt of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2431,
+   "prompt_tokens": 436,
+   "output_tokens": 118,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the liability section, the relevant clause makes your liability unlimited, which creates unnecessary financial exposure; I propose capping your aggregate liability at the total fees paid under the agreement. - Regarding the payment terms, the agreement states that your payment depends on a third party paying the client, which can cause indefinite delays; I propose that invoices are payable within 30 days after receipt of the invoice. Thank you for your understanding and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

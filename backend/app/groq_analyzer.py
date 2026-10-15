@@ -8,6 +8,7 @@ applies the normal failure rule ("keep until success").
 
 import json
 import logging
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Any, Protocol
@@ -79,7 +80,7 @@ class GroqAnalyzer:
         header = f"Contract text, part {index + 1} of {total}:\n\n" if total > 1 else "Contract text:\n\n"
         messages = [
             {"role": "system", "content": self._findings_prompt},
-            {"role": "user", "content": header + chunk},
+            {"role": "user", "content": f"{header}<contract>\n{_neutralize_tags(chunk)}\n</contract>"},
         ]
         result = self._client.complete_json(messages, "contract_findings", FINDINGS_SCHEMA)
         return _valid_drafts(_RawFindings.model_validate(result.content).findings)
@@ -104,6 +105,14 @@ class GroqAnalyzer:
         if unknown_subject or unknown_body:
             raise ValueError("The email contains placeholders that cannot be restored")
         return EmailDraftContent(subject=subject, body=body)
+
+
+_CONTRACT_TAG = re.compile(r"<\s*/?\s*contract\s*>", re.IGNORECASE)
+
+
+def _neutralize_tags(chunk: str) -> str:
+    """Contract text cannot close the <contract> frame early (security finding MR-3)."""
+    return _CONTRACT_TAG.sub("[contract tag]", chunk)
 
 
 def _valid_drafts(items: list[Any]) -> list[FindingDraft]:

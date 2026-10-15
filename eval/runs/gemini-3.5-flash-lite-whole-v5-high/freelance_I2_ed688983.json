@@ -1,0 +1,51 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3976,
+   "end": 4004
+  }
+ ],
+ "email": true,
+ "seconds": 17.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8664,
+   "prompt_tokens": 5589,
+   "output_tokens": 83,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.15,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms mean you will wait three months to receive your money, creating a significant cash flow burden for your business.",
+      "suggested_change": "Invoices are payable Net 30 from the date of invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2299,
+   "prompt_tokens": 279,
+   "output_tokens": 93,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to request one small change before signing: - Regarding the relevant clause (Invoices are payable Net 90.), waiting three months to receive payment creates a significant cash flow burden, so I propose changing it to: Invoices are payable Net 30 from the date of invoice. Let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

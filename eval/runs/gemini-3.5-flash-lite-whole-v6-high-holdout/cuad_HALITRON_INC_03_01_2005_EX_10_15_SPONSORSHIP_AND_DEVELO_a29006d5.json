@@ -1,0 +1,51 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 23.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11239,
+   "prompt_tokens": 7834,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.96,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "Ownership of your work product and materials transfers to the client immediately without being conditioned on full payment, exposing you if the client fails to pay.",
+      "suggested_change": "Ownership of the Results and Proceeds and Advertising Materials shall transfer to the Client only upon receipt of full payment by the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2604,
+   "prompt_tokens": 348,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Here is a point I would like to clarify before we proceed: - In the relevant clause, ownership of the work product transfers to the client immediately without being conditioned on full payment, which could pose a risk if payment is delayed; please modify this so that ownership of the Results and Proceeds and Advertising Materials transfers to the client only upon receipt of full payment. Thank you, and I look forward to signing soon."
+   }
+  }
+ ],
+ "dropped": []
+}

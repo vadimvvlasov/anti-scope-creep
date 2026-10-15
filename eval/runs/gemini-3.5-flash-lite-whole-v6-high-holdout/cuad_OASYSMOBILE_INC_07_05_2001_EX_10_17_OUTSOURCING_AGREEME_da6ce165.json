@@ -1,0 +1,51 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 23.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19600,
+   "prompt_tokens": 14511,
+   "output_tokens": 148,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date of this Agreement.",
+      "explanation": "Payment for the second installment is deferred for ninety days, which delays your receipt of revenue and strains your cash flow.",
+      "suggested_change": "The second installment of $115,250.00 shall be paid within thirty (30) days from the Effective Date of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2011,
+   "prompt_tokens": 344,
+   "output_tokens": 101,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.26,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before signing, I would like to propose a minor adjustment: - Regarding the relevant clause, payment for the second installment is deferred for ninety days, which delays receipt of revenue. I propose that the second installment of $115,250.00 shall be paid within thirty (30) days from the Effective Date of this Agreement. Thank you for your flexibility."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+   "start": 18598,
+   "end": 18769
+  }
+ ],
+ "email": true,
+ "seconds": 31.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16896,
+   "prompt_tokens": 10388,
+   "output_tokens": 168,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.9,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+      "explanation": "Your payments are conditional and dependent on [PARTY_B] receiving funds from third-party wireless carriers, which means you bear the risk of carrier payment delays or non-payment.",
+      "suggested_change": "All payments hereunder shall be payable to the Contractor in United States Dollars within thirty (30) days following the end of each calendar quarter, regardless of third-party collections."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2302,
+   "prompt_tokens": 364,
+   "output_tokens": 94,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I hope you are doing well. I would like to request a small update to the agreement before signing. - The relevant clause makes payments conditional on receiving funds from third-party carriers, meaning I would carry the risk of carrier delays. I propose updating this section so that payments are payable within thirty days following the end of each calendar quarter regardless of third-party collections. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

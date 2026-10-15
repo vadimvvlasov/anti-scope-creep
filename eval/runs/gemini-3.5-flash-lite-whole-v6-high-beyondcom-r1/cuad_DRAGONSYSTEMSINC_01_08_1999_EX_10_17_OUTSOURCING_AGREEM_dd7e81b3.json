@@ -1,0 +1,51 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 27.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8596,
+   "prompt_tokens": 3615,
+   "output_tokens": 155,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.6,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only the client has the right to terminate the contract without cause, and the agreement does not guarantee payment for work performed or costs incurred up to the termination date.",
+      "suggested_change": "Either party may terminate this agreement without cause upon sixty (60) days prior written notice, provided that the Client pays the Contractor for all services rendered through the date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2339,
+   "prompt_tokens": 353,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to getting started, but I would like to propose a small adjustment before signing. - Regarding the relevant clause, currently only the client can terminate without cause and payment is not guaranteed for completed work, so I propose modifying the agreement so that either party may terminate with sixty days notice, provided that all rendered services are paid for. Please let me know if this works for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

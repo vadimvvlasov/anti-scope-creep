@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 23.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8731,
+   "prompt_tokens": 5693,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.01,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "Ownership of your work passes to the client as soon as it is created, before you are paid. This means the client owns your work even if they fail to pay you.",
+      "suggested_change": "Ownership of the Deliverables will transfer to the Client only upon receipt of full payment of all fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2606,
+   "prompt_tokens": 341,
+   "output_tokens": 95,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the contract. I have one small note regarding the agreement: - The relevant clause states that ownership passes upon creation before payment, meaning work could be owned without payment, and we propose that ownership of the Deliverables will transfer to the Client only upon receipt of full payment of all fees due under the agreement. Thank you, and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

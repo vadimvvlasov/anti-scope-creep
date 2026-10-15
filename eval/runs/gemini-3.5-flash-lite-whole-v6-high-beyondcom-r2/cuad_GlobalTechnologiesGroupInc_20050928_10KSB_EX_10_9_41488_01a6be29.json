@@ -1,0 +1,51 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+   "start": 18598,
+   "end": 18769
+  }
+ ],
+ "email": true,
+ "seconds": 43.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16130,
+   "prompt_tokens": 10388,
+   "output_tokens": 146,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 24.57,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows:",
+      "explanation": "Your payments are conditional upon the client receiving funds from third-party carriers, which ties your payment timing to external events and shifts collection risk onto you.",
+      "suggested_change": "Payments shall be made to the Contractor on a fixed quarterly basis regardless of third-party collections."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3128,
+   "prompt_tokens": 342,
+   "output_tokens": 86,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.74,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am reviewing it and have one point to raise before signing. - Regarding the relevant clause, the current terms condition payments on third-party collections, which shifts collection risk onto the contractor. We propose modifying this so that payments are made on a fixed quarterly basis regardless of third-party collections. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

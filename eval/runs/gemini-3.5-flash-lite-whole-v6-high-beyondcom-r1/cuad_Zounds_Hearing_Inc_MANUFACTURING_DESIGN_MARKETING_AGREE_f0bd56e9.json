@@ -1,0 +1,63 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2465,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 29.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17059,
+   "prompt_tokens": 10972,
+   "output_tokens": 356,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 23.18,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "The second installment of the Technology Access Fee is due sixty days following the Effective Date, which delays payment beyond thirty days.",
+      "suggested_change": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following the first installment."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "8.3 a) Manufacturer Termination Without Cause. If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory. Subcontractor may, at its sole discretion, assist Manufacturer in the liquidation of any inventory that is generic that does not utilize any of Subcontractor's technology. Manufacturer shall be liable for cancellation charges including the Product Costs and the costs as provided in Section 3.8.",
+      "explanation": "Only the Client has the right to terminate the agreement without cause, while you do not have a reciprocal right.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon providing at least sixty (60) days prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1787,
+   "prompt_tokens": 353,
+   "output_tokens": 99,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have one minor suggestion regarding the relevant clause before signing. - Regarding the payment schedule, the second installment is currently due sixty days following the Effective Date, which delays the payment timeline; I propose modifying the clause so that the second installment is due thirty days following the first installment. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

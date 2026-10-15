@@ -1,0 +1,52 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9026,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  }
+ ],
+ "email": false,
+ "seconds": 11.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9917,
+   "prompt_tokens": 5684,
+   "output_tokens": 267,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.23,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "Only the client can end the agreement without cause, leaving you unable to walk away freely even though you are paid for work completed.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Payment terms of Net 40 mean you must wait 40 days to get paid, which is longer than standard 30-day terms and delays your cash flow.",
+      "suggested_change": "Invoices are payable within 30 days of receipt."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

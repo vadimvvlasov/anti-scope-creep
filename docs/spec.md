@@ -1261,6 +1261,7 @@ Replace the fixed stub analyzer with an LLM-backed analyzer using the **Groq API
 Requirements:
 - Input: persisted `source_text`.
 - **Pseudonymization:** the text sent to the provider is pseudonymized `source_text`, never the raw text (see below).
+- **Untrusted input:** the contract is usually written by the other party, so its text is data, not instructions. It is sent between `<contract>` and `</contract>`, and those tags inside the text are neutralized so it cannot close the frame early. The findings prompt tells the model to ignore instructions inside the contract and never to propose a concession by the freelancer in `suggested_change`; the email prompt does the same for the issues it receives. The eval includes prompt-injection cases (suppression, downgrade, a malicious suggested change).
 - Output: structured JSON only.
 - Validate output with Pydantic before persistence.
 - Output must contain zero or more findings using the six MVP categories and the deterministic severity matrix.

@@ -1,0 +1,65 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement pursuant to Section 12 of this Agreement .",
+   "start": 6321,
+   "end": 6611
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11252,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 38.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13794,
+   "prompt_tokens": 8379,
+   "output_tokens": 393,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 28.62,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement pursuant to Section 12 of this Agreement .",
+      "explanation": "The agreement allows the client to repeatedly reject deliverables and demand corrections without any limit on the number of revision rounds.",
+      "suggested_change": "If the Subject Program or Final Deliverable fails to satisfy the Client's acceptance criteria, the Parties shall mutually agree in writing upon any additional correction rounds or the Client may terminate this Agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Intellectual property rights in your work transfer to the client immediately upon creation or as work made for hire, before you have received full payment.",
+      "suggested_change": "Ownership of the Deliverables shall remain with the Contractor until the Client has paid all fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2624,
+   "prompt_tokens": 564,
+   "output_tokens": 148,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sharing the agreement. I have reviewed the terms and would like to request a few adjustments before signing:\n\n- Regarding the relevant clause, the agreement permits unlimited revision rounds. I propose that if the deliverable fails to satisfy the criteria, the parties shall mutually agree in writing upon any additional correction rounds or the client may terminate the agreement.\n\n- Regarding the relevant clause on intellectual property, ownership transfers before full payment is made. I propose that ownership of the deliverables shall remain with the contractor until the client has paid all fees due under the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

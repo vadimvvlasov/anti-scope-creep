@@ -1,0 +1,79 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "if the Minimum Revenue           Target (as defined in Part 2 of this Exhibit \"A\") for the first year           of the Term is not achieved by the first anniversary of the Effective           Date, in which case no quarterly payments are payable until such time           as the Minimum Revenue Target for the first year of the Term is           achieved at which point Co-Host will resume making future quarterly           payments on the schedule and in the amount set forth above for the           duration of the Term",
+   "start": 32600,
+   "end": 33121
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "(vii) upon ninety (90) days prior notice in writing by Co-Host at any           time after June 30, 2000, if the term of the Web Site Services           Agreement has not been renewed for an additional term of one (1) year           or more pursuant to its terms",
+   "start": 16399,
+   "end": 16661
+  }
+ ],
+ "email": true,
+ "seconds": 40.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19315,
+   "prompt_tokens": 13245,
+   "output_tokens": 548,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 32.43,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "if the Minimum Revenue Target (as defined in Part 2 of this Exhibit \"A\") for the first year of the Term is not achieved by the first anniversary of the Effective Date, in which case no quarterly payments are payable until such time as the Minimum Revenue Target for the first year of the Term is achieved at which point Co-Host will resume making future quarterly payments on the schedule and in the amount set forth above for the duration of the Term",
+      "explanation": "Your quarterly payments are conditional and deferred if specific revenue targets are not met, making payment indefinite and dependent on performance milestones.",
+      "suggested_change": "Co-Host shall make all quarterly payments on the scheduled dates regardless of whether the Minimum Revenue Targets are achieved."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Your liability is capped at fifteen million dollars, but claims under Section 9 (including indemnification and intellectual property infringement obligations) are excluded from this cap and have no separate limit.",
+      "suggested_change": "The liability of either party for direct damages under this Agreement, including any claims under Section 9, shall not exceed fifteen million dollars."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "(vii) upon ninety (90) days prior notice in writing by Co-Host at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms",
+      "explanation": "Only the client has the right to terminate the contract upon notice under this provision, while work done remains payable.",
+      "suggested_change": "Either party may terminate this Agreement upon ninety (90) days prior notice in writing at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2154,
+   "prompt_tokens": 523,
+   "output_tokens": 126,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I have reviewed the agreement and would like to request a couple of updates before signing. - Regarding the relevant clause, quarterly payments are currently deferred if specific revenue targets are not met, and I propose that the agreement be revised so that all quarterly payments are made on the scheduled dates regardless of whether those targets are achieved. - Regarding the liability provision, certain claims are currently excluded from the overall damage cap, and I propose that the relevant clause be updated so that all claims under the agreement are subject to the same liability cap. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

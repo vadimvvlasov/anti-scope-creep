@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 26.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8091,
+   "prompt_tokens": 5689,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.96,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "Ownership of your work passes to the client as it is created, before you have been paid in full, leaving you without your work product if a payment dispute arises.",
+      "suggested_change": "Intellectual property ownership of the Deliverables will remain with the Contractor and will transfer to the Client only upon receipt of full payment for the applicable Services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2081,
+   "prompt_tokens": 341,
+   "output_tokens": 107,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi. Thank you for sharing the agreement. I am looking forward to working together, but I would like to propose a small adjustment before signing. - Regarding the relevant clause stating that work product vests in the client as it is generated, ownership would pass before full payment is received. I propose changing this so that intellectual property ownership of the deliverables remains with the contractor and transfers to the client only upon receipt of full payment for the applicable services. Thank you, and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

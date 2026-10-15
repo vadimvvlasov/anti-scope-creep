@@ -1,0 +1,51 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2088,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 31.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12393,
+   "prompt_tokens": 8532,
+   "output_tokens": 168,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.83,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "The agreement requires you to perform additional unmentioned services without any change-order mechanism or extra compensation.",
+      "suggested_change": "The Consultant will provide the services specifically set forth herein, and any additional services requested by the Client shall be subject to a written change order and agreed additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2029,
+   "prompt_tokens": 400,
+   "output_tokens": 120,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are having a great week. Thank you for sharing the contract. I am excited to work together, but I would like to propose a minor adjustment to the agreement before I sign. - In the relevant clause, the agreement requires performing additional unmentioned services without any change-order mechanism or extra compensation, and I suggest modifying this so that the consultant provides the services specifically set forth herein, with any additional services subject to a written change order and agreed additional compensation. Thank you for your time and understanding. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

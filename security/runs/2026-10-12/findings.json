@@ -175,7 +175,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "The counterparty writes the contract, so prompt injection is in scope. Frame the contract as untrusted data with delimiters and add injection cases to the eval. Done after the prompt v4 decision to keep the eval comparable.",
-      "fix_ref": null,
+      "fix_ref": "prompt v6: <contract> framing with neutralized tags, untrusted-data and no-concession rules, injection cases I1-I3 in eval (docs/eval.md, Prompt injection)",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null
