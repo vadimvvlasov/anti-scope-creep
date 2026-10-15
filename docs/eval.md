@@ -144,6 +144,47 @@ repeat succeeded) led to a single automatic retry of that error in the client
 (`docs/architecture.md`, section 4). In 380 Gemini v4 calls no answer was cut at the
 output token cap.
 
+## Gemini configuration after the submission
+
+Decided 2026-10-15: Gemini 3.5 Flash-Lite, prompt v4, `reasoning_effort: high`, output
+cap 8,000 tokens, the contract sent whole up to 150,000 characters; chunks of 12,000 only
+above that. Runs from 2026-10-14 and 10-15, `high` both ways:
+
+| Set | Whole | 12k chunks | Tokens per contract, whole / chunks |
+|---|---|---|---|
+| Freelance (14, with M8b) | 19 / 0 / 0, P/R/sev 1.0 | 19 / 0 / 0, P/R/sev 1.0 | 9,123 / 12,406 |
+| Held-out (20), 2 runs each | FP 3 and 0, recall 0.8 and 0.8 | FP 1 and 3, recall 0.8 and 1.0 | about 14,000 / 22,000 |
+| Long (6, 61,000-145,000 chars) | FP 1 and 1, recall 0.8 and 0.8 | FP 2, recall 0.6 (1 run) | about 29,000 / 54,000 |
+
+- The rule set before the runs: whole wins if, on held-out over 2 runs, its mean false
+  alarms are not above chunking and its recall is not below; on long contracts its recall
+  is not below chunking; and no answer is cut at the output cap. All held except held-out
+  recall (0.8 against a 0.9 mean).
+- The recall gap is one contract, Vgrab: whole missed it in both runs, chunking caught it
+  in 1 of 2, and it was found in 1 of 8 held-out runs overall. It is a known miss for both
+  modes, so whole was chosen: fewer false alarms, better recall on long contracts, half
+  the tokens on them and 3-4 times faster.
+- No answer in the 107 calls of 2026-10-15 was cut at the output cap.
+- Long contracts run with `--max-text-chars 150000`; the product limit stays at 60,000
+  until Gemini is in production.
+
+Prompt v5 (`eval/prompts/findings-v5.txt`, eval only so far) changes one rule: IP
+ownership is judged by when it passes, not by when files are delivered, so "the client
+owns the work during the project, and it is transferred after payment" is high. It came
+from freelance mutant M8c, which v4 missed in 1 of 4 runs; held-out was not used to write
+it. Gemini `high`, whole, 2026-10-15:
+
+| Set | v4 | v5 |
+|---|---|---|
+| Freelance | 14 contracts, 19 / 0 / 0; M8c caught 3 of 4 | 15 contracts, 20 / 0 / 0; M8c caught 4 of 4 |
+| Held-out, 2 runs | FP 3 and 0, recall 0.8 and 0.8 (Vgrab missed twice) | FP 2 and 0, recall 0.8 and 1.0 (Vgrab caught twice) |
+| Long, 2 runs | FP 1 and 1, recall 0.8 and 0.8 | FP 0 and 2, recall 0.8 and 0.8 |
+
+With v5 every rule above holds, held-out recall included (0.9 mean). The 0.8 run lost
+Reeds to `quote_not_found`: the model found it, the quote did not match the text. Two new
+false alarms are transfers of goods or existing assets (title to delivered products, an
+asset sale), which the rule already lists as not a finding.
+
 ## Compared with ContractEval
 
 [ContractEval](https://arxiv.org/abs/2508.03080) (Liu et al., 2025) also uses CUAD, but
