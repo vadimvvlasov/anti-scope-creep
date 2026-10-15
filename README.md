@@ -198,7 +198,8 @@ Open http://localhost:3000 and log in as `demo@example.com` / `password123`
 ### For development (hot reload)
 
 You need [uv](https://docs.astral.sh/uv/), Node.js 20+ with npm, and Docker (only
-for the Postgres container).
+for the Postgres container). Stop the Docker stack first (`make down`): the dev backend
+uses the same port 8000.
 
 ```bash
 make install    # backend and frontend dependencies, creates frontend/.env
@@ -271,13 +272,35 @@ Both environments accept deployments only from `main`; `prod` also needs a revie
 
 - Secrets: `DATABASE_URL` (Neon pooled endpoint), `MIGRATIONS_DATABASE_URL` (Neon
   direct endpoint, for Alembic), `JWT_SECRET` (different per environment),
-  `CLOUDFLARE_API_TOKEN`
+  `GROQ_API_KEY`, `CLOUDFLARE_API_TOKEN`
 - Variables: `AWS_ROLE_ARN`, `AWS_REGION`, `LIGHTSAIL_SERVICE`, `CORS_ORIGINS`,
-  `CLOUDFLARE_ACCOUNT_ID`
+  `CLOUDFLARE_ACCOUNT_ID`, `ANALYZER` (`groq`, or `stub` to deploy without an LLM),
+  `GROQ_MODEL` (optional, default `openai/gpt-oss-120b`)
 
 GitHub Actions reaches AWS only through OIDC roles, one per environment, with no
 access keys. The dev role can create, deploy to and delete only services tagged
 `env=dev`. The prod role can only deploy to the service tagged `env=prod`.
+
+### Deploy your own copy
+
+The workflows deploy whatever repository they run in; the accounts below are yours.
+
+1. **Neon:** a project in `eu-central-1` with branches `dev` and `production`; for each,
+   the pooled URL (`DATABASE_URL`) and the direct URL (`MIGRATIONS_DATABASE_URL`).
+2. **AWS:** the GitHub OIDC identity provider and two IAM roles that only your
+   repository's `dev` and `prod` environments can assume, with the permissions in
+   [`docs/architecture.md`](docs/architecture.md) section 7 ("Authentication to
+   clouds"). Create the prod container service once by hand (the prod role cannot):
+   `aws lightsail create-container-service --service-name anti-scope-creep-prod --power nano --scale 1 --tags key=env,value=prod`.
+   Dev creates its own service.
+3. **Cloudflare:** an API token limited to Workers Scripts edit, and the account ID.
+4. **Groq:** an API key (or set `ANALYZER=stub` to start without one).
+5. **GitHub:** environments `dev` and `prod` limited to `main`, a required reviewer on
+   `prod`, and the secrets and variables above in each.
+6. Push to `main`: CI runs, then `deploy-dev` builds the image, migrates, deploys and
+   runs the smoke test. Promote to prod as described above. The backend image goes to
+   `ghcr.io/<owner>/anti-scope-creep-backend` and must be public, because Lightsail pulls
+   from public registries.
 
 ### Smoke test
 
@@ -303,7 +326,11 @@ aws lightsail delete-container-service --service-name anti-scope-creep-prod --re
 
 ## Tests
 
+The tests run on the host, so they need [uv](https://docs.astral.sh/uv/) and Node.js 20+
+with npm. On a fresh clone install the dependencies once (the Docker path does not):
+
 ```bash
+make install
 make test    # backend (pytest) and frontend (Vitest)
 make lint    # ESLint for the frontend
 ```
@@ -313,6 +340,7 @@ End-to-end tests (Playwright, Chromium) drive the real frontend and backend:
 ```bash
 make up
 (cd frontend && npm ci && npx playwright install chromium)   # once: Playwright and its browser
+# on a fresh Linux machine: npx playwright install --with-deps chromium (also installs system libraries)
 make e2e
 ```
 
