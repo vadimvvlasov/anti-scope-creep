@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8373,
+   "end": 8696
+  }
+ ],
+ "email": true,
+ "seconds": 35.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12176,
+   "prompt_tokens": 7668,
+   "output_tokens": 195,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.6,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "Ownership of your work product transfers immediately upon creation rather than upon full payment or performance, meaning you lose your intellectual property rights before receiving your bargained-for benefits.",
+      "suggested_change": "Ownership of the Deliverables shall transfer to the Client upon full performance and fulfillment of all obligations by the Client under this Agreement and the Manufacturing and Distribution Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2087,
+   "prompt_tokens": 390,
+   "output_tokens": 114,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.95,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am excited to move forward, but I would like to request a minor modification to the relevant clause before signing. - Under the relevant clause, ownership of the work product transfers immediately upon creation rather than upon full payment, so I propose modifying it to state that ownership of the Deliverables shall transfer to the Client upon full performance and fulfillment of all obligations by the Client under the agreement. Please let me know your thoughts on this update. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All inventions, ideas, creations, discoveries, computer programs, works of authorship, data, developments, technology, designs, innovations and improvements (whether or not patentable and whether or not copyrightable) which are made, conceived, reduced to practice, created, written, designed or developed by the Consultant, solely or jointly with others or under Consultant's direction and whether during normal business hours or otherwise, (i) during the Consultation Period if related to the business of the Company or (ii) during or after the Consultation Period if resulting or directly derived from Proprietary Information (as defined above) (collectively under clauses (i) and (ii), \"Inventions\"), shall be the sole property of the Company.",
+   "start": 9795,
+   "end": 10542
+  }
+ ],
+ "email": true,
+ "seconds": 34.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11751,
+   "prompt_tokens": 6237,
+   "output_tokens": 286,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.3,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All inventions, ideas, creations, discoveries, computer programs, works of authorship, data, developments, technology, designs, innovations and improvements (whether or not patentable and whether or not copyrightable) which are made, conceived, reduced to practice, created, written, designed or developed by the Consultant, solely or jointly with others or under Consultant's direction and whether during normal business hours or otherwise, (i) during the Consultation Period if related to the business of the Company or (ii) during or after the Consultation Period if resulting or directly derived from Proprietary Information (as defined above) (collectively under clauses (i) and (ii), \"Inventions\"), shall be the sole property of the Company.",
+      "explanation": "Ownership of your work product and intellectual property transfers to the client immediately upon creation or conception without being conditioned on full payment.",
+      "suggested_change": "Upon full payment of all compensation due under this Agreement, all Inventions created specifically for the Client hereunder shall become the property of the Client, and the Contractor hereby assigns to the Client all right, title, and interest in such Inventions upon such payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2207,
+   "prompt_tokens": 482,
+   "output_tokens": 79,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.73,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the paperwork and would like to suggest a small adjustment: - Regarding the relevant clause, ownership of the work product transfers immediately upon creation without being conditioned on full payment, and I propose modifying this so that ownership transfers upon full payment of all compensation due under the agreement. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

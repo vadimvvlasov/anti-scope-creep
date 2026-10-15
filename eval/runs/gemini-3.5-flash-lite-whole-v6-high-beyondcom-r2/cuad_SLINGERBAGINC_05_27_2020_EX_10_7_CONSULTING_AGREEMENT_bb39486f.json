@@ -1,0 +1,51 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2088,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 19.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12485,
+   "prompt_tokens": 8532,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.78,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform unmentioned extra services without any change-order mechanism or additional compensation.",
+      "suggested_change": "Any additional services outside the scope of this Agreement shall be documented in a written change order and compensated at mutually agreed rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2037,
+   "prompt_tokens": 391,
+   "output_tokens": 108,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.16,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to suggest a minor revision before we proceed. - Regarding the relevant clause, the current terms require performing unmentioned extra services without any change-order mechanism or additional compensation, so I propose that any additional services outside the scope of this Agreement shall be documented in a written change order and compensated at mutually agreed rates. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

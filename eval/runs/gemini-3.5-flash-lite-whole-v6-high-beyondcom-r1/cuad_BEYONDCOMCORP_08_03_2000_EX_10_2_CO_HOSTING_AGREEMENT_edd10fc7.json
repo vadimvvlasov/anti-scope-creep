@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  }
+ ],
+ "email": true,
+ "seconds": 24.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 18378,
+   "prompt_tokens": 13245,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.21,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Claims under Section 9 for indemnification and intellectual property infringement are excluded from the liability cap and have no separate limit, exposing you to uncapped liability for those claims.",
+      "suggested_change": "The liability of a party to the other for direct damages, including any claims under Section 9 hereof, shall not exceed fifteen million dollars."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2655,
+   "prompt_tokens": 359,
+   "output_tokens": 85,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am reviewing the agreement and would like to propose a minor adjustment. - Regarding the relevant clause, claims under Section 9 are currently excluded from the liability cap, which creates potential uncapped liability. I propose modifying the agreement so that the liability for direct damages, including any claims under Section 9, does not exceed fifteen million dollars. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  }
+ ],
+ "email": true,
+ "seconds": 15.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8539,
+   "prompt_tokens": 5630,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.73,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You must perform additional services requested by the client during the term without receiving any extra pay, creating significant unpaid workload.",
+      "suggested_change": "Any additional services requested by the Client shall be agreed upon in a written change order and billed at the Contractor's standard rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless rounds of revisions without any limit until they are fully satisfied.",
+      "suggested_change": "The Client may request up to two rounds of revisions per Deliverable, and any further revisions shall be performed at the Contractor's standard hourly rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2721,
+   "prompt_tokens": 417,
+   "output_tokens": 124,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before signing, I would like to propose a few adjustments: - Regarding the relevant clause requiring additional services at no charge, this creates an unpaid workload, so I propose that any additional services be agreed upon in a written change order and billed at standard rates. - Regarding the clause concerning unlimited revisions, this creates an open-ended obligation, so I propose that the agreement allow up to two rounds of revisions per deliverable with further revisions billed at standard hourly rates. Thank you for your time and understanding. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

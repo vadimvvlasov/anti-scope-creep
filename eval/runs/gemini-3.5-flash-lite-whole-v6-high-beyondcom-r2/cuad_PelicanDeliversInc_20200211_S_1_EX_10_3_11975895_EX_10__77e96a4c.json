@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11621,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 27.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12946,
+   "prompt_tokens": 8379,
+   "output_tokens": 142,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.16,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Intellectual property ownership of your work transfers immediately upon creation or via work-made-for-hire and present assignment terms, before you are guaranteed full payment.",
+      "suggested_change": "Upon full payment of all Fees due under this Agreement, ownership of the Deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2326,
+   "prompt_tokens": 338,
+   "output_tokens": 81,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending the agreement. I have a brief suggestion for your review. - Regarding the relevant clause, the current terms transfer intellectual property ownership immediately upon creation before full payment is guaranteed. I propose modifying this so that ownership of the deliverables transfers upon full payment of all fees due under the agreement. Thank you, and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

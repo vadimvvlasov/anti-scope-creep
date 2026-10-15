@@ -1,0 +1,48 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 1,
+  "invalid_output": 0,
+  "findings_returned": 12,
+  "findings_kept": 11,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.083,
+  "tokens_mean": 13683,
+  "tokens_max": 20032,
+  "seconds_mean": 30.6,
+  "seconds_max": 73.8
+ },
+ "false_positives": [],
+ "false_negatives": [],
+ "severity_misses": []
+}

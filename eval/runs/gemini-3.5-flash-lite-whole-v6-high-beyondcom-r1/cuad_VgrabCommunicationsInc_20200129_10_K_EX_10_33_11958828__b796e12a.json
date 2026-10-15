@@ -1,0 +1,51 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+   "start": 8849,
+   "end": 9055
+  }
+ ],
+ "email": true,
+ "seconds": 21.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8415,
+   "prompt_tokens": 5162,
+   "output_tokens": 172,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.87,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+      "explanation": "The contract states that intellectual property is owned by the client during the project, meaning ownership passes to them before you are fully paid.",
+      "suggested_change": "Intellectual Property created by the Contractor pursuant to this Agreement shall remain the property of the Contractor until the Contractor has received full payment of all commercial obligations under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3355,
+   "prompt_tokens": 368,
+   "output_tokens": 80,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.37,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to request an adjustment before signing: - Regarding the relevant clause, the current terms state that intellectual property ownership passes during the project before full payment is completed. I propose that the agreement be updated so that intellectual property remains with the contractor until all commercial obligations are fulfilled. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

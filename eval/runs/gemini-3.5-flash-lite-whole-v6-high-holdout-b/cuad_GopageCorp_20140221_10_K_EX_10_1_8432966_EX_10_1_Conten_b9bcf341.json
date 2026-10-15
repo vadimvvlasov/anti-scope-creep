@@ -1,0 +1,22 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [],
+ "email": false,
+ "seconds": 23.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13697,
+   "prompt_tokens": 10385,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 23.76,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

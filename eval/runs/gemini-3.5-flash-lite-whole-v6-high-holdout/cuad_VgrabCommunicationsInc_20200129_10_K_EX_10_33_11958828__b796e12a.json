@@ -1,0 +1,51 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+   "start": 8849,
+   "end": 9055
+  }
+ ],
+ "email": true,
+ "seconds": 29.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8324,
+   "prompt_tokens": 5162,
+   "output_tokens": 164,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.47,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+      "explanation": "The contract states that the client owns all intellectual property during the project as it is created, before you have been fully paid.",
+      "suggested_change": "The Contractor shall retain all intellectual property rights in the deliverables until the Client has made full payment of all commercial obligations under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2497,
+   "prompt_tokens": 360,
+   "output_tokens": 104,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.46,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. As I review the paperwork, I would like to suggest a minor revision to the agreement before we proceed. - Regarding the relevant clause on intellectual property, the text currently indicates that ownership transfers as work is created, prior to full payment. I propose that the contractor retain all intellectual property rights in the deliverables until the client has fulfilled all commercial obligations under the agreement. Thank you, and I look forward to getting this finalized."
+   }
+  }
+ ],
+ "dropped": []
+}
