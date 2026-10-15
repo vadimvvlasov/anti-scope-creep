@@ -116,7 +116,7 @@ exact level.
 
 ## Providers
 
-Production runs on Groq `openai/gpt-oss-120b` (`reasoning_effort: low`) until the
+Production runs on Groq `openai/gpt-oss-120b` (`reasoning_effort: medium`) until the
 course submission; Gemini 3.5 Flash-Lite is the planned provider after it.
 
 | Run | Freelance P / R / sev | CUAD P / R / sev | Seconds per contract |
@@ -124,10 +124,22 @@ course submission; Gemini 3.5 Flash-Lite is the planned provider after it.
 | Groq, prompt v1 (`eval/runs/2026-10-11`) | 0.667 / 0.824 / 0.857 | 0.16 / 0.286 / 0.25 | 72 (freelance), 141 (CUAD) |
 | Gemini, prompt v4 | 0.944 / 1.0 / 0.882 | 0.625 / 0.714 / 0.9 | 16 (freelance), 21 (CUAD) |
 
-Groq with v4 on freelance (run not committed yet): 0.727 / 0.941 / 0.938, better than
-Groq with v1 but behind Gemini; 5 of its 6 false alarms are `scope_creep` on a neutral
-"minor clarifications" clause. The Groq held-out run is in progress, and the Groq v1 CUAD
-run had one contract fail.
+Groq with prompt v4, 2026-10-13 to 10-15 (`eval/runs/groq-v4*`):
+
+| Run | Freelance P / R / sev (13) | Held-out P / R / sev (20) | Tokens per contract (freelance) |
+|---|---|---|---|
+| `reasoning_effort: low` | 0.739 / 0.944 / 0.941 | 0.176 / 0.6 / 0.667 | 7,471 |
+| `reasoning_effort: medium` | 0.857 / 1.0 / 0.944 | 3 of 20 run | 8,776 |
+
+- On freelance, v4 beats v1 on Groq at both levels. `low` raises 5 of its 6 false alarms
+  as `scope_creep` on a neutral "minor clarifications" clause; `medium` keeps one of them.
+  Production uses `medium`.
+- On held-out, Groq with v4 is weak: 14 false alarms (6 `uncapped_liability` on carve-outs
+  from a damages exclusion, the case rule a) of v4 excludes), and 10 of 37 findings dropped
+  as `quote_not_found` (27%). The same prompt on Gemini reaches 0.5–0.8 precision, so this
+  is a known limitation of the model, not a prompt to tune on held-out.
+- Held-out with `medium` and CUAD with v4 are not run yet (about 300,000 tokens each, the
+  free tier allows 200,000 a day). The Groq v1 CUAD run had one contract fail.
 
 ## Run health
 
@@ -161,7 +173,7 @@ same way on one thing: a model that answers "nothing here" too readily misses ri
 
 - Contracts of 60,000–150,000 characters (`eval/gold/cuad-holdout-long.jsonl`, 6
   contracts): the eval runner enforces the product's 60,000-character limit.
-- Groq with v4 on the full held-out set, and `reasoning_effort` above `low`.
+- Groq with v4 at `reasoning_effort: medium` on the full held-out set, and at `high`.
 - The email draft and `suggested_change` texts are not scored.
 
 ## Reproduce

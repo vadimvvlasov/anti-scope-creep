@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_CORS_ORIGINS = ("http://localhost:8080", "http://localhost:5173")
 SUPPORTED_ANALYZERS = ("stub", "groq")
+SUPPORTED_REASONING_EFFORTS = ("low", "medium", "high")
 # Deployed images carry their tag (sha-<7 hex>) in APP_VERSION; everything else is "local".
 DEFAULT_VERSION = "local"
 
@@ -30,6 +31,9 @@ class Settings:
     # Groq (docs/architecture.md, section 4). The key never appears in repr or logs.
     groq_api_key: str = field(default="", repr=False)
     groq_model: str = "openai/gpt-oss-120b"
+    # medium: fewer false alarms than low on the freelance eval set for about 19% more tokens
+    # (docs/eval.md, Providers).
+    groq_reasoning_effort: str = "medium"
     groq_tokens_per_minute: int = 8_000
     groq_requests_per_minute: int = 30
 
@@ -40,6 +44,11 @@ class Settings:
             raise ValueError(f"Unsupported ANALYZER {analyzer!r}; expected one of {SUPPORTED_ANALYZERS}")
         if analyzer == "groq" and not env.get("GROQ_API_KEY", "").strip():
             raise ValueError("ANALYZER=groq requires GROQ_API_KEY")
+        reasoning_effort = env.get("GROQ_REASONING_EFFORT", "").strip() or "medium"
+        if reasoning_effort not in SUPPORTED_REASONING_EFFORTS:
+            raise ValueError(
+                f"Unsupported GROQ_REASONING_EFFORT {reasoning_effort!r}; expected one of {SUPPORTED_REASONING_EFFORTS}"
+            )
         return cls(
             jwt_secret=_jwt_secret(env),
             database_url=_database_url(env),
@@ -52,6 +61,7 @@ class Settings:
             version=env.get("APP_VERSION", "").strip() or DEFAULT_VERSION,
             groq_api_key=env.get("GROQ_API_KEY", "").strip(),
             groq_model=env.get("GROQ_MODEL", "").strip() or "openai/gpt-oss-120b",
+            groq_reasoning_effort=reasoning_effort,
             groq_tokens_per_minute=int(env.get("GROQ_TOKENS_PER_MINUTE", "8000")),
             groq_requests_per_minute=int(env.get("GROQ_REQUESTS_PER_MINUTE", "30")),
         )

@@ -88,6 +88,16 @@ def test_groq_needs_an_api_key_at_startup():
     assert Settings.from_env({"DATABASE_URL": "x", "ANALYZER": "groq", "GROQ_API_KEY": "k"}).analyzer == "groq"
 
 
+def test_groq_reasoning_effort_defaults_to_medium_and_reaches_the_client():
+    env = {"DATABASE_URL": "x", "ANALYZER": "groq", "GROQ_API_KEY": "k"}
+    assert Settings.from_env(env).groq_reasoning_effort == "medium"
+    assert Settings.from_env({**env, "GROQ_REASONING_EFFORT": "low"}).groq_reasoning_effort == "low"
+    with pytest.raises(ValueError, match="GROQ_REASONING_EFFORT"):
+        Settings.from_env({**env, "GROQ_REASONING_EFFORT": "max"})
+    groq = build_analyzer(Settings(jwt_secret="x", analyzer="groq", groq_api_key="gsk_test"))
+    assert groq._client._reasoning_effort == "medium"
+
+
 def test_validation_errors_do_not_echo_contract_text():
     secret = "SECRET CLAUSE TEXT from the contract"
     bad = dict(category="other", risk_level="high", quoted_text=secret, explanation=secret, suggested_change="s" * 2001)
