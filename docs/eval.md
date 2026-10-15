@@ -7,8 +7,9 @@ and what they mean. Every number below is recomputed from the cached answers in
 
 ## Summary
 
-The findings prompt in `main` is **v4** (`eval/prompts/findings-v4.txt`). On Gemini 3.5
-Flash-Lite with 12,000-character chunks:
+The findings prompt in `main` is **v5** (`eval/prompts/findings-v5.txt`) since 2026-10-15;
+it changes one IP rule of v4 (see [Gemini configuration](#gemini-configuration-after-the-submission)).
+The table is v4 on Gemini 3.5 Flash-Lite with 12,000-character chunks:
 
 | Set | Contracts | Gold risks | Precision | Recall | Severity accuracy |
 |---|---|---|---|---|---|
@@ -158,9 +159,10 @@ output token cap.
 
 ## Gemini configuration after the submission
 
-Decided 2026-10-15: Gemini 3.5 Flash-Lite, prompt v4, `reasoning_effort: high`, output
+Decided 2026-10-15: Gemini 3.5 Flash-Lite, prompt v5, `reasoning_effort: high`, output
 cap 8,000 tokens, the contract sent whole up to 150,000 characters; chunks of 12,000 only
-above that. Runs from 2026-10-14 and 10-15, `high` both ways:
+above that. Whole against chunks was compared with v4, runs from 2026-10-14 and 10-15,
+`high` both ways:
 
 | Set | Whole | 12k chunks | Tokens per contract, whole / chunks |
 |---|---|---|---|
@@ -180,7 +182,7 @@ above that. Runs from 2026-10-14 and 10-15, `high` both ways:
 - Long contracts run with `--max-text-chars 150000`; the product limit stays at 60,000
   until Gemini is in production.
 
-Prompt v5 (`eval/prompts/findings-v5.txt`, eval only so far) changes one rule: IP
+Prompt v5 (`eval/prompts/findings-v5.txt`, in `app/prompts.py` since 2026-10-15) changes one rule: IP
 ownership is judged by when it passes, not by when files are delivered, so "the client
 owns the work during the project, and it is transferred after payment" is high. It came
 from freelance mutant M8c, which v4 missed in 1 of 4 runs; held-out was not used to write
@@ -212,8 +214,8 @@ same way on one thing: a model that answers "nothing here" too readily misses ri
 
 ## Not covered yet
 
-- Contracts of 60,000–150,000 characters (`eval/gold/cuad-holdout-long.jsonl`, 6
-  contracts): the eval runner enforces the product's 60,000-character limit.
+- Groq with v5. Production switched to v5 on 2026-10-15 without a Groq run: the change
+  is one IP rule, and v5 is not worse than v4 on any Gemini set.
 - Groq with v4 at `reasoning_effort: medium` on the full held-out set, and at `high`.
 - The email draft and `suggested_change` texts are not scored.
 
