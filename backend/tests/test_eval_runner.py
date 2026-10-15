@@ -138,3 +138,20 @@ def test_groq_stays_the_default_provider():
     client = llm_client(env={"GROQ_API_KEY": "test-key"})
     assert "api.groq.com" in client._api_url and client._model == "openai/gpt-oss-120b"
     assert client._max_completion_tokens == 2_000 and client._limiter._capacity == (8_000.0, 30.0)
+
+
+def test_the_product_text_limit_applies_unless_a_run_raises_it(p1):
+    from app.errors import AppError
+
+    with pytest.raises(AppError):
+        runner.analyze_record(p1, FakeClient("Invoices are payable Net 90."), max_text_chars=1_000)
+    entry = runner.analyze_record(p1, FakeClient("Invoices are payable Net 90."), max_text_chars=150_000)
+    assert entry["findings"]
+    assert len(runner.contract_text(p1, max_chars=None)) == entry["chars"]
+
+
+def test_the_long_held_out_set_is_known_but_not_run_by_default():
+    from evaluation.__main__ import DEFAULT_SETS, SETS
+
+    assert "cuad-holdout-long" in SETS and "cuad-holdout-long" not in DEFAULT_SETS
+    assert all(len(r["id"]) for r in runner.load_gold("cuad-holdout-long"))

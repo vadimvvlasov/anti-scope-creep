@@ -57,8 +57,9 @@ The held-out set is labeled the same way and is not used to change the prompt.
   5 `optional` entries, 4 contracts marked `doubtful`.
 - `gold/cuad-holdout-long.jsonl`: 6 contracts of 60,000-150,000 characters (IP 2, uncapped
   2, termination 1, negative 1) for a text limit raised for Gemini; 150,000 characters
-  cover 93% of CUAD. 5 gold findings. The runner still applies the 60,000 product limit,
-  so this layer runs only after the limit depends on the provider.
+  cover 93% of CUAD. 5 gold findings. The runner applies the 60,000 product limit by
+  default; `--max-text-chars 150000` raises it for an eval run only (production keeps
+  60,000 until the limit depends on the provider).
 - Contracts of a company that already has one in a gold set are skipped (rules tuned on a
   deal carry over to its sibling documents), amendments and addenda are never candidates,
   and five contracts were dropped in review (`EXCLUDED`: related parties under common

@@ -6,6 +6,8 @@
     uv run python -m evaluation run --set cuad-holdout --run v3-holdout --provider gemini \
         --findings-prompt ../eval/prompts/findings-v3.txt                # an older prompt version
     uv run python -m evaluation run --set freelance --run groq-v4-medium --reasoning-effort medium
+    uv run python -m evaluation run --set cuad-holdout-long --run gemini-long --provider gemini \
+        --max-text-chars 150000 --chunk-chars 150000 --max-output-tokens 8000   # contracts above the product limit
 """
 
 import argparse
@@ -17,6 +19,7 @@ from collections import Counter
 from pathlib import Path
 
 from app.chunking import DEFAULT_MAX_CHARS
+from app.extraction import MAX_TEXT_CHARS
 from app.groq_client import API_URL as GROQ_API_URL
 from app.groq_client import DEFAULT_MODEL, GroqClient
 from app.prompts import FINDINGS_SYSTEM_PROMPT
@@ -24,8 +27,8 @@ from app.ratelimit import TokenBucketLimiter
 from evaluation.runner import EVAL_DIR, cache_path, contract_text, load_gold, run
 from evaluation.scoring import Prediction, score_contract, summarize
 
-SETS = ("freelance", "cuad", "cuad-holdout")
-DEFAULT_SETS = ("freelance", "cuad")  # the held-out set runs only when named
+SETS = ("freelance", "cuad", "cuad-holdout", "cuad-holdout-long")
+DEFAULT_SETS = ("freelance", "cuad")  # the held-out sets run only when named
 # Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
 # Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
 # project (checked 2026-10-12 for gemini-3.5-flash-lite: 15 RPM, 250K input TPM, 500 RPD).
@@ -61,7 +64,8 @@ def score(run_dir: Path, set_name: str) -> dict:
         entries.append(entry)
         predictions = [Prediction(f["category"], f["risk_level"], (f["start"], f["end"]), f["quoted_text"])
                        for f in entry.get("findings", [])]
-        scores.append(score_contract(record, contract_text(record), predictions))
+        # The cache was made under the run's text limit; scoring needs only the normalized text.
+        scores.append(score_contract(record, contract_text(record, max_chars=None), predictions))
     return {
         "set": set_name, "contracts": len(entries), "missing": missing,
         "metrics": summarize(scores), "run": run_stats(entries),
@@ -117,6 +121,9 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--reasoning-effort", default="low",
                          help="reasoning effort sent to the provider (Groq gpt-oss: low, medium, high; "
                               "Gemini also minimal); default: low, as in the app")
+    run_cmd.add_argument("--max-text-chars", type=int, default=MAX_TEXT_CHARS,
+                         help=f"contract length limit (default: the product's {MAX_TEXT_CHARS}); "
+                              "cuad-holdout-long needs 150000, production is not affected")
     run_cmd.add_argument("--findings-prompt", type=Path,
                          help="text file with the findings system prompt; default: the one in app/prompts.py")
     args = parser.parse_args(argv)
@@ -126,7 +133,8 @@ def main(argv: list[str] | None = None) -> int:
             client = llm_client(args.provider, args.max_output_tokens, temperature=args.temperature,
                                 reasoning_effort=args.reasoning_effort)
             prompt = args.findings_prompt.read_text(encoding="utf-8") if args.findings_prompt else FINDINGS_SYSTEM_PROMPT
-            done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars, findings_prompt=prompt)
+            done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars, findings_prompt=prompt,
+                       max_text_chars=args.max_text_chars)
             print(f"{set_name}: {done} contracts analyzed")
         else:
             result = score(run_dir, set_name)
