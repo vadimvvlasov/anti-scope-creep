@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 27.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6771,
+   "prompt_tokens": 3999,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.0,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "Intellectual property ownership of your work transfers to the client immediately upon creation, before you have received full payment.",
+      "suggested_change": "Intellectual property ownership of the Deliverables will transfer to the Client only upon receipt of full payment for those Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4923,
+   "prompt_tokens": 3159,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.58,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2539,
+   "prompt_tokens": 292,
+   "output_tokens": 115,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for providing the agreement. I am looking forward to collaborating, and I have a quick suggestion regarding the terms. - Regarding the relevant clause stating \"Work Product, and every right in it, vests in Client as it is generated.\", intellectual property ownership currently transfers before you receive full payment. I propose modifying this so that intellectual property ownership of the Deliverables will transfer to the Client only upon receipt of full payment for those Deliverables. Let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -8,7 +8,7 @@ CI never calls Groq.
 | Set | File | Contracts | Categories labeled | What it measures |
 |---|---|---|---|---|
 | CUAD | `gold/cuad.jsonl` | 28 commercial contracts (≤ 60,000 characters) with a clear service provider | `uncapped_liability`, `one_sided_termination`, `ip_transfer_before_payment` | Recall and precision on clause types lawyers labeled; quote verification on real-world formatting |
-| Freelance | `gold/freelance.jsonl` | 13 synthetic contracts: 3 clean controls, 1 natural positive, 8 mutants, 1 decoy | all six | Every category at high and medium, severity, boundaries, the no-finding rule |
+| Freelance | `gold/freelance.jsonl` | 15 synthetic contracts: 3 clean controls, 1 natural positive, 10 mutants, 1 decoy | all six | Every category at high and medium, severity, boundaries, the no-finding rule |
 
 `gold/cuad.draft.jsonl` is the machine-made starting point. `gold/cuad.jsonl` holds the
 labeled records: `proposed` until a person reviews them, then `reviewed`.
@@ -149,8 +149,10 @@ python3 scripts/build_freelance_set.py   # writes eval/freelance/*.txt and gold/
 | D1 | `data/25` | none: decoy wording ("unlimited number of questions", "unlimited copies", "within 30 days", "terminate at any time" with pay) |
 | M7 | `data/2` | payment 90 days after final acceptance high, IP on milestone delivery high |
 | M8 | `data/25` | IP owned by the client from creation, only the file handover waits for full payment, high |
+| M8b | `data/25` | harder M8: rights "vest in Client as generated" in the project-management section, no "intellectual property" wording, only file delivery waits for payment, high |
+| M8c | `data/25` | the client owns the work "throughout" the project, and the contractor will "transfer" it once paid: reads like IP on full payment, high |
 
-18 gold findings; every category has a high and a medium one. Low is planted only for
+20 gold findings; every category has a high and a medium one. Low is planted only for
 payment and termination: the spec's low thresholds for scope, revisions and IP ("minor
 vague wording") are too loose to label without dispute. Net 61-89 is not used: the
 severity matrix does not cover it.

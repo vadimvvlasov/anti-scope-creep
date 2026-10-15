@@ -1,10 +1,10 @@
 {
  "set": "freelance",
- "contracts": 13,
+ "contracts": 14,
  "missing": [],
  "metrics": {
   "ip_transfer_before_payment": {
-   "tp": 4,
+   "tp": 5,
    "fp": 0,
    "fn": 0,
    "precision": 1.0,
@@ -52,7 +52,7 @@
    "severity_accuracy": 1.0
   },
   "all": {
-   "tp": 18,
+   "tp": 19,
    "fp": 0,
    "fn": 0,
    "precision": 1.0,
@@ -63,13 +63,13 @@
  "run": {
   "failed": 0,
   "invalid_output": 0,
-  "findings_returned": 25,
-  "findings_kept": 25,
+  "findings_returned": 26,
+  "findings_kept": 26,
   "dropped": {},
   "quote_not_found_rate": 0.0,
-  "tokens_mean": 12266,
+  "tokens_mean": 12406,
   "tokens_max": 17139,
-  "seconds_mean": 22.9,
+  "seconds_mean": 23.3,
   "seconds_max": 39.9
  },
  "false_positives": [],

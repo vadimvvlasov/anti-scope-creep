@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 30.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8517,
+   "prompt_tokens": 5499,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.27,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "This clause states that all work product belongs to the client throughout the project, meaning ownership of your work passes to them before you are fully paid.",
+      "suggested_change": "Ownership of Work Product will remain with Contractor until Client has paid all fees due under this Agreement, at which point ownership will transfer to Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3118,
+   "prompt_tokens": 302,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.07,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a change before signing. - Regarding the relevant clause, it specifies that work product belongs to the client throughout, which means ownership transfers before full payment. I propose that ownership of the work product remain with the contractor until the client has paid all fees due under the agreement, at which point ownership will transfer to the client. Please let me know if this is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
