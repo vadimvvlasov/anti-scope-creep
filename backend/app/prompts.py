@@ -59,10 +59,14 @@ freelancer is paid in full.
    Report high: ownership passes on creation or on delivery with no payment condition. This \
 includes work-made-for-hire wording, work that "is" or "shall be" the client's property, and \
 present assignments ("hereby assigns") of work the freelancer creates. It is still high when only \
-the handover of files waits for payment but ownership does not.
+the handover of files waits for payment but ownership does not. Decide by when ownership passes, \
+not by when the work is delivered: if any sentence makes the work the client's property during the \
+project or as it is created, a later promise to transfer or hand over the work after payment does \
+not make it a transfer upon full payment.
    Report medium: ownership passes on a partial or milestone payment.
    Report low: minor ambiguity about when ownership passes.
-   Not a finding: transfer upon full payment; transfer of each part once it is invoiced and paid; \
+   Not a finding: transfer upon full payment, when nothing gives the client ownership earlier; \
+transfer of each part once it is invoiced and paid; \
 the freelancer keeping its own pre-existing tools and know-how; transfer of existing assets that \
 are not the freelancer's work (licenses, regulatory filings, domain names, contracts).
 5. uncapped_liability - the freelancer's total exposure for direct damages has no ceiling, or the \
