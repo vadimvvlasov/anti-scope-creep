@@ -1,0 +1,77 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(ii) if the Minimum Revenue           Target (as defined in Part 2 of this Exhibit \"A\") for the first year           of the Term is not achieved by the first anniversary of the Effective           Date, in which case no quarterly payments are payable until such time           as the Minimum Revenue Target for the first year of the Term is           achieved at which point Co-Host will resume making future quarterly           payments on the schedule and in the amount set forth above for the           duration of the Term",
+   "start": 32595,
+   "end": 33121
+  }
+ ],
+ "email": true,
+ "seconds": 28.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19555,
+   "prompt_tokens": 13125,
+   "output_tokens": 502,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.06,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "(vii) upon (90) days prior notice in writing by Co-Host at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms",
+      "explanation": "Only the client has the right to terminate the agreement without cause upon notice, creating an imbalance where you lack the same termination flexibility.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon ninety (90) days prior written notice to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Your indemnification obligations under Section 9 are excluded from the liability cap, exposing you to unlimited financial risk for those claims.",
+      "suggested_change": "The liability of a party to the other for direct damages shall not exceed fifteen million dollars, inclusive of any indemnification claims."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(ii) if the Minimum Revenue Target (as defined in Part 2 of this Exhibit \"A\") for the first year of the Term is not achieved by the first anniversary of the Effective Date, in which case no quarterly payments are payable until such time as the Minimum Revenue Target for the first year of the Term is achieved at which point Co-Host will resume making future quarterly payments on the schedule and in the amount set forth above for the duration of the Term",
+      "explanation": "Your receipt of quarterly payments is conditional upon the client achieving specific revenue targets, making your payment dependent on events controlled by the client.",
+      "suggested_change": "Quarterly payments shall be made on the agreed schedule regardless of whether the Minimum Revenue Target is achieved."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2465,
+   "prompt_tokens": 480,
+   "output_tokens": 155,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.95,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I am writing to suggest a couple of minor adjustments to the agreement before we proceed with signing. - Regarding the relevant clause on liability, the agreement excludes certain claims from the liability cap, which leaves potential financial exposure. We propose changing this so that the liability of a party to the other for direct damages shall not exceed fifteen million dollars, inclusive of any indemnification claims. - Regarding the relevant clause on payment schedules, quarterly payments are currently conditional on specific revenue targets. We propose modifying this so that quarterly payments shall be made on the agreed schedule regardless of whether the Minimum Revenue Target is achieved. Thank you, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

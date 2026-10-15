@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 24.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8188,
+   "prompt_tokens": 5499,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.91,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "This clause gives the client ownership of your work from the moment of creation, meaning you lose intellectual property rights before you are paid.",
+      "suggested_change": "Ownership of the Work Product shall remain with the Contractor until all commercial obligations and fees are paid in full, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3159,
+   "prompt_tokens": 302,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.71,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Thank you for sending over the agreement. - Regarding the relevant clause, the current terms mean that ownership of the work product transfers immediately upon creation, meaning intellectual property rights are lost before payment is received; I propose updating this so that ownership of the work product remains with the contractor until all commercial obligations and fees are paid in full, at which point ownership shall transfer to the client. Looking forward to your response."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,22 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [],
+ "email": false,
+ "seconds": 13.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9403,
+   "prompt_tokens": 5783,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.23,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

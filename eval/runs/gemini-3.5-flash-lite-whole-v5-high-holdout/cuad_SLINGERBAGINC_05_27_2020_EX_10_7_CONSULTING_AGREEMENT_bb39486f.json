@@ -1,0 +1,51 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "(c) The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2084,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 21.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12229,
+   "prompt_tokens": 8412,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.73,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "(c) The Consultant will faithfully, honestly and diligently serve the Company and cooperate with the Company and utilize maximum professional skill and care to ensure that all services rendered hereunder are to the satisfaction of the Company, acting reasonably, and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are required to perform uncompensated extra services not specified in the agreement whenever the company deems them necessary, and the contract lacks a change-order mechanism.",
+      "suggested_change": "The Consultant shall provide the services set forth herein, and any additional services shall be performed only upon a mutually agreed written change order specifying the additional scope and compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2126,
+   "prompt_tokens": 381,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.39,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have one quick point to discuss before we sign: - Regarding the relevant clause, the text currently requires performing uncompensated extra services not specified in the agreement whenever deemed necessary without a proper change-order mechanism, and I propose modifying this to state that: \"The Consultant shall provide the services set forth herein, and any additional services shall be performed only upon a mutually agreed written change order specifying the additional scope and compensation.\" Please let me know if this adjustment works for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

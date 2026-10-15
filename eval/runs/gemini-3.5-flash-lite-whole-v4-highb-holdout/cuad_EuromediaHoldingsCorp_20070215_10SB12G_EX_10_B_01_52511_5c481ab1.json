@@ -1,0 +1,38 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+   "start": 16706,
+   "end": 16866
+  }
+ ],
+ "email": false,
+ "seconds": 16.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11947,
+   "prompt_tokens": 7950,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.67,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+      "explanation": "Only the client can terminate the agreement without cause while you lack a reciprocal right, although ongoing work during the notice period remains paid.",
+      "suggested_change": "Either party may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to the other party."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

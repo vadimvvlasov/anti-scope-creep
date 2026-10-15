@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 24.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8502,
+   "prompt_tokens": 5563,
+   "output_tokens": 109,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.5,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "The agreement states that work product belongs to the client throughout the project, meaning intellectual property passes to the client before you are paid.",
+      "suggested_change": "Intellectual property in the Deliverables shall remain with the Contractor until the Client has paid all amounts due under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2582,
+   "prompt_tokens": 305,
+   "output_tokens": 110,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.91,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have one small point to discuss before signing. - Regarding the relevant clause, the agreement states that work product belongs to the client throughout the project, meaning intellectual property passes to the client before you are paid. To address this, I propose the following change: intellectual property in the deliverables shall remain with the contractor until the client has paid all amounts due under this agreement, at which point ownership shall transfer to the client. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

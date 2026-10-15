@@ -1,0 +1,51 @@
+{
+ "id": "cuad:GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement1",
+ "chars": 112794,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Fox shall own all Intellectual Property Rights in and to any derivative works made from the Properties, whether or not used in the Wireless Products, including without limitation design documents, graphics, animation, music, packaging, advertising, promotional and other artwork used in connection with the development and distribution of the Wireless Products but at all times excluding the Licensee Materials as defined in Paragraph 11(c) below (collectively, the \"Fox Intellectual Property\").",
+   "start": 58423,
+   "end": 58918
+  }
+ ],
+ "email": true,
+ "seconds": 24.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 30982,
+   "prompt_tokens": 25469,
+   "output_tokens": 202,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.8,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Fox shall own all Intellectual Property Rights in and to any derivative works made from the Properties, whether or not used in the Wireless Products, including without limitation design documents, graphics, animation, music, packaging, advertising, promotional and other artwork used in connection with the development and distribution of the Wireless Products but at all times excluding the Licensee Materials as defined in Paragraph 11(c) below (collectively, the \"Fox Intellectual Property\").",
+      "explanation": "Ownership of the derivative works and materials you create vests in the Client immediately as a work made for hire, rather than waiting until you are paid in full.",
+      "suggested_change": "Ownership of all Intellectual Property Rights in and to the derivative works shall remain with the Contractor until the Client has made all payments due under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2498,
+   "prompt_tokens": 390,
+   "output_tokens": 136,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.9,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI am excited to move forward and have one quick suggestion regarding the agreement before I sign it.\n\n- Regarding the relevant clause, ownership of the derivative works vests in the client immediately rather than waiting until you are paid in full. I propose changing this so that ownership of all Intellectual Property Rights in and to the derivative works shall remain with the Contractor until the Client has made all payments due under this Agreement, at which point ownership shall transfer to the Client.\n\nThank you for your time, and please let me know if this adjustment is acceptable.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

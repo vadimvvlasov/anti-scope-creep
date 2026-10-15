@@ -1,0 +1,111 @@
+{
+ "id": "cuad:ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 61392,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+   "start": 22240,
+   "end": 22423
+  }
+ ],
+ "email": true,
+ "seconds": 64.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6499,
+   "prompt_tokens": 4227,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.37,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6142,
+   "prompt_tokens": 3966,
+   "output_tokens": 157,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.53,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+      "explanation": "Ownership of your work transfers to the client immediately upon creation or delivery rather than waiting for full payment, creating the risk that you lose your rights before being paid.",
+      "suggested_change": "Ownership of the Incorporated Technology Works shall transfer to the Client only upon receipt of full payment for such works."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6028,
+   "prompt_tokens": 4005,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.31,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5698,
+   "prompt_tokens": 4186,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.4,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6537,
+   "prompt_tokens": 4475,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2293,
+   "prompt_tokens": 1693,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1992,
+   "prompt_tokens": 321,
+   "output_tokens": 76,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I just have one quick note before signing: - Regarding the relevant clause, ownership transfers immediately instead of waiting for full payment, and I propose that ownership shall transfer to the client only upon receipt of full payment for such works. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

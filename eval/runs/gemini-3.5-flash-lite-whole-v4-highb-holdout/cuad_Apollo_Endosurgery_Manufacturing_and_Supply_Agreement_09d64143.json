@@ -1,0 +1,22 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [],
+ "email": false,
+ "seconds": 15.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16584,
+   "prompt_tokens": 12015,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.83,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

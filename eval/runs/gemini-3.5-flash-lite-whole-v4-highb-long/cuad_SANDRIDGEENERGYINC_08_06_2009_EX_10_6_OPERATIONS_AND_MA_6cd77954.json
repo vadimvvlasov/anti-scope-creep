@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SANDRIDGEENERGYINC_08_06_2009-EX-10.6-OPERATIONS AND MAINTENANCE AGREEMENT",
+ "chars": 73119,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "This Agreement shall commence on the Effective Date and, unless terminated earlier pursuant to Section 3.2 or 3.3 of this Agreement, shall  continue until the twentieth (20th) anniversary of the Effective Date; provided, however, (i) Operator shall have the right to terminate this  Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner,  as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality  of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation  and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and  (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+   "start": 20069,
+   "end": 21072
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of  the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+   "start": 39159,
+   "end": 39347
+  }
+ ],
+ "email": true,
+ "seconds": 28.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21289,
+   "prompt_tokens": 17142,
+   "output_tokens": 470,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.15,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "This Agreement shall commence on the Effective Date and, unless terminated earlier pursuant to Section 3.2 or 3.3 of this Agreement, shall continue until the twentieth (20th) anniversary of the Effective Date; provided, however, (i) Operator shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner, as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+      "explanation": "You can only terminate the contract without cause if you provide a replacement operator acceptable to the Client, whereas the Client can terminate without cause freely.",
+      "suggested_change": "Either party shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+      "explanation": "Payment terms extend beyond 30 days (up to 50 days or more after the month ends), which creates a cash flow delay for you.",
+      "suggested_change": "The Client shall pay all invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2982,
+   "prompt_tokens": 323,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to request a slight adjustment to the relevant clause before signing. - Regarding the relevant clause on payment, the current terms create a cash flow delay by extending payment up to 50 days; I propose modifying this so that the Client shall pay all invoices within thirty (30) days of receipt. Thank you for your understanding and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

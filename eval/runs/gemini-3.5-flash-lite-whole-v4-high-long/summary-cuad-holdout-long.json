@@ -1,0 +1,78 @@
+{
+ "set": "cuad-holdout-long",
+ "contracts": 6,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "precision": 0.5,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.667
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "precision": null,
+   "recall": 0.0,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 4,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.8,
+   "recall": 0.8,
+   "severity_accuracy": 0.75
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 10,
+  "findings_kept": 9,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.1,
+  "tokens_mean": 29639,
+  "tokens_max": 43471,
+  "seconds_mean": 21.9,
+  "seconds_max": 24.9
+ },
+ "false_positives": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Fox shall own all Intellectual Property Rights in and to any derivative works made from the Properties, whether or not used in the Wireless Products, including without limitation design documents, graphics, animation, music, packaging, advertising, promotional and other artwork used in connection with the development and distribution of the Wireless Products but at all times excluding the Licensee Materials as defined in Paragraph 11(c) below (collectively, the \"Fox Intellectual Property\").",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement1"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

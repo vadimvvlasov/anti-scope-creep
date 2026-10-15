@@ -1,0 +1,22 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [],
+ "email": false,
+ "seconds": 12.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14851,
+   "prompt_tokens": 12050,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.17,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

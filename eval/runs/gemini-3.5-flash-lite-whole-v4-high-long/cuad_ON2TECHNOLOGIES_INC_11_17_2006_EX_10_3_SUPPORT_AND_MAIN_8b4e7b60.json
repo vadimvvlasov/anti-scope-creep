@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 61392,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+   "start": 22240,
+   "end": 22423
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(b) $50,000 upon On2's acceptance of the Deliverables pursuant to Section 3.1 hereof",
+   "start": 12055,
+   "end": 12139
+  }
+ ],
+ "email": true,
+ "seconds": 22.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19142,
+   "prompt_tokens": 14315,
+   "output_tokens": 292,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.01,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation and uses work-for-hire wording before you have received full payment.",
+      "suggested_change": "Ownership of the Incorporated Technology Works shall remain with the Contractor until full payment of all amounts due under this Agreement has been received from the Client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(b) $50,000 upon On2's acceptance of the Deliverables pursuant to Section 3.1 hereof",
+      "explanation": "A portion of your compensation is conditional upon the client's formal acceptance, giving the client control over whether and when you get paid.",
+      "suggested_change": "(b) $50,000 payable within thirty (30) days following the delivery of the Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2662,
+   "prompt_tokens": 429,
+   "output_tokens": 130,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.27,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I hope you are well. I have reviewed the agreement and would like to propose a few changes before signing. - Regarding the relevant clause on intellectual property, ownership transfers immediately upon creation before full payment is received, and I propose that ownership remain with the contractor until full payment of all amounts due under the agreement has been received. - Regarding the relevant clause on compensation, a portion of the payment is conditional upon formal client acceptance, and I propose making this amount payable within thirty days following the delivery of the deliverables. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

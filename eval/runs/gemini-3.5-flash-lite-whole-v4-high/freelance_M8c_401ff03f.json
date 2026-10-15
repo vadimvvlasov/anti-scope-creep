@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 23.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8661,
+   "prompt_tokens": 5499,
+   "output_tokens": 95,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.01,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "The agreement specifies that work product is the Client's property throughout creation, presenting intellectual property risk before you are paid.",
+      "suggested_change": "Ownership of the Deliverables shall transfer to the Client only upon full payment of all amounts due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1979,
+   "prompt_tokens": 291,
+   "output_tokens": 125,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.91,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have reviewed the terms and would like to request a slight modification before signing. - Regarding the clause stating \"Work Product created in the course of the project is the property of Client throughout.\", the current wording transfers ownership of the work product before payment is completed. I propose we update it to: Ownership of the Deliverables shall transfer to the Client only upon full payment of all amounts due under this Agreement. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

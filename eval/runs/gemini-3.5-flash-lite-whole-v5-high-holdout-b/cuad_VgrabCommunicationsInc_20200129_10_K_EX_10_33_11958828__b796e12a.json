@@ -1,0 +1,51 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+   "start": 8849,
+   "end": 9055
+  }
+ ],
+ "email": true,
+ "seconds": 24.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8534,
+   "prompt_tokens": 5042,
+   "output_tokens": 165,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.41,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+      "explanation": "The contract states that intellectual property is owned by the client during the project, meaning ownership passes to the client before you are fully paid.",
+      "suggested_change": "Ownership of all intellectual property created by the Developer shall remain with the Developer until the Developer has received full payment under this Agreement, at which point ownership shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2409,
+   "prompt_tokens": 329,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before proceeding with your signature, I have one quick adjustment to suggest: - Regarding the relevant clause, the text currently implies that intellectual property may be transferred before full payment is finalized; I propose the following constructive modification: Ownership of all intellectual property created by the Developer shall remain with the Developer until the Developer has received full payment under this Agreement, at which point ownership shall transfer to the Client. Please let me know if you are comfortable with this change. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

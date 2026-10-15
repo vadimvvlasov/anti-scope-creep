@@ -1,0 +1,51 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.",
+   "start": 19406,
+   "end": 19533
+  }
+ ],
+ "email": true,
+ "seconds": 42.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13285,
+   "prompt_tokens": 9914,
+   "output_tokens": 148,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 35.25,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.",
+      "explanation": "Title to the products passes to the Client upon the placement of an invoice, which happens before you are paid. This means the Client owns the work before you receive full payment.",
+      "suggested_change": "Risk of loss and title to the products will pass to the Client only upon receipt of full payment by the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2015,
+   "prompt_tokens": 312,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.37,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a small adjustment before signing. - Regarding the relevant clause (\"Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.\"), title passes to the client upon invoicing, which occurs before payment is received. I propose modifying this so that risk of loss and title to the products will pass to the client only upon receipt of full payment by the contractor. Thank you, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,138 @@
+{
+ "id": "cuad:SANDRIDGEENERGYINC_08_06_2009-EX-10.6-OPERATIONS AND MAINTENANCE AGREEMENT",
+ "chars": 73119,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "(i) Operator shall have the right to terminate this  Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner,  as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality  of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation  and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion,",
+   "start": 20299,
+   "end": 20934
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of  the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+   "start": 39159,
+   "end": 39347
+  }
+ ],
+ "email": true,
+ "seconds": 67.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5462,
+   "prompt_tokens": 4534,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.26,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6416,
+   "prompt_tokens": 4062,
+   "output_tokens": 226,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.04,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "(i) Operator shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner, as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion,",
+      "explanation": "You can only terminate the agreement if you find a replacement operator approved by the Client, whereas the Client can terminate without any such condition. This restricts your ability to exit the contract freely.",
+      "suggested_change": "The Contractor shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6140,
+   "prompt_tokens": 3967,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6541,
+   "prompt_tokens": 4126,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.35,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+      "explanation": "Payment is due up to 50 days after the end of the month, which exceeds standard 30-day payment terms and delays your cash flow.",
+      "suggested_change": "Owner shall pay all invoiced amounts within thirty (30) days following receipt of each invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5863,
+   "prompt_tokens": 3998,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5781,
+   "prompt_tokens": 4397,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.58,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2653,
+   "prompt_tokens": 1941,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2233,
+   "prompt_tokens": 328,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am looking forward to working together and have a small note regarding the paperwork. - Regarding the relevant clause, payment is currently set up to 50 days after the end of the month, which delays cash flow. I propose modifying the agreement so that it states: Owner shall pay all invoiced amounts within thirty (30) days following receipt of each invoice. Thank you for your understanding. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

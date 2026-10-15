@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT",
+ "chars": 61392,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+   "start": 22240,
+   "end": 22423
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(b) $50,000 upon On2's acceptance of the Deliverables pursuant to Section 3.1 hereof;",
+   "start": 12055,
+   "end": 12140
+  }
+ ],
+ "email": true,
+ "seconds": 32.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20992,
+   "prompt_tokens": 14379,
+   "output_tokens": 298,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 20.04,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Incorporated Technology Works shall be the sole property of On2, and all right, title and interest therein shall vest solely in On2 and shall be deemed to be a work made for hire.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation or as a work made for hire before you have received full payment.",
+      "suggested_change": "Upon full payment of all fees due under this Agreement, ownership of the Incorporated Technology Works shall transfer to the Client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(b) $50,000 upon On2's acceptance of the Deliverables pursuant to Section 3.1 hereof;",
+      "explanation": "A portion of your payment is conditioned upon the client's formal acceptance, giving them control over when or whether you get paid.",
+      "suggested_change": "(b) $50,000 payable within thirty (30) days following delivery of the Deliverables, unless the Client provides a good faith notice of non-conformance."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2635,
+   "prompt_tokens": 435,
+   "output_tokens": 156,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! I hope you are having a great week. I am writing to share a few proposed updates to the agreement before we proceed with signing. - Regarding the relevant clause on ownership, the current terms transfer rights to the work product immediately upon creation rather than upon full payment. I propose updating this so that ownership transfers upon full payment of all fees due under the agreement. - Regarding the relevant clause on payment milestones, a portion of the payment is tied directly to formal acceptance, which creates uncertainty. I propose modifying this so the amount is payable within thirty days following delivery, unless a good faith notice of non-conformance is provided. Please let me know if these modifications work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

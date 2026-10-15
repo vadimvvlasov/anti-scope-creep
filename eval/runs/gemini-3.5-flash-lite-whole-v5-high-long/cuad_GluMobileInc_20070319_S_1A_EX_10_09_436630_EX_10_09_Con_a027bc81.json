@@ -1,0 +1,22 @@
+{
+ "id": "cuad:GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement1",
+ "chars": 112794,
+ "findings": [],
+ "email": false,
+ "seconds": 16.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29793,
+   "prompt_tokens": 25533,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.29,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

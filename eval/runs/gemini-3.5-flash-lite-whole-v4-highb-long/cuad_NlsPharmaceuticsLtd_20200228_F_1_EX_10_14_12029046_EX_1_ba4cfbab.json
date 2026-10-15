@@ -1,0 +1,51 @@
+{
+ "id": "cuad:NlsPharmaceuticsLtd_20200228_F-1_EX-10.14_12029046_EX-10.14_Development Agreement",
+ "chars": 67932,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices,",
+   "start": 20604,
+   "end": 20788
+  }
+ ],
+ "email": true,
+ "seconds": 28.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22315,
+   "prompt_tokens": 16181,
+   "output_tokens": 182,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 21.19,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by Licensor, in maximum 45 days after the issuance by NLS of the corresponding invoices,",
+      "explanation": "Payment terms of up to 45 days delay your receipt of funds beyond the standard 30-day threshold, which can negatively impact your cash flow.",
+      "suggested_change": "Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor, within 30 days after the issuance by the Licensor of the corresponding invoices."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2216,
+   "prompt_tokens": 346,
+   "output_tokens": 137,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I am writing to suggest a minor adjustment to the agreement before we sign. - In the relevant clause, the payment timeline of up to 45 days can negatively impact cash flow, so I propose updating it to a standard 30-day period with the following wording: 'Except for article 3.1 hereabove, payments shall be made by wire transfer to the bank nominated by the Licensor, within 30 days after the issuance by the Licensor of the corresponding invoices.' Thank you for your flexibility, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11621,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 22.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11721,
+   "prompt_tokens": 8195,
+   "output_tokens": 139,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.39,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation, before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment of all Fees due under this Agreement, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2067,
+   "prompt_tokens": 303,
+   "output_tokens": 87,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.68,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to request a minor update before signing. - Regarding the relevant clause, the text currently transfers intellectual property ownership before payment is guaranteed, so I propose updating it so that ownership transfers upon receipt of full payment of all fees due. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

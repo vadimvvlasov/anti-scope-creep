@@ -1,0 +1,51 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "(c) US$100,000 upon on or before March 28, 2014.",
+   "start": 13910,
+   "end": 13958
+  }
+ ],
+ "email": true,
+ "seconds": 24.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15054,
+   "prompt_tokens": 10201,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.4,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "(c) US$100,000 upon on or before March 28, 2014.",
+      "explanation": "Payment of this license fee installment is due 46 days after the effective date, which delays your receipt of payment beyond 30 days.",
+      "suggested_change": "(c) US$100,000 within thirty (30) days of the Effective Date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2329,
+   "prompt_tokens": 307,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I have reviewed the agreement and would like to request a minor adjustment before signing. - Regarding the relevant clause stating \"(c) US$100,000 upon on or before March 28, 2014.\", the payment is currently scheduled 46 days after the effective date, which delays receipt beyond 30 days. I propose we update this to: \"(c) US$100,000 within thirty (30) days of the Effective Date.\". Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,79 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 2,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 4,
+   "fp": 2,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.8,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 14,
+  "findings_kept": 12,
+  "dropped": {
+   "quote_not_found": 2
+  },
+  "quote_not_found_rate": 0.143,
+  "tokens_mean": 14179,
+  "tokens_max": 22020,
+  "seconds_mean": 21.0,
+  "seconds_max": 42.7
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Upon delivery or the placement of an invoice by Contractor, whichever is earlier, Risk of loss and title will pass to Customer.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": []
+}

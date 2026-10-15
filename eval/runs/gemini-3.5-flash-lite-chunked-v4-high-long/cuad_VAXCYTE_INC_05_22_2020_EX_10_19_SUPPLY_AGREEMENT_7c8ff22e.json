@@ -1,0 +1,134 @@
+{
+ "id": "cuad:VAXCYTE,INC_05_22_2020-EX-10.19-SUPPLY AGREEMENT",
+ "chars": 99696,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "10.2.3 in its entirety or with respect to one or more Products, on a Product-by-Product basis, by SutroVax upon [***] days' prior written notice to Sutro for any reason.",
+   "start": 81906,
+   "end": 82075
+  }
+ ],
+ "email": false,
+ "seconds": 74.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5088,
+   "prompt_tokens": 4314,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.54,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6428,
+   "prompt_tokens": 4045,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.92,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5574,
+   "prompt_tokens": 3953,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.2,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6256,
+   "prompt_tokens": 4246,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6101,
+   "prompt_tokens": 4156,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.6,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5410,
+   "prompt_tokens": 3639,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.58,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5659,
+   "prompt_tokens": 4003,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.49,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7097,
+   "prompt_tokens": 3949,
+   "output_tokens": 158,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.86,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "10.2.3 in its entirety or with respect to one or more Products, on a Product-by-Product basis, by [PARTY_B] upon [***] days' prior written notice to Sutro for any reason.",
+      "explanation": "Only the client can terminate the agreement without cause. Although you are reimbursed for committed supplies and incurred time, this asymmetry leaves you vulnerable to having the project cancelled arbitrarily.",
+      "suggested_change": "Either party may terminate this Supply Agreement in its entirety or with respect to one or more Products, on a Product-by-Product basis, upon [***] days' prior written notice to the other party for any reason."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4901,
+   "prompt_tokens": 3664,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.04,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

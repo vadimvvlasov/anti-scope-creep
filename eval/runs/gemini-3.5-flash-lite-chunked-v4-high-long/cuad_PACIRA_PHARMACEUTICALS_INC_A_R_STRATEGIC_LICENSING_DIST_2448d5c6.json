@@ -1,0 +1,208 @@
+{
+ "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+ "chars": 145168,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "EKR shall pay to PPI, any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+   "start": 62601,
+   "end": 62835
+  }
+ ],
+ "email": true,
+ "seconds": 142.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5328,
+   "prompt_tokens": 4289,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.68,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6309,
+   "prompt_tokens": 4096,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.81,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6680,
+   "prompt_tokens": 4316,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.43,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6038,
+   "prompt_tokens": 3954,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6465,
+   "prompt_tokens": 4198,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 10232,
+   "prompt_tokens": 4130,
+   "output_tokens": 211,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.36,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "EKR shall pay to [PARTY_D], any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+      "explanation": "Payment is due within 45 days of the end of each quarter, which delays your receipt of payments beyond standard terms and impacts your cash flow.",
+      "suggested_change": "EKR shall pay to [PARTY_D], any Minimum Royalties and Additional Royalties due within thirty (30) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5837,
+   "prompt_tokens": 4229,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 10567,
+   "prompt_tokens": 4119,
+   "output_tokens": 304,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.62,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Any and all liability of [PARTY_D] to EKR howsoever arising in respect of this Agreement, the Transition Services and Inventory Agreement or the Supply Agreement and their performance, in contract tort or otherwise, shall be limited (except for death or  personal injury caused by the negligence of [PARTY_D] or its employees while acting in the course of their employment) to [**] US Dollars ($[**]);  pro\n\n-48-\n\nvided  however that such limitation shall not apply to the extent that EKR or any EKR Indemnified Party is required to pay in excess of such amount to a third party in respect of a final judgment or order obtained by the third party or as a result of [PARTY_D]'s breach of Section 7.2.12 of  the Supply Agreement.",
+      "explanation": "Your liability cap does not apply to third-party claims where the client must pay in excess of the cap amount, exposing you to unlimited financial exposure for such claims.",
+      "suggested_change": "Any and all liability of the Contractor to the Client howsoever arising in respect of this Agreement shall be limited to [**] US Dollars ($[**]) in the aggregate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6706,
+   "prompt_tokens": 4208,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.94,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5892,
+   "prompt_tokens": 4370,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5700,
+   "prompt_tokens": 4697,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.33,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5529,
+   "prompt_tokens": 4565,
+   "output_tokens": 5,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.27,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4919,
+   "prompt_tokens": 3436,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.27,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2405,
+   "prompt_tokens": 375,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.05,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Before signing the agreement, I would like to propose an adjustment to the relevant clause: - The current timeline sets payment within forty-five days, which delays your receipt of payments and impacts cash flow, so we propose changing it to thirty days with the following wording: EKR shall pay to [PARTY_D], any Minimum Royalties and Additional Royalties due within thirty (30) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9. Thank you, and best regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

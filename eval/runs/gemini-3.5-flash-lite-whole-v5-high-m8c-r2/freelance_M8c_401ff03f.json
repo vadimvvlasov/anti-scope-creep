@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 20.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7685,
+   "prompt_tokens": 5563,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.79,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "The agreement states that work product belongs to the client throughout the project, meaning ownership transfers to them before you receive full payment.",
+      "suggested_change": "Contractor shall retain ownership of all Work Product until Contractor has received full payment of all fees due under this Agreement, at which point ownership shall transfer to Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2101,
+   "prompt_tokens": 302,
+   "output_tokens": 113,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.37,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, I have reviewed the agreement and am excited to work together. Before signing, I would like to propose a small adjustment: - Regarding the relevant clause, the agreement states that work product belongs to the client throughout the project, meaning ownership transfers to them before you receive full payment. I propose updating this as follows: Contractor shall retain ownership of all Work Product until Contractor has received full payment of all fees due under this Agreement, at which point ownership shall transfer to Client. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

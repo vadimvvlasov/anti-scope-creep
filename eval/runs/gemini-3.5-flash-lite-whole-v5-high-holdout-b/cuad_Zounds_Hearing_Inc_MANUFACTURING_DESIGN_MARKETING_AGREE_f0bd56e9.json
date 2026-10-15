@@ -1,0 +1,51 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2465,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 29.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14482,
+   "prompt_tokens": 10852,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.94,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "The second installment of the Technology Access Fee is deferred for sixty days, which delays your receipt of payment beyond thirty days and impacts your cash flow.",
+      "suggested_change": "The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days thereafter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2013,
+   "prompt_tokens": 323,
+   "output_tokens": 110,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am reviewing the documents and would like to propose a small update to the agreement before signing. - In the relevant clause regarding the payment schedule, the second installment is currently deferred for sixty days, which impacts cash flow; we propose updating this so that the first installment will be due thirty days following the Effective Date and the second installment will be due thirty days thereafter. Thank you for your time and cooperation, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

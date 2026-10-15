@@ -145,6 +145,8 @@ def test_text_limit_is_60000_characters_after_normalization():
     with pytest.raises(AppError) as exc_info:
         check_text(at_limit + "x")
     assert exc_info.value.code == ErrorCode.CONTRACT_TOO_LARGE
+    assert check_text(at_limit + "x", max_chars=MAX_TEXT_CHARS + 1).endswith("x")
+    assert check_text(at_limit + "x", max_chars=None).endswith("x")
 
 
 def test_empty_text_is_rejected():

@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SANDRIDGEENERGYINC_08_06_2009-EX-10.6-OPERATIONS AND MAINTENANCE AGREEMENT",
+ "chars": 73119,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "provided, however, (i) Operator shall have the right to terminate this  Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner,  as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality  of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation  and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and  (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+   "start": 20280,
+   "end": 21072
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of  the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+   "start": 39159,
+   "end": 39347
+  }
+ ],
+ "email": true,
+ "seconds": 19.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21168,
+   "prompt_tokens": 17142,
+   "output_tokens": 371,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.99,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "provided, however, (i) Operator shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner, as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+      "explanation": "Only you face restrictive conditions to terminate without cause (requiring an acceptable substitute operator), while the Client can terminate without cause freely.",
+      "suggested_change": "Both the Client and the Contractor shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+      "explanation": "Payment terms of up to 50 days after month-end exceed standard 30-day terms, creating a cash flow burden for you.",
+      "suggested_change": "The Client shall pay all invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3869,
+   "prompt_tokens": 322,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.67,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Before signing the agreement, I would like to propose a minor update. - Regarding the relevant clause concerning payment, the current terms of up to 50 days after month-end create a cash flow burden, and I propose changing it so that the client shall pay all invoices within thirty (30) days of receipt. Thank you for your flexibility, and please let me know if this works. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

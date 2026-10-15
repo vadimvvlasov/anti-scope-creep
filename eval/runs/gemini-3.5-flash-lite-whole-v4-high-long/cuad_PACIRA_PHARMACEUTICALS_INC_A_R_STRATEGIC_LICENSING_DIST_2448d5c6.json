@@ -1,0 +1,77 @@
+{
+ "id": "cuad:PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT ",
+ "chars": 145168,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "EKR may terminate this Agreement for convenience at any time upon [**] ([**]) days prior, written notice to PPI.",
+   "start": 99021,
+   "end": 99133
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "EKR shall pay to PPI, any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+   "start": 62601,
+   "end": 62835
+  }
+ ],
+ "email": true,
+ "seconds": 22.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 40718,
+   "prompt_tokens": 34831,
+   "output_tokens": 500,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.52,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "EKR may terminate this Agreement for convenience at any time upon [**] ([**]) days prior, written notice to [PARTY_D].",
+      "explanation": "Only the client can terminate the contract for convenience without cause, and the agreement does not guarantee payment for all work performed or costs incurred upon such termination.",
+      "suggested_change": "Either Party may terminate this Agreement for convenience upon sixty (60) days prior written notice to the other Party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Any and all liability of [PARTY_D] to EKR howsoever arising in respect of this Agreement, the Transition Services and Inventory Agreement or the Supply Agreement and their performance, in contract tort or otherwise, shall be limited (except for death or personal injury caused by the negligence of [PARTY_D] or its employees while acting in the course of their employment) to [**] US Dollars ($[**]); provided however that such limitation shall not apply to the extent that EKR or any EKR Indemnified Party is required to pay in excess of such amount to a third party in respect of a final judgment or order obtained by the third party or as a result of [PARTY_D]'s breach of Section 7.2.12 of the Supply Agreement.",
+      "explanation": "Third-party claims and indemnification obligations are carved out of your liability cap, exposing you to unlimited financial exposure for those claims.",
+      "suggested_change": "The total liability of the Licensor under this Agreement shall be capped at the fees paid by the Client hereunder, inclusive of all indemnification and third-party claims."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "EKR shall pay to [PARTY_D], any Minimum Royalties and Additional Royalties due within forty-five (45) days of the end of each Quarter as the case may be subject to reconciliation at the end of each Calendar Year as set forth in Section 6.9.",
+      "explanation": "Payment terms allow the client up to 45 days after the end of each quarter to pay royalties, which exceeds standard 30-day payment terms.",
+      "suggested_change": "The Client shall pay all royalties due within thirty (30) days of the end of each Quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2753,
+   "prompt_tokens": 450,
+   "output_tokens": 131,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am looking forward to getting started and have a couple of quick notes on the agreement before we sign. - Regarding termination, the agreement currently allows only the client to terminate for convenience without guaranteed payment for work done; I propose that either party may terminate the agreement for convenience upon sixty days prior written notice. - Regarding payment, the relevant clause allows up to 45 days after each quarter, which exceeds standard terms; I propose that the client shall pay all royalties due within thirty days of the end of each quarter. Thank you for your flexibility, and best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

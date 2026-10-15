@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SANDRIDGEENERGYINC_08_06_2009-EX-10.6-OPERATIONS AND MAINTENANCE AGREEMENT",
+ "chars": 73119,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "provided, however, (i) Operator shall have the right to terminate this  Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner,  as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality  of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation  and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and  (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+   "start": 20280,
+   "end": 21072
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of  the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+   "start": 39159,
+   "end": 39347
+  }
+ ],
+ "email": true,
+ "seconds": 31.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 23043,
+   "prompt_tokens": 17206,
+   "output_tokens": 431,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 22.48,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "provided, however, (i) Operator shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Owner, if Operator provides a substitute operator acceptable to Owner, as determined in its reasonable discretion, who (A) has experience operating similar assets, (B) has the ability to provide at least the same quality of service as Operator, (C) has the financial ability to perform the obligations hereunder, and (D) is ready, willing and able to execute an operation and maintenance agreement substantially similar to this Agreement and acceptable to Owner, as determined in its reasonable discretion, and (ii) Owner shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to Operator.",
+      "explanation": "While both parties have termination rights, your right to terminate without cause is restricted because you must provide a replacement operator acceptable to the Client, whereas the Client can terminate without cause freely.",
+      "suggested_change": "Either party shall have the right to terminate this Agreement at any time upon no less than 120 days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Owner shall pay all such amounts prior to the later of (a) 50 days after the end of the month in which the expenses were incurred or (b) 10 days after the date of receipt of each invoice.",
+      "explanation": "Payment is tied to 50 days after month-end, which exceeds standard 30-day terms and creates a cash flow burden for you.",
+      "suggested_change": "The Client shall pay all invoices within 30 days after receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2465,
+   "prompt_tokens": 321,
+   "output_tokens": 70,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a small adjustment. - Regarding the relevant clause, the current timeline creates a cash flow burden, so I propose changing it to: The Client shall pay all invoices within 30 days after receipt. Thank you for your time."
+   }
+  }
+ ],
+ "dropped": []
+}

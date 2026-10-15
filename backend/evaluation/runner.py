@@ -20,7 +20,7 @@ from pydantic import ValidationError
 
 from app.chunking import DEFAULT_MAX_CHARS
 from app.prompts import FINDINGS_SYSTEM_PROMPT
-from app.extraction import check_text
+from app.extraction import MAX_TEXT_CHARS, check_text
 from app.groq_analyzer import GroqAnalyzer, JsonCompletion
 from app.groq_client import GroqError, GroqResult
 from app.quotes import locate_quote
@@ -40,13 +40,14 @@ def load_gold(set_name: str) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
-def contract_text(record: dict) -> str:
-    """The contract as the product analyzes it: extracted and normalized by check_text."""
+def contract_text(record: dict, max_chars: int | None = MAX_TEXT_CHARS) -> str:
+    """The contract as the product analyzes it: extracted and normalized by check_text.
+    max_chars is the product limit unless an eval run raises it (cuad-holdout-long)."""
     if record["source"] == "cuad":
         raw = _cuad_texts()[record["id"].removeprefix("cuad:")]
     else:
         raw = (REPO / record["path"]).read_text(encoding="utf-8")
-    return check_text(raw)
+    return check_text(raw, max_chars)
 
 
 _cuad_cache: dict[str, str] = {}
@@ -98,11 +99,11 @@ def cache_path(run_dir: Path, record_id: str) -> Path:
 
 
 def analyze_record(record: dict, client: JsonCompletion, max_chunk_chars: int = DEFAULT_MAX_CHARS,
-                   findings_prompt: str = FINDINGS_SYSTEM_PROMPT) -> dict:
+                   findings_prompt: str = FINDINGS_SYSTEM_PROMPT, max_text_chars: int = MAX_TEXT_CHARS) -> dict:
     """Analyze one contract. Output that fails the schema (Groq's 400 or Pydantic) or is cut
     at the token cap twice is a model failure and is cached; any other provider error
     propagates and stops the run."""
-    text = contract_text(record)
+    text = contract_text(record, max_text_chars)
     recorder, drops = RecordingClient(client), DropCollector()
     logger = logging.getLogger("app.groq_analyzer")
     logger.addHandler(drops)
@@ -135,7 +136,8 @@ def _finding(text: str, finding) -> dict:
 
 
 def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None = None, log=print,
-        max_chunk_chars: int = DEFAULT_MAX_CHARS, findings_prompt: str = FINDINGS_SYSTEM_PROMPT) -> int:
+        max_chunk_chars: int = DEFAULT_MAX_CHARS, findings_prompt: str = FINDINGS_SYSTEM_PROMPT,
+        max_text_chars: int = MAX_TEXT_CHARS) -> int:
     """Analyze the set's contracts that are not cached yet; return how many were analyzed."""
     run_dir.mkdir(parents=True, exist_ok=True)
     done = 0
@@ -145,7 +147,7 @@ def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None 
             continue
         if limit is not None and done >= limit:
             break
-        entry = analyze_record(record, client, max_chunk_chars, findings_prompt)
+        entry = analyze_record(record, client, max_chunk_chars, findings_prompt, max_text_chars)
         path.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
         done += 1
         tokens = sum(c["tokens"] or 0 for c in entry["calls"])

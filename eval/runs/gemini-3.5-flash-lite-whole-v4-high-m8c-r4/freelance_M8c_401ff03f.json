@@ -1,0 +1,22 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [],
+ "email": false,
+ "seconds": 10.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8206,
+   "prompt_tokens": 5499,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.43,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

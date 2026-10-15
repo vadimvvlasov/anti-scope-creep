@@ -137,12 +137,15 @@ def normalize_text(text: str) -> str:
     return text.replace("\r\n", "\n").replace("\r", "\n").replace("\x00", "").strip()
 
 
-def check_text(text: str) -> str:
-    """Normalize contract text and enforce the length and language rules."""
+def check_text(text: str, max_chars: int | None = MAX_TEXT_CHARS) -> str:
+    """Normalize contract text and enforce the length and language rules.
+
+    The product always uses MAX_TEXT_CHARS; the eval passes a higher limit for long
+    contracts, or None when it only needs the normalized text of a cached run."""
     normalized = normalize_text(text)
     if not normalized:
         raise AppError(ErrorCode.VALIDATION_ERROR, "The contract text is empty.")
-    if len(normalized) > MAX_TEXT_CHARS:
+    if max_chars is not None and len(normalized) > max_chars:
         raise AppError(ErrorCode.CONTRACT_TOO_LARGE)
     ensure_english(normalized)
     return normalized

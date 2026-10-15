@@ -1,0 +1,159 @@
+{
+ "id": "cuad:GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement1",
+ "chars": 112794,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Licensee acknowledges and agrees Fox shall be the exclusive owner of these rights as a work made for hire.",
+   "start": 59281,
+   "end": 59387
+  }
+ ],
+ "email": true,
+ "seconds": 105.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5769,
+   "prompt_tokens": 4073,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.15,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5679,
+   "prompt_tokens": 3920,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.22,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6385,
+   "prompt_tokens": 4302,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5909,
+   "prompt_tokens": 4123,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8189,
+   "prompt_tokens": 3956,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6135,
+   "prompt_tokens": 3890,
+   "output_tokens": 133,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.14,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Licensee acknowledges and agrees Fox shall be the exclusive owner of these rights as a work made for hire.",
+      "explanation": "Ownership of your work passes to the client immediately upon creation as a work made for hire, before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment, the Client shall own all Intellectual Property Rights in and to the deliverables created hereunder."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6208,
+   "prompt_tokens": 4123,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.25,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5997,
+   "prompt_tokens": 4238,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.98,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5903,
+   "prompt_tokens": 4710,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.54,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3644,
+   "prompt_tokens": 2966,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.78,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2495,
+   "prompt_tokens": 297,
+   "output_tokens": 124,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.25,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a small adjustment before signing: - Regarding the relevant clause stating 'Licensee acknowledges and agrees Fox shall be the exclusive owner of these rights as a work made for hire,' ownership of the work passes to the client immediately upon creation before full payment is guaranteed. I propose we modify this so that upon receipt of full payment, the Client shall own all Intellectual Property Rights in and to the deliverables created hereunder. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
