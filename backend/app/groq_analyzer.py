@@ -12,12 +12,12 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Any, Protocol
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from app.analyzer import NO_INPUT_IN_ERRORS, AnalysisResult, EmailDraftContent, FindingDraft
 from app.chunking import DEFAULT_MAX_CHARS, chunk_text
 from app.groq_client import GroqResult, strict_json_schema
-from app.models import RiskLevel
+from app.models import RiskCategory, RiskLevel
 from app.prompts import EMAIL_SYSTEM_PROMPT, FINDINGS_SYSTEM_PROMPT
 from app.pseudonymize import PlaceholderMap, pseudonymize, restore
 from app.quotes import locate_quote
@@ -33,6 +33,14 @@ class FindingsOutput(BaseModel):
     model_config = NO_INPUT_IN_ERRORS
 
     findings: list[FindingDraft]
+
+
+class _RawFindings(BaseModel):
+    """The answer's shape only; each finding is validated on its own (_valid_drafts)."""
+
+    model_config = NO_INPUT_IN_ERRORS
+
+    findings: list[Any]
 
 
 FINDINGS_SCHEMA = strict_json_schema(FindingsOutput)
@@ -74,7 +82,7 @@ class GroqAnalyzer:
             {"role": "user", "content": header + chunk},
         ]
         result = self._client.complete_json(messages, "contract_findings", FINDINGS_SCHEMA)
-        return FindingsOutput.model_validate(result.content).findings
+        return _valid_drafts(_RawFindings.model_validate(result.content).findings)
 
     def _email(self, serious: list[VerifiedFinding], mapping: PlaceholderMap) -> EmailDraftContent:
         issues = [
@@ -98,6 +106,24 @@ class GroqAnalyzer:
         return EmailDraftContent(subject=subject, body=body)
 
 
+def _valid_drafts(items: list[Any]) -> list[FindingDraft]:
+    """Findings that pass validation; an invalid one (an overlong field, an unknown category)
+    is dropped and logged, so it does not fail the whole analysis."""
+    drafts = []
+    for item in items:
+        try:
+            drafts.append(FindingDraft.model_validate(item))
+        except ValidationError:
+            logger.info("Dropped a %s finding: invalid_finding", _category_name(item))
+    return drafts
+
+
+def _category_name(item: Any) -> str:
+    """The category for a log line, only when it is a known one: model output is not logged."""
+    category = item.get("category") if isinstance(item, dict) else None
+    return category if category in {c.value for c in RiskCategory} else "unknown"
+
+
 def _verify(drafts: Iterable[FindingDraft], mapping: PlaceholderMap, source_text: str) -> list[VerifiedFinding]:
     """Restore placeholders and keep findings whose quote occurs in the source text.
 
@@ -118,7 +144,13 @@ def _verify(drafts: Iterable[FindingDraft], mapping: PlaceholderMap, source_text
             logger.info("Dropped a %s finding: quote_not_found", draft.category.value)
             continue
         restored["quoted_text"] = source_text[start:end]
-        kept.append(VerifiedFinding(finding=draft.model_copy(update=restored), sent=draft))
+        try:
+            # Restored values can be longer than the placeholders the limits were checked on.
+            finding = FindingDraft.model_validate({**draft.model_dump(), **restored})
+        except ValidationError:
+            logger.info("Dropped a %s finding: invalid_after_restore", draft.category.value)
+            continue
+        kept.append(VerifiedFinding(finding=finding, sent=draft))
     return kept
 
 

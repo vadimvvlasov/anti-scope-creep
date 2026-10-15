@@ -150,6 +150,49 @@ def test_provider_and_validation_errors_fail_the_analysis():
 
     with pytest.raises(GroqError):
         GroqAnalyzer(Failing(lambda text: [])).analyze(CONTRACT)
-    invalid = FakeClient(lambda text: [finding("Invoices are payable within 90 days of receipt.", category="other")])
+    malformed = FakeClient(lambda text: "not a list")  # type: ignore[arg-type, return-value]
     with pytest.raises(ValueError):
-        GroqAnalyzer(invalid).analyze(CONTRACT)
+        GroqAnalyzer(malformed).analyze(CONTRACT)
+
+
+def test_an_invalid_finding_is_dropped_and_logged_not_failing_the_analysis(caplog):
+    caplog.set_level(logging.INFO)
+    payment = "Invoices are payable within 90 days of receipt."
+    client = FakeClient(lambda text: [
+        finding(payment, category="other"),
+        finding(payment, category="unfavorable_payment_terms", explanation="x" * 2_001),
+        finding(payment, category="unfavorable_payment_terms"),
+    ])
+    result = GroqAnalyzer(client).analyze(CONTRACT)
+
+    assert [f.category.value for f in result.findings] == ["unfavorable_payment_terms"]
+    assert "Dropped a unknown finding: invalid_finding" in caplog.text
+    assert "Dropped a unfavorable_payment_terms finding: invalid_finding" in caplog.text
+    assert "xxxx" not in caplog.text
+
+
+def test_a_finding_too_long_after_restore_is_dropped(caplog):
+    caplog.set_level(logging.INFO)
+    # 1,999 characters with the placeholder, over 2,000 once "Northwind Traders Inc." is restored.
+    explanation = "[PARTY_A] " + "y" * 1_989
+    client = FakeClient(lambda text: [
+        finding("Invoices are payable within 90 days of receipt.", category="unfavorable_payment_terms",
+                explanation=explanation),
+    ])
+    result = GroqAnalyzer(client).analyze(CONTRACT)
+
+    assert result.findings == []
+    assert "Dropped a unfavorable_payment_terms finding: invalid_after_restore" in caplog.text
+
+
+def test_bracketed_tokens_already_in_the_contract_do_not_drop_findings():
+    contract = CONTRACT.replace("may request unlimited revisions", "and [CLIENT_NAME] may request unlimited revisions")
+    contract += "\nReference: [PARTY_A] is a template field.\n"
+    quote = "and [CLIENT_NAME] may request unlimited revisions until fully satisfied."
+    client = FakeClient(lambda text: [finding(quote)])
+    result = GroqAnalyzer(client).analyze(contract)
+
+    assert [f.quoted_text for f in result.findings] == [quote]
+    sent = client.sent_text()
+    assert "[CLIENT_NAME]" in sent and "[PARTY_A] is a template field" in sent
+    assert "Northwind" not in sent  # the real party got another placeholder

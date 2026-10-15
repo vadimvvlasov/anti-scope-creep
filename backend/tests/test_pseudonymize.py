@@ -85,6 +85,17 @@ def test_restore_reports_unknown_and_unbracketed_placeholders():
     assert unknown == ["[PARTY_C]", "PARTY_B"]
 
 
+def test_bracketed_tokens_in_the_source_are_kept_and_skipped():
+    source = 'Template field [PARTY_A]. This Agreement is between Acme Corp. ("Client") and Jane Doe ("Contractor"). See [REF_1] and PARTY_B.'
+    text, mapping = pseudonymize(source)
+    assert "Template field [PARTY_A]." in text
+    assert "Acme Corp." not in text and "[PARTY_B]" in text and "[PARTY_C]" in text
+    restored, unknown = restore(text, mapping)
+    assert restored == source
+    assert unknown == []
+    assert restore("[REF_1] and [PARTY_A]", mapping) == ("[REF_1] and [PARTY_A]", [])
+
+
 def test_the_mapping_does_not_show_original_values(caplog):
     caplog.set_level(logging.DEBUG)
     text, mapping = pseudonymize(CONTRACT)
