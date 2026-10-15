@@ -136,7 +136,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "Real correctness and manipulation risk: template tokens like [CLIENT_NAME] or a hostile [REF_1] drop correct findings silently. Register existing bracket tokens as identity mappings; add a test and an eval case.",
-      "fix_ref": null,
+      "fix_ref": "PR #46",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null
@@ -194,7 +194,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "Validate findings one by one after restore and drop invalid ones with a logged reason, as with quote_not_found.",
-      "fix_ref": null,
+      "fix_ref": "PR #46",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null
