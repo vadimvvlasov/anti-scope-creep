@@ -1,0 +1,100 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) Distributor receives a carrier statement saying how much Distributor will be paid; (2) 30-45 days later the Carrier pays Distributor; (3) when Distributor is paid by a carrier, Distributor makes royalty payments to IMNTV.",
+   "start": 19615,
+   "end": 19938
+  }
+ ],
+ "email": true,
+ "seconds": 208.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4431,
+   "prompt_tokens": 4336,
+   "output_tokens": 95,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.69,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4896,
+   "prompt_tokens": 4271,
+   "output_tokens": 625,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.62,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) [PARTY_B] receives a carrier statement saying how much [PARTY_B] will be paid; (2) 30-45 days later the Carrier pays [PARTY_B]; (3) when [PARTY_B] is paid by a carrier, [PARTY_B] makes royalty payments to IMNTV.",
+      "explanation": "You will only be paid after the carrier pays the client, which can take 30‑45 days, and the contract makes your payment dependent on that event, so payment may be well beyond 30 days and is out of your control.",
+      "suggested_change": "Payments to IMNTV shall be made within thirty (30) days of the date IMNTV invoices [PARTY_B], regardless of when [PARTY_B] receives payment from carriers."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4447,
+   "prompt_tokens": 4310,
+   "output_tokens": 137,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3172,
+   "prompt_tokens": 2695,
+   "output_tokens": 477,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.07,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "The China Unicom Tianjin streaming media service is offered as a pilot commercial program without charge for the period of two to three months. IMNTV agrees to participate in this pilot program by providing the content to China Unicom Tianjin via MobileVision without charge during this period.",
+      "explanation": "You must provide the content for free for up to three months, so you receive no payment during that time and payment is only conditional on a later commercial launch.",
+      "suggested_change": "The China Unicom Tianjin streaming media service pilot shall be compensated at a rate of [SPECIFY AMOUNT] per month, payable within thirty (30) days of receipt of each monthly invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 692,
+   "prompt_tokens": 509,
+   "output_tokens": 183,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to clarify a few points in the agreement:\n\n- The relevant clause (d) on timing of payments currently ties my payment to when [PARTY_B] receives funds from carriers, which could be 30‑45 days after the carrier’s statement. I propose that payments to IMNTV be made within thirty (30) days of the date IMNTV invoices [PARTY_B], regardless of when [PARTY_B] receives payment from carriers.\n\nThank you for considering these adjustments. I look forward to finalising the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

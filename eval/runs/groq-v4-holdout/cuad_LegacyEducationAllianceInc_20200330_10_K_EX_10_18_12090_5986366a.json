@@ -1,0 +1,105 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "11.3 Upon termination of the license hereunder, all rights and privileges in and to the Licensed Intellectual Property granted to the LEA herein shall automatically revert to T&B or its nominee, and the LEA shall immediately cease any use thereof.",
+   "start": 28968,
+   "end": 29215
+  }
+ ],
+ "email": true,
+ "seconds": 249.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4003,
+   "output_tokens": 134,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.95,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3980,
+   "output_tokens": 141,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 47.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3894,
+   "output_tokens": 125,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.22,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5043,
+   "output_tokens": 760,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 54.38,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "11.3 Upon termination of the license hereunder, all rights and privileges in and to the Licensed Intellectual Property granted to the LEA herein shall automatically revert to T&B or its nominee, and the LEA shall immediately cease any use thereof.",
+      "explanation": "You lose ownership of the work automatically when the license ends, even if you have not been fully paid. This forces you to give up the IP before you receive all compensation.",
+      "suggested_change": "Upon termination of the license, all rights and privileges in and to the Licensed Intellectual Property shall revert to T&B or its nominee only after the Contractor has received all amounts due under this Agreement, and the Contractor shall cease use thereafter."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "12.1 Each party shall defend, indemnify and hold harmless the other party ... without limitation ... LEA shall obtain and maintain necessary insurance, including, without limitation, Commercial General Liability Insurance, ... in an amount no less than ten million dollars ($10,000,000.00) per occurrence and ten million dollars ($10,000,000.00) aggregate combined single limit.",
+      "explanation": "The clause requires you to indemnify the client for all claims with no monetary cap, exposing you to unlimited liability despite the high insurance requirement.",
+      "suggested_change": "Each party shall defend, indemnify and hold harmless the other party for claims arising out of its breach, subject to a total aggregate liability not to exceed [insert reasonable multiple, e.g., two (2) times] the total fees paid under this Agreement, and each party shall maintain insurance with limits sufficient to cover its maximum liability."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3373,
+   "output_tokens": 58,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.18,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 657,
+   "output_tokens": 191,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before I sign the agreement, I would like to clarify a few points:\n- The relevant clause currently states that upon termination of the license, all rights and privileges in the Licensed Intellectual Property revert to T&B or its nominee and the LEA must immediately cease use. This would require surrendering the IP before any outstanding payments are received, which could leave the Contractor without compensation. I propose that the reversion of rights occurs only after the Contractor has received all amounts due under the agreement, after which the Contractor would cease use.\n\nThank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

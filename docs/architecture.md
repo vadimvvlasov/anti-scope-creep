@@ -128,7 +128,7 @@ Groq removed `llama-3.3-70b-versatile` and `llama-3.1-8b-instant` from its free 
 
 - Free-tier limits for `gpt-oss-120b`, `gpt-oss-20b` and `qwen/qwen3.8-27b` are the same: **30 requests/min, 1,000 requests/day, 8,000 tokens/min, 200,000 tokens/day**.
 - With equal limits, `gpt-oss-120b` stays the choice: it is the largest of the three. `qwen/qwen3.8-27b` replaced `qwen3-32b` and has not been benchmarked for this project; compare it in the Phase 3 eval if quality is a problem.
-- It is a reasoning model: request `reasoning_effort: "low"` so reasoning tokens do not eat the per-minute budget.
+- It is a reasoning model: request `reasoning_effort: "medium"` (`GROQ_REASONING_EFFORT`). Phase 3 started on `"low"` to keep reasoning tokens out of the per-minute budget; the eval moved production to `"medium"`, which cut false alarms on the freelance set from 6 to 3 for about 19% more tokens (`docs/eval.md`, Providers).
 - Trade-off: analysis and history queries share one quota of 200,000 tokens/day. The limiter below covers both.
 - Limits are counted per model inside the organization (checked 2026-10-06: a request to `gpt-oss-20b` did not lower the `gpt-oss-120b` counter). So `gpt-oss-20b` can serve as a fallback when the daily quota of `gpt-oss-120b` runs out; same provider, same ZDR and data policy. Its quality has not been measured yet.
 - The dev, prod and local keys are separate for revoking and accounting, not for quota: all keys of the organization share the same limits.
@@ -309,6 +309,7 @@ Lightsail container services pull images from public registries, so the image is
 | `JWT_SECRET` | backend | yes | HS256 signing key. |
 | `GROQ_API_KEY` | backend | yes | Groq access. |
 | `GROQ_MODEL` | backend | no | Model ID, default `openai/gpt-oss-120b`. |
+| `GROQ_REASONING_EFFORT` | backend | no | `low`, `medium` (default) or `high`. |
 | `ANALYZER` | backend | no | `stub` or `groq`. |
 | `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 600. |
 | `CORS_ORIGINS` | backend | no | Comma-separated exact origins (the `workers.dev` frontend of the environment, `http://localhost:5173`). No wildcards. |

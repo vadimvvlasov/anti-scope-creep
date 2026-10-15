@@ -1,0 +1,187 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 4,
+   "fn": 2,
+   "precision": 0.2,
+   "recall": 0.333,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 4,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 0.5
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 6,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 3,
+   "fp": 14,
+   "fn": 2,
+   "precision": 0.176,
+   "recall": 0.6,
+   "severity_accuracy": 0.667
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 37,
+  "findings_kept": 27,
+  "dropped": {
+   "quote_not_found": 10
+  },
+  "quote_not_found_rate": 0.27,
+  "tokens_mean": 15521,
+  "tokens_max": 24241,
+  "seconds_mean": 177.1,
+  "seconds_max": 280.7
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "9.3 Exceptions. The provisions of Section 9.1 and Section 9.2 will not apply to limit the Licensee's indemnification obligations under Section 8.2, or in the case of Licensee's gross negligence or wilful misconduct.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "8.4Limitation of Liability. EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "11.3 Upon termination of the license hereunder, all rights and privileges in and to the Licensed Intellectual Property granted to the LEA herein shall automatically revert to T&B or its nominee, and the LEA shall immediately cease any use thereof.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Should Developer reasonably fail to meet the requirements of Section 3. or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy Client's reasonable acceptance criteria within the time periods set forth in the same, Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 Above; or (b) terminating this Agreement pursuant to Section 8 of this agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "Developer will transfer all Works to Client as of the date of termination.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Either party shall be liable for failure or delay in performance of its duties under this Agreement except for reasons beyond such party's reasonable control. MMI shall not be liable for indirect or consequential damages unless caused by intention or gross negligence.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "6.4 OWNERSHIP OF DELIVERABLES. HSNS acknowledges and agrees that any and all Deliverables shall be and remain the property of E.piphany.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "The risk of loss of and title to the Manufacturer's Products pass to Manufacturer upon the receipt of the Manufacturer's Products by the carrier.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "THIS SECTION 7 SETS FORTH SUBCONTRACTOR'S SOLE AND EXCLUSIVE LIABILITY, AND MANUFACTURER'S SOLE AND EXCLUSIVE REMEDY, AS TO ANY FAILURE OF THE MANUFACTURER'S PRODUCTS TO MEET THE WARRANTY STANDARDS.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Manufacturer Termination Without Cause. If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory. Subcontractor may, at its sole discretion, assist Manufacturer in the liquidation of any inventory that is generic that does not utilize any of Subcontractor's technology. Manufacturer shall be liable for cancellation charges including the Product Costs and the costs as provided in Section 3.8.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "In the event of a Change of Control (as defined below) this Agreement shall immediately terminate. A Change of Control shall occur with respect to the Manufacturer, unless Subcontractor shall have expressly consented to such Change of Control in writing.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  }
+ ]
+}

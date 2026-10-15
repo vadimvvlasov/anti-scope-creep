@@ -1,0 +1,119 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client will notify Developer in writing of any failure of a Milestone Deliverable to comply with the Specifications, or of any other objections, corrections, changes or amendments required (a Change Request), within ten (10) days of such Milestone's Acceptance Test Date. Any Change Request shall be sufficient to identify, with clarity, any objection, correction, change or amendment to such Milestone Deliverable. In the absence of a Change Request from Client within the time periods detailed herein, the Milestone Deliverable will be deemed accepted by Client.",
+   "start": 3476,
+   "end": 4040
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Should Developer reasonably fail to meet the requirements of Section 3. or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy Client's reasonable acceptance criteria within the time periods set forth in the same, Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 Above; or (b) terminating this Agreement pursuant to Section 8 of this agreement.",
+   "start": 4985,
+   "end": 5434
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "WORK MADE FOR HIRE AND ASSIGNMENT OF RIGHTS Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works. Developer agrees to assist Client, as well as execute any documents reasonably necessary, to perfect the assignment of such rights to Client. Developer acknowledges and agrees that the payment of Fees and a Bonus (if any), as referenced in Section 5 of this Agreement, shall be the full consideration to Developer for the assignment of rights herein. Upon payment in full of all obligations hereunder, Developer unconditionally and irrevocably grants to Client all software, improvements, code and other work produce produced by the Developer during the course of this agreement. The code shall be the sole and exclusive property of the Client.",
+   "start": 11208,
+   "end": 12411
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Developer will transfer all Works to Client as of the date of termination.",
+   "start": 24040,
+   "end": 24114
+  }
+ ],
+ "email": true,
+ "seconds": 172.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4904,
+   "prompt_tokens": 4082,
+   "output_tokens": 822,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.69,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client will notify Developer in writing of any failure of a Milestone Deliverable to comply with the Specifications, or of any other objections, corrections, changes or amendments required (a Change Request), within ten (10) days of such Milestone's Acceptance Test Date. Any Change Request shall be sufficient to identify, with clarity, any objection, correction, change or amendment to such Milestone Deliverable. In the absence of a Change Request from Client within the time periods detailed herein, the Milestone Deliverable will be deemed accepted by Client.",
+      "explanation": "You must respond to any change request the client makes, and the contract does not limit how many change requests can be submitted, so the client can keep asking for revisions without limit.",
+      "suggested_change": "Client may submit Change Requests only up to three (3) times per Milestone, and each additional Change Request beyond that shall be compensated at the rates set forth in the applicable SOW."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Should Developer reasonably fail to meet the requirements of Section 3. or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy Client's reasonable acceptance criteria within the time periods set forth in the same, Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 Above; or (b) terminating this Agreement pursuant to Section 8 of this agreement.",
+      "explanation": "Only the client is given a clear right to terminate the agreement for convenience, with no notice period or payment for work already performed, which leaves you exposed to abrupt termination.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days written notice, and in the event of termination the Client shall pay the Developer for all Services performed and expenses incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4448,
+   "prompt_tokens": 3935,
+   "output_tokens": 513,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.6,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "WORK MADE FOR HIRE AND ASSIGNMENT OF RIGHTS Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works. Developer agrees to assist Client, as well as execute any documents reasonably necessary, to perfect the assignment of such rights to Client. Developer acknowledges and agrees that the payment of Fees and a Bonus (if any), as referenced in Section 5 of this Agreement, shall be the full consideration to Developer for the assignment of rights herein. Upon payment in full of all obligations hereunder, Developer unconditionally and irrevocably grants to Client all software, improvements, code and other work produce produced by the Developer during the course of this agreement. The code shall be the sole and exclusive property of the Client.",
+      "explanation": "The clause makes the work a “work made for hire” and transfers all copyright to the client immediately, regardless of whether you have been paid, exposing you to loss of ownership before receiving payment.",
+      "suggested_change": "The Parties acknowledge that the Works shall remain the property of the Developer until the Developer has received full payment of all Fees and any applicable Bonus; upon such payment, the Developer shall assign and transfer all copyright and other intellectual property rights in the Works to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4278,
+   "prompt_tokens": 3875,
+   "output_tokens": 403,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 46.63,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Developer will transfer all Works to Client as of the date of termination.",
+      "explanation": "You must hand over ownership of the work as soon as the contract ends, even if the client has not yet paid the full amount you are owed.",
+      "suggested_change": "Developer shall transfer all Works to Client only after the Client has paid all undisputed Fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1474,
+   "prompt_tokens": 1145,
+   "output_tokens": 329,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 25.37,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n- The relevant clause requires the Client to submit Change Requests without limit. To provide clarity, I propose that the Client may submit Change Requests up to three (3) times per Milestone, with any additional requests compensated at the rates set forth in the applicable SOW.\n- The relevant clause allows only the Client to terminate the agreement for certain failures without notice or payment. I suggest adding that either party may terminate the agreement upon thirty (30) days written notice, and that the Client shall pay the Developer for all services performed and expenses incurred up to the effective termination date.\n- The relevant clause makes the Works a “work made for hire” and transfers all copyright to the Client immediately, regardless of payment. I propose that the Works remain the Developer’s property until full payment of all Fees and any applicable Bonus is received, at which point the Developer will assign all copyright and intellectual property rights to the Client.\n- The relevant clause requires the Developer to transfer all Works to the Client at the date of termination, even if payment is outstanding. I recommend that the Developer shall transfer all Works to the Client only after the Client has paid all undisputed Fees due under the agreement.\n\nThank you for considering these modifications. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

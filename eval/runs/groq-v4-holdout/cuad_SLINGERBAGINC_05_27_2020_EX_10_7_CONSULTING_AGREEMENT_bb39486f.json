@@ -1,0 +1,59 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [],
+ "email": false,
+ "seconds": 149.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4624,
+   "prompt_tokens": 4114,
+   "output_tokens": 510,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.48,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are obliged to perform extra work that is not defined in the agreement, with no requirement for the Company to pay extra or issue a change order.",
+      "suggested_change": "The Consultant shall provide only the services described in Schedule A. Any additional services shall require a written change order signed by both parties and shall be compensated at the rates set forth in Schedule B."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4076,
+   "prompt_tokens": 3968,
+   "output_tokens": 108,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 46.85,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4178,
+   "prompt_tokens": 4068,
+   "output_tokens": 110,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.58,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

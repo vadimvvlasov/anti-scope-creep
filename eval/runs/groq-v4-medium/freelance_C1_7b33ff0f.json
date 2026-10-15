@@ -1,0 +1,50 @@
+{
+ "id": "freelance:C1",
+ "chars": 19406,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1846,
+   "end": 1995
+  }
+ ],
+ "email": false,
+ "seconds": 34.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4999,
+   "prompt_tokens": 4050,
+   "output_tokens": 949,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 4.91,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause lets the client request minor clarifications without a formal change order, but it is vague about what constitutes a material increase, so you could be asked to do extra work without additional pay.",
+      "suggested_change": "Any clarification or addition to the Services that results in additional work shall be documented in a written change order and shall be compensated at the rates set forth in the Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3679,
+   "prompt_tokens": 3273,
+   "output_tokens": 406,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.65,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

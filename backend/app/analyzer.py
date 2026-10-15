@@ -137,5 +137,7 @@ def build_analyzer(settings: "Settings") -> Analyzer:
         from app.ratelimit import TokenBucketLimiter
 
         limiter = TokenBucketLimiter(settings.groq_tokens_per_minute, settings.groq_requests_per_minute)
-        return GroqAnalyzer(GroqClient(settings.groq_api_key, limiter, settings.groq_model))
+        client = GroqClient(settings.groq_api_key, limiter, settings.groq_model,
+                            reasoning_effort=settings.groq_reasoning_effort)
+        return GroqAnalyzer(client)
     raise ValueError(f"Unknown analyzer {settings.analyzer!r}")

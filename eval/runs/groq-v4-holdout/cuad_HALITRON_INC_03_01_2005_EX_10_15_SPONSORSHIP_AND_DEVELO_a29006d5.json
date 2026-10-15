@@ -1,0 +1,71 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [],
+ "email": false,
+ "seconds": 141.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4859,
+   "prompt_tokens": 4308,
+   "output_tokens": 551,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.46,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Smith hereby grants to TDA the following rights (the \"Rights\"):\n\n(a) the right to use and reuse Smith's name, voice, likeness, facsimile signature, personal statistics, biographical information and any reproduction or simulation thereof (\"Smith's Likeness\") in TDA's Golf Instruction Related Products and on packaging for TDA's Golf Instruction Related Products in any fashion, said grant of rights being limited to the world (the \"Contract Territory\");\n\n(b) the right to use and reuse Smith's Likeness in TDA's general internal, non-public corporate promotional materials (such as TDA's Annual Report), corporate advertising and in other forms of publicity;\n\n(c) the right to use and reuse Smith's Likeness in and in connection with the marketing, advertising, promoting and publicizing of TDA's Golf Instruction Related Products, by any and all means now known or hereafter developed;\n\n(d) the exclusive right to use and reuse the results and proceeds of in connection with TDA's Golf Instruction Related Products; and\n\n(e) with Smith's prior reasonable approval, the right to license to third parties any of the foregoing rights but only in connection with or directly related to the marketing and sale of TDA's Golf Instruction Related Products.",
+      "explanation": "You transfer all rights to use your name, likeness, and related materials to the client before you receive any payment, giving them ownership while you remain unpaid.",
+      "suggested_change": "The Contractor grants the Client the rights set forth in this Section only upon receipt of full payment of all amounts due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4536,
+   "prompt_tokens": 4112,
+   "output_tokens": 424,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.89,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "8.1 All right, title and interest in and to TDA's Golf Instruction Related Products shall be and remain the absolute property of TDA forever ... All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever ... Smith further acknowledges that TDA may adapt and use, and protect by any means including registration with the appropriate authorities, a trademark or trade name incorporating Smith's Likeness, and that Smith shall, until after the Term, have no right, title or interest in or to any such trademark, trade name or related goodwill.",
+      "explanation": "You transfer all ownership of the work, likeness, and related materials to the client immediately, even before you receive full payment. This means the client can keep the deliverables if they don’t pay you.",
+      "suggested_change": "All right, title and interest in and to the Results, Proceeds, Advertising Materials, and any trademark or trade name incorporating the Contractor's likeness shall remain with the Contractor until full payment of all invoices has been received."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2945,
+   "prompt_tokens": 2843,
+   "output_tokens": 102,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.99,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

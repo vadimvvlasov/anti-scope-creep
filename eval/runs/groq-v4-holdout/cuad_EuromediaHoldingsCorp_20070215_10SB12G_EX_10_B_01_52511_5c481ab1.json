@@ -1,0 +1,85 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+   "start": 16761,
+   "end": 16866
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+   "start": 15954,
+   "end": 16203
+  }
+ ],
+ "email": true,
+ "seconds": 103.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4149,
+   "output_tokens": 160,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 2.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4619,
+   "output_tokens": 661,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.37,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+      "explanation": "You can be terminated by Rogers without cause after only a 60‑day notice and the contract does not require any payment for work already performed.",
+      "suggested_change": "Either party may terminate this Agreement upon sixty (60) days' prior written notice to the other party, and any work performed up to the termination date shall be paid in full."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+      "explanation": "The clause limits only certain types of damages but provides no overall monetary cap on your direct liability, leaving you exposed to unlimited damages.",
+      "suggested_change": "The total liability of each party for direct damages arising out of this Agreement shall be limited to an amount equal to the fees paid under this Agreement, except for liability arising from gross negligence, willful misconduct, or infringement of third‑party intellectual property rights."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3811,
+   "output_tokens": 112,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 44.65,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 818,
+   "output_tokens": 247,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.94,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before I sign the agreement, I’d like to clarify a couple of points:\n- The relevant clause allows Rogers to terminate the agreement after a 60‑day notice without cause and does not require payment for work already performed. I propose that either party may terminate with sixty (60) days’ prior written notice to the other party, and that any work performed up to the termination date be paid in full.\n- The clause limiting liability only excludes certain types of damages but does not set an overall monetary cap on direct liability, leaving exposure to unlimited damages. I suggest adding a cap so that each party’s total liability for direct damages is limited to an amount equal to the fees paid under the agreement, except for liability arising from gross negligence, willful misconduct, or infringement of third‑party intellectual property rights.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,58 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [],
+ "email": false,
+ "seconds": 189.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4766,
+   "prompt_tokens": 4387,
+   "output_tokens": 379,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.9,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4837,
+   "prompt_tokens": 4115,
+   "output_tokens": 722,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4791,
+   "prompt_tokens": 3678,
+   "output_tokens": 1113,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 44.5,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3937,
+   "prompt_tokens": 3645,
+   "output_tokens": 292,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.86,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

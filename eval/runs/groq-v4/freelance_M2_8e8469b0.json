@@ -1,0 +1,88 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8946,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5117,
+   "end": 5207
+  }
+ ],
+ "email": true,
+ "seconds": 109.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4759,
+   "output_tokens": 666,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.83,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "You may be asked to do extra work that is only described as a “minor clarification,” which could increase your workload without extra pay.",
+      "suggested_change": "Any clarification that would increase the Contractor’s workload shall be documented in a written change order and shall be compensated at the agreed rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract instantly and does not have to pay you for work already performed or costs incurred.",
+      "suggested_change": "Either party may terminate this Agreement for material breach upon 15 days’ written notice, and upon termination the Client shall pay the Contractor for all Services performed and expenses incurred up to the termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work passes to the client as soon as you deliver it, even if you have not yet been paid in full.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon full payment of the corresponding invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3329,
+   "output_tokens": 220,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 741,
+   "output_tokens": 238,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n- The termination clause currently allows the client to end the agreement at any time without notice or payment for work already done. I propose that either party may terminate for material breach with 15 days’ written notice, and that upon termination the client shall pay for all services performed and expenses incurred up to the termination date.\n- The intellectual property clause transfers ownership of each deliverable to the client upon delivery, even if payment is pending. I suggest that all intellectual property rights in each deliverable shall transfer to the client only after full payment of the corresponding invoice.\n\nPlease let me know if these revisions are acceptable. Thank you for your consideration.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

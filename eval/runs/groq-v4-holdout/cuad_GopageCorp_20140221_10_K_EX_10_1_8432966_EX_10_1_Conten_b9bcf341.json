@@ -1,0 +1,82 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "9.3 Exceptions. The provisions of Section 9.1 and Section 9.2 will not apply to limit the Licensee's indemnification obligations under Section 8.2, or in the case of Licensee's gross negligence or wilful misconduct.",
+   "start": 25239,
+   "end": 25454
+  }
+ ],
+ "email": true,
+ "seconds": 207.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4404,
+   "output_tokens": 65,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.9,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4409,
+   "output_tokens": 342,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3993,
+   "output_tokens": 363,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 45.16,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "9.3 Exceptions. The provisions of Section 9.1 and Section 9.2 will not apply to limit the Licensee's indemnification obligations under Section 8.2, or in the case of Licensee's gross negligence or wilful misconduct.",
+      "explanation": "The liability cap in Section 9.2 does not cover your indemnification duties, so you could be on the hook for unlimited amounts for those claims.",
+      "suggested_change": "9.3 Exceptions. The provisions of Section 9.1 and Section 9.2 will not apply to limit either party's liability, including indemnification obligations under Section 8, but such liability shall be subject to a separate aggregate cap equal to [insert amount or multiple of fees]."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3682,
+   "output_tokens": 85,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 44.88,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 691,
+   "output_tokens": 211,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.98,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the draft and would like to suggest a small amendment before I sign:\n- Regarding the clause titled “9.3 Exceptions,” the current wording removes the liability cap in Section 9.2 from covering indemnification obligations, which could leave the indemnifying party exposed to unlimited liability. I propose revising the clause to state that the provisions of Sections 9.1 and 9.2 will not apply to limit either party’s liability, including indemnification obligations under Section 8, but that such liability shall be subject to a separate aggregate cap equal to [insert amount or multiple of fees].\n\nPlease let me know if this adjustment works for you.\n\nThank you,\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

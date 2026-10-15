@@ -1,0 +1,156 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The risk of loss of and title to the Manufacturer's Products pass to Manufacturer upon the receipt of the Manufacturer's Products by the carrier.",
+   "start": 12153,
+   "end": 12298
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "THIS SECTION 7 SETS FORTH SUBCONTRACTOR'S SOLE AND EXCLUSIVE LIABILITY, AND MANUFACTURER'S SOLE AND EXCLUSIVE REMEDY, AS TO ANY FAILURE OF THE MANUFACTURER'S PRODUCTS TO MEET THE WARRANTY STANDARDS.",
+   "start": 18961,
+   "end": 19159
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Manufacturer Termination Without Cause. If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory. Subcontractor may, at its sole discretion, assist Manufacturer in the liquidation of any inventory that is generic that does not utilize any of Subcontractor's technology. Manufacturer shall be liable for cancellation charges including the Product Costs and the costs as provided in Section 3.8.",
+   "start": 20930,
+   "end": 21444
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "In the event of a Change of Control (as defined below) this Agreement shall immediately terminate. A Change of Control shall occur with respect to the Manufacturer, unless Subcontractor shall have expressly consented to such Change of Control in writing.",
+   "start": 38937,
+   "end": 39191
+  }
+ ],
+ "email": true,
+ "seconds": 254.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4440,
+   "prompt_tokens": 3967,
+   "output_tokens": 473,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.22,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "You will not receive the second half of the $1,000,000 fee until 60 days after the agreement starts, which is longer than the standard 30‑day window.",
+      "suggested_change": "The second installment shall be due thirty (30) days following the Effective Date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3970,
+   "prompt_tokens": 3284,
+   "output_tokens": 686,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.42,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The risk of loss of and title to the Manufacturer's Products pass to Manufacturer upon the receipt of the Manufacturer's Products by the carrier.",
+      "explanation": "Ownership of the products transfers to the client as soon as they are handed to the carrier, before you have been paid in full, so you lose control of your work without receiving payment.",
+      "suggested_change": "Title and risk of loss to the Manufacturer's Products shall pass to the Manufacturer only upon receipt of full payment for the applicable invoice."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "THIS SECTION 7 SETS FORTH SUBCONTRACTOR'S SOLE AND EXCLUSIVE LIABILITY, AND MANUFACTURER'S SOLE AND EXCLUSIVE REMEDY, AS TO ANY FAILURE OF THE MANUFACTURER'S PRODUCTS TO MEET THE WARRANTY STANDARDS.",
+      "explanation": "The contract does not place any monetary limit on your liability for product failures, leaving you exposed to unlimited damages.",
+      "suggested_change": "Subcontractor's aggregate liability for any claim arising out of this Agreement shall not exceed the total fees paid by Manufacturer under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4681,
+   "prompt_tokens": 4016,
+   "output_tokens": 665,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.5,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Manufacturer Termination Without Cause. If the Manufacturer terminates this Agreement or cancels any purchase order without cause pursuant to Section 8.2, Subcontractor will stop all shipments and retain all inventory. Subcontractor may, at its sole discretion, assist Manufacturer in the liquidation of any inventory that is generic that does not utilize any of Subcontractor's technology. Manufacturer shall be liable for cancellation charges including the Product Costs and the costs as provided in Section 3.8.",
+      "explanation": "You can be forced to stop work and lose inventory if the Manufacturer ends the agreement for no reason, and the clause does not require the Manufacturer to pay for work already performed.",
+      "suggested_change": "Either Party may terminate this Agreement for cause only, and any termination without cause shall require a minimum of sixty (60) days written notice and shall be subject to payment of all undisputed fees for work performed and reasonable costs incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4413,
+   "prompt_tokens": 4048,
+   "output_tokens": 365,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.98,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "In the event of a Change of Control (as defined below) this Agreement shall immediately terminate. A Change of Control shall occur with respect to the Manufacturer, unless Subcontractor shall have expressly consented to such Change of Control in writing.",
+      "explanation": "You can be forced to end the contract instantly if the Manufacturer undergoes a change of control, with no notice or payment for work already performed.",
+      "suggested_change": "Either Party may terminate this Agreement upon a Change of Control only after providing at least thirty (30) days written notice to the other Party, and the terminating Party shall pay the non‑terminating Party for all services performed and expenses incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2727,
+   "prompt_tokens": 2657,
+   "output_tokens": 70,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.09,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1266,
+   "prompt_tokens": 913,
+   "output_tokens": 353,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.56,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Before signing, I would like to request a few adjustments to the agreement:\n- The relevant clause currently transfers title and risk of loss to the Manufacturer as soon as the products are handed to the carrier. This would shift ownership before payment is received. I propose that title and risk of loss pass only after full payment of the applicable invoice.\n- The clause on liability sets the Subcontractor’s sole and exclusive liability with no monetary cap. To provide a reasonable limit, I suggest that the Subcontractor’s aggregate liability not exceed the total fees paid by the Manufacturer under the agreement.\n- The termination provision allows the Manufacturer to end the agreement without cause, requiring the Subcontractor to halt shipments and retain inventory without compensation for work performed. I recommend that termination without cause require at least sixty (60) days written notice and payment of all undisputed fees and reasonable costs incurred up to the effective termination date.\n- The change‑of‑control clause permits immediate termination by either party upon a change of control of the Manufacturer, with no notice or payment. I propose that either party may terminate only after providing at least thirty (30) days written notice, and the terminating party shall pay the non‑terminating party for all services performed and expenses incurred up to the termination date.\n\nThank you for considering these modifications. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

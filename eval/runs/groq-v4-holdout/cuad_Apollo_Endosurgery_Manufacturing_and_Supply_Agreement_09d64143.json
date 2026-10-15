@@ -1,0 +1,93 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "8.4Limitation of Liability. EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "start": 29677,
+   "end": 30289
+  }
+ ],
+ "email": true,
+ "seconds": 253.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4475,
+   "output_tokens": 155,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4377,
+   "output_tokens": 90,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 51.28,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4723,
+   "output_tokens": 528,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.33,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "8.4Limitation of Liability. EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "explanation": "You have no overall cap on your direct liability; the clause only limits certain types of damages but leaves your exposure to unlimited amounts for other damages.",
+      "suggested_change": "Limitation of Liability. Except for breaches or violations of Article 9, indemnity liabilities arising under Article 8, or cases of gross negligence or willful misconduct, each Party’s total liability to the other shall not exceed the total fees paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4580,
+   "output_tokens": 150,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2036,
+   "output_tokens": 57,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 30.41,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 751,
+   "output_tokens": 192,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\nI hope you are well. Before I sign the agreement, I would like to suggest a small amendment to ensure the liability terms are balanced:\n\n- The agreement currently limits certain types of damages but does not set an overall cap on my direct liability. I propose that the relevant clause be revised so that each party’s total liability to the other shall not exceed the total fees paid under this Agreement, except for breaches of Article 9, indemnity liabilities under Article 8, or gross negligence or willful misconduct.\n\nThank you for considering these changes. I look forward to moving ahead.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
