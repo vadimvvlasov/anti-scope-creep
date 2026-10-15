@@ -382,7 +382,7 @@ has 14 criteria, 30 points in total. Status as of 2026-10-13.
 | Integration testing | 2 | `frontend/e2e/` | Playwright against the `make up` stack, a separate CI job | done |
 | Deployment | 2 | section 7, README Deploy | live URLs on Lightsail and `workers.dev`, smoke test after every deploy | done |
 | CI/CD | 2 | `.github/workflows/` | CI on every PR; `deploy-dev` after CI on `main`; approved `promote-prod` | done |
-| Agent extension pack | 2 | `docs/agent-extension-pack.md`, `docs/permissions.md`, `mcp-server/` | reusable workflow, subagent, MCP server, hook, permission notes | planned |
+| Agent extension pack | 2 | [`agent-extension-pack.md`](agent-extension-pack.md), [`permissions.md`](permissions.md), `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/` | `AGENTS.md`; eval-run skill; api-contract-reviewer subagent; read-only MCP server; guard hook (AG-1); Claude Code plugin; hook and MCP tests in CI | done |
 | Security, audit, DevOps hardening | 2 | [`security/`](../security/README.md), [`ops/`](../ops/README.md), [`ai-data-policy.md`](ai-data-policy.md), section 9 | Semgrep in CI; audit run 2026-10-12 (scanner, dependency audit, model review, a decision per finding); agent capability table; runbook checked against prod and two incident diagnoses | done |
 | Reproducibility | 2 | README Run locally, Tests, Deploy | a pass from a fresh clone | planned |
 

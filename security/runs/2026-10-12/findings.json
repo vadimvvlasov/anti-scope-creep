@@ -267,7 +267,7 @@
       "disposition": "fix",
       "disposition_status": "confirmed",
       "rationale": "Claude Code runs in the developer's shell, where the AWS CLI is configured for an IAM user and gh is logged in. Today only permission prompts stand between the agent and those credentials. Deny aws and gh merge/secret commands in the project permissions and document it (agent extension pack).",
-      "fix_ref": null,
+      "fix_ref": "agent extension pack: .claude/settings.json deny rules, agent-hooks/guard.py, docs/permissions.md",
       "decided_by": "Vadim Vlasov",
       "decided_at": "2026-10-12",
       "related_incident": null

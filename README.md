@@ -131,6 +131,15 @@ deciding, reviewing and verifying. The full process with real prompts is in
 - **Human review and verification.** Every step has a checklist: new tests, the full
   suite, a manual check in the browser on dev, the smoke test after deploy. The LLM
   analyzer is checked against gold sets labeled by hand, not by the model.
+- **Agent extension pack.** A reusable eval workflow (skill), a read-only API contract
+  reviewer (subagent), a read-only MCP server over the API, a guard hook that blocks
+  secrets and the developer's AWS and GitHub credentials, and the same pack as an
+  installable Claude Code plugin: [`docs/agent-extension-pack.md`](docs/agent-extension-pack.md),
+  permissions in [`docs/permissions.md`](docs/permissions.md).
+
+  ```text
+  /plugin install anti-scope-creep-agent-pack --marketplace vadimvvlasov/anti-scope-creep
+  ```
 
 ## Where to find what
 
@@ -141,6 +150,7 @@ Course rubric items and where they live in this repository:
 | Product spec | [`docs/spec.md`](docs/spec.md) |
 | Agent instructions | [`AGENTS.md`](AGENTS.md), [`frontend/AGENTS.md`](frontend/AGENTS.md), `CLAUDE.md` |
 | AI-assisted workflow | [AI-assisted development](#ai-assisted-development), [`docs/ai-workflow.md`](docs/ai-workflow.md) |
+| Agent extension pack | [`docs/agent-extension-pack.md`](docs/agent-extension-pack.md), [`docs/permissions.md`](docs/permissions.md), `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/` |
 | Architecture | [`docs/architecture.md`](docs/architecture.md) |
 | Frontend and its tests | `frontend/`, `frontend/src/**/__tests__/` |
 | API contract | [`openapi.yaml`](openapi.yaml) |
@@ -332,6 +342,9 @@ Run from the repository root.
 | `make lint` | Lint the frontend with ESLint |
 | `python3 scripts/smoke.py <URL>` | Smoke test a deployed backend |
 | `python3 -m unittest discover -s scripts` | Run the script tests |
+| `python3 -m unittest discover -s agent-hooks` | Run the agent guard hook tests |
+| `cd mcp-server && uv run python -m unittest` | Run the MCP server tests |
+| `python3 scripts/sync_agent_pack.py` | Copy the agent pack sources into the plugin folder |
 
 ## Repository layout
 
@@ -343,6 +356,7 @@ Run from the repository root.
 | `docs/spec.md` | Product specification: screens, API, data model, acceptance criteria |
 | `docs/architecture.md` | Hosting, CI/CD, LLM provider, agent layer, phases |
 | `docs/ai-data-policy.md` | What contract data goes to the LLM provider and what is kept |
+| `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/`, `.claude/`, `.mcp.json` | Agent extension pack: skill, subagent, guard hook, MCP server, plugin, project settings |
 | `docs/ai-workflow.md` | How the project was built with AI tools, with real prompts |
 | `docs/screenshots/` | Screenshots used in this README |
 | `eval/` | Gold sets and how the LLM analyzer is measured |

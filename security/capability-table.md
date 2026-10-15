@@ -6,7 +6,7 @@ configuration outside the model enforce permission. Checked on 2026-10-12.
 
 | Actor | Can do | Credentials | Cannot do / guarded by | Findings |
 |---|---|---|---|---|
-| Claude Code (local coding agent) | read and edit the working tree, run shell commands (uv, npm, docker, git, gh), run the eval | inherits the developer's shell: `gh` login (push branches, open PRs), AWS CLI profile of an IAM user, eval keys in `~/.config/*.env` when exported | GitHub Environment secrets (database URLs, JWT secret, the deployed Groq key) are not on the machine. Every command goes through Claude Code permission prompts; `AGENTS.md` forbids committing to `main`, adding dependencies without asking and committing secrets; the `main` ruleset (GH-1) requires a pull request with green CI | AG-1, GH-1 |
+| Claude Code (local coding agent) | read and edit the working tree, run shell commands (uv, npm, docker, git, gh), run the eval | inherits the developer's shell: `gh` login (push branches, open PRs), AWS CLI profile of an IAM user, eval keys in `~/.config/*.env` when exported | `.claude/settings.json` denies `aws`, `gh pr merge`, `gh secret`, `gh auth token` and reading `.env` files; the `agent-hooks/guard.py` hook also blocks compound forms, printing the environment and committing secrets or contract files ([permissions](../docs/permissions.md)). GitHub Environment secrets are not on the machine; the `main` ruleset (GH-1) requires a pull request with green CI | AG-1 (fixed), GH-1 |
 | Lovable (frontend generator) | generated the frontend in its own project; the code was exported and copied into `frontend/` | none in this repository: all commits here are by the developer | Lovable does not push to this repository. Whether its GitHub App still has access to it is checked in GitHub Settings → Integrations (not visible through the API token). The `LOVABLE` block in `frontend/AGENTS.md` came with the export | none |
 | CI (`ci.yml`) | build and test on pull requests and pushes to `main`, Semgrep, e2e on a local stack | `GITHUB_TOKEN` with `contents: read`; no deploy secrets | all actions pinned to a commit SHA (SG-1) | SG-1 |
 | `deploy-dev.yml` | build the backend image, deploy it to dev | OIDC role for dev; the five dev secrets passed by name | the dev role can create, deploy to and delete only Lightsail services tagged `env=dev`; the `dev` environment accepts deployments only from `main` | SG-2 |
@@ -15,9 +15,11 @@ configuration outside the model enforce permission. Checked on 2026-10-12.
 | Groq (LLM provider) | receives pseudonymized contract chunks and returns findings | none on our side | Zero Data Retention enabled for the organization; output validated by a strict JSON schema, Pydantic and quote verification ([AI data policy](../docs/ai-data-policy.md)) | MR-3 |
 | Gemini (eval only) | receives public CUAD and synthetic contracts during local eval runs | a developer key in `~/.config/gemini.env` | never configured in dev or prod; the free tier forbids confidential data, so only public and synthetic contracts are sent | none |
 
-## Planned with the agent extension pack
+## Agent extension pack
 
-The MCP server, subagent, skill and hook added for the course rubric get their own rows
-here, together with the permission rules from AG-1: deny `aws` and `gh` merge and secret
-commands for the agent, and a hook that blocks reading `.env` files and committing
-contract text.
+| Actor | Can do | Credentials | Cannot do / guarded by | Findings |
+|---|---|---|---|---|
+| `api-contract-reviewer` subagent | read files, `git diff`/`log`/`show`, the OpenAPI contract test | the main session's | instructed not to edit or change state; the project deny rules and guard hook apply to it | none |
+| `eval-run` skill | run the eval, which calls Groq or Gemini with public and synthetic contracts | eval keys loaded into the command's environment | keys are loaded with `source`, never read or printed (guard hook); no prompt tuning on held-out | none |
+| MCP server (`mcp-server/`) | read service status, the test account's contract list and findings | `ASC_EMAIL` / `ASC_PASSWORD` of a test account; the token stays in memory | read-only tools; local backend only unless `ASC_ALLOW_REMOTE=1`; never returns the full contract text or the email draft; tool calls need approval | none |
+| Guard hook (`agent-hooks/guard.py`) | block a tool call | none | a pattern match, not a sandbox: it stops mistakes, not a determined command | AG-1 |

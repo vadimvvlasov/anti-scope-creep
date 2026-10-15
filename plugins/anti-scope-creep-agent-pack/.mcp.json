@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "anti-scope-creep": {
+      "command": "uv",
+      "args": ["run", "--directory", "${CLAUDE_PLUGIN_ROOT}/mcp-server", "python", "server.py"],
+      "env": {
+        "ASC_API_URL": "${ASC_API_URL:-http://localhost:8000}",
+        "ASC_EMAIL": "${ASC_EMAIL:-}",
+        "ASC_PASSWORD": "${ASC_PASSWORD:-}"
+      }
+    }
+  }
+}

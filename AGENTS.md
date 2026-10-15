@@ -64,6 +64,13 @@ Scripts (Python standard library only):
 - `python3 scripts/select_cuad.py --download`, then `python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl` - pick the CUAD eval subset and write draft gold records (see `eval/README.md`)
 - `python3 scripts/build_freelance_set.py` - build the freelance eval set (mutated synthetic contracts) and its gold records (see `eval/README.md`)
 
+Agent extension pack (see `docs/agent-extension-pack.md`):
+
+- `python3 -m unittest discover -s agent-hooks` - test the guard hook
+- `cd mcp-server && uv run python -m unittest` - test the MCP server
+- `python3 scripts/sync_agent_pack.py` - refresh the plugin copies after editing
+  `agent-capabilities/`, `agent-hooks/guard.py` or `mcp-server/`
+
 ## Workflow
 
 - Before changing code, create a feature branch (`git checkout -b feat/<short-description>`).
@@ -81,3 +88,14 @@ Scripts (Python standard library only):
   A contract that belongs to another user returns 404, not 403 (see spec).
 - Stay inside the task. If you notice something out of scope, mention it
   instead of fixing it.
+
+## Security boundaries
+
+- Do not run the AWS CLI, merge pull requests, or touch GitHub secrets or tokens:
+  deploys and merges are the developer's. `.claude/settings.json` denies these and
+  `agent-hooks/guard.py` blocks them.
+- Do not read, print or edit `.env` files or keys in `~/.config/*.env`. To run the eval,
+  load a key with `set -a; source <file>; set +a` without printing it.
+- Never commit uploaded contracts (`.pdf`, `.docx`) or secrets.
+- The MCP server is read-only and talks to the local stack by default; do not point it
+  at prod data. Details: `docs/permissions.md`.
