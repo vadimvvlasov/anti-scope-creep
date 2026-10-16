@@ -27,7 +27,7 @@ from app.ratelimit import TokenBucketLimiter
 from evaluation.runner import EVAL_DIR, cache_path, contract_text, load_gold, run
 from evaluation.scoring import Prediction, score_contract, summarize
 
-SETS = ("freelance", "cuad", "cuad-holdout", "cuad-holdout-long")
+SETS = ("freelance", "cuad", "cuad-holdout", "cuad-holdout-long", "cuad-holdout-2")
 DEFAULT_SETS = ("freelance", "cuad")  # the held-out sets run only when named
 # Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
 # Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
@@ -123,7 +123,7 @@ def main(argv: list[str] | None = None) -> int:
                               "Gemini also minimal); default: low, as in the app")
     run_cmd.add_argument("--max-text-chars", type=int, default=MAX_TEXT_CHARS,
                          help=f"contract length limit (default: the product's {MAX_TEXT_CHARS}); "
-                              "cuad-holdout-long needs 150000, production is not affected")
+                              "cuad-holdout-long and cuad-holdout-2 need 150000, production is not affected")
     run_cmd.add_argument("--findings-prompt", type=Path,
                          help="text file with the findings system prompt; default: the one in app/prompts.py")
     args = parser.parse_args(argv)
