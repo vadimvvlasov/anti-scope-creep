@@ -145,7 +145,7 @@ async def _http_error_handler(_: Request, exc: StarletteHTTPException) -> JSONRe
 
 
 async def _unexpected_error_handler(_: Request, exc: Exception) -> JSONResponse:
-    logger.exception("Unhandled error", exc_info=exc)
+    logger.exception("Unhandled error", exc_info=exc, extra={"code": ErrorCode.INTERNAL_ERROR.value})
     status_code, message = _DEFAULTS[ErrorCode.INTERNAL_ERROR]
     return error_response(status_code, ErrorCode.INTERNAL_ERROR, message)
 

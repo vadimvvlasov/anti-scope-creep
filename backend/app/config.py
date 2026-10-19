@@ -36,6 +36,8 @@ class Settings:
     groq_reasoning_effort: str = "medium"
     groq_tokens_per_minute: int = 8_000
     groq_requests_per_minute: int = 30
+    # OTLP endpoint (docs/architecture.md, section 6); empty keeps telemetry export off.
+    otel_endpoint: str = ""
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] = os.environ) -> "Settings":
@@ -64,6 +66,7 @@ class Settings:
             groq_reasoning_effort=reasoning_effort,
             groq_tokens_per_minute=int(env.get("GROQ_TOKENS_PER_MINUTE", "8000")),
             groq_requests_per_minute=int(env.get("GROQ_REQUESTS_PER_MINUTE", "30")),
+            otel_endpoint=env.get("OTEL_EXPORTER_OTLP_ENDPOINT", "").strip(),
         )
 
 
