@@ -1,0 +1,78 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 22.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5714,
+   "prompt_tokens": 3978,
+   "output_tokens": 80,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.67,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Payment is due 90 days after invoicing, which significantly delays your cash flow and puts a strain on your working capital.",
+      "suggested_change": "Invoices are payable Net 30 from receipt of invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4739,
+   "prompt_tokens": 3165,
+   "output_tokens": 67,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.69,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Waiting 90 days for payment significantly delays your cash flow and ties up your working capital.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1550,
+   "prompt_tokens": 337,
+   "output_tokens": 136,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.18,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the relevant clause \"Invoices are payable Net 90.\", payment is due 90 days after invoicing which delays cash flow; please update this to read \"Invoices are payable Net 30 from receipt of invoice.\". - Regarding the relevant clause \"Payment period: Net 90\", waiting 90 days for payment ties up working capital; please change this to read \"Payment period: Net 30\". Thank you for your understanding and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}
