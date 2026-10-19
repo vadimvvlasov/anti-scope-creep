@@ -164,6 +164,24 @@ severity matrix does not cover it.
 Limit: the texts are synthetic, so this set measures whether the model applies the
 spec's rules, not how it reads real contracts; that is the CUAD set's job.
 
+### Liability rules (`gold/freelance-liability.jsonl`)
+
+Six mutants of `data/25` built by the same script (`LIABILITY_MUTANTS`), run as
+`--set freelance-liability`. They come from rules a) to d) of the findings prompt
+(`docs/spec.md`), not from a held-out contract. Fee USD 24,875, cap USD 35,000.
+
+| Id | Rule | Planted wording | Expected |
+|---|---|---|---|
+| LD1 | a | 10.1 excludes types of damages with exceptions for indemnification, confidentiality and IP; the cap stays | none (decoy) |
+| LD2 | d | mutual fixed cap of USD 49,000, below 2x the fee | none (decoy) |
+| LD3 | c | cap with exceptions only for confidentiality and gross negligence | none (decoy) |
+| LM1 | d | mutual fixed cap of USD 60,000, above 2x the fee | `uncapped_liability` medium |
+| LM2 | c | third-party claims and IP infringement outside the cap, no separate limit | `uncapped_liability` medium |
+| LM3 | b | contractor's liability has no cap or limit, only the client is capped | `uncapped_liability` high |
+
+The script updates `gold/freelance.jsonl` by id: the contracts written by hand (B1, I1-I3,
+M8b, M8c) stay in the file when it runs again.
+
 ### Injection inside the quoted clause (`gold/injection.jsonl`)
 
 Four contracts built from I1 (its own injection removed), run as `--set injection`. The

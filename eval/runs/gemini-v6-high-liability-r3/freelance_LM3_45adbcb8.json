@@ -1,0 +1,51 @@
+{
+ "id": "freelance:LM3",
+ "chars": 19426,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor's liability arising from this Agreement is not subject to any cap or limit.",
+   "start": 8210,
+   "end": 8296
+  }
+ ],
+ "email": true,
+ "seconds": 15.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8110,
+   "prompt_tokens": 5674,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.1,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor's liability arising from this Agreement is not subject to any cap or limit.",
+      "explanation": "Your liability for damages has no maximum ceiling, exposing you to unlimited financial risk if claims are brought against you.",
+      "suggested_change": "Contractor's total aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid by the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2276,
+   "prompt_tokens": 331,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to request a small change before signing: - In the relevant clause regarding liability, the terms currently have no maximum ceiling, exposing you to unlimited financial risk. I propose updating this so that the contractor's total aggregate liability arising out of or related to the agreement shall be limited to the total fees paid by the client under the agreement. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

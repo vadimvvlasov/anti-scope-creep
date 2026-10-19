@@ -1,0 +1,51 @@
+{
+ "id": "freelance:LM3",
+ "chars": 19426,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor's liability arising from this Agreement is not subject to any cap or limit.",
+   "start": 8210,
+   "end": 8296
+  }
+ ],
+ "email": true,
+ "seconds": 12.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8019,
+   "prompt_tokens": 5674,
+   "output_tokens": 95,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.6,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor's liability arising from this Agreement is not subject to any cap or limit.",
+      "explanation": "Your liability under this agreement is completely unlimited, exposing your business to open-ended financial risk.",
+      "suggested_change": "Contractor's aggregate liability arising out of or related to this Agreement shall be limited to the total fees paid by Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2310,
+   "prompt_tokens": 326,
+   "output_tokens": 112,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.97,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to getting started and have one quick update to suggest before signing. - Regarding the relevant clause, the liability is currently unlimited, exposing the business to open-ended financial risk, and I propose modifying it so that the contractor's aggregate liability arising out of or related to the agreement is limited to the total fees paid by the client under the agreement. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
