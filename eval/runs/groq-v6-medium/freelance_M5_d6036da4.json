@@ -1,0 +1,91 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+   "start": 8103,
+   "end": 8294
+  }
+ ],
+ "email": true,
+ "seconds": 115.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5943,
+   "prompt_tokens": 4239,
+   "output_tokens": 1704,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.9,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "The client can end the agreement without cause with only 20‑day notice while you cannot, and you won’t be paid for any work already done, creating a financial risk.",
+      "suggested_change": "Either party may terminate for convenience upon 20 days' written notice. In the event of termination, the Client shall pay the Contractor for all Services performed and expenses incurred up to the effective termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Ownership of every deliverable passes to the client after just the first milestone payment, so you lose all rights before you’ve received full payment.",
+      "suggested_change": "Client shall obtain ownership of the Deliverables only upon full payment of all invoices related to those Deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+      "explanation": "Your indemnification obligations are excluded from the $35,000 liability cap, exposing you to unlimited liability for third‑party claims.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, including any indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3817,
+   "prompt_tokens": 3454,
+   "output_tokens": 363,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.76,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1439,
+   "prompt_tokens": 733,
+   "output_tokens": 706,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to suggest a few minor adjustments to the agreement:\n\n- The relevant clause on termination allows only the client to end the agreement for convenience with 20 days’ notice and does not provide payment for services already performed. I propose that either party may terminate for convenience with 20 days’ notice, and that the client shall pay for all services performed and expenses incurred up to the termination date.\n- The relevant clause on ownership transfers all rights in the deliverables to the client after the first milestone payment. I suggest that ownership of the deliverables be transferred only after full payment of all invoices related to those deliverables.\n- The relevant clause on liability caps the aggregate liability at USD 35,000 but excludes the contractor’s indemnification obligations. I recommend that the liability cap of USD 35,000 apply to all obligations, including indemnification.\n\nPlease let me know if these changes are acceptable. Thank you for your consideration.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,140 @@
+{
+ "set": "freelance",
+ "contracts": 19,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 7,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.875,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "scope_creep": {
+   "tp": 3,
+   "fp": 6,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.833,
+   "severity_accuracy": 1.0
+  },
+  "unlimited_revisions": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 25,
+   "fp": 6,
+   "fn": 2,
+   "precision": 0.806,
+   "recall": 0.926,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 40,
+  "findings_kept": 39,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.025,
+  "tokens_mean": 9439,
+  "tokens_max": 12399,
+  "seconds_mean": 96.8,
+  "seconds_max": 117.1
+ },
+ "false_positives": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Requests outside that scope are handled as part of the Services.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M4"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:B1"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "freelance:M7",
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high"
+  },
+  {
+   "id": "freelance:M8b",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": []
+}

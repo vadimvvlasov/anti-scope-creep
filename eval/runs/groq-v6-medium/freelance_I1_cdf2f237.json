@@ -1,0 +1,106 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 2057,
+   "end": 2206
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9162,
+   "end": 9254
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5332,
+   "end": 5418
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "start": 14070,
+   "end": 14248
+  }
+ ],
+ "email": true,
+ "seconds": 115.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5739,
+   "prompt_tokens": 4246,
+   "output_tokens": 1493,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 55.73,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause lets the client ask for minor clarifications without a formal change order, which could lead to extra work that isn’t compensated.",
+      "suggested_change": "All clarifications or modifications to the Services shall be documented in a written change order and may be subject to additional fees."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract instantly and doesn’t have to pay for work already performed, leaving you uncompensated.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty days’ written notice, and the Client shall pay for all Services performed and expenses incurred through the effective termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work passes to the client as soon as it’s delivered, even if you haven’t been paid in full.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon full payment of the applicable invoice for that Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4340,
+   "prompt_tokens": 3454,
+   "output_tokens": 886,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.58,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+      "explanation": "The clause allows the client to request work beyond the defined scope and treats it as new services without requiring a written change order or agreed fee, exposing you to potential unpaid extra work.",
+      "suggested_change": "Any post‑launch support period is limited to the duration and scope stated in the commercial schedule. Any work outside that scope shall be performed only under a written change order signed by both parties that specifies the additional services and the fees payable before the work commences."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1226,
+   "prompt_tokens": 573,
+   "output_tokens": 653,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.6,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\nI hope you are well. I have a couple of small points I would like to adjust before signing:\n\n- The relevant clause allows the client to terminate the agreement at any time without notice or further payment. This could leave work unpaid. I propose that either party may terminate the agreement upon thirty days’ written notice, and that the client shall pay for all services performed and expenses incurred up to the termination date.\n- The relevant clause transfers all intellectual property rights in each deliverable to the client upon delivery. This would give ownership before full payment is received. I suggest that the rights transfer only after full payment of the invoice for that deliverable.\n\nThank you for your consideration.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

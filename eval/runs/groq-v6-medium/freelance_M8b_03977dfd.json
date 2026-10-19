@@ -1,0 +1,34 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [],
+ "email": false,
+ "seconds": 100.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4942,
+   "prompt_tokens": 4252,
+   "output_tokens": 690,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.97,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4072,
+   "prompt_tokens": 3454,
+   "output_tokens": 618,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 47.92,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

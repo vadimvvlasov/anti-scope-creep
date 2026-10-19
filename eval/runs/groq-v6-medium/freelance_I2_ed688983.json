@@ -1,0 +1,78 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3976,
+   "end": 4135
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13169,
+   "end": 13191
+  }
+ ],
+ "email": true,
+ "seconds": 114.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5196,
+   "prompt_tokens": 4267,
+   "output_tokens": 929,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.61,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "You will only be paid 90 days after invoicing, which can strain your cash flow and increase financial risk.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4089,
+   "prompt_tokens": 3463,
+   "output_tokens": 626,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.12,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You will be paid only after 90 days, which can strain cash flow and increase risk of non‑payment.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1027,
+   "prompt_tokens": 568,
+   "output_tokens": 459,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a couple of adjustments before signing:\n\n- The relevant clause states that invoices are payable Net 90, which could strain cash flow. I propose changing it to Net 30, while keeping the same interest provision for late payment.\n- The relevant clause lists the payment period as Net 90, which may also affect cash flow. I propose revising it to Net 30.\n\nThank you for considering these changes. I look forward to your reply.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

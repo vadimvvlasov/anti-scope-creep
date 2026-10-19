@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+   "start": 5121,
+   "end": 5368
+  }
+ ],
+ "email": true,
+ "seconds": 109.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5246,
+   "prompt_tokens": 4247,
+   "output_tokens": 999,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 50.15,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+      "explanation": "You give the client ownership of all work as soon as it is created, even before you have been paid in full, which leaves you without any leverage to secure payment.",
+      "suggested_change": "Work Product created in the course of the project shall remain the property of the Contractor until the Contractor has received full payment of all amounts due under this Agreement; upon such payment, the Contractor shall transfer all rights in the Work Product to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4024,
+   "prompt_tokens": 3454,
+   "output_tokens": 570,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.96,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 805,
+   "prompt_tokens": 541,
+   "output_tokens": 264,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.25,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you’re well.\n\n- The relevant clause currently gives the client ownership of the work product as soon as it is created, even before the contractor has received full payment. This could leave the contractor without leverage to secure payment. I propose that the work product remain the property of the contractor until full payment is received, after which the contractor will transfer all rights to the client."
+   }
+  }
+ ],
+ "dropped": []
+}

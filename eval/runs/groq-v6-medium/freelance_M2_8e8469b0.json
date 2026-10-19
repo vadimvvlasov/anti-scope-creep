@@ -1,0 +1,77 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  }
+ ],
+ "email": true,
+ "seconds": 114.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5816,
+   "prompt_tokens": 4321,
+   "output_tokens": 1495,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 54.0,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "You could be kicked out of the project at any moment and not be paid for the work you have already done.",
+      "suggested_change": "Either party may terminate this Agreement for material breach upon fifteen (15) days' written notice, and termination by the Client shall be subject to payment for all Services performed and Deliverables provided up to the effective termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work passes to the client before you receive full payment, so you lose the right to the work if the client doesn't pay.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon full payment of the applicable fees for that Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3729,
+   "prompt_tokens": 3338,
+   "output_tokens": 391,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.12,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1441,
+   "prompt_tokens": 588,
+   "output_tokens": 853,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\n- The clause allowing the Client to terminate the agreement at any time without notice could leave the freelancer without compensation for work already performed. I propose that either party may terminate for material breach upon fifteen (15) days' written notice, and that termination by the Client be subject to payment for all services performed and deliverables provided up to the effective termination date.\n\n- The clause that transfers all intellectual property rights to the Client upon delivery could result in the freelancer losing rights to the work before receiving full payment. I propose that the intellectual property rights in each deliverable transfer to the Client upon full payment of the applicable fees for that deliverable.\n\nThank you for your understanding. I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,78 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 113.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4947,
+   "prompt_tokens": 4233,
+   "output_tokens": 714,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.33,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "You will not receive payment until 90 days after invoicing, which creates a long cash‑flow delay.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4071,
+   "prompt_tokens": 3463,
+   "output_tokens": 608,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.64,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You will not receive payment until 90 days after invoicing, which delays cash flow and increases financial risk.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 929,
+   "prompt_tokens": 510,
+   "output_tokens": 419,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I would like to suggest a couple of small adjustments to the agreement:\n- The relevant clause states “Invoices are payable Net 90.” This creates a long cash‑flow delay; I propose changing it to “Invoices are payable Net 30.”\n- The relevant clause states “Payment period: Net 90.” This also delays cash flow and raises financial risk; I propose changing it to “Payment period: Net 30.”\n\nThank you for considering these updates. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}
