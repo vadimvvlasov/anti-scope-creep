@@ -1,0 +1,65 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "- These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand",
+   "start": 1046,
+   "end": 1158
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Consultant agrees that all right, title, and interest in and to any material, notes, records, drawings, designs, inventions, improvements, developments, discoveries and trade secrets conceived, discovered, authored, invented, developed or reduced to practice by Consultant, solely or in collaboration with others, whether or not patentable or copyrightable, during the term of this Agreement and arising out of, or in connection with, performing the Services under this Agreement and any copyrights, patents, trade secrets, mask work rights or other intellectual property rights relating to the foregoing (collectively, \"Inventions\"), are the sole property of the Company.",
+   "start": 7391,
+   "end": 8063
+  }
+ ],
+ "email": true,
+ "seconds": 19.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12038,
+   "prompt_tokens": 7188,
+   "output_tokens": 377,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.39,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "- These Services shall include Marketing guidance and support, not limited to: ○ Graphics ○ Web ○ Social ○ Brand",
+      "explanation": "The description of services is open-ended and the contract lacks a change-order mechanism, exposing you to demands for extra work without additional compensation.",
+      "suggested_change": "The scope of Services is strictly limited to the tasks explicitly detailed herein, and any additional services or changes requested by the Client shall be subject to a mutually agreed written change order detailing additional fees."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant agrees that all right, title, and interest in and to any material, notes, records, drawings, designs, inventions, improvements, developments, discoveries and trade secrets conceived, discovered, authored, invented, developed or reduced to practice by Consultant, solely or in collaboration with others, whether or not patentable or copyrightable, during the term of this Agreement and arising out of, or in connection with, performing the Services under this Agreement and any copyrights, patents, trade secrets, mask work rights or other intellectual property rights relating to the foregoing (collectively, \"Inventions\"), are the sole property of the Company.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation during the term, rather than upon receipt of full payment.",
+      "suggested_change": "Upon full payment of all applicable fees due for the deliverables, ownership of the final deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3067,
+   "prompt_tokens": 550,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sending over the agreement. I would like to propose a few adjustments before signing. - Regarding the relevant clause, the description of services is open-ended and lacks a change-order mechanism, so we propose updating it to state that the scope of Services is strictly limited to the tasks explicitly detailed herein, and any additional services or changes requested shall be subject to a mutually agreed written change order detailing additional fees. - Regarding the relevant clause, ownership of the work product transfers immediately upon creation rather than upon receipt of full payment, so we propose updating it to state that upon full payment of all applicable fees due for the deliverables, ownership of the final deliverables shall transfer to the Client. Thank you, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:INTERSECTENT,INC_05_11_2020-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 37970,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "NOTWITHSTANDING ANYTHING IN THIS AGREEMENT TO THE CONTRARY, IN NO EVENT WILL EITHER PARTY BE LIABLE FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL OR INDIRECT DAMAGES ARISING OUT OF THIS AGREEMENT, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY. THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+   "start": 22201,
+   "end": 22808
+  }
+ ],
+ "email": true,
+ "seconds": 19.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14401,
+   "prompt_tokens": 9889,
+   "output_tokens": 304,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.0,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "NOTWITHSTANDING ANYTHING IN THIS AGREEMENT TO THE CONTRARY, IN NO EVENT WILL EITHER PARTY BE LIABLE FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL OR INDIRECT DAMAGES ARISING OUT OF THIS AGREEMENT, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY. THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT OR SUCH PARTY'S INDEMNIFICATION OBLIGATIONS STATED ABOVE.",
+      "explanation": "Your indemnification obligations are excluded from the liability cap, which exposes you to unlimited financial liability for third-party claims.",
+      "suggested_change": "NOTWITHSTANDING ANYTHING IN THIS AGREEMENT TO THE CONTRARY, IN NO EVENT WILL EITHER PARTY BE LIABLE FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL OR INDIRECT DAMAGES ARISING OUT OF THIS AGREEMENT, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY. THIS LIMITATION WILL APPLY EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE; PROVIDED, HOWEVER, THAT THIS LIMITATION WILL NOT APPLY TO DAMAGES RESULTING FROM BREACHES BY A PARTY OF ITS DUTY OF CONFIDENTIALITY AND NON-USE IMPOSED UNDER THIS AGREEMENT OR THE CONFIDENTIALITY AGREEMENT."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2895,
+   "prompt_tokens": 535,
+   "output_tokens": 100,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before signing, I would like to propose a small adjustment: - Regarding the relevant clause, the current terms exclude indemnification obligations from the liability cap, which could expose me to unlimited financial liability. I propose modifying this section to remove the indemnification exclusion so that the limitation applies consistently. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

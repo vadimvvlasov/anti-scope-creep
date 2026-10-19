@@ -1,0 +1,51 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3976,
+   "end": 4004
+  }
+ ],
+ "email": true,
+ "seconds": 14.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9005,
+   "prompt_tokens": 5709,
+   "output_tokens": 71,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.96,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Waiting 90 days for payment creates a significant cash flow delay for your business.",
+      "suggested_change": "Invoices are payable within 30 days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2265,
+   "prompt_tokens": 299,
+   "output_tokens": 89,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.02,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the agreement and would like to suggest a small adjustment before signing: - Regarding the relevant clause, waiting 90 days for payment creates a significant cash flow delay, so I propose modifying the text to state that invoices are payable within 30 days of receipt. Thank you for understanding, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

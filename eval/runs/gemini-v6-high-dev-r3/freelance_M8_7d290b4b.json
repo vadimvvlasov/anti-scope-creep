@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 13.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8430,
+   "prompt_tokens": 5693,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.1,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "Ownership of your work passes to the Client immediately upon creation before you have received full payment.",
+      "suggested_change": "All intellectual property rights in the Deliverables shall remain with the Contractor until the Client has paid all amounts due under this Agreement, at which point ownership of the Deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2573,
+   "prompt_tokens": 339,
+   "output_tokens": 91,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a minor request before I can sign it. - Regarding the relevant clause, ownership of the work transfers immediately upon creation before full payment is received. I propose modifying this so that all intellectual property rights remain with the contractor until payment is complete, at which point ownership transfers to the client. I look forward to hearing from you."
+   }
+  }
+ ],
+ "dropped": []
+}

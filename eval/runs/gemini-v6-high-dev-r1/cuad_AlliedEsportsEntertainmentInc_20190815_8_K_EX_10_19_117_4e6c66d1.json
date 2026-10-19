@@ -1,0 +1,22 @@
+{
+ "id": "cuad:AlliedEsportsEntertainmentInc_20190815_8-K_EX-10.19_11788293_EX-10.19_Content License Agreement",
+ "chars": 35504,
+ "findings": [],
+ "email": false,
+ "seconds": 9.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12819,
+   "prompt_tokens": 9352,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.37,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

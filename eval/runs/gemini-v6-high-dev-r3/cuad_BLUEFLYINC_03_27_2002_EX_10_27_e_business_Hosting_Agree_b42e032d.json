@@ -1,0 +1,38 @@
+{
+ "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+ "chars": 37351,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment (with the exception of any Service Option Attachment that is a prerequisite for the provision of Services under a non-terminated Service Option Attachment) for convenience at the end of any calendar month by:",
+   "start": 7027,
+   "end": 7349
+  }
+ ],
+ "email": false,
+ "seconds": 20.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16899,
+   "prompt_tokens": 9047,
+   "output_tokens": 176,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 20.51,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment (with the exception of any Service Option Attachment that is a prerequisite for the provision of Services under a non-terminated Service Option Attachment) for convenience at the end of any calendar month by:",
+      "explanation": "Only the client has the right to terminate the agreement for convenience, while you do not have a reciprocal right to exit without cause.",
+      "suggested_change": "Either party may terminate this Agreement or any Service Option Attachment for convenience upon at least thirty (30) days' prior written notice to the other party."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

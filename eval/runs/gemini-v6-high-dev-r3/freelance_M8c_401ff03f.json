@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 14.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9214,
+   "prompt_tokens": 5683,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.94,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "This clause states that the work becomes the client's property immediately upon creation, meaning ownership transfers to the client before you have been fully paid.",
+      "suggested_change": "Ownership of the Work Product shall remain with the Contractor until full payment of all amounts due under this Agreement has been received."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2219,
+   "prompt_tokens": 330,
+   "output_tokens": 93,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. Before signing, I would like to propose a small adjustment to the agreement. - Regarding the relevant clause, the current terms indicate that ownership transfers immediately upon creation before full payment is made, so I would like to propose that ownership of the work product shall remain with the contractor until full payment of all amounts due under the agreement has been received. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

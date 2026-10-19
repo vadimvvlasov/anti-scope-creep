@@ -1,0 +1,22 @@
+{
+ "id": "cuad:PhoenixNewMediaLtd_20110421_F-1_EX-10.17_6958322_EX-10.17_Content License Agreement",
+ "chars": 25060,
+ "findings": [],
+ "email": false,
+ "seconds": 9.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10251,
+   "prompt_tokens": 7065,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.37,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:WEBHELPCOMINC_03_22_2000-EX-10.8-HOSTING AGREEMENT",
+ "chars": 19257,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCLUDING LIABILITY FOR INFRINGEMENT CLAIMS AS DISCUSSED IN SECTION 9 OF THIS AGREEMENT",
+   "start": 11065,
+   "end": 11152
+  }
+ ],
+ "email": true,
+ "seconds": 16.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9113,
+   "prompt_tokens": 5684,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.56,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCLUDING LIABILITY FOR INFRINGEMENT CLAIMS AS DISCUSSED IN SECTION 9 OF THIS AGREEMENT",
+      "explanation": "Your intellectual property infringement claims are carved out of your general liability cap and have no separate limit, exposing you to uncapped financial liability for those claims.",
+      "suggested_change": "eGain's total liability for all claims under this Agreement, including infringement claims, shall be subject to the limitation of liability set forth in Section 7."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2663,
+   "prompt_tokens": 344,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.46,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am reviewing the contract and have one small point to discuss. Please see the note below regarding the agreement: - Regarding the relevant clause, intellectual property infringement claims are carved out of the general liability cap with no separate limit, which leaves liability uncapped. I propose that total liability for all claims under the agreement, including infringement claims, be subject to the standard limitation of liability. Thank you for your time and flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

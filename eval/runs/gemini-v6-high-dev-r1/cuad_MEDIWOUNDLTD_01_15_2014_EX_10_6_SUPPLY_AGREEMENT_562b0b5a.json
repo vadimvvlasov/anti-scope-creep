@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel.",
+   "start": 13986,
+   "end": 14124
+  }
+ ],
+ "email": true,
+ "seconds": 21.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17139,
+   "prompt_tokens": 12152,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.21,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel.",
+      "explanation": "Your payments are conditional upon receiving a tax exemption approval from the tax authority, and any resulting payment delays are excused, leaving payment timing entirely outside of your control.",
+      "suggested_change": "The Client shall make payments in accordance with the agreed payment schedule regardless of any tax exemption approvals."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2759,
+   "prompt_tokens": 336,
+   "output_tokens": 95,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. - Regarding the relevant clause, your payments are conditional upon receiving a tax exemption approval from the tax authority, and any resulting payment delays are excused, leaving payment timing entirely outside of your control. I propose the following modification: The Client shall make payments in accordance with the agreed payment schedule regardless of any tax exemption approvals. Thank you, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

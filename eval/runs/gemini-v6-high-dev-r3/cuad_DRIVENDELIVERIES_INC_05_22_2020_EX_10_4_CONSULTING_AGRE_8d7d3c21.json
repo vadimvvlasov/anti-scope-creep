@@ -1,0 +1,51 @@
+{
+ "id": "cuad:DRIVENDELIVERIES,INC_05_22_2020-EX-10.4-CONSULTING AGREEMENT",
+ "chars": 27899,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Consultant agrees that all right, title, and interest in and to any material, notes, records, drawings, designs, inventions, improvements, developments, discoveries and trade secrets conceived, discovered, authored, invented, developed or reduced to practice by Consultant, solely or in collaboration with others, whether or not patentable or copyrightable, during the term of this Agreement and arising out of, or in connection with, performing the Services under this Agreement and any copyrights, patents, trade secrets, mask work rights or other intellectual property rights relating to the foregoing (collectively, \"Inventions\"), are the sole property of the Company.",
+   "start": 7391,
+   "end": 8063
+  }
+ ],
+ "email": true,
+ "seconds": 19.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11913,
+   "prompt_tokens": 7188,
+   "output_tokens": 248,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.83,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Consultant agrees that all right, title, and interest in and to any material, notes, records, drawings, designs, inventions, improvements, developments, discoveries and trade secrets conceived, discovered, authored, invented, developed or reduced to practice by Consultant, solely or in collaboration with others, whether or not patentable or copyrightable, during the term of this Agreement and arising out of, or in connection with, performing the Services under this Agreement and any copyrights, patents, trade secrets, mask work rights or other intellectual property rights relating to the foregoing (collectively, \"Inventions\"), are the sole property of the Company.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation, before you are paid for your services.",
+      "suggested_change": "Upon receipt of full payment for the applicable Services, all right, title, and interest in and to the deliverables created under this Agreement shall become the property of the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2573,
+   "prompt_tokens": 443,
+   "output_tokens": 91,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together, but I would like to request a small adjustment before signing. - Regarding the relevant clause, the current terms state that ownership of the work product transfers immediately upon creation before payment is rendered. I propose updating this so that rights transfer only upon receipt of full payment for the applicable services. Thank you for your understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

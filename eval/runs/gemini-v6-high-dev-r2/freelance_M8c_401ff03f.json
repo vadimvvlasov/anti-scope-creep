@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+   "start": 5121,
+   "end": 5208
+  }
+ ],
+ "email": true,
+ "seconds": 14.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8472,
+   "prompt_tokens": 5683,
+   "output_tokens": 139,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.94,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout.",
+      "explanation": "The contract states that work product is the client's property throughout the project, meaning ownership passes before you are paid in full.",
+      "suggested_change": "Contractor shall retain ownership of all Work Product until Contractor has received full payment of all fees due under this Agreement, at which point ownership shall transfer to Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2450,
+   "prompt_tokens": 335,
+   "output_tokens": 115,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am looking forward to getting started and wanted to suggest a small update to the agreement. - Regarding the relevant clause, the text specifies that work product is the client's property throughout the project, meaning ownership would transfer before full payment is made. I propose that the contractor retain ownership of all work product until full payment of all fees due under the agreement is received, at which point ownership shall transfer to the client. Thank you for considering this change. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

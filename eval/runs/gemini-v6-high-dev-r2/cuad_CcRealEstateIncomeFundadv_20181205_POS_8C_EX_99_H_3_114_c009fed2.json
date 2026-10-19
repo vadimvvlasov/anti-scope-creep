@@ -1,0 +1,51 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+   "start": 9808,
+   "end": 9970
+  }
+ ],
+ "email": true,
+ "seconds": 16.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11393,
+   "prompt_tokens": 8136,
+   "output_tokens": 122,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.47,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+      "explanation": "Your compensation is conditional on the Distributor receiving payment from the Fund, meaning you bear the risk of third-party non-payment.",
+      "suggested_change": "The Distributor shall pay all compensation due to S2K within thirty (30) days of the invoice date, regardless of whether the Distributor has received payment from the Fund."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2291,
+   "prompt_tokens": 350,
+   "output_tokens": 104,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.54,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before signing, I would like to raise one point. - Regarding the relevant clause, compensation is currently conditional on receiving payment from a third party, which shifts the risk of third-party non-payment to the provider. We propose that payment be due within thirty days of the invoice date, regardless of whether the third-party payment has been received. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

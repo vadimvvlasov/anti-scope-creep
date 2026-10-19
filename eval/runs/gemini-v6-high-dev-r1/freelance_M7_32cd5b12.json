@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  }
+ ],
+ "email": true,
+ "seconds": 12.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5189,
+   "prompt_tokens": 2623,
+   "output_tokens": 287,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "Intellectual property ownership of your work transfers upon delivery before you have been fully paid.",
+      "suggested_change": "Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment is delayed for ninety days, which creates cash flow risks for your business.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the applicable milestone."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2316,
+   "prompt_tokens": 456,
+   "output_tokens": 189,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.6,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. I have reviewed the agreement and would like to propose a couple of adjustments before signing. - Regarding the relevant clause on intellectual property, intellectual property ownership of your work transfers upon delivery before you have been fully paid, and I propose modifying it to: Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement. - Regarding the relevant clause on payment terms, payment is delayed for ninety days, which creates cash flow risks for your business, and I propose modifying it to: Client shall pay each milestone amount within thirty (30) days after Client's acceptance of the applicable milestone. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

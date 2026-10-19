@@ -1,0 +1,38 @@
+{
+ "id": "cuad:HEALTHGATEDATACORP_11_24_1999-EX-10.1-HOSTING AND MANAGEMENT AGREEMENT - Escrow Agreement",
+ "chars": 35612,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "11.6  The Owner may only terminate this Agreement with the written consent             of the Licensee.",
+   "start": 26585,
+   "end": 26688
+  }
+ ],
+ "email": false,
+ "seconds": 10.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11738,
+   "prompt_tokens": 8459,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.28,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "11.6  The Owner may only terminate this Agreement with the             written consent of the Licensee.",
+      "explanation": "The client can terminate the contract at any time, but you can only terminate if the client agrees, giving them unilateral control over ending the agreement.",
+      "suggested_change": "Either party may terminate this Agreement at any time by giving written notice to the other parties."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 2001,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  }
+ ],
+ "email": true,
+ "seconds": 20.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9443,
+   "prompt_tokens": 5657,
+   "output_tokens": 284,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.76,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You are required to perform changes and extra work without additional pay as long as they fit within the overall project budget.",
+      "suggested_change": "Client may request changes to scope, but any such changes will be subject to a mutually agreed written change order adjusting the project fee and timeline."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "The contract allows an excessive 15 rounds of revisions before additional charges apply, which can consume significant uncompensated time.",
+      "suggested_change": "The parties agree to include up to two rounds of revisions for the principal creative Deliverables, with any further revisions subject to additional fees."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Payment is due within 60 days of invoice, which significantly delays your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4316,
+   "prompt_tokens": 510,
+   "output_tokens": 210,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.43,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to propose a few small changes to the agreement before signing. - Regarding the relevant clause on scope, you are required to perform changes and extra work without additional pay as long as they fit within the overall project budget, and I propose that client may request changes to scope, but any such changes will be subject to a mutually agreed written change order adjusting the project fee and timeline. - Regarding the relevant clause on revisions, the contract allows an excessive 15 rounds of revisions before additional charges apply, which can consume significant uncompensated time, and I propose that the parties agree to include up to two rounds of revisions for the principal creative Deliverables, with any further revisions subject to additional fees. - Regarding the relevant clause on payment, payment is due within 60 days of invoice, which significantly delays your cash flow, and I propose that invoices are payable Net 30. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

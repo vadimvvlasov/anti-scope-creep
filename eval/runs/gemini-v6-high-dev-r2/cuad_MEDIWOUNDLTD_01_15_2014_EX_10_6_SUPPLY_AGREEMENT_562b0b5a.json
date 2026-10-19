@@ -1,0 +1,51 @@
+{
+ "id": "cuad:MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT",
+ "chars": 49915,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+   "start": 13986,
+   "end": 14239
+  }
+ ],
+ "email": true,
+ "seconds": 20.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17588,
+   "prompt_tokens": 12152,
+   "output_tokens": 147,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.23,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "For avoidance of doubt, payments will be made only after receiving exemption from tax deduction approval from the tax authority in Israel. Delay in payment as a result of not receiving such exemption will not constitute late payment or breach hereunder.",
+      "explanation": "Your payment is conditional upon receiving a tax exemption approval from the tax authority and can be delayed indefinitely without constituting a breach.",
+      "suggested_change": "Payments shall be made when due in accordance with the agreed payment terms."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2279,
+   "prompt_tokens": 343,
+   "output_tokens": 88,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to get started and have a minor suggestion before signing. - Regarding the relevant clause concerning tax exemptions, the current terms tie payment to a tax approval process that could cause indefinite delays. I propose modifying this so that payments shall be made when due in accordance with the agreed payment terms. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

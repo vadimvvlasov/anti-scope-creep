@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 15.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9128,
+   "prompt_tokens": 5689,
+   "output_tokens": 105,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.16,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "Ownership of your work transfers to the client as soon as it is created, before you receive payment. This leaves you vulnerable if the client fails to pay.",
+      "suggested_change": "Work Product, and every right in it, shall vest in Client only upon receipt of full payment for the applicable Services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2138,
+   "prompt_tokens": 333,
+   "output_tokens": 79,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a small adjustment before signing: - In the relevant clause, ownership of the work transfers as it is generated before payment is received, and we propose modifying the agreement so that rights vest only upon receipt of full payment for the applicable services. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,107 @@
+{
+ "set": "cuad",
+ "contracts": 28,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 4,
+   "fp": 2,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.8,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 2,
+   "fn": 0,
+   "precision": 0.6,
+   "recall": 1.0,
+   "severity_accuracy": 0.667
+  },
+  "uncapped_liability": {
+   "tp": 5,
+   "fp": 0,
+   "fn": 1,
+   "precision": 1.0,
+   "recall": 0.833,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 12,
+   "fp": 4,
+   "fn": 2,
+   "precision": 0.75,
+   "recall": 0.857,
+   "severity_accuracy": 0.917
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 24,
+  "findings_kept": 23,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.042,
+  "tokens_mean": 13489,
+  "tokens_max": 22265,
+  "seconds_mean": 15.3,
+  "seconds_max": 27.5
+ },
+ "false_positives": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment (with the exception of any Service Option Attachment that is a prerequisite for the provision of Services under a non-terminated Service Option Attachment) for convenience at the end of any calendar month by:",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Type I Materials are those, created during the Service performance period,       in which Customer will have all right, title, and interest (including       ownership of copyright).",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "11.6  The Owner may only terminate this Agreement with the written consent             of the Licensee.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HEALTHGATEDATACORP_11_24_1999-EX-10.1-HOSTING AND MANAGEMENT AGREEMENT - Escrow Agreement"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "low"
+  }
+ ]
+}

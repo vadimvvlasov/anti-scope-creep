@@ -1,0 +1,79 @@
+{
+ "id": "cuad:EmeraldHealthBioceuticalsInc_20200218_1-A_EX1A-6 MAT CTRCT_11987205_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 16459,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "4.1 EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+   "start": 2614,
+   "end": 2990
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "During each year of this agreement, Dr. Murray will be paid no later than the 30st day of January based on the cumulative Net Sales of the Dr. Murray Products for the preceding 12 months based upon the following scale:",
+   "start": 4121,
+   "end": 4339
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "(c) Provide such other services related to the foregoing as EHS may reasonably request from time to time.",
+   "start": 1200,
+   "end": 1305
+  }
+ ],
+ "email": true,
+ "seconds": 26.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10925,
+   "prompt_tokens": 5609,
+   "output_tokens": 478,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.83,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "4.1 EHS and EHN shall have the exclusive rights in and to all ingredients, product specifications, goodwill, and all other intellectual property rights associated with any Product(s); provided, however, that EHS and EHN shall not have any rights in or to Dr. Murray's name or likeness except as expressly granted in writing herein or via electronic transmission by Dr. Murray.",
+      "explanation": "Intellectual property rights to your work product pass to the client immediately upon creation rather than being conditioned on full payment.",
+      "suggested_change": "EHS and EHN shall obtain exclusive rights to intellectual property in the Products only upon full payment of all compensation and royalties due to Dr. Murray under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "During each year of this agreement, Dr. Murray will be paid no later than the 30st day of January based on the cumulative Net Sales of the Dr. Murray Products for the preceding 12 months based upon the following scale:",
+      "explanation": "Royalty payments are deferred for up to twelve months before being paid, which is significantly later than standard payment terms.",
+      "suggested_change": "Royalty payments shall be calculated and paid within thirty (30) days following the end of each calendar month based on the Net Sales for such month."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "(c) Provide such other services related to the foregoing as EHS may reasonably request from time to time.",
+      "explanation": "You are required to perform open-ended additional services requested by the client without an explicit mechanism for extra compensation.",
+      "suggested_change": "Any additional services requested by EHS that are outside the agreed scope shall be subject to a mutually agreed written change order and compensated at agreed hourly rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2797,
+   "prompt_tokens": 624,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and look forward to moving forward. Before signing, I would like to propose a few minor adjustments: - In the relevant clause, intellectual property rights pass immediately rather than upon full payment, so I propose that these rights be obtained only upon full payment of all compensation and royalties due. - In the relevant clause concerning royalties, payments are deferred for up to twelve months, and I propose instead that they be calculated and paid within thirty days following the end of each calendar month. - In the relevant clause regarding additional services, the requirements are open-ended without explicit extra compensation, so I propose that any additional services outside the agreed scope be subject to a mutually agreed written change order and compensated at agreed rates. Thank you, and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

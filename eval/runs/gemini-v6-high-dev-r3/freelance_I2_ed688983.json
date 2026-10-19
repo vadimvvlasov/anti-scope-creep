@@ -1,0 +1,51 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3976,
+   "end": 4004
+  }
+ ],
+ "email": true,
+ "seconds": 14.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8362,
+   "prompt_tokens": 5709,
+   "output_tokens": 113,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.01,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms force you to wait up to 90 days to receive your money, which can severely strain your business cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2522,
+   "prompt_tokens": 309,
+   "output_tokens": 92,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.95,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a small adjustment before signing. - Regarding the relevant clause (\"Invoices are payable Net 90.\"), waiting up to 90 days can severely strain business cash flow, so I propose modifying the agreement so that Invoices are payable Net 30. Thank you for your time."
+   }
+  }
+ ],
+ "dropped": []
+}

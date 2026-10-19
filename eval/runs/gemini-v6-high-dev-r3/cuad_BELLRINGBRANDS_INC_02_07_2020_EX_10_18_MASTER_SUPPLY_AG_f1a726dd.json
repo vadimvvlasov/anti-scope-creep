@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28036,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13022,
+   "prompt_tokens": 9241,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.59,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Your indemnification obligations are excluded from the liability cap, exposing you to unlimited financial risk for third-party claims.",
+      "suggested_change": "The Liability Cap shall apply to all claims and liabilities arising under this Agreement, including indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2400,
+   "prompt_tokens": 339,
+   "output_tokens": 108,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.63,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am excited to get started, but I would like to propose a small adjustment before I sign: - Regarding the relevant clause, the current terms exclude indemnification obligations from the liability cap, which could expose me to unlimited financial risk. I propose updating this so that the liability cap applies to all claims and liabilities arising under the agreement, including indemnification obligations. Best regards, I look forward to hearing from you."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement",
+ "chars": 18138,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+   "start": 5874,
+   "end": 6200
+  }
+ ],
+ "email": true,
+ "seconds": 19.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10512,
+   "prompt_tokens": 5562,
+   "output_tokens": 191,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.53,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+      "explanation": "Your payment is deferred on a quarterly basis and conditioned upon the Client collecting revenues, resulting in long payment delays and dependency on third-party collections.",
+      "suggested_change": "Within thirty (30) days following the end of each calendar month, the Client shall pay the Licensor its share of revenues earned during such month."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2193,
+   "prompt_tokens": 387,
+   "output_tokens": 108,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.46,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed the terms and would like to request a small adjustment before signing. - Regarding the relevant clause, the current terms defer payment on a quarterly basis and tie it to third-party collections, which causes long payment delays. I propose updating this so that the Client shall pay the share of revenues within thirty (30) days following the end of each calendar month. Thank you for your flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

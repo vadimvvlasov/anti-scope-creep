@@ -1,0 +1,51 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+   "start": 9808,
+   "end": 9970
+  }
+ ],
+ "email": true,
+ "seconds": 16.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11653,
+   "prompt_tokens": 8136,
+   "output_tokens": 113,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.97,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+      "explanation": "Your payment is conditional on the Distributor receiving payment from the Fund, which means you might not get paid if the Fund delays or fails to pay.",
+      "suggested_change": "The Distributor shall pay S2K the compensation due hereunder within thirty (30) days of the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2807,
+   "prompt_tokens": 341,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am excited to get started. Before signing, I have one small note: - Regarding the relevant clause, payment is currently conditional on the Distributor receiving funds, which means compensation could be delayed if the Fund does not pay; I propose modifying this so that payment is due within thirty days of the invoice date. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

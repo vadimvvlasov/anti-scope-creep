@@ -1,0 +1,79 @@
+{
+ "id": "cuad:PAXMEDICA,INC_07_02_2020-EX-10.12-Master Service Agreement",
+ "chars": 16792,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by CRO in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, CRO agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+   "start": 9350,
+   "end": 9832
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "5.4. Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+   "start": 6737,
+   "end": 7256
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "4.2. Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by CRO, Client shall pay all sums owing to CRO, but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which CRO is committed to pay.",
+   "start": 4132,
+   "end": 4527
+  }
+ ],
+ "email": true,
+ "seconds": 18.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9807,
+   "prompt_tokens": 5506,
+   "output_tokens": 658,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.43,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "(b) that all deliverables and work products in the form of works of authorship developed by [PARTY_A] in the performance of Services under this Agreement shall be deemed works made for hire, and shall belong fully and exclusively to Client; and that if by operation of law such deliverables or work products are not works made for hire, [PARTY_A] agrees to, and does hereby, assign to Client all right, title, and interest in such deliverables or work product, including all copyrights therein;",
+      "explanation": "Ownership of your work transfers immediately upon creation or as a work made for hire before you are paid, exposing you to the risk of non-payment after losing your IP rights.",
+      "suggested_change": "Ownership of all deliverables and work products developed by the Contractor in the performance of Services under this Agreement shall transfer to the Client only upon receipt of full payment by the Contractor."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "5.4. Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to the sum of all amounts received from Client in terms of this Agreement; provided, however, that this limitation shall not apply with respect to any claims arising out of or relating to clause 6 (Inventions and Proprietary Information), indemnification obligations or damages arising from a party's gross negligence or willful misconduct.",
+      "explanation": "Your liability is capped overall, but claims related to intellectual property and indemnification are excluded from this cap, leaving you with unlimited exposure in those areas.",
+      "suggested_change": "Notwithstanding any other provision of this Agreement, each party's total liability in respect of damages under this Agreement, any regulation or common law shall be limited to glorious amounts received from the Client in terms of this Agreement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "4.2. Client may terminate this Agreement on thirty (30) days written notice without cause. In the event of termination by Client for reasons other than default by [PARTY_A], Client shall pay all sums owing to [PARTY_A], but unpaid, for work performed to date of receipt of termination notice, and all reasonable and necessary costs associated with the termination itself or to which [PARTY_A] is committed to pay.",
+      "explanation": "Only the client can terminate the agreement without cause, giving them unilateral exiting power while you remain locked in.",
+      "suggested_change": "Either party may terminate this Agreement on thirty (30) days written notice without cause, and the Client shall pay all sums owing to the Contractor for work performed to date and all reasonable and necessary termination costs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2842,
+   "prompt_tokens": 627,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.85,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, Thank you for sharing the agreement. I am looking forward to signing it, but I would like to propose a couple of adjustments first: - Regarding the relevant clause on work products, ownership currently transfers before payment is received; I propose that ownership of all deliverables and work products developed in the performance of services under the agreement shall transfer to the client only upon receipt of full payment by the contractor. - Regarding the relevant clause on liability, certain claims are excluded from the limitation; I propose that each party's total liability in respect of damages under the agreement shall be limited to the amounts received from the client in terms of the agreement. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

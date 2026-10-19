@@ -1,0 +1,65 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  }
+ ],
+ "email": true,
+ "seconds": 13.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8631,
+   "prompt_tokens": 5642,
+   "output_tokens": 268,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.21,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform additional services requested by the client during the term without any extra pay, increasing your workload without compensation.",
+      "suggested_change": "Contractor shall perform the Services described in this Agreement, and any additional services requested by the Client shall be subject to a separate written change order and mutually agreed fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless revisions until they are completely satisfied, trapping you in unending work without extra pay.",
+      "suggested_change": "[CLIENT_NAME] may request up to three rounds of revisions for each Deliverable, after which additional revisions will be billed at Contractor's standard hourly rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2259,
+   "prompt_tokens": 443,
+   "output_tokens": 153,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. - In the relevant clause concerning additional tasks, the agreement requires extra services to be provided without additional pay. I propose changing this so that any additional services are subject to a separate written change order and mutually agreed fees. - Regarding the provision on revisions, the agreement currently allows for unlimited changes until full satisfaction is reached. I propose modifying this to allow up to three rounds of revisions for each deliverable, with additional revisions billed at standard hourly rates. Thank you for considering these updates, and I look forward to finalizing the agreement soon. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}
