@@ -15,6 +15,7 @@ from app.analyzer import AnalysisResult, FindingDraft
 from app.context import AppContext
 from app.models import EmailDraftRecord, FindingRecord
 from app.quotes import locate_quote
+from app.telemetry import contract_id_var
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,14 @@ class BackgroundTasksRunner:
 
 def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     """Analyze one contract for one run. Never raises."""
+    token = contract_id_var.set(str(contract_id))  # every log line of this run carries the contract id
+    try:
+        _run_analysis(context, contract_id, run_id)
+    finally:
+        contract_id_var.reset(token)
+
+
+def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     store = context.store
     contract = store.get_contract_for_analysis(contract_id, run_id)
     if contract is None:
@@ -46,7 +55,7 @@ def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
         # Re-validate: an analyzer may build its result without validation.
         result = AnalysisResult.model_validate(raw.model_dump())
     except Exception:
-        logger.exception("Analysis failed for contract %s", contract_id)
+        logger.exception("Analysis failed for contract %s", contract_id, extra={"code": "analysis_failed"})
         store.fail_analysis(contract_id, run_id, context.clock())
         return
     now = context.clock()

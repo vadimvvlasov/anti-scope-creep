@@ -1,4 +1,4 @@
-.PHONY: install up down logs e2e db migrate dev-backend dev-frontend test lint
+.PHONY: install up up-observability down logs e2e db migrate dev-backend dev-frontend test lint
 
 install:
 	cd backend && uv sync
@@ -9,8 +9,12 @@ install:
 up:
 	docker compose up -d --build --wait
 
+# `make up` plus the local Grafana stack (http://localhost:3001); the backend exports to it.
+up-observability:
+	OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4318 docker compose --profile observability up -d --build --wait
+
 down:
-	docker compose down
+	docker compose --profile observability down
 
 logs:
 	docker compose logs -f

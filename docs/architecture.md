@@ -225,7 +225,7 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 
 ## 6. Observability
 
-- **Instrumentation:** OpenTelemetry SDK in the backend, with auto-instrumentation for FastAPI, SQLAlchemy, and HTTPX (the Groq client), plus manual spans for extraction, each analysis chunk, quote verification, and the text-to-SQL graph nodes.
+- **Instrumentation:** OpenTelemetry SDK in the backend, with auto-instrumentation for FastAPI and HTTPX (the Groq client), a query tracer on SQLAlchemy engine events (one `db SELECT` span per query with the dialect and the operation only: `opentelemetry-instrumentation-sqlalchemy` refuses sqlalchemy 2.1 and records the SQL text), plus manual spans for extraction, each analysis chunk, quote verification, and the text-to-SQL graph nodes.
 - **Export:** OTLP over HTTP directly to the Grafana Cloud OTLP gateway, with no collector sidecar. Pull scraping would need a public metrics endpoint on the container service, so push is simpler. Flush exporters on `SIGTERM`, when a deployment replaces the container.
 - **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to the Lightsail container logs automatically and to Loki through OTLP logs.
 - **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
