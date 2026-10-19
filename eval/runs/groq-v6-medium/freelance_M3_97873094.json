@@ -1,0 +1,92 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8270,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 116.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5394,
+   "prompt_tokens": 4248,
+   "output_tokens": 1146,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.88,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "You could be responsible for any amount of loss or damage caused by your services, with no overall monetary cap.",
+      "suggested_change": "Contractor's aggregate liability for any claim arising out of the Services shall be limited to the total fees paid under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Payment depends on when the client gets paid, which could delay your receipt of funds beyond standard terms.",
+      "suggested_change": "Invoices are payable within 30 days after the date of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4585,
+   "prompt_tokens": 3472,
+   "output_tokens": 1113,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.91,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "You will only receive payment after the client has been paid by its own customer, which can delay your cash flow and give the client control over when you get paid.",
+      "suggested_change": "Payment period: 15 days after the Contractor issues an invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1825,
+   "prompt_tokens": 641,
+   "output_tokens": 1184,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.73,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're well. Before signing, I'd like to suggest a few small adjustments to the agreement:\n\n- The relevant clause states that the contractor shall be liable for all losses, damages, costs, and claims arising from the services without limitation. This could make the contractor responsible for unlimited amounts. I propose that the contractor's aggregate liability be limited to the total fees paid under the agreement.\n\n- The relevant clause provides that invoices are payable within 15 days after the client receives payment from its own customer. Tying payment to the client's receipt of funds may delay the contractor's cash flow. I propose that invoices be payable within 30 days after the date of the invoice.\n\n- The relevant clause sets the payment period as 15 days after the client is paid by its customer. This also places the contractor's receipt of payment under the client's control. I propose that the payment period be 15 days after the contractor issues an invoice.\n\nThank you for considering these changes. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

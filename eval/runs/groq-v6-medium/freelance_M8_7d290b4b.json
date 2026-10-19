@@ -1,0 +1,77 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+   "start": 5117,
+   "end": 5430
+  }
+ ],
+ "email": true,
+ "seconds": 115.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5551,
+   "prompt_tokens": 4257,
+   "output_tokens": 1294,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 54.62,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "You may have to perform minor additional work without a formal change order or extra pay, because the clause permits minor clarifications as long as they don’t materially increase the workload.",
+      "suggested_change": "Any clarification or additional work shall be documented in a written change order signed by both parties and shall be compensated at the rates set forth in the Agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+      "explanation": "Ownership of the deliverables passes to the client as soon as they are created, before you have been paid, leaving you without leverage to enforce payment.",
+      "suggested_change": "All intellectual property rights in the Deliverables shall remain with Contractor until full payment of all invoices has been received, at which point Contractor shall assign such rights to Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3907,
+   "prompt_tokens": 3454,
+   "output_tokens": 453,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.0,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1130,
+   "prompt_tokens": 534,
+   "output_tokens": 596,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear Client,\n\nI hope you are well. I have reviewed the agreement and would like to suggest a small amendment before signing:\n\n- The relevant clause states that all intellectual property rights in the Deliverables belong to the client as soon as they are created. This could leave the contractor without leverage to enforce payment if invoices are outstanding. I propose that the rights remain with the contractor until full payment of all invoices has been received, at which point the contractor will assign those rights to the client.\n\nThank you for your understanding. I look forward to your thoughts.\n\nKind regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

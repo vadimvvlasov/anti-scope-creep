@@ -69,3 +69,82 @@ def test_other_differences_still_do_not_match():
 def test_a_quote_that_is_empty_after_normalization_has_no_offsets():
     assert locate_quote("Some text.", "") == (None, None)
     assert locate_quote("Some  text.", "  \n ") == (None, None)
+
+
+# The model may shorten a clause with an ellipsis or drop a word; the stored quote is
+# then the contract's own slice. Words that could change the meaning must still match.
+
+_M7 = (
+    "2.1 Total Fixed Price. Client agrees to pay Developer a total fixed price of $85,000.00 USD. "
+    "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance "
+    "of the complete Software.\n2.2 Expenses. None."
+)
+
+
+def test_a_dropped_word_matches_the_contract_clause():
+    start, end = locate_quote(
+        _M7, "Client shall pay each milestone within ninety (90) days after Client's final acceptance of the complete Software."
+    )
+    assert _M7[start:end] == (
+        "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software"
+    )
+
+
+def test_a_changed_number_does_not_match():
+    quote = "Client shall pay each milestone amount within thirty (30) days after Client's final acceptance of the complete Software."
+    assert locate_quote(_M7, quote) == (None, None)
+
+
+def test_a_changed_meaning_word_does_not_match():
+    text = "The parties intend to allow 3 rounds of ordinary revisions for the principal creative deliverables."
+    quote = "The parties intend to allow unlimited rounds of ordinary revisions for the principal creative deliverables."
+    assert locate_quote(text, quote) == (None, None)
+    negated = "The Contractor shall be liable for indirect damages arising out of the Services under this Agreement."
+    assert locate_quote(negated.replace("shall be", "shall not be"), negated) == (None, None)
+
+
+def test_a_short_quote_is_not_matched_by_words():
+    assert locate_quote("The fee is payable on delivery.", "The fee is payable upon delivery.") == (None, None)
+
+
+def test_an_ellipsis_spans_from_the_first_part_to_the_last():
+    text = (
+        "9. Termination. Customer may terminate this Agreement for convenience at the end of any month, "
+        "provided that Customer gives Provider at least ten days notice. Other text."
+    )
+    quote = "Customer may terminate this Agreement ... gives Provider at least ten days notice."
+    start, end = locate_quote(text, quote)
+    assert text[start:end] == (
+        "Customer may terminate this Agreement for convenience at the end of any month, "
+        "provided that Customer gives Provider at least ten days notice."
+    )
+    assert locate_quote(text, quote.replace(" ... ", "… ")) == (start, end)
+
+
+def test_ellipsis_parts_out_of_order_or_too_short_do_not_match():
+    text = "Customer may terminate this Agreement at any time. Provider shall deliver all source code monthly."
+    assert locate_quote(text, "Provider shall deliver all source ... Customer may terminate this Agreement") == (None, None)
+    assert locate_quote(text, "Customer may ... source code monthly.") == (None, None)
+
+
+def test_ellipsis_parts_far_apart_do_not_match():
+    text = "Customer may terminate this Agreement now. " + "Filler sentence here. " * 400 + "Provider keeps all rights forever."
+    assert locate_quote(text, "Customer may terminate this Agreement ... Provider keeps all rights forever.") == (None, None)
+
+
+def test_a_replaced_or_added_word_does_not_match():
+    text = (
+        "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. "
+        "Requests outside that scope are handled as new Services or change requests."
+    )
+    quote = (
+        "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. "
+        "Requests outside that scope are handled as part of the Services."
+    )
+    assert locate_quote(text, quote) == (None, None)
+    assert locate_quote(_M7, "Client shall promptly pay each milestone amount within ninety (90) days.") == (None, None)
+
+
+def test_more_than_two_omitted_words_do_not_match():
+    quote = "Client shall pay each milestone within days after Client's final acceptance of the Software."
+    assert locate_quote(_M7.replace("ninety (90) ", "the agreed "), quote) == (None, None)

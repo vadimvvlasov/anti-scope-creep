@@ -1,0 +1,106 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Requests outside that scope are handled as part of the Services.",
+   "start": 13937,
+   "end": 14001
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 116.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5213,
+   "prompt_tokens": 4313,
+   "output_tokens": 900,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.77,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to do extra work the client asks for without any extra pay, giving the client unlimited ability to increase your workload for free.",
+      "suggested_change": "Contractor shall perform additional services only after the parties execute a written change order that specifies the scope of such services and the corresponding fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can keep asking for changes indefinitely, which can consume unlimited time and resources without extra compensation.",
+      "suggested_change": "Client may request up to three revision rounds per Deliverable; any additional revisions shall be subject to a written change order and additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4184,
+   "prompt_tokens": 3335,
+   "output_tokens": 849,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.22,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Requests outside that scope are handled as part of the Services.",
+      "explanation": "You may have to perform work beyond the defined scope without additional compensation.",
+      "suggested_change": "Requests outside the scope shall be addressed only through a written change order and shall be subject to additional fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The client can ask for an unlimited number of revision rounds, potentially increasing your workload indefinitely.",
+      "suggested_change": "Revision allowance: up to 3 rounds; additional revisions shall be billed at the hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1670,
+   "prompt_tokens": 709,
+   "output_tokens": 961,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you are well.\n\n- The relevant clause requires the contractor to perform any additional services requested during the term at no extra charge. This could lead to unlimited unpaid work. I propose that additional services be performed only after the parties execute a written change order that specifies the scope and the corresponding fees.\n- The relevant clause allows the client to request unlimited revisions until fully satisfied, which may consume unlimited time and resources. I suggest limiting revisions to three rounds per deliverable, with any further changes handled through a written change order and additional fees.\n- The relevant clause treats requests outside the defined scope as part of the services, potentially requiring work without extra compensation. I recommend that out‑of‑scope requests be addressed only via a written change order and be subject to additional fees.\n- The revision allowance is currently stated as unlimited, which could increase workload indefinitely. I propose setting the allowance to up to three revision rounds, with any additional revisions billed at the agreed hourly rate.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}
