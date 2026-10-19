@@ -139,6 +139,39 @@ def build_instruments(meter: Meter) -> Instruments:
 instruments = build_instruments(metrics.get_meter(SERVICE_NAME))
 
 
+ANALYSIS_OUTCOMES = ("done", "failed", "stale", "superseded")
+LLM_STATUSES = ("ok", "rate_limited", "server_error", "network_error", "invalid_json", "client_error")
+DROP_REASONS = ("quote_not_found", "placeholder_not_restored", "invalid_finding", "invalid_after_restore")
+
+
+def init_series(model: str = "") -> None:
+    """Creates every counter series of our own with the value 0, at startup.
+
+    A counter that first shows up with a value has no earlier sample, so Prometheus' `increase()` and
+    `rate()` count the first events of a label set as nothing: `UNAUTHORIZED=3` read as an increase of
+    0 in Grafana Cloud. With a 0 exported from the start, the first real event is an increase, which
+    the alerts (docs/architecture.md, section 6) and the on-call agent's context depend on. `model` is
+    the LLM model name, empty when the analyzer is the stub. setup_telemetry flushes right after this,
+    so the zeros are exported before any event, not 60 seconds later.
+    """
+    from app.errors import ErrorCode  # errors.py imports this module
+
+    for outcome in ANALYSIS_OUTCOMES:
+        instruments.analyses.add(0, {"outcome": outcome})
+    for code in ErrorCode:
+        instruments.api_errors.add(0, {"code": str(code)})
+    for reason in DROP_REASONS:
+        instruments.findings_dropped.add(0, {"reason": reason})
+    if model:
+        for status in LLM_STATUSES:
+            instruments.llm_requests.add(0, {"model": model, "status": status})
+        for kind in ("input", "output"):
+            instruments.llm_tokens.add(0, {"model": model, "kind": kind})
+        for retried in ("true", "false"):
+            instruments.llm_output_truncated.add(0, {"model": model, "retried": retried})
+        instruments.llm_rate_limited.add(0, {"model": model})
+
+
 def tracer() -> Tracer:
     return trace.get_tracer(SERVICE_NAME)
 
@@ -210,6 +243,10 @@ def setup_telemetry(settings: Settings) -> Callable[[], None] | None:
     logger_provider = LoggerProvider(resource=resource)
     logger_provider.add_log_record_processor(BatchLogRecordProcessor(OTLPLogExporter()))
     set_logger_provider(logger_provider)
+    init_series(settings.groq_model if settings.analyzer == "groq" else "")
+    # The zeros must reach Prometheus before the first event: the reader exports only every 60 seconds,
+    # and an event inside the first interval would arrive as the series' first sample (no increase).
+    meter_provider.force_flush(timeout_millis=3_000)
     log_handler = LoggingHandler(level=logging.INFO, logger_provider=logger_provider)
     log_handler.addFilter(ContractContextFilter())
     logging.getLogger().addHandler(log_handler)
