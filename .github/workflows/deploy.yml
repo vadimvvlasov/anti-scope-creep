@@ -38,6 +38,8 @@ on:
         required: false
       GROQ_API_KEY:
         required: false
+      OTEL_EXPORTER_OTLP_HEADERS:
+        required: false
       CLOUDFLARE_API_TOKEN:
         required: false
 
@@ -80,6 +82,8 @@ jobs:
           ANALYZER: ${{ vars.ANALYZER }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL }}
+          OTEL_EXPORTER_OTLP_ENDPOINT: ${{ vars.OTEL_EXPORTER_OTLP_ENDPOINT }}
+          OTEL_EXPORTER_OTLP_HEADERS: ${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
         run: .github/scripts/lightsail-deploy.sh
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

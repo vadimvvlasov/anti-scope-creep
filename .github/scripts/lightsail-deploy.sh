@@ -4,7 +4,9 @@
 # Required environment: SERVICE, IMAGE, ENV_TAG, DATABASE_URL, JWT_SECRET, CORS_ORIGINS,
 # plus AWS credentials and AWS_REGION. Optional: CREATE_IF_MISSING=true (dev is ephemeral;
 # the service is created with the tag env=$ENV_TAG, which the deploy role requires);
-# ANALYZER (stub by default), GROQ_API_KEY and GROQ_MODEL for ANALYZER=groq.
+# ANALYZER (stub by default), GROQ_API_KEY and GROQ_MODEL for ANALYZER=groq; OTEL_EXPORTER_OTLP_ENDPOINT
+# and OTEL_EXPORTER_OTLP_HEADERS turn telemetry export on (both or neither; the app exports only when the
+# endpoint is set).
 # Writes url=<service URL without the trailing slash> to $GITHUB_OUTPUT when it is set.
 set -euo pipefail
 
@@ -13,8 +15,14 @@ CREATE_IF_MISSING="${CREATE_IF_MISSING:-false}"
 ANALYZER="${ANALYZER:-stub}"
 GROQ_API_KEY="${GROQ_API_KEY:-}"
 GROQ_MODEL="${GROQ_MODEL:-}"
+OTEL_EXPORTER_OTLP_ENDPOINT="${OTEL_EXPORTER_OTLP_ENDPOINT:-}"
+OTEL_EXPORTER_OTLP_HEADERS="${OTEL_EXPORTER_OTLP_HEADERS:-}"
 if [[ "$ANALYZER" == groq && -z "$GROQ_API_KEY" ]]; then
   echo "ANALYZER=groq needs the GROQ_API_KEY secret in this environment" >&2
+  exit 1
+fi
+if [[ -n "$OTEL_EXPORTER_OTLP_ENDPOINT" && -z "$OTEL_EXPORTER_OTLP_HEADERS" ]]; then
+  echo "OTEL_EXPORTER_OTLP_ENDPOINT needs the OTEL_EXPORTER_OTLP_HEADERS secret in this environment" >&2
   exit 1
 fi
 TIMEOUT_SECONDS="${TIMEOUT_SECONDS:-900}"
@@ -63,14 +71,20 @@ wait_for_service
 # Built from environment variables so that secrets never appear in the command line or logs.
 containers="$RUNNER_TEMP/containers.json"
 jq -n --arg image "$IMAGE" --arg db "$DATABASE_URL" --arg jwt "$JWT_SECRET" --arg cors "$CORS_ORIGINS" \
-  --arg analyzer "$ANALYZER" --arg groq_key "$GROQ_API_KEY" --arg groq_model "$GROQ_MODEL" '{
+  --arg analyzer "$ANALYZER" --arg groq_key "$GROQ_API_KEY" --arg groq_model "$GROQ_MODEL" \
+  --arg otel_endpoint "$OTEL_EXPORTER_OTLP_ENDPOINT" --arg otel_headers "$OTEL_EXPORTER_OTLP_HEADERS" \
+  --arg env_tag "$ENV_TAG" '{
   backend: {
     image: $image,
     ports: {"8000": "HTTP"},
     environment: ({
       DATABASE_URL: $db, JWT_SECRET: $jwt, CORS_ORIGINS: $cors,
       ANALYZER: $analyzer, SEED_DEMO_DATA: "false"
-    } + (if $analyzer == "groq" then {GROQ_API_KEY: $groq_key, GROQ_MODEL: $groq_model} else {} end))
+    } + (if $analyzer == "groq" then {GROQ_API_KEY: $groq_key, GROQ_MODEL: $groq_model} else {} end)
+      + (if $otel_endpoint != "" then {
+          OTEL_EXPORTER_OTLP_ENDPOINT: $otel_endpoint, OTEL_EXPORTER_OTLP_HEADERS: $otel_headers,
+          OTEL_RESOURCE_ATTRIBUTES: ("deployment.environment=" + $env_tag)
+        } else {} end))
   }
 }' > "$containers"
 endpoint='{"containerName":"backend","containerPort":8000,"healthCheck":{"path":"/health","successCodes":"200","intervalSeconds":10,"timeoutSeconds":5,"healthyThreshold":2,"unhealthyThreshold":3}}'
