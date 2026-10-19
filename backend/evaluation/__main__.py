@@ -27,7 +27,7 @@ from app.ratelimit import TokenBucketLimiter
 from evaluation.runner import EVAL_DIR, cache_path, contract_text, load_gold, run
 from evaluation.scoring import Prediction, score_contract, summarize
 
-SETS = ("freelance", "cuad", "cuad-holdout", "cuad-holdout-long", "cuad-holdout-2")
+SETS = ("freelance", "injection", "cuad", "cuad-holdout", "cuad-holdout-long", "cuad-holdout-2")
 DEFAULT_SETS = ("freelance", "cuad")  # the held-out sets run only when named
 # Per provider: environment prefix, endpoint, default model and free-tier limits (RPM, TPM).
 # Gemini goes through its OpenAI-compatible endpoint; its limits are those of the AI Studio
