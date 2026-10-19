@@ -5,7 +5,7 @@ application stores. It applies when the LLM analyzer is enabled (`ANALYZER=groq`
 Methodology & Privacy dialog and the Upload screen link here. Rules come from
 `docs/spec.md` ("LLM analyzer (Groq)", "Pseudonymization rules").
 
-Last updated: 2026-10-13.
+Last updated: 2026-10-19.
 
 ## In short
 
@@ -106,6 +106,15 @@ project's Groq console settings:
 Automated analysis can miss risks or flag them incorrectly. Every quoted clause is checked
 against your contract text, and findings whose quote cannot be found are dropped. The
 result is not legal advice.
+
+## Telemetry and the on-call agent
+
+The deployed backend sends traces, metrics and logs to Grafana Cloud (`docs/architecture.md`,
+section 6). They carry ids, sizes, counts, model names, token usage and error codes; contract
+text, prompts, model answers and the pseudonymization map never go there, which a test checks on a
+full analysis. When an alert fires, the on-call agent sends this telemetry and files of the public
+repository to Gemini on the free tier, where Google may use it to improve its products. No contract
+text, email draft or user data is part of it (`docs/permissions.md`, "On-call agent").
 
 ## Changes
 
