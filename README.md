@@ -195,6 +195,11 @@ Open http://localhost:3000 and log in as `demo@example.com` / `password123`
 (demo accounts are described below). The API is on http://localhost:8000.
 `make down` stops everything and keeps the database volume; `make logs` follows the logs.
 
+`make up-observability` adds a local Grafana stack (`grafana/otel-lgtm`) and makes the backend export
+traces, metrics and logs to it; Grafana is on http://localhost:3001 (admin / admin). The backend exports
+only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set, so a plain `make up`, the tests and CI send nothing.
+Logs are JSON on stdout either way, with `trace_id` on traced requests.
+
 ### For development (hot reload)
 
 You need [uv](https://docs.astral.sh/uv/), Node.js 20+ with npm, and Docker (only

@@ -34,6 +34,9 @@ services:
       ANALYZER: stub
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:8080}
       SEED_DEMO_DATA: "true"
+      # Telemetry export is off while this is empty; `make up-observability` points it at the lgtm service.
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
     ports:
       - "127.0.0.1:8000:8000"
     depends_on:
@@ -61,6 +64,15 @@ services:
       interval: 3s
       timeout: 3s
       retries: 10
+
+  # Optional local telemetry stack (docs/architecture.md, section 6): Grafana, Prometheus, Loki and
+  # Tempo with an OTLP endpoint in one container. Grafana: http://localhost:3001 (admin / admin).
+  lgtm:
+    profiles: ["observability"]
+    image: grafana/otel-lgtm:0.35.0
+    ports:
+      - "127.0.0.1:3001:3000"
+      - "127.0.0.1:4318:4318"
 
 volumes:
   pgdata:
