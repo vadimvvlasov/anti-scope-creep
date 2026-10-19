@@ -13,6 +13,7 @@ from pathlib import PurePosixPath
 from langdetect import DetectorFactory, LangDetectException, detect_langs
 from pypdf import PdfReader
 
+from app import telemetry
 from app.errors import AppError, ErrorCode
 from app.models import MAX_TITLE_LENGTH, FileType
 
@@ -84,8 +85,10 @@ def _file_input(file: UploadedFile, title: str | None) -> ContractInput:
         )
     if len(file.data) > MAX_FILE_BYTES:
         raise AppError(ErrorCode.FILE_TOO_LARGE)
-    raw_text = _extract_pdf(file.data) if file_type == FileType.PDF else _decode_txt(file.data)
-    source_text = check_text(raw_text)
+    with telemetry.span("contract.extract", **{"file.type": file_type.value, "file.bytes": len(file.data)}) as extracting:
+        raw_text = _extract_pdf(file.data) if file_type == FileType.PDF else _decode_txt(file.data)
+        source_text = check_text(raw_text)
+        extracting.set_attribute("text.chars", len(source_text))
     return ContractInput(title or filename, filename, file_type, len(file.data), source_text)
 
 
