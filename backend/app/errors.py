@@ -8,6 +8,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from app import telemetry
+
 logger = logging.getLogger(__name__)
 
 
@@ -109,6 +111,7 @@ class AppError(Exception):
 
 
 def error_response(status_code: int, code: str, message: str) -> JSONResponse:
+    telemetry.record_api_error(str(code))
     return JSONResponse(status_code=status_code, content={"error": {"code": code, "message": message}})
 
 

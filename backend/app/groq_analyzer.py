@@ -15,6 +15,7 @@ from typing import Any, Protocol
 
 from pydantic import BaseModel, ValidationError
 
+from app import telemetry
 from app.analyzer import NO_INPUT_IN_ERRORS, AnalysisResult, EmailDraftContent, FindingDraft
 from app.chunking import DEFAULT_MAX_CHARS, chunk_text
 from app.groq_client import GroqResult, strict_json_schema
@@ -64,12 +65,22 @@ class GroqAnalyzer:
         self._findings_prompt = findings_prompt  # the eval swaps in other prompt versions
 
     def analyze(self, source_text: str) -> AnalysisResult:
-        text, mapping = pseudonymize(source_text)
+        with telemetry.span("analysis.pseudonymize", **{"source.chars": len(source_text)}):
+            text, mapping = pseudonymize(source_text)
         chunks = chunk_text(text, self._max_chunk_chars)
-        drafts = [draft for index, chunk in enumerate(chunks) for draft in self._findings(chunk, index, len(chunks))]
-        verified = _deduplicate(_verify(drafts, mapping, source_text))
+        drafts = []
+        for index, chunk in enumerate(chunks):
+            with telemetry.span("analysis.chunk", **{"chunk.index": index, "chunk.total": len(chunks), "chunk.chars": len(chunk)}):
+                drafts += self._findings(chunk, index, len(chunks))
+        with telemetry.span("analysis.verify_quotes", **{"findings.returned": len(drafts)}) as verifying:
+            verified = _deduplicate(_verify(drafts, mapping, source_text))
+            verifying.set_attribute("findings.kept", len(verified))
         serious = [v for v in verified if v.finding.risk_level != RiskLevel.LOW]
-        email = self._email(serious, mapping) if serious else None
+        if serious:
+            with telemetry.span("analysis.email", **{"findings.serious": len(serious)}):
+                email = self._email(serious, mapping)
+        else:
+            email = None
         logger.info(
             "Groq analysis: %d chunks, %d findings returned, %d kept, email: %s",
             len(chunks), len(drafts), len(verified), email is not None,
@@ -127,6 +138,7 @@ def _valid_drafts(items: list[Any]) -> list[FindingDraft]:
             drafts.append(FindingDraft.model_validate(item))
         except ValidationError:
             logger.info("Dropped a %s finding: invalid_finding", _category_name(item))
+            telemetry.record_finding_dropped("invalid_finding")
     return drafts
 
 
@@ -150,10 +162,12 @@ def _verify(drafts: Iterable[FindingDraft], mapping: PlaceholderMap, source_text
             unknown += missing
         if unknown:
             logger.info("Dropped a %s finding: placeholder_not_restored", draft.category.value)
+            telemetry.record_finding_dropped("placeholder_not_restored")
             continue
         start, end = locate_quote(source_text, restored["quoted_text"])
         if start is None:
             logger.info("Dropped a %s finding: quote_not_found", draft.category.value)
+            telemetry.record_finding_dropped("quote_not_found")
             continue
         restored["quoted_text"] = source_text[start:end]
         try:
@@ -161,6 +175,7 @@ def _verify(drafts: Iterable[FindingDraft], mapping: PlaceholderMap, source_text
             finding = FindingDraft.model_validate({**draft.model_dump(), **restored})
         except ValidationError:
             logger.info("Dropped a %s finding: invalid_after_restore", draft.category.value)
+            telemetry.record_finding_dropped("invalid_after_restore")
             continue
         kept.append(VerifiedFinding(finding=finding, sent=draft))
     return kept

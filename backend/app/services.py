@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import timedelta
 from uuid import UUID, uuid4
 
+from app import telemetry
 from app.context import AppContext
 from app.errors import AppError, ErrorCode
 from app.extraction import ContractInput
@@ -139,7 +140,9 @@ class ContractService:
 
     def _fail_stale(self, user_id: UUID) -> None:
         now = self._clock()
-        self._store.fail_stale_analyses(user_id, now - self._stale_after, now)
+        stale = self._store.fail_stale_analyses(user_id, now - self._stale_after, now)
+        if stale:
+            telemetry.record_analysis("stale", count=stale)
 
     @staticmethod
     def _require(record: ContractRecord | None) -> ContractRecord:

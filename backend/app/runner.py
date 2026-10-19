@@ -5,6 +5,7 @@ queue later). The job decides *what* happens and commits only under its run ID.
 """
 
 import logging
+import time
 from collections.abc import Iterable
 from typing import Protocol
 from uuid import UUID, uuid4
@@ -15,6 +16,7 @@ from app.analyzer import AnalysisResult, FindingDraft
 from app.context import AppContext
 from app.models import EmailDraftRecord, FindingRecord
 from app.quotes import locate_quote
+from app import telemetry
 from app.telemetry import contract_id_var
 
 logger = logging.getLogger(__name__)
@@ -38,18 +40,24 @@ class BackgroundTasksRunner:
 def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     """Analyze one contract for one run. Never raises."""
     token = contract_id_var.set(str(contract_id))  # every log line of this run carries the contract id
+    started = time.monotonic()
     try:
-        _run_analysis(context, contract_id, run_id)
+        with telemetry.span("analysis.run", **{"contract.id": str(contract_id)}) as current:
+            outcome = _run_analysis(context, contract_id, run_id)
+            if outcome == "failed":
+                telemetry.fail_span(current, "analysis_failed")
+        telemetry.record_analysis(outcome, time.monotonic() - started)
     finally:
         contract_id_var.reset(token)
 
 
-def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
+def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> str:
+    """Runs one analysis and returns its outcome: done, failed or superseded (a newer run replaced it)."""
     store = context.store
     contract = store.get_contract_for_analysis(contract_id, run_id)
     if contract is None:
         logger.info("Analysis run %s for contract %s is no longer current", run_id, contract_id)
-        return
+        return "superseded"
     try:
         raw = context.analyzer.analyze(contract.source_text)
         # Re-validate: an analyzer may build its result without validation.
@@ -57,7 +65,7 @@ def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     except Exception:
         logger.exception("Analysis failed for contract %s", contract_id, extra={"code": "analysis_failed"})
         store.fail_analysis(contract_id, run_id, context.clock())
-        return
+        return "failed"
     now = context.clock()
     findings = place_findings(contract_id, contract.source_text, result.findings)
     email = (
@@ -67,6 +75,8 @@ def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
     )
     if not store.complete_analysis(contract_id, run_id, findings, email, now):
         logger.info("Discarded result of superseded run %s for contract %s", run_id, contract_id)
+        return "superseded"
+    return "done"
 
 
 def place_findings(

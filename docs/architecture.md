@@ -230,15 +230,16 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 - **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to the Lightsail container logs automatically and to Loki through OTLP logs.
 - **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
 - **Metrics:**
-  - `analyses_total{outcome=done|failed|stale}`
-  - `analysis_duration_seconds`
-  - `llm_requests_total{model,status}`, `llm_tokens_total{model,kind=input|output}`, `llm_rate_limited_total`
+  - `analyses_total{outcome=done|failed|stale|superseded}` (`superseded`: a newer run replaced this one; leave it out of the failure rate)
+  - `analysis_duration_seconds{outcome}`
+  - `llm_requests_total{model,status=ok|rate_limited|server_error|network_error|invalid_json|client_error}` (one per HTTP attempt), `llm_tokens_total{model,kind=input|output}`, `llm_rate_limited_total{model}`
   - `llm_request_duration_seconds{model}` (one chunk or the email request: shows whether a slow analysis is the model or the queue in front of it)
-  - `llm_output_truncated_total{model,retried}`: answers cut at `max_completion_tokens` (`finish_reason: "length"`, section 4)
+  - `llm_output_truncated_total{model,retried=true|false}`: answers cut at `max_completion_tokens` (`finish_reason: "length"`, section 4); `true` when a retry follows, `false` when the cut was final, so `retried="false"` is the alert
   - `llm_cost_usd_total{model}`: from token usage and the price per model, once prod runs on a paid tier
-  - `findings_dropped_total{reason=quote_not_found|placeholder_not_restored}`
-  - `api_errors_total{code}`
-  - `history_queries_total{route,outcome}`
+  - `findings_dropped_total{reason=quote_not_found|placeholder_not_restored|invalid_finding|invalid_after_restore}`
+  - `api_errors_total{code}` (the error envelope's code, upper case, for example `CONTRACT_NOT_FOUND`)
+  - `history_queries_total{route,outcome}`: not implemented yet, `POST /query` answers `501` until the text-to-SQL agent exists
+- **Manual spans:** `contract.extract` (file type, bytes, characters), `analysis.run` (contract id), and inside it `analysis.pseudonymize`, one `analysis.chunk` per chunk, `analysis.verify_quotes` (findings returned and kept), `analysis.email`, and `llm.complete_json` around every model call (model, schema, token counts, finish reason). A failed span carries the exception type or a short code (`analysis_failed`), never the message. The background analysis runs inside the request's trace, so one `trace_id` covers upload, queries and analysis.
 - **Alerts:**
   - analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s;
   - LLM daily budget: on Groq free, `llm_tokens_total` over the last 24 h above 80 % of the 200,000 tokens/day quota, so analyses do not start failing at the end of the day without warning; on a paid tier, a budget alert in the provider's billing console instead;
