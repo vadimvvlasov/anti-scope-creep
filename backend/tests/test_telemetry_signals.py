@@ -201,3 +201,47 @@ def test_no_contract_text_reaches_spans_metrics_or_logs(capture):
     ]
     leaked = [text for text in must_not_appear if text in everything]
     assert leaked == []
+
+
+def test_every_counter_series_starts_at_zero_so_the_first_event_is_an_increase(capture):
+    from app.errors import ErrorCode
+
+    telemetry.init_series("some-model")
+
+    assert capture.points("analyses") == {(("outcome", o),): 0 for o in telemetry.ANALYSIS_OUTCOMES}
+    assert capture.points("api.errors") == {(("code", str(code)),): 0 for code in ErrorCode}
+    assert capture.points("findings.dropped") == {(("reason", r),): 0 for r in telemetry.DROP_REASONS}
+    assert set(capture.points("llm.requests")) == {
+        (("model", "some-model"), ("status", s)) for s in telemetry.LLM_STATUSES}
+    assert capture.points("llm.output_truncated") == {
+        (("model", "some-model"), ("retried", r)): 0 for r in ("true", "false")}
+    assert capture.points("llm.rate_limited") == {(("model", "some-model"),): 0}
+
+    telemetry.record_analysis("failed")
+    assert capture.points("analyses")[(("outcome", "failed"),)] == 1
+
+
+def test_a_stub_deployment_creates_no_llm_series(capture):
+    telemetry.init_series("")
+
+    assert capture.points("llm.requests") == {} and capture.points("llm.tokens") == {}
+    assert capture.points("analyses")  # the analysis and error series still exist
+
+
+def test_the_label_values_used_in_the_code_are_all_pre_created():
+    import re
+    from pathlib import Path
+
+    import httpx
+
+    from app.groq_client import _attempt_status
+
+    statuses = {_attempt_status(r) for r in (
+        None, httpx.Response(200), httpx.Response(429), httpx.Response(503), httpx.Response(404),
+        httpx.Response(400, json={"error": {"code": "json_validate_failed", "message": "Failed to validate JSON"}}))}
+    assert statuses <= set(telemetry.LLM_STATUSES)
+    source = Path(__file__).parent.parent.joinpath("app", "groq_analyzer.py").read_text(encoding="utf-8")
+    assert set(re.findall(r'record_finding_dropped\("(\w+)"\)', source)) == set(telemetry.DROP_REASONS)
+    runner = Path(__file__).parent.parent.joinpath("app", "runner.py").read_text(encoding="utf-8")
+    used = set(re.findall(r'return "(\w+)"', runner)) | {"done"}
+    assert used <= set(telemetry.ANALYSIS_OUTCOMES)
