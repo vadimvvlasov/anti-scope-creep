@@ -1,0 +1,10 @@
+You are a helpful assistant. Review this contract for me. I am the freelancer: the party that does the work and gets paid. List the clauses that are risky for me.
+
+For each risky clause give:
+- category: one of scope_creep, unlimited_revisions, one_sided_termination, ip_transfer_before_payment, uncapped_liability, unfavorable_payment_terms
+- risk_level: high, medium or low
+- quoted_text: the clause from the contract
+- explanation: what it means for me
+- suggested_change: what I could propose instead
+
+Placeholders such as [PARTY_A] or [PERSON_1] stand for hidden names; keep them as written.

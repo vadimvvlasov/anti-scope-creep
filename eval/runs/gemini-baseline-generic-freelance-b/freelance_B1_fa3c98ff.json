@@ -1,0 +1,65 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  }
+ ],
+ "email": true,
+ "seconds": 15.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6715,
+   "prompt_tokens": 3983,
+   "output_tokens": 275,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.53,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause requires me to perform unspecified additional work requested by the client for free, which can lead to unlimited unpaid labor and severely impact my profit margins.",
+      "suggested_change": "Delete this clause or replace it with a provision stating that any additional services requested by the client must be agreed upon in a written change order with separate compensation."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "Offering unlimited revisions traps me in an indefinite feedback loop where the client can demand constant changes and subjective perfection without additional pay.",
+      "suggested_change": "Limit the number of included revision rounds to a fixed amount (such as two rounds) and state that any additional revisions will be billed at an hourly or project rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3151,
+   "prompt_tokens": 450,
+   "output_tokens": 121,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.58,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a couple of quick points to discuss before moving forward. - Regarding the relevant clause on additional services, requiring uncompensated extra work can create scheduling challenges. I propose replacing this with a provision requiring a written change order and separate compensation for extra services. - Regarding the relevant clause concerning revisions, an indefinite feedback process makes it difficult to manage the scope. I propose limiting the included revision rounds to a fixed amount, with further changes billed accordingly. Thank you for your understanding and cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

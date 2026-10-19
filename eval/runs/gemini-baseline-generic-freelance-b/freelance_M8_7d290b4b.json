@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Contractor may invoice milestone amounts of USD 7,500, USD 8,625, and USD 9,250.",
+   "start": 3955,
+   "end": 4035
+  }
+ ],
+ "email": true,
+ "seconds": 14.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7600,
+   "prompt_tokens": 4034,
+   "output_tokens": 226,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.34,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "This assigns intellectual property rights to the client instantly upon creation rather than upon final payment, putting you at risk if the client fails to pay.",
+      "suggested_change": "Amend the clause to state that intellectual property rights transfer to the client only upon receipt of full payment for the deliverables."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Contractor may invoice milestone amounts of USD 7,500, USD 8,625, and USD 9,250.",
+      "explanation": "The milestone amounts combined with the initial deposit exceed the total estimated project fee of USD 24,875, creating mathematical inconsistencies and payment confusion.",
+      "suggested_change": "Revise the milestone and deposit figures so that their sum precisely matches the total estimated project fee of USD 24,875."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2271,
+   "prompt_tokens": 450,
+   "output_tokens": 136,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the intellectual property clause, the text currently assigns these rights instantly upon creation rather than upon final payment, and I propose to amend the clause to state that intellectual property rights transfer to the client only upon receipt of full payment for the deliverables. - Regarding the relevant clause on invoicing, the milestone amounts combined with the initial deposit create mathematical inconsistencies, and I propose to revise the milestone and deposit figures so that their sum precisely matches the total estimated project fee of USD 24,875. Thank you and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

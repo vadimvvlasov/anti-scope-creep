@@ -1,0 +1,134 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3737,
+   "end": 3896
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13023,
+   "end": 13048
+  }
+ ],
+ "email": true,
+ "seconds": 89.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4143,
+   "prompt_tokens": 2621,
+   "output_tokens": 1522,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.32,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a clear definition of what is \"minor\" or how much additional work is permissible. In practice the client could keep adding small changes that cumulatively become a significant amount of extra work, leaving you to perform unpaid scope creep.",
+      "suggested_change": "Add a concrete limitation, e.g., \"Minor clarifications that do not increase the total estimated effort by more than 5% of the original scope may be made without a change order. Any clarification exceeding this threshold shall be treated as a change request and billed accordingly.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 60‑day payment window can strain cash flow, especially for a freelance business. Although interest accrues on late payments, the client may still delay payment without penalty for up to two months, increasing financial risk for you.",
+      "suggested_change": "Reduce the payment term to Net 30 and increase the late‑payment interest to 1.5% per month, or add a clause that permits you to suspend services after 30 days of non‑payment."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "Fifteen revision cycles are unusually high for creative work and can lead to extensive, unpaid labor. Even though extra revisions require a change order, the client may still exhaust the 15 rounds with minor tweaks, consuming time and resources.",
+      "suggested_change": "Limit ordinary revisions to 3–5 rounds and specify that any further revision will be billed as a change order. For example: \"The Contractor will provide up to five (5) rounds of ordinary revisions per Deliverable. Additional revisions will be treated as change requests and billed at the standard hourly rate.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3146,
+   "prompt_tokens": 1856,
+   "output_tokens": 1290,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.25,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "The contract grants the Client up to 15 rounds of revisions at no extra cost. For a freelancer, this can translate into a large amount of uncompensated work, especially if the Client makes extensive changes each round, potentially eroding profitability and extending project timelines.",
+      "suggested_change": "Limit the free revision allowance to a reasonable number (e.g., 3 rounds) and specify that any additional revisions will be billed at an agreed hourly or per‑revision rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "A Net 60 payment term means the Contractor must wait up to 60 days after invoicing to receive payment. This can create cash‑flow strain, especially for smaller freelancers who rely on timely payments to cover expenses and reinvest in the business.",
+      "suggested_change": "Negotiate a shorter payment term, such as Net 30, or include an early‑payment discount (e.g., 2% discount for payment within 15 days)."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The liability cap is set higher than the total project fee (USD 24,875). If a claim arises, the Contractor could be liable for up to USD 35,000, which exceeds the amount they are being paid and may be disproportionate to the risk exposure.",
+      "suggested_change": "Adjust the liability cap to be equal to or a modest multiple of the total fee (e.g., 1.5 × total fee, approximately USD 37,300) or cap it at the total fee itself, whichever is more appropriate for the scope of work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2170,
+   "prompt_tokens": 1253,
+   "output_tokens": 917,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.67,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you are well.\n\n- The relevant clause permits \"minor clarifications\" without defining what is minor or how much extra work is allowed. This could let the scope expand without a formal change order. I propose adding a concrete limit, such as allowing clarifications that do not increase the total estimated effort by more than 5% of the original scope; anything beyond that would be treated as a change request and billed accordingly.\n- The payment term in the agreement is Net 60, which can strain cash flow for a freelancer. I suggest reducing the term to Net 30 and increasing the late‑payment interest to 1.5% per month, or adding a provision that allows suspension of services after 30 days of non‑payment.\n- The clause allowing 15 rounds of ordinary revisions is unusually high and may lead to extensive unpaid work. I recommend limiting ordinary revisions to five (5) rounds per deliverable, with any additional revisions handled as change requests and billed at the standard hourly rate.\n- The revision allowance of 15 rounds duplicates the previous point and similarly risks excessive unpaid effort. I propose capping the free revision allowance at three (3) rounds and billing any further revisions at an agreed hourly or per‑revision rate.\n- The payment period of Net 60 repeats the earlier concern about cash‑flow pressure. I suggest adopting a Net 30 term, or offering an early‑payment discount such as 2% for payment within 15 days.\n- The liability cap of USD 35,000 exceeds the total project fee and may be disproportionate to the risk. I propose adjusting the cap to be equal to the total fee or, at most, 1.5 × the fee (approximately USD 37,300), whichever is more appropriate.\n\nThank you for considering these adjustments."
+   }
+  }
+ ],
+ "dropped": []
+}

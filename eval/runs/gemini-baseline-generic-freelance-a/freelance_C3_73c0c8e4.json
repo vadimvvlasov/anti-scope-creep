@@ -1,0 +1,51 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 949,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 17.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5193,
+   "prompt_tokens": 949,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.29,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "Although described as a non-binding estimate, setting specific hour and budget targets creates client expectations and potential disputes over project velocity, opening the door to scope creep and pressure to absorb extra work.",
+      "suggested_change": "Add a clear change-order mechanism stating that any additional hours required due to evolving requirements will be formally documented and billed at the agreed hourly rates without penalty."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2399,
+   "prompt_tokens": 407,
+   "output_tokens": 115,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a wonderful day. Before we finalize everything, I would like to request a minor update to the agreement. - Regarding the relevant clause on project hours and budget, listing specific targets can create confusion about project scope and workload, so I propose including a clear change-order mechanism to ensure any additional hours needed for evolving requirements are documented and billed at the standard hourly rates. Thank you for your time, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

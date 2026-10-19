@@ -1,0 +1,74 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "SCHEDULE 2   LICENSED CONTENT     The Licensed Content consists of content and images and code.",
+   "start": 39435,
+   "end": 39530
+  }
+ ],
+ "email": true,
+ "seconds": 21.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14873,
+   "prompt_tokens": 8726,
+   "output_tokens": 443,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.71,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "3.1 Content License... 5.1... (c) US$100,000 upon on or before March 28, 2014.",
+      "explanation": "The agreement grants the full content license upon signing/execution, while allowing a significant portion of the license fee ($100,000) to be paid later on March 28, 2014. This creates the risk that Licensee receives full rights and content access before final payment is completed.",
+      "suggested_change": "Condition the final delivery of the Licensed Content and the full effectiveness of the license grant upon receipt of the final $100,000 payment installment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "5.3 (a) Not later than the fifteenth (15th) calendar day of each calendar quarter (or the first business day thereafter), Licensee shall deliver to Licensor (i) a report accurately showing Gross Revenues of the Licensee for the previous quarter... and (ii) payment of the Royalties payable for such previous quarter...",
+      "explanation": "Royalty payments and gross revenue reports are only due quarterly, with a 15-day reporting period after each quarter ends. This delays the receipt of earned royalty revenue for several months.",
+      "suggested_change": "Require monthly reporting and royalty payments within ten (10) days following the end of each calendar month."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "SCHEDULE 2 LICENSED CONTENT The Licensed Content consists of content and images and code.",
+      "explanation": "Defining the Licensed Content broadly as 'content and images and code' without specific itemization or boundaries creates ambiguity, making Licensor potentially vulnerable to demands for additional unagreed content or code modifications.",
+      "suggested_change": "Replace the vague description in Schedule 2 with an explicit, itemized inventory or manifest of all specific content items, images, and code files included in the license."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2061,
+   "prompt_tokens": 351,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Before I sign, I would like to propose a small adjustment to the agreement. - In the relevant clause, defining the licensed content too broadly creates ambiguity. I propose that we replace this vague description in Schedule 2 with an explicit, itemized inventory of all specific content items, images, and code files. Thank you, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

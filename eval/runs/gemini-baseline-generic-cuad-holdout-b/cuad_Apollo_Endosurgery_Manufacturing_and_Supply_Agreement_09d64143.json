@@ -1,0 +1,65 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "start": 29705,
+   "end": 30289
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "ESTABLISHMENT shall manufacture the Product in accordance with the Specifications of this Agreement, and shall comply with all quality system requirement communicated by Apollo from time to time, ISO 13485:2012 and any applicable cGMPs and all other applicable local, United States or European regulations or laws in connection with the manufacture, testing, packaging, labeling, shipping, and handling of the Product.",
+   "start": 7361,
+   "end": 7779
+  }
+ ],
+ "email": true,
+ "seconds": 21.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15552,
+   "prompt_tokens": 10540,
+   "output_tokens": 422,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.34,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "explanation": "Section 8.4 excludes indemnity liabilities under Article 8 from the overall limitation of liability. Because Establishment's indemnification obligations under Section 8.2 are broad and uncapped, Establishment faces unlimited financial exposure for third-party claims or breaches.",
+      "suggested_change": "Propose capping indemnification obligations and overall liability to a reasonable multiple of fees paid under the Agreement and subject indemnification to the general liability cap."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] shall manufacture the Product in accordance with the Specifications of this Agreement, and shall comply with all quality system requirement communicated by Apollo from time to time, ISO 13485:2012 and any applicable cGMPs and all other applicable local, United States or European regulations or laws in connection with the manufacture, testing, packaging, labeling, shipping, and handling of the Product.",
+      "explanation": "Allowing Apollo to impose new quality system requirements from time to time without explicitly requiring a formal change order or price adjustment creates the risk of uncompensated operational burdens and scope expansion.",
+      "suggested_change": "Add language stating that any new quality system requirements requested by Apollo that impact Establishment's manufacturing costs or processes will require a mutually agreed-upon written change order adjusting the pricing and timelines accordingly."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3670,
+   "prompt_tokens": 652,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together and have a couple of minor requests before signing: - In the relevant clause concerning the limitation of liability, the current terms leave indemnification obligations uncapped, which creates unlimited financial exposure; we propose capping indemnification and overall liability to a reasonable multiple of the fees paid under the agreement. - In the relevant clause concerning manufacturing specifications, the agreement currently allows for new quality system requirements to be introduced over time without explicitly requiring a formal change order; we propose requiring a mutually agreed-upon written change order to adjust pricing and timelines whenever new requirements impact costs or processes. Please let me know if these adjustments work for you so we can finalize the agreement. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,79 @@
+{
+ "id": "freelance:C1",
+ "chars": 19406,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1846,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3949
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9026,
+   "end": 9197
+  }
+ ],
+ "email": true,
+ "seconds": 25.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10329,
+   "prompt_tokens": 4008,
+   "output_tokens": 346,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.27,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "Informal communication channels can easily be used by the client to request small additions that accumulate into substantial unpaid scope creep over time.",
+      "suggested_change": "Require all changes, clarifications, or task additions to be formally documented and approved in a written change order prior to commencing work."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 30 terms require you to finance project deliverables for up to a month after invoicing, which can create cash flow bottlenecks for an independent contractor.",
+      "suggested_change": "Negotiate Net 15 payment terms and ensure upfront milestone payments are strictly enforced before work progresses."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "A 20-day termination for convenience clause allows the client to cancel the project abruptly, paying only for work performed up to that date without covering non-cancellable expenses or lost project value.",
+      "suggested_change": "Extend the notice period to 30 days and add a kill fee requiring payment for all work in progress plus a percentage of remaining project fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3339,
+   "prompt_tokens": 571,
+   "output_tokens": 172,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sharing the agreement. I am looking forward to collaborating, and I have a few small requests before signing. - Regarding the relevant clause on project communications, informal requests can accumulate into unpaid scope creep, so I propose that we require all changes and task additions to be documented and approved in a written change order beforehand. - Regarding the relevant clause on payment terms, Net 30 can create cash flow delays for independent contractors, so I suggest adjusting to Net 15 terms with upfront milestone payments strictly enforced. - Regarding the relevant clause on termination, a short notice period allows for abrupt cancellation without covering lost value, so I recommend extending the notice to 30 days and adding a provision for work in progress. Thank you for understanding, and I look forward to your response."
+   }
+  }
+ ],
+ "dropped": []
+}

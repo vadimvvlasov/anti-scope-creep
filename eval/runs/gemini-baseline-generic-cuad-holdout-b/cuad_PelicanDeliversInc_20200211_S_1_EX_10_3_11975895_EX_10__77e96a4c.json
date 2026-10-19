@@ -1,0 +1,110 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Developer will design, develop, and deliver, satisfactory to Client, the \"Pelican Delivers Application Phase 1\" (collectively, the Subject Program), and all elated Project services (collectively, the Services), Project work product (collectively, the Deliverables), and user manuals and other written material that describe he functionality or assist in the use of the Subject Program (collectively, the Documentation), pursuant to the Project specifications detailed in the SO",
+   "start": 738,
+   "end": 1215
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11621,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 22.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13926,
+   "prompt_tokens": 6720,
+   "output_tokens": 968,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.25,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Developer will design, develop, and deliver, satisfactory to Client, the \"Pelican Delivers Application Phase 1\" (collectively, the Subject Program), and all elated Project services (collectively, the Services), Project work product (collectively, the Deliverables), and user manuals and other written material that describe he functionality or assist in the use of the Subject Program (collectively, the Documentation), pursuant to the Project specifications detailed in the SO",
+      "explanation": "The phrase \"satisfactory to Client\" creates a subjective standard of quality that the client can exploit to demand endless modifications, while vague catch-alls like \"all related Project services\" expose you to uncompensated extra work.",
+      "suggested_change": "Remove subjective qualifiers like \"satisfactory to Client\" and tie acceptance strictly to objective criteria in the Specifications; clearly enumerate all deliverables to prevent expansion of duties."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement pursuant to Section 12 of this Agreement.",
+      "explanation": "Allowing the client to repeat the testing and correction procedure indefinitely (\"repeating the procedure set forth above\") can trap you in endless revision cycles without additional pay.",
+      "suggested_change": "Limit the number of allowable revision cycles to a specific number (e.g., one round of bug-fixes per milestone), and specify that any additional changes requested thereafter will be billed at your standard hourly rate."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement pursuant to Section 12 of this Agreement.",
+      "explanation": "This clause grants the client the unilateral right to terminate the agreement if deliverables fail acceptance tests, without offering a corresponding right for you to terminate if the client fails to cooperate, test in good faith, or make timely payments.",
+      "suggested_change": "Make termination rights mutual, ensuring that either party may terminate for uncured material breaches or persistent failure to cooperate."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "This clause immediately assigns all intellectual property rights to the client upon creation or performance, rather than upon receipt of final payment, leaving you with no leverage if the client withholds payment.",
+      "suggested_change": "Revise the clause to state that intellectual property ownership remains with the Developer and only transfers to the Client upon receipt of full payment for the applicable deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Developer shall defend, indemnify and hold harmless Client, its members owners, officers, employees, independent contractors and agents, from and against all losses, claims, liabilities or damages and any related costs and expenses, including attorneys' fees and costs arising out of, or in any way related to any claim or action against Client arising out of or in any way related to: (a) Developer's material breach of his Agreement...",
+      "explanation": "The contract lacks an overall limitation of liability or liability cap, exposing you to potentially unlimited damages for breach or indemnification claims that could vastly exceed your total earnings under the agreement.",
+      "suggested_change": "Insert a mutual limitation of liability clause capping total liability to the total fees paid by the client under the Agreement, and exclude consequential or indirect damages."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In the event of a termination or expiration of this Agreement or any SOW for any reason, developer will, as requested by and at additional cost to Client, provide up to three (3) months of Fee billable assistance (collectively, the Termination Assistance Services) in transitioning from Developer to an alternative software service provider...",
+      "explanation": "Requiring you to provide up to three months of mandatory transition and termination assistance upon expiration or termination locks up your resources indefinitely and delays your ability to take on new projects.",
+      "suggested_change": "Make termination assistance optional at your discretion, or limit the mandatory transition period to a much shorter timeframe (e.g., two weeks) with guaranteed payment terms."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2381,
+   "prompt_tokens": 543,
+   "output_tokens": 149,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.48,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sending over the agreement. I have reviewed it and would like to propose a few minor changes before we proceed. - Regarding the relevant clause on quality and scope, the current wording uses a subjective standard and broad terms, so I propose removing subjective qualifiers and tying acceptance strictly to objective criteria in the specifications while clearly enumerating all deliverables. - Regarding the intellectual property clause, the agreement assigns ownership immediately upon creation rather than upon receipt of final payment, so I propose revising it to state that ownership transfers only upon receipt of full payment for the applicable deliverables. Please let me know if these updates work for you. Best regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unlimited_revisions",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

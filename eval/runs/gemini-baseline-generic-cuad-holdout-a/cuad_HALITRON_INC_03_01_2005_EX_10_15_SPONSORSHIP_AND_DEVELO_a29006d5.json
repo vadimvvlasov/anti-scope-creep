@@ -1,0 +1,77 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Smith agrees to cooperate, consult with and aid TDA in connection with the development of TDA's \"Golf Instruction Related Product\" (hereinafter defined) and the advertising, marketing and publicity thereof. As used herein, the term \"Golf Instruction Related Product\" shall mean any interactive entertainment software product related to golf instruction which is produced and released during the \"Term\" (hereinafter defined in Section 5.1) and which may be published in multiple versions (e.g., versions for play on handheld mobile devices (including cell phones), for sale in any and all territories.",
+   "start": 876,
+   "end": 1476
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 20.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10826,
+   "prompt_tokens": 6175,
+   "output_tokens": 485,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.69,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Smith agrees to cooperate, consult with and aid TDA in connection with the development of TDA's \"Golf Instruction Related Product\" (hereinafter defined) and the advertising, marketing and publicity thereof. As used herein, the term \"Golf Instruction Related Product\" shall mean any interactive entertainment software product related to golf instruction which is produced and released during the \"Term\" (hereinafter defined in Section 5.1) and which may be published in multiple versions (e.g., versions for play on handheld mobile devices (including cell phones), for sale in any and all territories.",
+      "explanation": "This clause creates open-ended obligations for you to assist with an unspecified number of software products, multiple versions, and global territories without capping the time, hours, or effort required.",
+      "suggested_change": "Limit the scope to a specific list of products or versions, cap the number of consulting hours or meetings required, and state that additional services will be billed separately."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "TDA receives permanent ownership and all rights to your work immediately upon creation or use, while your compensation is spread out over time via ongoing royalties and shares, putting you at risk if they fail to pay.",
+      "suggested_change": "Stipulate that all intellectual property rights and ownership in the Results and Proceeds remain with you until you have received all payments and compensation in full."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Option to convert annual royalties to TDA common stock at a $10 of stock for every $1 of Royalty converted... This one-time option would cease all future royalties.",
+      "explanation": "The conversion formula is heavily weighted against you ($10 of stock for every $1 of royalty), and exercising the option permanently terminates all of your future royalty earnings, risking massive financial loss if the products become successful.",
+      "suggested_change": "Remove the provision that terminates future royalties upon stock conversion, or ensure any stock conversion is done at fair market value without forfeiting ongoing royalty streams."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2803,
+   "prompt_tokens": 576,
+   "output_tokens": 189,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Thank you for sending over the agreement for my review. I would like to propose a couple of small adjustments before we move forward. - Regarding the relevant clause on project scope, it creates open-ended obligations to assist with an unspecified number of software products and versions without capping the time or effort required. I propose we limit the scope to a specific list of products or versions, cap the number of consulting hours or meetings required, and state that additional services will be billed separately. - Regarding the relevant clause on ownership, it transfers permanent rights to the client immediately while compensation is spread out over time. I propose we stipulate that all intellectual property rights and ownership in the results and proceeds remain with the provider until all payments and compensation have been received in full. Thank you for your time and understanding, and I look forward to finalizing this soon."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

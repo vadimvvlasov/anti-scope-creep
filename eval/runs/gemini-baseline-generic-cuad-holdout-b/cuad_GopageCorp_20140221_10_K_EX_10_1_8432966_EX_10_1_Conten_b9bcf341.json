@@ -1,0 +1,88 @@
+{
+ "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement",
+ "chars": 39622,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Licensed Content consists of content and images and code.",
+   "start": 39469,
+   "end": 39530
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "During the Term, except as otherwise set forth herein, Licensor shall make available to Licensee the Licensed Content for display on the Licensed Site.",
+   "start": 4889,
+   "end": 5040
+  }
+ ],
+ "email": true,
+ "seconds": 24.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15128,
+   "prompt_tokens": 8726,
+   "output_tokens": 693,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.97,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Licensed Content consists of content and images and code.",
+      "explanation": "The description of deliverables in Schedule 2 is extremely vague and open-ended. This creates a significant risk of scope creep where the Licensee can demand additional code, custom features, or extensive content updates under the fixed $200,000 fee without additional compensation.",
+      "suggested_change": "Replace Schedule 2 with a detailed, itemized list of specific content items, assets, and code modules included in the license, and explicitly state that any custom development, additional content, or extra updates will be billed separately at an agreed hourly or project rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "The License Fee shall be due and payable as follows: (a) US$50,000 upon signing the Memorandum of Understanding... (b) US$50,000 upon signing of this Agreement; and (c) US$100,000 upon on or before March 28, 2014.",
+      "explanation": "Half of the total license fee ($100,000 out of $200,000) is deferred until a future calendar date after the agreement is signed and content is delivered. This exposes you to non-payment risk as you provide full access to your intellectual property before receiving the final payment installment.",
+      "suggested_change": "Structure the payment terms so that a larger percentage or the full remaining balance is paid upon delivery of the Licensed Content, or tie milestone payments strictly to specific delivery deliverables rather than calendar dates."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "During the Term, except as otherwise set forth herein, Licensor shall make available to Licensee the Licensed Content for display on the Licensed Site.",
+      "explanation": "Although Section 3.4 states that no ownership rights are conveyed, Section 2 requires you to make the Licensed Content and code available immediately upon signing even though half of the license fee is deferred to March 28, 2014. Granting full access to digital assets and code before receiving full payment creates practical risks if the buyer defaults.",
+      "suggested_change": "Withhold delivery and access to the final digital content and code files until all milestone payments including the final March 28 installment have been successfully paid in full."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Licensor shall indemnify, defend and hold harmless Licensee against all Losses arising out of or resulting from any claim... that the Licensed Content or Licensor's Marks... infringes a copyright or trademark right of any third party...",
+      "explanation": "As the content provider, you provide an indemnification for third-party IP infringement. While Section 9.2 places a general liability cap, IP infringement claims and associated legal defense costs can escalate rapidly, leaving you vulnerable if a major third-party claim arises.",
+      "suggested_change": "Cap your total indemnification liability explicitly at the total fees received under the agreement, exclude indirect or consequential damages, and include a right for Licensor to procure a replacement, modify the content, or terminate the license to mitigate potential infringement claims."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3270,
+   "prompt_tokens": 539,
+   "output_tokens": 137,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am writing to propose a few minor adjustments to the agreement before signing. - Regarding the scope of deliverables, the agreement is currently quite broad, so I propose that we include a detailed, itemized list of specific content items and code modules, and clarify that any additional updates will be billed separately. - Regarding the delivery timeline, the relevant clause requires providing access to the digital content before the final payment is completed, and I propose adjusting this so that final delivery and file access are provided after all payments have been successfully made. Thank you for your flexibility and understanding. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

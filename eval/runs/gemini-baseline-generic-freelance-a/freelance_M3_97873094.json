@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8183,
+   "end": 8386
+  }
+ ],
+ "email": true,
+ "seconds": 14.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6863,
+   "prompt_tokens": 4044,
+   "output_tokens": 248,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.2,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "This pay-when-paid clause means I might not get paid for my work until the client's end customer pays them, which is entirely outside of my control and could indefinitely delay my payment.",
+      "suggested_change": "Propose removing the condition regarding the client's customer paying, and instead state that invoices are payable within 15 days of receipt."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "This clause creates a severe asymmetry by capping the client's liability at USD 35,000 while leaving my liability completely uncapped for any losses, damages, or claims arising from the services.",
+      "suggested_change": "Propose a mutual liability cap equal to the total fees payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2637,
+   "prompt_tokens": 474,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the agreement and would like to request a few adjustments prior to signing. - Regarding the payment timeline, since the relevant clause ties my payment to the client's customer which could cause indefinite delays, I propose removing that condition so invoices are payable within 15 days of receipt. - Regarding the liability terms, because the agreement currently caps the client's liability while leaving my liability completely uncapped, I propose a mutual liability cap equal to the total fees payable under the agreement. Thank you, I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

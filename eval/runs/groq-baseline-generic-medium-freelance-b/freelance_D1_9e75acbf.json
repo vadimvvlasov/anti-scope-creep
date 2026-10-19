@@ -1,0 +1,77 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "start": 9220,
+   "end": 9391
+  }
+ ],
+ "email": true,
+ "seconds": 87.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3849,
+   "prompt_tokens": 2670,
+   "output_tokens": 1179,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.45,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a formal change order, but the definition of what constitutes a material increase in workload is vague. In practice the client could ask for additional features or deliverables that are presented as \"minor\" and the contractor would have to perform them without extra compensation, leading to scope creep.",
+      "suggested_change": "Add a concrete threshold and a requirement for written approval: \"Minor clarifications may be made through ordinary project communications, provided that such clarification does not increase the total estimated hours or cost by more than 5%. Any clarification that exceeds this threshold shall be documented as a change request and may be subject to additional fees.\""
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+      "explanation": "The client can unilaterally end the contract with short notice, leaving the contractor without the anticipated future revenue and potentially with partially completed work that may not be recoverable. While the client must pay for work performed, the contractor bears the risk of lost profit and may have to halt ongoing projects abruptly.",
+      "suggested_change": "Introduce mutual termination rights and a longer notice period, or include a termination fee: \"Either party may terminate this Agreement upon 30 days' written notice. If the Client terminates without cause, the Client shall also pay a termination fee equal to 20% of the remaining scheduled fees to compensate the Contractor for lost opportunity and transition costs.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2683,
+   "prompt_tokens": 1862,
+   "output_tokens": 821,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.67,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1582,
+   "prompt_tokens": 777,
+   "output_tokens": 805,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.3,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\n- The relevant clause 2.2 currently permits “minor clarifications” without a formal change order, but it does not define what constitutes a material increase in workload. To avoid scope creep, I propose adding a concrete threshold and a requirement for written approval: minor clarifications may be made through ordinary project communications provided they do not increase the total estimated hours or cost by more than 5 %; any clarification exceeding this threshold should be documented as a change request and may be subject to additional fees.\n- The relevant clause 12.2 allows either party to terminate the agreement with 20 days’ written notice, which could leave the contractor without expected revenue. I suggest introducing mutual termination rights with a longer notice period and a termination fee for client‑initiated termination without cause: either party may terminate the agreement upon 30 days’ written notice, and if the client terminates without cause, the client shall also pay a termination fee equal to 20 % of the remaining scheduled fees to compensate the contractor for lost opportunity and transition costs.\n\nThanks for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

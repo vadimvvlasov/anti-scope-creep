@@ -1,0 +1,107 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+   "start": 1120,
+   "end": 1227
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Dragon Systems shall be entitled to deduct from or set off against any sums which Dragon Systems may be liable to pay to MMI any amounts owed by MMI, its affiliated entities, subsidiaries or successors in interest.",
+   "start": 2980,
+   "end": 3194
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "start": 3741,
+   "end": 3976
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "MMI shall immediately notify Dragon Systems in writing of any theft, loss or damage to any Dragon Systems property and shall indemnify Dragon Systems in respect of the same.",
+   "start": 6860,
+   "end": 7033
+  }
+ ],
+ "email": true,
+ "seconds": 24.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5448,
+   "prompt_tokens": 1956,
+   "output_tokens": 623,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.66,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+      "explanation": "Allows the client to expand the scope of work without explicitly defining additional pricing or a formal change-order process upfront.",
+      "suggested_change": "Propose adding language requiring any scope extensions to be mutually agreed upon in writing with corresponding adjustments to fees and timelines."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "The client has the right to terminate the agreement at any time without cause, while [PARTY_B] does not have the same mutual right, leaving [PARTY_B] vulnerable after investing in resources.",
+      "suggested_change": "Make the termination-for-convenience clause mutual, or ensure [PARTY_B] is compensated for all work performed and costs incurred up to the termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_A] shall be entitled to deduct from or set off against any sums which [PARTY_A] may be liable to pay to [PARTY_B] any amounts owed by [PARTY_B], its affiliated entities, subsidiaries or successors in interest.",
+      "explanation": "Allows the client to withhold payments or deduct money based on alleged disputes or debts, severely impacting cash flow.",
+      "suggested_change": "Remove the set-off right or specify that undisputed amounts must be paid in full and set-offs require mutual written consent."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall reimburse [PARTY_A] and hold [PARTY_A] harmless from any liabilities or obligations imposed upon [PARTY_A] resulting directly or indirectly from [PARTY_B]'s or its employees or agents activities under this Agreement.",
+      "explanation": "Creates an unlimited, broad indemnification obligation for [PARTY_B], exposing you to potentially massive financial risk that could far exceed the total value of the contract.",
+      "suggested_change": "Cap the total liability and indemnification obligations to the total fees paid under the agreement, and narrow the scope to third-party claims arising from negligence."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] shall immediately notify [PARTY_A] in writing of any theft, loss or damage to any [PARTY_A] property and shall indemnify [PARTY_A] in respect of the same.",
+      "explanation": "Requires [PARTY_B] to fully indemnify the client for any loss or damage to client property without a liability cap or consideration of fault.",
+      "suggested_change": "Limit indemnification for client property to instances of [PARTY_B]'s negligence and cap liability at the value of the property or available insurance coverage."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 7032,
+   "prompt_tokens": 845,
+   "output_tokens": 277,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sharing the agreement. Here are a few points to consider before signing: - Regarding the relevant clause on service extensions, it allows the scope to expand without defined pricing, so we propose adding language requiring any scope extensions to be mutually agreed upon in writing with corresponding adjustments to fees and timelines. - Regarding the termination clause, it allows one-sided termination without cause, so we propose making the termination-for-convenience clause mutual, or ensuring [PARTY_B] is compensated for all work performed and costs incurred up to the termination date. - Regarding the set-off provision, it permits withholding payments based on debts, so we propose removing the set-off right or specifying that undisputed amounts must be paid in full and set-offs require mutual written consent. - Regarding the indemnification clause, it creates a broad obligation, so we propose capping the total liability and indemnification obligations to the total fees paid under the agreement, and narrowing the scope to third-party claims arising from negligence. - Regarding the property damage clause, it requires full indemnification without considering fault, so we propose limiting indemnification for client property to instances of [PARTY_B]'s negligence and capping liability at the value of the property or available insurance coverage. Please let me know your thoughts. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

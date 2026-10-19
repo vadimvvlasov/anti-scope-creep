@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 12.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6663,
+   "prompt_tokens": 4034,
+   "output_tokens": 109,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.95,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "This clause vests intellectual property rights in the client immediately upon creation, before you have received final payment, exposing you to non-payment risk while the client already owns the work.",
+      "suggested_change": "Propose that IP ownership transfers to the client only upon receipt of full payment for the applicable deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2115,
+   "prompt_tokens": 337,
+   "output_tokens": 108,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working together. Before signing, I would like to propose a small adjustment regarding the relevant clause: - Regarding the clause stating that intellectual property rights belong to the client upon creation, this means ownership transfers before final payment is received. I propose that intellectual property ownership transfers to the client only upon receipt of full payment for the applicable deliverables. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

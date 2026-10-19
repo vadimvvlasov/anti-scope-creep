@@ -1,0 +1,148 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9021,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "4.2 Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3786,
+   "end": 3949
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "start": 1997,
+   "end": 2246
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Review period: 10 days",
+   "start": 13095,
+   "end": 13117
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13118,
+   "end": 13146
+  }
+ ],
+ "email": true,
+ "seconds": 121.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3914,
+   "prompt_tokens": 2648,
+   "output_tokens": 1266,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.03,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits the client to request \"minor clarifications\" without a formal change order as long as the contractor deems the added effort \"not materially increase\" the workload. Because \"materially\" is subjective, the client could push additional work that feels minor to them but is significant to you, leading to unpaid extra work.",
+      "suggested_change": "Add a definition of \"materially increase\" (e.g., >10% of estimated hours or cost) and require any clarification that exceeds that threshold to be documented as a change request with associated fees before work begins."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "The client can walk away at any time with only 20 days' notice while you can only end the agreement for cause. This leaves you exposed to sudden loss of revenue and sunk costs, especially if you have already allocated resources to the project.",
+      "suggested_change": "Negotiate a mutual termination right (e.g., either party may terminate for convenience with 30‑45 days' notice and payment of a termination fee equal to a reasonable portion of the remaining fees) or at least add a termination fee for client‑initiated convenience terminations."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "4.2 Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 40‑day payment window is longer than the industry standard 30 days and ties up cash flow. The interest penalty is modest, so the client has little incentive to pay promptly, increasing your financial risk.",
+      "suggested_change": "Change Net 40 to Net 30 (or Net 15) and increase the late‑payment interest to a commercially reasonable rate (e.g., 1.5%‑2% per month) to encourage timely payment."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "While the clause requires written change requests for material changes, it does not define what constitutes a \"material\" change nor enforce a process for approval. The client could argue a change is not material and avoid paying extra fees.",
+      "suggested_change": "Insert a clear definition of \"material change\" (e.g., any change that adds >5% to the total project cost or extends the schedule by more than 5 business days) and require both parties to sign off on any change request before work proceeds."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3226,
+   "prompt_tokens": 1856,
+   "output_tokens": 1370,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.07,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "The client has up to 40 days after invoicing to pay each milestone. This lengthens cash‑flow cycles for the contractor and increases the risk of late‑payment or default before the contractor can reinvest the funds in the project.",
+      "suggested_change": "Change the payment term to Net 30 or Net 15, or tie payment to receipt of acceptance (e.g., \"Payment due within 15 days of Client's written acceptance of each milestone\"."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Review period: 10 days",
+      "explanation": "The contract sets a 10‑day window for the client to review deliverables. If the client does not respond in that time, the contractor may be deemed to have satisfied the acceptance criteria, potentially forcing payment for work the client has not fully approved.",
+      "suggested_change": "Specify that lack of response within 10 days will not constitute acceptance, but will trigger a formal extension request, or extend the review period to 15‑20 days to give the client reasonable time."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "While the schedule lists three revision rounds, the main body of the agreement does not clearly limit the contractor to those three rounds. A client could argue that additional changes are covered under the same revision allowance, leading to scope creep and extra unpaid work.",
+      "suggested_change": "Add a clause such as: \"The Revision allowance is limited to three (3) revision cycles per deliverable. Any additional revisions will be treated as change requests and billed at the agreed hourly rate.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3239,
+   "prompt_tokens": 1418,
+   "output_tokens": 1821,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign, I’d like to suggest a few adjustments to ensure the agreement is clear for both parties:\n- Regarding the relevant clause 2.2, the current wording allows “minor clarifications” without a formal change order as long as the effort does not “materially increase” the workload. Because “materially” is subjective, it could lead to additional work without appropriate compensation. I propose adding a definition of “materially increase” (for example, an increase of more than 10 % of the estimated hours or cost) and requiring any clarification that exceeds that threshold to be documented as a change request with associated fees before work begins.\n- In clause 12.2 the client may terminate for convenience with 20 days’ notice while the contractor can only terminate for cause. This creates an imbalance in termination rights. I suggest introducing a mutual termination provision—either party may terminate for convenience with 30‑45 days’ notice and, for client‑initiated terminations, a reasonable termination fee reflecting the remaining fees.\n- The payment terms in clause 4.2 specify Net 40 and interest of 1 % per month on late invoices. A 40‑day window is longer than the typical 30‑day standard and the interest rate provides little incentive for prompt payment. I recommend changing the net period to Net 30 (or Net 15) and increasing the late‑payment interest to a commercially reasonable rate of 1.5 %–2 % per month.\n- Clause 2.3 requires written change requests for “material” changes but does not define what constitutes a material change. Without a definition, the client could argue a change is not material and avoid the fee. I propose inserting a clear definition, such as any change that adds more than 5 % to the total project cost or extends the schedule by more than five business days, and requiring both parties to sign off on any change request before the work proceeds.\n- The separate payment period clause repeats the Net 40 term. To align cash flow, I suggest revising this to Net 30 or Net 15, or alternatively tying payment to the client’s written acceptance of each milestone within 15 days.\n- The review period is set at 10 days, and lack of response could be interpreted as acceptance. To avoid unintended acceptance, I recommend stating that no response within 10 days does not constitute acceptance but triggers a formal extension request, or simply extending the review window to 15‑20 days.\n- The revision allowance mentions three rounds, but the agreement does not clearly limit revisions. To prevent scope creep, I propose adding language that limits revisions to three (3) cycles per deliverable, and that any additional revisions will be treated as change requests and billed at the agreed hourly rate.\n\nThank you for considering these updates. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

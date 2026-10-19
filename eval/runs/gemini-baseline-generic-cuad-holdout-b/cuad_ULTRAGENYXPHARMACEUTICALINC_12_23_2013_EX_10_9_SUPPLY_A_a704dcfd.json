@@ -1,0 +1,79 @@
+{
+ "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT",
+ "chars": 14592,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "The prices payable by Ultragenyx to Cremer for the Product (the \"Price\") shall be agreed [***] every contract year; provided, that the Price may not increase more than the [***] for such period or [***]%, whichever is higher.",
+   "start": 3496,
+   "end": 3721
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence. This limitation of liability does not apply to the injury of the life, body or health of a person, to claims according to the Product Liability Act (Produkthaftungsgesetz) or any other coercive legal liability claims.",
+   "start": 8744,
+   "end": 9066
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "At the request and expense of Ultragenyx, Cremer shall perform development work for Ultragenyx to develop new formulations of the Product. All such work shall be performed pursuant to a statement of work (including a budget) to be agreed upon by the Parties and attached as an annex to this Agreement (each, a \"Statement of Work\").",
+   "start": 10341,
+   "end": 10672
+  }
+ ],
+ "email": true,
+ "seconds": 29.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7325,
+   "prompt_tokens": 3272,
+   "output_tokens": 528,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.72,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "The prices payable by Ultragenyx to Cremer for the Product (the \"Price\") shall be agreed [***] every contract year; provided, that the Price may not increase more than the [***] for such period or [***]%, whichever is higher.",
+      "explanation": "Capping annual price increases by a rigid percentage or index can trap Cremer in unprofitable pricing if raw material, energy, or production costs rise significantly faster than the cap.",
+      "suggested_change": "Remove the hard cap on price increases or allow for price renegotiation and adjustments based on actual cost increases of raw materials and manufacturing."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence. This limitation of liability does not apply to the injury of the life, body or health of a person, to claims according to the Product Liability Act (Produkthaftungsgesetz) or any other coercive legal liability claims.",
+      "explanation": "While ordinary negligence is excluded, your liability for personal injury, product liability claims, and mandatory statutory laws remains completely uncapped, creating significant financial exposure.",
+      "suggested_change": "Include an overall aggregate monetary liability cap for all claims (to the extent permitted under German law) or specify that liability is limited to insurance coverage."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "At the request and expense of Ultragenyx, Cremer shall perform development work for Ultragenyx to develop new formulations of the Product. All such work shall be performed pursuant to a statement of work (including a budget) to be agreed upon by the Parties and attached as an annex to this Agreement (each, a \"Statement of Work\").",
+      "explanation": "Obligating Cremer to undertake new development work upon the client's request can create operational bottlenecks and pressure to take on unwanted or resource-heavy projects.",
+      "suggested_change": "Clarify that development work is strictly optional and subject to Cremer's sole discretion, resource availability, and mutually agreed terms."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3470,
+   "prompt_tokens": 677,
+   "output_tokens": 232,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. Before proceeding with my signature, I kindly request a few adjustments: - Regarding the relevant clause on pricing, capping annual price increases by a rigid percentage or index can trap the freelancer in unprofitable pricing if costs rise significantly faster than the cap, and I propose removing the hard cap on price increases or allowing for price renegotiation and adjustments based on actual cost increases. - Regarding the relevant clause on liability, while ordinary negligence is excluded, liability for personal injury, product liability claims, and mandatory statutory laws remains completely uncapped and creates significant financial exposure, and I propose including an overall aggregate monetary liability cap for all claims or specifying that liability is limited to insurance coverage. - Regarding the relevant clause on development work, obligating the freelancer to undertake new development work upon the client's request can create operational bottlenecks and pressure to take on unwanted or resource-heavy projects, and I propose clarifying that development work is strictly optional and subject to the freelancer's sole discretion, resource availability, and mutually agreed terms. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

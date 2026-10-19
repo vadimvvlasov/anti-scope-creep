@@ -1,0 +1,132 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9162,
+   "end": 9254
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5332,
+   "end": 5418
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 4001,
+   "end": 4160
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+   "start": 4324,
+   "end": 4461
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13102,
+   "end": 13130
+  }
+ ],
+ "email": true,
+ "seconds": 92.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3966,
+   "prompt_tokens": 2648,
+   "output_tokens": 1318,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.87,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract whenever they wish and stop paying, leaving you with unpaid work and no compensation for effort already expended.",
+      "suggested_change": "Add a provision requiring written notice (e.g., 30 days) and payment for all services performed up to the termination date, including any approved deliverables."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "IP ownership passes to the client before you have received full payment, exposing you to the risk of losing your rights if the client later refuses or delays payment.",
+      "suggested_change": "Tie the transfer of IP rights to receipt of payment, e.g., \"IP rights in a Deliverable transfer to Client upon full payment for that Deliverable.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 30‑day payment window can strain cash flow, and the modest interest may not sufficiently incentivize timely payment.",
+      "suggested_change": "Shorten the payment period (e.g., Net 14) and increase the late‑payment interest or add a flat late‑fee to encourage prompt payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "The client can withhold payment for up to 15 days while disputing any part of the invoice, potentially delaying cash flow and creating uncertainty about the amount owed.",
+      "suggested_change": "Require the client to pay the undisputed portion within a shorter period (e.g., 10 days) and to resolve any dispute within a set timeframe (e.g., 10 business days) so that payment delays are minimized."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3636,
+   "prompt_tokens": 1856,
+   "output_tokens": 1780,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.46,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "Only three rounds of revisions are included. The clause does not clearly state that any additional revisions will be treated as extra work requiring a change order, so the client could request further changes and argue they are covered, leading to unpaid extra work.",
+      "suggested_change": "Specify that revisions beyond the three allotted rounds will be billed at an agreed hourly rate or require a written change order, and that the client must approve any extra cost in advance."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30; Late-payment interest: 1.0%",
+      "explanation": "The client has 30 days to pay invoices and the contract imposes only a 1% annual interest on late payments, which may not provide sufficient incentive for timely payment and could expose the contractor to cash‑flow risk.",
+      "suggested_change": "Increase the late‑payment interest to at least 1.5‑2% per month (or 18‑24% per annum) and add a clause allowing the contractor to suspend work after a specified number of days of non‑payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2504,
+   "prompt_tokens": 946,
+   "output_tokens": 1558,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing the agreement I would like to suggest a few minor adjustments for clarity and mutual protection:\n\n- The relevant clause permits termination at any time without notice or further payment. This could leave unpaid work for services already performed. I propose that the agreement require a written notice of 30 days and payment for all services performed up to the termination date, including any approved deliverables.\n- The relevant clause transfers all intellectual property rights in each deliverable to the client upon delivery. This ties ownership to delivery before full payment, which may expose the freelancer to loss of rights if payment is delayed. I propose that the transfer of IP rights occur only upon receipt of full payment for the respective deliverable.\n- The relevant clause sets invoices payable Net 30 with interest of 1.0% per month on late amounts. A 30‑day payment window can strain cash flow and the interest rate may not sufficiently encourage timely payment. I propose shortening the payment period to Net 14 and increasing the late‑payment interest or adding a flat late‑fee to promote prompt payment.\n- The relevant clause allows the client to dispute an invoice in good faith by providing written details within 15 days, with the undisputed portion payable when due. This could delay cash flow while the dispute is resolved. I propose requiring payment of the undisputed portion within 10 days and setting a resolution timeframe of 10 business days for any dispute.\n- The relevant clause provides a revision allowance of three rounds but does not specify how additional revisions will be handled. Without clarification, extra revisions could be requested without additional compensation. I propose stating that revisions beyond the three allotted rounds will be billed at an agreed hourly rate or will require a written change order approved by the client in advance.\n\nThank you for reviewing these suggestions. I look forward to finalising the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

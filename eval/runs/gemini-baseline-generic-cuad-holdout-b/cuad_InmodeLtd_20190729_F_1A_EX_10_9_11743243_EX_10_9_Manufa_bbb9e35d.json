@@ -1,0 +1,79 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+   "start": 2290,
+   "end": 2488
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Contractor and Customer agree to terms of payments of current plus thirty (30) days from the date of invoice.",
+   "start": 22810,
+   "end": 22919
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall defend, indemnify and hold harmless Customer from all claims, liabilities, costs, damages, judgments and attorney's fees resulting from or arising out of any alleged and/or actual infringement or other violation of any patents, patent rights, trademarks, trademark rights, trade names, trade name rights, copyrights, trade secrets, proprietary rights and processes or other such rights as a result of the manufacturing methods employed by Contractor",
+   "start": 28102,
+   "end": 28568
+  }
+ ],
+ "email": true,
+ "seconds": 20.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13960,
+   "prompt_tokens": 8375,
+   "output_tokens": 399,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.71,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+      "explanation": "The open-ended phrasing \"shall include, but not be limited to\" creates ambiguity in the scope of work, potentially enabling the Customer to demand extra tasks without adjusting compensation.",
+      "suggested_change": "Replace \"shall include, but not be limited to\" with a definitive list of services and state that any additional services require a mutually agreed change order."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Contractor and Customer agree to terms of payments of current plus thirty (30) days from the date of invoice.",
+      "explanation": "Net 30 payment terms mean the Contractor must finance material procurement, labor, and production costs for over a month after invoicing before receiving funds.",
+      "suggested_change": "Propose shorter payment terms, such as Net 15, or implement milestone and advance payments for material costs."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall defend, indemnify and hold harmless Customer from all claims, liabilities, costs, damages, judgments and attorney's fees resulting from or arising out of any alleged and/or actual infringement or other violation of any patents, patent rights, trademarks, trademark rights, trade names, trade name rights, copyrights, trade secrets, proprietary rights and processes or other such rights as a result of the manufacturing methods employed by Contractor",
+      "explanation": "Indemnifying the Customer against third-party IP claims related to manufacturing methods can expose the Contractor to substantial financial liability if not strictly limited.",
+      "suggested_change": "Explicitly limit and cap the Contractor's indemnification obligations under this section to align with the overall limitation of liability."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2969,
+   "prompt_tokens": 627,
+   "output_tokens": 164,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the relevant clause on manufacturing services, the open-ended phrasing creates ambiguity in the scope of work; please replace this with a definitive list of services and state that any additional services require a mutually agreed change order. - Regarding the relevant clause on payment terms, current plus thirty days creates a delay in receiving funds; please propose shorter payment terms, such as Net 15, or implement milestone and advance payments for material costs. - Regarding the relevant clause on indemnification, the current wording creates substantial financial exposure; please explicitly limit and cap the indemnification obligations under this section to align with the overall limitation of liability. Thank you for your time and best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

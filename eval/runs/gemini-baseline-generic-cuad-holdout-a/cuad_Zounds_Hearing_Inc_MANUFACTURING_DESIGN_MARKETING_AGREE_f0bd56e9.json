@@ -1,0 +1,65 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Royalties shall be paid 50% at time of shipping and the remaining balance of 50% due in 15-days after the Manufacturer's Products have shipped from the manufacturing facility.",
+   "start": 7866,
+   "end": 8041
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Each Party agrees that in the event it violates the provisions of this Section 15.9, it will pay to the other Party as liquidated damages, and not as a penalty, an amount equal to one hundred times (100 X) of any such employee's then-current base annual salary.",
+   "start": 40838,
+   "end": 41099
+  }
+ ],
+ "email": true,
+ "seconds": 24.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15115,
+   "prompt_tokens": 9313,
+   "output_tokens": 276,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.35,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Royalties shall be paid 50% at time of shipping and the remaining balance of 50% due in 15-days after the Manufacturer's Products have shipped from the manufacturing facility.",
+      "explanation": "Waiting 15 days after shipment to receive the remaining half of your royalty payment creates cash flow delay and collection risk after you have already delivered the goods.",
+      "suggested_change": "Propose that all royalties and product costs be paid in full prior to shipment."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Each Party agrees that in the event it violates the provisions of this Section 15.9, it will pay to the other Party as liquidated damages, and not as a penalty, an amount equal to one hundred times (100 X) of any such employee's then-current base annual salary.",
+      "explanation": "A penalty of 100x an employee's base salary for non-solicitation violations is excessively punitive and creates a severe, disproportionate liability risk if a staffing mistake occurs.",
+      "suggested_change": "Remove the 100x multiplier and replace it with a reasonable liquidated damages cap or limit recovery to actual proved damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3073,
+   "prompt_tokens": 503,
+   "output_tokens": 136,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.98,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few minor adjustments before signing. - Regarding the relevant clause on royalty payments, waiting 15 days after shipment creates cash flow delays, so I propose that all royalties and product costs be paid in full prior to shipment. - Regarding the relevant clause on liquidated damages, a penalty of 100 times an employee's base salary is excessively punitive, so I propose removing the multiplier and replacing it with a reasonable cap or limiting recovery to actual proved damages. Thank you for your time. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

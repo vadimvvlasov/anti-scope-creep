@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "start": 8208,
+   "end": 8375
+  }
+ ],
+ "email": true,
+ "seconds": 18.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8611,
+   "prompt_tokens": 4030,
+   "output_tokens": 275,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.32,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "This clause states that intellectual property rights vest in the client immediately as work is created, before you have received final payment. If the client defaults on payment, they still legally own all the work produced.",
+      "suggested_change": "Modify the clause so that intellectual property ownership remains with the Contractor until full payment of all project fees has been received, granting the Client a conditional license to use the deliverables only upon full payment."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+      "explanation": "The liability cap is set at USD 35,000, which exceeds the total project fee of USD 24,875. This means your potential financial exposure in a dispute is higher than the entire revenue you will earn from the contract.",
+      "suggested_change": "Reduce the aggregate liability cap to match the total project fees (USD 24,875) or fees actually paid to the Contractor under the Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2582,
+   "prompt_tokens": 502,
+   "output_tokens": 117,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the contract. Before signing the agreement, I would like to propose a few small adjustments regarding the relevant clause. - Regarding the intellectual property clause, rights vest immediately before payment is received; I propose that ownership remains with the contractor until full payment is completed. - Regarding the liability clause, the current cap exceeds the total project fees; I propose reducing the aggregate liability cap to match the total project fees. Thank you for considering these adjustments, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

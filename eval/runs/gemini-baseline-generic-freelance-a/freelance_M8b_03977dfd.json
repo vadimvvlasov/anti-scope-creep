@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 15.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7804,
+   "prompt_tokens": 4030,
+   "output_tokens": 120,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.06,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "This clause transfers ownership of all intellectual property rights to the client immediately as the work is created, before you have received final payment. If the client refuses to pay or defaults, you have already lost your IP ownership and primary commercial leverage.",
+      "suggested_change": "Amend the clause to state that intellectual property ownership remains with the contractor until full payment for the deliverables has been received."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1970,
+   "prompt_tokens": 348,
+   "output_tokens": 121,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a wonderful week. I have reviewed the agreement and would like to propose a quick adjustment before we sign. - Regarding the clause stating that work product vests in the client as it is generated, this transfers intellectual property rights immediately upon creation before payment, and I propose we amend the relevant clause to state that intellectual property ownership remains with the contractor until full payment for the deliverables has been received. Thank you for your time and understanding, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

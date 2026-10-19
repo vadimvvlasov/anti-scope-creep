@@ -1,0 +1,93 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will create and provide to Reed's the Deliverables. Reed's will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity",
+   "start": 8267,
+   "end": 8591
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES",
+   "start": 17591,
+   "end": 17839
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Company shall be responsible for all costs relating to the development of the Recipes and Deliverables, except for costs and expenses relating to the involvement of Reed's personnel and contractors.",
+   "start": 4762,
+   "end": 4960
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties will collaborate to develop commercial production-ready Products according to the Specifications as may be developed by the Development Committee.",
+   "start": 5469,
+   "end": 5627
+  }
+ ],
+ "email": true,
+ "seconds": 22.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10104,
+   "prompt_tokens": 6009,
+   "output_tokens": 522,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.59,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will create and provide to [PARTY_D] the Deliverables. [PARTY_D] will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity",
+      "explanation": "The contract assigns all intellectual property rights in the Deliverables and Work Product immediately upon creation to [PARTY_D] without securing guaranteed payment for the development work itself.",
+      "suggested_change": "Propose that IP ownership transfers only upon full payment or formal execution of the Manufacturing and Distribution Agreement guaranteeing compensation."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES",
+      "explanation": "By carving out indemnification obligations from the limitation of liability, your liability for third-party IP claims or breaches is completely uncapped, exposing you to potentially unlimited damages.",
+      "suggested_change": "Remove the carve-out for indemnification or subject all liabilities, including indemnification, to a reasonable liability cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Company shall be responsible for all costs relating to the development of the Recipes and Deliverables, except for costs and expenses relating to the involvement of [PARTY_D] personnel and contractors.",
+      "explanation": "You are required to bear all out-of-pocket costs and expenses for developing the recipes and deliverables, with no direct financial compensation specified in this agreement.",
+      "suggested_change": "Include upfront development fees or guaranteed milestone payments to cover your development costs regardless of subsequent agreements."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties will collaborate to develop commercial production-ready Products according to the Specifications as may be developed by the Development Committee.",
+      "explanation": "The exact product specifications are undefined at signing and left to the Development Committee, potentially leading to an open-ended scope of work that you must fund entirely.",
+      "suggested_change": "Define clear boundaries, a maximum number of product iterations, or specify that additional work beyond agreed parameters requires separate compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3560,
+   "prompt_tokens": 747,
+   "output_tokens": 206,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I look forward to working together, but I would like to request a few adjustments before signing: - Regarding the intellectual property assignment, the relevant clause assigns all rights immediately upon creation without securing guaranteed payment, and I propose that ownership transfers only upon full payment or formal execution of the agreement guaranteeing compensation. - Regarding the limitation of liability, the relevant clause carves out indemnification obligations and leaves liability completely uncapped, and I propose to remove the carve-out or subject all liabilities to a reasonable liability cap. - Regarding development costs, the relevant clause requires bearing all expenses with no direct financial compensation specified, and I propose to include upfront development fees or guaranteed milestone payments. - Regarding the project scope, the relevant clause leaves specifications undefined at signing and leads to an open-ended scope, and I propose to define clear boundaries, a maximum number of product iterations, or specify separate compensation for additional work. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

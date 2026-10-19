@@ -1,0 +1,65 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  }
+ ],
+ "email": true,
+ "seconds": 16.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7258,
+   "prompt_tokens": 3983,
+   "output_tokens": 220,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.88,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause forces you to do extra work requested by the client during the contract term for free, exposing you to unlimited unpaid work and scope creep.",
+      "suggested_change": "Propose removing this clause or specifying that any additional services requested outside the scope of work will be billed at your standard hourly rate via a written change order."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "Offering unlimited revisions until the client is fully satisfied means the project can drag on indefinitely with endless changes without extra compensation.",
+      "suggested_change": "Limit the number of included revision rounds (e.g., up to two rounds of revisions per milestone) and state that additional revisions will be billed at an hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2722,
+   "prompt_tokens": 449,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am looking forward to moving forward and have a few minor requests regarding the agreement. - Regarding the relevant clause on additional services, the current terms require extra work without additional compensation, so I propose specifying that any additional services requested outside the scope of work will be billed at the standard hourly rate via a written change order. - Regarding the relevant clause on revisions, the current terms permit unlimited revisions, so I propose limiting the number of included revision rounds to up to two rounds per milestone and stating that additional revisions will be billed at an hourly rate. Thank you, and I look forward to getting started."
+   }
+  }
+ ],
+ "dropped": []
+}

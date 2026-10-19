@@ -1,0 +1,148 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9174,
+   "end": 9345
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+   "start": 5121,
+   "end": 5430
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3949
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 30",
+   "start": 13147,
+   "end": 13169
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Late-payment interest: 1.0%",
+   "start": 13248,
+   "end": 13275
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Notice period: 20 days",
+   "start": 13276,
+   "end": 13298
+  }
+ ],
+ "email": true,
+ "seconds": 93.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4527,
+   "prompt_tokens": 2659,
+   "output_tokens": 1868,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.88,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request informal \"minor clarifications\" without a formal change order, even if those clarifications end up requiring additional effort. In practice the client could keep adding small tasks that cumulatively become a significant amount of extra work for you, with no extra compensation.",
+      "suggested_change": "Amend the clause to require that any clarification that could affect time, cost, or resources be documented in writing and approved as a change order before work begins."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "While the termination right is mutual, the client can end the project at any time with only 20 days' notice, potentially leaving you with unfinished work and a loss of anticipated revenue beyond the services already performed. The clause does not provide any termination fee or compensation for lost opportunity.",
+      "suggested_change": "Add a termination‑for‑convenience fee (e.g., 20% of the remaining contract value) or require that the client reimburse reasonable wind‑down costs and any prepaid expenses."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+      "explanation": "IP ownership vests in the client immediately, even if the client later refuses to pay. This gives the client leverage to withhold payment while still obtaining full rights to your work, leaving you with no recourse to retain IP until you are paid in full.",
+      "suggested_change": "Modify the clause so that IP rights transfer to the client only upon receipt of full payment for all invoices, or include a security interest/retention of title provision that suspends IP transfer until payment is complete."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 30 is a relatively long payment window for a freelancer and the 1% per month interest may be considered high in some jurisdictions, potentially leading to cash‑flow strain if the client delays payment.",
+      "suggested_change": "Negotiate Net 15 payment terms and reduce the interest rate to a statutory maximum (e.g., 0.5% per month) or replace the interest provision with a flat late‑fee of a reasonable amount."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3804,
+   "prompt_tokens": 1856,
+   "output_tokens": 1948,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.0,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30",
+      "explanation": "The client has 30 days after invoicing to pay each milestone. This can create cash‑flow delays for the contractor, especially if milestones are large and the contractor must front‑load work before receiving payment.",
+      "suggested_change": "Negotiate a shorter payment term, e.g., Net 15, or include a clause allowing the contractor to suspend work after a specified number of days of non‑payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Late-payment interest: 1.0%",
+      "explanation": "If the client pays late, the contractor only receives 1 % interest per annum on the overdue amount, which may not adequately compensate for the cost of delayed cash flow.",
+      "suggested_change": "Increase the late‑payment interest rate to a higher statutory rate (e.g., 5 % per annum) or tie it to the prevailing base rate plus a margin."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notice period: 20 days",
+      "explanation": "The agreement specifies a 20‑day notice period for termination but does not state a reciprocal notice period for the contractor, potentially allowing the client to terminate the project with short notice while the contractor bears the risk of abrupt work stoppage.",
+      "suggested_change": "Add symmetric termination rights, e.g., \"Either party may terminate the Agreement upon 20 days' written notice,\" or negotiate a longer notice period for the contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2912,
+   "prompt_tokens": 1221,
+   "output_tokens": 1691,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.63,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to suggest a few adjustments to the agreement:\n\n- The relevant clause about minor clarifications currently allows informal changes that could increase workload. To avoid unexpected effort, I propose that any clarification affecting time, cost, or resources be documented in writing and approved as a change order before work begins.\n- The termination‑for‑convenience clause permits either party to end the agreement with 20 days’ notice but provides no compensation for the contractor. I suggest adding a termination‑for‑convenience fee of 20 % of the remaining contract value, or requiring reimbursement of reasonable wind‑down costs and any prepaid expenses.\n- The intellectual property clause transfers all rights to the client immediately upon creation. I recommend that IP rights transfer only after receipt of full payment for all invoices, or that a retention‑of‑title provision be included until payment is complete.\n- The invoicing clause sets Net 30 terms and a 1 % per month interest for late payment. I propose Net 15 payment terms and a reduced interest rate of 0.5 % per month, or alternatively a modest flat late‑fee.\n- The payment period clause again specifies Net 30, which may affect cash flow. I would like to shorten the term to Net 15, or include a provision allowing suspension of work after a specified number of days of non‑payment.\n- The notice period clause gives a 20‑day notice for termination but does not apply symmetrically to the contractor. I suggest adding symmetric termination rights, stating that either party may terminate with 20 days’ written notice, or extending the contractor’s notice period.\n\nThank you for considering these points. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

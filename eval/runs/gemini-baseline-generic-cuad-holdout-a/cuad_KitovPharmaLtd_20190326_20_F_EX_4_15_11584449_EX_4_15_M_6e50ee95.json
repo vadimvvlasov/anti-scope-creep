@@ -1,0 +1,79 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Dexcel agrees to defend, indemnify and hold Kitov and its Affiliates, and their respective officers, directors, and employees (collectively, the \"Kitov Indemnitees\") harmless from and against any Claims arising from (i) any product liability claims related solely to Dexcel's actions as the manufacture of the Product, or (ii) any breach by Dexcel or its Affiliates of its representations, warranties, covenants, agreements or obligations under this Agreement",
+   "start": 43630,
+   "end": 44089
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "In the event that Kitov has fully paid the Supply Price for the claimed defective Product, Dexcel shall supply the Replacement Shipment at no additional Transfer Price.",
+   "start": 21999,
+   "end": 22167
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Dexcel shall provide any and all reasonable assistance to Kitov in this respect during the Term.",
+   "start": 11889,
+   "end": 11985
+  }
+ ],
+ "email": true,
+ "seconds": 22.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17877,
+   "prompt_tokens": 12361,
+   "output_tokens": 563,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.25,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Dexcel agrees to defend, indemnify and hold Kitov and its Affiliates, and their respective officers, directors, and employees (collectively, the \"Kitov Indemnitees\") harmless from and against any Claims arising from (i) any product liability claims related solely to Dexcel's actions as the manufacture of the Product, or (ii) any breach by Dexcel or its Affiliates of its representations, warranties, covenants, agreements or obligations under this Agreement",
+      "explanation": "Dexcel's indemnification and legal liabilities are completely uncapped. While certain indirect damages are excluded under Section 8.7, direct losses and third-party claims (including product liability) have no monetary cap, exposing Dexcel to potentially unlimited financial liability.",
+      "suggested_change": "Insert a mutual overall monetary cap on liability (e.g., limited to the total fees paid or payable by Kitov under the Agreement in the preceding 12 months) and ensure indemnification claims are subject to this cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In the event that Kitov has fully paid the Supply Price for the claimed defective Product, Dexcel shall supply the Replacement Shipment at no additional Transfer Price.",
+      "explanation": "Dexcel is required to manufacture and deliver a replacement shipment at no cost if Kitov claims a defect and has already paid, even before independent verification determines whether the defect is actually attributable to Dexcel.",
+      "suggested_change": "Revise the clause to state that replacement shipments at no additional cost will only be provided after an independent laboratory confirms that the product failed to meet specifications due to Dexcel's fault."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Dexcel shall provide any and all reasonable assistance to Kitov in this respect during the Term.",
+      "explanation": "Dexcel is required to provide open-ended, broad assistance regarding changes to specifications, materials, suppliers, and regulatory dossiers without a defined scope or guarantee of additional compensation.",
+      "suggested_change": "Clarify that regulatory and technical assistance exceeding a reasonable threshold (e.g., a specific number of hours per year) or involving major specification changes will be charged at Dexcel's standard professional service rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2581,
+   "prompt_tokens": 712,
+   "output_tokens": 169,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have reviewed the terms and would like to suggest a few adjustments before we proceed. - Regarding the relevant clause on indemnification, the current terms leave financial liability completely uncapped, and I propose adding a mutual overall monetary cap on liability. - In the relevant clause concerning replacement shipments, the agreement currently requires providing replacements at no cost before verifying fault, and I propose revising this so that replacement shipments are provided only after independent confirmation of the fault. - For the relevant clause detailing assistance, the requirements are open-ended without defined scope or compensation, and I propose clarifying that assistance exceeding a reasonable threshold will be charged at standard rates. Please let me know your thoughts on these changes. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,98 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  }
+ ],
+ "email": true,
+ "seconds": 83.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4008,
+   "prompt_tokens": 2649,
+   "output_tokens": 1359,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.12,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause lets the parties make informal \"minor clarifications\" without a written change order. In practice the line between a minor clarification and a material increase in work can be blurry, allowing the client to slip extra tasks onto you without extra compensation.",
+      "suggested_change": "Require that any clarification that could affect effort, cost, or schedule be documented in writing as a change request and approved before work begins. Limit informal communications to truly administrative matters that have no impact on workload."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\n\nClient may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "Net‑30 payment stretches cash flow, and the client can withhold payment for up to 15 days while disputing an invoice, potentially delaying receipt of funds even for work already performed. Interest only kicks in after the due date, which may not compensate for the longer cash‑flow gap.",
+      "suggested_change": "Shorten the payment period to Net 15 (or Net 10) and require a deposit or upfront milestone payment (e.g., 30% before work starts). Reduce the dispute window to 5 business days and state that any undisputed portion is due immediately, with interest accruing at a higher rate (e.g., 1.5% per month) after the due date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2900,
+   "prompt_tokens": 1856,
+   "output_tokens": 1044,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.47,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notice period: 20 days\nCure period: 15 days\nNo clause in this section changes the liability cap of USD 35,000, the late-payment rate of 1.0%, or the termination notice period of 20 days.",
+      "explanation": "The agreement only specifies a 20‑day notice period (and a 15‑day cure period) for termination but does not set out any reciprocal obligations or penalties for the Contractor if the Client terminates. This lets the Client end the project with short notice while the Contractor may have already invested time and resources, risking lost revenue and unrecovered costs.",
+      "suggested_change": "Add a symmetric termination clause that requires the Client to provide the same notice period and also allows the Contractor to claim reasonable termination fees or retain earned milestones if the Client terminates without cause. For example: \"Either party may terminate the Agreement by giving 20 days written notice. If the Client terminates without cause, the Contractor shall be entitled to payment for all work performed up to the termination date, including any earned but unpaid milestones.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Net 30 means the Contractor must wait up to 30 days after invoice receipt before receiving payment. The 1.0% monthly interest on late payments may be insufficient to compensate for cash‑flow impact, especially for a project with a total fee of USD 24,875 and multiple milestones.",
+      "suggested_change": "Negotiate shorter payment terms (e.g., Net 15) and a higher late‑payment penalty (e.g., 1.5% per month or 18% annualized). Also consider adding an early‑payment discount to encourage faster payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1019,
+   "prompt_tokens": 545,
+   "output_tokens": 474,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment before signing:\n\n- Regarding the relevant clause about clarifications to the Services: the current wording permits informal “minor clarifications” without a written change order, which could blur the line between a minor clarification and a material increase in work. I propose that any clarification that could affect effort, cost, or schedule be documented as a written change request and approved before work begins, while informal communications are limited to purely administrative matters that have no impact on workload.\n\nThank you for your understanding. I look forward to finalising the agreement."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3810,
+   "end": 3969
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9045,
+   "end": 9216
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.10 Requirements analysis and discovery.\n2.11 Implementation of agreed software components.\n2.12 Configuration and integration with third-party systems.\n2.13 Quality assurance and defect correction.\n2.14 Deployment support and technical documentation.",
+   "start": 543,
+   "end": 795
+  }
+ ],
+ "email": true,
+ "seconds": 16.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8659,
+   "prompt_tokens": 4015,
+   "output_tokens": 336,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.6,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 90 payment terms force you to wait three months after invoicing to get paid, creating a severe cash flow strain for a freelancer.",
+      "suggested_change": "Propose changing the payment terms to Net 15 or Net 30."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "Even though it is written neutrally as either party, termination for convenience on short notice allows the client to cancel abruptly, leaving you with sudden lost income.",
+      "suggested_change": "Remove termination for convenience or add a requirement for a kill fee."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.10 Requirements analysis and discovery. 2.11 Implementation of agreed software components. 2.12 Configuration and integration with third-party systems. 2.13 Quality assurance and defect correction. 2.14 Deployment support and technical documentation.",
+      "explanation": "Listing these broad service categories in the background without precise boundaries invites the client to demand extensive integrations under the fixed fee.",
+      "suggested_change": "Reference a detailed Statement of Work that explicitly defines project boundaries and exclusions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2388,
+   "prompt_tokens": 562,
+   "output_tokens": 165,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to get started and have a few small adjustments to propose before we sign. - Regarding the payment terms, waiting three months to be paid creates significant cash flow strain, so I propose changing the terms to Net 30. - Regarding the termination terms, short notice allows for abrupt cancellation and sudden lost income, so I propose removing termination for convenience or adding a requirement for a kill fee. - Regarding the service scope outlined in the relevant clause, broad categories without precise boundaries can create misunderstandings about project limits, so I propose referencing a detailed Statement of Work that explicitly defines project boundaries and exclusions. Please let me know if these updates sound acceptable. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

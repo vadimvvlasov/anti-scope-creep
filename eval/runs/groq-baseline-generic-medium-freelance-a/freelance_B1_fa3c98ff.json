@@ -1,0 +1,146 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 8867,
+   "end": 9038
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3673,
+   "end": 3832
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12886,
+   "end": 12915
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Requests outside that scope are handled as part of the Services.",
+   "start": 13958,
+   "end": 14022
+  }
+ ],
+ "email": true,
+ "seconds": 90.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4376,
+   "prompt_tokens": 2724,
+   "output_tokens": 1652,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.32,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "The clause obliges the contractor to do any extra work the client asks for without extra compensation, exposing the freelancer to unlimited additional workload and no payment for it.",
+      "suggested_change": "Limit additional services to those agreed in writing with a fee, e.g., \"Contractor shall perform additional services only upon a written change order signed by both parties and compensated at the rates set forth in Schedule X.\""
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "Allows the client to demand endless changes, causing the freelancer to invest unlimited time and resources without additional payment, potentially delaying project completion.",
+      "suggested_change": "Cap the number of revision rounds per Deliverable and charge for extras, e.g., \"Client may request up to two rounds of revisions per Deliverable; additional revisions shall be billed at $[RATE] per hour.\""
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the agreement on short notice, leaving the contractor with unrecovered costs for work in progress and no compensation for the disruption.",
+      "suggested_change": "Add a termination fee for client‑initiated convenience termination, e.g., \"If Client terminates for convenience, Client shall pay Contractor a termination fee equal to 30% of the remaining scheduled fees.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 30‑day payment period can strain cash flow, and the client may withhold payment during a 15‑day dispute window, further delaying receipt of funds.",
+      "suggested_change": "Shorten payment terms and increase late‑payment interest, e.g., \"Invoices shall be payable Net 15; any undisputed portion shall be paid within 15 days and disputed amounts shall be paid in full within 30 days. Late payments will accrue interest at 1.5% per month.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2588,
+   "prompt_tokens": 1737,
+   "output_tokens": 851,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.96,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "You must provide any number of revisions at no extra cost, which can lead to endless work cycles and erode profitability.",
+      "suggested_change": "Limit revisions to a reasonable number (e.g., 2‑3 rounds) and specify that additional revisions will be billed at an agreed hourly rate."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Requests outside that scope are handled as part of the Services.",
+      "explanation": "The clause allows the client to request work beyond the agreed scope without a clear mechanism for extra compensation, exposing you to unpaid additional effort.",
+      "suggested_change": "Add language that any out‑of‑scope work requires a written change order and will be billed separately at the agreed rates."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Payment is due 30 days after invoice, and the interest for late payment is low, so you may face cash‑flow issues if the client delays payment.",
+      "suggested_change": "Negotiate a shorter payment period (e.g., Net 15) and a higher late‑payment interest rate (e.g., 1.5‑2% per month) or include a penalty for overdue invoices."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2314,
+   "prompt_tokens": 1072,
+   "output_tokens": 1242,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.85,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you are well. Before signing, I would like to suggest a few adjustments to the agreement:\n- The relevant clause obliges the contractor to perform any additional services requested by the client at no additional charge, which could lead to unlimited extra work without compensation. I propose that additional services be performed only upon a written change order signed by both parties and compensated at the rates set out in the schedule.\n- The relevant clause allows the client to request unlimited revisions until fully satisfied, which may result in unbounded time spent on changes. I suggest capping revisions to two rounds per deliverable, with any additional revisions billed at the agreed hourly rate.\n- The relevant clause permits either party to terminate for convenience with 20 days’ written notice, leaving the contractor exposed to unrecovered costs. I recommend adding a termination fee for client‑initiated convenience termination equal to 30 % of the remaining scheduled fees.\n- The relevant clause sets payment terms at Net 30 and a 1 % per month late‑payment interest, which may strain cash flow. I propose shortening payment terms to Net 15, requiring undisputed amounts to be paid within 15 days and applying a 1.5 % per month interest on late payments.\n- The relevant clause states an unlimited revision allowance at no extra cost, exposing the contractor to endless work cycles. I suggest limiting revisions to a reasonable number (e.g., two to three rounds) and billing any additional revisions at the agreed hourly rate.\n- The relevant clause treats requests outside the defined scope as part of the services, which could result in unpaid extra work. I propose that any out‑of‑scope work require a written change order and be billed separately at the agreed rates.\n\nThank you for your consideration.\n\nBest regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

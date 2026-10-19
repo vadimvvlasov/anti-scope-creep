@@ -1,0 +1,93 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+   "start": 14388,
+   "end": 14703
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+   "start": 12689,
+   "end": 13244
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "To the extent Contractor provides any third party materials and products Contractor acknowledges that it shall be solely responsible for ensuring the functionality and specifications of such third party materials and products used in performing Services under this Agreement.",
+   "start": 5589,
+   "end": 5864
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "During the term of this Agreement, Company agrees to compensate Contractor as set forth in each Statement of Work. Contractor will be compensated on a time and materials. In addition, Company shall reimburse Contractor its actual out-of-pocket expenses as reasonably incurred by Contractor in connection with its performance of the Services as negotiated in each Statement of Work.",
+   "start": 6050,
+   "end": 6431
+  }
+ ],
+ "email": true,
+ "seconds": 23.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10250,
+   "prompt_tokens": 4308,
+   "output_tokens": 628,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.97,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT WITH RESPECT TO CONTRACTOR'S OBLIGATIONS PURSUANT TO PARAGRAPH 9 HEREOF, CONTRACTOR'S MAXIMUM LIABILITY TO COMPANY ARISING FOR ANY REASON RELATING TO CONTRACTOR'S PERFORMANCE OF SERVICES UNDER A STATEMENT OF WORK SHALL BE LIMITED TO THE AMOUNT OF FEES PAID TO CONTRACTOR FOR THE PERFORMANCE OF SUCH SERVICES.",
+      "explanation": "The limitation of liability excludes Contractor's obligations under Paragraph 9 (Independent Contractor), exposing Contractor to uncapped liability for tax withholdings, employment claims, or worker misclassification issues.",
+      "suggested_change": "Remove the exception for Paragraph 9 so that all liabilities are subject to the agreed liability cap."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+      "explanation": "This clause allows the Company to terminate immediately and completely forfeit all earned fees and compensation without due process or cure rights upon an alleged breach of anti-bribery provisions.",
+      "suggested_change": "Ensure that Contractor is paid for all services rendered and expenses incurred up to the date of termination, and require notice and an opportunity to cure where feasible."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "To the extent Contractor provides any third party materials and products Contractor acknowledges that it shall be solely responsible for ensuring the functionality and specifications of such third party materials and products used in performing Services under this Agreement.",
+      "explanation": "Making Contractor solely responsible for third-party materials and products creates unpredictable operational risk and scope expansion if third-party tools fail or fail to meet specifications outside of Contractor's control.",
+      "suggested_change": "Limit Contractor's responsibility regarding third-party products to passing through vendor warranties and disclaim liability for third-party performance failures."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "During the term of this Agreement, Company agrees to compensate Contractor as set forth in each Statement of Work. Contractor will be compensated on a time and materials. In addition, Company shall reimburse Contractor its actual out-of-pocket expenses as reasonably incurred by Contractor in connection with its performance of the Services as negotiated in each Statement of Work.",
+      "explanation": "The agreement lacks defined payment due dates (such as Net 30) or late payment penalties, leaving Contractor vulnerable to extended payment delays without contractual recourse.",
+      "suggested_change": "Add clear payment terms specifying that invoices are due within 30 days of receipt and include a late fee of 1.5% per month for overdue balances."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3576,
+   "prompt_tokens": 853,
+   "output_tokens": 242,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few adjustments before signing. - Regarding the relevant clause on liability, the current language excludes certain obligations, exposing the contractor to uncapped liability; I propose removing that exception so that all liabilities are subject to the agreed liability cap. - In the relevant clause concerning termination, the wording allows the company to terminate immediately and forfeit all earned fees without due process; I propose ensuring that the contractor is paid for all services rendered and expenses incurred up to the date of termination, alongside notice and an opportunity to cure where feasible. - Concerning the relevant clause on third-party materials, making the contractor solely responsible for third-party products creates unpredictable operational risk; I propose limiting this responsibility to passing through vendor warranties and disclaiming liability for third-party performance failures. - Regarding the relevant clause on compensation, the agreement lacks defined payment due dates or late payment penalties; I propose adding clear payment terms specifying that invoices are due within 30 days of receipt and including a late fee for overdue balances. Thank you, and I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": []
+}

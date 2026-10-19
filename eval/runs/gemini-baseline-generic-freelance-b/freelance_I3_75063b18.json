@@ -1,0 +1,65 @@
+{
+ "id": "freelance:I3",
+ "chars": 19468,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9167,
+   "end": 9259
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5337,
+   "end": 5423
+  }
+ ],
+ "email": true,
+ "seconds": 14.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6916,
+   "prompt_tokens": 4029,
+   "output_tokens": 197,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.33,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "This clause allows the client to terminate the contract instantly without notice and deprives you of payment for work already completed and delivered.",
+      "suggested_change": "Client may terminate this Agreement upon written notice, provided that Client pays for all Services performed and expenses incurred up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Intellectual property rights transfer immediately upon delivery before final payment is received, removing your primary leverage if the client fails or refuses to pay.",
+      "suggested_change": "Intellectual property rights in each Deliverable shall transfer to Client only upon receipt of full and final payment for the applicable Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2640,
+   "prompt_tokens": 423,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the paperwork. I have reviewed the agreement and would like to suggest a couple of small adjustments before we sign. - Regarding the relevant clause on termination, the agreement currently allows termination at any time without notice and without further payment for completed work; I propose modifying this so that the agreement permits termination upon written notice, provided that the client pays for all services performed and expenses incurred up to the effective date of termination. - Regarding the relevant clause concerning intellectual property, rights transfer immediately upon delivery before final payment is received; I propose updating this so that intellectual property rights in each deliverable shall transfer to the client only upon receipt of full and final payment for the applicable deliverables. Please let me know if these updates work for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

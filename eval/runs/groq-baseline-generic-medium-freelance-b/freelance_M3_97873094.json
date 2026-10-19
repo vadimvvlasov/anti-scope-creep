@@ -1,0 +1,162 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "start": 2001,
+   "end": 2246
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 4009
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8183,
+   "end": 8386
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9122,
+   "end": 9293
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Liability cap: USD 35,000 (Client only)",
+   "start": 13208,
+   "end": 13247
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Multiple independent feedback channels can increase the risk of contradictory instructions, so the parties will make reasonable efforts to consolidate comments before a revision cycle.",
+   "start": 13674,
+   "end": 13858
+  }
+ ],
+ "email": true,
+ "seconds": 96.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4539,
+   "prompt_tokens": 2650,
+   "output_tokens": 1889,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.8,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a formal change order. In practice the client could interpret minor changes as non‑material, while they actually add significant effort, forcing you to work extra for the same fee.",
+      "suggested_change": "Require that any clarification that could affect effort, cost, or schedule be documented in writing as a change request with agreed additional compensation."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "While it mandates written change requests, the clause does not obligate the client to approve additional fees, leaving room for the client to pressurise you into unpaid extra work.",
+      "suggested_change": "Add language that no additional work will be performed until the client signs a change order that includes the revised fee and timeline."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment is tied to the client’s receipt of funds from its own customers, which could delay your cash flow indefinitely and give the client leverage to withhold payment.",
+      "suggested_change": "Change the payment trigger to \"15 days after the invoice date\" (or receipt) regardless of the client’s downstream payments, with interest for late payment as already provided."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "You bear unlimited liability for any claim arising from your work, while the client’s exposure is capped. This creates a severe financial risk if a project causes significant loss.",
+      "suggested_change": "Introduce a mutual liability cap equal to the total fees payable under the agreement (or a multiple thereof, e.g., 2 × fees) and exclude consequential damages for both parties."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can walk away with 20‑day notice, leaving you with unfinished work and lost future revenue while only being paid for work completed to date.",
+      "suggested_change": "Require mutual agreement for termination for convenience or include a termination fee (e.g., 20% of the remaining scheduled fees) payable to the contractor upon early termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3330,
+   "prompt_tokens": 1874,
+   "output_tokens": 1456,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.23,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "The contractor must wait until the client receives payment from its own customer before the contractor can invoice, creating cash‑flow risk and giving the client control over when the contractor gets paid.",
+      "suggested_change": "Change the payment term to a fixed period from the invoice date, e.g., \"Payment due 15 days after invoice is issued\" or \"Payment due 30 days after invoice, regardless of when the Client receives payment from its customer.\""
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Liability cap: USD 35,000 (Client only)",
+      "explanation": "Only the client’s liability is capped, leaving the contractor exposed to unlimited liability for any breach, negligence, or defect, which could result in damages far exceeding the contract value.",
+      "suggested_change": "Add a reciprocal liability cap, e.g., \"Liability of each party is capped at USD 35,000, except for liability arising from gross negligence, willful misconduct, or breach of confidentiality.\""
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Multiple independent feedback channels can increase the risk of contradictory instructions, so the parties will make reasonable efforts to consolidate comments before a revision cycle.",
+      "explanation": "The clause acknowledges that contradictory feedback may arise but does not define how extra work caused by such contradictions will be handled, potentially leading to additional, unpaid revisions (scope creep).",
+      "suggested_change": "Insert a clear change‑order procedure, e.g., \"If feedback is contradictory or exceeds the three‑round revision allowance, the Contractor shall issue a change request and the Client shall approve any additional fees before work proceeds.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3272,
+   "prompt_tokens": 1401,
+   "output_tokens": 1871,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.68,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\n- The relevant clause permits informal \"minor clarifications\" that could in practice increase my workload without a formal change order. I would like the agreement to require that any clarification affecting effort, cost, or schedule be documented in writing as a change request with mutually agreed additional compensation.\n- The relevant clause requires written change requests but does not obligate the client to approve any additional fees, which could lead to unpaid extra work. I propose to add language stating that no additional work will be performed until the client signs a change order that includes the revised fee and timeline.\n- The payment terms tie the due date to the client’s receipt of funds from its own customer, creating cash‑flow uncertainty. I suggest amending the agreement so that payment is due 15 days after the invoice date (or receipt), regardless of the client’s downstream payments, while retaining the interest provision for late payment.\n- The liability provision caps the client’s exposure at USD 35,000 while leaving the contractor’s liability unlimited. I recommend introducing a reciprocal liability cap equal to the total fees payable under the agreement (or twice that amount) and excluding consequential damages for both parties.\n- The termination clause allows either party to end the agreement with 20 days’ notice and only requires payment for work performed up to that date, which could leave the contractor without compensation for the remaining schedule. I propose that termination for convenience be by mutual agreement or, if one party terminates early, a termination fee of 20 % of the remaining scheduled fees be payable to the contractor.\n- The agreement repeats a payment period that depends on the client being paid by its customer, repeating the cash‑flow risk. I would like the payment term to be a fixed period from the invoice date, such as payment due 15 days after the invoice is issued (or 30 days), irrespective of when the client receives payment from its customer.\n- The liability cap applies only to the client, leaving the contractor exposed to unlimited liability. I suggest adding a reciprocal liability cap of USD 35,000 for each party, except for liability arising from gross negligence, willful misconduct, or breach of confidentiality.\n- The feedback clause acknowledges possible contradictory instructions but does not define how extra work caused by such contradictions will be compensated. I propose inserting a clear change‑order procedure: if feedback is contradictory or exceeds the three‑round revision allowance, the contractor shall issue a change request and the client shall approve any additional fees before the work proceeds.\n\nThank you for your consideration.\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

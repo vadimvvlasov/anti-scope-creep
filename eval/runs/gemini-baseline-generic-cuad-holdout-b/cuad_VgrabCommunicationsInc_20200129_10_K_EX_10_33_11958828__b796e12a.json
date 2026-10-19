@@ -1,0 +1,93 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment to the following individual below within 7 days upon completion and handover on the Project to VAL.",
+   "start": 3768,
+   "end": 3875
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Being Developer of the project, Developer will be responsible and liable for the product's business compliance with WeChat Mini Program and Payment guidelines.",
+   "start": 5755,
+   "end": 5914
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Development Chinese WeChat's Online Store, Social Media, Website, Online Promotion/Marketing and Online Payment for the P.R.China market.",
+   "start": 3288,
+   "end": 3425
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "VAL shall, in the event of Developer committing any breach of any of the terms and conditions of this agreement or for any other reason considered as sufficient, be entitled to terminate this agreement by giving two (2) weeks' notice in writing and it is applicable only when the project is not completed.",
+   "start": 10806,
+   "end": 11111
+  }
+ ],
+ "email": true,
+ "seconds": 18.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7974,
+   "prompt_tokens": 3503,
+   "output_tokens": 455,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.86,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment to the following individual below within 7 days upon completion and handover on the Project to VAL.",
+      "explanation": "All payments are deferred until the final completion and handover of the entire project after up to 6 months of work, creating severe cash flow risks during development.",
+      "suggested_change": "Implement a milestone-based payment schedule, including an upfront deposit and interim payments tied to project milestones."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Being Developer of the project, Developer will be responsible and liable for the product's business compliance with WeChat Mini Program and Payment guidelines.",
+      "explanation": "This clause makes us strictly liable for business and regulatory compliance with third-party platforms, exposing us to unpredictable and uncapped legal and financial liabilities.",
+      "suggested_change": "Limit our liability strictly to technical software bugs and code performance, explicitly excluding third-party business compliance and regulatory risks."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Development Chinese WeChat's Online Store, Social Media, Website, Online Promotion/Marketing and Online Payment for the P.R.China market.",
+      "explanation": "Including online promotion and marketing in our development deliverables expands our responsibilities into non-technical commercial activities outside our expertise.",
+      "suggested_change": "Remove online promotion and marketing tasks from our scope of work, confining our responsibilities strictly to software development and technical setup."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "VAL shall, in the event of Developer committing any breach of any of the terms and conditions of this agreement or for any other reason considered as sufficient, be entitled to terminate this agreement by giving two (2) weeks' notice in writing and it is applicable only when the project is not completed.",
+      "explanation": "VAL is granted unilateral power to terminate the agreement for any subjective reason they consider sufficient, leaving us vulnerable after investing time and resources.",
+      "suggested_change": "Restrict termination rights to material breaches with a proper cure period, or guarantee full compensation for all work completed plus unrecoverable costs if terminated for convenience."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3364,
+   "prompt_tokens": 680,
+   "output_tokens": 217,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to propose a few minor adjustments before signing: - Regarding the payment terms, the current text defers all compensation until final completion, creating cash flow challenges. We propose implementing a milestone-based payment schedule, including an upfront deposit and interim payments tied to project milestones. - Concerning the relevant clause on compliance, it assigns strict liability for third-party business rules, which creates unpredictable exposure. We suggest limiting our liability strictly to technical software bugs and code performance, explicitly excluding third-party business compliance and regulatory risks. - In the section detailing deliverables, marketing and promotional duties are included outside our technical scope. We propose removing online promotion and marketing tasks, confining our responsibilities strictly to software development and technical setup. - Regarding the termination provisions in the agreement, it allows for unilateral termination for subjective reasons, leaving the project vulnerable. We request restricting termination rights to material breaches with a proper cure period, or guaranteeing full compensation for all completed work. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

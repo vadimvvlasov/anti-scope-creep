@@ -1,0 +1,91 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "start": 9225,
+   "end": 9391
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable within 30 days of receipt. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3968
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1846,
+   "end": 1995
+  }
+ ],
+ "email": true,
+ "seconds": 23.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10694,
+   "prompt_tokens": 4051,
+   "output_tokens": 445,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.63,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law. Nothing in this Section limits liability for fraud, willful misconduct, or obligations that cannot legally be excluded or limited.",
+      "explanation": "The liability cap of USD 35,000 exceeds the total project fee of USD 24,875, exposing you to potential damages higher than the entire contract value.",
+      "suggested_change": "Reduce the liability cap to align with the total fees payable under the contract (e.g., capped at fees paid)."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+      "explanation": "Termination for convenience allows the client to cancel on short notice, disrupting your revenue and workflow.",
+      "suggested_change": "Increase the notice period to 30 days and add a provision requiring payment for non-cancellable expenses and work in progress."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable within 30 days of receipt. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 30 payment terms require you to finance project operations for a month after invoicing, impacting cash flow.",
+      "suggested_change": "Request Net 15 payment terms and require milestone payments upfront or upon delivery."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "Allowing minor clarifications via ordinary communications can lead to incremental task additions that blur project boundaries.",
+      "suggested_change": "Require all additions or modifications to be explicitly documented via written change orders regardless of scale."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2320,
+   "prompt_tokens": 442,
+   "output_tokens": 152,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together, but I would like to request a few adjustments to the relevant clauses before signing: - Regarding the termination clause, a short notice period can disrupt workflow and revenue, so I propose increasing the notice period to 30 days and adding a provision requiring payment for non-cancellable expenses and work in progress. - Regarding the payment terms, Net 30 invoices impact cash flow, so I suggest requesting Net 15 payment terms and requiring milestone payments upfront or upon delivery. Please let me know your thoughts on these updates so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

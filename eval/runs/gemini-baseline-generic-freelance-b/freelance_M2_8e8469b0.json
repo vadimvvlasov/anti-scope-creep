@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 14.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6894,
+   "prompt_tokens": 3981,
+   "output_tokens": 221,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.45,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "This transfers ownership of the work to the client immediately upon delivery, even though payment is due later under Net 30 terms. If the client delays or defaults on payment, you have already surrendered your intellectual property rights without recourse.",
+      "suggested_change": "Amend the clause to state that intellectual property rights transfer to the client only upon receipt of full payment for the applicable Deliverables."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "This clause allows the client to terminate instantly without notice and explicitly strips you of the right to be paid for work already performed, putting all financial risk on you.",
+      "suggested_change": "Modify the clause to require advance written notice and ensure payment for all completed work, approved expenses, and a kill fee for cancelled milestones."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2030,
+   "prompt_tokens": 447,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am writing to propose a few adjustments to the agreement before signing. - Regarding the intellectual property clause, the text currently transfers ownership upon delivery rather than upon payment, which creates exposure. I propose that we amend the clause to state that intellectual property rights transfer to the client only upon receipt of full payment for the applicable deliverables. - Regarding the termination clause, the agreement currently permits immediate termination without notice and without payment for completed work. I propose that we modify the clause to require advance written notice and ensure payment for all completed work, approved expenses, and a kill fee for cancelled milestones. Thank you and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

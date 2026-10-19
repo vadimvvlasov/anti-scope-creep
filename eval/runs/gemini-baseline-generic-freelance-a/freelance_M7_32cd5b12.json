@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+   "start": 2200,
+   "end": 2438
+  }
+ ],
+ "email": true,
+ "seconds": 15.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4279,
+   "prompt_tokens": 964,
+   "output_tokens": 388,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.3,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "This ties all milestone payments (even those due months earlier) to 90 days after the final acceptance of the entire software, creating a massive cash flow delay.",
+      "suggested_change": "Client shall pay each milestone amount within fifteen (15) days of acceptance of each specific milestone."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "Intellectual property is transferred upon delivery rather than upon full payment, meaning the client could take ownership of your code before paying for it.",
+      "suggested_change": "Upon receipt of full payment for each respective Milestone, Developer assigns to Client all right, title, and interest in and to the custom deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+      "explanation": "The contract lacks a limitation of liability and a waiver of consequential damages, exposing you to unlimited financial liability for any bugs, security breaches, or downtime in a HIPAA-compliant app.",
+      "suggested_change": "Add a limitation of liability clause capping Developer's total aggregate liability to the total fees paid under this Agreement, and disclaim consequential or indirect damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2970,
+   "prompt_tokens": 610,
+   "output_tokens": 180,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working together, and I have a few adjustments to propose before we sign. - Regarding the relevant clause on payment, tying all milestone payments to final acceptance creates a delay, so I propose modifying the agreement so that the client pays each milestone amount within fifteen days of acceptance of each specific milestone. - Regarding the relevant clause on intellectual property, transferring rights upon delivery rather than full payment is a concern, so I propose modifying the agreement so that rights are assigned upon receipt of full payment for each respective milestone. - Regarding the relevant clause on warranty and liability, the agreement lacks a limitation of liability, so I propose adding a clause capping total aggregate liability to the total fees paid and disclaiming consequential or indirect damages. Please let me know if these changes sound acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  }
+ ],
+ "email": true,
+ "seconds": 15.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7120,
+   "prompt_tokens": 3971,
+   "output_tokens": 198,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.94,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause requires you to perform unspecified future work for free, which can severely drain your time and resources without any added compensation.",
+      "suggested_change": "Delete this clause or modify it to state that any out-of-scope services will be billed separately at your standard hourly rate via a written change order."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "An open-ended revision policy tied to subjective satisfaction prevents project completion and traps you in an endless loop of unpaid work.",
+      "suggested_change": "Specify a fixed number of revision rounds (e.g., two rounds) per deliverable and state that additional revisions require additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2814,
+   "prompt_tokens": 428,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I am looking forward to collaborating, but I would like to request a couple of adjustments before signing. - Regarding the clause requiring extra services without extra charge, this would involve performing unspecified future work for free, so I propose modifying the relevant clause to state that any out-of-scope services will be billed separately at my standard hourly rate via a written change order. - Regarding the clause about unlimited revisions until full satisfaction, an open-ended revision policy can prevent project completion, so I propose specifying a fixed number of revision rounds per deliverable and stating that additional revisions require additional fees. Thank you for understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,107 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "IN NO EVENT SHALL E.PIPHANY'S LIABILITY HEREUNDER EXCEED THE SUM TOTAL OF PAYMENTS MADE BY HSNS UNDER THE INITIAL TERM OF THIS AGREEMENT.",
+   "start": 30686,
+   "end": 30823
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "HSNS will pay to E.piphany a minimum sell through revenue commitment of $750,000.00 (\"MINIMUM SELL-THROUGH COMMITMENT\") during the initial three year term of this Agreement on the dates and in the minimum amounts (\"Minimum Quarterly Payments\") as follows.",
+   "start": 45526,
+   "end": 45781
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "All payments made hereunder are non-cancelable and non-refundable.",
+   "start": 7935,
+   "end": 8001
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "HSNS hereby assigns all right, title and interest in and to any customization, enhancement, amendment or changes made by or for HSNS pursuant to this Agreement, and hereby waives any and all moral rights that HSNS may retain in and to such customizations, enhancements, amendment and changes.",
+   "start": 20435,
+   "end": 20727
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "YEAR 2 - Annual minimum payment ($250,000.00), plus a                   percentage increase in the annual minimum payment equal to 50%                   of the difference between the number of emails sent by HSNS on                   behalf of Outsourcing Customers in the first six months of                   Year 1 and the second six months of Year 1, up to a maximum                   Year 2 payment of $375,000.00.",
+   "start": 47565,
+   "end": 47984
+  }
+ ],
+ "email": true,
+ "seconds": 23.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 18162,
+   "prompt_tokens": 12852,
+   "output_tokens": 680,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.99,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "IN NO EVENT SHALL [PARTY_B]'S LIABILITY HEREUNDER EXCEED THE SUM TOTAL OF PAYMENTS MADE BY HSNS UNDER THE INITIAL TERM OF THIS AGREEMENT.",
+      "explanation": "E.piphany's liability is strictly capped, while HSNS's liability and indemnification obligations under Section 10.2 are completely uncapped, exposing HSNS to disproportionate risk.",
+      "suggested_change": "Mutually cap each party's aggregate liability under the Agreement to a fixed amount or fees paid, and make indemnities mutual and capped."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "HSNS will pay to E.piphany a minimum sell through revenue commitment of $750,000.00 (\"MINIMUM SELL-THROUGH COMMITMENT\") during the initial three year term of this Agreement on the dates and in the minimum amounts (\"Minimum Quarterly Payments\") as follows.",
+      "explanation": "HSNS is locked into paying a rigid minimum commitment regardless of actual sales or market demand, bearing 100% of the commercial risk.",
+      "suggested_change": "Remove the minimum sell-through commitment and tie payment obligations strictly to actual usage or actual revenue generated."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "All payments made hereunder are non-cancelable and non-refundable.",
+      "explanation": "Fees paid to E.piphany cannot be refunded under any circumstances, even if E.piphany materially breaches the agreement or fails to deliver services.",
+      "suggested_change": "Allow for prorated refunds of prepaid fees in the event of E.piphany's uncured material breach or warranty failure."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "HSNS hereby assigns all right, title and interest in and to any customization, enhancement, amendment or changes made by or for HSNS pursuant to this Agreement, and hereby waives any and all moral rights that HSNS may retain in and to such customizations, enhancements, amendment and changes.",
+      "explanation": "HSNS is required to instantly assign all intellectual property rights in customizations and enhancements to E.piphany, losing ownership of work it funds or creates.",
+      "suggested_change": "HSNS should retain ownership of its proprietary modifications, or receive a perpetual, irrevocable, royalty-free license to use them."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "YEAR 2 - Annual minimum payment ($250,000.00), plus a percentage increase in the annual minimum payment equal to 50% of the difference between the number of emails sent by HSNS on behalf of Outsourcing Customers in the first six months of Year 1 and the second six months of Year 1, up to a maximum Year 2 payment of $375,000.00.",
+      "explanation": "Financial commitments automatically scale upward based on volume formulas, increasing HSNS's financial exposure without guaranteed return.",
+      "suggested_change": "Tie payment adjustments to actual profitability or negotiate mutual volume tiers with opt-in provisions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3490,
+   "prompt_tokens": 899,
+   "output_tokens": 255,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before we proceed. - In the relevant clause, the liability of one party is strictly capped while the other's obligations are completely uncapped; we propose to mutually cap each party's aggregate liability to a fixed amount or fees paid, and make indemnities mutual and capped. - The agreement locks the client into a rigid minimum payment regardless of actual sales; we propose to remove the minimum commitment and tie payment obligations strictly to actual usage or revenue generated. - Fees paid under the relevant clause cannot be refunded under any circumstances, even if services are not delivered; we propose to allow for prorated refunds of prepaid fees in the event of an uncured material breach or warranty failure. - The agreement requires immediate assignment of all intellectual property rights in customizations and enhancements; we propose that the creator retain ownership of its proprietary modifications, or receive a perpetual, irrevocable, royalty-free license to use them. - Financial commitments in the relevant clause automatically scale upward based on volume formulas; we propose to tie payment adjustments to actual profitability or negotiate mutual volume tiers with opt-in provisions. Thank you for your time, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

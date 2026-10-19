@@ -1,0 +1,51 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3976,
+   "end": 4135
+  }
+ ],
+ "email": true,
+ "seconds": 14.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7581,
+   "prompt_tokens": 4050,
+   "output_tokens": 104,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.54,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "Waiting 90 days for invoice payment creates a significant cash flow burden for an independent freelancer.",
+      "suggested_change": "Change the payment terms from Net 90 to Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2051,
+   "prompt_tokens": 332,
+   "output_tokens": 87,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the paperwork. I have reviewed the agreement and would like to propose a minor adjustment before signing: - Regarding the relevant clause on payment terms, waiting 90 days creates a significant cash flow burden, and I propose we change the payment terms from Net 90 to Net 30. Thank you for your flexibility and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

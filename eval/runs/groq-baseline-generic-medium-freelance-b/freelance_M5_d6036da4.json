@@ -1,0 +1,151 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5117,
+   "end": 5262
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9025,
+   "end": 9223
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "start": 4536,
+   "end": 4704
+  }
+ ],
+ "email": true,
+ "seconds": 88.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4347,
+   "prompt_tokens": 2641,
+   "output_tokens": 1706,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.56,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to add \"minor clarifications\" without a formal change request. In practice the line between a minor clarification and a material addition can be blurry, letting the client increase the workload at little or no extra cost to you.",
+      "suggested_change": "Require any clarification that could affect effort, time, or cost to be documented as a change request and approved in writing before work begins."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Ownership of all deliverables (including those you will create later) passes to the client after just the first milestone payment. If the client later delays or defaults on subsequent payments, they already have full IP rights to work you have not yet been compensated for.",
+      "suggested_change": "Tie transfer of IP rights to full payment of each corresponding deliverable or to the final payment, e.g., \"Client will own the rights to a Deliverable upon receipt of payment for that Deliverable.\""
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "The client can end the contract at any time with short notice while you cannot, and you are not entitled to payment for work already performed. This leaves you vulnerable to unpaid labor and sudden loss of revenue.",
+      "suggested_change": "Add a reciprocal termination right for the contractor with comparable notice and require payment for all services performed up to the termination date, regardless of termination reason."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "12.2 ... Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "Even if the client terminates, you receive no compensation for any work that was underway, effectively allowing the client to receive free labor. This undermines cash flow and makes the agreement financially risky.",
+      "suggested_change": "Insert language that obligates the client to pay a prorated amount for all work completed or in progress at termination, based on documented effort or milestones."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+      "explanation": "If the client does not respond within the 10‑day review window, the deliverable is deemed accepted automatically, potentially triggering payment before the client has a chance to raise legitimate concerns.",
+      "suggested_change": "Require explicit written acceptance from the client before a deliverable is considered accepted, or extend the review period and include a clause that silence does not constitute acceptance."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3774,
+   "prompt_tokens": 1856,
+   "output_tokens": 1918,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.8,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "The client has 30 days to pay each invoice and, if late, only a 1 % interest charge applies. This can create cash‑flow delays for the contractor and provides a relatively weak deterrent against late payment.",
+      "suggested_change": "Change the payment period to Net 14 (or Net 15) and increase the late‑payment interest to 2 % per month, or add a clause that any invoice unpaid after 15 days incurs a 5 % flat late‑fee."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notice period: 20 days\nCure period: 15 days\nNo clause in this section changes the liability cap of USD 35,000, the late‑payment rate of 1.0%, or the termination notice period of 20 days.",
+      "explanation": "Only a 20‑day notice period is specified, but the contract does not grant the contractor an equivalent right to terminate. This leaves the contractor vulnerable to unilateral termination by the client while still being bound to complete work and bear any associated costs.",
+      "suggested_change": "Add a symmetric termination right for the contractor with the same 20‑day notice, and require that the client pays for all work performed up to the termination date, including any non‑recoverable costs."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Requests outside that scope are handled as new Services or change requests.\nRevision allowance: 3 rounds",
+      "explanation": "The clause limits revisions to three rounds, but the wording about “reasonable efforts to consolidate comments” and handling extra requests as new services can be interpreted loosely, allowing the client to request additional work without a clear, pre‑agreed compensation mechanism.",
+      "suggested_change": "Introduce a formal change‑order process: any work beyond the three revision rounds or beyond the defined deliverables must be documented in writing, priced separately, and approved by the client before the contractor proceeds."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1584,
+   "prompt_tokens": 808,
+   "output_tokens": 776,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear Client,\n\nI hope you are well. Before signing the agreement, I would like to propose a few adjustments:\n\n- The relevant clause on service descriptions permits minor clarifications without a formal change request. To avoid ambiguity, I propose that any clarification that could affect effort, time, or cost be documented as a change request and approved in writing before work begins.\n- The clause on ownership of deliverables transfers all rights to the client after the first milestone payment. To protect both parties, I suggest linking the transfer of IP rights to payment for each specific deliverable (or to the final payment), so that the client obtains rights only upon receipt of payment for that deliverable.\n- The termination clause allows the client to terminate for convenience with 20 days' notice while the contractor has no comparable right and is not entitled to payment for work in progress. I recommend adding a reciprocal termination right for the contractor with comparable notice and specifying that fees for services performed up to the termination date are payable regardless of the reason for termination.\n\nThank you for considering these points. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

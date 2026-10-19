@@ -1,0 +1,93 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "start": 593,
+   "end": 720
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "start": 1688,
+   "end": 1891
+  }
+ ],
+ "email": true,
+ "seconds": 43.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2619,
+   "prompt_tokens": 1151,
+   "output_tokens": 1468,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.93,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+      "explanation": "The clause allows the client to request additional work at an hourly rate, which can lead to frequent change orders that expand the project beyond the original fixed price and increase your workload without a clear cap.",
+      "suggested_change": "Add a maximum number of change‑order hours per month or a total cap on change‑order fees, and require that any change that would increase the total project cost above a specified percentage (e.g., 10%) must be approved in writing with a revised fixed‑price amendment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment for every milestone is postponed until after the client has accepted the entire project, giving the client up to 90 days after final acceptance to release all funds. This creates cash‑flow risk and leaves you unpaid for work completed months earlier.",
+      "suggested_change": "Specify that each milestone is payable within 30 days of the client’s acceptance of that specific milestone, and retain the 90‑day clause only for the final milestone. Alternatively, require a 30‑day payment term after invoice issuance for each milestone."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You transfer full ownership of the IP before you have received payment for that milestone, which reduces your leverage and exposes you to the risk of non‑payment while the client already owns the work product.",
+      "suggested_change": "Modify the clause to transfer IP only upon receipt of full payment for the corresponding milestone, or grant the client a non‑exclusive license until payment is made."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+      "explanation": "The contract obligates you to fix any material non‑conformities within 14 days at no cost, without limiting the number of such fixes. In practice this can become an open‑ended revision cycle that consumes additional time and resources.",
+      "suggested_change": "Define \"material non‑conformities\" more narrowly, limit the number of revision cycles per milestone (e.g., two rounds), and state that any revisions beyond the agreed number will be billed at the standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2071,
+   "prompt_tokens": 976,
+   "output_tokens": 1095,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.89,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\n- The current change‑order clause allows extra work at $120 / hour with no cap, which could expand the project cost unpredictably. I propose adding a limit on change‑order hours per month (or a total cap) and requiring written approval for any increase that would raise the total project cost by more than 10%.\n\n- The payment clause ties each milestone payment to final acceptance of the entire software and allows up to 90 days for payment, creating cash‑flow risk. I suggest making each milestone payable within 30 days of the client’s acceptance of that specific milestone, and retaining the 90‑day term only for the final milestone.\n\n- The IP clause transfers all rights to the client upon delivery of each milestone before payment is received, which reduces leverage. I recommend transferring IP only after full payment for the corresponding milestone, or granting the client a non‑exclusive license until payment is made.\n\n- The bug‑fix clause requires corrections of any material non‑conformities within 14 days at no cost, without limiting the number of fixes, potentially leading to unlimited revisions. I propose defining “material non‑conformities” more narrowly, limiting revision cycles to two per milestone, and billing any additional revisions at the standard hourly rate.\n\nThanks for your understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

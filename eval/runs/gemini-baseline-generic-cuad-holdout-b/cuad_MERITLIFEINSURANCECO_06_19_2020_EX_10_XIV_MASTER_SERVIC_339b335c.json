@@ -1,0 +1,79 @@
+{
+ "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT",
+ "chars": 22090,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+   "start": 14200,
+   "end": 14323
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+   "start": 12689,
+   "end": 13244
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will be compensated on a time and materials. In addition, Company shall reimburse Contractor its actual out-of-pocket expenses as reasonably incurred by Contractor in connection with its performance of the Services as negotiated in each Statement of Work.",
+   "start": 6165,
+   "end": 6431
+  }
+ ],
+ "email": true,
+ "seconds": 20.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9672,
+   "prompt_tokens": 4308,
+   "output_tokens": 437,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.82,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall provide to Company, and hereby assigns to Company, all right, title and interest to any Works in progress.",
+      "explanation": "Under Section 6(b), upon termination, you are required to immediately assign all right, title, and interest in works in progress to the Company before confirming receipt of payment, which conflicts with Section 11(c).",
+      "suggested_change": "Modify this clause to align with Section 11(c) by stating that assignment of works in progress is contingent upon receipt of payment for those works."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+      "explanation": "This gives the Company the unilateral right to terminate immediately and forfeit all earned fees for work already performed if a violation of the anti-corruption clause is claimed.",
+      "suggested_change": "Remove the forfeiture of earned fees for past work; ensure that Contractor is paid for all services rendered up to the date of termination."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will be compensated on a time and materials. In addition, Company shall reimburse Contractor its actual out-of-pocket expenses as reasonably incurred by Contractor in connection with its performance of the Services as negotiated in each Statement of Work.",
+      "explanation": "The agreement fails to establish a standard payment due date (such as Net 30 days) for invoices submitted by the Contractor, leaving payment schedules entirely open-ended.",
+      "suggested_change": "Add explicit payment terms stating that invoices are due within 30 days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2771,
+   "prompt_tokens": 660,
+   "output_tokens": 166,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing: - Regarding the relevant clause about works in progress, the agreement requires assigning rights upon termination before confirming payment receipt, which creates a conflict; please modify this clause so that assignment is contingent upon receipt of payment for those works. - Regarding the relevant clause on termination, the agreement currently allows for the forfeiture of earned fees for work already performed; please remove this forfeiture and ensure payment for all services rendered up to the date of termination. - Regarding the relevant clause on compensation, the agreement lacks a standard payment due date for invoices; please add explicit payment terms stating that invoices are due within 30 days of receipt. Thank you, best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

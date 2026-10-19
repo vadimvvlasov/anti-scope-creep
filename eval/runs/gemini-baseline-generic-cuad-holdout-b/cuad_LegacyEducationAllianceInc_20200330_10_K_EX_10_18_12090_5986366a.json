@@ -1,0 +1,99 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+   "start": 8668,
+   "end": 8802
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "In the event, T&B offers, but LEA refuses to request or accept reasonable, regular and periodic marketing support from T&B during the Term, LEA shall continue to be obligated to pay T&B a Marketing Royalty as if such marketing support had been requested and accepted by LEA.",
+   "start": 22075,
+   "end": 22349
+  }
+ ],
+ "email": true,
+ "seconds": 20.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14737,
+   "prompt_tokens": 10511,
+   "output_tokens": 1022,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.06,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "commencing with the seventh (7th) month of the Term and continuing each year of the Term thereafter, the minimum Royalties payable to T&B each month shall be the greater of the (i) applicable monthly Base Royalty and Marketing Royalty or (ii) $200,000.",
+      "explanation": "LEA is locked into paying a massive fixed minimum royalty of $200,000 per month starting in month 7, regardless of whether the business actually generates sufficient sales or revenue. If sales slump or seasonality hits, LEA must cover the heavy shortfall out of pocket.",
+      "suggested_change": "Propose tying the minimum royalty to actual gross sales percentages, implementing a lower initial threshold, or adding a grace period and adjustment mechanism during slow sales periods or market downturns."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Without limiting the generality of the foregoing, LEA shall defend, hold harmless and indemnify T&B and T&B's agents and employees from and against any and all claims, demands, losses, disputes, causes of action or damages, including, without limitation, FTC actions or other regulatory actions, and/or attorneys' fees arising out of or relating to the promotion, distribution and/or sale of any financial education programs, products or services... by or through LEA...",
+      "explanation": "LEA bears full, uncapped indemnification responsibility for all marketing, sales, and regulatory actions (including FTC investigations), exposing LEA to potentially catastrophic financial liability without any liability cap or proportionate fault sharing.",
+      "suggested_change": "Propose adding a mutual indemnification clause, capping LEA's total indemnification liability (e.g., capped at total royalties paid or received), and excluding claims arising directly from T&B's own misconduct, misrepresentations, or failure to provide accurate factual substantiation."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+      "explanation": "Any derivative works created by LEA based on the Licensed Intellectual Property automatically belong to T&B from inception, meaning LEA invests its own time, effort, and resources into creating derivative materials without securing ownership or long-term rights to those assets.",
+      "suggested_change": "Propose that LEA retain ownership of the derivative works it creates, or alternatively ensure LEA receives a perpetual, royalty-free exclusive license to use them even if the agreement terminates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "provided, however, T&B, in its sole and absolute discretion, shall have the right to terminate this Agreement, including all rights and licenses granted to LEA herein, if and as of the date that any monthly Royalty Payment (as defined in 9.3, below) payable to T&B does not exceed the Minimum Guaranteed Royalty for six (6) consecutive months.",
+      "explanation": "T&B holds a unilateral termination right if monthly minimum royalties aren't met for six consecutive months, allowing T&B to walk away while leaving LEA with sunk investments in business launch and marketing.",
+      "suggested_change": "Propose a cure period or a mechanism to renegotiate terms, adjust benchmarks, or lower the minimum guarantee before T&B is permitted to terminate unilaterally."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In the event, T&B offers, but LEA refuses to request or accept reasonable, regular and periodic marketing support from T&B during the Term, LEA shall continue to be obligated to pay T&B a Marketing Royalty as if such marketing support had been requested and accepted by LEA.",
+      "explanation": "LEA is forced to pay the Marketing Royalty even if LEA declines T&B's marketing support (e.g., if it conflicts with marketing strategy or brand safety), creating a penalty-like payment obligation for unused services.",
+      "suggested_change": "Remove the clause requiring payment for unaccepted marketing support, ensuring Marketing Royalties are only payable when marketing support is actually requested, provided, and utilized."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4123,
+   "prompt_tokens": 540,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have reviewed it and would like to propose a few minor adjustments before signing. - Regarding the first clause, derivative works belong to the client from inception, meaning the creator invests time, effort, and resources without securing ownership or long-term rights; we propose that the creator retain ownership of the derivative works they create, or alternatively ensure they receive a perpetual, royalty-free exclusive license to use them even if the agreement terminates. - Regarding the second clause, payment of a marketing royalty is required even if marketing support is declined, creating a payment obligation for unused services; we propose removing the clause requiring payment for unaccepted marketing support, ensuring marketing royalties are only payable when support is actually requested, provided, and utilized. Please let me know your thoughts on these updates. Best regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

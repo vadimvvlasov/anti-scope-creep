@@ -1,0 +1,104 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3949
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13131,
+   "end": 13159
+  }
+ ],
+ "email": true,
+ "seconds": 143.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3960,
+   "prompt_tokens": 2649,
+   "output_tokens": 1311,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 93.11,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits \"minor clarifications\" without a formal change request, which can be interpreted loosely and lead to additional work that the contractor must perform without extra compensation. Because the threshold for what constitutes a \"material\" increase is subjective, the client could gradually expand the scope while the contractor bears the cost.",
+      "suggested_change": "Require any clarification or addition, regardless of perceived size, to be documented in a written change order that specifies any additional fees and revised timelines before the work begins."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 30 can create cash‑flow pressure for the freelancer, especially on a project with a total fee of USD 24,875. The 1.0% per month (12% annual) interest on late payments is relatively high and may be difficult to enforce depending on jurisdiction, leaving the contractor exposed to delayed or unpaid invoices.",
+      "suggested_change": "Negotiate a shorter payment period (e.g., Net 14) and a lower interest rate for late payments (e.g., 0.5% per month or the statutory maximum). Additionally, include a clause allowing suspension of services after 15 days of non‑payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2561,
+   "prompt_tokens": 1856,
+   "output_tokens": 705,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.97,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "The client has 30 days after invoice to pay and only a 1.0% annual interest charge for late payment. This gives the client a long window to delay payment with a weak penalty, increasing cash‑flow risk for the Contractor.",
+      "suggested_change": "Change the payment period to Net 15 and increase the late‑payment interest to a commercially reasonable rate (e.g., 1.5% per month or 18% per annum). Also add a clause that any invoice not paid within the net period is automatically overdue and subject to the stated interest."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "Only three revision rounds are explicitly allowed, but the contract does not state what happens if the client requests additional changes. This ambiguity can lead to the client demanding extra work without extra compensation, creating scope creep.",
+      "suggested_change": "Add a clear provision that any revisions beyond the three allocated rounds will be treated as a change request and billed at the agreed hourly or per‑revision rate, with prior written approval from the Contractor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2009,
+   "prompt_tokens": 840,
+   "output_tokens": 1169,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.3,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\nI hope you are well.\n\n- The relevant clause allows minor clarifications to be made through ordinary project communications without a formal change request. This could lead to work that expands beyond the original scope without additional compensation. I suggest that any clarification or addition, no matter how small, be documented in a written change order that specifies any extra fees and revised timelines before the work begins.\n- The payment terms set invoices payable Net 30 with interest of 1.0% per month on late payments. This creates cash‑flow pressure and the interest rate may be high. I propose a shorter payment period, such as Net 14, and a reduced late‑payment interest rate of 0.5% per month (or the statutory maximum), together with a provision allowing suspension of services after 15 days of non‑payment.\n- The revision allowance limits the project to three rounds of revisions but does not state what happens if additional changes are requested. This ambiguity could result in extra work without compensation. I recommend adding a clear provision that any revisions beyond the three allocated rounds be treated as a change request and billed at the agreed hourly or per‑revision rate, with prior written approval from the Contractor.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

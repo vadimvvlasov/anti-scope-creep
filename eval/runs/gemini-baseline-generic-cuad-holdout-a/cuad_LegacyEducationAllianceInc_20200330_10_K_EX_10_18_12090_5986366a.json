@@ -1,0 +1,99 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "In the event, T&B offers, but LEA refuses to request or accept reasonable, regular and periodic marketing support from T&B during the Term, LEA shall continue to be obligated to pay T&B a Marketing Royalty as if such marketing support had been requested and accepted by LEA.",
+   "start": 22075,
+   "end": 22349
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+   "start": 8668,
+   "end": 8802
+  }
+ ],
+ "email": true,
+ "seconds": 19.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15268,
+   "prompt_tokens": 10511,
+   "output_tokens": 868,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.09,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "commencing with the seventh (7th) month of the Term and continuing each year of the Term thereafter, the minimum Royalties payable to T&B each month shall be the greater of the (i) applicable monthly Base Royalty and Marketing Royalty or (ii) $200,000.",
+      "explanation": "As the operating party, committing to a flat minimum monthly royalty of $200,000 regardless of actual sales performance or market downturns creates severe financial exposure.",
+      "suggested_change": "Propose scaling the minimum guarantee based on actual market performance, seasonality, or lower the fixed monthly floor."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In the event, T&B offers, but LEA refuses to request or accept reasonable, regular and periodic marketing support from T&B during the Term, LEA shall continue to be obligated to pay T&B a Marketing Royalty as if such marketing support had been requested and accepted by LEA.",
+      "explanation": "This forces payment of a marketing royalty even if T&B's offered support is declined or unsuited for operational needs.",
+      "suggested_change": "Remove the penalty clause requiring marketing royalty payments when support is reasonably declined."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "provided, however, T&B, in its sole and absolute discretion, shall have the right to terminate this Agreement, including all rights and licenses granted to LEA herein, if and as of the date that any monthly Royalty Payment (as defined in 9.3, below) payable to T&B does not exceed the Minimum Guaranteed Royalty for six (6) consecutive months.",
+      "explanation": "T&B can unilaterally terminate the entire agreement if sales fall short for six months, disregarding LEA's heavy upfront investments.",
+      "suggested_change": "Allow LEA a right to cure revenue shortfalls by paying the difference up to the minimum guarantee rather than granting immediate termination rights to T&B."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+      "explanation": "LEA invests resources into creating derivative works, but T&B automatically owns all rights from inception without ensuring equitable return or compensation for LEA's creative inputs.",
+      "suggested_change": "Modify ownership terms so LEA retains ownership or co-ownership of derivative works created by LEA until properly licensed or compensated."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Without limiting the generality of the foregoing, LEA shall defend, hold harmless and indemnify T&B and T&B's agents and employees from and against any and all claims, demands, losses, disputes, causes of action or damages, including, without limitation, FTC actions or other regulatory actions, and/or attorneys' fees arising out of or relating to the promotion, distribution and/or sale of any financial education programs, products or services... by or through LEA",
+      "explanation": "LEA is forced to broadly indemnify T&B for regulatory actions (such as FTC investigations) without any liability cap or limitation based on fault.",
+      "suggested_change": "Limit LEA's indemnification obligation to third-party claims arising directly from LEA's gross negligence or willful misconduct, and establish a reasonable overall liability cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3012,
+   "prompt_tokens": 473,
+   "output_tokens": 144,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.67,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing: - Regarding the relevant clause concerning marketing support, the agreement forces payment of a marketing royalty even if the offered support is declined or unsuited for operational needs, and I propose removing the penalty clause requiring marketing royalty payments when support is reasonably declined. - Regarding the relevant clause concerning derivative works, the agreement assigns all rights from inception without ensuring equitable return for creative inputs, and I propose modifying the ownership terms so ownership or co-ownership is retained until properly licensed or compensated. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

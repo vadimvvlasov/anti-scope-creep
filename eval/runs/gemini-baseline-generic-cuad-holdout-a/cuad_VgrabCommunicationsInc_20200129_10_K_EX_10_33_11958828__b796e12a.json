@@ -1,0 +1,79 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "VAL shall, in the event of Developer committing any breach of any of the terms and conditions of this agreement or for any other reason considered as sufficient, be entitled to terminate this agreement by giving two (2) weeks' notice in writing and it is applicable only when the project is not completed.",
+   "start": 10806,
+   "end": 11111
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment to the following individual below within 7 days upon completion and handover on the Project to VAL.",
+   "start": 3768,
+   "end": 3875
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Being Developer of the project, Developer will be responsible and liable for the product's business compliance with WeChat Mini Program and Payment guidelines.",
+   "start": 5755,
+   "end": 5914
+  }
+ ],
+ "email": true,
+ "seconds": 18.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6561,
+   "prompt_tokens": 3503,
+   "output_tokens": 404,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.88,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "VAL shall, in the event of Developer committing any breach of any of the terms and conditions of this agreement or for any other reason considered as sufficient, be entitled to terminate this agreement by giving two (2) weeks' notice in writing and it is applicable only when the project is not completed.",
+      "explanation": "This allows VAL to terminate the agreement for any subjective reason they consider sufficient, giving them unilateral power to cancel the project while you are left with only pro-rata compensation.",
+      "suggested_change": "Remove the unilateral right to terminate for 'any other reason' and replace it with a mutual termination-for-convenience clause requiring adequate notice and full compensation for all work performed and costs incurred."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment to the following individual below within 7 days upon completion and handover on the Project to VAL.",
+      "explanation": "The contract requires you to complete the entire 4-to-6-month project and hand it over before receiving any payment, creating severe cash flow risks and leaving you unpaid for months of intensive work.",
+      "suggested_change": "Incorporate a milestone payment schedule, including an upfront deposit (e.g., 30% upon signing) and periodic milestone payments during development."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Being Developer of the project, Developer will be responsible and liable for the product's business compliance with WeChat Mini Program and Payment guidelines.",
+      "explanation": "This places open-ended and uncapped liability on you for the product's business compliance with WeChat guidelines and payment rules, exposing you to potential catastrophic financial damages.",
+      "suggested_change": "Limit your liability to direct damages under your control, explicitly exclude third-party platform policy enforcement risks, and add an overall liability cap equal to the total contract value."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3764,
+   "prompt_tokens": 629,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing. - Regarding the termination terms, the relevant clause allows cancellation for any subjective reason, so I propose replacing this with a mutual termination-for-convenience clause requiring adequate notice and full compensation for work performed. - Regarding the payment terms, the relevant clause delays all payment until full project completion, so I propose incorporating a milestone payment schedule with an upfront deposit and periodic payments. - Regarding the compliance terms, the relevant clause assigns open-ended liability for platform guidelines, so I propose limiting liability to direct damages under your control and adding an overall liability cap. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

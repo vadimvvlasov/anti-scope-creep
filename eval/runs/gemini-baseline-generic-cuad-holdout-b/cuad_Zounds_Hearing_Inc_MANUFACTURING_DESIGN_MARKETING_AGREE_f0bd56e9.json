@@ -1,0 +1,107 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Royalties shall be paid 50% at time of shipping and the remaining balance of 50% due in 15-days after the Manufacturer's Products have shipped from the manufacturing facility.",
+   "start": 7866,
+   "end": 8041
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Subcontractor agrees to manufacture Manufacturer's Products (i) that are identical to Zounds' Products allowing Manufacturer to utilize Subcontractor's existing product designs and features and/ or (ii) to specifications provided by Manufacturer from time to time with approval of such changes by Subcontractor.",
+   "start": 8609,
+   "end": 8920
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The publishing Party shall indemnify and hold the non-publishing Party its, officers, agents, shareholders, and employees harmless against any and all claims, demands, damages, liabilities and costs which directly or indirectly result from, or arise in connection with, any negligent act or omission of the disclosing Party, its agents, or employees, pertaining to such disclosing Party's Publications under this Agreement.",
+   "start": 27154,
+   "end": 27577
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order for cause pursuant to Section 8.2 Manufacturer shall not be liable for any termination or cancellation charges but Subcontractor may, at Subcontractor's sole discretion, purchase all or part of any remaining inventory.",
+   "start": 21485,
+   "end": 21779
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Subject to the written agreement of the parties with respect to any resulting change in price, delivery schedule and other terms, Subcontractor will accept design changes (i.e., Engineering Change Orders or \"ECO's\") according to Manufacturer's instructions.",
+   "start": 9976,
+   "end": 10233
+  }
+ ],
+ "email": true,
+ "seconds": 31.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15817,
+   "prompt_tokens": 9313,
+   "output_tokens": 817,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.77,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Royalties shall be paid 50% at time of shipping and the remaining balance of 50% due in 15-days after the Manufacturer's Products have shipped from the manufacturing facility.",
+      "explanation": "Waiting 15 days after shipping for the final 50% of royalties creates cash flow delay and credit risk for the Subcontractor after goods have already left the facility.",
+      "suggested_change": "Require 100% of royalties to be paid upfront prior to shipping or upon delivery."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Subcontractor agrees to manufacture Manufacturer's Products (i) that are identical to Zounds' Products allowing Manufacturer to utilize Subcontractor's existing product designs and features and/ or (ii) to specifications provided by Manufacturer from time to time with approval of such changes by Subcontractor.",
+      "explanation": "Allowing the Manufacturer to provide specifications from time to time without pre-defined pricing structures can lead to uncompensated scope creep and custom engineering burdens.",
+      "suggested_change": "Require that any specification changes be handled via formal Statements of Work with pre-agreed pricing and engineering fees before work commences."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The publishing Party shall indemnify and hold the non-publishing Party its, officers, agents, shareholders, and employees harmless against any and all claims, demands, damages, liabilities and costs which directly or indirectly result from, or arise in connection with, any negligent act or omission of the disclosing Party, its agents, or employees, pertaining to such disclosing Party's Publications under this Agreement.",
+      "explanation": "This indemnification obligation for public announcements is completely uncapped and covers broad negligence claims, exposing the Subcontractor to significant financial risk from PR disputes.",
+      "suggested_change": "Cap the indemnification liability related to public announcements to a specific monetary threshold and restrict it to gross negligence or willful misconduct."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "If the Manufacturer terminates this Agreement or cancels any purchase order for cause pursuant to Section 8.2 Manufacturer shall not be liable for any termination or cancellation charges but Subcontractor may, at Subcontractor's sole discretion, purchase all or part of any remaining inventory.",
+      "explanation": "If the Manufacturer terminates for cause, they escape all cancellation charges while the Subcontractor is left absorbing costs for custom inventory and materials with only discretionary buyback rights.",
+      "suggested_change": "Ensure that the Manufacturer remains liable for raw materials and components already procured in good faith based on approved forecasts, regardless of termination cause."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Subject to the written agreement of the parties with respect to any resulting change in price, delivery schedule and other terms, Subcontractor will accept design changes (i.e., Engineering Change Orders or \"ECO's\") according to Manufacturer's instructions.",
+      "explanation": "Accepting ECO instructions without strict limits on the number of iterations can lead to endless revision requests and administrative overhead.",
+      "suggested_change": "Limit the number of complimentary revisions and establish clear hourly or fixed fees for excessive design changes or repeated ECO submissions."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3926,
+   "prompt_tokens": 916,
+   "output_tokens": 234,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.27,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the draft. I have reviewed the agreement and would like to propose a few adjustments before signing: - Regarding the relevant clause on royalty payments, waiting 15 days after shipping creates cash flow delays, and I propose requiring 100% of royalties to be paid upfront or upon delivery. - In the section concerning product specifications, allowing changes without pre-defined pricing leads to uncompensated scope creep, so I suggest requiring specification changes to be handled via formal Statements of Work with pre-agreed pricing. - Regarding the indemnification clause for public announcements, the uncapped liability creates significant financial risk, and I propose capping this liability and restricting it to gross negligence or willful misconduct. - In the clause addressing termination for cause, leaving custom inventory costs unaddressed is problematic, so I suggest ensuring the other party remains liable for raw materials and components procured in good faith. - Regarding the provision on design changes, accepting instructions without limits can lead to endless revisions, and I propose limiting complimentary revisions and establishing clear fees for excessive changes. I look forward to moving forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

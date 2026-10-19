@@ -1,0 +1,132 @@
+{
+ "id": "freelance:C1",
+ "chars": 19406,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "start": 4536,
+   "end": 4704
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9021,
+   "end": 9197
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notice period: 20 days",
+   "start": 13128,
+   "end": 13150
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Requests outside that scope are handled as new Services or change requests.",
+   "start": 14116,
+   "end": 14191
+  }
+ ],
+ "email": true,
+ "seconds": 72.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4507,
+   "prompt_tokens": 2633,
+   "output_tokens": 1874,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.8,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The language allows the client to request \"minor clarifications\" without a formal change order. Because \"materially increase the workload\" is subjective, the client could argue that additional work is merely a clarification, leaving you to perform extra work without extra compensation.",
+      "suggested_change": "Add language requiring any clarification that results in any additional effort beyond the originally estimated hours to be documented as a change request and billed accordingly, e.g., \"Any clarification that results in additional effort shall be treated as a change request and may be subject to additional fees.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+      "explanation": "If the client does not respond within 10 days, the deliverable is deemed accepted automatically. This can limit your ability to address latent defects after the acceptance deadline and may pressure the client to accept work that is not fully compliant, potentially leading to disputes later.",
+      "suggested_change": "Require explicit written acceptance from the client, or extend the review period and make acceptance contingent on a signed acceptance form, e.g., \"Client shall provide written acceptance of each Deliverable within 15 business days; absent such acceptance, the parties shall meet to discuss any concerns before final acceptance is deemed effective.\""
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "While both sides can terminate, the clause lets the client end the relationship early with only a 20‑day notice, potentially leaving you with unfinished work and lost anticipated revenue, even though you will be paid only for work completed to date.",
+      "suggested_change": "Add a termination fee or minimum notice period for the client, e.g., \"If Client terminates for convenience, Client shall also pay a termination fee equal to 20% of the remaining unpaid fees or provide a minimum 45‑day notice period.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3239,
+   "prompt_tokens": 1856,
+   "output_tokens": 1383,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.49,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notice period: 20 days",
+      "explanation": "The contract only specifies a 20‑day notice period for termination but does not state that the Contractor (you) has the same right. If only the Client can terminate with 20 days' notice, you may have to stop work and lose unpaid fees while still liable for any costs incurred.",
+      "suggested_change": "Add symmetric language granting the Contractor the same 20‑day termination right, e.g., \"Either party may terminate this Agreement upon 20 days' written notice.\""
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Requests outside that scope are handled as new Services or change requests.",
+      "explanation": "While the clause tries to limit extra work, it leaves it to the parties to agree on new services. In practice the Client may keep requesting additional items, pressuring you to perform them without additional compensation, leading to scope creep.",
+      "suggested_change": "Define a clear change‑order process with pre‑approved rates and a maximum number of change requests per milestone, e.g., \"Any out‑of‑scope request must be documented in a change order signed by both parties and will be billed at the agreed hourly rate.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Net 30 gives the Client up to 30 days after invoice to pay, and the interest for late payment is only 1 % per month, which may not sufficiently compensate you for cash‑flow impact if the Client delays payment.",
+      "suggested_change": "Negotiate a shorter payment period (e.g., Net 14) and a higher statutory interest rate, such as \"Late payments will bear interest at the maximum rate permitted by law (e.g., 1.5 % per month) plus any collection costs.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2023,
+   "prompt_tokens": 991,
+   "output_tokens": 1032,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.19,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well.\n\nI have reviewed the agreement and would like to suggest a few minor adjustments before signing:\n\n- In the relevant clause 2.2, the current wording permits “minor clarifications” without a formal change order and defines “materially increase the workload” subjectively. This could result in additional effort that is not compensated. I propose adding language that any clarification that requires extra effort beyond the original estimate be documented as a change request and may be billed accordingly.\n- In the relevant clause 5.2, acceptance is deemed automatic after the review period expires, which limits the ability to address latent defects. I suggest requiring explicit written acceptance within 15 business days, or extending the review period and making acceptance contingent on a signed acceptance form.\n- The notice period is set at 20 days but only the client’s right to terminate is stated. To ensure symmetry, I recommend wording that either party may terminate the agreement upon 20 days’ written notice.\n- The clause on out‑of‑scope requests leaves the process open to interpretation, increasing the risk of scope creep. I recommend defining a clear change‑order process, with out‑of‑scope requests documented in a signed change order and billed at the agreed hourly rate.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

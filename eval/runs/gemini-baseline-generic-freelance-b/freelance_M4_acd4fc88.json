@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget.",
+   "start": 2001,
+   "end": 2111
+  }
+ ],
+ "email": true,
+ "seconds": 16.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7306,
+   "prompt_tokens": 3998,
+   "output_tokens": 180,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.46,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Waiting 60 days after invoicing for payment severely strains cash flow, leaving me to finance project operations for two months.",
+      "suggested_change": "Change the payment terms to Net 15 or Net 30."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget.",
+      "explanation": "This clause forces me to perform extra work without additional compensation if the client requests changes that fit within the subjective definition of 'reasonable' and the fixed budget.",
+      "suggested_change": "Remove the requirement to absorb scope changes within the existing budget and stipulate that any changes require a formal, paid change order."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3110,
+   "prompt_tokens": 408,
+   "output_tokens": 135,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I am happy to move forward and have a couple of small notes before signing: - The relevant clause specifies that invoices are payable Net 60. Because waiting 60 days after invoicing strains cash flow, I propose changing the payment terms to Net 15 or Net 30. - The relevant clause requires accommodating reasonable changes to scope within the overall budget. As this can lead to uncompensated work, I propose removing the requirement to absorb scope changes within the existing budget and stipulating that any changes require a formal, paid change order. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
