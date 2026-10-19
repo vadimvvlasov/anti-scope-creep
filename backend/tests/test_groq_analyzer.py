@@ -152,6 +152,32 @@ def test_the_email_gets_its_placeholders_restored_or_the_analysis_fails():
     bad = FakeClient(lambda text: [finding(quote)], email={"subject": "Changes", "body": "Hi [PERSON_9]"})
     with pytest.raises(ValueError, match="cannot be restored"):
         GroqAnalyzer(bad).analyze(CONTRACT)
+    assert [name for name, _ in bad.calls].count("client_email") == 2
+
+
+def test_an_email_with_an_invented_placeholder_is_asked_for_once_more(caplog):
+    quote = "[PARTY_A] may request unlimited revisions until fully satisfied."
+    answers = iter([
+        {"subject": "Changes", "body": "Hi [PERSON_9]"},
+        {"subject": "Changes", "body": "Hi [PARTY_A],\n\n- Fix it."},
+    ])
+
+    class InventsOnce(FakeClient):
+        def complete_json(self, messages: list[dict[str, str]], schema_name: str, schema: dict[str, Any]) -> GroqResult:
+            if schema_name == "client_email":
+                self.calls.append((schema_name, messages))
+                return GroqResult(content=next(answers), total_tokens=100)
+            return super().complete_json(messages, schema_name, schema)
+
+    client = InventsOnce(lambda text: [finding(quote)])
+    with caplog.at_level(logging.WARNING, logger="app.groq_analyzer"):
+        result = GroqAnalyzer(client).analyze(CONTRACT)
+
+    assert result.email_draft.body == "Hi Northwind Traders Inc.,\n\n- Fix it."
+    assert [name for name, _ in client.calls].count("client_email") == 2
+    assert "PERSON_9" in caplog.text
+    for secret in SECRETS:
+        assert secret not in caplog.text
 
 
 def test_provider_and_validation_errors_fail_the_analysis():
