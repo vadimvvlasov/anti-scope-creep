@@ -1,0 +1,93 @@
+{
+ "id": "cuad:VAPOTHERM, INC. - Manufacturing and Supply Agreement",
+ "chars": 75632,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Medica shall use [* * *] efforts to develop technical know-how that would permit them to manufacture the Cartridge less expensively and shall no less than semiannually furnish the Joint Review Committee with a detailed report as to their progress in this area.",
+   "start": 16676,
+   "end": 16936
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "by Vapotherm, if for any reason other than an Event of Force Majeure Medica fails to deliver within [* * *] days after the required delivery date, or on more than two occasions in any [* * *]-day period fails to deliver within [* * *] days after the required delivery day, any shipment of Cartridge it is required to deliver pursuant to Section 3.2, Section 4.2, or Section 9.3;",
+   "start": 51443,
+   "end": 51821
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Vapotherm shall pay each such invoice in full within [* * *] Calendar Days from the date of invoice, unless Vapotherm has rejected the shipment in question in accordance with Section 4.2.",
+   "start": 11558,
+   "end": 11745
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "This limitation does not, however, apply to any obligation of either party to indemnify the other in connection with any Indemnifiable Loss.",
+   "start": 48278,
+   "end": 48418
+  }
+ ],
+ "email": true,
+ "seconds": 23.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21854,
+   "prompt_tokens": 16341,
+   "output_tokens": 519,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.82,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Medica shall use [* * *] efforts to develop technical know-how that would permit them to manufacture the Cartridge less expensively and shall no less than semiannually furnish the Joint Review Committee with a detailed report as to their progress in this area.",
+      "explanation": "This clause forces Medica to invest resources into ongoing cost-reduction R&D and provide detailed reports without guaranteeing additional compensation or reimbursement.",
+      "suggested_change": "Clarify that cost-reduction research is voluntary or that any resulting R&D efforts will be compensated under a separate, mutually agreed statement of work."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "by Vapotherm, if for any reason other than an Event of Force Majeure Medica fails to deliver within [* * *] days after the required delivery date, or on more than two occasions in any [* * *]-day period fails to deliver within [* * *] days after the required delivery day, any shipment of Cartridge it is required to deliver pursuant to Section 3.2, Section 4.2, or Section 9.3;",
+      "explanation": "Vapotherm can terminate the agreement immediately based on delivery delays occurring multiple times, putting Medica at severe risk of contract cancellation without proportional protections for supply chain disruptions.",
+      "suggested_change": "Include a broader cure mechanism or extend the allowable window for minor delays before triggering a termination right."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Vapotherm shall pay each such invoice in full within [* * *] Calendar Days from the date of invoice, unless Vapotherm has rejected the shipment in question in accordance with Section 4.2.",
+      "explanation": "Depending on the length of the payment window, extended payment terms combined with rejection withholding rights can create cash flow strain for Medica.",
+      "suggested_change": "Specify a reasonable, short payment window and restrict withholding to only the specific disputed portion of rejected goods."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "This limitation does not, however, apply to any obligation of either party to indemnify the other in connection with any Indemnifiable Loss.",
+      "explanation": "This carve-out from the damage limitations exposes Medica to potentially open-ended exposure for third-party indemnification claims.",
+      "suggested_change": "Ensure that all indemnification obligations are explicitly subject to the overall liability cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3951,
+   "prompt_tokens": 744,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am writing to suggest a few minor revisions to the agreement prior to signing. - Regarding the provision on cost-reduction research, it requires ongoing work without guaranteed compensation, so I propose clarifying that such research is voluntary or separately compensated. - Regarding the termination terms for delivery delays, the current text allows immediate cancellation for minor issues, so I propose including a broader cure mechanism or extending the allowable window. - Regarding the payment clause, the current terms may cause cash flow strain, so I propose specifying a reasonable payment window and restricting withholding to disputed portions. - Regarding the liability carve-out, the current wording creates open-ended exposure for third-party claims, so I propose ensuring all indemnification obligations are subject to the overall liability cap. Thank you for your time, and I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": []
+}

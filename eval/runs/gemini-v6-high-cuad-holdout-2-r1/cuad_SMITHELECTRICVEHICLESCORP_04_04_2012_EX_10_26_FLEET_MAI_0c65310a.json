@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT",
+ "chars": 85963,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th  anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+   "start": 50799,
+   "end": 50980
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly  in connection with:",
+   "start": 37110,
+   "end": 37237
+  }
+ ],
+ "email": true,
+ "seconds": 21.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 24765,
+   "prompt_tokens": 20038,
+   "output_tokens": 311,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.28,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+      "explanation": "Only the Client has the right to terminate the contract early without cause on specific anniversaries, while you do not have a corresponding early termination right.",
+      "suggested_change": "Either party may terminate this Agreement with effect from the 3rd, 4th or 5th anniversary of the Commencement Date by giving not less than six months notice in writing to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly in connection with:",
+      "explanation": "Your indemnification obligations regarding employees are excluded from your general liability cap and have no separate limit, exposing you to open-ended financial risk.",
+      "suggested_change": "SEV's indemnification obligations under this Clause 11 shall be subject to the overall liability cap set out in Clause 13.6 of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3119,
+   "prompt_tokens": 346,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I am writing to request a minor modification to the agreement before signing. - Regarding the relevant clause, the current terms exclude indemnification obligations from the general liability cap with no separate limit, creating open-ended financial risk, and I propose that the relevant indemnification obligations shall be subject to the overall liability cap set out in the agreement. Thank you for considering this update. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

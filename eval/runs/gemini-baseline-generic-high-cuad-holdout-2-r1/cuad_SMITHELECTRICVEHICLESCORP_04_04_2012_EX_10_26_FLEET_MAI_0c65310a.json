@@ -1,0 +1,107 @@
+{
+ "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT",
+ "chars": 85963,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex  Vehicle Leasing t/a Business Partner (the \"Hirer\") at the end of its contracted hire period to cover the cost of repairs or replacement that  should have been completed under the terms of this Fleet Maintenance Agreement so that it can be returned to the Hirer in good condition.",
+   "start": 84582,
+   "end": 84999
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end  of the Contracted Period and shall provide such repairs on a free of charge basis.",
+   "start": 52747,
+   "end": 52957
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Additional Charges shall be levied by SEV on completion of Excepted Services within fifteen working days otherwise DCL shall have  no obligation to pay the Additional Charges.",
+   "start": 25762,
+   "end": 25937
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "DCL may terminate this Agreement with immediate effect if Dairy Crest and/or SEV (on behalf of Dairy Crest) receives more  than three PG9 Notices in relation to the Vehicles or a Vehicle in the preceding 6 month period specifically caused by SEV  failing to meet its obligations under this Agreement or in the event that SEV breaches the Codes Of Practice relevant to the  Maintenance Services more than 3 times in the preceding 6 month period.",
+   "start": 52293,
+   "end": 52737
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "SEV's entire liability in respect of the sums payable pursuant to the indemnities contained in Clauses 13.4 and 13.5 shall be  limited to the annualised value of the Maintenance Charges calculated on the Commencement Date or the last anniversary  thereof, unless SEV is insured in respect of such liability, in which case SEV's liability under Clauses 13.4 and 13.5 shall be  limited to the extent of such cover.",
+   "start": 49658,
+   "end": 50070
+  }
+ ],
+ "email": true,
+ "seconds": 20.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22818,
+   "prompt_tokens": 18379,
+   "output_tokens": 911,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex Vehicle Leasing t/a Business Partner (the \"Hirer\") at the end of its contracted hire period to cover the cost of repairs or replacement that should have been completed under the terms of this Fleet Maintenance Agreement so that it can be returned to the Hirer in good condition.",
+      "explanation": "DCL is given the unilateral right to withhold final monthly payments based on their subjective assessment of vehicle condition, creating significant cash flow risk and potential disputes.",
+      "suggested_change": "Propose removing the right to unilaterally withhold payments and instead require any disputed repair costs to be handled through good-faith negotiation or formal dispute resolution."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end of the Contracted Period and shall provide such repairs on a free of charge basis.",
+      "explanation": "This requires SEV to perform free bodywork repairs for up to 13 weeks after the contract has completely terminated, imposing post-contract obligations and costs without compensation.",
+      "suggested_change": "Delete the requirement to provide free post-termination repairs, or specify that all maintenance obligations cease strictly upon the termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Additional Charges shall be levied by SEV on completion of Excepted Services within fifteen working days otherwise DCL shall have no obligation to pay the Additional Charges.",
+      "explanation": "If SEV misses the 15-working-day invoicing window, they completely forfeit their right to payment for services already rendered.",
+      "suggested_change": "Amend the clause to allow a standard invoicing window (e.g., 30 to 60 days) without forfeiting the right to be paid for completed services."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "DCL may terminate this Agreement with immediate effect if Dairy Crest and/or SEV (on behalf of Dairy Crest) receives more than three PG9 Notices in relation to the Vehicles or a Vehicle in the preceding 6 month period specifically caused by SEV failing to meet its obligations under this Agreement or in the event that SEV breaches the Codes Of Practice relevant to the Maintenance Services more than 3 times in the preceding 6 month period.",
+      "explanation": "Allows DCL to terminate immediately based on external regulatory notices or code breaches, without offering a guaranteed opportunity to cure or account for external factors.",
+      "suggested_change": "Add a requirement to provide written notice and a reasonable cure period to rectify any operational issues before immediate termination can be invoked."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "SEV's entire liability in respect of the sums payable pursuant to the indemnities contained in Clauses 13.4 and 13.5 shall be limited to the annualised value of the Maintenance Charges calculated on the Commencement Date or the last anniversary thereof, unless SEV is insured in respect of such liability, in which case SEV's liability under Clauses 13.4 and 13.5 shall be limited to the extent of such cover.",
+      "explanation": "Tying the liability cap to insurance coverage means that if SEV's policy limits are higher or broader, the liability cap expands accordingly, exposing SEV to potentially higher uncovered risks.",
+      "suggested_change": "Clarify that liability is strictly capped at a fixed monetary amount or the annualised value of maintenance charges, regardless of insurance policy limits."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3517,
+   "prompt_tokens": 1008,
+   "output_tokens": 267,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed the terms and would like to propose a few adjustments before signing: - Regarding the relevant clause that permits withholding final monthly payments based on vehicle condition, this introduces cash flow uncertainty; please remove the right to unilaterally withhold payments and handle any disputed repair costs through good-faith negotiation or dispute resolution. - In the section requiring repairs for a period after the contract ends, this imposes post-termination obligations without compensation; please delete the requirement for free post-termination repairs so that all maintenance obligations cease strictly upon the termination date. - Concerning the invoicing timeframe, missing the current window causes a total forfeiture of payment for completed services; please amend the clause to allow a standard invoicing window without forfeiting the right to be paid. - Regarding the immediate termination provisions based on external notices or code breaches, this allows termination without an opportunity to cure; please add a requirement to provide written notice and a reasonable cure period before immediate termination can be invoked. - For the liability cap linked to insurance coverage, this ties liability to policy limits and expands risk exposure; please clarify that liability is strictly capped at a fixed monetary amount or the annualised value of maintenance charges regardless of insurance policy limits. Thank you for your understanding and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

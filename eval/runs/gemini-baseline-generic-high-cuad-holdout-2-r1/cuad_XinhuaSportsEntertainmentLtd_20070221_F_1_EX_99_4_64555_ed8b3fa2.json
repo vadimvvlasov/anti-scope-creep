@@ -1,0 +1,65 @@
+{
+ "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+ "chars": 19128,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The payment schedule shall be by      five (5) instalments of US$220,000 each. The first instalment will be      effect on condition that XFN can raise at least US$1.1 million additional      funding in 2002.",
+   "start": 9495,
+   "end": 9703
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Each Party agrees, at its own expense, to take any further action and to      execute any further documents or instruments as the other Party may      reasonably request to give effect to the transactions contemplated by, and      to the terms of, this Agreement. In particular, and without limiting the      foregoing, the Parties agree to amend this Agreement as may be necessary to      comply with applicable laws, including without limitation the laws of the      People's Republic of China.",
+   "start": 14319,
+   "end": 14815
+  }
+ ],
+ "email": true,
+ "seconds": 14.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7776,
+   "prompt_tokens": 4159,
+   "output_tokens": 344,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.44,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The payment schedule shall be by five (5) instalments of US$220,000 each. The first instalment will be effect on condition that [PARTY_C] can raise at least US$1.1 million additional funding in 2002.",
+      "explanation": "Conditioning the first instalment on raising external funding introduces financing dependencies and uncertainty regarding payment obligations.",
+      "suggested_change": "Remove the external funding conditionality or define clear, objective alternative payment milestones."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Each Party agrees, at its own expense, to take any further action and to execute any further documents or instruments as the other Party may reasonably request to give effect to the transactions contemplated by, and to the terms of, this Agreement. In particular, and without limiting the foregoing, the Parties agree to amend this Agreement as may be necessary to comply with applicable laws, including without limitation the laws of the People's Republic of China.",
+      "explanation": "This broad further assurance clause requires [PARTY_C] to take undefined future actions and amend the agreement at its own expense, which can lead to unanticipated obligations.",
+      "suggested_change": "Limit further actions and amendments to those that are mutually agreed upon and do not impose material financial or operational burdens."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2316,
+   "prompt_tokens": 517,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.97,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great week. I have reviewed the agreement and would like to request a few adjustments before signing. - The relevant clause conditions the first payment on raising external funding, which introduces uncertainty regarding payment obligations. I propose removing this conditionality or defining clear, objective alternative payment milestones. - The agreement requires taking undefined future actions and making amendments at one's own expense, which could lead to unanticipated obligations. I propose limiting further actions and amendments to those that are mutually agreed upon and do not impose material financial burdens. Thank you, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

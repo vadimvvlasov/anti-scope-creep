@@ -1,0 +1,88 @@
+{
+ "id": "cuad:WestPharmaceuticalServicesInc_20200116_8-K_EX-10.1_11947529_EX-10.1_Supply Agreement",
+ "chars": 82898,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "EMCC/A will provide technical expertise in the use of Products and will use its technical centers to enhance technical communications with West Pharmaceutical Services Affiliates technical centers.",
+   "start": 10612,
+   "end": 10809
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "low",
+   "quoted_text": "Sellers agrees to support the creation of purchasing specifications for Products by Buyer and agrees to supply Products in accordance to those purchasing specifications.",
+   "start": 9411,
+   "end": 9580
+  }
+ ],
+ "email": true,
+ "seconds": 24.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 23641,
+   "prompt_tokens": 17492,
+   "output_tokens": 509,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.14,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "EMCC/A will provide technical expertise in the use of Products and will use its technical centers to enhance technical communications with West Pharmaceutical Services Affiliates technical centers.",
+      "explanation": "Committing to ongoing technical support, expertise, and collaborative R&D without clearly defined project boundaries or billable hours can lead to uncompensated operational burden.",
+      "suggested_change": "Clearly scope technical support and R&D activities, setting annual limits on hours or resources, and establishing separate pricing for custom technical projects."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "low",
+      "quoted_text": "Sellers agrees to support the creation of purchasing specifications for Products by Buyer and agrees to supply Products in accordance to those purchasing specifications.",
+      "explanation": "Supporting the creation of custom purchasing specifications without limiting the number of review or revision cycles can result in endless back-and-forth modification requests before orders can be fulfilled.",
+      "suggested_change": "Specify a maximum number of revision cycles for purchasing specifications and state that additional specification changes will incur administrative fees."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "In the event that the other party concludes in its sole discretion that such Change of Control, if it is implemented: (a) may result in it and/or its Affiliates being subjected to any fact... then the other party may (but is not obliged to) terminate this Agreement forthwith upon notice to the Affected Party.",
+      "explanation": "The buyer is granted the right to terminate the contract immediately based on their subjective, sole discretion regarding corporate changes or control, without providing reciprocal termination protections.",
+      "suggested_change": "Make termination rights for change of control mutual, require objective material impact thresholds rather than sole discretion, and provide a reasonable transition period."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Title to the Product(s) to be sold and delivered hereunder will transfer simultaneously with the risks upon delivery as per the applicable lncoterm (Incoterms 2010) in Attachment E with the exception of the following:",
+      "explanation": "Transferring ownership/title of goods upon delivery before payment is fully received creates financial and credit risk if the buyer delays payment or faces insolvency post-delivery.",
+      "suggested_change": "Include a retention of title clause ensuring that legal title remains with the seller until full payment has been received."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2518,
+   "prompt_tokens": 352,
+   "output_tokens": 94,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.69,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to moving forward and would like to request one small adjustment before signing: - Regarding the relevant clause, committing to ongoing technical support without clearly defined project boundaries or billable hours can lead to an uncompensated operational burden, so we propose clearly scoping these activities, setting limits on hours or resources, and establishing separate pricing for custom projects. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

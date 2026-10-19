@@ -1,0 +1,57 @@
+{
+ "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+ "chars": 109219,
+ "findings": [],
+ "email": false,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 30332,
+   "prompt_tokens": 23968,
+   "output_tokens": 700,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.0,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Section 3.2: IAC shall and does hereby irrevocably assign, and shall and does cause IAC Affiliates and IAC Subcontractors to irrevocably assign, to [PARTY_B] all of IAC's, IAC Affiliates' or IAC Subcontractors' worldwide right title and interest in and to the [PARTY_B] Property , if any, whether developed solely by [PARTY_B] or jointly between [PARTY_B] or a [PARTY_B] Affiliate and IAC, an IAC Affiliate, or an IAC Subcontractor, that may arise through the performance of its obligations under this Agreement.",
+      "explanation": "IAC assigns all intellectual property rights and work product to [PARTY_B] immediately upon creation or performance, before IAC is guaranteed to receive payment for the manufactured products or services.",
+      "suggested_change": "Condition the assignment of intellectual property rights on receipt of full payment for the applicable products or services."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Section 7.5: Payment terms are [*] from the date of acceptance by [PARTY_B] of an applicable invoice from IAC, which acceptance may not be unreasonably withheld. IAC may not submit an invoice for a Product prior to that Product's transfer of title to [PARTY_B].",
+      "explanation": "Payment is tied to [PARTY_B]'s formal acceptance of the invoice rather than a fixed period from delivery or shipment, which introduces cash flow uncertainty and risk of delayed payment if [PARTY_B] delays review.",
+      "suggested_change": "Change payment terms to a fixed period from the date of shipment or delivery, with a provision for deemed acceptance if [PARTY_B] does not object within a specified timeframe."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Section 14.0: EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3 (OWNERSHIP; GRANT OF RIGHTS: TRADEMARKS USAGE), OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11 (INDEMNITY), OR BREACH OF SECTION 12 (CONFIDENTIALITY), UNDER NO CIRCUMSTANCES WILL EITHER PARTY BE LIABLE TO THE OTHER UNDER ANY CONTRACT, STRICT LIABILITY, NEGLIGENCE OR OTHER LEGAL OR EQUITABLE THEORY, FOR ANY INCIDENTAL OR CONSEQUENTIAL DAMAGES OR LOST PROFITS IN CONNECTION WITH THE SUBJECT MATTER OF THIS AGREEMENT. EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3 (OWNERSHIP; GRANT OF RIGHTS: TRADEMARKS USAGE), OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11 (INDEMNITY), OR BREACH OF SECTION 12 (CONFIDENTIALITY), IN NO EVENT SHALL EITHER PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED THE AMOUNTS PAID BY SONOS FOR THE PRODUCTS IN THE [*] PERIOD IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.",
+      "explanation": "Carving out IP ownership violations, indemnification obligations, and confidentiality breaches from the overall liability cap exposes IAC to potentially unlimited, catastrophic financial liability in those areas.",
+      "suggested_change": "Subject all claims, including indemnification, IP violations, and confidentiality breaches, to a reasonable aggregate liability cap."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

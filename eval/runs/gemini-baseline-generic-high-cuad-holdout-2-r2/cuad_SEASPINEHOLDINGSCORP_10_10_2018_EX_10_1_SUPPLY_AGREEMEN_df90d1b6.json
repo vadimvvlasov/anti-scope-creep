@@ -1,0 +1,88 @@
+{
+ "id": "cuad:SEASPINEHOLDINGSCORP_10_10_2018-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 70898,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "NOTWITHSTANDING THE FOREGOING, NOTHING IN THIS SECTION IS INTENDED TO LIMIT OR RESTRICT THE DAMAGES AVAILABLE FOR BREACHES OF SECTION 3.1 (GRANT OF RIGHTS), SECTION 5 (CONFIDENTIALITY PROVISIONS), OR SECTIONS 8.1 AND 8.2 (OWNERSHIP AND LICENSE).",
+   "start": 57210,
+   "end": 57455
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "PcoMed will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+   "start": 21402,
+   "end": 21687
+  }
+ ],
+ "email": true,
+ "seconds": 19.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19383,
+   "prompt_tokens": 14808,
+   "output_tokens": 684,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.06,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "NOTWITHSTANDING THE FOREGOING, NOTHING IN THIS SECTION IS INTENDED TO LIMIT OR RESTRICT THE DAMAGES AVAILABLE FOR BREACHES OF SECTION 3.1 (GRANT OF RIGHTS), SECTION 5 (CONFIDENTIALITY PROVISIONS), OR SECTIONS 8.1 AND 8.2 (OWNERSHIP AND LICENSE).",
+      "explanation": "This carve-out strips away limitation of liability protections for major operational areas like IP ownership, confidentiality, and grant of rights, exposing [PARTY_B] to potentially catastrophic, uncapped damages.",
+      "suggested_change": "Remove the broad carve-outs from the limitation of liability clause, and subject all claims to a mutual, reasonable aggregate liability cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Integra shall have no liability at any time to [PARTY_B] for Integra's failure to pay the Minimum Payment. In the event that Integra fails to satisfy the Minimum Payment for any Minimum Payment Period, [PARTY_B] may, at its sole election, give notice, as set forth in Section 3.2, for conversion of Integra's exclusive arrangement under Section 3.1 to a non-exclusive arrangement. [PARTY_B]'s conversion right is [PARTY_B]'s sole and exclusive remedy for Integra's failure to satisfy the Minimum Payment for any Minimum Payment Period.",
+      "explanation": "If Integra fails to reach the agreed minimum payment thresholds, [PARTY_B] cannot sue for the unpaid balance and is forced to accept conversion to non-exclusive as the sole remedy, resulting in unrecoverable financial loss.",
+      "suggested_change": "Permit [PARTY_B] to recover the financial shortfall of the Minimum Payment directly as damages or payment owed, rather than making conversion the exclusive remedy."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+      "explanation": "[PARTY_B] is required to provide uncompensated runs and units for regulatory testing and validations, which can lead to scope creep if regulatory bodies demand extended testing beyond the initial estimates.",
+      "suggested_change": "Clearly define the maximum hard limit of free units and runs, and specify that any additional testing or units requested by Integra or regulators will be billed at [PARTY_B]'s standard rates."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall indemnify and defend Integra and its Affiliates... from and against any and all claims... for (iii) product defects or liability associated with the [PARTY_B] Surface Modification Technology.",
+      "explanation": "[PARTY_B] provides a broad indemnification for product defects related to its technology without any limitation, financial cap, or exclusion for Integra's own handling, manufacturing, or misuse of the products.",
+      "suggested_change": "Add a liability cap to the indemnification obligations and exclude claims arising from Integra's improper handling, modification, or use of the products."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3064,
+   "prompt_tokens": 544,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.43,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. I have reviewed the agreement and would like to suggest a couple of updates before we proceed. - In the relevant clause, the current terms remove liability protections for key operational areas, leaving [PARTY_B] exposed to uncapped damages; we propose removing these broad carve-outs and applying a mutual aggregate liability cap. - In the relevant clause, [PARTY_B] is required to supply uncompensated items for regulatory testing, which risks scope creep; we propose establishing a strict limit for free units and billing any extra testing at standard rates. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

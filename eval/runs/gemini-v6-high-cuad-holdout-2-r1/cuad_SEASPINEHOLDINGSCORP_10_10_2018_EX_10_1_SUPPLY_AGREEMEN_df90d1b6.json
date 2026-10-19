@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SEASPINEHOLDINGSCORP_10_10_2018-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 70898,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payments due under Section 2.2 shall be payable to PcoMed by Integra on a quarterly basis within 45 days following the end of each calendar quarter.",
+   "start": 37596,
+   "end": 37744
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The Minimum Payment applicable to each Minimum Payment Period shall be due annually on or before 45 days after the last day of each Minimum Payment Period.",
+   "start": 22177,
+   "end": 22332
+  }
+ ],
+ "email": true,
+ "seconds": 22.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21807,
+   "prompt_tokens": 16467,
+   "output_tokens": 241,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.01,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payments due under Section 2.2 shall be payable to [PARTY_B] by Integra on a quarterly basis within 45 days following the end of each calendar quarter.",
+      "explanation": "Payment within 45 days following the quarter end delays your receipt of fees beyond the standard 30-day window.",
+      "suggested_change": "Payments due under Section 2.2 shall be payable to [PARTY_B] by the Client on a quarterly basis within thirty (30) days following the end of each calendar quarter."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The Minimum Payment applicable to each Minimum Payment Period shall be due annually on or before 45 days after the last day of each Minimum Payment Period.",
+      "explanation": "Requiring 45 days for the annual minimum payment delays your guaranteed compensation.",
+      "suggested_change": "The Minimum Payment applicable to each Minimum Payment Period shall be due annually on or before thirty (30) days after the last day of each Minimum Payment Period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3968,
+   "prompt_tokens": 465,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. - Regarding the relevant clause, payment within 45 days following the quarter end delays the receipt of fees, so I propose updating it as follows: Payments due under Section 2.2 shall be payable to [PARTY_B] by the Client on a quarterly basis within thirty (30) days following the end of each calendar quarter. - Regarding the relevant clause, requiring 45 days for the annual minimum payment delays the guaranteed compensation, and I suggest modifying it to: The Minimum Payment applicable to each Minimum Payment Period shall be due annually on or before thirty (30) days after the last day of each Minimum Payment Period. Please let me know if these adjustments are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

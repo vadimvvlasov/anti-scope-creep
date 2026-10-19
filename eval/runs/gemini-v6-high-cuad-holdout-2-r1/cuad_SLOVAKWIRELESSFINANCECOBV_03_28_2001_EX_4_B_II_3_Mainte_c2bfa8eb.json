@@ -1,0 +1,22 @@
+{
+ "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules",
+ "chars": 33577,
+ "findings": [],
+ "email": false,
+ "seconds": 7.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9928,
+   "prompt_tokens": 7510,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.54,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

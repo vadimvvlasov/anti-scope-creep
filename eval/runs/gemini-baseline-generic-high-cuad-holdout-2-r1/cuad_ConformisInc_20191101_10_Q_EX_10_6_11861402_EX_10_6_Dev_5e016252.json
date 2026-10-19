@@ -1,0 +1,85 @@
+{
+ "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+ "chars": 63217,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "If Stryker Finally Rejects any Deliverable for Milestone #1 or #2 in accordance with Article III, Stryker may terminate   this Agreement, which termination shall be effective immediately upon delivery of a Termination Notice to Conformis.",
+   "start": 47066,
+   "end": 47304
+  }
+ ],
+ "email": true,
+ "seconds": 19.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19508,
+   "prompt_tokens": 14252,
+   "output_tokens": 652,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.43,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "If Stryker Finally Rejects any Deliverable for Milestone #1 or #2 in accordance with Article III, Stryker may terminate this Agreement, which termination shall be effective immediately upon delivery of a Termination Notice to [PARTY_C].",
+      "explanation": "Only Stryker is granted the explicit right to terminate the agreement based on rejections, leaving [PARTY_C] vulnerable without reciprocal termination rights for client breaches under this mechanism.",
+      "suggested_change": "Provide mutual termination rights and ensure [PARTY_C] is fairly compensated for all work performed up to the date of termination if terminated by Stryker."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Improved Stryker Background IP will vest solely in Stryker. [PARTY_C] agrees to assign and hereby assigns to Stryker all right, title and interest in and to all Improved Stryker Background IP...",
+      "explanation": "The contract uses 'hereby assigns' language, which legally transfers intellectual property rights immediately upon creation/vesting, potentially before milestone payments are fully received.",
+      "suggested_change": "Explicitly condition the assignment and transfer of all intellectual property rights upon receipt of full payment for the corresponding milestones and deliverables."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Stryker shall pay to [PARTY_C] the following milestone payments for the development work to be conducted hereunder if and when the following milestones are met, as follows: (a) Milestone #1 - Within thirty (30) days following the date on which Stryker receives the first prototype... $2,000,000; and (b) Milestone #2 - Within thirty (30) days following the date on which there is a design freeze... $3,000,000;",
+      "explanation": "Payments are strictly tied to specific milestones, and while Section 8.1 mentions a 'Milestone #3', no payment amount or schedule is provided in Section 3.5 for Milestone #3, risking uncompensated work.",
+      "suggested_change": "Explicitly define the payment amount, deliverables, and timeline for Milestone #3 in Section 3.5 and shorten payment terms."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_C] shall indemnify and hold harmless Stryker, its directors, officers, employees, Agents and Affiliates... against any and all claims... to the extent arising from or related to (i) any breach of [PARTY_C]' representations, warranties or obligations... (iv) any portion of a Claim alleging personal injury on account of product liability...",
+      "explanation": "[PARTY_C] is subjected to extensive and broad indemnification obligations covering breaches, laws, negligence, and product liability, exposing [PARTY_C] to potentially uncapped financial exposure.",
+      "suggested_change": "Introduce a mutual, overall cap on liability and indemnification obligations and exclude indirect or consequential damages for both parties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2258,
+   "prompt_tokens": 374,
+   "output_tokens": 110,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to request a small adjustment before signing: - Regarding the relevant clause, only one party is granted the explicit right to terminate the agreement based on rejections, leaving [PARTY_C] vulnerable. We propose to provide mutual termination rights and ensure [PARTY_C] is fairly compensated for all work performed up to the date of termination. Thank you for your understanding, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

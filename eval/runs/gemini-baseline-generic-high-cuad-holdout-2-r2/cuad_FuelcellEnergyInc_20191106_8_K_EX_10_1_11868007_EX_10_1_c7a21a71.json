@@ -1,0 +1,102 @@
+{
+ "id": "cuad:FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement",
+ "chars": 105662,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+   "start": 21306,
+   "end": 21694
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(a) ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1 to ExxonMobil's satisfaction; and\n\n(b) ExxonMobil will pay FCE a second and final Milestone Payment of five million United States dollars ($5,000,000 USD), upon FCE achieving Milestone 2 to ExxonMobil's satisfaction.",
+   "start": 46374,
+   "end": 46730
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "During the Term of this Agreement, FCE will not conduct any Work using Generation 1 Technology in Carbon Capture Applications or any Work using Generation 2 Technology, independently or with third parties outside this Agreement, without prior written approval from ExxonMobil.",
+   "start": 3887,
+   "end": 4163
+  }
+ ],
+ "email": true,
+ "seconds": 20.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 27034,
+   "prompt_tokens": 22289,
+   "output_tokens": 823,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.7,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+      "explanation": "FCE immediately assigns all intellectual property rights in Program Results to ExxonMobil upon creation, prior to receiving full payment or long-term commercial returns, leaving FCE with restrictive licenses.",
+      "suggested_change": "Propose that FCE retain ownership of IP created by its personnel or jointly created IP, granting ExxonMobil an exclusive license in specific fields, or condition IP assignment upon receipt of full payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(a) ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1 to ExxonMobil's satisfaction; and (b) ExxonMobil will pay FCE a second and final Milestone Payment of five million United States dollars ($5,000,000 USD), upon FCE achieving Milestone 2 to ExxonMobil's satisfaction.",
+      "explanation": "Milestone payments depend entirely on ExxonMobil's subjective \"satisfaction,\" allowing them to withhold payments even if technical milestones are objectively met. Furthermore, termination before milestones voids these payments.",
+      "suggested_change": "Replace subjective \"satisfaction\" with objective, measurable technical criteria, and include a provision for prorated milestone payments if the agreement is terminated without cause."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil may terminate this Agreement upon fifteen (15) days written notice, without penalty, payment or prejudice to claims and obligations then accrued, if FCE undergoes a Change in Control... Notwithstanding anything else in this Agreement, in the event of termination under this Paragraph 12.04 ExxonMobil may terminate any licenses granted to FCE under this Agreement that would otherwise survive termination...",
+      "explanation": "ExxonMobil can terminate the agreement on short notice upon a Change in Control and strip FCE of its surviving licenses, while ExxonMobil's licenses to FCE's background IP continue indefinitely.",
+      "suggested_change": "Remove ExxonMobil's unilateral right to terminate surviving licenses upon a Change in Control, ensuring mutual protection and preservation of accrued rights for both parties."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "In no event will either Party be liable to the other Party under this Agreement for any consequential, indirect, special, incidental, punitive or exemplary loss or damage... except for breach of any confidentiality or restricted use provisions of this Agreement and except as provided in Paragraph 11.04...",
+      "explanation": "While general consequential damages are waived, breaches of confidentiality or restricted use provisions are excluded from this waiver, exposing FCE to uncapped consequential and indirect damages.",
+      "suggested_change": "Cap liability for confidentiality breaches with a reasonable maximum monetary limit rather than exposing FCE to uncapped consequential damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "During the Term of this Agreement, FCE will not conduct any Work using Generation 1 Technology in Carbon Capture Applications or any Work using Generation 2 Technology, independently or with third parties outside this Agreement, without prior written approval from ExxonMobil.",
+      "explanation": "FCE is heavily restricted from conducting independent research or working with third parties in core technology areas without guaranteed minimum project volume or revenue from ExxonMobil.",
+      "suggested_change": "Narrow the exclusivity restriction to directly competing projects funded under this agreement, or add a sunset clause where exclusivity lapses if ExxonMobil does not fund a minimum level of work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3347,
+   "prompt_tokens": 732,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to request a few adjustments before signing. - Regarding the intellectual property clause, the current terms assign all rights immediately upon creation prior to payment, so I propose adjusting this so that the creator retains ownership or conditions assignment on full payment. - Regarding the milestone payments, the current wording relies on subjective satisfaction, so I propose replacing this with objective, measurable technical criteria and adding provisions for prorated payments if the agreement is terminated. - Regarding the exclusivity restrictions, the terms heavily limit independent research without guaranteed volume, so I propose narrowing this restriction to directly competing projects or adding a sunset clause. Thank you for your time and flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+ "chars": 63217,
+ "findings": [],
+ "email": false,
+ "seconds": 16.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21987,
+   "prompt_tokens": 15911,
+   "output_tokens": 578,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.69,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_C] agrees to assign and hereby assigns to Stryker all right, title and interest in and to all Improved Stryker Background IP in which ownership in same has vested in [PARTY_C] by operation of law or by assignment by its employees or consultants;",
+      "explanation": "Intellectual property ownership is assigned to the client immediately upon creation rather than being conditioned upon full payment.",
+      "suggested_change": "Upon receipt of full payment of all applicable fees due under this Agreement, [PARTY_C] agrees to assign to Stryker all right, title and interest in and to all Improved Stryker Background IP in which ownership in same has vested in [PARTY_C] by operation of law or by assignment by its employees or consultants."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_C] shall indemnify and hold harmless Stryker, its directors, officers, employees, Agents and Affiliates and their respective successors, heirs and assigns (collectively the \"Stryker Indemnified Parties\") against any and all claims, suits, actions, and demands, wherever brought and however denominated, brought by a Third Party (all of the foregoing being referred to herein as \"Claims\") against the Stryker Indemnified Party including all damages, collateral damages and settlements arising therefrom and reasonable outside attorneys' fees and litigation expenses related thereto, to the extent arising from or related to (i) any breach of [PARTY_C]' representations, warranties or obligations under this Agreement, (ii) any alleged violation of any Applicable Laws by [PARTY_C], (iii) the negligence (excluding any product liability Claim), gross negligence or intentionally wrongful acts or omissions of [PARTY_C], its employees, consultants, Agents and Affiliates in their performance hereunder, and (iv) any portion of a Claim alleging personal injury on account of product liability attributable to a Deliverable (including a Deliverable within a Product or a Stryker Product).",
+      "explanation": "Your indemnification obligations for breach, violations of law, and negligence are excluded from liability caps and have no separate financial limit.",
+      "suggested_change": "[PARTY_C] shall indemnify and hold harmless Stryker, its directors, officers, employees, Agents and Affiliates and their respective successors, heirs and assigns against any and all third-party claims arising from [PARTY_C]'s material breach of this Agreement, subject to the overall liability cap set forth herein."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

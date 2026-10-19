@@ -1,0 +1,93 @@
+{
+ "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT",
+ "chars": 85963,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end  of the Contracted Period and shall provide such repairs on a free of charge basis.",
+   "start": 52747,
+   "end": 52957
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th  anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+   "start": 50799,
+   "end": 50980
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Subject to Clause 11.6. SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly  in connection with:",
+   "start": 37086,
+   "end": 37237
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex  Vehicle Leasing t/a Business Partner (the",
+   "start": 84582,
+   "end": 84761
+  }
+ ],
+ "email": true,
+ "seconds": 24.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 26265,
+   "prompt_tokens": 20038,
+   "output_tokens": 615,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.69,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end of the Contracted Period and shall provide such repairs on a free of charge basis.",
+      "explanation": "You are required to perform vehicle repairs free of charge for thirteen weeks after the contract ends, meaning you must provide work without receiving any payment.",
+      "suggested_change": "The Contractor shall be entitled to charge the Client at standard rates for any repairs requested by the Client following the end of the Contracted Period."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+      "explanation": "Only the Client has the right to terminate the agreement early without cause before the initial five-year term expires, while you do not have a reciprocal right.",
+      "suggested_change": "Either party may terminate this Agreement with effect from the 3rd, 4th or 5th anniversary of the Commencement Date by giving not less than six months notice in writing to the other party."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Subject to Clause 11.6. SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly in connection with:",
+      "explanation": "Your indemnification obligations are excluded from your general liability cap and remain completely uncapped, exposing you to unlimited financial liability.",
+      "suggested_change": "The Contractor's indemnification obligations under this Clause shall be subject to the overall liability cap set out in Clause 13.6."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex Vehicle Leasing t/a Business Partner (the ",
+      "explanation": "The Client is permitted to withhold your final monthly payment based on its own unilateral determination of vehicle condition, making payment conditional and subject to the Client's control.",
+      "suggested_change": "The Client shall pay all monthly payments when due without any right of set-off or withholding, and any disputed repair costs shall be resolved separately."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2875,
+   "prompt_tokens": 600,
+   "output_tokens": 218,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.68,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the agreement and would like to propose a few small changes before signing. - Regarding the requirement to provide repairs for thirteen weeks after the contract ends without compensation, the relevant clause should be modified to state: The Contractor shall be entitled to charge the Client at standard rates for any repairs requested by the Client following the end of the Contracted Period. - Regarding the indemnification obligations that remain completely uncapped, the relevant clause should be adjusted so that: The Contractor's indemnification obligations under this Clause shall be subject to the overall liability cap set out in Clause 13.6. - Regarding the provision allowing the client to withhold the final monthly payment based on unilateral determinations, the relevant clause should be revised to ensure: The Client shall pay all monthly payments when due without any right of set-off or withholding, and any disputed repair costs shall be resolved separately. Please let me know if we can update these terms so we can move forward. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

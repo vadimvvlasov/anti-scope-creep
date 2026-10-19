@@ -1,0 +1,107 @@
+{
+ "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement",
+ "chars": 104732,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "such other reports and/or documentation prepared by Operator concerning its activities hereunder as may be reasonably required of an \"Operator\" of a Qualified Fuel Cell Project under the REPS Act and the QFCP-RC Tariff or as requested by Owner from time to time.",
+   "start": 47643,
+   "end": 47905
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Owner at its sole option is hereby authorized to setoff any amounts owed Owner under the MESPA or this Agreement, as applicable, against any amounts owed by Owner to Operator under the MESPA or this Agreement.",
+   "start": 94326,
+   "end": 94535
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+   "start": 65156,
+   "end": 65820
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "If an Owner Default has occurred under Section 4.1(b)(i) or (b)(ii), Operator may terminate this Agreement only with respect to those Bloom Systems for which such Owner Default occurred (unless such Owner Default relates to ten (10) or more Bloom Systems, in which case Operator may terminate this Agreement with respect to all Bloom Systems) by written notice, and assert all rights and remedies available to Operator under Legal Requirements (other than the termination or suspension of this Agreement in its entirety, except where ten (10) of more Bloom Systems are involved)",
+   "start": 58125,
+   "end": 58703
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "low",
+   "quoted_text": "Any documentation prepared by Operator during the Term for the purposes of this Agreement, excluding the Training Materials, shall be directly prepared for Owner's benefit and immediately become Owner's property.",
+   "start": 48127,
+   "end": 48339
+  }
+ ],
+ "email": true,
+ "seconds": 20.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 28387,
+   "prompt_tokens": 23523,
+   "output_tokens": 861,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.09,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "such other reports and/or documentation prepared by Operator concerning its activities hereunder as may be reasonably required of an \"Operator\" of a Qualified Fuel Cell Project under the REPS Act and the QFCP-RC Tariff or as requested by Owner from time to time.",
+      "explanation": "This creates open-ended reporting and documentation obligations that Owner can request from time to time, potentially expanding Operator's administrative workload without a corresponding fee adjustment.",
+      "suggested_change": "Limit reporting obligations to those explicitly specified in the agreement and standard regulatory requirements, and stipulate that any additional ad-hoc reports requested by Owner will be subject to a separate fee."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Owner at its sole option is hereby authorized to setoff any amounts owed Owner under the MESPA or this Agreement, as applicable, against any amounts owed by Owner to Operator under the MESPA or this Agreement.",
+      "explanation": "This allows Owner to unilaterally withhold or offset payments due to Operator under this Agreement based on disputes or alleged claims under either this Agreement or the MESPA, harming cash flow.",
+      "suggested_change": "Remove the unilateral setoff right, or require mutual agreement or a final judicial determination before any offsets can be applied against payments owed to Operator."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+      "explanation": "Carving out Third Party Claims, Section 8.2(e) breaches, and Section 2.8 claims from the liability cap exposes Operator to potentially unlimited or extremely high financial liability, far exceeding the Maximum Liability limit.",
+      "suggested_change": "Cap all liabilities (including third-party indemnification claims) under a single, overall aggregate liability cap to protect Operator from catastrophic financial exposure."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "If an Owner Default has occurred under Section 4.1(b)(i) or (b)(ii), Operator may terminate this Agreement only with respect to those Bloom Systems for which such Owner Default occurred (unless such Owner Default relates to ten (10) or more Bloom Systems, in which case Operator may terminate this Agreement with respect to all Bloom Systems) by written notice, and assert all rights and remedies available to Operator under Legal Requirements (other than the termination or suspension of this Agreement in its entirety, except where ten (10) of more Bloom Systems are involved)",
+      "explanation": "Operator's ability to terminate or suspend the agreement for non-payment or default by Owner is severely restricted unless 10 or more systems are involved, trapping Operator in servicing partial systems even if Owner breaches.",
+      "suggested_change": "Allow Operator to suspend services or terminate for any material Owner Default affecting any system, without an arbitrary threshold of 10 or more Bloom Systems."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "low",
+      "quoted_text": "Any documentation prepared by Operator during the Term for the purposes of this Agreement, excluding the Training Materials, shall be directly prepared for Owner's benefit and immediately become Owner's property.",
+      "explanation": "Documentation and deliverables created by Operator become Owner's property immediately upon creation, before Operator has necessarily received full payment for the related services.",
+      "suggested_change": "Specify that ownership of deliverables and documentation transfers to Owner only upon receipt of full payment for the applicable services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3561,
+   "prompt_tokens": 971,
+   "output_tokens": 207,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement for review. Before signing, I would like to request a few adjustments: - Regarding the reporting requirements, the relevant clause creates open-ended obligations that could expand administrative workload, and I propose limiting these to what is explicitly specified in the agreement and standard regulatory requirements, with ad-hoc reports subject to a separate fee. - Regarding payment offsets, the relevant clause allows unilateral withholding of funds, and I propose removing this right or requiring mutual agreement or a final judicial determination before offsets are applied. - Regarding liability, the relevant clause carves out exceptions that expose me to high financial liability, and I propose capping all liabilities under a single overall aggregate limit. - Regarding termination, the relevant clause restricts ending or pausing the agreement unless a high threshold of systems is involved, and I propose allowing suspension or termination for any material default without an arbitrary threshold. Thank you for considering these updates, and I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": []
+}

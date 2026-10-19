@@ -1,0 +1,65 @@
+{
+ "id": "cuad:TELKOMSALTD_01_30_2003-EX-10-LICENCE AND MAINTENANCE AGREEMENT",
+ "chars": 105748,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "6. 2. 1.        30 (thirty) days after TELKOM gives SAP AFRICA written notice of   TELKOM's wish to terminate this AGREEMENT for any reason. Any such   termination shall be subject to accrued rights and obligations but only after   payment of all Licence and Maintenance Fees then due and owing; or",
+   "start": 26490,
+   "end": 26788
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "5. 4    The REVENUE SHARE FEE shall be payable quarterly in arrears 45 days after   the end of each quarter for the duration of this AGREEMENT.",
+   "start": 22991,
+   "end": 23134
+  }
+ ],
+ "email": true,
+ "seconds": 17.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 30216,
+   "prompt_tokens": 25824,
+   "output_tokens": 264,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.93,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "6. 2. 1.        30 (thirty) days after TELKOM gives SAP AFRICA written notice of   TELKOM's wish to terminate this AGREEMENT for any reason. Any such termination shall be subject to accrued rights and obligations but only after payment of all Licence and Maintenance Fees then due and owing; or",
+      "explanation": "Only the Client has the right to terminate the contract without cause, leaving you without a corresponding termination right.",
+      "suggested_change": "Either party may terminate this AGREEMENT without cause upon providing 30 days prior written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "5. 4    The REVENUE SHARE FEE shall be payable quarterly in arrears 45 days after the end of each quarter for the duration of this AGREEMENT.",
+      "explanation": "Payment is due 45 days after the end of each quarter, which exceeds standard 30-day payment terms and delays your cash flow.",
+      "suggested_change": "The REVENUE SHARE FEE shall be payable quarterly in arrears 30 days after the end of each quarter for the duration of this AGREEMENT."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2359,
+   "prompt_tokens": 354,
+   "output_tokens": 113,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.24,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. Thank you for sharing the agreement. Before we sign, I would like to suggest one adjustment: - In the relevant clause, payment is due 45 days after the end of each quarter, which delays cash flow. I propose changing this to: The REVENUE SHARE FEE shall be payable quarterly in arrears 30 days after the end of each quarter for the duration of this AGREEMENT. Thank you for your time and understanding. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,107 @@
+{
+ "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT",
+ "chars": 26346,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding the contents of the Exhibit, Provider agrees to respond in good faith to any reasonable request by Recipient for access to any additional services and resources that are necessary for the operation of the Recipient and which are not currently contemplated in the Exhibit, at a price to be agreed upon after good faith negotiations between the Parties.",
+   "start": 1413,
+   "end": 1780
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+   "start": 5161,
+   "end": 5765
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Provider shall indemnify, defend, and hold harmless Recipient and its officers, directors, employees, agents, affiliates, successors, and permitted assigns (collectively, \"Indemnified Party\") against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including attorneys' fees, fees and the costs of enforcing any right to indemnification under this Agreement, and the cost of pursuing any insurance providers, incurred by Indemnified Party or awarded against Indemnified Party (collectively, \"Losses\"), relating to/arising out of or resulting from any claim of a third party or Recipient arising out of or occurring in connection with Provider's negligence, willful misconduct, or breach of this Agreement.",
+   "start": 17823,
+   "end": 18649
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Each of the Recipient and the Provider may, in their sole discretion, terminate this Agreement in whole or in part, at any time without cause, and without liability except, in the case of the Recipient, for required payment for services rendered and reimbursement for authorized expenses incurred, by providing at least 90 (ninety) days' prior written notice to the other party",
+   "start": 9867,
+   "end": 10244
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "As consideration for provision of the Services following the Effective Date, Recipient shall pay Provider an amount equal to Provider's actual cost of providing the Services plus a 10% service fee.",
+   "start": 7623,
+   "end": 7820
+  }
+ ],
+ "email": true,
+ "seconds": 21.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10999,
+   "prompt_tokens": 5425,
+   "output_tokens": 940,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.74,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding the contents of the Exhibit, Provider agrees to respond in good faith to any reasonable request by Recipient for access to any additional services and resources that are necessary for the operation of the Recipient and which are not currently contemplated in the Exhibit, at a price to be agreed upon after good faith negotiations between the Parties.",
+      "explanation": "This clause forces you to negotiate and potentially take on extra work outside the agreed-upon scope whenever the Recipient requests additional services and resources, creating ambiguity and scope creep without a guaranteed rate.",
+      "suggested_change": "Remove this requirement or specify that any additional services must be agreed upon via a separate written change order with mutually agreed pricing."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+      "explanation": "Intellectual property ownership is assigned immediately and automatically upon conception or creation, well before Recipient pays for your work, leaving you with no leverage if payment is delayed or withheld.",
+      "suggested_change": "Condition the assignment and transfer of intellectual property rights explicitly upon receipt of full payment for the applicable work."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Provider shall indemnify, defend, and hold harmless Recipient and its officers, directors, employees, agents, affiliates, successors, and permitted assigns (collectively, \"Indemnified Party\") against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including attorneys' fees, fees and the costs of enforcing any right to indemnification under this Agreement, and the cost of pursuing any insurance providers, incurred by Indemnified Party or awarded against Indemnified Party (collectively, \"Losses\"), relating to/arising out of or resulting from any claim of a third party or Recipient arising out of or occurring in connection with Provider's negligence, willful misconduct, or breach of this Agreement.",
+      "explanation": "The indemnification obligation covers direct claims by the Recipient as well as third parties, and there is no liability cap, exposing you to potentially unlimited financial damages that far exceed the contract value.",
+      "suggested_change": "Limit indemnification to third-party claims only, exclude direct claims from Recipient, and establish a mutual aggregate liability cap equal to total fees paid under the Agreement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Each of the Recipient and the Provider may, in their sole discretion, terminate this Agreement in whole or in part, at any time without cause, and without liability except, in the case of the Recipient, for required payment for services rendered and reimbursement for authorized expenses incurred, by providing at least 90 (ninety) days' prior written notice to the other party",
+      "explanation": "While both parties have termination rights, the clause explicitly details payment liabilities only in favor of the Recipient's termination, creating ambiguity regarding whether Provider is guaranteed payment for rendered services if Provider terminates.",
+      "suggested_change": "Clarify that upon termination by either party, the Recipient is obligated to pay for all services rendered and authorized expenses incurred up to the termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "As consideration for provision of the Services following the Effective Date, Recipient shall pay Provider an amount equal to Provider's actual cost of providing the Services plus a 10% service fee.",
+      "explanation": "Tying your compensation to your actual cost plus a fixed 10% fee forces you to disclose your internal cost structures and strictly caps your profit margin, which is unfavorable compared to standard market-rate or project fees.",
+      "suggested_change": "Replace the cost-plus model with standard fixed fees, milestone payments, or market-rate hourly billing that does not require disclosure of internal operational costs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4332,
+   "prompt_tokens": 1162,
+   "output_tokens": 281,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together and have a few requests before signing. - Regarding the relevant clause about additional services, it forces taking on extra work outside the scope without a guaranteed rate; please remove this requirement or specify that any additional services must be agreed upon via a separate written change order with mutually agreed pricing. - Regarding the relevant clause on intellectual property, ownership is assigned automatically before payment, leaving no leverage; please condition the assignment and transfer of intellectual property rights explicitly upon receipt of full payment for the applicable work. - Regarding the relevant clause on indemnification, it covers direct claims and lacks a liability cap, exposing you to unlimited damages; please limit indemnification to third-party claims only, exclude direct claims, and establish a mutual aggregate liability cap equal to total fees paid under the agreement. - Regarding the relevant clause on termination, it creates ambiguity regarding payment if the provider terminates; please clarify that upon termination by either party, the client is obligated to pay for all services rendered and authorized expenses incurred up to the termination date. - Regarding the relevant clause on compensation, it requires disclosing internal costs and caps the profit margin; please replace the cost-plus model with standard fixed fees, milestone payments, or market-rate hourly billing. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

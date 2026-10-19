@@ -1,0 +1,79 @@
+{
+ "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT",
+ "chars": 16823,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "all maintenance services (including but not limited to jetwashing and related ancillary services) required under the Provider's license agreements with the municipalities in which the Fiber Ring Assets are located (each a \"City Rights Agreement\")",
+   "start": 1978,
+   "end": 2224
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;",
+   "start": 9839,
+   "end": 9985
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "provided that the Provider shall refund to the Company a pro rata portion of the Service Fee for any period in excess of two (2) weeks during which the Provider fails to or is unable for any reason to provide the Services or Repairs called for under this Agreement.",
+   "start": 8663,
+   "end": 8928
+  }
+ ],
+ "email": true,
+ "seconds": 17.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7409,
+   "prompt_tokens": 3786,
+   "output_tokens": 353,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.11,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "all maintenance services (including but not limited to jetwashing and related ancillary services) required under the Provider's license agreements with the municipalities in which the Fiber Ring Assets are located (each a \"City Rights Agreement\")",
+      "explanation": "Binding the Provider to perform all maintenance required under various municipal license agreements without explicitly listing or limiting those duties exposes the Provider to open-ended and burdensome tasks.",
+      "suggested_change": "Explicitly list and limit the specific maintenance services included under the fixed fee, and state that any additional municipal requirements will be billed as extra work."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;",
+      "explanation": "This clause removes any financial cap on liability for property damage caused by ordinary negligence, exposing the Provider to catastrophic financial losses.",
+      "suggested_change": "Introduce a reasonable aggregate liability cap for property damage and all claims."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "provided that the Provider shall refund to the Company a pro rata portion of the Service Fee for any period in excess of two (2) weeks during which the Provider fails to or is unable for any reason to provide the Services or Repairs called for under this Agreement.",
+      "explanation": "Forcing the Provider to refund fees even when service failures result from causes beyond its reasonable control is financially punitive.",
+      "suggested_change": "Exclude force majeure events from the refund requirement or limit fee refunds only to unexcused failures."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3398,
+   "prompt_tokens": 581,
+   "output_tokens": 153,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.38,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing: - Regarding the relevant clause concerning maintenance services, the current wording binds the provider to open-ended tasks, so we propose that the agreement explicitly list and limit the specific maintenance services included under the fixed fee. - Regarding the relevant clause on property damage liability, the text lacks a financial cap, so we propose that the agreement introduce a reasonable aggregate liability cap for property damage and all claims. - Regarding the relevant clause on service fee refunds, the current terms require refunds even for events beyond reasonable control, so we propose that the agreement exclude force majeure events from the refund requirement. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

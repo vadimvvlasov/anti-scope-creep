@@ -1,0 +1,22 @@
+{
+ "id": "cuad:VAPOTHERM, INC. - Manufacturing and Supply Agreement",
+ "chars": 75632,
+ "findings": [],
+ "email": false,
+ "seconds": 10.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21539,
+   "prompt_tokens": 18000,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.38,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

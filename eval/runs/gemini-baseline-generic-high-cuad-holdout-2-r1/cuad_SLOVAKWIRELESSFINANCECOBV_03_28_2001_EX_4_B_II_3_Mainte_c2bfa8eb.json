@@ -1,0 +1,51 @@
+{
+ "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules",
+ "chars": 33577,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss,       loss of profit, lost savings and loss caused by interruption of operations       is excluded.\n\n      No right to damages shall ever arise unless EuroTel reports the loss to       Sicap Ltd in writing as soon as possible after it has arisen.",
+   "start": 31162,
+   "end": 31479
+  }
+ ],
+ "email": true,
+ "seconds": 17.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9490,
+   "prompt_tokens": 5851,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.98,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss, loss of profit, lost savings and loss caused by interruption of operations is excluded. No right to damages shall ever arise unless EuroTel reports the loss to Sicap Ltd in writing as soon as possible after it has arisen.",
+      "explanation": "Although indirect and consequential losses are excluded, the clause does not cap direct damages, exposing Sicap Ltd to potentially unlimited liability.",
+      "suggested_change": "Add an express limitation of liability capping total aggregate liability to the fees paid by the customer in the preceding 12 months."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3120,
+   "prompt_tokens": 369,
+   "output_tokens": 88,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.56,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have one item to review before signing: - Regarding the relevant clause, although indirect and consequential losses are excluded, direct damages are not capped, creating potential exposure. We propose to add an express limitation of liability capping total aggregate liability to the fees paid by the customer in the preceding 12 months. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

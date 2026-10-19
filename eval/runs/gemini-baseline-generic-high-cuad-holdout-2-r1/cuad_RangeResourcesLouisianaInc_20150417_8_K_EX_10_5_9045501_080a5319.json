@@ -1,0 +1,79 @@
+{
+ "id": "cuad:RangeResourcesLouisianaInc_20150417_8-K_EX-10.5_9045501_EX-10.5_Transportation Agreement",
+ "chars": 100284,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ITS AFFILIATES, ANY SUCCESSORS IN INTEREST OR ANY BENEFICIARY OR ASSIGNEE OF THIS AGREEMENT FOR ANY CONSEQUENTIAL, MULTIPLE, INCIDENTAL, INDIRECT, SPECIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR LOSS OF PROFITS OR REVENUES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR ANY BREACH HEREOF; PROVIDED, HOWEVER, THE FOREGOING SHALL NOT BE CONSTRUED AS LIMITING AN OBLIGATION OF A PARTY HEREUNDER TO INDEMNIFY, DEFEND AND HOLD HARMLESS THE OTHER PARTY AGAINST CLAIMS ASSERTED BY UNAFFILIATED THIRD PARTIES",
+   "start": 29543,
+   "end": 30162
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "All payments are due on the later of: (1) within fifteen (15) days of receipt of the invoice; (2) the twenty-seventh (27th) of the month following receipt of the invoice, or; (3) if the twenty-seventh (27th) of the month following receipt of the invoice is not a Business Day, on the next Business Day thereafter.",
+   "start": 87688,
+   "end": 88001
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "If the Parties are unable to agree on an economic adjustment within sixty (60) Days of the senior management meeting, then Carrier may, in its sole discretion, terminate this Agreement without penalty by delivering Shipper written notice of Carrier's intent to terminate. Such termination shall be effective, at the option of Shipper, (i) as of 9:00 a.m. on the first Day of the Month which follows the Month that Carrier delivered its notice of intent to terminate, or (ii) as of 9:00 a.m. on the first Day of the Month which is twelve (12) Months after such date",
+   "start": 17072,
+   "end": 17636
+  }
+ ],
+ "email": true,
+ "seconds": 26.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 28117,
+   "prompt_tokens": 21722,
+   "output_tokens": 734,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.26,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ITS AFFILIATES, ANY SUCCESSORS IN INTEREST OR ANY BENEFICIARY OR ASSIGNEE OF THIS AGREEMENT FOR ANY CONSEQUENTIAL, MULTIPLE, INCIDENTAL, INDIRECT, SPECIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR LOSS OF PROFITS OR REVENUES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR ANY BREACH HEREOF; PROVIDED, HOWEVER, THE FOREGOING SHALL NOT BE CONSTRUED AS LIMITING AN OBLIGATION OF A PARTY HEREUNDER TO INDEMNIFY, DEFEND AND HOLD HARMLESS THE OTHER PARTY AGAINST CLAIMS ASSERTED BY UNAFFILIATED THIRD PARTIES",
+      "explanation": "While consequential and indirect damages are mutually waived, the agreement fails to establish an overall cap on direct damages or aggregate liability for Carrier. As the service provider constructing and operating the pipeline, Carrier is exposed to potentially unlimited direct financial liability for operational incidents or breaches.",
+      "suggested_change": "Propose adding an aggregate liability cap limiting Carrier's total liability under the Agreement to the total fees received by Carrier over a specified preceding period (e.g., the last 12 months)."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "All payments are due on the later of: (1) within fifteen (15) days of receipt of the invoice; (2) the twenty-seventh (27th) of the month following receipt of the invoice, or; (3) if the twenty-seventh (27th) of the month following receipt of the invoice is not a Business Day, on the next Business Day thereafter.",
+      "explanation": "The payment terms allow Shipper to delay payment until the 27th of the following month if that date falls later than 15 days, which can stretch payment cycles up to nearly 60 days and create cash flow challenges for Carrier.",
+      "suggested_change": "Revise the payment terms to a standard fixed schedule, such as net 15 or net 30 days from invoice receipt, removing the deferred payment option tied to the 27th of the following month."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "If the Parties are unable to agree on an economic adjustment within sixty (60) Days of the senior management meeting, then Carrier may, in its sole discretion, terminate this Agreement without penalty by delivering Shipper written notice of Carrier's intent to terminate. Such termination shall be effective, at the option of Shipper, (i) as of 9:00 a.m. on the first Day of the Month which follows the Month that Carrier delivered its notice of intent to terminate, or (ii) as of 9:00 a.m. on the first Day of the Month which is twelve (12) Months after such date",
+      "explanation": "Although Carrier has the right to terminate due to unagreeable regulatory cost increases, Shipper holds the unilateral option to force Carrier to continue performing services for up to 12 additional months under adjusted rates, limiting Carrier's ability to exit an uneconomic arrangement immediately.",
+      "suggested_change": "Modify the clause so that Carrier's termination takes effect immediately or at a mutually agreed date following the notice period, without granting Shipper the unilateral right to compel a 12-month extension."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4012,
+   "prompt_tokens": 960,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the relevant clause on damages, the agreement lacks an overall cap on aggregate liability, exposing the provider to unlimited direct financial liability; I propose adding an aggregate liability cap limiting total liability to fees received over a preceding period. - Regarding the payment terms, the current schedule can stretch payment cycles significantly and create cash flow challenges; I propose revising the payment terms to a standard fixed schedule such as net 15 or net 30 days. - Regarding the termination provisions, the agreement allows the other party to unilaterally compel continued performance for an extended period; I propose modifying the clause so that termination takes effect without granting this unilateral extension. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

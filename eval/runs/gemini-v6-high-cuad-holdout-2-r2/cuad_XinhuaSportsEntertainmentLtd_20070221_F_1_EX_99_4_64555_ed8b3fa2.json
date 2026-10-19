@@ -1,0 +1,65 @@
+{
+ "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+ "chars": 19128,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "XFN may terminate this Agreement by giving thirty (30) days written notice      to the CEIS.",
+   "start": 13213,
+   "end": 13305
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "The first instalment will be      effect on condition that XFN can raise at least US$1.1 million additional      funding in 2002.",
+   "start": 9574,
+   "end": 9703
+  }
+ ],
+ "email": true,
+ "seconds": 19.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10952,
+   "prompt_tokens": 5818,
+   "output_tokens": 246,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.28,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_C] may terminate this Agreement by giving thirty (30) days written notice to the CEIS.",
+      "explanation": "Only the client has the right to terminate the contract without cause, while you do not have an equivalent right.",
+      "suggested_change": "Either Party may terminate this Agreement by giving thirty (30) days written notice to the other Party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "The first instalment will be effect on condition that [PARTY_C] can raise at least US$1.1 million additional funding in 2002.",
+      "explanation": "Your payment is conditional on an event controlled entirely by the client, which puts your compensation at risk.",
+      "suggested_change": "The first instalment shall be paid on the Effective Date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2748,
+   "prompt_tokens": 417,
+   "output_tokens": 158,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed the terms and would like to request a couple of adjustments before signing. - Regarding the relevant clause on contract termination, only the client has the right to terminate without cause, while you do not have an equivalent right; I propose modifying it so that either party may terminate this agreement by giving thirty days written notice to the other party. - Regarding the relevant clause on the first instalment, your payment is conditional on an event controlled entirely by the client, which puts your compensation at risk; I propose updating it so that the first instalment shall be paid on the Effective Date. Thank you, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

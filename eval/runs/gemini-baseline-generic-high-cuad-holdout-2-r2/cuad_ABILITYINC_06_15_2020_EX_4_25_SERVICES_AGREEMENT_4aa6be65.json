@@ -1,0 +1,91 @@
+{
+ "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT",
+ "chars": 26346,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+   "start": 5161,
+   "end": 5765
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Provider shall indemnify, defend, and hold harmless Recipient and its officers, directors, employees, agents, affiliates, successors, and permitted assigns (collectively, \"Indemnified Party\") against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including attorneys' fees, fees and the costs of enforcing any right to indemnification under this Agreement, and the cost of pursuing any insurance providers, incurred by Indemnified Party or awarded against Indemnified Party (collectively, \"Losses\"), relating to/arising out of or resulting from any claim of a third party or Recipient arising out of or occurring in connection with Provider's negligence, willful misconduct, or breach of this Agreement.",
+   "start": 17823,
+   "end": 18649
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Notwithstanding the contents of the Exhibit, Provider agrees to respond in good faith to any reasonable request by Recipient for access to any additional services and resources that are necessary for the operation of the Recipient and which are not currently contemplated in the Exhibit, at a price to be agreed upon after good faith negotiations between the Parties.",
+   "start": 1413,
+   "end": 1780
+  }
+ ],
+ "email": true,
+ "seconds": 37.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11280,
+   "prompt_tokens": 5425,
+   "output_tokens": 836,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 29.33,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+      "explanation": "This clause immediately and irrevocably assigns all intellectual property rights to the Recipient upon creation or conception. Because this happens during the performance of services, the client owns your work product before you are guaranteed to receive payment, creating severe risk if they delay or withhold payment.",
+      "suggested_change": "Condition the assignment and transfer of all intellectual property rights upon receipt of full payment for the applicable services and deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Provider shall indemnify, defend, and hold harmless Recipient and its officers, directors, employees, agents, affiliates, successors, and permitted assigns (collectively, \"Indemnified Party\") against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including attorneys' fees, fees and the costs of enforcing any right to indemnification under this Agreement, and the cost of pursuing any insurance providers, incurred by Indemnified Party or awarded against Indemnified Party (collectively, \"Losses\"), relating to/arising out of or resulting from any claim of a third party or Recipient arising out of or occurring in connection with Provider's negligence, willful misconduct, or breach of this Agreement.",
+      "explanation": "The contract contains no limitation of liability or liability cap for the Provider. An ordinary breach of contract or simple negligence could expose you to unlimited financial damages, far exceeding the total fees earned under the agreement.",
+      "suggested_change": "Insert a mutual limitation of liability capping total damages at the total fees paid or payable to Provider under this Agreement, and exclude indirect, incidental, or consequential damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding the contents of the Exhibit, Provider agrees to respond in good faith to any reasonable request by Recipient for access to any additional services and resources that are necessary for the operation of the Recipient and which are not currently contemplated in the Exhibit, at a price to be agreed upon after good faith negotiations between the Parties.",
+      "explanation": "This provision obligates you to negotiate and potentially take on undefined additional services that Recipient deems necessary for their operation, opening the door to creeping project scope without guaranteed rates or terms.",
+      "suggested_change": "Clarify that any services outside Exhibit A are strictly optional, require mutual written agreement on scope and fees, and will be documented in a separate statement of work."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Each of the Recipient and the Provider may, in their sole discretion, terminate this Agreement in whole or in part, at any time without cause, and without liability except, in the case of the Recipient, for required payment for services rendered and reimbursement for authorized expenses incurred, by providing at least 90 (ninety) days' prior written notice to the other party...",
+      "explanation": "The phrasing explicitly protects Recipient's payment obligations upon termination without cause, but awkwardly omits clear reciprocal language protecting Provider's right to payment if Recipient terminates, creating ambiguity around compensation for work performed.",
+      "suggested_change": "Revise the clause to explicitly state that upon termination without cause by either party, Recipient remains obligated to pay for all services rendered and authorized expenses incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3605,
+   "prompt_tokens": 878,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to move forward and have a few small requests before signing: - In the relevant clause addressing intellectual property, the current terms assign all rights immediately upon creation before payment is secured, and I propose that we condition the assignment and transfer of all intellectual property rights upon receipt of full payment for the applicable services and deliverables. - Regarding the indemnification section, the agreement lacks a liability cap and exposes me to unlimited financial exposure, and I propose that we insert a mutual limitation of liability capping total damages at the total fees paid or payable to Provider under this Agreement, and exclude indirect, incidental, or consequential damages. - In the provision regarding additional services, the wording creates potential scope expansion without defined terms, and I propose that we clarify that any services outside the exhibit are strictly optional, require mutual written agreement on scope and fees, and will be documented in a separate statement of work. Thank you for your cooperation and I look forward to finalizing this soon."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

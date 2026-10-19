@@ -1,0 +1,77 @@
+{
+ "id": "cuad:MetLife, Inc. - Remarketing Agreement",
+ "chars": 111249,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "A Remarketing Agent may resign and be discharged from its duties and obligations hereunder, and the Company may remove any or all of the Remarketing Agents, by giving five (5) Business Days' prior written notice to the Stock Purchase Contract Agent and, in the case of a removal, to the Remarketing Agents",
+   "start": 85160,
+   "end": 85465
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "performing such other duties as are assigned to the Remarketing Agents in the Remarketing Procedures, all in accordance with and pursuant to the Remarketing Procedures.",
+   "start": 9333,
+   "end": 9501
+  }
+ ],
+ "email": true,
+ "seconds": 15.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 25499,
+   "prompt_tokens": 22498,
+   "output_tokens": 500,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.32,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "A Remarketing Agent may resign and be discharged from its duties and obligations hereunder, and the Company may remove any or all of the Remarketing Agents, by giving five (5) Business Days' prior written notice to the Stock Purchase Contract Agent and, in the case of a removal, to the Remarketing Agents",
+      "explanation": "The Company has the unilateral right to remove us as Remarketing Agents on very short notice (5 business days), which could abruptly terminate our role and expected fees without adequate transition time.",
+      "suggested_change": "Increase the required prior written notice period for removal without cause to 30 days and ensure compensation for all accrued fees and expenses up to the date of termination."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "performing such other duties as are assigned to the Remarketing Agents in the Remarketing Procedures, all in accordance with and pursuant to the Remarketing Procedures.",
+      "explanation": "This clause incorporates external duties from separate remarketing procedures without explicit limitations, potentially obligating us to perform unforeseen tasks without additional compensation.",
+      "suggested_change": "Explicitly list all required duties within the body of this agreement or add a provision stating that any substantial new duties will require a mutually agreed fee adjustment."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Each Remarketing Agent will, severally and not jointly, indemnify and hold harmless the Company, its directors and officers... against any losses, claims, damages or liabilities... in reliance upon and in conformity with written information furnished to the Company by such Remarketing Agent expressly for use therein",
+      "explanation": "Our indemnification and hold-harmless obligations lack any monetary cap, exposing us to potentially unlimited financial liability that could far exceed the total revenue generated from the transaction.",
+      "suggested_change": "Insert a liability cap limiting our total indemnification exposure to the aggregate Remarketing Fees received under this Agreement, and disclaim liability for indirect or consequential damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2669,
+   "prompt_tokens": 504,
+   "output_tokens": 151,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a couple of suggestions before we proceed. - Regarding the relevant clause on removal, the current terms allow termination on very short notice, so I propose we increase the required prior written notice period for removal without cause to 30 days and ensure compensation for all accrued fees and expenses up to the date of termination. - Regarding the relevant clause on performance duties, the text incorporates external tasks without explicit limitations, so I propose we explicitly list all required duties within the body of this agreement or add a provision stating that any substantial new duties will require a mutually agreed fee adjustment. Thank you and best regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT",
+ "chars": 25214,
+ "findings": [],
+ "email": false,
+ "seconds": 7.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9461,
+   "prompt_tokens": 6999,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.45,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

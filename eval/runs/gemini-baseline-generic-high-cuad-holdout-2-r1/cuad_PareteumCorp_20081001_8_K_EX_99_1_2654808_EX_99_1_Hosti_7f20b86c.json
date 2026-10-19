@@ -1,0 +1,93 @@
+{
+ "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement",
+ "chars": 66253,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "ELEPHANT TALK will be fully responsible for the settlement of, and shall indemnify (\"vrijwaren\") T-Mobile against any claims made by ELEPHANT TALK Customers or third parties with whom ELEPHANT TALK has a (contractual) relationship and which claims are related to this (contractual) relationship",
+   "start": 43466,
+   "end": 43760
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding anything stipulated in the Agreement, T-Mobile may without liability suspend or terminate whole or part of the Hosting Services in relation to one or more ELEPHANT TALK Customers, in circumstances where T-Mobile would suspend or terminate those services to its own customers, in the following circumstances - or circumstances of similar severity.",
+   "start": 43821,
+   "end": 44183
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The second installment of *** shall be charged to ELEPHANT TALK right after signing of the Agreement and shall be paid by ELEPHANT TALK within fifteen (15) Calendar Days of the invoice date.",
+   "start": 31060,
+   "end": 31250
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Should ELEPHANT TALK wilfully or negligently fail to comply with an T-Mobile request, ELEPHANT TALK shall bear full responsibility and indemnify T- Mobile for all damages and losses T-Mobile suffers resulting from actions as mentioned in this article by ELEPHANT TALK's Customers.",
+   "start": 53420,
+   "end": 53700
+  }
+ ],
+ "email": true,
+ "seconds": 24.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19858,
+   "prompt_tokens": 15006,
+   "output_tokens": 540,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.7,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will be fully responsible for the settlement of, and shall indemnify (\"vrijwaren\") T-Mobile against any claims made by [PARTY_B] Customers or third parties with whom [PARTY_B] has a (contractual) relationship and which claims are related to this (contractual) relationship",
+      "explanation": "This clause imposes an unlimited, uncapped indemnification obligation on me for any claims by my customers or third parties, exposing my business to severe financial risk.",
+      "suggested_change": "Cap the indemnification obligation and exclude claims resulting directly from T-Mobile's own network failures or wrongful acts."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding anything stipulated in the Agreement, T-Mobile may without liability suspend or terminate whole or part of the Hosting Services in relation to one or more [PARTY_B] Customers, in circumstances where T-Mobile would suspend or terminate those services to its own customers, in the following circumstances - or circumstances of similar severity.",
+      "explanation": "T-Mobile has the unilateral right to suspend or terminate services without liability based on vague criteria, disrupting my business operations without recourse.",
+      "suggested_change": "Require advance written notice, a clear opportunity to cure alleged issues, and restrict suspension/termination to objective, material breaches."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The second installment of *** shall be charged to [PARTY_B] right after signing of the Agreement and shall be paid by [PARTY_B] within fifteen (15) Calendar Days of the invoice date.",
+      "explanation": "Short payment windows combined with strict interest penalties for late payments create cash flow pressure before commercial revenues begin.",
+      "suggested_change": "Extend payment terms to at least 30 calendar days from invoice receipt and remove punitive interest rates."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Should [PARTY_B] wilfully or negligently fail to comply with an T-Mobile request, [PARTY_B] shall bear full responsibility and indemnify T- Mobile for all damages and losses T-Mobile suffers resulting from actions as mentioned in this article by [PARTY_B]'s Customers.",
+      "explanation": "I am held fully liable and required to indemnify T-Mobile for all damages and losses caused by customers due to alleged negligence, without any liability cap.",
+      "suggested_change": "Limit liability to direct damages caused by willful misconduct and subject it to the overall agreement liability cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 5226,
+   "prompt_tokens": 764,
+   "output_tokens": 236,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.58,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to our collaboration, but I would like to propose a few adjustments before signing: - Regarding the relevant clause on indemnification, the agreement imposes an unlimited and uncapped obligation for third-party claims, and I propose to cap this obligation and exclude claims resulting directly from network failures or wrongful acts. - In the relevant clause regarding service suspension and termination, the agreement grants unilateral rights without liability based on vague criteria, and I propose requiring advance written notice, a clear opportunity to cure alleged issues, and restricting suspension or termination to objective, material breaches. - Under the relevant clause concerning payment terms, short payment windows combined with strict interest penalties create cash flow pressure, and I propose extending payment terms to at least 30 calendar days from invoice receipt and removing punitive interest rates. - In the relevant clause regarding liability and damages, the agreement holds me fully liable and requires indemnification for all customer-related damages without a liability cap, and I propose limiting liability to direct damages caused by willful misconduct and subjecting it to the overall agreement liability cap. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

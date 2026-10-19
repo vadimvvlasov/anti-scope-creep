@@ -1,0 +1,105 @@
+{
+ "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement",
+ "chars": 104732,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+   "start": 65271,
+   "end": 65820
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "such other reports and/or documentation prepared by Operator concerning its activities hereunder as may be reasonably required of an \"Operator\" of a Qualified Fuel Cell Project under the REPS Act and the QFCP-RC Tariff or as requested by Owner from time to time.",
+   "start": 47643,
+   "end": 47905
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Title to all items, parts, materials and equipment supplied under or pursuant to this Agreement to Owner shall transfer to Owner upon installation or inclusion in a Facility.",
+   "start": 45577,
+   "end": 45751
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "In connection with Facility Services for the BOF, Operator shall provide all required labor but shall charge Owner for, and Owner shall reimburse Operator for, the cost of all required spare parts. Billing for such spare parts shall be done in the same manner as Services Fees, as set forth in Section 2.3(a).",
+   "start": 35432,
+   "end": 35741
+  }
+ ],
+ "email": true,
+ "seconds": 23.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29186,
+   "prompt_tokens": 23523,
+   "output_tokens": 861,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.67,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+      "explanation": "Although a maximum liability cap is established, broad carve-outs for third-party claims, gross negligence, and specific warranty breaches expose Operator to potentially unlimited liability.",
+      "suggested_change": "Remove broad carve-outs from the liability cap or negotiate a specific sub-cap for third-party claims and warranties while keeping overall liability strictly limited."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "such other reports and/or documentation prepared by Operator concerning its activities hereunder as may be reasonably required of an \"Operator\" of a Qualified Fuel Cell Project under the REPS Act and the QFCP-RC Tariff or as requested by Owner from time to time.",
+      "explanation": "This clause allows Owner to request arbitrary additional reports and documentation outside the defined scope at any time without additional compensation, leading to scope creep.",
+      "suggested_change": "Limit required reporting to those explicitly defined in the agreement and state that any ad-hoc reports requested by Owner will be billed as extra work at standard hourly rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "If an Operator Default has occurred under Section 4.1(a)(ii), Owner may terminate this Agreement only with respect to those Bloom Systems for which such Operator Default occurred (unless such Operator Default relates to ten (10) or more Bloom Systems, in which case Owner may terminate this Agreement with respect to all Bloom Systems)... If an Owner Default has occurred under Section 4.1(b)(i) or (b)(ii), Operator may terminate this Agreement only with respect to those Bloom Systems for which such Owner Default occurred (unless such Owner Default relates to ten (10) or more Bloom Systems, in which case Operator may terminate this Agreement with respect to all Bloom Systems)",
+      "explanation": "Operator's ability to terminate for an Owner default is restricted unless 10 or more systems are involved, preventing Operator from walking away if a single system owner defaults on payments or obligations.",
+      "suggested_change": "Grant Operator the right to suspend services or terminate the agreement for any uncured material default by Owner, regardless of the number of systems affected."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Title to all items, parts, materials and equipment supplied under or pursuant to this Agreement to Owner shall transfer to Owner upon installation or inclusion in a Facility.",
+      "explanation": "Title to spare parts and materials transfers to Owner immediately upon installation, even though payment terms allow up to 30 days post-invoice, leaving Operator unprotected if Owner defaults on payment after installation.",
+      "suggested_change": "Specify that title to spare parts and materials remains with Operator until full payment has been received, or retain a purchase money security interest."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In connection with Facility Services for the BOF, Operator shall provide all required labor but shall charge Owner for, and Owner shall reimburse Operator for, the cost of all required spare parts. Billing for such spare parts shall be done in the same manner as Services Fees, as set forth in Section 2.3(a).",
+      "explanation": "Operator must incur out-of-pocket costs for spare parts and wait up to 30 days after invoicing for reimbursement, negatively impacting cash flow.",
+      "suggested_change": "Require Owner to advance funds for spare parts or shorten the payment term for spare parts reimbursement to upon receipt of invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4005,
+   "prompt_tokens": 851,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a few notes: - Regarding the relevant clause on liability, the broad carve-outs expose the provider to potentially unlimited liability, and I propose removing these broad carve-outs or negotiating a specific sub-cap. - Regarding the relevant clause on documentation, it allows requests for arbitrary additional reports outside the defined scope without compensation, and I propose limiting required reporting to those explicitly defined in the agreement and billing ad-hoc reports as extra work. - Regarding the relevant clause on title transfer, title to materials transfers immediately upon installation before payment is received, and I propose specifying that title remains with the provider until full payment has been received. - Regarding the relevant clause on spare parts, the requirement to incur out-of-pocket costs and wait for reimbursement negatively impacts cash flow, and I propose requiring the client to advance funds for spare parts or shortening the reimbursement term. Please let me know your thoughts. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

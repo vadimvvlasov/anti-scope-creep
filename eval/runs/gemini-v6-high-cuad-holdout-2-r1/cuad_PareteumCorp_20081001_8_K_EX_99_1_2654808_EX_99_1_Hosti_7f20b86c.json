@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement",
+ "chars": 66253,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Limitation of liability as described in this article shall not apply:   a) in case the damage or loss is caused by a Party's willful misconduct (including fraud) or gross negligence, or   b) in case of a breach of a Parties obligation under article 11 (confidentiality) and article 15 (indemnification for breach of intellectual property rights).",
+   "start": 42922,
+   "end": 43268
+  }
+ ],
+ "email": true,
+ "seconds": 23.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22588,
+   "prompt_tokens": 16665,
+   "output_tokens": 166,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.64,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Limitation of liability as described in this article shall not apply:   a) in case the damage or loss is caused by a Party's willful misconduct (including fraud) or gross negligence, or   b) in case of a breach of a Parties obligation under article 11 (confidentiality) and article 15 (indemnification for breach of intellectual property rights).",
+      "explanation": "Your indemnification and IP-infringement obligations are excluded from the liability cap, exposing you to unlimited financial risk for those claims.",
+      "suggested_change": "Limitation of liability as described in this article shall not apply in case the damage or loss is caused by a Party's willful misconduct or gross negligence."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2671,
+   "prompt_tokens": 398,
+   "output_tokens": 121,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.74,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. Thank you for sharing the agreement. I have a minor request regarding the relevant clause before we proceed. - The current terms exclude certain obligations from the liability cap, which creates unnecessary financial exposure. I propose that we adjust this section so that the limitation of liability applies as follows: Limitation of liability as described in this article shall not apply in case the damage or loss is caused by a Party's willful misconduct or gross negligence. Please let me know if this adjustment is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

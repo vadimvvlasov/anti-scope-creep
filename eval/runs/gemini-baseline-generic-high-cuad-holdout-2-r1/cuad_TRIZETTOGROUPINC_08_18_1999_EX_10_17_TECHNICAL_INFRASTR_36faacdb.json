@@ -1,0 +1,65 @@
+{
+ "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT",
+ "chars": 17786,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "start": 6506,
+   "end": 6830
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Support to include 7X24 hour pager support for emergency           services. After the customer has 30 locations, MMMW will locate           technical personnel in the current geography. If a system is not able           to be on-line after hours, on-site help will be made available.",
+   "start": 7596,
+   "end": 7880
+  }
+ ],
+ "email": true,
+ "seconds": 22.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9126,
+   "prompt_tokens": 3418,
+   "output_tokens": 329,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.36,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Customer, upon thirty days prior written notice, may cancel this Agreement at the end of the Initial Term and thereafter on each anniversary of the end of the Initial Term. MMMW may cancel this Agreement if the Customer does not remit payment according to the terms of MMMW's invoice.",
+      "explanation": "The Customer is given the right to cancel the agreement upon notice, whereas MMMW (the service provider) can only terminate for non-payment, locking MMMW into the contract without a reciprocal termination-for-convenience right.",
+      "suggested_change": "Modify the clause to allow either party to terminate this Agreement for convenience upon providing thirty (30) days' prior written notice."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Support to include 7X24 hour pager support for emergency services. After the customer has 30 locations, MMMW will locate technical personnel in the current geography. If a system is not able to be on-line after hours, on-site help will be made available.",
+      "explanation": "Providing 7x24 emergency pager support and mandatory after-hours on-site help without explicit caps or additional premium pricing for emergency hours can overextend your team and lead to uncompensated labor and operational strain.",
+      "suggested_change": "Explicitly define the billing rates for 7x24 pager support and after-hours on-site assistance, ensuring that emergency and after-hours services are billed at a premium rate outside the standard retainer."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2552,
+   "prompt_tokens": 559,
+   "output_tokens": 162,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am reviewing the contract and would like to suggest a few updates before we sign. - Regarding the relevant clause on termination, the current terms allow only the client to cancel upon notice while restricting the provider, so we propose modifying this to allow either party to terminate the agreement for convenience upon providing thirty days prior written notice. - Regarding the relevant clause on support services, the current requirements for round-the-clock emergency pager and on-site help lack defined pricing, so we propose explicitly defining billing rates for 7x24 pager support and after-hours assistance to ensure these services are billed at a premium rate outside the standard retainer. Thank you, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,22 @@
+{
+ "id": "cuad:ELANDIAINTERNATIONALINC_04_25_2007-EX-10.21-Outsourcing Agreement",
+ "chars": 82889,
+ "findings": [],
+ "email": false,
+ "seconds": 12.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 23777,
+   "prompt_tokens": 20534,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.33,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,91 @@
+{
+ "id": "cuad:MetLife, Inc. - Remarketing Agreement",
+ "chars": 111249,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "the Company may remove any or all of the Remarketing Agents, by giving five (5) Business Days' prior written notice to the Stock Purchase Contract Agent and, in the case of a removal, to the Remarketing Agents",
+   "start": 85256,
+   "end": 85465
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "If fewer than all of the Remarketed Securities are remarketed in accordance with the terms hereof, the Remarketing shall be deemed to have failed as to all Remarketed Securities.",
+   "start": 15245,
+   "end": 15423
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "and (iii) performing such other duties as are assigned to the Remarketing Agents in the Remarketing Procedures, all in accordance with and pursuant to the Remarketing Procedures.",
+   "start": 9323,
+   "end": 9501
+  }
+ ],
+ "email": true,
+ "seconds": 16.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 25806,
+   "prompt_tokens": 22498,
+   "output_tokens": 500,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.92,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "the Company may remove any or all of the Remarketing Agents, by giving five (5) Business Days' prior written notice to the Stock Purchase Contract Agent and, in the case of a removal, to the Remarketing Agents",
+      "explanation": "The Company has the unilateral right to remove you on short notice (5 business days), which could happen after you have already invested significant time and resources into preparing for the remarketing.",
+      "suggested_change": "Extend the notice period to 30 days or include a provision for the reimbursement of preparation expenses if terminated without cause."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "If fewer than all of the Remarketed Securities are remarketed in accordance with the terms hereof, the Remarketing shall be deemed to have failed as to all Remarketed Securities.",
+      "explanation": "If even a single security fails to be remarketed, the entire remarketing is deemed a failure, meaning you receive zero Remarketing Fee despite performing all required marketing and operational services.",
+      "suggested_change": "Propose a prorated fee structure or a guaranteed minimum compensation/expense reimbursement for services rendered in the event of a partial remarketing failure."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Each Remarketing Agent will, severally and not jointly, indemnify and hold harmless the Company, its directors and officers... against any losses, claims, damages or liabilities... and will reimburse the Company for any legal or other expenses reasonably incurred",
+      "explanation": "Your indemnification obligations are entirely uncapped, exposing you to potentially massive financial liabilities that could vastly exceed the fees earned from the transaction.",
+      "suggested_change": "Incorporate a liability cap limiting your total indemnification and legal expense exposure to the total fees received under this Agreement."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "and (iii) performing such other duties as are assigned to the Remarketing Agents in the Remarketing Procedures, all in accordance with and pursuant to the Remarketing Procedures.",
+      "explanation": "You are required to perform open-ended duties defined in external or future Remarketing Procedures without explicit bounds or guaranteed additional pay.",
+      "suggested_change": "Explicitly define the scope of duties within the agreement and stipulate that any substantial additional duties will be subject to renegotiation of fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3027,
+   "prompt_tokens": 604,
+   "output_tokens": 147,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.71,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few adjustments before signing. - Regarding the clause allowing removal with short notice, since this could occur after significant preparation, I propose extending the notice period to 30 days or providing reimbursement for preparation expenses. - Concerning the provision where a partial remarketing failure results in losing the entire fee, I suggest a prorated fee structure or a guaranteed minimum compensation for services rendered. - Regarding the requirement to perform open-ended duties, I propose explicitly defining the scope within the agreement and stipulating that additional duties will be subject to fee renegotiation. Thank you for your time, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

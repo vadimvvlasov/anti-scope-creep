@@ -1,0 +1,79 @@
+{
+ "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT",
+ "chars": 16823,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Provider or its affiliate will provide the Company, with respect to the Fiber Ring Assets, all maintenance services (including but not limited to jetwashing and related ancillary services) required under the Provider's license agreements with the municipalities in which the Fiber Ring Assets are located (each a \"City Rights Agreement\"), and monitoring, emergency response and emergency splicing (collectively, the \"Services\").",
+   "start": 1883,
+   "end": 2315
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "(a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;",
+   "start": 9707,
+   "end": 10109
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "provided that the Provider shall refund to the Company a pro rata portion of the Service Fee for any period in excess of two (2) weeks during which the Provider fails to or is unable for any reason to provide the Services or Repairs called for under this Agreement.",
+   "start": 8663,
+   "end": 8928
+  }
+ ],
+ "email": true,
+ "seconds": 17.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8502,
+   "prompt_tokens": 3786,
+   "output_tokens": 533,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.65,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Provider or its affiliate will provide the Company, with respect to the Fiber Ring Assets, all maintenance services (including but not limited to jetwashing and related ancillary services) required under the Provider's license agreements with the municipalities in which the Fiber Ring Assets are located (each a \"City Rights Agreement\"), and monitoring, emergency response and emergency splicing (collectively, the \"Services\").",
+      "explanation": "The phrase \"including but not limited to\" and tying your obligations to broad, external municipal license agreements creates immense scope creep. You could be forced to perform unforeseen and costly maintenance tasks not explicitly priced into the monthly fee.",
+      "suggested_change": "Limit the scope of Services strictly to an exhaustive, defined list of tasks, removing references to open-ended ancillary services and undefined obligations under City Rights Agreements."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "(a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN; (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN; (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;",
+      "explanation": "As the service provider performing physical field work, your liability for negligence resulting in bodily injury, death, or property damage is completely uncapped, exposing your business to catastrophic financial risk.",
+      "suggested_change": "Negotiate an overall aggregate liability cap that applies to all claims, or ensure liability is limited to insurance proceeds."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "provided that the Provider shall refund to the Company a pro rata portion of the Service Fee for any period in excess of two (2) weeks during which the Provider fails to or is unable for any reason to provide the Services or Repairs called for under this Agreement.",
+      "explanation": "This clause forces you to refund a pro-rata portion of your monthly service fee if you are unable to provide services for more than two weeks for any reason, even if caused by circumstances beyond your control, penalizing your cash flow.",
+      "suggested_change": "Clarify that fee refunds only apply if the failure is due to the Provider's gross negligence or willful misconduct, and exclude periods where performance is excused under force majeure."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2632,
+   "prompt_tokens": 760,
+   "output_tokens": 176,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.49,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few revisions before signing. - In the relevant clause regarding maintenance services, the current wording creates open-ended obligations tied to external agreements that could lead to unforeseen tasks; I propose limiting the scope strictly to a defined list of tasks. - Regarding the liability section, the provisions for negligence resulting in bodily injury or property damage currently leave liability completely uncapped; I propose negotiating an overall aggregate liability cap. - In the clause concerning service fee refunds, the requirement to refund fees for any inability to perform lasting over two weeks applies even to circumstances beyond our control; I propose clarifying that refunds apply only if the failure is due to gross negligence or willful misconduct and excluding force majeure events. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT",
+ "chars": 16823,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "A PARTY'S TOTAL LIABILITY TO THE OTHER PARTY IN CONNECTION WITH THIS AGREEMENT, FOR ANY AND ALL CAUSES OF ACTIONS AND CLAIMS, INCLUDING, WITHOUT LIMITATION, BREACH OF CONTRACT, BREACH OF WARRANTY, NEGLIGENCE, STRICT LIABILITY, MISREPRESENTATION AND OTHER TORTS, SHALL BE:   (a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (d) FOR ALL OTHER DAMAGES OTHER THAN THOSE SET FORTH ABOVE AND NOT EXCLUDED UNDER THIS AGREEMENT, EACH PARTY'S LIABILITY TO THE OTHER PARTY DURING ANY TWELVE (12) MONTH PERIOD SHALL BE LIMITED TO THE LESSOR OF (i) DIRECT DAMAGES PROVEN BY THE PARTY, OR (ii) THE AMOUNT PAID BY THE COMPANY TO THE PROVIDER UNDER THIS AGREEMENT FOR THE TWELVE (12) MONTH PERIOD PRIOR TO THE CLAIM.",
+   "start": 9433,
+   "end": 10490
+  }
+ ],
+ "email": true,
+ "seconds": 24.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10275,
+   "prompt_tokens": 5445,
+   "output_tokens": 411,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.95,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "A PARTY'S TOTAL LIABILITY TO THE OTHER PARTY IN CONNECTION WITH THIS AGREEMENT, FOR ANY AND ALL CAUSES OF ACTIONS AND CLAIMS, INCLUDING, WITHOUT LIMITATION, BREACH OF CONTRACT, BREACH OF WARRANTY, NEGLIGENCE, STRICT LIABILITY, MISREPRESENTATION AND OTHER TORTS, SHALL BE:   (a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (d) FOR ALL OTHER DAMAGES OTHER THAN THOSE SET FORTH ABOVE AND NOT EXCLUDED UNDER THIS AGREEMENT, EACH PARTY'S LIABILITY TO THE OTHER PARTY DURING ANY TWELVE (12) MONTH PERIOD SHALL BE LIMITED TO THE LESSOR OF (i) DIRECT DAMAGES PROVEN BY THE PARTY, OR (ii) THE AMOUNT PAID BY THE COMPANY TO THE PROVIDER UNDER THIS AGREEMENT FOR THE TWELVE (12) MONTH PERIOD PRIOR TO THE CLAIM.",
+      "explanation": "Your liability for property damage caused by negligence is excluded from the general liability cap and has no financial ceiling, exposing you to potentially unlimited damages.",
+      "suggested_change": "A party's total liability to the other party in connection with this Agreement, for any and all causes of action and claims, shall be limited to the amount paid by the Client to the Contractor under this Agreement for the twelve (12) month period prior to the claim."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3049,
+   "prompt_tokens": 610,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a quick note to discuss before signing: - In the relevant clause, liability for property damage caused by negligence currently lacks a financial ceiling, which creates excessive exposure; I propose modifying this provision so that total liability is limited to the amount paid under the agreement for the preceding twelve-month period. Please let me know your thoughts on this adjustment. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

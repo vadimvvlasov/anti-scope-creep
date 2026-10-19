@@ -1,0 +1,65 @@
+{
+ "id": "cuad:WebmdHealthCorp_20050908_S-1A_EX-10.7_1027007_EX-10.7_Content License Agreement",
+ "chars": 14993,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "If WebMD should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content Emdeon has licensed (collectively, \"Updates\"), Emdeon has the option, at no additional cost, to receive the most recent Update.",
+   "start": 2468,
+   "end": 2712
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "WebMD shall bear the cost of any reformatting necessary to provide the Content in the Format.",
+   "start": 2907,
+   "end": 3000
+  }
+ ],
+ "email": true,
+ "seconds": 17.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7675,
+   "prompt_tokens": 3511,
+   "output_tokens": 277,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.1,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "If [PARTY_A] should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content [PARTY_B] has licensed (collectively, \"Updates\"), [PARTY_B] has the option, at no additional cost, to receive the most recent Update.",
+      "explanation": "This clause forces you to provide future editions, enhancements, or modifications of the Content to Party B for free if you produce them, creating an uncompensated ongoing obligation.",
+      "suggested_change": "Limit free updates strictly to minor error corrections, and stipulate that new editions, major revisions, or enhancements require a separate fee."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "[PARTY_A] shall bear the cost of any reformatting necessary to provide the Content in the Format.",
+      "explanation": "You are required to absorb all financial and technical costs associated with reformatting the Content for Party B, reducing your net profit from the contract.",
+      "suggested_change": "Specify that you will provide the content in your standard format, and any custom reformatting requested by Party B will be billed at your standard hourly or project rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2219,
+   "prompt_tokens": 383,
+   "output_tokens": 118,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.55,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. Thank you for sending over the agreement. Before proceeding with my signature, I would like to discuss one point: - Regarding the relevant clause, it currently creates an ongoing obligation by requiring future editions and enhancements to be provided at no additional cost. I propose that we limit free updates strictly to minor error corrections, and stipulate that new editions, major revisions, or enhancements require a separate fee. Please let me know if this adjustment works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

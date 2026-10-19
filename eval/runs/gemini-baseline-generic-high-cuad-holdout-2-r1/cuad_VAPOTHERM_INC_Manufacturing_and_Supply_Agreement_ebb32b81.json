@@ -1,0 +1,79 @@
+{
+ "id": "cuad:VAPOTHERM, INC. - Manufacturing and Supply Agreement",
+ "chars": 75632,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Medica shall use [* * *] efforts to develop technical know-how that would permit them to manufacture the Cartridge less expensively and shall no less than semiannually furnish the Joint Review Committee with a detailed report as to their progress in this area.",
+   "start": 16676,
+   "end": 16936
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "by Vapotherm, if for any reason other than an Event of Force Majeure Medica fails to deliver within [* * *] days after the required delivery date, or on more than two occasions in any [* * *]-day period fails to deliver within [* * *] days after the required delivery day, any shipment of Cartridge it is required to deliver pursuant to Section 3.2, Section 4.2, or Section 9.3",
+   "start": 51443,
+   "end": 51820
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "On delivery by Medica of a shipment of Cartridges in accordance with Section 3.3, Medica shall issue to Vapotherm an invoice for that shipment stating a price consistent with the terms of this Agreement. Vapotherm shall pay each such invoice in full within [* * *] Calendar Days from the date of invoice, unless Vapotherm has rejected the shipment in question in accordance with Section 4.2.",
+   "start": 11354,
+   "end": 11745
+  }
+ ],
+ "email": true,
+ "seconds": 23.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22169,
+   "prompt_tokens": 16341,
+   "output_tokens": 489,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.49,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Medica shall use [* * *] efforts to develop technical know-how that would permit them to manufacture the Cartridge less expensively and shall no less than semiannually furnish the Joint Review Committee with a detailed report as to their progress in this area.",
+      "explanation": "This imposes an ongoing obligation on Medica to research and develop cost-saving manufacturing improvements and report detailed proprietary know-how semi-annually without guaranteed compensation or assurance of retaining the financial upside.",
+      "suggested_change": "Limit cost-reduction R&D obligations to commercially reasonable efforts and ensure that proprietary manufacturing innovations remain Medica's exclusive intellectual property without forcing automatic price reductions."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "by Vapotherm, if for any reason other than an Event of Force Majeure Medica fails to deliver within [* * *] days after the required delivery date, or on more than two occasions in any [* * *]-day period fails to deliver within [* * *] days after the required delivery day, any shipment of Cartridge it is required to deliver pursuant to Section 3.2, Section 4.2, or Section 9.3",
+      "explanation": "Gives Vapotherm the unilateral right to terminate the entire agreement immediately for minor or repeated slight delivery delays, without providing Medica adequate cure periods.",
+      "suggested_change": "Add a formal cure period for delivery delays before termination rights vest, and ensure reciprocal termination rights for Vapotherm's defaults."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "On delivery by Medica of a shipment of Cartridges in accordance with Section 3.3, Medica shall issue to Vapotherm an invoice for that shipment stating a price consistent with the terms of this Agreement. Vapotherm shall pay each such invoice in full within [* * *] Calendar Days from the date of invoice, unless Vapotherm has rejected the shipment in question in accordance with Section 4.2.",
+      "explanation": "If the payment window is lengthy and payment is conditioned on delivery without advance deposits, Medica bears an excessive working capital burden for manufacturing safety stock and raw materials.",
+      "suggested_change": "Negotiate a shorter payment period and require an upfront deposit or milestone payments for safety stock inventory."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3612,
+   "prompt_tokens": 716,
+   "output_tokens": 203,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.55,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. Before we move forward, I would like to propose a few adjustments to the agreement. - Regarding the relevant clause, the agreement imposes ongoing obligations to research and develop cost-saving manufacturing improvements and report detailed proprietary know-how semi-annually without guaranteed compensation, and I propose limiting these cost-reduction R&D obligations to commercially reasonable efforts while ensuring that proprietary manufacturing innovations remain exclusive. - In the relevant clause, the agreement gives unilateral termination rights immediately for minor or repeated slight delivery delays without adequate cure periods, and I propose adding a formal cure period for delivery delays before termination rights vest along with reciprocal termination rights. - Under the relevant clause, the payment window is lengthy and payment is conditioned on delivery without advance deposits, creating an excessive working capital burden, and I propose negotiating a shorter payment period and requiring an upfront deposit or milestone payments for safety stock inventory. Thank you for your time and consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

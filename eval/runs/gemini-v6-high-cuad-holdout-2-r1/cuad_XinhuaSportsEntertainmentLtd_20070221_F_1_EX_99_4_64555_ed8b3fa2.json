@@ -1,0 +1,65 @@
+{
+ "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+ "chars": 19128,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "XFN may terminate this Agreement by giving thirty (30) days written notice      to the CEIS.",
+   "start": 13213,
+   "end": 13305
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "The first instalment will be      effect on condition that XFN can raise at least US$1.1 million additional      funding in 2002.",
+   "start": 9574,
+   "end": 9703
+  }
+ ],
+ "email": true,
+ "seconds": 25.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12498,
+   "prompt_tokens": 5818,
+   "output_tokens": 189,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.58,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "[PARTY_C] may terminate this Agreement by giving thirty (30) days written notice to the CEIS.",
+      "explanation": "Only the client has the right to terminate the contract without cause on thirty days notice, while you have no equivalent right.",
+      "suggested_change": "Either Party may terminate this Agreement by giving thirty days written notice to the other Party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "The first instalment will be effect on condition that [PARTY_C] can raise at least US$1.1 million additional funding in 2002.",
+      "explanation": "Your receipt of the first payment instalment is conditional upon an external event outside your control.",
+      "suggested_change": "The first instalment shall be paid unconditionally upon execution of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2466,
+   "prompt_tokens": 324,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.54,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to getting started and have one minor point to discuss before signing. - Regarding the relevant clause, the receipt of the first payment instalment is conditional upon an external event outside my control, and I propose that the agreement be modified so that the first instalment shall be paid unconditionally upon execution of this agreement. Please let me know your thoughts so we can finalize everything. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,88 @@
+{
+ "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT",
+ "chars": 67111,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all  associated Proprietary Rights, shall be owned exclusively by the Company.",
+   "start": 27355,
+   "end": 27529
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "The Company will have the ability to terminate this Agreement by giving 60 days' prior  written notice to the Contractor. The Contractor will have the ability to terminate this Agreement by giving 90 days' prior written notice to the  Company.",
+   "start": 53263,
+   "end": 53506
+  }
+ ],
+ "email": true,
+ "seconds": 20.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17875,
+   "prompt_tokens": 13401,
+   "output_tokens": 593,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.97,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The Contractor agrees that it shall defend, indemnify and hold harmless, at its own expense, all suits and claims against the Company and any officers, directors, employees and affiliates of the Company (collectively, the \"Company Indemnified Parties\"), for infringement or violation of any patent, trademark, copyright, trade secret or other intellectual property rights of any third party that relates to this Agreement or the Offering, or servicing of the Notes. The Contractor agrees that it shall pay all sums, including without limitation, reasonable attorneys' fees and other costs incurred by the Company, in defense of, by final judgment or decree, or in settlement of any suit or claim...",
+      "explanation": "This clause imposes an uncapped indemnification obligation on me for third-party IP claims related to the contract, exposing me to unlimited financial liability.",
+      "suggested_change": "Propose adding a liability cap (e.g., limited to total fees received) and limiting indemnification to direct damages caused by intentional misconduct."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all associated Proprietary Rights, shall be owned exclusively by the Company.",
+      "explanation": "The agreement grants exclusive ownership of web pages and associated intellectual property to the Company immediately without explicitly conditioning this transfer on full payment of my fees.",
+      "suggested_change": "Clarify that ownership and intellectual property rights remain with the Contractor until all services and development fees have been paid in full."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "During the term of this Agreement the Contractor, in conjunction with the Trustee, shall perform ministerial tasks included in the customer service and investor relations functions with respect to the Offering, as directed from time to time by the Company...",
+      "explanation": "Allowing the Company to direct new or additional tasks from time to time without pre-negotiated compensation terms creates a risk of unpaid scope creep.",
+      "suggested_change": "Limit tasks strictly to those explicitly defined in the agreement and require a written change order with agreed additional fees for any new tasks."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "The Company will have the ability to terminate this Agreement by giving 60 days' prior written notice to the Contractor. The Contractor will have the ability to terminate this Agreement by giving 90 days' prior written notice to the Company.",
+      "explanation": "The termination notice period is asymmetric, requiring me to give 90 days' notice while the Company only needs to give 60 days, limiting my operational flexibility.",
+      "suggested_change": "Make the termination notice period mutual and equal for both parties, such as 60 days for each."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3241,
+   "prompt_tokens": 348,
+   "output_tokens": 112,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together and have one quick point to discuss before signing: - Regarding the relevant clause, the agreement grants exclusive ownership of the web pages and associated intellectual property immediately without conditioning the transfer on full payment. I propose we clarify that ownership and intellectual property rights remain with the Contractor until all services and development fees have been paid in full. Thank you for your flexibility, and best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

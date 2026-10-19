@@ -1,0 +1,107 @@
+{
+ "id": "cuad:SEASPINEHOLDINGSCORP_10_10_2018-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 70898,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Treated Integra Product and/or Partially Treated Integra Product shall be considered as being sold for the purpose of the calculation of payments due under Sections 2.2 when the payments for the Treated Integra Product and/or Partially Treated Integra Product are received by Integra or its Affiliates from a Third Party.",
+   "start": 38285,
+   "end": 38606
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "PcoMed will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+   "start": 21402,
+   "end": 21687
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "NOTWITHSTANDING THE FOREGOING, NOTHING IN THIS SECTION IS INTENDED TO LIMIT OR RESTRICT THE DAMAGES AVAILABLE FOR BREACHES OF SECTION 3.1 (GRANT OF RIGHTS), SECTION 5 (CONFIDENTIALITY PROVISIONS), OR SECTIONS 8.1 AND 8.2 (OWNERSHIP AND LICENSE).",
+   "start": 57210,
+   "end": 57455
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "PcoMed's conversion right is PcoMed's sole and exclusive remedy for Integra's failure to satisfy the Minimum Payment for any Minimum Payment Period. Integra shall have no liability at any time to PcoMed for Integra's failure to pay the Minimum Payment.",
+   "start": 22972,
+   "end": 23224
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Except with regard to the foregoing joint Inventions or methods, each party hereby assigns to the other, by way of present and future assignment, all of the right, title and interest (including all Intellectual Property Rights therein) that it has or may have in any such Invention that is jointly Derived and that is subject to ownership by the other party.",
+   "start": 49465,
+   "end": 49823
+  }
+ ],
+ "email": true,
+ "seconds": 26.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20782,
+   "prompt_tokens": 14808,
+   "output_tokens": 753,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.19,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Treated Integra Product and/or Partially Treated Integra Product shall be considered as being sold for the purpose of the calculation of payments due under Sections 2.2 when the payments for the Treated Integra Product and/or Partially Treated Integra Product are received by Integra or its Affiliates from a Third Party.",
+      "explanation": "As the supplier, my fee payments are contingent upon Integra collecting payment from third parties, shifting Integra's customer collection risk and credit defaults onto me.",
+      "suggested_change": "Propose that fees are calculated and payable upon invoicing or shipment of products by Integra, regardless of when Integra collects payment from third parties."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+      "explanation": "I am required to provide substantial labor, materials, and production runs for regulatory testing and validation entirely for free without any compensation.",
+      "suggested_change": "Negotiate a reduced at-cost rate or cap the free units/runs at a much lower threshold to ensure [PARTY_B] is compensated for materials and labor."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "NOTWITHSTANDING THE FOREGOING, NOTHING IN THIS SECTION IS INTENDED TO LIMIT OR RESTRICT THE DAMAGES AVAILABLE FOR BREACHES OF SECTION 3.1 (GRANT OF RIGHTS), SECTION 5 (CONFIDENTIALITY PROVISIONS), OR SECTIONS 8.1 AND 8.2 (OWNERSHIP AND LICENSE).",
+      "explanation": "Damages for various breaches are explicitly carved out from the limitation of liability clause, leaving [PARTY_B] exposed to potentially unlimited and catastrophic financial liability.",
+      "suggested_change": "Remove the broad carve-outs from the limitation of liability or establish a reasonable overall liability cap applicable to all claims except for gross negligence or willful misconduct."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B]'s conversion right is [PARTY_B]'s sole and exclusive remedy for Integra's failure to satisfy the Minimum Payment for any Minimum Payment Period. Integra shall have no liability at any time to [PARTY_B] for Integra's failure to pay the Minimum Payment.",
+      "explanation": "If the client fails to meet guaranteed minimum payments, I am legally barred from suing for the money owed; my only recourse is converting to a non-exclusive arrangement, resulting in uncompensated financial loss.",
+      "suggested_change": "Remove the waiver of liability for minimum payments and stipulate that Integra must pay the difference in cash if minimum payment thresholds are not met."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Except with regard to the foregoing joint Inventions or methods, each party hereby assigns to the other, by way of present and future assignment, all of the right, title and interest (including all Intellectual Property Rights therein) that it has or may have in any such Invention that is jointly Derived and that is subject to ownership by the other party.",
+      "explanation": "The agreement includes a present assignment of future IP rights for jointly derived work, transferring intellectual property ownership immediately upon creation without tying it to full payment or compensation.",
+      "suggested_change": "Add language stating that the assignment of intellectual property rights is contingent upon receipt of full payment for the applicable deliverables or milestones."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 5250,
+   "prompt_tokens": 971,
+   "output_tokens": 300,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a few changes before signing. - Regarding the relevant clause, fee payments are currently tied to the client collecting from third parties, which shifts credit risk to the supplier. I propose modifying the agreement so that fees are calculated and payable upon invoicing or shipment of products regardless of third-party collection. - Under the relevant clause, [PARTY_B] is required to provide substantial labor, materials, and runs for testing entirely without compensation. I propose that we negotiate a reduced at-cost rate or cap the free units and runs at a much lower threshold. - The agreement includes broad carve-outs from the limitation of liability, leaving [PARTY_B] exposed to potentially unlimited financial liability. I propose removing these broad carve-outs or establishing a reasonable overall liability cap for all claims. - Under the relevant clause, if minimum payments are not met, [PARTY_B] is barred from pursuing payment claims and restricted to a conversion remedy. I propose removing this waiver of liability and stipulating that the client must pay the difference in cash if minimum thresholds are not met. - The agreement mandates a present assignment of future intellectual property rights for jointly derived work immediately upon creation. I propose adding language stating that the assignment of these rights is contingent upon receipt of full payment for the applicable deliverables. Thank you for your time and consideration. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

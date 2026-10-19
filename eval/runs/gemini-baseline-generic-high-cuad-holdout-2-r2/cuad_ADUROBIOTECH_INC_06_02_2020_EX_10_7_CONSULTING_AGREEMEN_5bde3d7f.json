@@ -1,0 +1,93 @@
+{
+ "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)",
+ "chars": 12020,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Consultant will provide advice and consultation to Aduro with respect to its research, clinical development programs and other business matters as requested by Aduro from time to time.",
+   "start": 499,
+   "end": 683
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Either party may terminate this Agreement at any time on prior written notice to the other.",
+   "start": 1752,
+   "end": 1843
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+   "start": 5984,
+   "end": 6465
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "In the event of a breach of this Paragraph 7 by Consultant, Aduro shall be entitled to entry of injunctive relief. Such injunctive remedy shall be nonexclusive and shall be in addition to any and all other remedies which may be available to it at law or in equity, including without limitation, the recovery of direct, indirect, incidental, consequential and/or punitive damages.",
+   "start": 8043,
+   "end": 8422
+  }
+ ],
+ "email": true,
+ "seconds": 15.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6363,
+   "prompt_tokens": 2536,
+   "output_tokens": 531,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.37,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Consultant will provide advice and consultation to Aduro with respect to its research, clinical development programs and other business matters as requested by Aduro from time to time.",
+      "explanation": "The scope is overly broad and open-ended, which can lead to scope creep and unpaid extra work.",
+      "suggested_change": "Define the specific scope of services clearly and add language stating that additional requests outside this scope will require a written change order and extra compensation."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Either party may terminate this Agreement at any time on prior written notice to the other.",
+      "explanation": "Allowing termination at any time on prior written notice without specifying a minimum notice period leaves you vulnerable to abrupt cancellation.",
+      "suggested_change": "Specify a clear minimum notice period, such as thirty days prior written notice, and ensure you are paid for all services rendered up to the termination date."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+      "explanation": "Intellectual property is assigned immediately upon creation rather than upon receipt of payment, meaning the client owns your work even if they fail or refuse to pay.",
+      "suggested_change": "Condition the assignment of intellectual property rights explicitly on receipt of full payment for the corresponding services."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "In the event of a breach of this Paragraph 7 by Consultant, Aduro shall be entitled to entry of injunctive relief. Such injunctive remedy shall be nonexclusive and shall be in addition to any and all other remedies which may be available to it at law or in equity, including without limitation, the recovery of direct, indirect, incidental, consequential and/or punitive damages.",
+      "explanation": "This exposes you to unlimited and uncapped liability, including consequential and punitive damages, for any breach of the nonsolicitation clause.",
+      "suggested_change": "Remove references to indirect, consequential, and punitive damages, and cap your total liability under the agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3134,
+   "prompt_tokens": 757,
+   "output_tokens": 247,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing: - The scope of services in the relevant clause is overly broad and open-ended, which can lead to scope creep and unpaid extra work; I propose defining the specific scope of services clearly and adding language stating that additional requests outside this scope will require a written change order and extra compensation. - The termination provision allows cancellation at any time without specifying a minimum notice period, which leaves the provider vulnerable to abrupt cancellation; I propose specifying a clear minimum notice period, such as thirty days, and ensuring payment for all services rendered up to the termination date. - Intellectual property is assigned immediately upon creation rather than upon receipt of payment, which means work could be owned even if payment is not received; I propose conditioning the assignment of intellectual property rights explicitly on receipt of full payment for the corresponding services. - The breach and remedies provision exposes the provider to unlimited and uncapped liability, including consequential and punitive damages; I propose removing references to indirect, consequential, and punitive damages, and capping total liability under the agreement. Please let me know if these changes work for you."
+   }
+  }
+ ],
+ "dropped": []
+}

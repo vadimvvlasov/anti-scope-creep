@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)",
+ "chars": 12020,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+   "start": 5984,
+   "end": 6465
+  }
+ ],
+ "email": true,
+ "seconds": 13.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7609,
+   "prompt_tokens": 4195,
+   "output_tokens": 292,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.68,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation through present assignment wording, before you are guaranteed full payment.",
+      "suggested_change": "Upon receipt of full payment, the Client shall be the sole and exclusive owner of, and the Contractor hereby assigns to the Client, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that the Contractor makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\")."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1901,
+   "prompt_tokens": 488,
+   "output_tokens": 74,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.28,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to propose a few adjustments to the agreement before signing. - Regarding the relevant clause, ownership of the work product transfers immediately upon creation before full payment is guaranteed, and I propose modifying this so that ownership transfers upon receipt of full payment. I look forward to your thoughts. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

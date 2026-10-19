@@ -1,0 +1,91 @@
+{
+ "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT",
+ "chars": 85963,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Following expiry of the initial period described in Clause 15 above, DCL or SEV giving not less than six months notice in  writing may terminate this Agreement. In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th  anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+   "start": 50638,
+   "end": 50980
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex  Vehicle Leasing t/a Business Partner (the \"Hirer\") at the end of its contracted hire period to cover the cost of repairs or replacement that  should have been completed under the terms of this Fleet Maintenance Agreement so that it can be returned to the Hirer in good condition.",
+   "start": 84582,
+   "end": 84999
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end  of the Contracted Period and shall provide such repairs on a free of charge basis.",
+   "start": 52747,
+   "end": 52957
+  }
+ ],
+ "email": true,
+ "seconds": 21.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22882,
+   "prompt_tokens": 18379,
+   "output_tokens": 672,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.76,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Following expiry of the initial period described in Clause 15 above, DCL or SEV giving not less than six months notice in writing may terminate this Agreement. In addition, DCL may terminate this Agreement with effect from the 3rd, 4th or 5th anniversary of the Commencement Date by giving not less than six months notice in writing to SEV.",
+      "explanation": "DCL has the unilateral right to terminate the agreement early at the 3rd, 4th, or 5th anniversaries, whereas SEV is locked into the full initial five-year term without a reciprocal early exit option.",
+      "suggested_change": "Allow both parties mutual early termination rights upon giving the same period of written notice."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding Clause 6, SEV agrees that DCL may withhold the final monthly payment due to SEV in respect of a vehicle on hire from Lex Vehicle Leasing t/a Business Partner (the \"Hirer\") at the end of its contracted hire period to cover the cost of repairs or replacement that should have been completed under the terms of this Fleet Maintenance Agreement so that it can be returned to the Hirer in good condition.",
+      "explanation": "DCL is explicitly permitted to withhold your final monthly payments based on their unilateral assessment of vehicle condition, which can severely impact cash flow and leaves you vulnerable to subjective disputes over vehicle condition.",
+      "suggested_change": "Propose that any disputed repair costs be resolved through a formal dispute resolution process rather than allowing DCL to unilaterally withhold final payments."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly in connection with: 11.5.1 any Employment Costs arising in relation to the Contracted Period in relation to the Employees; 11.5.2 the employment or termination of employment by SEV of any of the Employees... and 11.5.3 any act, omission or default of SEV in respect of the employment by SEV of the Employees.",
+      "explanation": "This indemnity requires SEV to cover all liabilities and employment costs relating to SEV's employees without any financial cap, exposing SEV to potentially unlimited claims regarding employment disputes or redundancies.",
+      "suggested_change": "Request a mutual cap on liability and limit employment indemnities strictly to direct losses caused by SEV's material breach rather than blanket indemnification."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "SEV shall remain liable for the repairs described in Clause 4.12 identified by DCL for a period of thirteen weeks from the end of the Contracted Period and shall provide such repairs on a free of charge basis.",
+      "explanation": "This clause forces SEV to provide free minor bodywork repairs for up to 13 weeks after the agreement has terminated, extending post-contract obligations and expenses without compensation.",
+      "suggested_change": "Delete this post-termination obligation or ensure that any repair work requested after termination is billed as Additional Charges at standard rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3098,
+   "prompt_tokens": 707,
+   "output_tokens": 178,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.67,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few minor updates before we proceed. - Regarding the relevant clause on early termination, one party is granted unilateral exit options while the other is fully bound, and I propose that we allow both parties mutual early termination rights upon giving the same period of written notice. - Regarding the relevant clause on withholding payments, the agreement permits withholding final payments based on unilateral assessments, and I propose that any disputed repair costs be resolved through a formal dispute resolution process instead. - Regarding the relevant clause on post-termination obligations, the agreement requires providing repair services for thirteen weeks after termination free of charge, and I propose that any repair work requested after termination be billed as additional charges at standard rates. Thank you for your time and understanding, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

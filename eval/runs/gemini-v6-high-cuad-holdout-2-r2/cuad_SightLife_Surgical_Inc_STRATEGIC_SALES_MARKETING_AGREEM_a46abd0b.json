@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+   "start": 4498,
+   "end": 4589
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW).",
+   "start": 3246,
+   "end": 3537
+  }
+ ],
+ "email": true,
+ "seconds": 18.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10284,
+   "prompt_tokens": 6713,
+   "output_tokens": 304,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.13,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+      "explanation": "Intellectual property ownership of your work transfers to the client immediately upon creation, before you have been paid.",
+      "suggested_change": "Upon receipt of full payment, all right, title, and interest in the Work Product shall transfer to the Client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW).",
+      "explanation": "Payment is delayed for 60 days following the end of each calendar quarter, which significantly ties up your cash flow compared to standard 30-day terms.",
+      "suggested_change": "Within thirty (30) days following the end of each calendar month, the Client shall deliver the applicable report and remit full payment of all commissions due."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2599,
+   "prompt_tokens": 473,
+   "output_tokens": 121,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I have reviewed the agreement and would like to suggest a few updates before signing: - Regarding the relevant clause on intellectual property, the terms transfer ownership before payment is received, and I propose modifying it so that the transfer occurs upon receipt of full payment. - Regarding the relevant clause on payment timelines, the schedule delays payment for sixty days following the end of each calendar quarter, and I propose updating this to thirty days following the end of each calendar month for the report and payment. Thank you for your time and best wishes."
+   }
+  }
+ ],
+ "dropped": []
+}

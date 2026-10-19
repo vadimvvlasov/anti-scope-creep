@@ -1,0 +1,51 @@
+{
+ "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT",
+ "chars": 62324,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO         EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR         THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY         PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES         TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE         CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+   "start": 33580,
+   "end": 34023
+  }
+ ],
+ "email": true,
+ "seconds": 27.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19015,
+   "prompt_tokens": 14056,
+   "output_tokens": 203,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 22.33,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap, exposing you to uncapped liability for third-party claims.",
+      "suggested_change": "In no event shall either party's total liability arising out of this Agreement exceed the total fees paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1887,
+   "prompt_tokens": 402,
+   "output_tokens": 126,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. I have reviewed the agreement and am excited to move forward. Before signing, I would like to suggest a minor adjustment: - Regarding the relevant clause, the current wording excludes certain obligations from the overall liability cap, which could lead to unlimited liability for third-party claims; we propose modifying this so that in no event shall either party's total liability arising out of the agreement exceed the total fees paid under it. Thank you for your time and flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

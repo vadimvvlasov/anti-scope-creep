@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT",
+ "chars": 67111,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all  associated Proprietary Rights, shall be owned exclusively by the Company.",
+   "start": 27355,
+   "end": 27529
+  }
+ ],
+ "email": true,
+ "seconds": 19.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20048,
+   "prompt_tokens": 15060,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.24,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all associated Proprietary Rights, shall be owned exclusively by the Company.",
+      "explanation": "The contract assigns exclusive ownership of web pages and intellectual property to the client without conditioning it on full payment, meaning the client owns your work product before you are paid.",
+      "suggested_change": "Upon full payment of all applicable fees due under this Agreement, the Web Pages and all associated Proprietary Rights shall be owned exclusively by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2080,
+   "prompt_tokens": 358,
+   "output_tokens": 100,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am reviewing the contract and have a minor note regarding the agreement. - In the relevant clause, the current terms assign ownership of the web pages before full payment is received, and I propose modifying this so that the Web Pages and all associated Proprietary Rights are owned exclusively by the client upon full payment of all applicable fees due under the agreement. Please let me know if this adjustment works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

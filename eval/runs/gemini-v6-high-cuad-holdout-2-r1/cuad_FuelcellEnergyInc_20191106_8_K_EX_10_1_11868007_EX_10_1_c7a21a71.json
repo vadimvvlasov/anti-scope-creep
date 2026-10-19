@@ -1,0 +1,51 @@
+{
+ "id": "cuad:FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement",
+ "chars": 105662,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+   "start": 21614,
+   "end": 21694
+  }
+ ],
+ "email": true,
+ "seconds": 19.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 28199,
+   "prompt_tokens": 23948,
+   "output_tokens": 126,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.39,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation through present assignment language before you receive full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable work, the Contractor will assign to the Client ownership of Program Results."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1898,
+   "prompt_tokens": 322,
+   "output_tokens": 85,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am writing to suggest a minor adjustment to the agreement before signing. - Regarding the relevant clause, ownership transfers to the client immediately upon creation before payment is received. I propose modifying this so that ownership is assigned to the client upon receipt of full payment for the applicable work. Thank you for your flexibility."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,383 @@
+{
+ "set": "cuad-holdout-2",
+ "contracts": 32,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 5,
+   "fp": 5,
+   "fn": 2,
+   "precision": 0.5,
+   "recall": 0.714,
+   "severity_accuracy": 0.8
+  },
+  "one_sided_termination": {
+   "tp": 3,
+   "fp": 11,
+   "fn": 3,
+   "precision": 0.214,
+   "recall": 0.5,
+   "severity_accuracy": 0.0
+  },
+  "uncapped_liability": {
+   "tp": 1,
+   "fp": 17,
+   "fn": 1,
+   "precision": 0.056,
+   "recall": 0.5,
+   "severity_accuracy": 0.0
+  },
+  "all": {
+   "tp": 9,
+   "fp": 33,
+   "fn": 6,
+   "precision": 0.214,
+   "recall": 0.6,
+   "severity_accuracy": 0.444
+  }
+ },
+ "run": {
+  "failed": 1,
+  "invalid_output": 0,
+  "findings_returned": 108,
+  "findings_kept": 83,
+  "dropped": {
+   "quote_not_found": 25
+  },
+  "quote_not_found_rate": 0.231,
+  "tokens_mean": 20872,
+  "tokens_max": 36867,
+  "seconds_mean": 20.5,
+  "seconds_max": 26.2
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ITS AFFILIATES, ANY SUCCESSORS IN INTEREST OR ANY BENEFICIARY OR ASSIGNEE OF THIS AGREEMENT FOR ANY CONSEQUENTIAL, MULTIPLE, INCIDENTAL, INDIRECT, SPECIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR LOSS OF PROFITS OR REVENUES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR ANY BREACH HEREOF; PROVIDED, HOWEVER, THE FOREGOING SHALL NOT BE CONSTRUED AS LIMITING AN OBLIGATION OF A PARTY HEREUNDER TO INDEMNIFY, DEFEND AND HOLD HARMLESS THE OTHER PARTY AGAINST CLAIMS ASSERTED BY UNAFFILIATED THIRD PARTIES",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:RangeResourcesLouisianaInc_20150417_8-K_EX-10.5_9045501_EX-10.5_Transportation Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "If the Parties are unable to agree on an economic adjustment within sixty (60) Days of the senior management meeting, then Carrier may, in its sole discretion, terminate this Agreement without penalty by delivering Shipper written notice of Carrier's intent to terminate. Such termination shall be effective, at the option of Shipper, (i) as of 9:00 a.m. on the first Day of the Month which follows the Month that Carrier delivered its notice of intent to terminate, or (ii) as of 9:00 a.m. on the first Day of the Month which is twelve (12) Months after such date",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:RangeResourcesLouisianaInc_20150417_8-K_EX-10.5_9045501_EX-10.5_Transportation Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "ELEPHANT TALK will be fully responsible for the settlement of, and shall indemnify (\"vrijwaren\") T-Mobile against any claims made by ELEPHANT TALK Customers or third parties with whom ELEPHANT TALK has a (contractual) relationship and which claims are related to this (contractual) relationship",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notwithstanding anything stipulated in the Agreement, T-Mobile may without liability suspend or terminate whole or part of the Hosting Services in relation to one or more ELEPHANT TALK Customers, in circumstances where T-Mobile would suspend or terminate those services to its own customers, in the following circumstances - or circumstances of similar severity.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Should ELEPHANT TALK wilfully or negligently fail to comply with an T-Mobile request, ELEPHANT TALK shall bear full responsibility and indemnify T- Mobile for all damages and losses T-Mobile suffers resulting from actions as mentioned in this article by ELEPHANT TALK's Customers.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "by Vapotherm, if for any reason other than an Event of Force Majeure Medica fails to deliver within [* * *] days after the required delivery date, or on more than two occasions in any [* * *]-day period fails to deliver within [* * *] days after the required delivery day, any shipment of Cartridge it is required to deliver pursuant to Section 3.2, Section 4.2, or Section 9.3",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:VAPOTHERM, INC. - Manufacturing and Supply Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Notwithstanding the preceding sentences, this Subsection will not limit the liability of a Party for any amount or type of damages for: (1) the defense and indemnification of an Indemnified Claim on which the Party is the Indemnifying Party; (2) infringement by the Party on the intellectual property of the other Party; (3) the unauthorized disclosure or use by the Party of the Confidential Information of the other Party;",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ReynoldsConsumerProductsInc_20191115_S-1_EX-10.18_11896469_EX-10.18_Supply Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "If Stryker Finally Rejects any Deliverable for Milestone #1 or #2 in accordance with Article III, Stryker may terminate   this Agreement, which termination shall be effective immediately upon delivery of a Termination Notice to Conformis.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO         EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR         THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY         PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES         TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE         CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Subject to Commerce One's pre-existing ownership of any         materials or technology provided to Corio, the results of all such         development efforts set forth in this Section 13, including all         intellectual property rights in any software interface coding or         programs created solely by Corio during the term of this Agreement to         enable the Software to operated within the Corio Servers' hosted         environment (\"DEVELOPMENTS\"), shall be owned by Corio, unless such         Developments are supported on an ongoing basis by Commerce One in which         case Commerce One will retain all ownership rights, including\n\n\n\n\n\n     intellectual property rights in the Developments.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT WITH REGARD TO OBLIGATIONS TO INDEMNIFY A PARTY FOR CLAIMS MADE BY THIRD PARTIES, NEITHER PARTY SHALL BE LIABLE TO THE OTHER PARTY (OR ITS AFFILIATES) PURSUANT TO THIS AGREEMENT FOR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, OR SPECIAL DAMAGES OR LOSSES OR ANY PUNITIVE, EXEMPLARY, TREBLE, OR SIMILAR DAMAGES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE PERFORMANCE OF, OR FAILURE TO PERFORM, ITS OBLIGATIONS HEREUNDER, EVEN IF SUCH DAMAGES OR LOSSES ARE CAUSED BY THE SOLE, JOINT, OR CONCURRENT NEGLIGENCE, STRICT LIABILITY, OR OTHER FAULT OF THE PARTY WHOSE LIABILITY IS BEING WAIVED HEREBY.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ENERGYXXILTD_05_08_2015-EX-10.13-Transportation AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "Except with regard to the foregoing joint Inventions or methods, each party hereby assigns to the other, by way of present and future assignment, all of the right, title and interest (including all Intellectual Property Rights therein) that it has or may have in any such Invention that is jointly Derived and that is subject to ownership by the other party.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:SEASPINEHOLDINGSCORP_10_10_2018-EX-10.1-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Aucta, for itself and its Affiliates, hereby grants to ETON in accordance with the terms and conditions of this Agreement, an exclusive (even as to and against Aucta in the Territory) right and license, including the right to sublicense, to the Products (or any components thereof), Dossiers, and all current and future Aucta Background Intellectual Property",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Aucta shall indemnify, defend and hold ETON and its owners, officers, directors, Affiliates, and employees (collectively, \"ETON Indemnified Parties\") harmless from and against any and all Losses arising out of or resulting from any Third Party Claims made or suits brought against ETON Indemnified Parties",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "DCL may terminate this Agreement with immediate effect if Dairy Crest and/or SEV (on behalf of Dairy Crest) receives more  than three PG9 Notices in relation to the Vehicles or a Vehicle in the preceding 6 month period specifically caused by SEV  failing to meet its obligations under this Agreement or in the event that SEV breaches the Codes Of Practice relevant to the  Maintenance Services more than 3 times in the preceding 6 month period.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "SEV's entire liability in respect of the sums payable pursuant to the indemnities contained in Clauses 13.4 and 13.5 shall be  limited to the annualised value of the Maintenance Charges calculated on the Commencement Date or the last anniversary  thereof, unless SEV is insured in respect of such liability, in which case SEV's liability under Clauses 13.4 and 13.5 shall be  limited to the extent of such cover.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "Title to Product and risk of loss shall pass to Buyer at Seller's facilities upon delivery to a carrier or into Buyer's transport unless otherwise specified in the agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:WestPharmaceuticalServicesInc_20200116_8-K_EX-10.1_11947529_EX-10.1_Supply Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "A Remarketing Agent may resign and be discharged from its duties and obligations hereunder, and the Company may remove any or all of the Remarketing Agents, by giving five (5) Business Days' prior written notice to the Stock Purchase Contract Agent and, in the case of a removal, to the Remarketing Agents",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:MetLife, Inc. - Remarketing Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "SCIEN and HEMISPHERX (each an \"Indemnifying Party\") shall indemnify, defend and hold harmless and the other Party's subsidiaries or affiliates, their agents, directors, officers, employees and assigns (the \"Indemnified Parties\") from and against all losses, liabilities, damages, demands and expenses (including reasonable attorneys' fees and expenses) arising out of, as a result of, or in connection with (i) the negligent actions of the Indemnifying Party, its employees or any third party acting on behalf of or under authority of the Indemnifying Party in the performance of this Agreement and/or (ii) the violation of any representation or warranty of Indemnifying Party in this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "HEMISPHERX will have the option at any time to buy out this Agreement. If exercised within the first two (2) years HEMISPHERX will pay SCIEN three (3) times the Product sales for the preceding 12 months. If exercised after year 3, HEMISPHERX will pay SCIEN two (2) times the Product sales for the preceding 12 months.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Contractor hereby agrees to indemnify and hold the Company, including its Affiliates and its and their respective officers, directors, partners, members, employees and agents, harmless from and against any and all Claims brought in connection with or arising out of or related to Contractor's or its Affiliates' fraud, willful misconduct, negligence or material breach of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach  of any representation, warranty or covenant by the breaching party under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "(a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Neither party shall be liable or bound to any other party in any manner by any representations, warranties or convenants relating to such subject matter expect as specifically set forth herein.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Provider shall indemnify, defend, and hold harmless Recipient and its officers, directors, employees, agents, affiliates, successors, and permitted assigns (collectively, \"Indemnified Party\") against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including attorneys' fees, fees and the costs of enforcing any right to indemnification under this Agreement, and the cost of pursuing any insurance providers, incurred by Indemnified Party or awarded against Indemnified Party (collectively, \"Losses\"), relating to/arising out of or resulting from any claim of a third party or Recipient arising out of or occurring in connection with Provider's negligence, willful misconduct, or breach of this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Each of the Recipient and the Provider may, in their sole discretion, terminate this Agreement in whole or in part, at any time without cause, and without liability except, in the case of the Recipient, for required payment for services rendered and reimbursement for authorized expenses incurred, by providing at least 90 (ninety) days' prior written notice to the other party",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Sicap Ltd's liability for indirect loss, including consequential loss,       loss of profit, lost savings and loss caused by interruption of operations       is excluded.\n\n      No right to damages shall ever arise unless EuroTel reports the loss to       Sicap Ltd in writing as soon as possible after it has arisen.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Such injunctive remedy shall be nonexclusive and shall be in addition to any and all other remedies which may be available to it at law or in equity, including without limitation, the recovery of direct, indirect, incidental, consequential and/or punitive damages.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "Title to all items, parts, materials and equipment supplied under or pursuant to this Agreement to Owner shall transfer to Owner upon installation or inclusion in a Facility.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Notwithstanding anything to the contrary in this Agreement, each Party will bear full responsibility, without limit, for the following:\n\n(i) Gross Negligence or Willful Misconduct attributable to its personnel, and, in no event, will a Party be required to release or indemnify the other Party for Gross Negligence or Willful Misconduct attributable to the other Party; and\n\n(ii) its legal obligations to third parties wherein nothing in this Agreement is intended to impair a party's contribution and indemnity rights under law with respect to third party claims.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "The Company will have the ability to terminate this Agreement by giving 60 days' prior  written notice to the Contractor. The Contractor will have the ability to terminate this Agreement by giving 90 days' prior written notice to the  Company.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "The BSP may after giving due consideration to all circumstances and not acting unreasonably, terminate this agreement by giving written notice to Datec if there is a change of control or major shareholding of Datec.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ELANDIAINTERNATIONALINC_04_25_2007-EX-10.21-Outsourcing Agreement"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  },
+  {
+   "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  },
+  {
+   "id": "cuad:TELKOMSALTD_01_30_2003-EX-10-LICENCE AND MAINTENANCE AGREEMENT",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  },
+  {
+   "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  },
+  {
+   "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement",
+   "category": "uncapped_liability",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "gold": "high",
+   "predicted": "medium"
+  }
+ ]
+}

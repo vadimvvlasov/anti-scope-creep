@@ -1,0 +1,102 @@
+{
+ "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+ "chars": 122688,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of Qualigen to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+   "start": 86618,
+   "end": 86931
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Completion of milestones will be based upon the completion of the deliverables, to Sekisui's satisfaction, in accordance with Qualigen's standard product development practices as defined in Qualigen's Quality System Procedure Document #91000002 Rev018.",
+   "start": 112161,
+   "end": 112413
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Products shall mean all of Qualigen's current and future products, including without limitation those listed on Exhibit D, for sale under the trade names listed with such products, including any improvements thereto.",
+   "start": 5102,
+   "end": 5318
+  }
+ ],
+ "email": true,
+ "seconds": 24.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 34421,
+   "prompt_tokens": 28375,
+   "output_tokens": 798,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.67,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of [PARTY_C] to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+      "explanation": "Sekisui has the right to terminate the agreement at any time for convenience upon 90 days' notice, while [PARTY_C] is locked into heavy manufacturing, supply, and long-term development obligations.",
+      "suggested_change": "Provide mutual termination for convenience rights with a longer notice period and ensure reimbursement of [PARTY_C]'s non-recoverable investments and winding-down costs."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_C] shall indemnify, defend and hold harmless Sekisui and its directors, officers, employees, agents and representatives (collectively, the 'Sekisui Indemnitees') from and against any and all Losses incurred in the investigation, defense and/ or settlement of any Claims: (a) related to bodily injury, death or property damage directly caused by any Product...",
+      "explanation": "[PARTY_C]'s indemnification obligations and general legal liability are completely uncapped, exposing [PARTY_C] to potentially unlimited damages far exceeding contract revenues.",
+      "suggested_change": "Incorporate a mutual overall cap on liability (such as total fees received under the agreement) and exclude indirect or consequential damages for both parties."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Completion of milestones will be based upon the completion of the deliverables, to Sekisui's satisfaction, in accordance with [PARTY_C]'s standard product development practices as defined in [PARTY_C]'s Quality System Procedure Document #91000002 Rev018.",
+      "explanation": "Financing payments are conditioned on Sekisui's subjective 'satisfaction,' giving Sekisui unilateral discretion to withhold milestone payments even if technical criteria are met.",
+      "suggested_change": "Replace subjective satisfaction with objective, verifiable criteria based strictly on completion of the agreed development deliverables."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Products shall mean all of [PARTY_C]'s current and future products, including without limitation those listed on Exhibit D, for sale under the trade names listed with such products, including any improvements thereto.",
+      "explanation": "The contract automatically locks all of [PARTY_C]'s future products into the exclusive distribution and margin-sharing structure, severely restricting [PARTY_C]'s business flexibility.",
+      "suggested_change": "Limit the definition of Products strictly to the specific products listed in Exhibit D, requiring separate mutual agreement to include any future products."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "In the event that [PARTY_C] elects not to prosecute or maintain in a particular Applicable Market country any Patent Rights in the jointly developed Development IP (the 'Abandoned Joint IP'), Sekisui may elect to prosecute such Abandoned Joint IP in such particular Applicable Market country, in which case the Patent Rights for such Abandoned Joint IP in such particular in Applicable Market country shall be owned solely by Sekisui.",
+      "explanation": "If [PARTY_C] decides not to pursue a patent in a specific market, sole ownership of the joint IP in that market transfers entirely to Sekisui without compensation or reversion rights.",
+      "suggested_change": "Grant Sekisui an exclusive or non-exclusive license to practice the Abandoned Joint IP in that market rather than forcing a complete transfer of sole ownership."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3089,
+   "prompt_tokens": 675,
+   "output_tokens": 150,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a few small suggestions before signing: - Regarding the termination terms, the relevant clause allows one party to terminate at any time for convenience while keeping the other locked into long-term obligations; we propose making the termination rights mutual with a longer notice period and cost coverage. - Regarding milestone payments, conditioning payments on subjective satisfaction gives unilateral discretion to withhold funds; we propose replacing this with objective, verifiable criteria based strictly on completed deliverables. - Regarding the scope, including all future products restricts business flexibility; we propose limiting the definition strictly to the specific products listed in the exhibit and requiring separate mutual agreement for any additions. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

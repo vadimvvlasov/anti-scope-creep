@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT",
+ "chars": 67111,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all  associated Proprietary Rights, shall be owned exclusively by the Company.",
+   "start": 27355,
+   "end": 27529
+  }
+ ],
+ "email": true,
+ "seconds": 19.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19978,
+   "prompt_tokens": 15060,
+   "output_tokens": 150,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.32,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all associated Proprietary Rights, shall be owned exclusively by the Company.",
+      "explanation": "The contract assigns ownership of web pages and associated intellectual property to the client immediately, without conditioning the transfer on full payment for your work. This means you could lose ownership rights even if you are not fully paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, any and all web pages created by the Contractor in connection with the Offering, and all associated Proprietary Rights, shall be owned exclusively by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2290,
+   "prompt_tokens": 378,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I look forward to working with you, and I have one small note before signing. - In the relevant clause, the agreement currently assigns ownership of the web pages immediately rather than tying it to full payment, so I propose modifying this so that ownership transfers upon receipt of full payment for the applicable services. Please let me know if this update is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

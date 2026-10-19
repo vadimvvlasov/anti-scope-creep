@@ -1,0 +1,38 @@
+{
+ "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT",
+ "chars": 17786,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term.",
+   "start": 6506,
+   "end": 6698
+  }
+ ],
+ "email": false,
+ "seconds": 11.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9353,
+   "prompt_tokens": 5077,
+   "output_tokens": 144,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.85,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer, upon thirty days prior written notice, may cancel this Agreement at the end of the Initial Term and thereafter on each anniversary of the end of the Initial Term.",
+      "explanation": "Only the client has the right to terminate the agreement without cause, while you lack an equivalent right to walk away.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty days prior written notice at the end of the Initial Term or on any anniversary thereof."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

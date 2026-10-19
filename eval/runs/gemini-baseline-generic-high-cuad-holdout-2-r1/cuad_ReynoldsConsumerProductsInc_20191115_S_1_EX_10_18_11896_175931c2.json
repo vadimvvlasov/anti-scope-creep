@@ -1,0 +1,77 @@
+{
+ "id": "cuad:ReynoldsConsumerProductsInc_20191115_S-1_EX-10.18_11896469_EX-10.18_Supply Agreement",
+ "chars": 61710,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding the preceding sentences, this Subsection will not limit the liability of a Party for any amount or type of damages for: (1) the defense and indemnification of an Indemnified Claim on which the Party is the Indemnifying Party; (2) infringement by the Party on the intellectual property of the other Party; (3) the unauthorized disclosure or use by the Party of the Confidential Information of the other Party;",
+   "start": 27007,
+   "end": 27431
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The Parties will be updating their respective business systems over the next six months, and the updates to these business systems will require the Parties to modify the Current SOPs. Once the Parties have completed the updates to the business systems and agreed on the necessary modifications to the Current SOPs, the Parties will sign a written amendment to this Agreement appending the updated standard operating procedures",
+   "start": 4794,
+   "end": 5220
+  }
+ ],
+ "email": true,
+ "seconds": 17.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15884,
+   "prompt_tokens": 11926,
+   "output_tokens": 522,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.47,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding the preceding sentences, this Subsection will not limit the liability of a Party for any amount or type of damages for: (1) the defense and indemnification of an Indemnified Claim on which the Party is the Indemnifying Party; (2) infringement by the Party on the intellectual property of the other Party; (3) the unauthorized disclosure or use by the Party of the Confidential Information of the other Party;",
+      "explanation": "This clause carves out indemnification claims, IP infringement, and confidentiality breaches from the liability cap, exposing Seller to potentially unlimited financial liability.",
+      "suggested_change": "Propose an overall aggregate cap on liability for all claims combined, or at least cap indemnification obligations at insurance policy limits or annual contract value."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding the foregoing, a Party may suspend performance or terminate this Agreement or any accepted purchase order for a product being purchase and sold under this Agreement immediately on written notice to the other Party, and without providing the other Party an opportunity to cure the material breach... for a material breach by the other Party involving substantial harm to the reputation, goodwill and business of the non-breaching Party that cannot reasonably be avoided or fully redressed by providing the other Party an opportunity to cure the material breach.",
+      "explanation": "Allows Buyer to immediately terminate orders or suspend the contract based on subjective claims of reputational harm, bypassing cure periods and disrupting Seller's operations.",
+      "suggested_change": "Strike the exception allowing immediate termination for reputational harm without a cure period, and ensure both parties have a standard 30-day notice and cure window for any alleged material breach."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The Parties will be updating their respective business systems over the next six months, and the updates to these business systems will require the Parties to modify the Current SOPs. Once the Parties have completed the updates to the business systems and agreed on the necessary modifications to the Current SOPs, the Parties will sign a written amendment to this Agreement appending the updated standard operating procedures",
+      "explanation": "Forces Seller to agree to future modifications of standard operating procedures without pre-established limits, potentially imposing costly operational, reporting, or compliance burdens.",
+      "suggested_change": "Add language specifying that future SOP modifications will not substantially increase Seller's operational costs or, if they do, will be subject to a mutually agreed price adjustment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2790,
+   "prompt_tokens": 562,
+   "output_tokens": 151,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few adjustments before signing: - The relevant clause excludes certain claims from the liability cap, which could lead to unlimited financial liability. We propose establishing an overall aggregate cap on liability for all claims combined, or capping indemnification obligations at insurance policy limits or the annual contract value. - The relevant clause requires agreeing to future standard operating procedure modifications without pre-established limits, which could create unexpected operational burdens. We propose adding language specifying that future updates will not substantially increase operational costs or will be subject to a mutually agreed price adjustment. Thank you for your consideration."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}
