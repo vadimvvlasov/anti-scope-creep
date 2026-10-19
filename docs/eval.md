@@ -18,11 +18,17 @@ Current setup (the one chosen for after the submission): Gemini 3.5 Flash-Lite,
 |---|---|---|---|---|---|
 | Freelance (synthetic, all 6 categories; used to write the rules, so in-sample) | 19 | 27 | 1.0 | 1.0 | 1.0 |
 | CUAD held-out (never used to change the prompt), two runs | 20 | 5 | 0.714 and 1.0 | 1.0 and 1.0 | 0.8 and 1.0 |
+| CUAD held-out 2 (labels frozen before the first run), two runs | 32 | 15 | 0.632 and 0.667 | 0.8 and 0.8 | 0.917 and 0.833 |
 
 The held-out row has two values because the same prompt was run twice: 2 false alarms
 in the first run, 0 in the second (one contract failed in the second). With 5 gold
 risks one false alarm moves precision by about 0.2 and one miss moves recall by 0.2, so
 this shows direction, not an exact level. CUAD (the 28-contract set) was not rerun with v6.
+
+The 20-contract held-out set is no longer a clean test: its one miss was read and reproduced with
+synthetic contracts by 2026-10-15 (see [Second held-out set](#second-held-out-set-cuad-holdout-2)),
+so read its 1.0 recall as an upper bound. The number to quote for real contracts is the
+second held-out row: recall 0.8, precision 0.63-0.67.
 
 Earlier table, prompt v4 with 12,000-character chunks, kept for comparison:
 
@@ -105,6 +111,59 @@ CUAD (28 contracts):
 Held-out (20 contracts, v4 / v4b): `one_sided_termination` 2 of 2 found in both runs;
 `ip_transfer_before_payment` 2 of 3 found, 2 and 3 false alarms; `uncapped_liability` has
 no gold risk on this set, 2 and 4 false alarms.
+
+## Second held-out set (cuad-holdout-2)
+
+Why: the first held-out set has 5 gold risks, so one item moves precision and recall by 0.2,
+and its one miss (Vgrab) was read and reproduced with synthetic contracts (M8, M8b, M8c) by
+2026-10-15. The v5 IP rule was written from M8c, not from that contract, and v5 then caught it,
+but the error was known, so 1.0 recall on that set is an upper bound.
+
+The set: 32 CUAD contracts that are in none of `cuad`, `cuad-holdout` and `cuad-holdout-long`
+(up to 150,000 characters, so they go to Gemini whole), 15 gold risks (IP high 7, termination
+low 6, uncapped liability medium 2), 5 more clauses marked `optional`, 19 contracts with no
+finding. Seven candidates were dropped while labeling (no service provider, unreadable text, a
+consortium, an employment agreement). Every labeling decision was made before any model run,
+by the rules in `eval/README.md`; the gold file was committed (`7a07ed8`) before the first run.
+The set is not used to change prompts: its errors go to the known misses below.
+
+Runs: Gemini 3.5 Flash-Lite, `reasoning_effort: high`, whole contract, output cap 8,000, two
+runs per prompt (`eval/runs/gemini-v6-high-cuad-holdout-2-r{1,2}` and
+`gemini-baseline-generic-high-cuad-holdout-2-r{1,2}`). Intervals are Wilson 95%, computed per
+run; the two runs use the same contracts, so they are not independent.
+
+| Prompt | Run | TP / FP / FN | Precision | Recall | Severity | `quote_not_found` |
+|---|---|---|---|---|---|---|
+| v6 | 1 | 12 / 7 / 3 | 0.632 [0.41-0.81] | 0.800 [0.55-0.93] | 0.917 | 10% |
+| v6 | 2 | 12 / 6 / 3 | 0.667 [0.44-0.84] | 0.800 [0.55-0.93] | 0.833 | 3% |
+| plain | 1 | 9 / 33 / 6 | 0.214 [0.12-0.36] | 0.600 [0.36-0.80] | 0.444 | 23% |
+| plain | 2 | 10 / 27 / 5 | 0.270 [0.15-0.43] | 0.667 [0.42-0.85] | 0.500 | 26% |
+
+With the first held-out set (20 gold risks in total), v6 run 1 plus run 1 of the earlier set
+is 17 / 9 / 3: precision 0.654 [0.46-0.81], recall 0.850 [0.64-0.95]; the second pair is 17 / 6 / 3:
+precision 0.739 [0.54-0.87], recall 0.850.
+
+- v6 finds 12 of 15 risks in both runs, and the three misses are the same. Precision is
+  0.63-0.67. Recall on the first held-out set (1.0, [0.57-1.0] on 5 risks) and here (0.8,
+  [0.55-0.93] on 15) overlap, but the new set is the one to quote.
+- Against the plain prompt on the same model and settings, v6 has fewer false alarms (6-7
+  against 27-33) and higher precision (run for run, the intervals do not overlap). Recall is
+  higher too (0.80 against 0.60-0.67), but those intervals overlap. One plain-prompt
+  contract failed in run 1: a 116,298-character hosting agreement, the output was cut at the
+  8,000-token cap, so it counts as no findings.
+- Severity: the misses are two `low` termination clauses marked `medium` (Ritter in both
+  runs, Xinhua in run 2).
+
+Known misses and false alarms of v6 (not used to change the prompt):
+
+- Missed in both runs: IP transfer before payment (`high`) in a Conformis development agreement
+  and in a Sonos manufacturing agreement; one-sided termination (`low`) in a SightLife sales
+  and marketing agreement.
+- False alarms: `uncapped_liability` (`medium`) on four contracts in each run (Corio,
+  Smith Electric Vehicles, UAGH, and Pareteum in run 1 or Conformis in run 2), the same weak spot
+  as in [Where it fails](#where-it-fails); one-sided termination `low` on one or two contracts
+  (Trizetto, and Quantum Group in run 1); IP `high` on Bloom Energy.
+- Recall on `uncapped_liability` is 2 of 2 on this set, with 4 false alarms.
 
 ## Where it fails
 
@@ -326,7 +385,8 @@ model", not "ChatGPT": ChatGPT was not measured.
 - Between a sixth and a third of its quotes on held-out (18% and 33%) do not match the
   contract text and are dropped by quote verification; v6 loses 0% and 8%.
 - The freelance set was used to write the v6 rules, so the freelance gap overstates the
-  difference; held-out is the fair row, and it has only 5 gold risks.
+  difference; held-out is the fair row, and it has only 5 gold risks. The second held-out set
+  (32 contracts, 15 risks) repeats the comparison: see [Second held-out set](#second-held-out-set-cuad-holdout-2).
 - One held-out contract hit the 8,000-token output cap on the plain prompt in run B; it
   was rerun once and passed (the table shows the rerun).
 - The plain prompt's held-out false alarms are 12-15 `uncapped_liability`, 5-6
@@ -388,8 +448,8 @@ same way on one thing: a model that answers "nothing here" too readily misses ri
   production moves to Gemini after the submission.
 - The metrics above are from runs before the tolerant quote verification; the next runs
   will show its effect on `quote_not_found`.
-- A larger real-contract gold set. Held-out has 5 gold risks, so precision and recall
-  move by 0.2 per item; a set of 15-20 more hand-labeled CUAD contracts is planned.
+- A larger real-contract gold set. The two held-out sets together have 20 gold risks, so the
+  recall interval is still wide (0.64-0.95); more hand-labeled contracts would narrow it.
 - ChatGPT itself was not measured; "plain prompt" means the same model with a generic
   prompt.
 - The email draft and `suggested_change` texts are not scored.
