@@ -98,13 +98,16 @@ class GroqAnalyzer:
             {"role": "system", "content": EMAIL_SYSTEM_PROMPT},
             {"role": "user", "content": json.dumps(issues, ensure_ascii=False, indent=2)},
         ]
-        result = self._client.complete_json(messages, "client_email", EMAIL_SCHEMA)
-        email = EmailDraftContent.model_validate(result.content)
-        subject, unknown_subject = restore(email.subject, mapping)
-        body, unknown_body = restore(email.body, mapping)
-        if unknown_subject or unknown_body:
-            raise ValueError("The email contains placeholders that cannot be restored")
-        return EmailDraftContent(subject=subject, body=body)
+        for attempt in (1, 2):  # the model sometimes invents a placeholder; one more answer usually fixes it
+            result = self._client.complete_json(messages, "client_email", EMAIL_SCHEMA)
+            email = EmailDraftContent.model_validate(result.content)
+            subject, unknown_subject = restore(email.subject, mapping)
+            body, unknown_body = restore(email.body, mapping)
+            unknown = unknown_subject + unknown_body
+            if not unknown:
+                return EmailDraftContent(subject=subject, body=body)
+            logger.warning("Email attempt %d: unknown placeholders %s", attempt, sorted(set(unknown)))
+        raise ValueError("The email contains placeholders that cannot be restored")
 
 
 _CONTRACT_TAG = re.compile(r"<\s*/?\s*contract\s*>", re.IGNORECASE)
