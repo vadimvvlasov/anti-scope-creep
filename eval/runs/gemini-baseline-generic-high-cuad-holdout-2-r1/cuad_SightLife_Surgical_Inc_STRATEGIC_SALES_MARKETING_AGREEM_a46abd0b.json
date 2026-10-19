@@ -1,0 +1,91 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+   "start": 4498,
+   "end": 4589
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach  of any representation, warranty or covenant by the breaching party under this Agreement.",
+   "start": 10557,
+   "end": 11025
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "As further outlined in the SOW, Surgical and its employees shall conduct all activities under this Agreement or relating to the Product in accordance with all applicable laws and regulations and all quality standards, protocols and systems established by Imprimis from time to time therefor.",
+   "start": 9762,
+   "end": 10053
+  }
+ ],
+ "email": true,
+ "seconds": 22.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10778,
+   "prompt_tokens": 5054,
+   "output_tokens": 643,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.1,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+      "explanation": "The contract assigns all intellectual property and Work Product to Imprimis immediately, without conditioning the transfer of ownership on the receipt of full payment for your services.",
+      "suggested_change": "Modify the clause to state that ownership and assignment of Work Product are conditioned upon and take effect only upon receipt of full payment for the services rendered."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product... Imprimis shall remit the total Sales Commission payments due for the sale of Product during such calendar quarter at the time such report is made.",
+      "explanation": "Commissions are paid quarterly and up to 60 days after the quarter ends, meaning you could wait nearly five months to get paid for a sale made at the beginning of a quarter. Additionally, Section 3 requires you to cover all expenses out of pocket.",
+      "suggested_change": "Propose monthly commission reporting and payment, with payment due within 15 to 30 days following the end of each month."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach of any representation, warranty or covenant by the breaching party under this Agreement.",
+      "explanation": "The indemnification obligations are completely uncapped. Even though insurance is required, an uncapped indemnity exposes Surgical to potential third-party claims that could far exceed your earnings or coverage.",
+      "suggested_change": "Insert a mutual monetary cap on liability (e.g., capped at the total commissions received by Surgical in the preceding 12 months) and exclude indirect, consequential, or punitive damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "As further outlined in the SOW, Surgical and its employees shall conduct all activities under this Agreement or relating to the Product in accordance with all applicable laws and regulations and all quality standards, protocols and systems established by Imprimis from time to time therefor.",
+      "explanation": "Imprimis can establish new quality standards, protocols, and systems 'from time to time', which could unilaterally impose new operational requirements or compliance burdens on Surgical without any guaranteed adjustment to your compensation.",
+      "suggested_change": "Specify that any new standards, protocols, or systems established by Imprimis that materially increase Surgical's operational costs or burdens will be subject to a formal change order and equitable adjustment in compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3017,
+   "prompt_tokens": 681,
+   "output_tokens": 208,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have a few minor requests before we proceed: - Regarding the relevant clause on work product ownership: The agreement assigns all work product immediately without conditioning the transfer on payment. I propose modifying the clause to state that ownership and assignment of work product are conditioned upon and take effect only upon receipt of full payment for the services rendered. - Regarding the relevant clause on indemnification: The indemnification obligations are completely uncapped, which creates potential exposure. I propose inserting a mutual monetary cap on liability and excluding indirect, consequential, or punitive damages. - Regarding the relevant clause on operational activities: The agreement allows new quality standards and protocols to be established from time to time without guaranteed compensation adjustments. I propose specifying that any new standards that materially increase operational costs or burdens will be subject to a formal change order and equitable adjustment in compensation. Please let me know if these updates are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

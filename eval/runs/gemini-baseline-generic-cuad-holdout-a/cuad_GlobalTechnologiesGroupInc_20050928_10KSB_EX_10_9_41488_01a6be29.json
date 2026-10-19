@@ -1,0 +1,93 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "IN NO EVENT WILL IMNTV'S LIABILITY TO DISTRIBUTOR UNDER THIS AGREEMENT EXCEED THE AMOUNT ACTUALLY DUE TO IMNTV HEREIN.",
+   "start": 29080,
+   "end": 29198
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Distributor also agrees to secure necessary governmental approvals or permits necessary to operate in the Territory and to secure permission to enable distribution of IMNTV's share of Subscription Fees to IMNTV in the United States. Distributor is solely responsible for monitoring, performance and ensuring the availability of the Programming",
+   "start": 11720,
+   "end": 12063
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payments to IMNTV will be converted from local currency to US Dollars at the official exchange rate posted on the day payments are made to IMNTV via wire transfer provided that currency exchange is approved by the relevant Chinese currency exchange administrative agency.",
+   "start": 19959,
+   "end": 20230
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Each party shall have the right to terminate this Agreement immediately upon written notice if any Force Majeure Event of another party continues for more than ten (10) days.",
+   "start": 33437,
+   "end": 33611
+  }
+ ],
+ "email": true,
+ "seconds": 26.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13631,
+   "prompt_tokens": 8729,
+   "output_tokens": 530,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.68,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "IN NO EVENT WILL IMNTV'S LIABILITY TO DISTRIBUTOR UNDER THIS AGREEMENT EXCEED THE AMOUNT ACTUALLY DUE TO IMNTV HEREIN.",
+      "explanation": "This clause explicitly caps IMNTV's liability to you while providing no reciprocal cap for your liability as the distributor, exposing you to unlimited damages.",
+      "suggested_change": "Add a mutual liability cap limiting each party's total aggregate liability under the Agreement to the fees received or payable over a specified period."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] also agrees to secure necessary governmental approvals or permits necessary to operate in the Territory and to secure permission to enable distribution of IMNTV's share of Subscription Fees to IMNTV in the United States. [PARTY_B] is solely responsible for monitoring, performance and ensuring the availability of the Programming",
+      "explanation": "This places broad, open-ended operational, regulatory, and governmental compliance burdens on you without limiting your liability or acknowledging external delays.",
+      "suggested_change": "Clarify that [PARTY_B] will use commercially reasonable efforts to obtain necessary permits and approvals, and that delays caused by government bodies do not constitute a breach."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payments to IMNTV will be converted from local currency to US Dollars at the official exchange rate posted on the day payments are made to IMNTV via wire transfer provided that currency exchange is approved by the relevant Chinese currency exchange administrative agency.",
+      "explanation": "You bear all currency exchange rate fluctuation risks up to the exact day of transfer and depend on external regulatory approvals, creating potential breach risks if approvals stall.",
+      "suggested_change": "Include language protecting [PARTY_B] from breach of contract claims if currency exchange approvals are delayed by regulatory agencies, and define a clear exchange rate mechanism."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Each party shall have the right to terminate this Agreement immediately upon written notice if any Force Majeure Event of another party continues for more than ten (10) days.",
+      "explanation": "A 10-day threshold for terminating due to a Force Majeure event is unusually short and rigid, allowing premature termination for temporary disruptions.",
+      "suggested_change": "Extend the Force Majeure termination threshold from ten (10) days to at least thirty (30) or sixty (60) days."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3683,
+   "prompt_tokens": 755,
+   "output_tokens": 232,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.73,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sending over the agreement. I have reviewed it and would like to propose a few adjustments before signing: - Regarding the liability terms in the relevant clause, the agreement currently caps liability for one party while leaving the other exposed to unlimited damages. I propose adding a mutual liability cap limiting each party's total aggregate liability. - In the permits and approvals section of the relevant clause, the text places broad operational and regulatory burdens without accounting for external delays. I propose clarifying that commercially reasonable efforts will be used and that government delays do not constitute a breach. - Concerning currency exchange in the relevant clause, the current terms place all exchange rate fluctuation risks and external approval dependencies on the distributor. I propose including language protecting against breach if approvals are delayed and defining a clear exchange rate mechanism. - Regarding the termination timeline in the relevant clause for force majeure events, the ten-day threshold is unusually short and rigid. I propose extending the force majeure termination threshold from ten days to at least thirty or sixty days. Please let me know if these changes work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

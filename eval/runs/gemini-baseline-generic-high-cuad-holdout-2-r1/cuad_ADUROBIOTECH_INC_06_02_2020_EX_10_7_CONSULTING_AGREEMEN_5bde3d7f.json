@@ -1,0 +1,79 @@
+{
+ "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)",
+ "chars": 12020,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+   "start": 5984,
+   "end": 6465
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Such injunctive remedy shall be nonexclusive and shall be in addition to any and all other remedies which may be available to it at law or in equity, including without limitation, the recovery of direct, indirect, incidental, consequential and/or punitive damages.",
+   "start": 8158,
+   "end": 8422
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "At the request and direction of Aduro and the agreement of Consultant, Consultant will provide advice and consultation to Aduro with respect to its research, clinical development programs and other business matters as requested by Aduro from time to time.",
+   "start": 428,
+   "end": 683
+  }
+ ],
+ "email": true,
+ "seconds": 20.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6389,
+   "prompt_tokens": 2536,
+   "output_tokens": 460,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.88,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+      "explanation": "The contract assigns all intellectual property rights to the client immediately upon creation, prior to payment being received, leaving you vulnerable if the client fails or refuses to pay.",
+      "suggested_change": "Modify the clause to state that intellectual property rights transfer to the client only upon receipt of full payment for the corresponding services."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Such injunctive remedy shall be nonexclusive and shall be in addition to any and all other remedies which may be available to it at law or in equity, including without limitation, the recovery of direct, indirect, incidental, consequential and/or punitive damages.",
+      "explanation": "This exposes you to unlimited financial liability by allowing the client to recover consequential and punitive damages, which could far exceed the total earnings from this contract.",
+      "suggested_change": "Cap your total liability to the fees paid under this agreement and explicitly exclude indirect, consequential, and punitive damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "At the request and direction of Aduro and the agreement of Consultant, Consultant will provide advice and consultation to Aduro with respect to its research, clinical development programs and other business matters as requested by Aduro from time to time.",
+      "explanation": "The inclusion of 'and other business matters as requested by Aduro from time to time' is vague and open-ended, risking scope creep where you are expected to perform extra work without guaranteed additional compensation.",
+      "suggested_change": "Remove the vague catch-all phrase and specify that any work outside the defined research and clinical development consulting must be agreed upon in a separate written amendment with adjusted rates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4798,
+   "prompt_tokens": 688,
+   "output_tokens": 216,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. - Regarding the relevant clause on work product, the agreement assigns intellectual property rights immediately upon creation before payment is received; I propose modifying the clause to state that these rights transfer to the client only upon receipt of full payment for the corresponding services. - Concerning the relevant clause on remedies, it exposes the freelancer to unlimited financial liability by allowing the recovery of consequential and punitive damages; I propose capping total liability to the fees paid under the agreement and explicitly excluding indirect, consequential, and punitive damages. - Regarding the relevant clause on advice and consultation, the current wording is vague and open-ended, risking scope creep without guaranteed additional compensation; I propose removing the vague catch-all phrase and specifying that any work outside the defined scope must be agreed upon in a separate written amendment with adjusted rates. Please let me know your thoughts. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

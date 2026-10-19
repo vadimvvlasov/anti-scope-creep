@@ -1,0 +1,132 @@
+{
+ "id": "freelance:C1",
+ "chars": 19406,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "start": 4540,
+   "end": 4704
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3790,
+   "end": 3949
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9026,
+   "end": 9197
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13074,
+   "end": 13099
+  }
+ ],
+ "email": true,
+ "seconds": 76.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4512,
+   "prompt_tokens": 2633,
+   "output_tokens": 1879,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.65,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits the client to request \"minor clarifications\" without a formal change order. In practice the line between a minor clarification and a material addition can be blurry, allowing the client to increase your workload and billable hours without additional compensation.",
+      "suggested_change": "Amend the clause to require any clarification that results in additional effort to be documented as a change request with associated fees, e.g., \"All clarifications that require any additional time or resources shall be treated as a change request and compensated accordingly.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+      "explanation": "If the client does not respond within the 10‑day review window, the Deliverable is deemed accepted automatically, potentially locking you into payment for work you consider defective or incomplete.",
+      "suggested_change": "Extend the acceptance window and require an explicit written acceptance, e.g., \"Client must provide a written acceptance or a written rejection within 15 business days; absent a response, the parties shall treat the Deliverable as pending and payment shall be deferred until acceptance is confirmed.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 1 % monthly interest charge (approximately 12 % annual) is relatively steep and may be unenforceable in some jurisdictions, but it also signals that late payment will be penalized without giving you a right to suspend work.",
+      "suggested_change": "Replace the interest rate with the statutory rate or a lower negotiated rate and add a right to suspend services after a defined period of non‑payment, e.g., \"Late payments will accrue interest at the lesser of 0.5 % per month or the maximum rate allowed by law, and Contractor may suspend performance after 15 days of non‑payment.\""
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "While both parties can terminate, the client can walk away with only 20 days' notice, potentially abandoning future milestones and leaving you with unrecoverable sunk costs for work already performed beyond the termination date.",
+      "suggested_change": "Add a termination fee or minimum notice period that compensates you for lost revenue, e.g., \"If Client terminates for convenience, Client shall pay a termination fee equal to 25 % of the remaining contract value or the fees for the next two milestones, whichever is greater, in addition to payment for services performed up to the termination date.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3288,
+   "prompt_tokens": 1856,
+   "output_tokens": 1432,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 31.39,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The contract limits your liability to $35,000, which exceeds the total fee of $24,875. If a claim arises you could be on the hook for up to $35k, more than what you earn, effectively exposing you to a loss.",
+      "suggested_change": "Reduce the liability cap to an amount equal to or lower than the total contract value (e.g., $25,000) or tie it to the fee paid, and include a clause that liability is limited to direct damages only."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30; Late-payment interest: 1.0%",
+      "explanation": "You must wait up to 30 days after invoicing to receive payment, and if the client is late they only owe 1% interest per month, which may not sufficiently compensate cash‑flow risk.",
+      "suggested_change": "Negotiate a shorter payment term (e.g., Net 14) and a higher late‑payment interest rate (e.g., 1.5‑2% per month) or include a clause for a deposit on each milestone before work begins."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2476,
+   "prompt_tokens": 1171,
+   "output_tokens": 1305,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.13,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear Client,\n\n- The relevant clause allows minor clarifications to be made through ordinary communications, which could blur the line between a simple clarification and a material addition, potentially increasing workload without extra compensation. I propose amending the clause to require that any clarification that requires additional time or resources be documented as a change request and compensated accordingly.\n- The relevant clause treats a deliverable as accepted if the client does not provide a written rejection within the review period, which could result in payment for work that may be defective or incomplete. I suggest extending the acceptance window and requiring an explicit written acceptance or rejection within 15 business days, with the deliverable remaining pending and payment deferred until acceptance is confirmed.\n- The relevant clause imposes a 1 % per month interest charge on late payments and does not give a right to suspend services, which may be excessive and limit protection against non‑payment. I recommend replacing the interest rate with the lesser of 0.5 % per month or the maximum rate allowed by law and adding a provision allowing suspension of performance after 15 days of non‑payment.\n- The relevant clause permits either party to terminate for convenience with only 20 days' written notice, which could leave the contractor with unrecoverable costs for work already performed. I propose adding a termination fee for the client, such as 25 % of the remaining contract value or the fees for the next two milestones, whichever is greater, in addition to payment for services performed up to the termination date.\n- The relevant clause caps liability at USD 35,000, which exceeds the total contract fee and could expose the contractor to a loss greater than the amount earned. I suggest reducing the liability cap to an amount equal to the total contract value (e.g., $25,000) or tying it to the fee paid, and limiting liability to direct damages only.\n\nBest regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

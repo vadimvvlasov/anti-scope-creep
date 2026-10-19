@@ -1,0 +1,51 @@
+{
+ "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+ "chars": 122688,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of Qualigen to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+   "start": 86618,
+   "end": 86931
+  }
+ ],
+ "email": true,
+ "seconds": 22.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 36300,
+   "prompt_tokens": 30034,
+   "output_tokens": 229,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.58,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of [PARTY_C] to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+      "explanation": "Only the Client has the right to terminate the agreement without cause upon notice, while you do not have an equivalent termination right. Additionally, the agreement does not guarantee payment for all work in progress or committed costs upon such termination.",
+      "suggested_change": "Either Party may terminate this Agreement at any time upon ninety (90) days' prior written notice, and upon termination by the Client without cause, the Client shall pay the Contractor for all completed work and non-cancelable costs incurred."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2284,
+   "prompt_tokens": 427,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am excited to begin, but I would like to suggest a quick adjustment before signing. - In the relevant clause regarding termination, the agreement currently permits only the client to terminate without cause and lacks payment protections for work in progress, so we propose modifying it so that either party can terminate with ninety days notice and the client pays for completed work and incurred costs. Please let me know your thoughts. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

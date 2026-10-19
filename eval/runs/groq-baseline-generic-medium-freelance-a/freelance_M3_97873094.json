@@ -1,0 +1,134 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "4.2 Invoices are payable within 15 days after Client receives payment from its own customer. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3786,
+   "end": 4009
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "10.2 The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8178,
+   "end": 8386
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Liability cap: USD 35,000 (Client only)",
+   "start": 13208,
+   "end": 13247
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13179,
+   "end": 13207
+  }
+ ],
+ "email": true,
+ "seconds": 92.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3999,
+   "prompt_tokens": 2650,
+   "output_tokens": 1349,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.03,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "4.2 Invoices are payable within 15 days after Client receives payment from its own customer. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment is tied to when the Client gets paid by its own customer, which can delay your cash flow arbitrarily. You may have to wait weeks or months beyond the normal 15‑day period, and the only remedy is interest, which may not compensate for the cash‑flow impact.",
+      "suggested_change": "Change the clause to: \"Invoices are payable within 15 days of the invoice date (or receipt) regardless of when the Client receives payment from its own customer. Late payments will accrue interest at 1.0% per month, or the maximum rate allowed by law.\""
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "10.2 The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "You bear unlimited liability for any loss or claim related to the Services, while the Client’s liability is capped. This creates a highly asymmetrical risk exposure; a single mistake could expose you to losses far exceeding the contract value.",
+      "suggested_change": "Add a reciprocal cap, e.g.: \"The aggregate liability of each party arising from this Agreement shall be limited to the total fees paid under this Agreement (or a multiple such as 2× the fees), except for liability arising from fraud, willful misconduct, or breach of confidentiality.\""
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits the Client to request \"minor clarifications\" without formal change orders, but it relies on a subjective judgment of what \"materially increase[s] the workload.\" This could be used to add extra work that you are not compensated for.",
+      "suggested_change": "Clarify the language: \"Any clarification that could affect the scope, effort, or schedule shall be treated as a change request and may be subject to additional fees and/or schedule adjustments. Only purely administrative clarifications that have no impact on workload are allowed without a change order.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3472,
+   "prompt_tokens": 1874,
+   "output_tokens": 1598,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.74,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment is contingent on the client receiving payment from its own customer, which could delay your cash flow indefinitely if the client’s customer pays late.",
+      "suggested_change": "Change the payment term to a fixed net period (e.g., 15 days after invoice date) or require payment upon receipt of invoice irrespective of the client’s receipt of funds."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Liability cap: USD 35,000 (Client only)",
+      "explanation": "The liability limitation applies only to the client, leaving the contractor exposed to unlimited liability for any breach, defect, or damages.",
+      "suggested_change": "Add a reciprocal liability cap for the contractor (e.g., USD 35,000 or a percentage of the contract value) and specify that liability for indirect or consequential damages is excluded."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "The contract only provides three rounds of revisions; any extra revisions are not clearly priced, which may lead to the client demanding additional work without extra pay, causing scope creep.",
+      "suggested_change": "Specify that any revisions beyond the three rounds will be billed at a defined hourly rate or require a separate change order."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2580,
+   "prompt_tokens": 1206,
+   "output_tokens": 1374,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello [Client],\n\nI hope you are well. I have reviewed the agreement and would like to suggest a few minor adjustments before signing:\n\n- The payment provision ties my invoice due date to when you receive payment from your customer, which could cause unpredictable cash‑flow delays. I propose that invoices be payable within 15 days of the invoice date (or receipt), regardless of your receipt of funds, with the same interest charge for late payments.\n- The liability clause limits the client’s aggregate liability to USD 35,000 while leaving the contractor without a cap, creating an imbalance of risk. I suggest adding a reciprocal cap so that each party’s liability is limited to the total fees paid under the agreement (or a comparable multiple), except for fraud, willful misconduct, or breach of confidentiality.\n- The scope clause allows “minor clarifications” without a formal change order, but the definition of “materially increase the workload” is subjective and could lead to uncompensated work. I recommend clarifying that any clarification affecting scope, effort, or schedule be treated as a change request and may incur additional fees or schedule adjustments; only purely administrative clarifications would be exempt.\n- The payment period is described as “15 days after Client is paid by its customer,” which again makes payment dependent on your customer’s timing. I propose a fixed net term, such as 15 days after the invoice date, or payment upon receipt of the invoice regardless of your receipt of funds.\n- The liability cap of USD 35,000 applies only to the client, leaving the contractor exposed to unlimited liability. I propose adding a matching liability cap for the contractor (e.g., USD 35,000 or a percentage of the contract value) and expressly excluding indirect or consequential damages for both parties.\n- The revision allowance provides only three rounds of revisions, with no clear pricing for additional changes. I suggest specifying that any revisions beyond the three rounds will be billed at an agreed hourly rate or will require a separate change order.\n\nThank you for considering these points. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

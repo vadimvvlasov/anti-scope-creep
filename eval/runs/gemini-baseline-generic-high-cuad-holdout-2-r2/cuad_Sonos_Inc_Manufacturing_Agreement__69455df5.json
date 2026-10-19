@@ -1,0 +1,88 @@
+{
+ "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+ "chars": 109219,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Any Product Customizations made by IAC or an IAC Subcontractor shall be on a \"work for hire\" (using the meaning given to such term under United States copyright law) basis to the maximum extent permissible under applicable law, and all Intellectual Property Rights therein shall be owned solely by Sonos.",
+   "start": 10002,
+   "end": 10306
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment terms are [*] from the date of acceptance by Sonos of an applicable invoice from IAC, which acceptance may not be unreasonably withheld. IAC may not submit an invoice for a Product prior to that Product's transfer of title to Sonos.",
+   "start": 108063,
+   "end": 108303
+  }
+ ],
+ "email": true,
+ "seconds": 25.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 30305,
+   "prompt_tokens": 23968,
+   "output_tokens": 894,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.52,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Any Product Customizations made by IAC or an IAC Subcontractor shall be on a \"work for hire\" (using the meaning given to such term under United States copyright law) basis to the maximum extent permissible under applicable law, and all Intellectual Property Rights therein shall be owned solely by [PARTY_B].",
+      "explanation": "This clause assigns all intellectual property rights in Product Customizations immediately upon creation as work for hire to [PARTY_B], prior to IAC receiving full payment for its manufacturing and development services.",
+      "suggested_change": "Propose that ownership of Product Customizations remains with IAC until [PARTY_B] has paid in full for the applicable deliverables, or grant [PARTY_B] a license to use the customizations until payment is complete."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment terms are [*] from the date of acceptance by [PARTY_B] of an applicable invoice from IAC, which acceptance may not be unreasonably withheld. IAC may not submit an invoice for a Product prior to that Product's transfer of title to [PARTY_B].",
+      "explanation": "Tying payment terms to [PARTY_B]'s formal acceptance rather than delivery or shipment creates cash flow uncertainty, as [PARTY_B] could delay acceptance or inspection, thereby delaying the start of the payment clock.",
+      "suggested_change": "Change payment terms to run from the date of delivery or invoice issuance, with a deemed acceptance period (e.g., 10 days after delivery) if no notice of rejection is provided."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3 (OWNERSHIP; GRANT OF RIGHTS: TRADEMARKS USAGE), OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11 (INDEMNITY), OR BREACH OF SECTION 12 (CONFIDENTIALITY), UNDER NO CIRCUMSTANCES WILL EITHER PARTY BE LIABLE TO THE OTHER UNDER ANY CONTRACT, STRICT LIABILITY, NEGLIGENCE OR OTHER LEGAL OR EQUITABLE THEORY, FOR ANY INCIDENTAL OR CONSEQUENTIAL DAMAGES OR LOST PROFITS... EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3..., OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11..., OR BREACH OF SECTION 12..., IN NO EVENT SHALL EITHER PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED THE AMOUNTS PAID BY SONOS FOR THE PRODUCTS IN THE [*] PERIOD IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.",
+      "explanation": "The limitation of liability excludes Section 11 (Indemnity), Section 3 (IP ownership/grants), and Section 12 (Confidentiality). This means IAC's liability for indemnification claims (such as third-party IP infringement or product liability under Section 11.2) is completely uncapped, exposing IAC to catastrophic financial risk.",
+      "suggested_change": "Cap liability for indemnification and all other claims under the Agreement at a reasonable aggregate amount (e.g., fees paid over a 12-month period or insurance coverage limits) and remove carve-outs that expose IAC to unlimited liability."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "IAC acknowledges that unless otherwise clearly specified in this Exhibit D as being a cost that will be borne by [*], the NPI Process (for either Future Products or Transfer Products), including all services provided by IAC and/or costs incurred by IAC as set forth in this Exhibit D, are provided with reasonable charge to [PARTY_B], if such service is not defined in an applicable SOW and/or the roles and responsibilities matrix described above in Table 2.",
+      "explanation": "This language implies that NPI services and costs not explicitly detailed in an SOW or Table 2 might be expected from IAC without proper compensation or under vague terms, leading to potential scope creep during product introduction.",
+      "suggested_change": "Clarify that any NPI services, engineering efforts, or materials outside the explicit scope of Table 2 or an executed SOW will be subject to a separate, mutually agreed-upon NRE fee."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2776,
+   "prompt_tokens": 570,
+   "output_tokens": 149,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for providing the agreement. I am looking forward to moving forward and have a couple of small items to adjust before signing. - Regarding the relevant clause on intellectual property, the current wording assigns all rights prior to receiving full payment; I propose that ownership remain with the provider until [PARTY_B] has paid in full for the applicable deliverables. - Regarding the relevant clause on payment terms, tying payment to formal acceptance creates cash flow uncertainty; I propose changing the terms to run from the date of delivery or invoice issuance, with a deemed acceptance period if no notice of rejection is provided. Thank you for your flexibility, and please let me know if these changes are acceptable."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

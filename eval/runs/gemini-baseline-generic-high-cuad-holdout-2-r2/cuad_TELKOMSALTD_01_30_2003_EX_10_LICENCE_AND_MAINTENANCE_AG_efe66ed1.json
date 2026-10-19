@@ -1,0 +1,88 @@
+{
+ "id": "cuad:TELKOMSALTD_01_30_2003-EX-10-LICENCE AND MAINTENANCE AGREEMENT",
+ "chars": 105748,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "30 (thirty) days after TELKOM gives SAP AFRICA written notice of   TELKOM's wish to terminate this AGREEMENT for any reason. Any such   termination shall be subject to accrued rights and obligations but only after   payment of all Licence and Maintenance Fees then due and owing;",
+   "start": 26506,
+   "end": 26785
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Should TELKOM fail to pay the REVENUE SHARE FEE, such failure shall not   effect TELKOM'S rights to USE the SOFTWARE but SAP AFRICA shall be entitled to   separately claim such payments from TELKOM as provided for hereinabove.",
+   "start": 23145,
+   "end": 23371
+  }
+ ],
+ "email": true,
+ "seconds": 23.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29642,
+   "prompt_tokens": 24165,
+   "output_tokens": 679,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.08,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "30 (thirty) days after TELKOM gives SAP AFRICA written notice of TELKOM's wish to terminate this AGREEMENT for any reason. Any such termination shall be subject to accrued rights and obligations but only after payment of all Licence and Maintenance Fees then due and owing;",
+      "explanation": "This allows Telkom to terminate the agreement for any reason upon 30 days notice, depriving SAP Africa of expected long-term revenue and amortized value without adequate compensation.",
+      "suggested_change": "Remove Telkom's right to terminate for convenience, or require payment of all remaining contract fees and a termination penalty upon such termination."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding anything to the contrary contained in this AGREEMENT, a party hereto (the \"defaulting party\") shall not be liable for any consequential damage or loss of whatever nature and/or however caused, that may be suffered by the other party (the \"innocent party\") other than for consequential loss or damages suffered by the innocent party caused by the wilful or intentional acts or omissions of the defaulting party or any person or entity in respect of whom the defaulting party may be vicariously liable.",
+      "explanation": "While general liability is capped, liability for consequential damages resulting from wilful or intentional acts or omissions (including vicarious liability for staff or subcontractors) is completely uncapped, creating severe financial exposure.",
+      "suggested_change": "Cap all liabilities, including those arising from wilful acts or consequential losses, to an overall aggregate monetary limit."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Should TELKOM fail to pay the REVENUE SHARE FEE, such failure shall not effect TELKOM'S rights to USE the SOFTWARE but SAP AFRICA shall be entitled to separately claim such payments from TELKOM as provided for hereinabove.",
+      "explanation": "This strips SAP Africa of the ability to suspend software licenses or access when Telkom fails to pay revenue share fees, leaving litigation as the only remedy.",
+      "suggested_change": "Permit SAP Africa to suspend software use and access rights if Telkom fails to pay revenue share fees after receiving notice and a cure period."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "should the Marketplace remain unable to be accessed or USED by TELKOM and/or BUSINESS THIRD PARTIES for a continuous period of 72 hours, commencing from the time when such failure is logged as a Priority 1 error (as defined in annexure 2) with SAP AFRICA as a SOFTWARE problem and SAP AFRICA is unable to provide a solution or resolution within the said 72 hours, then TELKOM shall be entitled to terminate this AGREEMENT and claim damages limited as provided for in clause 11.4.",
+      "explanation": "Allows Telkom to terminate the entire agreement based on a 72-hour outage of a complex platform, which could be caused by third-party databases, hardware failures, or client infrastructure issues outside SAP Africa's direct control.",
+      "suggested_change": "Increase the outage resolution window and explicitly exclude downtime caused by third-party databases, hardware, or client-side network failures from triggering termination rights."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2526,
+   "prompt_tokens": 508,
+   "output_tokens": 153,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! I hope you are doing well. I have reviewed the agreement and would like to suggest a couple of updates before signing. - Regarding the relevant clause concerning termination, this permits ending the agreement for any reason on short notice, which leaves expected long-term value uncompensated, so I propose removing this right or requiring payment of all remaining contract fees. - Regarding the relevant clause about fee payments, this prevents suspending software access if fees are not paid, so I propose permitting the suspension of software use and access rights if payments are not made after notice and a cure period. Thank you for your consideration, and I look forward to moving forward. Best regards."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

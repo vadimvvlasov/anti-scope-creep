@@ -1,0 +1,88 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+   "start": 681,
+   "end": 1063
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Subject to approval of the Board of Directors of the Company, the Company shall issue and sell to the Consultant, and the Consultant shall purchase from the Company, subject to the terms and conditions set forth in this Agreement and the Restricted Stock Agreement, 1,990,000 shares (the \"Shares\") of common stock, $0.0001 par value, of the Company (\"Common Stock\"), at a purchase price of $0.0001 per share, for an aggregate purchase price of $190.",
+   "start": 2108,
+   "end": 2557
+  }
+ ],
+ "email": true,
+ "seconds": 21.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10115,
+   "prompt_tokens": 4578,
+   "output_tokens": 713,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.58,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+      "explanation": "The scope of work is open-ended and includes any related services requested by the company, which can force you to perform extensive work far beyond the original project description without extra pay.",
+      "suggested_change": "Explicitly tie all required services to Schedule A and state that any additional work requested outside of Schedule A will require a written amendment and additional compensation."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Subject to approval of the Board of Directors of the Company, the Company shall issue and sell to the Consultant, and the Consultant shall purchase from the Company, subject to the terms and conditions set forth in this Agreement and the Restricted Stock Agreement, 1,990,000 shares (the \"Shares\") of common stock, $0.0001 par value, of the Company (\"Common Stock\"), at a purchase price of $0.0001 per share, for an aggregate purchase price of $190.",
+      "explanation": "You are required to pay out-of-pocket money to buy shares, and your compensation is entirely stock-based rather than providing guaranteed cash fees for your professional services, creating high financial risk if the company fails.",
+      "suggested_change": "Add a guaranteed cash compensation structure for services rendered, rather than relying solely on equity purchase arrangements."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All inventions, ideas, creations, discoveries, computer programs, works of authorship, data, developments, technology, designs, innovations and improvements (whether or not patentable and whether or not copyrightable) which are made, conceived, reduced to practice, created, written, designed or developed by the Consultant, solely or jointly with others or under Consultant's direction and whether during normal business hours or otherwise... shall be the sole property of the Company. The Consultant hereby assigns to the Company all Inventions...",
+      "explanation": "All intellectual property rights are automatically and immediately assigned to the company upon creation, while your stock compensation vests over a multi-year period or depends on ongoing relationship terms, meaning you lose your IP rights before receiving full value.",
+      "suggested_change": "Specify that ownership of the intellectual property remains with the Consultant until full compensation or vesting milestones are achieved."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding the foregoing, the Company may terminate the Consultation Period effective immediately upon receipt of written notice by the Consultant, if the Consultant breaches or threatens to breach any provision of Section 6. ... The Consultant may terminate the Consultation Period at any time upon thirty (30) days' written notice.",
+      "explanation": "The company can terminate the agreement immediately for cause or alleged breach, whereas the consultant is locked into providing 30 days' advance written notice to terminate, creating an uneven exit obligation.",
+      "suggested_change": "Make the termination notice period mutual, allowing either party to terminate upon 30 days' written notice without disproportionate immediate penalties."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3120,
+   "prompt_tokens": 596,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I look forward to working together, and I would like to request a couple of adjustments to the relevant clause before signing. - Regarding the scope of work, the current language is open-ended and could result in extensive tasks beyond the initial project description without extra compensation; I propose that we explicitly tie all required services to Schedule A and state that any additional work requested outside of Schedule A will require a written amendment and additional compensation. - Regarding the compensation structure, the current terms require out-of-pocket payments and rely entirely on stock rather than guaranteed cash fees; I propose that we add a guaranteed cash compensation structure for services rendered, rather than relying solely on equity purchase arrangements. Thank you for your time and flexibility, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

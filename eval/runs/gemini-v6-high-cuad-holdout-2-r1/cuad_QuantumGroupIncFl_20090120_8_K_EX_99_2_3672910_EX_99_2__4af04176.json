@@ -1,0 +1,38 @@
+{
+ "id": "cuad:QuantumGroupIncFl_20090120_8-K_EX-99.2_3672910_EX-99.2_Hosting Agreement",
+ "chars": 116298,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer may terminate this Agreement, or any portion of Services specified herein, for convenience by: providing at least sixty (60) days prior written notice to IBM; and paying the applicable early termination charges specified in Attachment C.",
+   "start": 12597,
+   "end": 12843
+  }
+ ],
+ "email": false,
+ "seconds": 23.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29434,
+   "prompt_tokens": 23921,
+   "output_tokens": 137,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 23.25,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer may terminate this Agreement, or any portion of Services specified herein, for convenience by: providing at least sixty (60) days prior written notice to IBM; and paying the applicable early termination charges specified in Attachment C.",
+      "explanation": "Only the client has the right to terminate the agreement for convenience without cause, while you do not have a corresponding right to terminate.",
+      "suggested_change": "Either party may terminate this Agreement, or any portion of Services specified herein, for convenience by providing at least sixty (60) days prior written notice to the other party."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

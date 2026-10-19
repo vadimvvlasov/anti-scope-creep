@@ -1,0 +1,65 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5332,
+   "end": 5418
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9162,
+   "end": 9254
+  }
+ ],
+ "email": true,
+ "seconds": 14.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8711,
+   "prompt_tokens": 5682,
+   "output_tokens": 199,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.71,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work transfers to the client upon delivery before you are paid, leaving you without your work rights if payment is delayed or withheld.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to Client upon receipt of full payment for the applicable Deliverable."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract immediately without cause and without paying for your work, while you do not have the same termination rights.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon thirty days written notice, and Client shall pay Contractor for all Services satisfactorily performed up to the date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2333,
+   "prompt_tokens": 425,
+   "output_tokens": 152,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed the terms and would like to propose a couple of adjustments before signing. - Regarding the relevant clause on intellectual property, the current wording transfers ownership upon delivery rather than upon payment, which could leave rights unprotected if payment is delayed. I propose modifying this so that rights transfer upon receipt of full payment for the applicable deliverable. - Regarding the termination clause, the agreement currently permits termination at any time without notice or further payment. I propose updating this section so that either party may terminate without cause upon thirty days written notice, with payment provided for all services satisfactorily performed. Please let me know if these adjustments are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

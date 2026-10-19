@@ -1,0 +1,79 @@
+{
+ "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement",
+ "chars": 39588,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall defend, indemnify and hold harmless Customer from all claims, liabilities, costs, damages, judgments and attorney's fees resulting from or arising out of any alleged and/or actual infringement or other violation of any patents, patent rights, trademarks, trademark rights, trade names, trade name rights, copyrights, trade secrets, proprietary rights and processes or other such rights as a result of the manufacturing methods employed by Contractor",
+   "start": 28102,
+   "end": 28568
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+   "start": 2290,
+   "end": 2488
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Contractor shall hold the cancelled or delayed Products in its inventory and make them available to Customer (upon Customer's request) for a period of six (6) months from receipt of payment for such Products free of charge.",
+   "start": 11880,
+   "end": 12103
+  }
+ ],
+ "email": true,
+ "seconds": 22.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13398,
+   "prompt_tokens": 8375,
+   "output_tokens": 453,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.15,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall defend, indemnify and hold harmless Customer from all claims, liabilities, costs, damages, judgments and attorney's fees resulting from or arising out of any alleged and/or actual infringement or other violation of any patents, patent rights, trademarks, trademark rights, trade names, trade name rights, copyrights, trade secrets, proprietary rights and processes or other such rights as a result of the manufacturing methods employed by Contractor",
+      "explanation": "This indemnification clause for manufacturing methods is completely uncapped. If a third party sues for patent infringement over your manufacturing processes, your liability is unlimited and could far exceed the total revenue earned under this agreement.",
+      "suggested_change": "Cap the indemnification obligation to a reasonable fixed amount or to the total fees paid under the Agreement, and ensure mutual protections."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "These manufacturing services shall include, but not be limited to, labor, materials, testing, packaging and delivery to Customer, all subject to the terms and conditions contained in this Agreement.",
+      "explanation": "The phrase 'shall include, but not be limited to' creates broad ambiguity, allowing the Customer to demand additional tasks, testing, or services without agreeing to a formal change order or additional compensation.",
+      "suggested_change": "Remove 'but not be limited to' to strictly define the scope of services, and add a clause stating that any additional work requested by Customer requires a written change order specifying additional fees."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Contractor shall hold the cancelled or delayed Products in its inventory and make them available to Customer (upon Customer's request) for a period of six (6) months from receipt of payment for such Products free of charge.",
+      "explanation": "Even though the Customer pays for delayed or cancelled products, forcing the Contractor to store these goods in inventory for six months completely free of charge imposes uncompensated warehousing costs and ties up valuable storage space.",
+      "suggested_change": "Add a reasonable monthly storage and warehousing fee for holding finished goods or materials past the scheduled delivery date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2754,
+   "prompt_tokens": 681,
+   "output_tokens": 173,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before we sign. - Regarding the relevant clause on indemnification, the current liability is completely uncapped and could exceed total revenue, so I propose capping the obligation to a reasonable amount or total fees paid under the agreement. - Regarding the scope of services in the relevant clause, the open-ended phrasing creates ambiguity regarding uncompensated tasks, so I propose removing the broad wording and requiring a written change order for any additional work. - Regarding the storage of products in the relevant clause, requiring six months of free storage imposes uncompensated warehousing costs, so I propose adding a reasonable monthly storage fee for holding goods past the scheduled delivery date. Thank you for your time and flexibility on these points."
+   }
+  }
+ ],
+ "dropped": []
+}

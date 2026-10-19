@@ -1,0 +1,93 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW). Imprimis shall remit the total Sales Commission payments due for the sale of Product during such calendar quarter at the time such report is made.",
+   "start": 3246,
+   "end": 3684
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+   "start": 4498,
+   "end": 4589
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach  of any representation, warranty or covenant by the breaching party under this Agreement.",
+   "start": 10557,
+   "end": 11025
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "As further outlined in the SOW, Surgical and its employees shall conduct all activities under this Agreement or relating to the Product in accordance with all applicable laws and regulations and all quality standards, protocols and systems established by Imprimis from time to time therefor.",
+   "start": 9762,
+   "end": 10053
+  }
+ ],
+ "email": true,
+ "seconds": 25.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10631,
+   "prompt_tokens": 5054,
+   "output_tokens": 654,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.48,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW). Imprimis shall remit the total Sales Commission payments due for the sale of Product during such calendar quarter at the time such report is made.",
+      "explanation": "Waiting up to 60 days after the end of a calendar quarter for commission payments means sales made on the first day of a quarter will not be paid for nearly five months, creating a severe cash flow disadvantage for Surgical.",
+      "suggested_change": "Amend the payment terms to require monthly reporting and payment of commissions within thirty (30) days following the end of each calendar month."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+      "explanation": "All work product and intellectual property created by Surgical transfer immediately and unconditionally to Imprimis, with no provision ensuring that Surgical receives its commissions or milestone stock issuances prior to or conditioned upon such transfer.",
+      "suggested_change": "Condition the assignment and transfer of all Work Product to Imprimis upon Surgical's receipt of full payment for all commissions and milestone compensations due under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach of any representation, warranty or covenant by the breaching party under this Agreement.",
+      "explanation": "The contract contains broad indemnification obligations and lacks any limitation of liability or overall damages cap, exposing Surgical to potentially unlimited financial liability for breaches or claims.",
+      "suggested_change": "Insert a mutual limitation of liability clause capping total liability under the Agreement to the total fees/commissions paid or payable to Surgical over the preceding 12-month period."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "As further outlined in the SOW, Surgical and its employees shall conduct all activities under this Agreement or relating to the Product in accordance with all applicable laws and regulations and all quality standards, protocols and systems established by Imprimis from time to time therefor.",
+      "explanation": "Imprimis has the unilateral right to establish new quality standards, protocols, and systems from time to time, which could impose unanticipated operational burdens, compliance costs, or changes on Surgical without an agreed increase in compensation.",
+      "suggested_change": "Add language stating that any new standards, protocols, or systems introduced by Imprimis that materially increase Surgical's operational costs or obligations must be mutually agreed upon in writing and accompanied by a corresponding adjustment in compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4897,
+   "prompt_tokens": 877,
+   "output_tokens": 254,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Thank you for sharing the agreement. Before we sign, I would like to propose a few adjustments: - Regarding the payment schedule in the relevant clause, waiting up to sixty days after the end of a calendar quarter for commission payments creates a cash flow disadvantage, so I propose amending the payment terms to require monthly reporting and payment within thirty days following the end of each calendar month. - Concerning the intellectual property terms, all work product currently transfers immediately and unconditionally without ensuring that compensation is received first, and I propose conditioning this transfer upon receipt of full payment for all commissions and milestone compensations due under the agreement. - Regarding the indemnification obligations, the agreement lacks a limitation of liability or overall damages cap, so I propose inserting a mutual limitation of liability clause capping total liability under the agreement to the total fees or commissions paid or payable over the preceding twelve-month period. - Regarding the operational standards, the relevant clause gives the client the unilateral right to establish new quality standards from time to time, and I propose adding language stating that any new standards or protocols that materially increase operational costs must be mutually agreed upon in writing with a corresponding adjustment in compensation. Please let me know if these changes work for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

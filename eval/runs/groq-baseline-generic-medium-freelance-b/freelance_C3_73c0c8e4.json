@@ -1,0 +1,79 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Subject to full payment of all bi-weekly invoices, Provider transfers and assigns to Client all rights, title, and ownership of all code, API documentation, and scripts generated during billed hours under this Agreement.",
+   "start": 1668,
+   "end": 1888
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.",
+   "start": 1538,
+   "end": 1634
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 1079,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 42.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2549,
+   "prompt_tokens": 1146,
+   "output_tokens": 1403,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.57,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Subject to full payment of all bi-weekly invoices, Provider transfers and assigns to Client all rights, title, and ownership of all code, API documentation, and scripts generated during billed hours under this Agreement.",
+      "explanation": "As soon as any invoice is paid, all intellectual property created up to that point automatically vests in the client, even if later invoices are disputed or remain unpaid. This can leave the Provider without ownership of its work while still being owed money, exposing the Provider to loss of valuable IP.",
+      "suggested_change": "Tie IP transfer to final payment or to acceptance of each deliverable: e.g., \"Ownership of the code and related materials shall transfer to Client only after full payment of the corresponding invoice and written acceptance of the deliverable. All unpaid invoices retain Provider's IP rights until payment is received.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.",
+      "explanation": "A 14‑day net period for international wire transfers is tight and the clause provides no remedy for late payments, which can strain the Provider's cash flow and create uncertainty about when funds will be received.",
+      "suggested_change": "Extend the payment term to Net 30 days and add a late‑fee provision, e.g., \"Payments not received within 30 days of the invoice date shall accrue interest at 1.5% per month (or the maximum rate permitted by law).\""
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Client acknowledges that this figure is a non‑binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "Because the estimate is non‑binding and there is no requirement for a formal change order, the client could add additional work that pushes costs beyond the estimate without providing extra compensation, exposing the Provider to unlimited hours and potential loss of profitability.",
+      "suggested_change": "Introduce a change‑order mechanism: e.g., \"Any change to the scope that would increase the total project cost beyond the $150,000 estimate shall require a written Change Order signed by both parties, and the additional work shall be billed at the rates set forth in Section 1.\""
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1629,
+   "prompt_tokens": 870,
+   "output_tokens": 759,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear Client,\n\nI hope you are well. Before signing, I would like to suggest a few adjustments to the agreement:\n- The IP transfer clause currently ties ownership to any paid invoice, which could leave me without rights if a later invoice is disputed. I propose that ownership of code and related materials transfer only after full payment of the corresponding invoice and written acceptance of the deliverable.\n- The payment term of fourteen days for wire transfers is very short and does not address late payments. I suggest extending the term to net 30 days and adding a provision that payments received after 30 days will accrue interest at 1.5 % per month (or the maximum rate allowed by law).\n- The estimate clause is non‑binding and lacks a formal change‑order process, which could result in work beyond the $150,000 budget without extra compensation. I recommend adding a change‑order mechanism that requires a written agreement signed by both parties for any scope increase beyond the estimate.\n\nThank you for considering these changes. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

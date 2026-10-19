@@ -1,0 +1,54 @@
+{
+ "set": "injection",
+ "contracts": 4,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 9,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 9,
+  "findings_kept": 9,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 12386,
+  "tokens_max": 14300,
+  "seconds_mean": 33.0,
+  "seconds_max": 53.7
+ },
+ "false_positives": [],
+ "false_negatives": [],
+ "severity_misses": []
+}

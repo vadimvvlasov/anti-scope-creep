@@ -1,0 +1,137 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9025,
+   "end": 9223
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3786,
+   "end": 3949
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "start": 14039,
+   "end": 14217
+  }
+ ],
+ "email": true,
+ "seconds": 87.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4299,
+   "prompt_tokens": 2641,
+   "output_tokens": 1658,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.94,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "You (the Contractor) can be left with unfinished work and receive no compensation if the client decides to end the agreement arbitrarily, while you have no reciprocal right to walk away. This creates a severe cash‑flow risk.",
+      "suggested_change": "Add a matching termination‑for‑convenience right for the Contractor with comparable notice (e.g., 20 days) and require payment for all work performed up to the termination date, preferably on a pro‑rata basis."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "11.1 Each party will defend the other against third‑party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations. ... 11.2 The indemnifying party controls the defense, but may not settle a claim in a manner imposing an admission or non‑monetary obligation on the indemnified party without consent.",
+      "explanation": "The indemnification obligations are not subject to the $35,000 aggregate liability cap, meaning you could be on the hook for unlimited third‑party damages, legal fees, and settlements arising from your work, even if the amount far exceeds the contract value.",
+      "suggested_change": "Cap the contractor’s indemnification liability to a reasonable multiple of the total fees (e.g., 2 × total contract amount) or require the client to share any settlement costs above the cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "12.2 ... Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "If the client terminates, you receive no compensation for work already performed, which can leave you under‑paid for effort already expended.",
+      "suggested_change": "Insert a clause that obligates the client to pay for all services rendered up to termination on a pro‑rata basis, with a clear formula for calculating the amount."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 30‑day payment period is standard, but the 1% monthly interest may be insufficient to deter late payment and could affect cash flow if the client habitually pays late.",
+      "suggested_change": "Raise the interest rate to a commercially reasonable level (e.g., 1.5‑2% per month) or add a late‑payment penalty after a grace period."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload. 2.3 Any material change to scope ... should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "The terms rely on subjective judgment of what constitutes a “material” change. The client could argue that a request is merely a clarification, avoiding a change order and pushing extra work onto you without additional fee.",
+      "suggested_change": "Define ‘material change’ with concrete thresholds (e.g., >10% increase in hours or cost) and require written approval and a fee adjustment for any change, even if deemed a minor clarification."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3143,
+   "prompt_tokens": 1856,
+   "output_tokens": 1287,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 28.16,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+      "explanation": "The contract caps post‑launch support to what is listed in the schedule. If the client expects additional support or minor tweaks after launch, they must be treated as new services, which could lead to disputes or unpaid work if the scope is not clearly documented beforehand.",
+      "suggested_change": "Add a clause that defines a reasonable amount of post‑launch bug‑fix support (e.g., 2 weeks of minor corrections) included in the fee, and state that any work beyond that will be billed as change orders with agreed rates."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Net 30 is standard, but the late‑payment interest of only 1 % per annum is low and may not sufficiently compensate you for delayed cash flow, especially on a multi‑milestone project worth nearly $25k.",
+      "suggested_change": "Negotiate a higher statutory or commercially reasonable late‑payment interest rate (e.g., 1.5‑2 % per month or the applicable legal rate plus 2 %). Also consider adding a clause that allows you to suspend work after 30 days of non‑payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1293,
+   "prompt_tokens": 699,
+   "output_tokens": 594,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a couple of small adjustments before signing:\n\n- The clause lets the Client terminate for convenience with 20 days' notice while the Contractor has no similar right, which could leave the Contractor with unfinished work and no compensation. Could we add a matching termination‑for‑convenience right for the Contractor with the same notice period and ensure payment for all services performed up to the termination date?\n- The provision limits post‑launch support to what is listed in the commercial schedule, which may cause uncertainty if minor issues arise after launch. Could we include a reasonable amount of post‑launch bug‑fix support (e.g., two weeks of minor corrections) in the fee, with any additional work handled as change orders at agreed rates?\n\nPlease let me know if these revisions are acceptable. Thank you for your consideration.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+   "start": 5117,
+   "end": 5430
+  }
+ ],
+ "email": true,
+ "seconds": 13.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9090,
+   "prompt_tokens": 5693,
+   "output_tokens": 186,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.94,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+      "explanation": "Ownership of your work passes to the client the moment it is created, meaning you lose your intellectual property rights before you are paid in full.",
+      "suggested_change": "6.1 All intellectual property rights in the Deliverables shall remain with Contractor until Contractor receives full payment of all fees due under this Agreement, upon which ownership shall transfer to Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1870,
+   "prompt_tokens": 381,
+   "output_tokens": 89,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Before signing the agreement, I would like to propose a small adjustment: - In the relevant clause, ownership of the deliverables transfers immediately upon creation before payment is completed. I propose modifying the agreement so that all intellectual property rights remain with the contractor until full payment of all fees is received. Thank you, and I look forward to your response."
+   }
+  }
+ ],
+ "dropped": []
+}

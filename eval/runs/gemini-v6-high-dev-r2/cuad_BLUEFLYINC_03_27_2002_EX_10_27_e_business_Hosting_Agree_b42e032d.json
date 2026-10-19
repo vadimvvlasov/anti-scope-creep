@@ -1,0 +1,79 @@
+{
+ "id": "cuad:BLUEFLYINC_03_27_2002-EX-10.27-e-business Hosting Agreement",
+ "chars": 37351,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Type I Materials are those, created during the Service performance period,       in which Customer will have all right, title, and interest (including       ownership of copyright).",
+   "start": 14141,
+   "end": 14322
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Regardless of the basis on which Customer is entitled to claim damages from IBM (including fundamental breach, negligence, misrepresentation, or other contract or tort claim), IBM is liable for no more than:\n\na.    indemnification payments as provided in Section 8.1;\n\nb.    damages for bodily injury (including death) and damage to real property       and tangible personal property; and\n\nc.    the amount of any other actual direct damages, up to the greater of       $100,000 or the charges paid by Customer to IBM for the Services in the       twelve (12) months immediately preceding the accrual of the first claim       related to the Services.",
+   "start": 20201,
+   "end": 20851
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment (with the exception of any Service Option Attachment that is a prerequisite for the provision of Services under a non-terminated Service Option Attachment) for convenience at the end of any calendar month by:\n\na.    providing at least one month's prior written notice to IBM; and\n\nb.    paying the applicable early termination charges, if any, specified in       Attachment A and applicable Service Option Attachments.",
+   "start": 7027,
+   "end": 7559
+  }
+ ],
+ "email": true,
+ "seconds": 21.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15349,
+   "prompt_tokens": 9047,
+   "output_tokens": 594,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.01,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Type I Materials are those, created during the Service performance period,       in which Customer will have all right, title, and interest (including       ownership of copyright).",
+      "explanation": "Ownership of Type I Materials passes to the Client upon creation rather than upon full payment, exposing you to the risk of losing intellectual property rights before you are paid.",
+      "suggested_change": "Ownership of Type I Materials created during the Service performance period shall remain with the Contractor until the Contractor has been paid in full for the applicable services."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Regardless of the basis on which Customer is entitled to claim damages from IBM (including fundamental breach, negligence, misrepresentation, or other contract or tort claim), IBM is liable for no more than: a.    indemnification payments as provided in Section 8.1; b.    damages for bodily injury (including death) and damage to real property       and tangible personal property; and c.    the amount of any other actual direct damages, up to the greater of       $100,000 or the charges paid by Customer to IBM for the Services in the       twelve (12) months immediately preceding the accrual of the first claim       related to the Services.",
+      "explanation": "Your indemnification obligations for IP infringement are carved out from the aggregate liability cap and have no separate financial limit, exposing you to potentially unlimited damages.",
+      "suggested_change": "All liability of the Contractor under this Agreement, including indemnification obligations, shall be subject to the aggregate liability cap."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer may terminate this Agreement (including all Service Option Attachments) or any Service Option Attachment (with the exception of any Service Option Attachment that is a prerequisite for the provision of Services under a non-terminated Service Option Attachment) for convenience at the end of any calendar month by: a.    providing at least one month's prior written notice to IBM; and b.    paying the applicable early termination charges, if any, specified in       Attachment A and applicable Service Option Attachments.",
+      "explanation": "Only the Client has the right to terminate the agreement for convenience, creating an unbalanced termination structure.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon providing at least thirty days' prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2576,
+   "prompt_tokens": 575,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I have reviewed the agreement and would like to request a few adjustments before we proceed. - Ownership of Type I Materials currently transfers upon creation rather than upon full payment, so I propose updating the relevant clause so that ownership remains with the Contractor until full payment is received. - Indemnification obligations are currently carved out from the aggregate liability cap with no separate financial limit, so I propose modifying the relevant clause so that all liability under the agreement is subject to the aggregate liability cap. Thank you for your time, and I look forward to finalizing this. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

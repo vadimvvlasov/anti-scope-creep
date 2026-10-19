@@ -1,0 +1,51 @@
+{
+ "id": "cuad:RangeResourcesLouisianaInc_20150417_8-K_EX-10.5_9045501_EX-10.5_Transportation Agreement",
+ "chars": 100284,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "All payments are due on the later of: (1) within fifteen (15) days of receipt of the invoice; (2) the twenty-seventh (27th) of the month following receipt of the invoice, or; (3) if the twenty-seventh (27th) of the month following receipt of the invoice is not a Business Day, on the next Business Day thereafter.",
+   "start": 87688,
+   "end": 88001
+  }
+ ],
+ "email": true,
+ "seconds": 20.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 28732,
+   "prompt_tokens": 23381,
+   "output_tokens": 195,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.18,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "All payments are due on the later of: (1) within fifteen (15) days of receipt of the invoice; (2) the twenty-seventh (27th) of the month following receipt of the invoice, or; (3) if the twenty-seventh (27th) of the month following receipt of the invoice is not a Business Day, on the next Business Day thereafter.",
+      "explanation": "Payment terms extend up to the 27th of the following month, which exceeds standard 30-day terms and delays your cash flow.",
+      "suggested_change": "All payments are due within thirty (30) days of receipt of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2237,
+   "prompt_tokens": 390,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Thank you for sharing the agreement. I would like to propose a minor adjustment before signing: - Regarding the relevant clause, the current payment terms extend up to the 27th of the following month, which delays cash flow. I propose modifying this so that all payments are due within thirty (30) days of receipt of the invoice. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

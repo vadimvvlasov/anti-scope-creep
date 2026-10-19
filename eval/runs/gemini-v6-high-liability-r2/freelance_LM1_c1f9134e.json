@@ -1,0 +1,51 @@
+{
+ "id": "freelance:LM1",
+ "chars": 19406,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 60,000, except to the extent a different limitation is required by applicable law.",
+   "start": 8123,
+   "end": 8290
+  }
+ ],
+ "email": true,
+ "seconds": 15.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8744,
+   "prompt_tokens": 5667,
+   "output_tokens": 167,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.58,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 60,000, except to the extent a different limitation is required by applicable law.",
+      "explanation": "The liability cap of USD 60,000 is set higher than twice your total project fee of USD 24,875, exposing you to financial exposure that exceeds two times the contract's value.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement shall be capped at the total fees paid or payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2069,
+   "prompt_tokens": 366,
+   "output_tokens": 98,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a minor adjustment to propose before signing. - Regarding the relevant clause, the liability limit is set higher than twice the total project fee. I propose that we modify the agreement so that the aggregate liability of either party arising from the agreement is capped at the total fees paid or payable under the agreement. Please let me know if this works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

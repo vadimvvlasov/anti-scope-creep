@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT",
+ "chars": 26346,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+   "start": 5161,
+   "end": 5765
+  }
+ ],
+ "email": true,
+ "seconds": 14.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10950,
+   "prompt_tokens": 7084,
+   "output_tokens": 249,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.18,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+      "explanation": "Ownership of your work product transfers to the client immediately upon creation rather than upon full payment, leaving you unprotected if the client withholds payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable Services, the Provider hereby assigns to the Client all right, title, and interest in the deliverables created specifically for the Client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1764,
+   "prompt_tokens": 445,
+   "output_tokens": 91,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a small adjustment before signing: - In the relevant clause, ownership of the work product transfers immediately upon creation rather than upon full payment; I suggest updating this so that the assignment of rights takes effect upon receipt of full payment for the applicable services. Thank you, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": []
+}

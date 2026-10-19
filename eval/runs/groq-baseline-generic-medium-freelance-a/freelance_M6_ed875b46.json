@@ -1,0 +1,129 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.\n\n2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "start": 1730,
+   "end": 2246
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9021,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Review period: 10 days",
+   "start": 13095,
+   "end": 13117
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13118,
+   "end": 13146
+  }
+ ],
+ "email": true,
+ "seconds": 89.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4365,
+   "prompt_tokens": 2648,
+   "output_tokens": 1717,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.38,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.\n2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "The clause permits informal \"minor clarifications\" without written approval. In practice the client could request additional tasks that are arguably minor, but still increase your workload and effort without extra compensation, leading to scope creep.",
+      "suggested_change": "Require that any clarification that could affect effort, even if described as \"minor,\" be confirmed in writing and, where appropriate, be accompanied by a mutually agreed change order or fee adjustment."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "The client can end the agreement at will with only 20 days' notice while you (the contractor) can only quit for cause. This leaves you exposed to abrupt project shutdown, loss of anticipated revenue, and sunk costs.",
+      "suggested_change": "Introduce a mutual termination right (e.g., either party may terminate for convenience with 30 days' notice) and require payment for all work performed up to the termination date, plus a reasonable termination fee to cover mobilization costs."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 40. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\n4.4 Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "Net 40 is longer than the industry standard (often Net 30 or Net 15), delaying cash flow. The 15‑day dispute window can further postpone payment of the undisputed portion, increasing financial risk.",
+      "suggested_change": "Adjust payment terms to Net 30 (or Net 15) and shorten the dispute period to 7 days. Clarify that undisputed amounts are due within the same net period regardless of any dispute."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3144,
+   "prompt_tokens": 1856,
+   "output_tokens": 1288,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 31.84,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 40\nLate-payment interest: 1.0%",
+      "explanation": "The client has 40 days after invoicing to pay, which is longer than standard (e.g., Net 30). If they miss the deadline, interest accrues at only 1.0%, which may not sufficiently compensate for delayed cash flow. This puts the contractor at risk of late or stretched payments.",
+      "suggested_change": "Negotiate a shorter payment term (e.g., Net 30) and a higher late‑payment interest rate (e.g., 1.5‑2.0% per month) or include a clause allowing suspension of work after 30 days of non‑payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Review period: 10 days",
+      "explanation": "The client must review deliverables and provide feedback within 10 days. If they miss this window, the contractor may be forced to treat the deliverable as accepted, potentially limiting the contractor’s ability to address legitimate issues without additional cost.",
+      "suggested_change": "Extend the review period to at least 15‑20 days or add language that any delay in feedback automatically extends the acceptance deadline by the same number of days."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "The contract caps the number of revision rounds at three. If the client requests additional changes beyond the agreed scope, they must be billed as new services, which can lead to disputes if expectations are unclear.",
+      "suggested_change": "Specify that any revisions beyond the three‑round allowance will be billed at a predefined rate per additional round, and define clearly what constitutes a ‘revision’ versus a new scope request."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1688,
+   "prompt_tokens": 959,
+   "output_tokens": 729,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.07,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\n- The relevant clause (2.2‑2.3) allows minor clarifications to be made informally. This could let the client request additional tasks that appear minor but increase workload without extra compensation. I propose that any clarification that may affect effort be confirmed in writing and, where appropriate, be covered by a mutually agreed change order or fee adjustment.\n- The relevant clause (12.2) gives the client a unilateral right to terminate for convenience with 20 days' notice, while the contractor can only terminate for cause. This creates a risk of abrupt project shutdown and loss of revenue. I suggest adding a mutual termination right so either party may terminate for convenience with 30 days' notice, and that payment be required for all work performed up to the termination date plus a reasonable termination fee to cover mobilisation costs.\n- The relevant clause (Review period: 10 days) requires the client to provide feedback within ten days, otherwise the deliverable may be deemed accepted. A short review window can limit the contractor's ability to address legitimate issues. I recommend extending the review period to at least 15‑20 days, or adding language that any delay in feedback automatically extends the acceptance deadline by the same number of days.\n- The relevant clause (Revision allowance: 3 rounds) caps revisions at three rounds, meaning any extra changes would be billed as new services and could cause disputes. I propose specifying that revisions beyond the three‑round allowance will be billed at a predefined rate per additional round, and clearly defining what constitutes a ‘revision’ versus a new scope request.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "id": "cuad:PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting Agreement",
+ "chars": 66253,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding anything stipulated in the Agreement, T-Mobile may without liability suspend or terminate whole or part of the Hosting Services in relation to one or more ELEPHANT TALK Customers, in circumstances where T-Mobile would suspend or terminate those services to its own customers, in the following circumstances - or circumstances of similar severity.",
+   "start": 43821,
+   "end": 44183
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "If such a claim is valid, ELEPHANT TALK shall make the modifications needed to cease the infringement at its own expense as soon as possible. Such modifications will not have any impact on the functionality and costs of the provided Hosting Services.",
+   "start": 49935,
+   "end": 50185
+  }
+ ],
+ "email": true,
+ "seconds": 23.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20893,
+   "prompt_tokens": 15006,
+   "output_tokens": 594,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.33,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will be accountable for and shall pay all generated traffic by [PARTY_B] Customers -including traffic generated via stolen or lost SIM cards - to T-Mobile. [PARTY_B] bears the risk of and shall indemnify T-Mobile against high usage, fraud and bed debts/non-payment of its [PARTY_B] Customers.",
+      "explanation": "I am held financially liable for all traffic, including fraudulent use, lost or stolen SIM cards, and customer defaults/bad debt, which are outside my direct operational control.",
+      "suggested_change": "Limit my liability for stolen/lost SIM cards to traffic generated prior to receiving notice of theft, and exclude end-customer bad debt from my direct payment obligations to T-Mobile."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will be fully responsible for the settlement of, and shall indemnify ('vrijwaren') T-Mobile against any claims made by [PARTY_B] Customers or third parties with whom [PARTY_B] has a (contractual) relationship and which claims are related to this (contractual) relationship",
+      "explanation": "This imposes an unlimited and uncapped indemnification obligation on me for any customer or third-party claims related to our contracts, exposing me to catastrophic financial exposure.",
+      "suggested_change": "Subject this indemnification obligation to the overall liability caps agreed upon in Section 12.1."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding anything stipulated in the Agreement, T-Mobile may without liability suspend or terminate whole or part of the Hosting Services in relation to one or more [PARTY_B] Customers, in circumstances where T-Mobile would suspend or terminate those services to its own customers, in the following circumstances - or circumstances of similar severity.",
+      "explanation": "T-Mobile has the unilateral right to suspend or terminate services to my customers without liability and based on broad discretionary criteria, threatening my business continuity.",
+      "suggested_change": "Require prior written notice, a reasonable opportunity to cure any alleged issue, and objective criteria for any suspension or termination of services."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "If such a claim is valid, [PARTY_B] shall make the modifications needed to cease the infringement at its own expense as soon as possible. Such modifications will not have any impact on the functionality and costs of the provided Hosting Services.",
+      "explanation": "I am required to make unspecified modifications at my own expense to address third-party claims without any limit on the extent or cost of such changes.",
+      "suggested_change": "Define the scope and reasonable limits of required modifications and ensure that any extraordinary engineering or legal costs are shared or capped."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2913,
+   "prompt_tokens": 505,
+   "output_tokens": 163,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a great day. - Regarding the relevant clause concerning service suspension or termination, the text grants a unilateral right to suspend or terminate services without liability based on broad discretionary criteria, which threatens business continuity. I propose to require prior written notice, a reasonable opportunity to cure any alleged issue, and objective criteria for any suspension or termination of services. - Regarding the relevant clause on modifications for infringement claims, the agreement requires unspecified modifications at my own expense to address third-party claims without any limit on the extent or cost of such changes. I propose to define the scope and reasonable limits of required modifications and ensure that any extraordinary engineering or legal costs are shared or capped. Thank you for your assistance in finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

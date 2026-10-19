@@ -1,0 +1,93 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+   "start": 5121,
+   "end": 5368
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1734,
+   "end": 1995
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30.",
+   "start": 3790,
+   "end": 3818
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "low",
+   "quoted_text": "Nothing in this Section limits liability for fraud, willful misconduct, or obligations that cannot legally be excluded or limited.",
+   "start": 8383,
+   "end": 8513
+  }
+ ],
+ "email": true,
+ "seconds": 22.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9852,
+   "prompt_tokens": 4024,
+   "output_tokens": 464,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.02,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+      "explanation": "Stating that the work product is the property of Client throughout means the client technically owns the intellectual property as soon as it is created, prior to final payment and full compliance with commercial obligations.",
+      "suggested_change": "Modify the clause to state that intellectual property remains with the Contractor until full payment of all fees is received, with the Client receiving a limited license to use deliverables only upon payment."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "Allowing scope modifications or clarifications via ordinary project communications is vague and can lead to informal discussions piling on extra work without guaranteed compensation or written change orders.",
+      "suggested_change": "Require that all changes, clarifications, or adjustments to scope be explicitly documented and agreed upon in a written change order signed by both parties before work begins."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30.",
+      "explanation": "Net 30 payment terms mean you must wait up to a month after invoicing to receive your funds, which creates cash flow strain for a freelancer.",
+      "suggested_change": "Propose Net 15 payment terms or require milestone payments to be disbursed upon delivery and acceptance rather than waiting 30 days."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "low",
+      "quoted_text": "Nothing in this Section limits liability for fraud, willful misconduct, or obligations that cannot legally be excluded or limited.",
+      "explanation": "While there is a liability cap, broad statutory carve-outs and exceptions for un-limitable obligations create potential legal exposure beyond the agreed cap.",
+      "suggested_change": "Narrow the carve-outs to only apply to proven fraud or intentional willful misconduct."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3720,
+   "prompt_tokens": 594,
+   "output_tokens": 157,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.77,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have a few small requests before signing. - Regarding the relevant clause on work product ownership, the current wording means intellectual property transfers before final payment; I propose modifying the agreement so that ownership remains with the contractor until full payment is received. - In the section addressing service descriptions, allowing scope modifications through ordinary communications can lead to uncompensated extra tasks; I propose that all changes be explicitly documented and agreed upon in a written change order. - Regarding payment terms, the relevant clause sets invoices to Net 30, which causes cash flow strain; I propose updating this to Net 15 or using milestone payments. Please let me know if this works for you. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

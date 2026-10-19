@@ -1,0 +1,148 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 8846,
+   "end": 9017
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3666,
+   "end": 3825
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Requests outside that scope are handled as part of the Services.",
+   "start": 13937,
+   "end": 14001
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 30",
+   "start": 12819,
+   "end": 12841
+  }
+ ],
+ "email": true,
+ "seconds": 34.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4059,
+   "prompt_tokens": 2715,
+   "output_tokens": 1344,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 6.7,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "The contractor is obliged to do any extra work the client asks for without extra compensation, which can lead to unlimited additional workload and erode profit margins.",
+      "suggested_change": "Contractor shall perform additional services only upon a written change order signed by both parties, with mutually agreed additional fees for such services."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless changes, potentially causing the project to never close and consuming time and resources beyond the original estimate.",
+      "suggested_change": "Limit revisions to a reasonable number (e.g., two rounds of revisions per Deliverable) and require additional fees for any further changes requested by the client."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can walk away with only partial payment for work completed, leaving the contractor with unfinished deliverables and a loss of expected revenue.",
+      "suggested_change": "Add a termination fee equal to a percentage (e.g., 20%) of the remaining contract value or require a longer notice period (e.g., 45 days) with payment of a reasonable termination compensation to cover anticipated profits."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 30‑day payment window can strain cash flow, especially if the client disputes invoices; the low interest penalty may not sufficiently incentivize prompt payment.",
+      "suggested_change": "Reduce the payment term to Net 15 or tie payments to milestone acceptance, and include a clause allowing the contractor to suspend services after 15 days of non‑payment with interest accruing at a higher rate (e.g., 1.5% per month)."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2606,
+   "prompt_tokens": 1737,
+   "output_tokens": 869,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.16,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The contract lets the Client request an unlimited number of revisions. This can force the Contractor to spend indefinite time fixing or tweaking deliverables without extra compensation, potentially exhausting resources and eroding profitability.",
+      "suggested_change": "Cap revisions per milestone (e.g., 2‑3 rounds) and state that any additional revisions will be billed at an agreed hourly or per‑revision rate."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Requests outside that scope are handled as part of the Services.",
+      "explanation": "This clause obligates the Contractor to perform work that falls outside the originally agreed scope without additional payment, creating a risk of extensive unpaid labour if the Client continually adds new requests.",
+      "suggested_change": "Add language requiring a written change order and mutually agreed fee for any work beyond the defined scope before the Contractor undertakes it."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30",
+      "explanation": "Invoices are payable 30 days after receipt. For a project with a total fee of USD 24,875 and a modest upfront deposit, a 30‑day cash‑flow lag can strain the Contractor’s finances, especially if the Client delays payment.",
+      "suggested_change": "Negotiate a shorter payment term (e.g., Net 15) or include a clause that interest accrues at a higher rate after the due date, and ensure each milestone is invoiced and paid before proceeding to the next phase."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2173,
+   "prompt_tokens": 1173,
+   "output_tokens": 1000,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 24.56,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\n- The clause requiring the contractor to perform any additional services at no extra charge could lead to unlimited work without compensation. I propose that additional services be provided only under a written change order signed by both parties, with mutually agreed fees.\n- The clause allowing unlimited revisions until the client is fully satisfied may prevent project closure. I suggest limiting revisions to two rounds per deliverable and charging for any further changes.\n- The termination provision allowing either party to end the agreement with 20 days' notice and only partial payment may leave the contractor undercompensated. I recommend adding a termination fee equal to 20% of the remaining contract value or extending the notice period to 45 days with reasonable termination compensation.\n- The payment terms of Net 30 with a 1.0% monthly interest may strain cash flow. I propose reducing the term to Net 15 or tying payments to milestone acceptance, and allowing suspension of services after 15 days of non‑payment with interest at 1.5% per month.\n- The unlimited revision allowance could result in excessive unpaid work. I suggest capping revisions to 2‑3 rounds per milestone and billing any extra revisions at an agreed hourly or per‑revision rate.\n- The clause that requests outside the scope are handled as part of the services obligates the contractor to unpaid work. I recommend requiring a written change order and mutually agreed fee for any out‑of‑scope work before it is undertaken.\n- The Net 30 payment period may strain finances on a $24,875 project. I propose a shorter term such as Net 15, or interest accruing at a higher rate after the due date, and invoicing each milestone before proceeding to the next phase.\n\nThank you for considering these adjustments.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

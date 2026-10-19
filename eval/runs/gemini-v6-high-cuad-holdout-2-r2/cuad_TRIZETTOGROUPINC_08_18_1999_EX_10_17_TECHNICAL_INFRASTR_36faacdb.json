@@ -1,0 +1,38 @@
+{
+ "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT",
+ "chars": 17786,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "start": 6506,
+   "end": 6830
+  }
+ ],
+ "email": false,
+ "seconds": 10.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8816,
+   "prompt_tokens": 5077,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.29,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer, upon thirty days prior written notice, may cancel this Agreement at the end of the Initial Term and thereafter on each anniversary of the end of the Initial Term. MMMW may cancel this Agreement if the Customer does not remit payment according to the terms of MMMW's invoice.",
+      "explanation": "Only the client has the right to terminate the agreement without cause, while you can only terminate for non-payment.",
+      "suggested_change": "Either party may cancel this Agreement upon thirty days prior written notice at the end of the Initial Term or thereafter on each anniversary of the end of the Initial Term."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

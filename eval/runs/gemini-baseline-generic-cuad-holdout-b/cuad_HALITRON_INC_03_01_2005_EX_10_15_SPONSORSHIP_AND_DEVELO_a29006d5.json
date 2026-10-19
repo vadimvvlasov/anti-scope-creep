@@ -1,0 +1,57 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [],
+ "email": false,
+ "seconds": 14.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10349,
+   "prompt_tokens": 6175,
+   "output_tokens": 417,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.68,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "As used herein, the term 'Golf Instruction Related Product' shall mean any interactive entertainment software product related to golf instruction which is produced and released during the 'Term' ... and which may be published in multiple versions (e.g., versions for play on handheld mobile devices (including cell phones), for sale in any and all territories.",
+      "explanation": "The definition of covered products is excessively broad, requiring you to support an unlimited number of products and versions released over the three-year term without volume caps or additional compensation.",
+      "suggested_change": "Limit the scope to a specific, named list of products or establish a clear cap on the number of products and versions covered under this agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials shall be and remain the absolute property of TDA forever...",
+      "explanation": "All rights to your name, likeness, results, and promotional materials transfer permanently and immediately to TDA upon creation, while your financial compensation depends on future royalties and restricted stock paid over time. If TDA defaults or fails to pay, you have already irrevocably lost your rights.",
+      "suggested_change": "Condition the permanent transfer and grant of rights upon the receipt of full payment of all compensation and royalties owed under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Option to convert annual royalties to TDA common stock at a $10 of stock for every $1 of Royalty converted. ... This one-time option would cease all future royalties.",
+      "explanation": "The conversion formula requires $10 of stock for every $1 of royalty, which is heavily unfavorable, and exercising it permanently eliminates all your future royalty earnings.",
+      "suggested_change": "Remove the royalty conversion option or rewrite it to convert at fair market value without forfeiting future royalties."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

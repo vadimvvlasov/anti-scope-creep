@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget.",
+   "start": 2001,
+   "end": 2111
+  }
+ ],
+ "email": true,
+ "seconds": 17.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6495,
+   "prompt_tokens": 3998,
+   "output_tokens": 162,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.53,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Waiting 60 days for payment after invoicing creates a significant cash flow burden for a freelancer.",
+      "suggested_change": "Change the payment terms to Net 30 or Net 15."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget.",
+      "explanation": "This obligates me to absorb extra tasks or adjustments without additional compensation as long as the total budget is not technically exceeded.",
+      "suggested_change": "Remove this requirement and specify that any scope changes require a separate written change order with additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3943,
+   "prompt_tokens": 390,
+   "output_tokens": 129,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.86,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I look forward to working together, but would like to propose a couple of adjustments before signing. - In the relevant clause regarding payment, waiting 60 days creates a cash flow burden, so I propose we change the payment terms to Net 30 or Net 15. - In the relevant clause regarding scope, the agreement obligates absorbing extra tasks without additional compensation, so I propose we remove this requirement and specify that any scope changes require a separate written change order with additional fees. Thank you for your time, Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

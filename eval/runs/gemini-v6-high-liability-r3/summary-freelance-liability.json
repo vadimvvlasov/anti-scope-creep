@@ -1,0 +1,38 @@
+{
+ "set": "freelance-liability",
+ "contracts": 6,
+ "missing": [],
+ "metrics": {
+  "uncapped_liability": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 3,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 3,
+  "findings_kept": 3,
+  "dropped": {},
+  "quote_not_found_rate": 0.0,
+  "tokens_mean": 9814,
+  "tokens_max": 11608,
+  "seconds_mean": 11.8,
+  "seconds_max": 15.7
+ },
+ "false_positives": [],
+ "false_negatives": [],
+ "severity_misses": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement",
+ "chars": 18138,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+   "start": 5874,
+   "end": 6200
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11792,
+   "prompt_tokens": 5562,
+   "output_tokens": 171,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.22,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+      "explanation": "Your payment is conditional on the client generating and collecting net revenue and is subject to cost deductions controlled entirely by the client.",
+      "suggested_change": "Within thirty (30) days of the end of each quarter during the term of this agreement, the Client shall provide a detailed accounting statement and remit the payment due to the Contractor for that quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2206,
+   "prompt_tokens": 391,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. Before proceeding with my signature, I would like to suggest a modification. - The relevant clause makes payment conditional on the client generating and collecting net revenue and subject to cost deductions controlled entirely by the client, so I propose we change this so that within thirty (30) days of the end of each quarter during the term of this agreement, the Client shall provide a detailed accounting statement and remit the payment due to the Contractor for that quarter. Please let me know if you are comfortable with this update. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

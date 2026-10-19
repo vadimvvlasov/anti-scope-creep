@@ -1,0 +1,93 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES",
+   "start": 29705,
+   "end": 29986
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "ESTABLISHMENT shall provide APOLLO with certain technical support regarding the Product as reasonably requested by APOLLO, including, but not limited to, analytical test methods, manufacturing process development, and validation support. If there are charges associated with these services, a separate quote will be provided to APOLLO.",
+   "start": 26322,
+   "end": 26657
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "In the event of termination under section 2.2(b) no additional reparation charges have been agreed upon by the parties; any future agreed upon reparation charge or amount shall be binding only if adopted as an amendment to this Agreement.",
+   "start": 45072,
+   "end": 45310
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "ESTABLISHMENT shall invoice APOLLO for Product ordered at the time of shipment and APOLLO shall pay each invoice within thirty (30) days from date of invoice.",
+   "start": 11376,
+   "end": 11534
+  }
+ ],
+ "email": true,
+ "seconds": 24.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16530,
+   "prompt_tokens": 10540,
+   "output_tokens": 569,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.3,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES",
+      "explanation": "Section 8.4 carves out indemnification liabilities and confidentiality breaches from the limitation of liability, exposing Party B to potentially unlimited financial liability under Section 8.2.",
+      "suggested_change": "Insert an overall mutual cap on total liability and ensure all indemnification claims are subject to that cap."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] shall provide [PARTY_A] with certain technical support regarding the Product as reasonably requested by [PARTY_A], including, but not limited to, analytical test methods, manufacturing process development, and validation support. If there are charges associated with these services, a separate quote will be provided to [PARTY_A].",
+      "explanation": "This obligates Party B to provide open-ended technical support and validation services upon request, with ambiguous wording regarding whether all such work will be paid for.",
+      "suggested_change": "Clarify that all technical support, process development, and validation services outside the baseline manufacturing scope will be quoted and billed separately at agreed rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "In the event of termination under section 2.2(b) no additional reparation charges have been agreed upon by the parties; any future agreed upon reparation charge or amount shall be binding only if adopted as an amendment to this Agreement.",
+      "explanation": "While Party B is paid for WIP and materials upon termination, the lack of agreed reparation charges means Party B receives no compensation for lost business volume or idle capacity.",
+      "suggested_change": "Negotiate and insert specific termination fees or a minimum inventory buyout formula in Exhibit A to cover setup investments and stranded capacity upon early termination."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] shall invoice [PARTY_A] for Product ordered at the time of shipment and [PARTY_A] shall pay each invoice within thirty (30) days from date of invoice.",
+      "explanation": "Requiring Party B to ship products Ex Works and wait 30 days post-shipment for payment shifts credit and financing burdens onto Party B for custom medical devices.",
+      "suggested_change": "Propose Net 15 payment terms from invoice date or require upfront deposits for custom tool setups and initial production runs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3036,
+   "prompt_tokens": 794,
+   "output_tokens": 182,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to review the agreement and propose a few adjustments before we sign. - Regarding the relevant clause concerning liability exclusions, the current text creates potential financial exposure, and I propose inserting an overall mutual cap on total liability. - Regarding the relevant clause about technical support services, the current wording is ambiguous regarding compensation for extra work, and I propose clarifying that all support outside the baseline scope will be billed separately. - Regarding the relevant clause concerning termination terms, the current provisions do not address idle capacity, and I propose inserting specific termination fees or a minimum inventory buyout formula. - Regarding the relevant clause about invoicing and payment, the current schedule places a financing burden, and I propose adjusting the payment terms or requiring upfront deposits. Thank you for your time, and I look forward to finalizing everything soon."
+   }
+  }
+ ],
+ "dropped": []
+}

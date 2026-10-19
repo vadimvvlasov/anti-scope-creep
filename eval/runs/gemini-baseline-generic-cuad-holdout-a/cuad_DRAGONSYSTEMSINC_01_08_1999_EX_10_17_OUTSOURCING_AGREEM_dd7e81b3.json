@@ -1,0 +1,93 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+   "start": 1120,
+   "end": 1227
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Dragon Systems shall be entitled to deduct from or set off against any sums which Dragon Systems may be liable to pay to MMI any amounts owed by MMI, its affiliated entities, subsidiaries or successors in interest.",
+   "start": 2980,
+   "end": 3194
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "start": 3741,
+   "end": 3976
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 18.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4700,
+   "prompt_tokens": 1956,
+   "output_tokens": 454,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.96,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Initially, services will cover 3 products, as per the attached price sheets. However, this may be extended.",
+      "explanation": "The contract allows for the scope to be extended indefinitely without explicitly stating that new pricing or written agreement is required for additional products.",
+      "suggested_change": "Specify that any extension of services or products requires a written addendum and mutual agreement on pricing."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_A] shall be entitled to deduct from or set off against any sums which [PARTY_A] may be liable to pay to [PARTY_B] any amounts owed by [PARTY_B], its affiliated entities, subsidiaries or successors in interest.",
+      "explanation": "This allows [PARTY_A] to withhold or deduct payments based on vague or disputed amounts owed by [PARTY_B], severely impacting cash flow.",
+      "suggested_change": "Remove the right of set-off, or restrict it to undisputed, overdue amounts."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] shall reimburse [PARTY_A] and hold [PARTY_A] harmless from any liabilities or obligations imposed upon [PARTY_A] resulting directly or indirectly from [PARTY_B]'s or its employees or agents activities under this Agreement.",
+      "explanation": "This creates a broad, uncapped indemnity obligation for [PARTY_B], exposing it to unlimited financial risk for any activities under the agreement.",
+      "suggested_change": "Cap the indemnification liability to the total fees paid under the agreement and exclude indirect or consequential damages."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only Dragon ([PARTY_A]) has the explicit right to terminate the agreement without cause, leaving [PARTY_B] locked in unless there is a breach.",
+      "suggested_change": "Grant both parties the mutual right to terminate the agreement without cause upon providing written notice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4018,
+   "prompt_tokens": 678,
+   "output_tokens": 188,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to propose a few small updates before signing: - The relevant clause regarding the initial scope of services allows for extension without stating that new pricing is required, so we should specify that any extension requires a written addendum and mutual agreement on pricing. - The relevant clause on set-offs permits deductions based on vague or disputed amounts, so we should restrict it to undisputed, overdue amounts. - The relevant clause on indemnification creates an uncapped liability, so we should cap the indemnification liability to the total fees paid under the agreement and exclude indirect damages. - The relevant clause on termination allows only one party to terminate without cause, so we should grant both parties the mutual right to terminate the agreement without cause upon providing written notice. I look forward to finalizing this. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

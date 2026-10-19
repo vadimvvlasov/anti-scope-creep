@@ -1,0 +1,120 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 8867,
+   "end": 9038
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12886,
+   "end": 12915
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Requests outside that scope are handled as part of the Services.",
+   "start": 13958,
+   "end": 14022
+  }
+ ],
+ "email": true,
+ "seconds": 91.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3884,
+   "prompt_tokens": 2724,
+   "output_tokens": 1160,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.07,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "This obligates the freelancer to do extra work beyond the defined scope without extra compensation, exposing them to unlimited unpaid effort if the client keeps requesting new tasks.",
+      "suggested_change": "Limit additional services to a defined list or require a written change order with associated fees for any work beyond the original scope."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless changes, potentially causing the freelancer to spend excessive time on revisions without additional payment, affecting profitability and schedule.",
+      "suggested_change": "Cap the number of revision rounds per Deliverable (e.g., two or three rounds) and specify that extra revisions will be billed at an agreed hourly or fixed rate."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "Both sides can end the contract at will, so the freelancer may lose anticipated revenue and be left with partially completed work while still bearing overhead costs. Payment is only for work done up to termination, which may be less than the projected fee.",
+      "suggested_change": "Add a termination fee or minimum payment obligation (e.g., 25% of total contract value) if the client terminates for convenience, and require that any prepaid milestones be non‑refundable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2646,
+   "prompt_tokens": 1737,
+   "output_tokens": 909,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.54,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The contract allows the Client to request an unlimited number of revisions. This can lead to endless work cycles without additional compensation, consuming time and resources beyond the agreed fee.",
+      "suggested_change": "Limit revisions to a defined number per milestone (e.g., 2 rounds of revisions) and state that any extra revisions will be billed at an agreed hourly or per‑revision rate."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Requests outside that scope are handled as part of the Services.",
+      "explanation": "The clause implies that any work the Client asks for beyond the defined scope will automatically be treated as part of the Services, meaning the Contractor may have to perform extra work without extra pay, creating scope creep.",
+      "suggested_change": "Add language that out‑of‑scope requests require a written change order and will be billed separately, or specify a clear process for approving additional work and associated fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2545,
+   "prompt_tokens": 942,
+   "output_tokens": 1603,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 24.47,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to suggest a few adjustments to the agreement:\n\n- The relevant clause obligates the contractor to perform any additional services requested by the client at no extra charge. This could lead to unlimited unpaid work. I propose limiting additional services to a defined list or requiring a written change order with associated fees for any work beyond the original scope.\n- The relevant clause allows the client to request unlimited revisions until fully satisfied. This may result in excessive time spent on revisions without additional compensation. I propose capping the number of revision rounds per deliverable (e.g., two or three rounds) and billing extra revisions at an agreed hourly or fixed rate.\n- The relevant clause permits either party to terminate for convenience with 20 days' notice and only requires payment for services performed up to the termination date. This could leave the contractor with reduced revenue. I propose adding a termination fee or minimum payment obligation (e.g., 25% of the total contract value) if the client terminates for convenience, and making any prepaid milestones non‑refundable.\n- The revision allowance is described as “unlimited.” This could result in endless work cycles without additional compensation. I propose limiting revisions to a defined number per milestone (e.g., two rounds) and billing any extra revisions at an agreed hourly or per‑revision rate.\n- The clause states that requests outside the scope are handled as part of the services, which may cause scope creep and unpaid work. I propose requiring a written change order for out‑of‑scope requests and billing them separately, or defining a clear approval process and associated fees.\n\nThank you for considering these changes. I look forward to finalising the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

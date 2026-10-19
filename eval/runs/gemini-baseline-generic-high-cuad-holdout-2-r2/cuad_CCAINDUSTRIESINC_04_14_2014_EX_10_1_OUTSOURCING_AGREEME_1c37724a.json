@@ -1,0 +1,79 @@
+{
+ "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 31914,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+   "start": 11304,
+   "end": 11558
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor hereby agrees to indemnify and hold the Company, including its Affiliates and its and their respective officers, directors, partners, members, employees and agents, harmless from and against any and all Claims brought in connection with or arising out of or related to Contractor's or its Affiliates' fraud, willful misconduct, negligence or material breach of this Agreement.",
+   "start": 19269,
+   "end": 19656
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The Company may terminate this Agreement in accordance with the immediately preceding sentence but with less than six (6) months' prior written notice to Contractor; provided, that in such event, the Company shall pay Contractor an amount equal to the Termination Fee.",
+   "start": 21507,
+   "end": 21775
+  }
+ ],
+ "email": true,
+ "seconds": 20.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11122,
+   "prompt_tokens": 6754,
+   "output_tokens": 447,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.48,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+      "explanation": "The Company has the unilateral right to expand the scope of products and brands you must service without a guaranteed mechanism to adjust your compensation or resource allocation.",
+      "suggested_change": "Specify that any addition of new products or brands requires mutual written consent and a corresponding adjustment to the Service Fees to account for the increased operational workload."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor hereby agrees to indemnify and hold the Company, including its Affiliates and its and their respective officers, directors, partners, members, employees and agents, harmless from and against any and all Claims brought in connection with or arising out of or related to Contractor's or its Affiliates' fraud, willful misconduct, negligence or material breach of this Agreement.",
+      "explanation": "You are required to indemnify the Company for ordinary negligence and material breaches with no limitation or cap on your total liability, exposing your business to potentially ruinous losses.",
+      "suggested_change": "Limit your indemnification obligations, exclude ordinary negligence from indemnification, and insert a mutual overall cap on liability equal to the fees received under the Agreement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The Company may terminate this Agreement in accordance with the immediately preceding sentence but with less than six (6) months' prior written notice to Contractor; provided, that in such event, the Company shall pay Contractor an amount equal to the Termination Fee.",
+      "explanation": "The Company is given the explicit unilateral right to terminate the contract on accelerated timelines, whereas Contractor is strictly bound to the full 6-month notice requirement, limiting your operational flexibility to exit.",
+      "suggested_change": "Provide both parties with equal termination rights and notice periods, or ensure the Termination Fee fully covers all projected overhead and lost profits for the remainder of the intended notice period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3243,
+   "prompt_tokens": 676,
+   "output_tokens": 233,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.68,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am writing to propose a few minor adjustments to the agreement before we proceed with signing. - Regarding the relevant clause on product scope, the agreement allows the company to unilaterally expand the products I must service without a guaranteed mechanism to adjust my compensation; I propose specifying that any addition of new products or brands requires mutual written consent and a corresponding adjustment to the service fees to account for the workload. - Regarding the relevant clause on indemnification, the text requires me to indemnify the company for ordinary negligence and material breaches without a liability cap, exposing my business to potential losses; I propose limiting my indemnification obligations, excluding ordinary negligence, and inserting a mutual overall cap on liability equal to the fees received under the agreement. - Regarding the relevant clause about contract termination, the text gives the company accelerated termination timelines while keeping me strictly bound to a six-month notice requirement; I propose providing both parties with equal termination rights and notice periods, or ensuring the termination fee fully covers all projected overhead for the remainder of the period. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

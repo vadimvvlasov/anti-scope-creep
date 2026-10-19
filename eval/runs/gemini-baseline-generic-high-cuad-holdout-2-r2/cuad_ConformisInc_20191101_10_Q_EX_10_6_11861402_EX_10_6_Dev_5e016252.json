@@ -1,0 +1,77 @@
+{
+ "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+ "chars": 63217,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR [**], IN NO EVENT WILL EITHER PARTY BE LIABLE TO THE   OTHER PARTY FOR [**], EVEN IF SUCH PARTY WAS ADVISED OR AWARE OF THE POSSIBILITY OF SUCH   DAMAGES.",
+   "start": 38669,
+   "end": 38834
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "If Stryker Finally Rejects any Deliverable for Milestone #1 or #2 in accordance with Article III, Stryker may terminate   this Agreement, which termination shall be effective immediately upon delivery of a Termination Notice to Conformis.",
+   "start": 47066,
+   "end": 47304
+  }
+ ],
+ "email": true,
+ "seconds": 26.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19769,
+   "prompt_tokens": 14252,
+   "output_tokens": 432,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.27,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Improved Stryker Background IP will vest solely in Stryker. [PARTY_C] agrees to assign and hereby assigns to Stryker all right, title and interest in and to all Improved Stryker Background IP in which ownership in same has vested in [PARTY_C] by operation of law or by assignment by its employees or consultants...",
+      "explanation": "As the freelancer, you are required to immediately assign intellectual property rights to Stryker upon creation or vesting, before you are fully paid all milestone compensation, leaving you without leverage if payment is delayed or disputed.",
+      "suggested_change": "Modify the clause to state that the assignment of intellectual property becomes effective only upon receipt of full payment for the applicable milestone or deliverable."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR [**], IN NO EVENT WILL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR [**], EVEN IF SUCH PARTY WAS ADVISED OR AWARE OF THE POSSIBILITY OF SUCH DAMAGES.",
+      "explanation": "The limitation of liability clause contains redacted carve-outs, which likely exempts certain claims from the liability cap, exposing you to potentially unlimited financial damages.",
+      "suggested_change": "Remove the redacted carve-outs to ensure a clear, mutual overall cap on liability that covers indemnification and all types of claims."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "If Stryker Finally Rejects any Deliverable for Milestone #1 or #2 in accordance with Article III, Stryker may terminate this Agreement, which termination shall be effective immediately upon delivery of a Termination Notice to [PARTY_C].",
+      "explanation": "Stryker has the unilateral right to terminate the contract immediately upon rejecting deliverables multiple times, whereas [PARTY_C] does not have equivalent rapid termination rights.",
+      "suggested_change": "Provide mutual termination rights and ensure [PARTY_C] receives fair compensation for work completed up to the date of any termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3356,
+   "prompt_tokens": 487,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have a few adjustments to discuss before we sign: - Regarding the limitation of liability, the relevant clause contains redacted carve-outs that could expose a party to unlimited financial damages, and I propose removing these carve-outs to establish a clear and mutual overall cap on liability. - Regarding the termination terms, the agreement allows one party to terminate immediately upon the rejection of deliverables without offering equivalent rights to the other, and I propose making the termination rights mutual while ensuring fair compensation for all work completed up to the date of termination. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

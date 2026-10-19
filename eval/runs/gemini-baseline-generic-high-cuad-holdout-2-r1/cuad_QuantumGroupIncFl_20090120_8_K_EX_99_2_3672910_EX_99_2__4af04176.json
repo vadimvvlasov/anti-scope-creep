@@ -1,0 +1,11 @@
+{
+ "id": "cuad:QuantumGroupIncFl_20090120_8-K_EX-99.2_3672910_EX-99.2_Hosting Agreement",
+ "chars": 116298,
+ "error": {
+  "type": "truncated",
+  "message": "Groq output was cut at max_completion_tokens=8000"
+ },
+ "seconds": 23.8,
+ "calls": [],
+ "dropped": []
+}

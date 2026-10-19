@@ -1,0 +1,65 @@
+{
+ "id": "cuad:RangeResourcesLouisianaInc_20150417_8-K_EX-10.5_9045501_EX-10.5_Transportation Agreement",
+ "chars": 100284,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding anything in this Agreement to the contrary, it is acknowledged and agreed that there is no minimum amount of Shipper's Product that must be delivered to the System hereunder; accordingly, Shipper shall not have any liability (financial or otherwise) for failure to deliver any particular quantity of Product to Carrier; provided, however, the foregoing sentence shall not reduce or eliminate Shipper's obligation to pay the fees provided herein to the extent Services are provided hereunder.",
+   "start": 19963,
+   "end": 20470
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ITS AFFILIATES, ANY SUCCESSORS IN INTEREST OR ANY BENEFICIARY OR ASSIGNEE OF THIS AGREEMENT FOR ANY CONSEQUENTIAL, MULTIPLE, INCIDENTAL, INDIRECT, SPECIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR LOSS OF PROFITS OR REVENUES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR ANY BREACH HEREOF; PROVIDED, HOWEVER, THE FOREGOING SHALL NOT BE CONSTRUED AS LIMITING AN OBLIGATION OF A PARTY HEREUNDER TO INDEMNIFY, DEFEND AND HOLD HARMLESS THE OTHER PARTY AGAINST CLAIMS ASSERTED BY UNAFFILIATED THIRD PARTIES, INCLUDING, BUT NOT LIMITED TO, THIRD PARTY CLAIMS FOR SPECIAL, INDIRECT, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES.",
+   "start": 29543,
+   "end": 30282
+  }
+ ],
+ "email": true,
+ "seconds": 23.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 26970,
+   "prompt_tokens": 21722,
+   "output_tokens": 505,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.23,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding anything in this Agreement to the contrary, it is acknowledged and agreed that there is no minimum amount of Shipper's Product that must be delivered to the System hereunder; accordingly, Shipper shall not have any liability (financial or otherwise) for failure to deliver any particular quantity of Product to Carrier; provided, however, the foregoing sentence shall not reduce or eliminate Shipper's obligation to pay the fees provided herein to the extent Services are provided hereunder.",
+      "explanation": "As the Carrier, I am required to design, engineer, construct, and finance the System (including 27 miles of pipeline under Exhibit B). However, Shipper has no minimum volume commitment and no financial obligation if they ship zero product, leaving me with significant capital outlay and no guaranteed revenue stream or return on investment.",
+      "suggested_change": "Propose a minimum volume commitment (take-or-pay) or monthly minimum throughput fee to ensure guaranteed revenue covering capital and operating costs."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY OR ITS AFFILIATES, ANY SUCCESSORS IN INTEREST OR ANY BENEFICIARY OR ASSIGNEE OF THIS AGREEMENT FOR ANY CONSEQUENTIAL, MULTIPLE, INCIDENTAL, INDIRECT, SPECIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR LOSS OF PROFITS OR REVENUES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR ANY BREACH HEREOF; PROVIDED, HOWEVER, THE FOREGOING SHALL NOT BE CONSTRUED AS LIMITING AN OBLIGATION OF A PARTY HEREUNDER TO INDEMNIFY, DEFEND AND HOLD HARMLESS THE OTHER PARTY AGAINST CLAIMS ASSERTED BY UNAFFILIATED THIRD PARTIES, INCLUDING, BUT NOT LIMITED TO, THIRD PARTY CLAIMS FOR SPECIAL, INDIRECT, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES.",
+      "explanation": "While the agreement waives consequential damages, it does not establish an overall monetary cap on direct damages or third-party indemnification obligations. Operating a pipeline carries inherent operational, environmental, and safety risks, exposing me to potentially limitless liability.",
+      "suggested_change": "Add a mutual overall liability cap limiting total liability under the Agreement to a fixed amount, such as the total transportation fees paid or payable by Shipper in the preceding 12 months."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2725,
+   "prompt_tokens": 732,
+   "output_tokens": 127,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the relevant clause on product delivery, the agreement does not require a minimum volume, leaving us without a guaranteed revenue stream for our capital outlay. We propose adding a minimum volume commitment or a monthly minimum throughput fee. - Regarding the relevant clause on damages, the agreement lacks an overall monetary cap, exposing us to potentially limitless liability. We propose adding a mutual overall liability cap limiting total liability to a fixed amount. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

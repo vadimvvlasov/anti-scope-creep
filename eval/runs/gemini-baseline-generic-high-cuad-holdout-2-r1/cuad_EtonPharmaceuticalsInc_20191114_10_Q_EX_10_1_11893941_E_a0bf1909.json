@@ -1,0 +1,107 @@
+{
+ "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement",
+ "chars": 65651,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aucta, for itself and its Affiliates, hereby grants to ETON in accordance with the terms and conditions of this Agreement, an exclusive (even as to and against Aucta in the Territory) right and license, including the right to sublicense, to the Products (or any components thereof), Dossiers, and all current and future Aucta Background Intellectual Property",
+   "start": 11332,
+   "end": 11690
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Aucta shall indemnify, defend and hold ETON and its owners, officers, directors, Affiliates, and employees (collectively, \"ETON Indemnified Parties\") harmless from and against any and all Losses arising out of or resulting from any Third Party Claims made or suits brought against ETON Indemnified Parties",
+   "start": 52071,
+   "end": 52376
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+   "start": 40868,
+   "end": 41104
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within sixty (60) days after the calendar year end.",
+   "start": 18420,
+   "end": 18625
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "At its sole cost and expense, Aucta shall be responsible and liable for all development and manufacturing activities required for the filing and approval of the Dossiers for the Products in and for the Territory, including without limitation all costs and management of any required pre-approval and post-approval clinical or other studies.",
+   "start": 12746,
+   "end": 13086
+  }
+ ],
+ "email": true,
+ "seconds": 23.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19242,
+   "prompt_tokens": 14589,
+   "output_tokens": 690,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.08,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aucta, for itself and its Affiliates, hereby grants to ETON in accordance with the terms and conditions of this Agreement, an exclusive (even as to and against Aucta in the Territory) right and license, including the right to sublicense, to the Products (or any components thereof), Dossiers, and all current and future Aucta Background Intellectual Property",
+      "explanation": "You grant an immediate exclusive license and rights to your intellectual property and dossiers upon the Effective Date, while major licensing and milestone payments are deferred until future commercial sales or patent issuances.",
+      "suggested_change": "Tie the grant of the exclusive license to receipt of the initial licensing payments or require a substantial guaranteed upfront payment."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Aucta shall indemnify, defend and hold ETON and its owners, officers, directors, Affiliates, and employees (collectively, \"ETON Indemnified Parties\") harmless from and against any and all Losses arising out of or resulting from any Third Party Claims made or suits brought against ETON Indemnified Parties",
+      "explanation": "The agreement imposes broad indemnification obligations without setting a monetary cap or ceiling on your liability for direct damages or claims.",
+      "suggested_change": "Include a mutual overall aggregate liability cap and carve out gross negligence or willful misconduct."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+      "explanation": "ETON has the unilateral right to terminate the agreement for convenience, whereas you do not have a reciprocal right, leaving you vulnerable after investing in development.",
+      "suggested_change": "Provide a reciprocal termination-for-convenience right or ensure full reimbursement of incurred development costs upon termination."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within sixty (60) days after the calendar year end.",
+      "explanation": "Milestone payments and annual reconciliations are delayed up to sixty days following the end of the calendar year, causing cash flow lag.",
+      "suggested_change": "Shorten the payment window to thirty days following the close of the applicable period."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "At its sole cost and expense, Aucta shall be responsible and liable for all development and manufacturing activities required for the filing and approval of the Dossiers for the Products in and for the Territory, including without limitation all costs and management of any required pre-approval and post-approval clinical or other studies.",
+      "explanation": "You bear all open-ended costs and management responsibilities for clinical and regulatory studies without financial caps or relief if requirements expand.",
+      "suggested_change": "Establish a cap on clinical and regulatory study costs or require ETON to share expenses for unanticipated post-approval studies."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 5035,
+   "prompt_tokens": 913,
+   "output_tokens": 246,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have a few suggestions regarding the relevant clauses before we proceed. - Regarding the relevant clause on the license grant, the agreement grants immediate rights while major payments are deferred; I propose tying the grant of the exclusive license to receipt of the initial licensing payments or requiring a substantial guaranteed upfront payment. - Regarding the relevant clause on indemnification, the agreement imposes broad obligations without a monetary cap; I propose including a mutual overall aggregate liability cap and carving out gross negligence or willful misconduct. - Regarding the relevant clause on termination, one party holds a unilateral termination right without a reciprocal option; I propose providing a reciprocal termination-for-convenience right or ensuring full reimbursement of incurred development costs upon termination. - Regarding the relevant clause on milestone payments, payments and annual reconciliations are delayed up to sixty days; I propose shortening the payment window to thirty days following the close of the applicable period. - Regarding the relevant clause on development and manufacturing activities, open-ended expenses are assigned without financial limits; I propose establishing a cap on clinical and regulatory study costs or requiring the client to share expenses for unanticipated post-approval studies. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

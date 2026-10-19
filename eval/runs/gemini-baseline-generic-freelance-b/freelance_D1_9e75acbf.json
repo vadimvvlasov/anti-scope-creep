@@ -1,0 +1,107 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable within 30 days of receipt.",
+   "start": 3790,
+   "end": 3837
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1846,
+   "end": 1995
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 3 rounds of ordinary revisions for the principal creative Deliverables. Client may submit an unlimited number of questions about a Deliverable during the review period.",
+   "start": 4952,
+   "end": 5148
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "start": 9225,
+   "end": 9391
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "start": 8322,
+   "end": 8489
+  }
+ ],
+ "email": true,
+ "seconds": 20.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8904,
+   "prompt_tokens": 4051,
+   "output_tokens": 654,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.51,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable within 30 days of receipt.",
+      "explanation": "Net 30 payment terms require waiting a full month after invoicing, creating cash flow gaps for a freelancer managing ongoing operational expenses.",
+      "suggested_change": "Propose shortening the payment term to Net 15 or upon receipt of invoice."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "Permitting 'minor clarifications' via informal communication channels invites scope creep as clients frequently stretch the definition of minor tweaks.",
+      "suggested_change": "Require all modifications and clarifications to be formally documented and agreed upon in writing before work proceeds."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 3 rounds of ordinary revisions for the principal creative Deliverables. Client may submit an unlimited number of questions about a Deliverable during the review period.",
+      "explanation": "Using soft phrasing like 'intend to allow' rather than a hard contractual limit, combined with unlimited questions, can lead to endless revision loops disguised as inquiries.",
+      "suggested_change": "Replace 'intend to allow' with a strict maximum limit of 3 revision rounds and clarify that excessive inquiries requiring rework will incur additional charges."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+      "explanation": "Termination for convenience on short notice allows the client to cancel after the freelancer has turned down other work, paying only for prorated time without compensation for lost project value.",
+      "suggested_change": "Include a kill fee or a minimum commitment percentage to compensate the freelancer for canceled work."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+      "explanation": "The total project fee is USD 24,875, but the liability cap is set significantly higher at USD 35,000, exposing the freelancer to losses exceeding the total revenue of the project.",
+      "suggested_change": "Cap liability at the total fees actually paid by the client under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3867,
+   "prompt_tokens": 753,
+   "output_tokens": 232,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and propose the following adjustments: - Regarding the payment terms in the agreement, waiting a full month creates cash flow gaps, so I propose shortening the payment term to Net 15 or upon receipt of invoice. - Regarding the relevant clause on communications, informal channels invite scope creep, so I propose requiring all modifications and clarifications to be formally documented and agreed upon in writing before work proceeds. - Regarding the revision clause, soft phrasing can lead to endless revision loops, so I propose replacing this with a strict maximum limit of 3 revision rounds and clarifying that excessive inquiries requiring rework will incur additional charges. - Regarding the termination clause, short notice without compensation can impact lost value, so I propose including a kill fee or a minimum commitment percentage to compensate for canceled work. - Regarding the liability cap in the relevant clause, the current limit exposes me to losses exceeding total revenue, so I propose capping liability at the total fees actually paid by the client under the agreement. Let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,102 @@
+{
+ "id": "cuad:FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement",
+ "chars": 105662,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+   "start": 21306,
+   "end": 21694
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding anything to the contrary in this Agreement, each Party will bear full responsibility, without limit, for the following:\n\n(i) Gross Negligence or Willful Misconduct attributable to its personnel, and, in no event, will a Party be required to release or indemnify the other Party for Gross Negligence or Willful Misconduct attributable to the other Party; and\n\n(ii) its legal obligations to third parties wherein nothing in this Agreement is intended to impair a party's contribution and indemnity rights under law with respect to third party claims.",
+   "start": 51979,
+   "end": 52543
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Neither Party makes any representations as to the number, frequency, or monetary value of the Projects, except as otherwise set forth herein or in any Project Description.",
+   "start": 3251,
+   "end": 3422
+  }
+ ],
+ "email": true,
+ "seconds": 20.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 27254,
+   "prompt_tokens": 22289,
+   "output_tokens": 900,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.23,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+      "explanation": "FCE assigns all intellectual property rights in the Program Results immediately upon creation, long before all research costs are fully paid or milestones are achieved, leaving FCE vulnerable if ExxonMobil withholds payments or terminates.",
+      "suggested_change": "Modify the clause to state that assignment of Program Results to ExxonMobil becomes effective only upon receipt of full payment for the applicable research costs or milestones."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil may terminate this Agreement upon fifteen (15) days written notice, without penalty, payment or prejudice to claims and obligations then accrued, if FCE undergoes a Change in Control... Notwithstanding anything else in this Agreement, in the event of termination under this Paragraph 12.04 ExxonMobil may terminate any licenses granted to FCE under this Agreement that would otherwise survive termination, taking into account the circumstances surrounding the Change in Control. Any licenses granted to ExxonMobil under this Agreement that would otherwise survive termination will continue to survive termination.",
+      "explanation": "ExxonMobil has a unilateral right to terminate upon a Change in Control of FCE and can strip FCE of its surviving licenses while retaining all licenses granted to ExxonMobil, severely punishing FCE for corporate restructuring or acquisition.",
+      "suggested_change": "Remove ExxonMobil's right to terminate or cancel FCE's surviving licenses upon a Change in Control, or ensure mutual treatment where licenses survive for both parties regardless of corporate changes."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1 to ExxonMobil's satisfaction; and ExxonMobil will pay FCE a second and final Milestone Payment of five million United States dollars ($5,000,000 USD), upon FCE achieving Milestone 2 to ExxonMobil's satisfaction.",
+      "explanation": "Milestone payments are conditioned entirely on ExxonMobil's subjective satisfaction, creating a risk that ExxonMobil could arbitrarily withhold milestone payments by claiming dissatisfaction even if objective criteria were met.",
+      "suggested_change": "Tie milestone payments to objective, clearly defined criteria and performance metrics rather than ExxonMobil's sole subjective satisfaction, with an independent dispute resolution mechanism if a dispute arises."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding anything to the contrary in this Agreement, each Party will bear full responsibility, without limit, for the following: (i) Gross Negligence or Willful Misconduct attributable to its personnel, and, in no event, will a Party be required to release or indemnify the other Party for Gross Negligence or Willful Misconduct attributable to the other Party; and (ii) its legal obligations to third parties wherein nothing in this Agreement is intended to impair a party's contribution and indemnity rights under law with respect to third party claims.",
+      "explanation": "The contract explicitly imposes unlimited liability on FCE for gross negligence, willful misconduct, and third-party claims without an overall liability cap for direct damages, posing a severe financial risk.",
+      "suggested_change": "Establish a reasonable overall cap on liability for direct damages and ensure mutual, balanced indemnification terms."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Neither Party makes any representations as to the number, frequency, or monetary value of the Projects, except as otherwise set forth herein or in any Project Description.",
+      "explanation": "FCE is bound by strict exclusivity restrictions while ExxonMobil makes no commitment regarding the volume, frequency, or value of future projects, leaving FCE's dedicated capacity underutilized or constrained without guaranteed return.",
+      "suggested_change": "Add minimum commitments or minimum project volume/value guarantees, or allow FCE to be released from exclusivity if minimum project thresholds are not met."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3125,
+   "prompt_tokens": 721,
+   "output_tokens": 176,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.08,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to move forward and would like to propose a few minor adjustments before signing. - Regarding the intellectual property terms, the relevant clause assigns all rights immediately upon creation before research costs are paid, and I propose modifying this so the assignment becomes effective only upon receipt of full payment. - Regarding liability, the relevant clause imposes unlimited liability for gross negligence and third-party claims, and I propose establishing a reasonable overall cap on liability for direct damages alongside balanced indemnification terms. - Regarding exclusivity, the relevant clause imposes strict restrictions without any volume commitments, and I propose adding minimum project commitments or allowing release from exclusivity if thresholds are not met. Thank you for considering these updates, and please let me know if this works for you."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

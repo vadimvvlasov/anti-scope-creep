@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+   "start": 2339,
+   "end": 2496
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  }
+ ],
+ "email": true,
+ "seconds": 22.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14790,
+   "prompt_tokens": 8896,
+   "output_tokens": 217,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.28,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+      "explanation": "Only the Client may terminate the agreement without cause, while your right to terminate is restricted.",
+      "suggested_change": "Either Party may terminate this Agreement at any time, with or without cause, upon providing written notice to the other Party."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Ownership of your work passes to the Client upon creation or preparation, before you have been paid in full.",
+      "suggested_change": "Upon receipt of full payment for the Services, ownership of the intellectual property in the deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2529,
+   "prompt_tokens": 342,
+   "output_tokens": 92,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.37,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a small adjustment before signing. - Regarding the relevant clause, ownership of the work passes to the client upon creation, before you have been paid in full. I propose modifying this to state that upon receipt of full payment for the services, ownership of the intellectual property in the deliverables shall transfer to the client. Thank you, and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,99 @@
+{
+ "id": "cuad:WestPharmaceuticalServicesInc_20200116_8-K_EX-10.1_11947529_EX-10.1_Supply Agreement",
+ "chars": 82898,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Seller may change any price, freight or payment term hereof upon no less than thirty (30) days' prior written notice; provided, however, that Seller may at any time institute or remove a temporary voluntary allowance of other similar competitive allowance without prior notice.",
+   "start": 27641,
+   "end": 27918
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Title to Product and risk of loss shall pass to Buyer at Seller's facilities upon delivery to a carrier or into Buyer's transport unless otherwise specified in the agreement.",
+   "start": 32213,
+   "end": 32387
+  }
+ ],
+ "email": true,
+ "seconds": 22.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 23206,
+   "prompt_tokens": 17492,
+   "output_tokens": 740,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.24,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Seller may change any price, freight or payment term hereof upon no less than thirty (30) days' prior written notice; provided, however, that Seller may at any time institute or remove a temporary voluntary allowance of other similar competitive allowance without prior notice.",
+      "explanation": "This clause allows the seller to unilaterally alter payment terms and pricing on short notice, creating financial unpredictability and cash flow risk.",
+      "suggested_change": "Remove the seller's right to unilaterally change payment terms and pricing without mutual written consent."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "in the event that the other party concludes in its sole discretion that such Change of Control, if it is implemented: ... then the other party may (but is not obliged to) terminate this Agreement forthwith upon notice to the Affected Party.",
+      "explanation": "The counterparty has the unilateral right to terminate the contract at its sole discretion upon a change of control, leaving us vulnerable even if our operational and financial stability remains sound.",
+      "suggested_change": "Limit termination rights upon a change of control to situations where there is a demonstrable material adverse effect on creditworthiness or performance capability, with a cure period."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "IF BUYER FAILS TO DISSEMINATE SUCH WARNINGS AND INFORMATION, BUYER AGREES TO DEFEND AND INDEMNIFY SELLER AGAINST ANY AND ALL LIABILITY ARISING OUT OF OR IN ANY WAY CONNECTED WITH SUCH FAILURE, INCLUDING BUT NOT LIMITED TO LIABILITY FOR INJURY, SICKNESS, DEATH AND PROPERTY DAMAGE...",
+      "explanation": "This imposes an unlimited and uncapped indemnification obligation for failure to disseminate safety warnings, exposing us to potentially catastrophic financial liability.",
+      "suggested_change": "Cap the indemnification obligation at a reasonable monetary limit (such as total fees paid under the contract) and exclude indirect or consequential damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "(1) Seller shall not be obligated to sell or deliver any quantity of product(s) covered hereby (\"Product\") beyond the amount, if any, which in Seller's sole judgment, is available for such purpose as of the proposed date of shipment to Buyer; (2) the price of Product shall be Seller's price therefor as of the date of shipment; (3) Seller reserves the right to set minimums and/or premiums or to reject orders for unusual configurations, sizes and folds; (4) an overrun or underrun of up to ten percent (10%) shall constitute due performance of any order...",
+      "explanation": "The seller can restrict delivery quantities based on its sole judgment, impose unexpected minimums or premiums, and deliver up to 10% over or under ordered amounts while counting it as full performance.",
+      "suggested_change": "Establish fixed delivery volume commitments with narrow, mutually agreed tolerances and prohibit unilateral surcharges or premium fees."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Title to Product and risk of loss shall pass to Buyer at Seller's facilities upon delivery to a carrier or into Buyer's transport unless otherwise specified in the agreement.",
+      "explanation": "Ownership and title transfer upon delivery before payment is fully settled, which creates risks regarding asset control and financial exposure if payment disputes arise.",
+      "suggested_change": "Retain security interest or title in goods until full payment is received, or align title transfer strictly with payment completion."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2764,
+   "prompt_tokens": 465,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! Thank you for sharing the agreement. I have a couple of quick notes before we move forward. - Regarding the relevant clause on pricing and payment terms, the agreement allows changes on short notice which creates financial unpredictability, so I propose to remove the right to unilaterally change payment terms and pricing without mutual written consent. - Regarding the relevant clause on title and risk of loss, ownership transfers upon delivery before payment is fully settled, so I propose to retain title in goods until full payment is received. Please let me know if these adjustments are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

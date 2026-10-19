@@ -1,0 +1,119 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+   "start": 681,
+   "end": 1063
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "However, the services contemplated by the Agreement must meet the Company's standards and approval and shall be subject to the Company's general right of inspection and supervision to secure their satisfactory completion.",
+   "start": 17465,
+   "end": 17686
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Notwithstanding the foregoing, the Company may terminate the Consultation Period effective immediately upon receipt of written notice by the Consultant, if the Consultant breaches or threatens to breach any provision of Section 6.",
+   "start": 3970,
+   "end": 4200
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The Consultant acknowledges that any breach of the provisions of Section 1, 6 or 7 of this Agreement shall result in serious and irreparable injury to the Company for which the Company cannot be adequately compensated by monetary damages alone. The Consultant agrees, therefore, that, in addition to any other remedy the Company may have, the Company shall be entitled to enforce the specific performance of this Agreement by the Consultant and to seek both temporary and permanent injunctive relief (to the extent permitted by law) without the necessity of proving actual damages or posting a bond.",
+   "start": 18091,
+   "end": 18690
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Subject to approval of the Board of Directors of the Company, the Company shall issue and sell to the Consultant, and the Consultant shall purchase from the Company, subject to the terms and conditions set forth in this Agreement and the Restricted Stock Agreement, 1,990,000 shares (the \"Shares\") of common stock, $0.0001 par value, of the Company (\"Common Stock\"), at a purchase price of $0.0001 per share, for an aggregate purchase price of $190.",
+   "start": 2108,
+   "end": 2557
+  }
+ ],
+ "email": true,
+ "seconds": 23.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10717,
+   "prompt_tokens": 4578,
+   "output_tokens": 1146,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.7,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement. The Consultant also agrees to provide the Company with related services that may be requested from time to time by the Company.",
+      "explanation": "The scope of work is open-ended and unbounded (\"related services that may be requested from time to time\"), exposing you to endless additional work without guaranteed extra compensation.",
+      "suggested_change": "Limit the scope strictly to the tasks outlined in Schedule A and specify that any additional services will require a separate written change order and mutual agreement on hourly or project rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "However, the services contemplated by the Agreement must meet the Company's standards and approval and shall be subject to the Company's general right of inspection and supervision to secure their satisfactory completion.",
+      "explanation": "Requiring services to meet the Company's subjective standards and approval without a defined limit on revisions or feedback cycles can trap you in endless rework without additional pay.",
+      "suggested_change": "Specify a clear limit on the number of revision rounds included in the project scope, and state that additional revisions will be billed at an hourly rate."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding the foregoing, the Company may terminate the Consultation Period effective immediately upon receipt of written notice by the Consultant, if the Consultant breaches or threatens to breach any provision of Section 6.",
+      "explanation": "The company can terminate the agreement immediately upon a suspected or threatened breach of confidentiality or IP provisions, while your ability to exit or cure issues is heavily restricted, potentially resulting in forfeiture of unvested stock and compensation.",
+      "suggested_change": "Provide a reasonable cure period to remedy any alleged breach before the company can terminate the agreement for cause or breach."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All inventions, ideas, creations, discoveries, computer programs, works of authorship, data, developments, technology, designs, innovations and improvements (whether or not patentable and whether or not copyrightable) which are made, conceived, reduced to practice, created, written, designed or developed by the Consultant, solely or jointly with others or under Consultant's direction and whether during normal business hours or otherwise, (i) during the Consultation Period if related to the business of the Company or (ii) during or after the Consultation Period if resulting or directly derived from Proprietary Information (as defined above) (collectively under clauses (i) and (ii), \"Inventions\"), shall be the sole property of the Company. The Consultant hereby assigns to the Company all Inventions and any and all related patents, copyrights, trademarks, trade names, and other industrial and intellectual property rights and applications therefor...",
+      "explanation": "Intellectual property is assigned to the company immediately upon creation, while your compensation consists of shares subject to a multi-year vesting schedule under a Restricted Stock Agreement. If the agreement terminates early, you lose unvested shares after having already handed over all your IP.",
+      "suggested_change": "Clarify that the assignment of intellectual property rights is contingent upon and takes effect only upon full receipt of the corresponding compensation and vesting of the shares."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The Consultant acknowledges that any breach of the provisions of Section 1, 6 or 7 of this Agreement shall result in serious and irreparable injury to the Company for which the Company cannot be adequately compensated by monetary damages alone. The Consultant agrees, therefore, that, in addition to any other remedy the Company may have, the Company shall be entitled to enforce the specific performance of this Agreement by the Consultant and to seek both temporary and permanent injunctive relief (to the extent permitted by law) without the necessity of proving actual damages or posting a bond.",
+      "explanation": "Your liability is completely uncapped, and you waive the company's requirement to prove actual damages or post a bond for injunctive relief, exposing you to severe legal and financial risks in the event of a dispute.",
+      "suggested_change": "Add a mutual limitation of liability capping damages at the total value of compensation received under the agreement, and require the company to post a standard bond for injunctive relief."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Subject to approval of the Board of Directors of the Company, the Company shall issue and sell to the Consultant, and the Consultant shall purchase from the Company, subject to the terms and conditions set forth in this Agreement and the Restricted Stock Agreement, 1,990,000 shares (the \"Shares\") of common stock, $0.0001 par value, of the Company (\"Common Stock\"), at a purchase price of $0.0001 per share, for an aggregate purchase price of $190.",
+      "explanation": "You receive no guaranteed cash compensation for your services; payment is entirely tied to speculative stock subject to a 4-year vesting schedule and a Restricted Stock Agreement, meaning you may perform substantial work for little to no realized financial return if the company fails or terminates you early.",
+      "suggested_change": "Negotiate a guaranteed cash retainer or hourly/project fee for services rendered, independent of equity compensation or long vesting schedules."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4420,
+   "prompt_tokens": 1076,
+   "output_tokens": 297,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.91,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello and thank you for sharing the agreement. I am looking forward to our collaboration, but I would like to propose a few minor adjustments before signing. - Regarding the relevant clause on the scope of work, the agreement is open-ended and risks endless work without extra pay, so we should limit the scope strictly to the tasks outlined in Schedule A and specify that any additional services will require a separate written change order. - Regarding the relevant clause on service standards, the agreement subjects work to subjective approval without limits on revisions, so we should specify a clear limit on the number of revision rounds and state that additional revisions will be billed at an hourly rate. - Regarding the relevant clause on termination, the agreement allows immediate termination for a breach without a chance to fix it, so we should provide a reasonable cure period to remedy any alleged breach before the agreement can be terminated. - Regarding the relevant clause on remedies and breach, the agreement leaves liability uncapped and waives the requirement to prove actual damages, so we should add a mutual limitation of liability capping damages at the total compensation and require a standard bond for injunctive relief. - Regarding the relevant clause on compensation, the agreement relies entirely on speculative stock without guaranteed cash, so we should negotiate a guaranteed cash retainer or hourly fee for services rendered independent of equity compensation. Please let me know your thoughts on these updates so we can move forward."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

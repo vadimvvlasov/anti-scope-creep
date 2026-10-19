@@ -1,0 +1,22 @@
+{
+ "id": "cuad:MetLife, Inc. - Remarketing Agreement",
+ "chars": 111249,
+ "findings": [],
+ "email": false,
+ "seconds": 9.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 26182,
+   "prompt_tokens": 24157,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.62,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

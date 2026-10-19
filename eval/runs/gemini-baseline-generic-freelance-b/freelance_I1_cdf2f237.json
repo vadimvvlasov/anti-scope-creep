@@ -1,0 +1,65 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9162,
+   "end": 9254
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5332,
+   "end": 5418
+  }
+ ],
+ "email": true,
+ "seconds": 14.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7191,
+   "prompt_tokens": 4023,
+   "output_tokens": 245,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.12,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "This allows the client to terminate the contract immediately without any notice and without paying for any work completed or in progress, leaving you uncompensated for your time and effort.",
+      "suggested_change": "Modify the clause to require a reasonable written notice period (e.g., 15 to 30 days) and stipulate that the client must pay for all services performed and expenses incurred up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Since deliverables are handed over before payment is settled (payment terms are Net 30), intellectual property ownership transfers to the client prior to receiving funds, exposing you to the risk of non-payment after the client already owns the work.",
+      "suggested_change": "Amend the clause to state that intellectual property rights transfer to the client only upon receipt of full and final payment for the applicable Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2150,
+   "prompt_tokens": 471,
+   "output_tokens": 121,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the paperwork. Before signing the agreement, I would like to request a couple of adjustments to the relevant clause sections. - In the clause regarding termination, I would like to update it to require a reasonable written notice period and stipulate that payment is provided for all services performed up to that date. - In the clause concerning intellectual property, I propose amending it so that rights transfer to the client only upon receipt of full and final payment for the applicable deliverables. Thank you for your time and cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  }
+ ],
+ "email": true,
+ "seconds": 11.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3377,
+   "prompt_tokens": 964,
+   "output_tokens": 256,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.25,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "This clause delays payments for all milestones (including Milestone 1 due in June) until ninety days after the final software acceptance in September or October. This severely harms your cash flow and forces you to finance the development process.",
+      "suggested_change": "Revise the terms so that each milestone is payable within thirty (30) days following the acceptance of that specific milestone."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "Intellectual property is transferred immediately upon delivery rather than upon payment. If the client delays payment or defaults, they already legally own all the custom code and assets.",
+      "suggested_change": "Modify the clause to state that intellectual property rights shall transfer to the Client only upon receipt of full payment for each respective milestone."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2237,
+   "prompt_tokens": 480,
+   "output_tokens": 142,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed the document and would like to request a couple of minor adjustments before we proceed: - Regarding the timeline in the relevant clause, tying all milestone payments to final software acceptance delays compensation and impacts cash flow. I propose that each milestone be made payable within thirty days following the acceptance of that specific milestone. - Regarding the intellectual property terms, assigning rights upon delivery rather than upon payment leaves payment unprotected. I suggest modifying the clause to state that intellectual property rights shall transfer only upon receipt of full payment for each respective milestone. Please let me know if these updates look acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

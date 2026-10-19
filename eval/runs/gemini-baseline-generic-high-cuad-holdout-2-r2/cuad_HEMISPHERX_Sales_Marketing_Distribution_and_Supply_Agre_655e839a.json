@@ -1,0 +1,91 @@
+{
+ "id": "cuad:HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement",
+ "chars": 73685,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Beginning on the second year anniversary of the signing of this Agreement (\"Effective Date\") and on each succeeding anniversary of the Effective Date during the term of this agreement and in consideration of a varies of economic factors such as for example, costs of labour, costs of material and costs the price paid by SCIEN for Product(s) shall be renegotiated. Any price increase will need to be justified by HEMISPHERX. Both parties shall, in good faith, attempt to agree upon a reasonable price increase. In the event agreement cannot be reached the Agreement shall terminate.",
+   "start": 14585,
+   "end": 15167
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "HEMISPHERX will have the option at any time to buy out this Agreement. If exercised within the first two (2) years HEMISPHERX will pay SCIEN three (3) times the Product sales for the preceding 12 months. If exercised after year 3, HEMISPHERX will pay SCIEN two (2) times the Product sales for the preceding 12 months.",
+   "start": 33014,
+   "end": 33331
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Subject to clause X.B 1.), SCIEN shall defend and indemnify HEMISPHERX and its Affiliates and hold each of them harmless against all claims, demands, actions, losses, expenses, damages, liabilities, costs (including interest, penalties and reasonable attorneys' fees) and judgements suffered by each of them, which arise out of SCIEN's negligent or wilful acts or omissions or which otherwise arise out of SCIEN's breach of the Agreement.",
+   "start": 23529,
+   "end": 23967
+  }
+ ],
+ "email": true,
+ "seconds": 19.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19842,
+   "prompt_tokens": 15679,
+   "output_tokens": 716,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.71,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Beginning on the second year anniversary of the signing of this Agreement (\"Effective Date\") and on each succeeding anniversary of the Effective Date during the term of this agreement and in consideration of a varies of economic factors such as for example, costs of labour, costs of material and costs the price paid by SCIEN for Product(s) shall be renegotiated. Any price increase will need to be justified by [PARTY_B]. Both parties shall, in good faith, attempt to agree upon a reasonable price increase. In the event agreement cannot be reached the Agreement shall terminate.",
+      "explanation": "[PARTY_B] can force price renegotiations annually, and if the parties fail to reach an agreement, the contract automatically terminates, putting your investment and business continuity at risk.",
+      "suggested_change": "Propose tying annual price adjustments to a predictable index such as the Consumer Price Index (CPI) or mutual agreement without automatic termination."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will have the option at any time to buy out this Agreement. If exercised within the first two (2) years [PARTY_B] will pay SCIEN three (3) times the Product sales for the preceding 12 months. If exercised after year 3, [PARTY_B] will pay SCIEN two (2) times the Product sales for the preceding 12 months.",
+      "explanation": "[PARTY_B] holds a unilateral buyout option that allows them to terminate the agreement at any time and take over the market after SCIEN has built the brand and distribution network.",
+      "suggested_change": "Remove the unilateral buyout option or ensure the buyout multiple is significantly higher and compensates SCIEN for long-term projected lost profits."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Subject to clause X.B 1.), SCIEN shall defend and indemnify [PARTY_B] and its Affiliates and hold each of them harmless against all claims, demands, actions, losses, expenses, damages, liabilities, costs (including interest, penalties and reasonable attorneys' fees) and judgements suffered by each of them, which arise out of SCIEN's negligent or wilful acts or omissions or which otherwise arise out of SCIEN's breach of the Agreement.",
+      "explanation": "Your indemnification and liability obligations for breach or negligence are completely uncapped, exposing SCIEN to potentially unlimited financial damages far exceeding contract revenues.",
+      "suggested_change": "Insert a mutual cap on liability linked to total fees paid under the contract and exclude consequential damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Prepare and provide a 3-year post regulatory approval Sales, Marketing, and Distribution Plan including a 3-year minimum sale forecast and a committed-dollar field sales force, product manager and marketing budget to be agreed by both parties and a non-binding 12 month Product forecast no later than six (6) months prior to the anticipated registration and subsequent launch date for each Product, also to be agreed by both parties,",
+      "explanation": "You are required to commit to mandatory minimum sales forecasts and committed-dollar marketing budgets and dedicated personnel whose financial impact could become overly burdensome if sales underperform.",
+      "suggested_change": "Make marketing spend and sales forecasts flexible or tied to actual market performance rather than fixed financial commitments."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3462,
+   "prompt_tokens": 775,
+   "output_tokens": 175,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.36,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sharing the agreement. I have reviewed the terms and would like to propose a few updates before signing:\n\n- Regarding the relevant clause on pricing, the agreement allows for annual renegotiations that automatically terminate the contract if unresolved; I propose tying adjustments to a predictable index or mutual agreement without automatic termination.\n- Regarding the relevant clause on buyouts, the agreement grants a unilateral option to take over the project at any time; I propose removing this option or ensuring fair compensation.\n- Regarding the relevant clause on indemnification, the agreement imposes completely uncapped liability; I propose adding a mutual liability cap linked to total contract fees.\n\nPlease let me know if these adjustments work for you.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

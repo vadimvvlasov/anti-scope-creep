@@ -1,0 +1,57 @@
+{
+ "id": "cuad:TALCOTTRESOLUTIONLIFEINSURANCECO-SEPARATEACCOUNTTWELVE_04_30_2020-EX-99.8(L)-SERVICE AGREEMENT",
+ "chars": 29797,
+ "findings": [],
+ "email": false,
+ "seconds": 8.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9294,
+   "prompt_tokens": 5952,
+   "output_tokens": 460,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.63,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Administrator agrees to indemnify and hold harmless the Trust, the Trust's administrators, investment adviser, and transfer agent, and each of their directors, trustees, officers, employees, agents and each person, if any, who controls them within the meaning of the Securities Act of 1933, as amended (the \"Securities Act\"), against any losses, claims, damages, liabilities or expenses to which an indemnitee may become subject...",
+      "explanation": "The contract imposes broad indemnification obligations on you without a liability cap, exposing you to potentially unlimited financial exposure for claims, errors, or breaches.",
+      "suggested_change": "Propose adding an overall limitation of liability cap and mutualizing the indemnification terms."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "In consideration of the fees or compensation Administrator will receive from the Trust or other parties under other agreements or arrangements, in connection with the services Administrator performs under this agreement, the sufficiency of which Administrator acknowledges to be sufficient, Administrator agrees to perform the administrative services and functions specified in Schedule B attached hereto...",
+      "explanation": "Your compensation is not explicitly defined in this agreement and relies on external or collateral agreements, forcing you to acknowledge the sufficiency of fees upfront.",
+      "suggested_change": "Explicitly define the fee structure, payment amounts, and payment schedules directly within this Agreement."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Upon the request of the Trust or its designee, Administrator shall provide copies of all the historical records relating to transactions between the Funds and the Plans, written communications regarding the Funds to or from such Plans and other materials, in each case (i) as are maintained by Administrator in the ordinary course of its business and in compliance with laws and regulations governing transfer agents, and (ii) as may reasonably be requested...",
+      "explanation": "The Trust can make broad and potentially open-ended requests for historical records, compliance checks, and reports, increasing administrative burden without extra pay.",
+      "suggested_change": "Clarify that extraordinary requests outside the ordinary course of business or exceeding standard reporting requirements will be subject to additional fees."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

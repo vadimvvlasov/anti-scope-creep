@@ -1,0 +1,96 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "HSNS hereby assigns all right, title and interest in and to any customization, enhancement, amendment or changes made by or for HSNS pursuant to this Agreement, and hereby waives any and all moral rights that HSNS may retain in and to such customizations, enhancements, amendment and changes.",
+   "start": 20435,
+   "end": 20727
+  }
+ ],
+ "email": true,
+ "seconds": 28.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19090,
+   "prompt_tokens": 12852,
+   "output_tokens": 836,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.65,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "HSNS hereby assigns all right, title and interest in and to any customization, enhancement, amendment or changes made by or for HSNS pursuant to this Agreement, and hereby waives any and all moral rights that HSNS may retain in and to such customizations, enhancements, amendment and changes.",
+      "explanation": "This clause immediately assigns all intellectual property rights in any modifications or custom work to E.piphany upon creation, without conditioning the transfer on receipt of full payment or compensation.",
+      "suggested_change": "Modify the clause to state that intellectual property assignment only takes effect upon E.piphany's full payment for the applicable custom development or deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "HSNS hereby agrees to indemnify, defend and hold harmless E.piphany, and its officers, directors and partners (each, an 'Indemnified Party') against any and all claims, demands, causes of action, damages, costs, expenses, penalties, losses and liabilities... arising out of or resulting from (i) HSNS's providing or failure to provide Outsourcing Services...",
+      "explanation": "HSNS is subjected to an expansive, completely uncapped indemnification obligation for claims relating to the Outsourcing Services, whereas E.piphany's liability is heavily limited elsewhere in the contract.",
+      "suggested_change": "Cap HSNS's indemnification obligations and overall liability to a reasonable limit such as fees paid under the agreement and make indemnification mutual."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "HSNS will pay to E.piphany a minimum sell through revenue commitment of $750,000.00 ('MINIMUM SELL-THROUGH COMMITMENT') during the initial three year term of this Agreement on the dates and in the minimum amounts ('Minimum Quarterly Payments') as follows.",
+      "explanation": "HSNS is locked into mandatory, non-refundable minimum quarterly payments totaling $750,000 over three years regardless of actual sales performance or market demand.",
+      "suggested_change": "Remove the rigid minimum sell-through commitment and tie payments strictly to actual usage or actual revenue generated from software usage."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Upon termination of this Agreement, other than by reason of a termination for material breach due to a breach by HSNS pursuant to Section 12.1... Termination of this Agreement shall not relieve HSNS's obligation to pay all fees that are owed under this Agreement or any Order Form. All payments made by HSNS to E.piphany hereunder are non-refundable.",
+      "explanation": "Upon termination, HSNS remains obligated to pay all outstanding fees and forfeits all prepayments as strictly non-refundable, while E.piphany retains discretion over post-termination support and incurs no refund obligations.",
+      "suggested_change": "Include provisions for pro-rated refunds of prepaid fees for unused services or licenses if the contract is terminated without cause."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The Minimum Sell Through Commitment will increase in Years 2 and 3 of this Agreement as follows: YEAR 2 - Annual minimum payment ($250,000.00), plus a percentage increase in the annual minimum payment equal to 50% of the difference between the number of emails sent by HSNS... up to a maximum Year 2 payment of $375,000.00.",
+      "explanation": "This clause automatically expands HSNS's financial obligations and payment quotas based on activity metrics without giving HSNS reciprocal benefits or renegotiation rights, functioning as financial scope expansion.",
+      "suggested_change": "Eliminate automatic increases to minimum payment commitments based on email volume, or ensure that volume increases correspond to tier discounts or revenue-sharing benefits rather than higher fixed minimum payments."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2794,
+   "prompt_tokens": 384,
+   "output_tokens": 94,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.71,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together and have just one minor point to discuss before signing. - Regarding the relevant clause, it transfers all intellectual property rights immediately upon creation without conditioning the transfer on receipt of full payment; please modify the agreement so that the intellectual property assignment only takes effect upon full payment for the applicable deliverables. Thank you and best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

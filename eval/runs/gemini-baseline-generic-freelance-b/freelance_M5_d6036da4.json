@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+   "start": 8103,
+   "end": 8294
+  }
+ ],
+ "email": true,
+ "seconds": 14.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7495,
+   "prompt_tokens": 4018,
+   "output_tokens": 362,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.02,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "The client gains ownership of all deliverables upon paying only the first milestone invoice, meaning they own future work and deliverables before those services are fully paid for, exposing the freelancer to non-payment risk after IP transfer.",
+      "suggested_change": "Propose that ownership transfers only upon receipt of full and final payment for all deliverables or respective milestones."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "Only the client has the right to terminate the agreement for convenience, and crucially, any fees for services already in progress at termination are completely forfeitable and not payable to you.",
+      "suggested_change": "Give both parties mutual termination for convenience rights and ensure that all work completed and services in progress up to the effective date of termination are paid."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+      "explanation": "While there is a general liability cap, your indemnification obligations are explicitly excluded from this cap, leaving you exposed to potentially unlimited financial liability for third-party claims.",
+      "suggested_change": "Subject Contractor's indemnification obligations to the same overall liability cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2392,
+   "prompt_tokens": 587,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.21,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to propose a few minor adjustments before signing: - Regarding intellectual property, the relevant clause transfers ownership of all deliverables upon payment of only the first milestone, which exposes the provider to non-payment risks; I propose that ownership transfer only upon receipt of full and final payment for all deliverables. - Regarding termination, the agreement allows only the client to terminate for convenience and makes fees for services in progress not payable; I propose giving both parties mutual termination rights and ensuring that all services in progress up to the effective date are paid. - Regarding liability, the relevant clause excludes indemnification obligations from the general liability cap; I propose subjecting these indemnification obligations to the same overall liability cap. Please let me know if these changes work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

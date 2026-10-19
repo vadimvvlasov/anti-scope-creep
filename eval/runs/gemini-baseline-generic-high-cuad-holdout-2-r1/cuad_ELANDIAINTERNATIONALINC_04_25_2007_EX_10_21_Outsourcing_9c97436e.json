@@ -1,0 +1,91 @@
+{
+ "id": "cuad:ELANDIAINTERNATIONALINC_04_25_2007-EX-10.21-Outsourcing Agreement",
+ "chars": 82889,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Datec is to provide a range of reports and/or data required to develop such reports in an agreed format to the BSP or its nominee on daily, weekly, monthly and ad hoc basis as requested by BSP.",
+   "start": 41236,
+   "end": 41429
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Should the CPI increase exceed more than 10% in any given year the maximum amount applied will be 10% or which ever is lower.",
+   "start": 52003,
+   "end": 52128
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The BSP may after giving due consideration to all circumstances and not acting unreasonably, terminate this agreement by giving written notice to Datec if there is a change of control or major shareholding of Datec.",
+   "start": 55933,
+   "end": 56148
+  }
+ ],
+ "email": true,
+ "seconds": 21.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 24366,
+   "prompt_tokens": 18875,
+   "output_tokens": 662,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.13,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Datec must indemnify, defend and hold harmless the BSP, their employees, agents, successors and assigns, from any and all Damages arising from, in connection with, or based on allegations of, any of the following: (a) Datec's breach of... (c) any Claim arising out of or in any way relating to... (iii) any Claim arising from any breach by Datec of its obligations under this agreement.",
+      "explanation": "This creates an extremely broad, uncapped indemnity for any breach of contract or claim, exposing Datec to unlimited financial liability far exceeding the total contract value.",
+      "suggested_change": "Insert a reciprocal liability cap (e.g., capping total liability at the fees paid in the preceding 12 months) and limit indemnities strictly to third-party claims rather than standard internal breaches."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Datec is to provide a range of reports and/or data required to develop such reports in an agreed format to the BSP or its nominee on daily, weekly, monthly and ad hoc basis as requested by BSP.",
+      "explanation": "Requiring Datec to provide ad hoc reports and additional reports specified from time to time without a guaranteed mechanism for extra compensation can lead to scope creep and uncompensated administrative burden.",
+      "suggested_change": "Specify that ad hoc reports or reports outside the agreed standard reporting package will be charged as out-of-scope project work at Datec's standard rates."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Should the CPI increase exceed more than 10% in any given year the maximum amount applied will be 10% or which ever is lower.",
+      "explanation": "Capping the annual price increase at 10% during high inflationary environments forces Datec to absorb escalating operational costs if inflation surpasses 10%.",
+      "suggested_change": "Remove the arbitrary 10% cap on CPI adjustments so prices fully reflect actual macroeconomic inflation rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The BSP may after giving due consideration to all circumstances and not acting unreasonably, terminate this agreement by giving written notice to Datec if there is a change of control or major shareholding of Datec.",
+      "explanation": "This gives BSP the unilateral right to terminate the contract upon a change of control in Datec, without a reciprocal right for Datec if BSP undergoes structural changes.",
+      "suggested_change": "Make change-of-control termination rights mutual or clarify that termination requires objective evidence of detrimental impact on service delivery."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2909,
+   "prompt_tokens": 600,
+   "output_tokens": 143,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. Before signing the agreement, I would like to propose a few adjustments: - Regarding the reporting clause, the current terms create an uncompensated administrative burden for ad hoc tasks, so I propose specifying that extra reports are charged at standard rates. - Regarding the price adjustment clause, capping increases during high inflation forces the absorption of escalating costs, so I propose removing the arbitrary cap to reflect macroeconomic inflation rates. - Regarding the termination clause, the current terms grant unilateral rights upon a change of control, so I propose making these rights mutual or requiring objective evidence of impact. Thank you for your time. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

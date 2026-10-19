@@ -1,0 +1,51 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  }
+ ],
+ "email": true,
+ "seconds": 16.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8713,
+   "prompt_tokens": 5674,
+   "output_tokens": 84,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.33,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Payment is due 90 days after invoicing, which severely delays your cash flow and leaves you waiting three months to be paid for completed work.",
+      "suggested_change": "Invoices are payable Net 30 from receipt of invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3253,
+   "prompt_tokens": 312,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the paperwork. Before signing the agreement, I have one quick request. - Regarding the relevant clause, payment is due 90 days after invoicing, which severely delays your cash flow and leaves you waiting three months to be paid for completed work, and I propose changing this to: Invoices are payable Net 30 from receipt of invoice. Thank you for your understanding and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

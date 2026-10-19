@@ -1,0 +1,51 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 949,
+   "end": 1244
+  }
+ ],
+ "email": true,
+ "seconds": 19.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5992,
+   "prompt_tokens": 949,
+   "output_tokens": 180,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.7,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "Although labeled as a non-binding estimate, specifying target hours and a specific notification threshold creates commercial pressure. Clients frequently mistake estimates for fixed caps, which can lead to disputes when overruns occur.",
+      "suggested_change": "Explicitly state that estimates are for guidance only and that all hours worked will be billed and paid on a time-and-materials basis without requiring prior approval for overruns."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2256,
+   "prompt_tokens": 412,
+   "output_tokens": 75,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. - Regarding the relevant clause, specifying target hours and a notification threshold creates commercial pressure, and we propose to update the agreement to explicitly state that estimates are for guidance only and that all hours worked will be billed and paid on a time-and-materials basis. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

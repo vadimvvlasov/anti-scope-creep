@@ -1,0 +1,79 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company. No other fees and/or expenses will be paid to CONSULTANT, unless such fees and/or expenses have been approved in advance by the appropriate Company executive.",
+   "start": 2448,
+   "end": 2797
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein. To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+   "start": 7053,
+   "end": 7564
+  }
+ ],
+ "email": true,
+ "seconds": 22.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11896,
+   "prompt_tokens": 6563,
+   "output_tokens": 551,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.69,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company. No other fees and/or expenses will be paid to CONSULTANT, unless such fees and/or expenses have been approved in advance by the appropriate Company executive.",
+      "explanation": "The client can require additions and alterations to your work without any additional compensation. This creates the risk that you must perform extra work for free.",
+      "suggested_change": "The Client shall compensate the Contractor for any additions or alterations requested outside the agreed Statement of Work at mutually agreed rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "The contract allows the client to request unlimited revisions and alterations based on their sole discretion with no numerical limit. This creates the risk of endless revision cycles.",
+      "suggested_change": "The Client may request up to three rounds of revisions, and any additional revisions shall be subject to extra charges."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein. To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+      "explanation": "Intellectual property ownership transfers to the client immediately upon creation or via work-made-for-hire terms before you have been paid. This creates the risk that the client owns your work even if they fail to pay you.",
+      "suggested_change": "Upon receipt of full payment for the applicable work product, ownership of the intellectual property shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3237,
+   "prompt_tokens": 699,
+   "output_tokens": 177,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.59,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a few minor requests before signing: - Regarding the relevant clause, the agreement allows for additions and alterations without extra compensation, so I propose that the client shall compensate the contractor for any additions or alterations requested outside the agreed statement of work at mutually agreed rates. - Regarding the relevant clause, the agreement permits unlimited revision cycles, so I propose that the client may request up to three rounds of revisions, and any additional revisions shall be subject to extra charges. - Regarding the relevant clause, intellectual property rights transfer before payment is completed, so I propose that upon receipt of full payment for the applicable work product, ownership of the intellectual property shall transfer to the client. Thank you for your understanding, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

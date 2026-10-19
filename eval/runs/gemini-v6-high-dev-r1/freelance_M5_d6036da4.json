@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M5",
+ "chars": 19432,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+   "start": 9030,
+   "end": 9223
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+   "start": 5121,
+   "end": 5262
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+   "start": 8103,
+   "end": 8294
+  }
+ ],
+ "email": true,
+ "seconds": 15.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9891,
+   "prompt_tokens": 5677,
+   "output_tokens": 377,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.86,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice. Contractor may not terminate for convenience. Fees for Services in progress at the effective termination date are not payable.",
+      "explanation": "Only the client can terminate the contract without cause, and you won't be paid for work in progress if they do. This leaves you unable to exit safely or get paid for ongoing work.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice, and the Client shall pay the Contractor for all Services performed and costs incurred up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Upon payment of the first milestone invoice, Client owns all rights in all Deliverables, including Deliverables delivered after that payment.",
+      "explanation": "Intellectual property rights transfer to the client after only the first milestone payment, rather than upon full payment for all work. This means the client owns your work before you are fully paid.",
+      "suggested_change": "Upon receipt of full payment for all Services and Deliverables, the Client owns all rights in all Deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that Contractor's indemnification obligations under Section 11 are not subject to this cap.",
+      "explanation": "Your indemnification obligations are excluded from the liability cap and have no financial limit, exposing you to potentially unlimited damages for third-party claims.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2812,
+   "prompt_tokens": 602,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.42,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am reviewing the agreement and would like to suggest a few adjustments before signing. - Regarding the relevant clause on termination, only one party can terminate without cause and work in progress is not paid; I propose that either party may terminate this Agreement for convenience upon 20 days' written notice, and the Client shall pay the Contractor for all Services performed and costs incurred up to the effective date of termination. - Regarding the relevant clause on intellectual property, rights transfer after the first milestone rather than full payment; I propose that upon receipt of full payment for all Services and Deliverables, the Client owns all rights in all Deliverables. - Regarding the relevant clause on liability, indemnification obligations are excluded from the cap; I propose that the aggregate liability of either party arising from this Agreement is capped at USD 35,000. Thank you for your consideration, and I look forward to your thoughts."
+   }
+  }
+ ],
+ "dropped": []
+}

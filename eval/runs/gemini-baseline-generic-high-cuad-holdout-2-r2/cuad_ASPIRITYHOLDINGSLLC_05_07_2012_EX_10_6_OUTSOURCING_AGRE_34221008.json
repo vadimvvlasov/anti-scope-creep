@@ -1,0 +1,85 @@
+{
+ "id": "cuad:ASPIRITYHOLDINGSLLC_05_07_2012-EX-10.6-OUTSOURCING AGREEMENT",
+ "chars": 67111,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Section 8.02 Termination. The Company or the Contractor may terminate this Agreement at any time in whole or in part as more  specifically provided below, and in such case, the Contractor will be paid fees incurred up to the date of such termination plus its expenses  accrued as of such date within 30 days of such termination. The Company will have the ability to terminate this Agreement by giving 60 days' prior  written notice to the Contractor. The Contractor will have the ability to terminate this Agreement by giving 90 days' prior written notice to the  Company.",
+   "start": 52934,
+   "end": 53506
+  }
+ ],
+ "email": true,
+ "seconds": 20.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19011,
+   "prompt_tokens": 13401,
+   "output_tokens": 743,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.59,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Section 7.03 Intellectual Property Infringement. The Contractor agrees that it shall defend, indemnify and hold harmless, at its own expense, all suits and claims against the Company and any officers, directors, employees and affiliates of the Company (collectively, the \"Company Indemnified Parties\"), for infringement or violation of any patent, trademark, copyright, trade secret or other intellectual property rights of any third party that relates to this Agreement or the Offering, or servicing of the Notes. The Contractor agrees that it shall pay all sums, including without limitation, reasonable attorneys' fees and other costs incurred by the Company...",
+      "explanation": "This clause imposes broad, uncapped indemnification obligations on me for third-party intellectual property claims related to the services or offering, exposing me to potentially bankrupting legal and financial liabilities.",
+      "suggested_change": "Limit the indemnification obligation to a reasonable cap (such as total fees received under the agreement) and exclude claims arising from company-provided materials or modifications made by the Company."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Section 3.01(f) Ownership of Web Pages. Any and all web pages used by Contractor in connection with the Offering (the \"Web Pages\"), and all associated Proprietary Rights, shall be owned exclusively by the Company.",
+      "explanation": "The contract grants immediate and exclusive ownership of all web pages and associated intellectual property rights to the Company without conditioning this transfer on full payment, meaning the Company could own my work even if invoices are disputed or unpaid.",
+      "suggested_change": "Modify the clause to state that ownership and intellectual property rights in the web pages and deliverables transfer to the Company only upon receipt of full and final payment."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Section 3.01(c) During the term of this Agreement the Contractor, in conjunction with the Trustee, shall perform ministerial tasks included in the customer service and investor relations functions with respect to the Offering, as directed from time to time by the Company...",
+      "explanation": "The phrase 'as directed from time to time by the Company' creates open-ended obligations that can lead to scope creep, requiring me to perform extra, uncompensated tasks outside the original agreement.",
+      "suggested_change": "Define the specific scope of customer service and investor relations tasks clearly, and stipulate that any additional tasks requested by the Company will be billed at an agreed hourly rate or via a written change order."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Section 8.02 Termination. The Company or the Contractor may terminate this Agreement at any time in whole or in part as more specifically provided below, and in such case, the Contractor will be paid fees incurred up to the date of such termination plus its expenses accrued as of such date within 30 days of such termination. The Company will have the ability to terminate this Agreement by giving 60 days' prior written notice to the Contractor. The Contractor will have the ability to terminate this Agreement by giving 90 days' prior written notice to the Company.",
+      "explanation": "The termination notice periods are asymmetrical, requiring me to give 90 days' notice while the Company only needs to give 60 days, restricting my operational flexibility compared to the client.",
+      "suggested_change": "Make the termination notice period mutual and equal for both parties, such as requiring 60 days' written notice from either party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2283,
+   "prompt_tokens": 440,
+   "output_tokens": 126,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.35,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! I am writing to review the paperwork and would like to request a couple of adjustments to the agreement before signing. - Regarding the relevant clause, the termination notice periods are currently asymmetrical, requiring me to provide 90 days of notice while the Company only needs to provide 60 days, which restricts my operational flexibility. I propose modifying this so that the termination notice period is mutual and equal for both parties, such as requiring 60 days of written notice from either side. Thank you for reviewing this and working with me. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

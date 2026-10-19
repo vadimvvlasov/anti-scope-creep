@@ -1,0 +1,107 @@
+{
+ "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement",
+ "chars": 65651,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "At its sole cost and expense, Aucta shall be responsible and liable for all development and manufacturing activities required for the filing and approval of the Dossiers for the Products in and for the Territory, including without limitation all costs and management of any required pre-approval and post-approval clinical or other studies.",
+   "start": 12746,
+   "end": 13086
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+   "start": 40868,
+   "end": 41104
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY HEREIN, NEITHER PARTY SHALL BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, WHETHER FORESEEABLE OR NOT, THAT ARE IN ANY WAY RELATED TO THIS AGREEMENT.",
+   "start": 57234,
+   "end": 57462
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quoted_text": "If this Agreement is terminated by ETON (i) under Section 11.3, in addition to any remedies that ETON is entitled to, then (a) Aucta shall transfer ownership of the Dossiers to an Aucta shareholder-controlled entity to enable ETON to continue to commercialize the Products in the Territory;",
+   "start": 42337,
+   "end": 42627
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "An amount of one million dollars ($1,000,000) within thirty (30) days after the issuance and listing of a patent in the Orange Book for the Product and its Dossier, only if that patent is listed prior to the submission of an ANDA referencing the Product and its Dossier as the reference product.",
+   "start": 17861,
+   "end": 18156
+  }
+ ],
+ "email": true,
+ "seconds": 26.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19812,
+   "prompt_tokens": 14589,
+   "output_tokens": 865,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.98,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "At its sole cost and expense, Aucta shall be responsible and liable for all development and manufacturing activities required for the filing and approval of the Dossiers for the Products in and for the Territory, including without limitation all costs and management of any required pre-approval and post-approval clinical or other studies.",
+      "explanation": "Taking on all development, manufacturing, and unspecified pre-approval and post-approval clinical studies at your sole cost and expense exposes you to unlimited financial risk if regulatory authorities demand extensive or unexpected studies.",
+      "suggested_change": "Limit your obligations to explicitly defined development activities, cap financial exposure for clinical studies, and require ETON to share costs for any post-approval studies mandated by the FDA."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+      "explanation": "ETON can terminate the contract unilaterally at its convenience after product approval, leaving you with invested development costs and no guaranteed return, while you lack a reciprocal convenience termination right.",
+      "suggested_change": "Provide a mutual right to terminate for convenience upon reasonable notice, or ensure that if ETON terminates for convenience, Aucta receives compensation for unrecovered investments."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "NOTWITHSTANDING ANYTHING TO THE CONTRARY HEREIN, NEITHER PARTY SHALL BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, WHETHER FORESEEABLE OR NOT, THAT ARE IN ANY WAY RELATED TO THIS AGREEMENT.",
+      "explanation": "Although indirect damages are disclaimed, there is no overall aggregate cap on direct liability and indemnification obligations, exposing you to potentially unlimited direct damages.",
+      "suggested_change": "Insert an overall aggregate liability cap for direct damages, such as capping liability at the total fees paid or payable under the Agreement."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "If this Agreement is terminated by ETON (i) under Section 11.3, in addition to any remedies that ETON is entitled to, then (a) Aucta shall transfer ownership of the Dossiers to an Aucta shareholder-controlled entity to enable ETON to continue to commercialize the Products in the Territory;",
+      "explanation": "Requiring the transfer or assignment of regulatory dossiers or IP control upon certain termination events could strip you of core assets before receiving full financial realization.",
+      "suggested_change": "Clarify that ownership and control of Dossiers remain with Aucta, and ensure any transition or transfer rights are strictly conditioned on full receipt of all earned payments."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "An amount of one million dollars ($1,000,000) within thirty (30) days after the issuance and listing of a patent in the Orange Book for the Product and its Dossier, only if that patent is listed prior to the submission of an ANDA referencing the Product and its Dossier as the reference product.",
+      "explanation": "Milestone payments are conditioned on patent office and regulatory timelines outside your direct control, which could delay or forfeit earned milestone compensation.",
+      "suggested_change": "Remove strict external preconditions or restructure milestone triggers based on patent filing and prosecution efforts rather than third-party Orange Book listing dates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 5220,
+   "prompt_tokens": 962,
+   "output_tokens": 243,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to propose a few adjustments before signing: - Regarding the relevant clause on development costs, taking on all development and manufacturing at sole cost and expense exposes one to unlimited financial risk if authorities demand unexpected studies, so I propose to limit obligations to explicitly defined development activities and cap financial exposure. - Regarding the termination clause, unilateral termination after product approval leaves invested costs without guaranteed return without a reciprocal right, so I propose to provide a mutual right to terminate for convenience or ensure compensation. - Regarding the liability clause, lacking an overall aggregate cap on direct liability exposes the party to unlimited direct damages, so I propose to insert an overall aggregate liability cap for direct damages. - Regarding the dossier transfer clause, requiring the transfer of regulatory dossiers upon certain termination events could strip core assets before full financial realization, so I propose to clarify that ownership of dossiers remains with the provider and ensure transfer rights are conditioned on full receipt of payments. - Regarding the milestone payment clause, conditioning payments on external timelines outside direct control could delay compensation, so I propose to restructure milestone triggers based on patent filing efforts. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

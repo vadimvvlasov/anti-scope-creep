@@ -1,0 +1,79 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The Base Consulting Fee shall be payable in accordance with the Company's normal payroll procedures in effect from time to time.",
+   "start": 3316,
+   "end": 3444
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The Consultant may voluntarily terminate the Consultant's engagement with the Company at any time by giving the Company 120 days prior written Notice of the termination.",
+   "start": 8715,
+   "end": 8884
+  }
+ ],
+ "email": true,
+ "seconds": 22.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11251,
+   "prompt_tokens": 6873,
+   "output_tokens": 374,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.75,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "This clause obligates you to perform unspecified and potentially limitless tasks outside the agreed scope simply because you are capable of doing them, risking uncompensated extra work.",
+      "suggested_change": "Delete this catch-all provision and explicitly state that your services are limited strictly to those detailed in the agreement, with any additional work requiring a separate written amendment and compensation."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The Base Consulting Fee shall be payable in accordance with the Company's normal payroll procedures in effect from time to time.",
+      "explanation": "As an independent consultant, tying your compensation to internal company payroll procedures creates ambiguity and potential payment delays, as payroll schedules are typically designed for W-2 employees rather than contractors.",
+      "suggested_change": "Modify the clause to specify that fees will be paid on a fixed schedule upon receipt of your monthly invoice."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The Consultant may voluntarily terminate the Consultant's engagement with the Company at any time by giving the Company 120 days prior written Notice of the termination.",
+      "explanation": "This imposes an overly burdensome 120-day notice requirement on you for voluntary termination, which is double the 60-day notice required from the Company, restricting your flexibility to leave.",
+      "suggested_change": "Reduce the Consultant's voluntary termination notice period to 60 days to match the Company's termination notice period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3659,
+   "prompt_tokens": 600,
+   "output_tokens": 189,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.47,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to working together, but I would like to request a few adjustments before signing. - Regarding the relevant clause on unspecified tasks, this creates an obligation for uncompensated extra work outside the agreed scope, so I propose that we delete this catch-all provision and state that services are limited strictly to those detailed in the agreement. - Regarding the relevant clause on payment procedures, tying compensation to internal payroll creates ambiguity and potential payment delays, so I propose modifying the clause to specify that fees will be paid upon receipt of the monthly invoice. - Regarding the relevant clause on voluntary termination, the 120-day notice is overly burdensome and restricts flexibility, so I propose reducing the notice period to 60 days to match the other party's notice. Please let me know if these changes work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

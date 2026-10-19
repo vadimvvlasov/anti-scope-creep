@@ -1,0 +1,65 @@
+{
+ "id": "cuad:WebmdHealthCorp_20050908_S-1A_EX-10.7_1027007_EX-10.7_Content License Agreement",
+ "chars": 14993,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "If WebMD should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content Emdeon has licensed (collectively, \"Updates\"), Emdeon has the option, at no additional cost, to receive the most recent Update.",
+   "start": 2468,
+   "end": 2712
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "WebMD shall bear the cost of any reformatting necessary to provide the Content in the Format.",
+   "start": 2907,
+   "end": 3000
+  }
+ ],
+ "email": true,
+ "seconds": 18.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8225,
+   "prompt_tokens": 3511,
+   "output_tokens": 273,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.83,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "If [PARTY_A] should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content [PARTY_B] has licensed (collectively, \"Updates\"), [PARTY_B] has the option, at no additional cost, to receive the most recent Update.",
+      "explanation": "This clause obligates [PARTY_A] to provide any new editions, enhancements, or modifications of the content to [PARTY_B] for free if [PARTY_A] creates them, which can result in uncompensated ongoing work.",
+      "suggested_change": "Specify that [PARTY_A] is not obligated to provide updates, or require additional fees for new editions and major enhancements."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "[PARTY_A] shall bear the cost of any reformatting necessary to provide the Content in the Format.",
+      "explanation": "This requires [PARTY_A] to absorb all expenses related to reformatting the content to meet the specified format, which could lead to unexpected out-of-pocket costs.",
+      "suggested_change": "Clearly define the deliverable format upfront and state that any custom reformatting or format changes requested after delivery will be billed separately."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2614,
+   "prompt_tokens": 397,
+   "output_tokens": 99,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the paperwork. I have a minor note on the agreement before we proceed. - Regarding the relevant clause, it currently requires providing new editions or enhancements at no additional cost, which can result in uncompensated ongoing work. I propose we modify this to specify that there is no obligation to provide updates, or require additional fees for new editions and major enhancements. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

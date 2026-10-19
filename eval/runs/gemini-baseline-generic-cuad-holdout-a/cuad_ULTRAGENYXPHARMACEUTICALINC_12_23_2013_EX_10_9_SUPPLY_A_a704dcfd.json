@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT",
+ "chars": 14592,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "This limitation of liability does not apply to the injury of the life, body or health of a person, to claims according to the Product Liability Act (Produkthaftungsgesetz) or any other coercive legal liability claims.",
+   "start": 8849,
+   "end": 9066
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payments shall be made by Ultragenyx in Euro and within [***] days after receipt of a proper invoice.",
+   "start": 4027,
+   "end": 4128
+  }
+ ],
+ "email": true,
+ "seconds": 18.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6941,
+   "prompt_tokens": 3272,
+   "output_tokens": 221,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.12,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "This limitation of liability does not apply to the injury of the life, body or health of a person, to claims according to the Product Liability Act (Produkthaftungsgesetz) or any other coercive legal liability claims.",
+      "explanation": "As the supplier, carving out statutory product liability and personal injury claims means Cremer faces potentially uncapped financial exposure for defects or accidents related to the Product.",
+      "suggested_change": "Request an overall aggregate liability cap and require Ultragenyx to maintain comprehensive product liability insurance."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payments shall be made by Ultragenyx in Euro and within [***] days after receipt of a proper invoice.",
+      "explanation": "If the redacted payment window is excessively long, it creates cash flow burdens for Cremer while producing and supplying bulk chemical products.",
+      "suggested_change": "Specify a shorter, commercially reasonable payment timeframe such as Net 30 days from invoice receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2724,
+   "prompt_tokens": 448,
+   "output_tokens": 134,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.24,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I look forward to working together, but I would like to request a few adjustments to the relevant clause sections before signing. - Regarding the relevant clause on limitation of liability, the current terms could lead to uncapped financial exposure, so I propose establishing an overall aggregate liability cap and ensuring adequate insurance is maintained. - Regarding the relevant clause on payment terms, an extended payment window may create cash flow challenges, so I propose specifying a commercially reasonable timeframe such as Net 30 days from invoice receipt. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

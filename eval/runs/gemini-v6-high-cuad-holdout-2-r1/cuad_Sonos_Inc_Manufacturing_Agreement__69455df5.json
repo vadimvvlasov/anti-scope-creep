@@ -1,0 +1,63 @@
+{
+ "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+ "chars": 109219,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3 (OWNERSHIP; GRANT OF RIGHTS: TRADEMARKS USAGE), OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11 (INDEMNITY), OR BREACH OF SECTION 12 (CONFIDENTIALITY), IN NO EVENT SHALL EITHER PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED THE AMOUNTS PAID BY SONOS FOR THE PRODUCTS IN THE [*] PERIOD IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.",
+   "start": 74031,
+   "end": 74454
+  }
+ ],
+ "email": true,
+ "seconds": 21.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 31420,
+   "prompt_tokens": 25627,
+   "output_tokens": 427,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.03,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Except for preexisting IAC Property and any third party's Intellectual Property, IAC shall and does hereby irrevocably assign, and shall and does cause IAC Affiliates and IAC Subcontractors to irrevocably assign, to [PARTY_B] all of IAC's, IAC Affiliates' or IAC Subcontractors' worldwide right title and interest in and to the [PARTY_B] Property , if any, whether developed solely by [PARTY_B] or jointly between [PARTY_B] or a [PARTY_B] Affiliate and IAC, an IAC Affiliate, or an IAC Subcontractor, that may arise through the performance of its obligations under this Agreement.",
+      "explanation": "Intellectual property ownership transfers immediately upon creation or performance via present assignment language, before you have received full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable deliverables, the Contractor hereby assigns to the Client all worldwide right, title, and interest in and to such deliverables."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT IN THE EVENT OF A VIOLATION OF SECTION 3 (OWNERSHIP; GRANT OF RIGHTS: TRADEMARKS USAGE), OR FOR EACH PARTY'S OBLIGATIONS UNDER SECTION 11 (INDEMNITY), OR BREACH OF SECTION 12 (CONFIDENTIALITY), IN NO EVENT SHALL EITHER PARTY'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED THE AMOUNTS PAID BY SONOS FOR THE PRODUCTS IN THE [*] PERIOD IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap, leaving you with unlimited liability for such claims.",
+      "suggested_change": "In no event shall either party's total liability arising out of or related to this Agreement exceed the amounts paid by the Client for the products in the period immediately preceding the event giving rise to the liability."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2303,
+   "prompt_tokens": 438,
+   "output_tokens": 120,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.2,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the contract. Before signing the agreement, I would like to request a small revision: - The relevant clause excludes indemnification obligations from the overall liability cap, leaving liability unlimited for such claims, and we propose modifying this so that in no event shall either party's total liability arising out of or related to this Agreement exceed the amounts paid by the Client for the products in the period immediately preceding the event giving rise to the liability. Please let me know your thoughts on this adjustment. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

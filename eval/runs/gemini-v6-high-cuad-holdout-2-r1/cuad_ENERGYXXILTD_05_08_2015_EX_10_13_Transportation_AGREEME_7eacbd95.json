@@ -1,0 +1,22 @@
+{
+ "id": "cuad:ENERGYXXILTD_05_08_2015-EX-10.13-Transportation AGREEMENT",
+ "chars": 60982,
+ "findings": [],
+ "email": false,
+ "seconds": 14.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21318,
+   "prompt_tokens": 16688,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.89,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

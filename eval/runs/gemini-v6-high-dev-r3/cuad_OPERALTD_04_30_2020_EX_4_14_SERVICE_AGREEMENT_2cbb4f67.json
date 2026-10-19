@@ -1,0 +1,51 @@
+{
+ "id": "cuad:OPERALTD_04_30_2020-EX-4.14-SERVICE AGREEMENT",
+ "chars": 20983,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+   "start": 12262,
+   "end": 12385
+  }
+ ],
+ "email": true,
+ "seconds": 21.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9961,
+   "prompt_tokens": 6163,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "After PC Financial confirms that invoice contents are correct, PC Financial shall pay within 45 days after confirming thus.",
+      "explanation": "Your payment is delayed beyond 30 days and made conditional upon the Client confirming the invoice, giving the Client control over when you get paid.",
+      "suggested_change": "The Client shall pay undisputed invoices within thirty (30) days of receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2202,
+   "prompt_tokens": 329,
+   "output_tokens": 94,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.14,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the contract and would like to request one minor adjustment before signing. - Regarding the relevant clause, the current terms delay payment beyond thirty days and make it conditional upon invoice confirmation. I propose modifying this so that the agreement states: The Client shall pay undisputed invoices within thirty (30) days of receipt. Thank you for your understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

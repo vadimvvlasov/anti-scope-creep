@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  }
+ ],
+ "email": true,
+ "seconds": 16.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7002,
+   "prompt_tokens": 3971,
+   "output_tokens": 202,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.05,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause forces you to provide extra services requested by the client for free, leading to significant unpaid work and reduced profitability.",
+      "suggested_change": "Remove 'at no additional charge' and stipulate that any additional services will be subject to a written change order and billed at your standard hourly rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "An unlimited revision clause allows the client to demand endless modifications without extra compensation, trapping you in an indefinite project cycle.",
+      "suggested_change": "Limit revisions to a specific number of rounds (e.g., two rounds per deliverable) and state that any further revisions will be billed at your standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3349,
+   "prompt_tokens": 432,
+   "output_tokens": 139,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.28,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I am looking forward to working together and have a few minor updates to propose before signing. - Regarding the relevant clause on additional services, the current terms require extra work to be performed without compensation. I propose that we modify the agreement so that any additional services are subject to a written change order and billed at standard rates. - Regarding the relevant clause concerning revisions, the provision for unlimited modifications can create an indefinite project cycle. I propose that we limit revisions to a specific number of rounds and bill any further changes at the standard hourly rate. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

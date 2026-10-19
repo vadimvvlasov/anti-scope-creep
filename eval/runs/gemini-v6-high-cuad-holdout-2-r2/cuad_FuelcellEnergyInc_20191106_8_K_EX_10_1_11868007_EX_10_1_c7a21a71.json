@@ -1,0 +1,65 @@
+{
+ "id": "cuad:FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement",
+ "chars": 105662,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+   "start": 21306,
+   "end": 21694
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "(a) ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1 to ExxonMobil's satisfaction; and",
+   "start": 46374,
+   "end": 46547
+  }
+ ],
+ "email": true,
+ "seconds": 27.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29380,
+   "prompt_tokens": 23948,
+   "output_tokens": 312,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.78,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "ExxonMobil will solely own Program Information, Program Patents, and copyrightable works resulting from the Program (collectively, \"Program Results\"), irrespective of whether the Program Results are conceived, created, developed or acquired by employees or other representatives of FCE, ExxonMobil, or both. FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+      "explanation": "Intellectual property ownership transfers to the client immediately upon creation through present assignment wording, before you receive full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable deliverables, ownership of Program Results shall transfer to the Client, and the Contractor hereby agrees to execute necessary assignment documentation upon such payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "(a) ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1 to ExxonMobil's satisfaction; and",
+      "explanation": "Milestone payments are conditional upon the client's subjective satisfaction, which is an event controlled entirely by the client.",
+      "suggested_change": "ExxonMobil will pay FCE a first Milestone Payment of five million United States dollars ($5,000,000 USD) upon FCE achieving Milestone 1, with acceptance not to be unreasonably withheld or delayed; and"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3081,
+   "prompt_tokens": 536,
+   "output_tokens": 109,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.27,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a couple of minor points to review before signing. - In the relevant clause covering intellectual property, ownership currently transfers upon creation prior to receiving full payment; I propose that ownership transfer upon receipt of full payment for the applicable deliverables. - In the relevant clause covering milestone payments, the current terms make payment conditional on subjective satisfaction; I propose modifying this so that acceptance is not unreasonably withheld or delayed. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

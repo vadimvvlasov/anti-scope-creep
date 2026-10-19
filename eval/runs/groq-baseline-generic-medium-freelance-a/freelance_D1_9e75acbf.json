@@ -1,0 +1,118 @@
+{
+ "id": "freelance:D1",
+ "chars": 19641,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "12.2 Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "start": 9220,
+   "end": 9391
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: 30 days from receipt",
+   "start": 13193,
+   "end": 13229
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13282,
+   "end": 13307
+  }
+ ],
+ "email": true,
+ "seconds": 89.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4136,
+   "prompt_tokens": 2670,
+   "output_tokens": 1466,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 41.01,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The term “minor clarifications” is vague. The client could argue that a clarification is minor while it actually adds significant effort, leaving you to perform extra work without additional compensation.",
+      "suggested_change": "Add language that defines \"minor clarification\" (e.g., changes that do not increase the estimated effort by more than X % or require less than Y hours) and require any work beyond that to be documented as a change order with agreed fees before it begins."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "12.2 Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+      "explanation": "The client can end the engagement without cause after only 20 days, potentially leaving you with unrecovered time and costs invested in the project while still being obliged to complete work up to the termination date.",
+      "suggested_change": "Insert a termination fee for early client termination (e.g., a percentage of the remaining contract value or a fixed amount) or require mutual agreement for termination unless a material breach occurs."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "4.2 Invoices are payable within 30 days of receipt. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\n4.4 Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "A 30‑day payment window coupled with a modest 1% per month late‑fee may lead to cash‑flow delays, especially if disputes are raised and the undisputed portion is held up pending resolution.",
+      "suggested_change": "Shorten net payment terms to 15 days, increase the statutory interest to 1.5% per month on overdue amounts, and require that any dispute be resolved within 5 business days, with the undisputed portion payable on the original due date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2877,
+   "prompt_tokens": 1862,
+   "output_tokens": 1015,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.12,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: 30 days from receipt",
+      "explanation": "The client has 30 days after receiving an invoice to pay. If they delay, you may experience cash‑flow gaps, and the 1.0% late‑payment interest may not sufficiently compensate the delay.",
+      "suggested_change": "Negotiate a shorter payment period (e.g., Net 14) or a higher late‑payment interest rate (e.g., 1.5‑2% per month) and include a clause that allows you to suspend work after a specified number of days past due."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The contract caps your liability at $35,000, which may be lower than the total damages you could be exposed to (e.g., breach of confidentiality, IP infringement, or consequential losses). If a claim exceeds this amount, you remain liable for the full exposure.",
+      "suggested_change": "Raise the liability cap to at least the total contract value plus a reasonable multiple (e.g., 150% of the fee) or limit liability to direct damages only, excluding indirect or consequential losses."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1671,
+   "prompt_tokens": 938,
+   "output_tokens": 733,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 20.88,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I would like to suggest a few adjustments to the agreement:\n\n- The relevant clause on “minor clarifications” is vague. I propose adding a definition that limits a minor clarification to changes that do not increase the estimated effort by more than X % or require less than Y hours, and any work beyond that should be captured in a change order with agreed fees before it begins.\n- The termination clause allows either party to end the agreement with 20 days’ notice. I suggest including a termination fee for early client termination (e.g., a percentage of the remaining contract value) or requiring mutual agreement unless a material breach occurs.\n- The payment period of 30 days may create cash‑flow delays. I propose reducing the period to Net 14 or increasing the late‑payment interest to 1.5‑2 % per month, and adding a provision that permits suspension of work after a specified number of days past due.\n- The liability cap of USD 35,000 could be insufficient. I recommend raising the cap to at least 150 % of the contract fee or limiting liability to direct damages only, excluding indirect or consequential losses.\n\nThank you for considering these points. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

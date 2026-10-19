@@ -1,0 +1,176 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "2.3 Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 1997,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "5.4 The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4876,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "4.2 Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3733,
+   "end": 3896
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 8969,
+   "end": 9145
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Liability cap: USD 35,000",
+   "start": 13023,
+   "end": 13048
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Notice period: 20 days",
+   "start": 13077,
+   "end": 13099
+  }
+ ],
+ "email": true,
+ "seconds": 94.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4422,
+   "prompt_tokens": 2621,
+   "output_tokens": 1801,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 39.56,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a formal change order, but the term \"materially increase\" is subjective. In practice the client could add work that feels minor to them but is significant to you, leading to unpaid extra effort.",
+      "suggested_change": "Require that any clarification that could affect effort, cost, or schedule be documented in writing and approved by both parties with an associated fee before work proceeds."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "2.3 Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "\"Reasonable changes\" are left undefined, giving the client leeway to request additional work that they consider reasonable but that may substantially increase your workload. If the budget is not precisely defined, you could end up delivering extra work for the same fee.",
+      "suggested_change": "Specify a clear process: any scope change must be submitted as a written change order, include a detailed estimate of additional cost and schedule impact, and must be signed off by both parties before the work is performed."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "5.4 The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "Fifteen revision rounds is a high number and may be interpreted as unlimited, especially if \"ordinary\" is not defined. You could spend considerable time on revisions without additional compensation.",
+      "suggested_change": "Limit revisions to a reasonable number (e.g., 3‑4 rounds) and define \"ordinary revisions\". State that any revision beyond the agreed number will be billed as a change order at a pre‑agreed rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 60‑day payment term delays cash flow and the 1% monthly interest may be insufficient to incentivize timely payment. You risk waiting two months for each milestone, which can strain your operations.",
+      "suggested_change": "Shorten the payment term to Net 30 (or Net 15) and increase the late‑payment interest to a commercially reasonable rate (e.g., 1.5%‑2% per month) or include a fixed late fee."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the agreement at any time with only 20 days' notice and pay only for work already completed. This leaves you exposed to lost revenue on work in progress and sunk costs for resources allocated to the project.",
+      "suggested_change": "Add a termination fee for convenience termination (e.g., 30%–50% of the remaining contract value) or require that any work in progress be compensated on a pro‑rated basis for the portion of effort already expended."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3116,
+   "prompt_tokens": 1856,
+   "output_tokens": 1260,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.18,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "The contract permits up to 15 rounds of revisions. In practice this can translate into a large amount of extra work that may exceed the time you budgeted, effectively expanding the scope without extra compensation.",
+      "suggested_change": "Limit revisions to a reasonable number (e.g., 3 rounds) and state that any additional revisions will be billed at an agreed hourly or per‑revision rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You will not receive payment until 60 days after invoicing, which can strain cash flow, especially for a project of this size and duration.",
+      "suggested_change": "Reduce the payment period to Net 30 or Net 15, or tie each milestone payment to a shorter net term (e.g., Net 15 after each milestone invoice)."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Liability cap: USD 35,000",
+      "explanation": "The liability cap exceeds the total contract value (USD 24,875). If a claim arises, you could be liable for up to $35,000, which is more than what you will be paid.",
+      "suggested_change": "Cap liability at the total contract fee or a multiple (e.g., 1.5 × fee) and carve out liability for gross negligence, willful misconduct, or breach of confidentiality."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notice period: 20 days",
+      "explanation": "A 20‑day notice period may allow the client to terminate the agreement with relatively short warning, potentially leaving you with unfinished work and no compensation for effort already expended.",
+      "suggested_change": "Make the notice period mutual (e.g., 20 days for either party) and add a provision that termination for convenience by the client triggers payment for all work performed up to the termination date, plus any reasonable demobilisation costs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3034,
+   "prompt_tokens": 1547,
+   "output_tokens": 1487,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 25.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n\n- The relevant clause allows minor clarifications without a formal change order, but “materially increase” is subjective. To avoid uncertainty, I propose that any clarification that could affect effort, cost, or schedule be documented in writing and approved by both parties with an associated fee before work proceeds.\n- The relevant clause mentions “reasonable changes” to scope without defining the term. To ensure clarity, I propose that any scope change be submitted as a written change order, include a detailed estimate of additional cost and schedule impact, and be signed off by both parties before the work is performed.\n- The relevant clause permits up to 15 rounds of ordinary revisions, which may be interpreted as unlimited. I propose limiting revisions to a reasonable number, such as 3‑4 rounds, defining “ordinary revisions,” and stating that any revision beyond the agreed number will be billed as a change order at a pre‑agreed rate.\n- The relevant clause sets payment terms at Net 60 with a 1% monthly interest for late payment. To improve cash flow, I propose shortening the payment term to Net 30 (or Net 15) and increasing the late‑payment interest to a commercially reasonable rate, such as 1.5%‑2% per month, or adding a fixed late fee.\n- The relevant clause allows termination for convenience with 20 days’ notice and payment only for services performed to the termination date. I propose adding a termination fee for convenience termination, such as 30%–50% of the remaining contract value, or requiring pro‑rated compensation for work in progress.\n- The revision allowance clause again specifies 15 rounds of revisions. To keep the workload manageable, I propose limiting revisions to 3 rounds and billing any additional revisions at an agreed hourly or per‑revision rate.\n- The payment period clause repeats Net 60 terms. I propose reducing the payment period to Net 30 or Net 15, or tying each milestone payment to a shorter net term, such as Net 15 after each milestone invoice.\n- The liability cap clause sets a limit of USD 35,000, which exceeds the total contract value. I propose capping liability at the total contract fee or a multiple, such as 1.5 × the fee, with exceptions for gross negligence, willful misconduct, or breach of confidentiality.\n- The notice period clause provides a 20‑day notice for termination. I propose making the notice period mutual and adding that termination for convenience by the client triggers payment for all work performed up to the termination date plus any reasonable demobilisation costs.\n\nThank you for considering these updates. I look forward to finalizing the agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

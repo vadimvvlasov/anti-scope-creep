@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees to assign, and by this Agreement and Surgical's signature below, Surgical hereby does assign to Imprimis all right, title and interest in and to Work Product, and all copies thereof, and the copyright, patent, trademark, trade secret and all other proprietary rights in Work Product.",
+   "start": 5292,
+   "end": 5591
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW).",
+   "start": 3246,
+   "end": 3537
+  }
+ ],
+ "email": true,
+ "seconds": 19.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11217,
+   "prompt_tokens": 6713,
+   "output_tokens": 293,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.8,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees to assign, and by this Agreement and Surgical's signature below, Surgical hereby does assign to Imprimis all right, title and interest in and to Work Product, and all copies thereof, and the copyright, patent, trademark, trade secret and all other proprietary rights in Work Product.",
+      "explanation": "Intellectual property ownership of your work transfers to the client immediately upon signature, before you have been paid.",
+      "suggested_change": "Ownership of the Work Product shall transfer to the Client only upon receipt of full payment for the applicable services."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW).",
+      "explanation": "Payment is due sixty days after the end of each calendar quarter, which delays your compensation beyond standard 30-day terms.",
+      "suggested_change": "Within thirty (30) days after the end of each calendar quarter during the Term, the Client shall deliver to the Contractor a report setting forth the calculation of the applicable Sales Commission and remit the total payment due."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2727,
+   "prompt_tokens": 518,
+   "output_tokens": 165,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.58,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi, thank you for sharing the agreement. I am looking forward to collaborating and have a couple of small items to address before signing. - In the relevant clause, intellectual property ownership transfers to the client immediately upon signature, prior to payment. I propose that ownership of the Work Product shall transfer to the Client only upon receipt of full payment for the applicable services. - In the relevant clause, the payment schedule is set to sixty days after the end of each calendar quarter. I propose that within thirty (30) days after the end of each calendar quarter during the Term, the Client shall deliver to the Contractor a report setting forth the calculation of the applicable Sales Commission and remit the total payment due. Please let me know if these adjustments are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

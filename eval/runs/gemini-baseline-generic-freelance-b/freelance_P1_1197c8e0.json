@@ -1,0 +1,91 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3810,
+   "end": 3969
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9045,
+   "end": 9216
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.",
+   "start": 8474,
+   "end": 8631
+  }
+ ],
+ "email": true,
+ "seconds": 17.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8251,
+   "prompt_tokens": 4015,
+   "output_tokens": 490,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.28,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 90 payment terms force the freelancer to wait three months to get paid for completed work, severely harming cash flow.",
+      "suggested_change": "Change the payment terms from Net 90 to Net 30."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "‑Services‑ means the professional services, deliverables, meetings, documentation, support activities, and related work described in this Agreement and its schedules.",
+      "explanation": "The inclusion of \"and related work\" is overly broad and vague, potentially enabling the client to demand extra tasks without additional compensation.",
+      "suggested_change": "Remove \"and related work\" or restrict the definition strictly to the expressly described deliverables and services."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "While mutual in text, termination for convenience with short notice allows the client to pull out at any time, leaving the freelancer uncompensated for reserved capacity or preparatory work beyond services properly performed up to that date.",
+      "suggested_change": "Require a longer notice period (e.g., 30 days) and include compensation for non-cancellable commitments and reserved time."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.",
+      "explanation": "The phrase \"subject to applicable limitations\" is ambiguous and may fail to cap indemnification obligations, potentially exposing the freelancer to unlimited damages from third-party claims.",
+      "suggested_change": "Explicitly state that all liability, including indemnification obligations, is subject to the aggregate liability cap in Section 10.2."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2790,
+   "prompt_tokens": 577,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.05,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have a few suggestions regarding the agreement before we proceed. - Regarding the relevant clause on payment terms, Net 90 terms force me to wait three months to get paid for completed work and harm cash flow, so I propose changing the payment terms from Net 90 to Net 30. - Regarding the relevant clause on termination, termination for convenience with short notice allows pulling out at any time without compensation for preparatory work, so I propose requiring a longer notice period and including compensation for non-cancellable commitments and reserved time. - Regarding the relevant clause on third-party claims, the wording subject to applicable limitations is ambiguous and may fail to cap obligations, so I propose explicitly stating that all liability, including indemnification obligations, is subject to the aggregate liability cap. Thank you for your cooperation. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 31914,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Contractor hereby agrees to indemnify and hold the Company, including its Affiliates and its and their respective officers, directors, partners, members, employees and agents, harmless from and against any and all Claims brought in connection with or arising out of or related to Contractor's or its Affiliates' fraud, willful misconduct, negligence or material breach of this Agreement.",
+   "start": 19269,
+   "end": 19656
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+   "start": 11304,
+   "end": 11558
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Company agrees to have Fesnak & Associates, LLP pay the Service Fees directly to Contractor.",
+   "start": 8268,
+   "end": 8360
+  }
+ ],
+ "email": true,
+ "seconds": 20.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11633,
+   "prompt_tokens": 6754,
+   "output_tokens": 545,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.3,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Contractor hereby agrees to indemnify and hold the Company, including its Affiliates and its and their respective officers, directors, partners, members, employees and agents, harmless from and against any and all Claims brought in connection with or arising out of or related to Contractor's or its Affiliates' fraud, willful misconduct, negligence or material breach of this Agreement.",
+      "explanation": "The indemnification and general liability provisions place an unlimited liability burden on the Contractor for negligence or breach, with no limitation or cap on damages. This exposes the Contractor to catastrophic financial risk that could far exceed the total revenue earned under the agreement.",
+      "suggested_change": "Insert a mutual limitation of liability capping each party's total aggregate liability under the Agreement to the total fees paid or payable to Contractor under the Agreement over the preceding 12 months."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+      "explanation": "The Company has the unilateral authority to expand the scope of products and newly acquired brands covered by the agreement without requiring the Contractor's consent. This can force the Contractor to handle significantly more inventory and administrative workload without guaranteed operational capacity limits.",
+      "suggested_change": "Amend this clause to require the mutual written consent of both parties before adding new products, line extensions, or newly acquired brands to Exhibit A."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Company agrees to have Fesnak & Associates, LLP pay the Service Fees directly to Contractor.",
+      "explanation": "The contract delegates payment obligations to a third-party accounting firm rather than establishing a direct payment obligation and guarantee from the Company itself, creating potential payment friction if the third party fails to disburse funds.",
+      "suggested_change": "Revise the clause to state that the Company remains directly and primarily responsible for paying all Service Fees to Contractor, with Fesnak & Associates acting merely as the Company's designated paying agent."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3800,
+   "prompt_tokens": 694,
+   "output_tokens": 189,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to request a few changes before signing: - Regarding the liability provisions, the agreement places an unlimited liability burden on the contractor without a cap on damages, and I propose inserting a mutual limitation of liability capping each party's total aggregate liability to the total fees paid or payable to the contractor under the agreement over the preceding 12 months. - Regarding the product scope, the company has unilateral authority to add new products and brands without consent, and I propose amending the relevant clause to require the mutual written consent of both parties before adding new items. - Regarding the payment terms, payment obligations are delegated to a third party rather than the company itself, and I propose revising the clause to state that the company remains directly and primarily responsible for paying all service fees. I look forward to finalizing this. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

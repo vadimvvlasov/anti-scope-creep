@@ -1,0 +1,52 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9021,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "4.2 Invoices are payable Net 40.",
+   "start": 3786,
+   "end": 3818
+  }
+ ],
+ "email": false,
+ "seconds": 9.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9228,
+   "prompt_tokens": 5684,
+   "output_tokens": 267,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.77,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "Only the client has the right to terminate the contract without cause, while you cannot. Because work properly performed is paid, this is a low-severity asymmetry.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice to the other party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "4.2 Invoices are payable Net 40.",
+      "explanation": "Payment is due within 40 days, which is slower than standard 30-day terms and delays your cash flow.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

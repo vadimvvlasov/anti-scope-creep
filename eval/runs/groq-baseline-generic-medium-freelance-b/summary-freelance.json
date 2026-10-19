@@ -1,0 +1,599 @@
+{
+ "set": "freelance",
+ "contracts": 19,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 6,
+   "fp": 2,
+   "fn": 2,
+   "precision": 0.75,
+   "recall": 0.75,
+   "severity_accuracy": 0.833
+  },
+  "one_sided_termination": {
+   "tp": 5,
+   "fp": 10,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 0.6
+  },
+  "scope_creep": {
+   "tp": 2,
+   "fp": 30,
+   "fn": 1,
+   "precision": 0.062,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.5,
+   "recall": 0.5,
+   "severity_accuracy": 1.0
+  },
+  "unfavorable_payment_terms": {
+   "tp": 6,
+   "fp": 12,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 0.833
+  },
+  "unlimited_revisions": {
+   "tp": 3,
+   "fp": 4,
+   "fn": 0,
+   "precision": 0.429,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 23,
+   "fp": 59,
+   "fn": 4,
+   "precision": 0.28,
+   "recall": 0.852,
+   "severity_accuracy": 0.826
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 107,
+  "findings_kept": 90,
+  "dropped": {
+   "quote_not_found": 17
+  },
+  "quote_not_found_rate": 0.159,
+  "tokens_mean": 8739,
+  "tokens_max": 11141,
+  "seconds_mean": 83.4,
+  "seconds_max": 144.8
+ },
+ "false_positives": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notice period: 20 days",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Requests outside that scope are handled as new Services or change requests.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quote": "3.1 Acceptance Period. Upon delivery of each Milestone, Client shall have ten (10) business days (\"Acceptance Period\") to test the deliverables against Exhibit A.\n3.2 Rejection & Remediation. If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quote": "Milestone 4: Final Production Deployment & Handoff (Due September 30, 2025): $8,500.00 USD (10%)",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Subject to full payment of all bi-weekly invoices, Provider transfers and assigns to Client all rights, title, and ownership of all code, API documentation, and scripts generated during billed hours under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "12.2 Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "6.1 Upon full payment of the fees specifically associated with a Deliverable, Client receives the rights expressly granted for that Deliverable under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Revision allowance: 2 rounds",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "Requests outside that scope are handled as part of the Services.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Payment period: Net 30",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quote": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Revision allowance: 3 rounds",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M3"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Multiple independent feedback channels can increase the risk of contradictory instructions, so the parties will make reasonable efforts to consolidate comments before a revision cycle.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M3"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quote": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M4"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Liability cap: USD 35,000",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M4"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M5"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quote": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M5"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M6"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M6"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Review period: 10 days",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M6"
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quote": "Revision allowance: 3 rounds",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M6"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "12.2 Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M7"
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quote": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M7"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quote": "Revision allowance: 3 rounds",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notice period: 20 days\nCure period: 15 days",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8c"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Payment period: Net 30",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quote": "Review period: 10 days",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Revision allowance: 3 rounds",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "The parties acknowledge that the fee is based on the assumptions stated in the schedules. If a key assumption changes, the parties will document the resulting effect on price or schedule. Silence, continued discussion, or participation in a meeting does not by itself constitute approval of a commercial change.\n\nWhere Client requests an accelerated delivery, Contractor may assess whether additional personnel or overtime are required. Any acceleration premium will be quoted before the accelerated work starts.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I3"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:I3"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:B1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Requests outside that scope are handled as part of the Services.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:B1"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "freelance:M4",
+   "category": "scope_creep",
+   "risk_level": "medium"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "uncapped_liability",
+   "risk_level": "medium"
+  },
+  {
+   "id": "freelance:M8b",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "freelance:M8c",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "freelance:M5",
+   "category": "ip_transfer_before_payment",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "unfavorable_payment_terms",
+   "gold": "low",
+   "predicted": "high"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 2001,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  }
+ ],
+ "email": true,
+ "seconds": 16.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9242,
+   "prompt_tokens": 5657,
+   "output_tokens": 363,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.76,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You are required to accommodate scope changes without extra pay as long as they fit within the overall project budget.",
+      "suggested_change": "Any changes or additions to the scope of work shall be agreed upon in writing by both parties and billed at the Contractor's standard rates."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "The contract permits up to 15 rounds of revisions, which is an excessive amount of revision work.",
+      "suggested_change": "The parties agree to include up to two rounds of revisions for the principal creative Deliverables. Additional revisions shall be charged at the Contractor's standard hourly rate."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Payment terms of Net 60 significantly delay your receipt of funds, creating cash flow risks.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2752,
+   "prompt_tokens": 511,
+   "output_tokens": 216,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed the text and would like to propose a few adjustments before we move forward. - Regarding the relevant clause on scope changes, the current terms require accommodating changes within the existing budget without additional pay; I propose that any changes or additions to the scope of work shall be agreed upon in writing by both parties and billed at the Contractor's standard rates. - Regarding the relevant clause on revision rounds, the agreement permits up to 15 rounds of revisions, which creates an excessive amount of revision work; I propose that the parties agree to include up to two rounds of revisions for the principal creative Deliverables, with additional revisions charged at the Contractor's standard hourly rate. - Regarding the relevant clause on payment terms, Net 60 significantly delays the receipt of funds and creates cash flow risks; I propose that invoices are payable Net 30. Thank you for your understanding, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": []
+}

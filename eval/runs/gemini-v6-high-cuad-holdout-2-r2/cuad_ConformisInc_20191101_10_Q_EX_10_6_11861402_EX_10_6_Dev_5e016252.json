@@ -1,0 +1,51 @@
+{
+ "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+ "chars": 63217,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "CONFORMIS' LIABILITY ON A PER OCCURRENCE BASIS UNDER SECTION 7.3(A)(IV) SHALL NOT   EXCEED THE GREATER OF (I) $[**] AND (II) THE AMOUNT OF INSURANCE COVERAGE ACTUALLY PAID TO   CONFORMIS UNDER THEN-CURRENT INSURANCE POLICIES OF CONFORMIS IN RESPECT OF SUCH   DAMAGES.",
+   "start": 38835,
+   "end": 39102
+  }
+ ],
+ "email": true,
+ "seconds": 21.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22084,
+   "prompt_tokens": 15911,
+   "output_tokens": 170,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.48,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "CONFORMIS' LIABILITY ON A PER OCCURRENCE BASIS UNDER SECTION 7.3(A)(IV) SHALL NOT EXCEED THE GREATER OF (I) $[**] AND (II) THE AMOUNT OF INSURANCE COVERAGE ACTUALLY PAID TO CONFORMIS UNDER THEN-CURRENT INSURANCE POLICIES OF CONFORMIS IN RESPECT OF SUCH DAMAGES.",
+      "explanation": "Your liability cap is restricted solely to product liability claims, leaving your general indemnification and breach obligations outside the cap with no liability ceiling.",
+      "suggested_change": "The total aggregate liability of the Contractor arising out of or related to this Agreement shall be subject to a fixed cap, and all indemnification obligations shall be included within and subject to such aggregate liability limit."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2128,
+   "prompt_tokens": 401,
+   "output_tokens": 131,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.88,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Thank you for sharing the agreement. Before signing, I would like to propose a small adjustment: - Regarding the relevant clause, the current liability cap is restricted solely to certain claims, which leaves general obligations without a liability ceiling. I propose that the total aggregate liability of the Contractor arising out of or related to this agreement shall be subject to a fixed cap, and all indemnification obligations shall be included within and subject to such aggregate liability limit. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

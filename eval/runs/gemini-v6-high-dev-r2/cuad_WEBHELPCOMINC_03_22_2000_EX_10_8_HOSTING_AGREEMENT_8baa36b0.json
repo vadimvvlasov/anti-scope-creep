@@ -1,0 +1,51 @@
+{
+ "id": "cuad:WEBHELPCOMINC_03_22_2000-EX-10.8-HOSTING AGREEMENT",
+ "chars": 19257,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCLUDING LIABILITY FOR INFRINGEMENT CLAIMS AS DISCUSSED IN SECTION 9 OF THIS AGREEMENT, IN NO EVENT SHALL eGAIN BE LIABLE TO CUSTOMER FOR CONSEQUENTIAL, EXEMPLARY, INDIRECT, SPECIAL OR INCIDENTAL DAMAGES (INCLUDING, WITHOUT LIMITATION, LOST PROFITS), OR BE LIABLE TO ANY THIRD PARTY FOR ANY DAMAGES WHATSOEVER, EVEN IF eGAIN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. eGain's entire liability under this Agreement for any damages from any cause whatsoever, regardless of form or action, whether in contract, negligence or otherwise, shall in no event exceed an amount equal to the price paid for the Services out of which the claim arose.",
+   "start": 11065,
+   "end": 11714
+  }
+ ],
+ "email": true,
+ "seconds": 17.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10127,
+   "prompt_tokens": 5684,
+   "output_tokens": 271,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.53,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCLUDING LIABILITY FOR INFRINGEMENT CLAIMS AS DISCUSSED IN SECTION 9 OF THIS AGREEMENT, IN NO EVENT SHALL eGAIN BE LIABLE TO CUSTOMER FOR CONSEQUENTIAL, EXEMPLARY, INDIRECT, SPECIAL OR INCIDENTAL DAMAGES (INCLUDING, WITHOUT LIMITATION, LOST PROFITS), OR BE LIABLE TO ANY THIRD PARTY FOR ANY DAMAGES WHATSOEVER, EVEN IF eGAIN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. eGain's entire liability under this Agreement for any damages from any cause whatsoever, regardless of form or action, whether in contract, negligence or otherwise, shall in no event exceed an amount equal to the price paid for the Services out of which the claim arose.",
+      "explanation": "Intellectual property infringement claims are carved out of your overall liability cap and have no separate ceiling, leaving your exposure for such claims completely uncapped.",
+      "suggested_change": "The Contractor's entire liability under this Agreement for any damages from any cause whatsoever, including any intellectual property infringement claims, shall in no event exceed an amount equal to the price paid for the Services out of which the claim arose."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2193,
+   "prompt_tokens": 470,
+   "output_tokens": 140,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.5,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the contract. Before I sign the agreement, I would like to propose a small adjustment. - Regarding the relevant clause, intellectual property infringement claims are currently excluded from the overall liability cap without a separate ceiling, leaving exposure uncapped. To address this, I propose modifying the text so that the Contractor's entire liability for any damages from any cause whatsoever, including any intellectual property infringement claims, shall in no event exceed an amount equal to the price paid for the Services out of which the claim arose. Please let me know if this modification is acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

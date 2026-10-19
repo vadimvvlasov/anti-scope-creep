@@ -1,0 +1,65 @@
+{
+ "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement",
+ "chars": 104732,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Any documentation prepared by Operator during the Term for the purposes of this Agreement, excluding the Training Materials, shall be directly prepared for Owner's benefit and immediately become Owner's property.",
+   "start": 48127,
+   "end": 48339
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "Notwithstanding anything to the contrary in this Agreement, in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+   "start": 65096,
+   "end": 65820
+  }
+ ],
+ "email": true,
+ "seconds": 19.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 29395,
+   "prompt_tokens": 25182,
+   "output_tokens": 533,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.19,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Any documentation prepared by Operator during the Term for the purposes of this Agreement, excluding the Training Materials, shall be directly prepared for Owner's benefit and immediately become Owner's property.",
+      "explanation": "Ownership of project documentation transfers to the client immediately upon creation rather than upon full payment.",
+      "suggested_change": "Any documentation prepared by the Contractor during the Term for the purposes of this Agreement, excluding the Training Materials, shall become the Client's property upon full payment of the applicable fees."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "Notwithstanding anything to the contrary in this Agreement, in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) a Third Party Claim, (iii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iv) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (v) a claim of Owner against BE or Operator under Section 2.8.",
+      "explanation": "Third-party claims are excluded from your liability cap without having a separate limit, exposing you to uncapped liability for those claims.",
+      "suggested_change": "Notwithstanding anything to the contrary in this Agreement, in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iii) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (iv) a claim of Owner against BE or Operator under Section 2.8."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3885,
+   "prompt_tokens": 705,
+   "output_tokens": 315,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.43,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I am reviewing the agreement and have a couple of minor points to discuss before signing. - Regarding the relevant clause on documentation, ownership currently transfers immediately upon creation rather than upon full payment. I propose updating this so ownership transfers upon full payment of the applicable fees, reading as follows: Any documentation prepared by the Contractor during the Term for the purposes of this Agreement, excluding the Training Materials, shall become the Client's property upon full payment of the applicable fees. - Regarding the limitation of liability clause, third-party claims are excluded from the liability cap, which exposes me to uncapped liability for those claims. I propose revising the clause to remove this exception, reading as follows: Notwithstanding anything to the contrary in this Agreement, in no event shall a Party be liable to the other Party for an aggregate amount in excess of the Maximum Liability; provided that such limitation of liability shall not apply to any liability that is the result of (i) gross negligence, fraud or willful misconduct of a Party, (ii) the failure to pay the Service Fees (which amount shall not be included in calculating Owner's Maximum Liability), (iii) a claim of Owner against BE or Operator in the event of any breach, default or misrepresentation of any representation and warranty or covenant set forth in Section 8.2(e) or (iv) a claim of Owner against BE or Operator under Section 2.8. Thank you for your time and consideration. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

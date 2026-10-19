@@ -1,0 +1,92 @@
+{
+ "id": "freelance:M1",
+ "chars": 19216,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2122
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+   "start": 4816,
+   "end": 4909
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12865,
+   "end": 12894
+  }
+ ],
+ "email": true,
+ "seconds": 16.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5809,
+   "prompt_tokens": 4069,
+   "output_tokens": 187,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.68,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge.",
+      "explanation": "You are required to perform extra work requested by the client for free, which can severely burden your schedule without additional compensation.",
+      "suggested_change": "The Contractor will perform additional services requested by the Client only pursuant to a written change order detailing the agreed scope and applicable fees."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Client may request unlimited revisions until Client is fully satisfied with each Deliverable.",
+      "explanation": "The client can demand endless modifications without any limits or extra fees until they are satisfied.",
+      "suggested_change": "The Client may request up to three rounds of revisions per Deliverable, and any further revisions will be billed at the Contractor's standard hourly rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4696,
+   "prompt_tokens": 3030,
+   "output_tokens": 73,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.13,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The client can request an endless number of revision rounds, which can trap you in endless work without extra pay.",
+      "suggested_change": "Revision allowance: up to three (3) rounds of revisions per Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2653,
+   "prompt_tokens": 454,
+   "output_tokens": 233,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to request a few small changes before we sign: - Regarding the clause stating 'Contractor shall also perform any additional services Client reasonably requests during the Term at no additional charge', this currently requires extra work to be performed without additional compensation, so I propose changing it to: The Contractor will perform additional services requested by the Client only pursuant to a written change order detailing the agreed scope and applicable fees. - Regarding the clause stating 'Client may request unlimited revisions until Client is fully satisfied with each Deliverable', this allows endless modifications without limits or extra fees, so I propose changing it to: The Client may request up to three rounds of revisions per Deliverable, and any further revisions will be billed at the Contractor's standard hourly rate. - Regarding the clause stating 'Revision allowance: unlimited', this permits an endless number of revision rounds without extra pay, so I propose changing it to: Revision allowance: up to three (3) rounds of revisions per Deliverable. Please let me know if these updates are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

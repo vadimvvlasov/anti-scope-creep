@@ -1,0 +1,88 @@
+{
+ "id": "cuad:ELANDIAINTERNATIONALINC_04_25_2007-EX-10.21-Outsourcing Agreement",
+ "chars": 82889,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "provide Level 1 support for any end user IT problem",
+   "start": 28436,
+   "end": 28487
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The BSP may after giving due consideration to all circumstances and not acting unreasonably, terminate this agreement by giving written notice to Datec if there is a change of control or major shareholding of Datec.",
+   "start": 55933,
+   "end": 56148
+  }
+ ],
+ "email": true,
+ "seconds": 20.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22841,
+   "prompt_tokens": 18875,
+   "output_tokens": 566,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.27,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Datec must indemnify, defend and hold harmless the BSP, their employees, agents, successors and assigns, from any and all Damages arising from, in connection with, or based on allegations of, any of the following: (a) Datec's breach of... (e) any Claim arising from... (iii) any Claim arising from any breach by Datec of its obligations under this agreement.",
+      "explanation": "This imposes a broad, uncapped indemnification obligation on Datec for any breach or claim, exposing Datec to catastrophic financial risk exceeding the total contract value.",
+      "suggested_change": "Include a mutual overall liability cap (e.g., capped at fees paid in the preceding 12 months) and exclude indirect or consequential damages."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Should Datec not achieve the agreed Service Levels contained in the Service Level Agreement as detailed in Schedule B, a monthly rebate will be applied as per the Rebate Table in Pricing Schedule C... The maximum rebate in any given month will be 50% of the monthly base fee.",
+      "explanation": "A potential 50% monthly fee rebate for SLA failures is excessively punitive and severely impacts cash flow and revenue predictability for Datec.",
+      "suggested_change": "Reduce the maximum monthly rebate cap to a reasonable percentage (e.g., 10-15% of the monthly fee) and provide a cure period or earn-back mechanism."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "provide Level 1 support for any end user IT problem",
+      "explanation": "Requiring Datec to handle 'any end user IT problem' without limitation creates significant scope creep beyond the defined network management duties, potentially overwhelming Datec's resources without additional compensation.",
+      "suggested_change": "Clarify that Level 1 support is strictly limited to WAN and designated network infrastructure issues, with out-of-scope issues billed via the Request for Service (RFS) project process."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The BSP may after giving due consideration to all circumstances and not acting unreasonably, terminate this agreement by giving written notice to Datec if there is a change of control or major shareholding of Datec.",
+      "explanation": "This clause gives BSP the right to terminate based on Datec's internal corporate changes, creating uncertainty for Datec's business structure and ownership decisions.",
+      "suggested_change": "Limit BSP's termination right for change of control strictly to instances where Datec is acquired by a direct competitor of BSP, and require advance notice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3908,
+   "prompt_tokens": 475,
+   "output_tokens": 127,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have a few notes before signing: - Regarding the requirement to handle any end user IT problem, this creates broad scope creep beyond defined duties; we propose clarifying that Level 1 support is strictly limited to designated network infrastructure issues, with other matters handled through the project process. - Regarding the termination right tied to internal corporate changes and shareholding, this introduces uncertainty for business structure decisions; we propose limiting this termination right strictly to instances where an acquisition involves a direct competitor, alongside advance notice. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

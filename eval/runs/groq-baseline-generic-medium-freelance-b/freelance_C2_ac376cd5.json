@@ -1,0 +1,79 @@
+{
+ "id": "freelance:C2",
+ "chars": 2949,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "start": 593,
+   "end": 720
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "3.1 Acceptance Period. Upon delivery of each Milestone, Client shall have ten (10) business days (\"Acceptance Period\") to test the deliverables against Exhibit A.\n3.2 Rejection & Remediation. If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "start": 1375,
+   "end": 1770
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Milestone 4: Final Production Deployment & Handoff (Due September 30, 2025): $8,500.00 USD (10%)",
+   "start": 1241,
+   "end": 1337
+  }
+ ],
+ "email": true,
+ "seconds": 43.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2801,
+   "prompt_tokens": 1138,
+   "output_tokens": 1663,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.1,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+      "explanation": "The hourly‑rate change‑order mechanism can invite frequent, small scope adjustments that eat into the fixed‑price profit. Because the rate is fixed, the client may request many changes without additional budget scrutiny, leading to uncontrolled scope creep and extra unpaid work.",
+      "suggested_change": "Add language that defines a \"material change\" and requires the client to approve an estimate of total change‑order hours before work begins. Consider a cap on total change‑order cost (e.g., not to exceed 15% of the fixed price) or a tiered rate for large change orders."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "3.1 Acceptance Period. Upon delivery of each Milestone, Client shall have ten (10) business days (\"Acceptance Period\") to test the deliverables against Exhibit A.\n3.2 Rejection & Remediation. If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+      "explanation": "The client can reject any deliverable within the 10‑day window and force the developer to fix it at no extra charge. Although limited to \"material non‑conformities,\" the definition is vague, allowing the client to request numerous revisions and effectively obtain unlimited free rework, increasing workload and delaying payment.",
+      "suggested_change": "Define \"material non‑conformity\" narrowly (e.g., functional failures that prevent the software from operating as specified). Limit the number of free revision cycles per milestone (e.g., two iterations) and state that any additional changes after the 14‑day remediation period must be addressed via a Change Order and billed accordingly."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Milestone 4: Final Production Deployment & Handoff (Due September 30, 2025): $8,500.00 USD (10%)",
+      "explanation": "Only 10% of the total price is held until final deployment, giving the client significant leverage to withhold the last payment after the developer has completed the work and transferred IP. This creates cash‑flow risk and makes it difficult to enforce payment for the final deliverable.",
+      "suggested_change": "Increase the final milestone payment to at least 20% of the total price or include a retainage clause that releases the final amount only after the client’s written acceptance of the final deliverable and release of IP. Add a provision for interest on late payments and the right to suspend further work or seek remedies if the final payment is not received within a specified period (e.g., 15 days after acceptance)."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2067,
+   "prompt_tokens": 986,
+   "output_tokens": 1081,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.24,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi [Client],\n\nI hope you’re doing well. Before signing, I would like to suggest a few modest adjustments to the agreement:\n\n- The relevant clause on change‑order billing uses a flat hourly rate, which could encourage many small scope changes without budget oversight. I propose adding a definition of “material change,” requiring the client’s approval of an estimate of total change‑order hours before work begins, and either capping the total change‑order cost at 15 % of the fixed price or applying a tiered rate for larger orders.\n- The acceptance and remediation clause gives a ten‑day acceptance period and obligates the developer to fix material non‑conformities at no extra cost. Because “material non‑conformity” is not clearly defined, it may lead to extensive free revisions. I suggest defining “material non‑conformity” narrowly as functional failures that prevent the software from operating as specified, limiting free revision cycles to two per milestone, and stating that any further changes after the 14‑day remediation period must be handled through a change order and billed accordingly.\n- The final milestone payment is set at only 10 % of the total price, which creates cash‑flow risk. I recommend increasing the final milestone to at least 20 % of the total price or adding a retainage provision that releases the amount only after written acceptance of the final deliverable and transfer of IP, along with interest on late payments and the right to suspend work if payment is not received within 15 days of acceptance.\n\nPlease let me know if these revisions are acceptable. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

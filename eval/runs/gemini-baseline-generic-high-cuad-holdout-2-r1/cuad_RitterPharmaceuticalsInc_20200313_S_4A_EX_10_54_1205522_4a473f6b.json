@@ -1,0 +1,77 @@
+{
+ "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+ "chars": 122688,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of Qualigen to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+   "start": 86618,
+   "end": 86931
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Completion of milestones will be based upon the completion of the deliverables, to Sekisui's satisfaction, in accordance with Qualigen's standard product development practices as defined in Qualigen's Quality System Procedure Document #91000002 Rev018.",
+   "start": 112161,
+   "end": 112413
+  }
+ ],
+ "email": true,
+ "seconds": 21.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 34034,
+   "prompt_tokens": 28375,
+   "output_tokens": 528,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.28,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of [PARTY_C] to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+      "explanation": "Sekisui has the unilateral right to terminate the contract for convenience at any time on 90 days' notice, while [PARTY_C] lacks a reciprocal right. This leaves [PARTY_C] vulnerable after making significant capital and operational investments.",
+      "suggested_change": "Provide [PARTY_C] with a mutual right to terminate for convenience upon 90 days' notice, or require Sekisui to reimburse [PARTY_C] for all non-cancellable commitments, wind-down costs, and unrecovered development expenses upon termination."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_C] shall indemnify, defend and hold harmless Sekisui and its directors, officers, employees, agents and representatives (collectively, the \"Sekisui Indemnitees\") from and against any and all Losses incurred in the investigation, defense and/ or settlement of any Claims...",
+      "explanation": "[PARTY_C]'s indemnification obligations are completely uncapped. A major third-party claim or product liability issue could result in financial damages far exceeding the total value of the contract, threatening [PARTY_C]'s solvency.",
+      "suggested_change": "Insert a mutual cap on liability (e.g., limiting aggregate liability to fees paid or payable in the preceding 12 months) with standard carve-outs."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Completion of milestones will be based upon the completion of the deliverables, to Sekisui's satisfaction, in accordance with [PARTY_C]'s standard product development practices as defined in [PARTY_C]'s Quality System Procedure Document #91000002 Rev018.",
+      "explanation": "Conditioning milestone financing payments on Sekisui's subjective \"satisfaction\" creates a risk that Sekisui could arbitrarily withhold or delay payments for completed development work.",
+      "suggested_change": "Replace the subjective satisfaction standard with objective criteria based strictly on compliance with [PARTY_C]'s Quality System Procedure Document specifications."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2833,
+   "prompt_tokens": 587,
+   "output_tokens": 193,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.87,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the draft. I have a few small requests before we sign. - Regarding the relevant clause concerning termination, the agreement allows one party to terminate for convenience while [PARTY_C] does not have a reciprocal right, leaving [PARTY_C] vulnerable; please provide [PARTY_C] with a mutual right to terminate for convenience upon 90 days' notice, or require reimbursement for all non-cancellable commitments, wind-down costs, and unrecovered development expenses upon termination. - Regarding the relevant clause concerning milestone completion, conditioning milestone financing payments on subjective satisfaction creates a risk that payments could be arbitrarily withheld; please replace the subjective satisfaction standard with objective criteria based strictly on compliance with [PARTY_C]'s Quality System Procedure Document specifications. Thank you for your time, and please let me know if these adjustments are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

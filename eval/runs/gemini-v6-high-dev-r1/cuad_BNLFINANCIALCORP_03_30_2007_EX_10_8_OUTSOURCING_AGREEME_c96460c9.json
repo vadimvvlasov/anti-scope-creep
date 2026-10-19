@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+ "chars": 39863,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "in any event, other than claims covered by paragraph 8(b) or paragraph 6(a) of this agreement (which claims are excluded from this paragraph 9(f) limitation), the liability of VIP to BNL for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by BNL to VIP in the twelve (12) month period prior to the accrual of the action or claim for the specific service which is the subject of the action or claim (or, if such accrual occurs during the first twelve (12) months of the initial term, then the liability shall be limited to the minimum fees payable by BNL to VIP during the first twelve (12) months of the initial term).",
+   "start": 18950,
+   "end": 19636
+  }
+ ],
+ "email": true,
+ "seconds": 18.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15270,
+   "prompt_tokens": 10192,
+   "output_tokens": 306,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.54,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "in any event, other than claims covered by paragraph 8(b) or paragraph 6(a) of this agreement (which claims are excluded from this paragraph 9(f) limitation), the liability of VIP to BNL for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by BNL to VIP in the twelve (12) month period prior to the accrual of the action or claim for the specific service which is the subject of the action or claim (or, if such accrual occurs during the first twelve (12) months of the initial term, then the liability shall be limited to the minimum fees payable by BNL to VIP during the first twelve (12) months of the initial term).",
+      "explanation": "Your liability cap excludes IP infringement and confidentiality claims, leaving your financial exposure for those claims completely uncapped.",
+      "suggested_change": "In any event, the liability of the Contractor to the Client for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by the Client to the Contractor in the twelve (12) month period prior to the accrual of the action or claim."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2490,
+   "prompt_tokens": 505,
+   "output_tokens": 155,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.94,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed it and would like to suggest one adjustment before signing: - Regarding the limitation of liability, the current terms exclude certain claims from the cap, leaving exposure uncapped. I propose we update the relevant clause so that liability is consistently limited, and suggest the following modification: In any event, the liability of the Contractor to the Client for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by the Client to the Contractor in the twelve (12) month period prior to the accrual of the action or claim. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,51 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+   "start": 46928,
+   "end": 47272
+  }
+ ],
+ "email": true,
+ "seconds": 19.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 19861,
+   "prompt_tokens": 15082,
+   "output_tokens": 183,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.63,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap and have no separate limit, which exposes you to unlimited financial risk for third-party claims.",
+      "suggested_change": "Subject to applicable law, the total aggregate liability of the Contractor under this Agreement, including for indemnification obligations, shall be limited to the fees paid or payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2339,
+   "prompt_tokens": 414,
+   "output_tokens": 107,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.41,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for providing the agreement. I am looking forward to collaborating, and I have one quick adjustment to request before signing: - Regarding the relevant clause, the current terms exclude indemnification obligations from the overall liability cap, which creates unnecessary financial exposure. I propose modifying the agreement to state that the total aggregate liability, including for indemnification obligations, is limited to the fees paid or payable under the agreement. Thank you for considering this change. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,129 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9106,
+   "end": 9282
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 4038,
+   "end": 4201
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "start": 4788,
+   "end": 4956
+  }
+ ],
+ "email": true,
+ "seconds": 88.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4362,
+   "prompt_tokens": 2654,
+   "output_tokens": 1708,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 38.62,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a formal change request, but it does not define what constitutes a material increase in workload. This ambiguity can be exploited to add work that the freelancer must perform for the same fee, creating scope creep.",
+      "suggested_change": "Require that any clarification that could affect the scope, schedule, or fee be documented in writing as a change order and approved by both parties before work begins."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the project at any time with only 20 days' notice, leaving the freelancer with unrecovered costs and lost future revenue. The only compensation is for work already performed, which may be far less than the expected profit on the remaining work.",
+      "suggested_change": "Limit termination for convenience to the client only, require a termination fee equal to a percentage (e.g., 20%) of the remaining contract value, and ensure payment of all accrued costs and a reasonable profit margin within 15 days of termination."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 1% per month (12% annual) interest charge is relatively high and can quickly increase the amount owed if the client delays payment, hurting cash flow for the freelancer.",
+      "suggested_change": "Reduce the interest rate to 0.5% per month (6% annual) or tie it to the prevailing legal rate plus a modest margin, and add a clause that interest accrues only after a 15‑day grace period following the due date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+      "explanation": "If the client does not respond within 10 days, the deliverable is deemed accepted even if it contains issues the client discovers later. This can force the freelancer to bear the cost of fixing defects after payment has been made.",
+      "suggested_change": "Require explicit written acceptance from the client before a deliverable is considered accepted, or extend the automatic acceptance period and mandate that any undisclosed material nonconformities discovered within a reasonable post‑acceptance warranty period must be reported in writing."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3298,
+   "prompt_tokens": 1856,
+   "output_tokens": 1442,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 31.75,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 30\nInitial deposit: USD 5,750\nTotal estimated fee: USD 24,875\nLate-payment interest: 1.0%",
+      "explanation": "The client can delay payment up to 30 days after invoicing, and the upfront deposit is only about 23% of the total fee. If the client is slow to pay, you may have to wait weeks for cash while still bearing project costs. The 1.0% late‑payment interest may not compensate fully for the cash‑flow impact.",
+      "suggested_change": "Negotiate a higher upfront deposit (e.g., 40‑50% of the total fee) and shorter payment terms (e.g., Net 15) or include a clause that interest accrues at a higher rate (e.g., 1.5‑2% per month) after the due date."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Notice period: 20 days\nNo clause in this section changes the liability cap of USD 35,000, the late-payment rate of 1.0%, or the termination notice period of 20 days.",
+      "explanation": "The agreement only specifies a 20‑day notice period for termination but does not state that the contractor (you) has the same right to terminate. If the client can terminate unilaterally with 20 days' notice, you could be left with unfinished work and unrecovered costs.",
+      "suggested_change": "Add symmetric termination language, e.g., \"Either party may terminate this Agreement upon 20 days' written notice\" and include a termination for convenience clause that allows the contractor to receive compensation for work performed up to the termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1794,
+   "prompt_tokens": 995,
+   "output_tokens": 799,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.71,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\n- The relevant clause allows minor clarifications without a formal change request, which is unclear about what constitutes a material increase in workload. I propose that any clarification that could affect scope, schedule, or fee be documented in writing as a change order and approved by both parties before work begins.\n- The agreement permits either party to terminate for convenience with 20 days’ notice, which could leave the freelancer with unrecovered costs. I suggest limiting termination for convenience to the client, adding a termination fee equal to 20 % of the remaining contract value, and requiring payment of all accrued costs and a reasonable profit margin within 15 days of termination.\n- The relevant clause sets interest on overdue invoices at 1 % per month, which is relatively high. I propose reducing the rate to 0.5 % per month (or to the legal rate plus a modest margin) and allowing interest to accrue only after a 15‑day grace period following the due date.\n- The clause treats a deliverable as accepted if the client does not provide written rejection within the review period, which may allow undisclosed defects. I recommend requiring explicit written acceptance before acceptance, or extending the automatic acceptance period and adding a warranty period during which any material nonconformities must be reported in writing.\n\nThank you for considering these adjustments. I look forward to finalising the agreement."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

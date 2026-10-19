@@ -1,0 +1,134 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1754,
+   "end": 2015
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3976,
+   "end": 4135
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9211,
+   "end": 9382
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13169,
+   "end": 13191
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "termination notice period of 19 days",
+   "start": 15605,
+   "end": 15641
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the fee is based on the assumptions stated in the schedules. If a key assumption changes, the parties will document the resulting effect on price or schedule. Silence, continued discussion, or participation in a meeting does not by itself constitute approval of a commercial change.",
+   "start": 13372,
+   "end": 13683
+  }
+ ],
+ "email": true,
+ "seconds": 89.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4326,
+   "prompt_tokens": 2669,
+   "output_tokens": 1657,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.5,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits informal \"minor clarifications\" without a formal change‑order process. In practice the client could request additional features or extra work that the contractor might consider a \"minor clarification,\" potentially leading to un‑compensated scope creep.",
+      "suggested_change": "Require that any clarification that could increase effort be documented in a written change request and be subject to an agreed additional fee before the work is performed."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 90‑day payment window is unusually long for a freelancer and ties up cash flow. The 2 % per month (approximately 24 % annual) interest rate is high and could expose the contractor to significant delayed‑payment penalties.",
+      "suggested_change": "Negotiate Net 30 (or Net 45) terms and a lower, statutory‑compliant interest rate (e.g., 1 % per month or the rate permitted by local law). Alternatively, include a prompt‑payment discount for early settlement."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the project with only 19 days' notice, leaving the contractor with unfinished work, sunk costs, and limited ability to recover future revenue. Although payment for work done is required, the short notice may not cover reasonable wind‑down costs.",
+      "suggested_change": "Require mutual agreement for termination for convenience or extend the notice period (e.g., 30‑45 days) and include a termination fee that compensates the contractor for reasonable transition and lost opportunity costs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3273,
+   "prompt_tokens": 1865,
+   "output_tokens": 1408,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.55,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "The client has 90 days after invoice receipt to pay. This long cash‑flow window can strain the freelancer’s finances and increase exposure to late‑payment risk.",
+      "suggested_change": "Change the payment term to Net 30 (or Net 15) and/or tie each milestone payment to delivery acceptance, with interest accruing after the revised period."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "termination notice period of 19 days",
+      "explanation": "Only a 19‑day notice period is specified, which typically benefits the client. The contractor could be left with unfinished work and little compensation if the client terminates abruptly.",
+      "suggested_change": "Insert a mutual termination clause requiring a 30‑day notice from either party and a termination fee equal to the value of work performed up to termination (or a percentage of the remaining contract value)."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the fee is based on the assumptions stated in the schedules. If a key assumption changes, the parties will document the resulting effect on price or schedule. Silence, continued discussion, or participation in a meeting does not by itself constitute approval of a commercial change.",
+      "explanation": "Changes to underlying assumptions can trigger additional work, but the clause leaves room for the client to claim that a change was “silently” approved, exposing the freelancer to unpaid extra work.",
+      "suggested_change": "Add a formal change‑order process: any assumption change must be documented in writing, signed by both parties, and include a clear fee/schedule adjustment before work proceeds."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2627,
+   "prompt_tokens": 1188,
+   "output_tokens": 1439,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 24.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you’re well.\n\n- The relevant clause currently allows informal “minor clarifications” that could increase the workload without a formal change‑order. I propose that any clarification which may affect effort be documented in a written change request and be subject to an agreed additional fee before the work is performed.\n- The agreement sets payment terms at Net 90 with interest of 2 % per month on late invoices, which is unusually long and a high rate. I suggest changing the terms to Net 30 (or Net 45) and applying a lower, statutory‑compliant interest rate (e.g., 1 % per month) or offering a prompt‑payment discount for early settlement.\n- The termination clause permits either party to end the agreement for convenience with only 19 days’ written notice, which may not allow sufficient time to wind down work. I recommend extending the notice period to 30–45 days and including a termination fee that compensates the contractor for reasonable transition and lost opportunity costs.\n- The payment period is stated as Net 90, which can strain cash flow. I propose changing the payment term to Net 30 (or Net 15) and linking each milestone payment to delivery acceptance, with interest accruing only after the revised period.\n- The agreement specifies a termination notice period of 19 days, favoring the client. I suggest a mutual termination clause that requires a 30‑day notice from either party and a termination fee equal to the value of work performed up to termination (or a percentage of the remaining contract value).\n- The relevant clause says that changes to key assumptions do not constitute approval unless documented, but it leaves room for implied approval through silence. I recommend adding a formal change‑order process: any assumption change must be documented in writing, signed by both parties, and include a clear fee and schedule adjustment before work proceeds.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

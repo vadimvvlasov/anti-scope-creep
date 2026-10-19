@@ -1,0 +1,22 @@
+{
+ "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT",
+ "chars": 62324,
+ "findings": [],
+ "email": false,
+ "seconds": 13.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16619,
+   "prompt_tokens": 12397,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.05,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

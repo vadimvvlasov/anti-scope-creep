@@ -1,0 +1,65 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+   "start": 2339,
+   "end": 2568
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  }
+ ],
+ "email": true,
+ "seconds": 19.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14075,
+   "prompt_tokens": 8896,
+   "output_tokens": 250,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.42,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment. Client will have a 30 day right to cure before a cancelation can occur.",
+      "explanation": "Only the client has the right to terminate without cause, while your termination rights are restricted to non-payment.",
+      "suggested_change": "Either party may terminate this Agreement at any time, with or without cause, upon providing seven days prior written notice to the other party."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Intellectual property ownership of your work transfers to the client immediately upon creation rather than upon receipt of full payment.",
+      "suggested_change": "Upon receipt of full payment for the applicable deliverables, all right, title, and interest in and to the final deliverables shall be assigned to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2175,
+   "prompt_tokens": 350,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.55,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. - Regarding the relevant clause, the current text states that intellectual property ownership of the work transfers to the client immediately upon creation rather than upon receipt of full payment, and I propose modifying this so that upon receipt of full payment for the applicable deliverables, all right, title, and interest in and to the final deliverables shall be assigned to the Client. Thank you for understanding, and I look forward to getting started."
+   }
+  }
+ ],
+ "dropped": []
+}

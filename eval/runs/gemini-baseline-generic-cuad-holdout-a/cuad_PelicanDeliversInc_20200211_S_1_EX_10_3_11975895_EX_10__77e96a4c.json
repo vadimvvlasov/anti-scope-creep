@@ -1,0 +1,116 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11648,
+   "end": 11766
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Developer shall defend, indemnify and hold harmless Client, its members owners, officers, employees, independent contractors and agents, from and against all losses, claims, liabilities or damages and any related costs and expenses, including attorneys' fees and costs arising out of, or in any way related to any claim or action against Client arising out of or in any way related to: (a) Developer's material breach of his Agreement; (b) Developer's gross negligence or willful misconduct; (c) De eloper's act or omission constituting a violation of applicable federal, state, local law or regulation; or (d) any claim made against Client asserting a violation of any third party intellectual property right pertaining to the Subject Program.",
+   "start": 21128,
+   "end": 21872
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Developer will design, develop, and deliver, satisfactory to Client, the \"Pelican Delivers Application Phase 1\" (collectively, the Subject Program), and all elated Project services (collectively, the Services), Project work product (collectively, the Deliverables), and user manuals and other written material that describe he functionality or assist in the use of the Subject Program (collectively, the Documentation), pursuant to the Project specifications detailed in the SO",
+   "start": 738,
+   "end": 1215
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Client will pay fees to Developer for Project Services and Deliverables as Described in the SOW (the Fees). Developer will pay its own expenses for the Project (collectively, the Expenses) unless stated otherwise in the SOW.",
+   "start": 10125,
+   "end": 10349
+  }
+ ],
+ "email": true,
+ "seconds": 21.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 12357,
+   "prompt_tokens": 6720,
+   "output_tokens": 1018,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.26,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "This clause transfers ownership of the intellectual property to the client immediately upon assignment rather than upon receipt of final payment, leaving you without leverage if the client fails to pay.",
+      "suggested_change": "Modify the clause to state that intellectual property rights transfer to the client only upon receipt of full and final payment of all fees due under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Developer shall defend, indemnify and hold harmless Client, its members owners, officers, employees, independent contractors and agents, from and against all losses, claims, liabilities or damages and any related costs and expenses, including attorneys' fees and costs arising out of, or in any way related to any claim or action against Client arising out of or in any way related to: (a) Developer's material breach of his Agreement; (b) Developer's gross negligence or willful misconduct; (c) De eloper's act or omission constituting a violation of applicable federal, state, local law or regulation; or (d) any claim made against Client asserting a violation of any third party intellectual property right pertaining to the Subject Program.",
+      "explanation": "The agreement contains broad indemnification obligations for the developer without any overall limitation or cap on liability, exposing you to potential damages far exceeding the total value of the contract.",
+      "suggested_change": "Insert a mutual limitation of liability capping total damages to the total fees paid or payable under the Agreement, and exclude consequential or indirect damages."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Developer will design, develop, and deliver, satisfactory to Client, the \"Pelican Delivers Application Phase 1\" (collectively, the Subject Program), and all elated Project services (collectively, the Services), Project work product (collectively, the Deliverables), and user manuals and other written material that describe he functionality or assist in the use of the Subject Program (collectively, the Documentation), pursuant to the Project specifications detailed in the SO",
+      "explanation": "Subjective acceptance standards ('satisfactory to Client') combined with broadly defined deliverables create significant risk of scope creep where the client demands extensive additions under the original fee.",
+      "suggested_change": "Replace 'satisfactory to Client' with an objective standard based on material compliance with the agreed SOW specifications, and clearly define the scope of deliverables."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If any Milestone Deliverable does not satisfy the Client's Acceptance Test and Client provides Developer a Change Request concerning the same, Developer will have twenty (20) days from the receipt of such Change Request to correct the deficiencies... If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement...",
+      "explanation": "The contract allows the client to repeat testing and correction procedures without an explicit cap on the number of revision cycles, potentially trapping you in endless loops.",
+      "suggested_change": "Explicitly limit the number of formal revision cycles per milestone before additional changes are billed as extra work via a Change Order."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "In the event of a termination or expiration of this Agreement or any SOW for any reason, developer will, as requested by and at additional cost to Client, provide up to three (3) months of Fee billable assistance (collectively, the Termination Assistance Services) in transitioning from Developer to an alternative software service provider... The term of this Agreement or applicable SOW shall not be deemed to have expired or terminated until the Termination Assistance Services are completed.",
+      "explanation": "This clause unilaterally obligates the developer to provide up to three months of mandatory post-termination transition services at the client's discretion, preventing a clean and timely exit.",
+      "suggested_change": "Make the provision of Termination Assistance Services subject to mutual agreement and resource availability, or reduce the maximum obligation timeframe."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Client will pay fees to Developer for Project Services and Deliverables as Described in the SOW (the Fees). Developer will pay its own expenses for the Project (collectively, the Expenses) unless stated otherwise in the SOW.",
+      "explanation": "The main agreement completely defers all payment terms, deposit requirements, and payment schedules to individual SOWs, leaving payment security undefined in the master contract.",
+      "suggested_change": "Include standard baseline payment terms in the master agreement, such as an upfront deposit and strict Net 15 or Net 30 payment due dates."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3374,
+   "prompt_tokens": 888,
+   "output_tokens": 230,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.66,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the contract. Before signing the agreement, I would like to suggest a few minor adjustments to the relevant clauses: - Regarding the intellectual property clause, ownership transfers immediately rather than upon receipt of final payment; I propose to modify the clause to state that intellectual property rights transfer only upon receipt of full and final payment of all fees due under the agreement. - Regarding the indemnification clause, it contains broad obligations without any limitation on liability; I propose to insert a mutual limitation of liability capping total damages to the total fees paid or payable under the agreement and excluding consequential or indirect damages. - Regarding the deliverables clause, it includes subjective acceptance standards; I propose to replace the subjective standard with an objective standard based on material compliance with the agreed specifications and clearly define the scope of deliverables. - Regarding the payment clause, it completely defers all payment terms; I propose to include standard baseline payment terms in the master agreement, such as an upfront deposit and strict payment due dates. Thank you, and I look forward to your feedback."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unlimited_revisions",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

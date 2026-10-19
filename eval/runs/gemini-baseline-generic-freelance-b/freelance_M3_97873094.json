@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8183,
+   "end": 8386
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.10 Campaign planning and creative strategy.\n2.11 Production of approved marketing materials.\n2.12 Content scheduling and publication support.\n2.13 Monthly performance reporting.\n2.14 Optimization recommendations based on campaign data.",
+   "start": 538,
+   "end": 775
+  }
+ ],
+ "email": true,
+ "seconds": 15.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7700,
+   "prompt_tokens": 4044,
+   "output_tokens": 493,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.55,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "This is a pay-when-paid clause. Your payment as the contractor is unfairly dependent on whether a third party pays the client, creating significant cash flow uncertainty and forcing you to shoulder the client's credit risk.",
+      "suggested_change": "Remove the contingency regarding the client's customer paying, and change the term to standard net 15 or net 30 days from the date of invoice receipt."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "This clause is severely one-sided. The client's liability is capped at USD 35,000, while your liability as the contractor is completely unlimited, exposing your business to disproportionate and catastrophic financial risk.",
+      "suggested_change": "Establish a mutual liability cap for both parties, such as capping liability at the total fees paid or payable under the agreement."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.10 Campaign planning and creative strategy. 2.11 Production of approved marketing materials. 2.12 Content scheduling and publication support. 2.13 Monthly performance reporting. 2.14 Optimization recommendations based on campaign data.",
+      "explanation": "Listing these broad operational categories without volume caps, asset limits, or time boundaries creates ambiguity that the client can exploit to demand endless strategy, production, and support under the fixed project fee.",
+      "suggested_change": "Define precise quantities, asset counts, and scope boundaries in Schedule A, explicitly stating that requests exceeding these limits will be treated as billable change requests."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2525,
+   "prompt_tokens": 642,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.01,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to get started and have a few small requests regarding the terms before we sign. - Regarding the payment terms, tying payment to a third party creates cash flow uncertainty, so I propose removing that contingency and setting standard net 15 or net 30 days from invoice receipt. - Concerning the liability provisions, the current terms are asymmetric, so I propose establishing a mutual liability cap for both parties. - As for the scope of services outlined in the agreement, listing broad categories without limits creates ambiguity, so I propose defining precise quantities and boundaries to clarify expectations. Thank you for your understanding, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

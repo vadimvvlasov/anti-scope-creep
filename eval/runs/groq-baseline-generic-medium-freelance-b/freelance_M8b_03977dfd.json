@@ -1,0 +1,143 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9106,
+   "end": 9282
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13130,
+   "end": 13158
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notice period: 20 days\nCure period: 15 days",
+   "start": 13213,
+   "end": 13256
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+   "start": 14098,
+   "end": 14276
+  }
+ ],
+ "email": true,
+ "seconds": 92.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4392,
+   "prompt_tokens": 2654,
+   "output_tokens": 1738,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.17,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits the client to request \"minor clarifications\" without a written change order. Because \"materially increase the workload\" is not defined, the client could argue that additional effort is merely a clarification and avoid paying extra, exposing the freelancer to unpaid extra work.",
+      "suggested_change": "Add language that any clarification that affects the amount of effort, time, or cost must be documented in a written change request and approved with an associated fee adjustment."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the agreement at will with only 20 days' notice and is only required to pay for work already completed. This leaves the freelancer with sunk costs for work in progress, unrecovered overhead, and possible loss of anticipated revenue.",
+      "suggested_change": "Require a termination‑for‑convenience fee (e.g., 20‑30% of the total contract value) or a minimum payment equal to the value of work already scheduled, and extend the notice period to 30 days. Alternatively, allow the freelancer to invoice for all work performed up to the termination date, including reasonable costs for partially completed deliverables."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\n4.4 Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "A 1% per month (12% annual) late‑payment interest rate is relatively high and can increase client resistance. The 15‑day dispute window allows the client to withhold the entire invoice pending resolution, potentially delaying cash flow even when only a small portion is contested.",
+      "suggested_change": "Cap interest at the statutory rate or a lower rate (e.g., 0.5% per month) and shorten the dispute period to 7 days, with a requirement that the undisputed amount be paid on the original due date while any disputed amount is held in escrow until resolved."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3169,
+   "prompt_tokens": 1856,
+   "output_tokens": 1313,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.65,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "The contract only specifies three revision rounds but does not clearly state the consequences or extra fees if the Client requests more, allowing them to push for additional revisions without compensation.",
+      "suggested_change": "Add a clause stating that any revisions beyond the three allotted rounds will be billed at a defined hourly or per‑revision rate and require a written change order."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notice period: 20 days\nCure period: 15 days",
+      "explanation": "The agreement mentions a 20‑day notice period but does not specify that both parties have equal termination rights or the grounds for termination, potentially letting the Client terminate unilaterally while the Contractor may be left without recourse.",
+      "suggested_change": "Insert symmetric termination rights, e.g., \"Either party may terminate for cause with 20 days' written notice and for convenience with 30 days' notice, subject to payment of all earned fees and reimbursement of reasonable termination costs.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Net‑30 is standard, but the late‑payment interest of only 1% per month may be insufficient to deter delayed payments, exposing you to cash‑flow risk if the Client pays late.",
+      "suggested_change": "Increase the late‑payment interest to a higher statutory rate (e.g., 1.5% per month) and add a provision that overdue invoices may be suspended until payment is received."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any post‑launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as new Services or change requests.",
+      "explanation": "While the clause tries to limit post‑launch work, it does not define what constitutes a \"new Service\" or the process for approving change requests, leaving room for the Client to request additional work that may be billed at your discretion.",
+      "suggested_change": "Define a clear change‑order procedure: any work beyond the schedule requires a written change order signed by both parties, specifying the additional fee, timeline, and impact on the overall project."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2612,
+   "prompt_tokens": 1086,
+   "output_tokens": 1526,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 24.55,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you are well.\n\n- The relevant clause permits minor clarifications without a written change order and does not define “materially increase the workload.” This could allow extra effort to be billed as a simple clarification. I propose that any clarification that affects effort, time, or cost be documented in a written change request and approved with an associated fee adjustment.\n- The agreement allows either party to terminate for convenience with 20 days’ notice and only requires payment for services performed up to the termination date. This leaves the freelancer exposed to unrecovered costs. I suggest adding a termination‑for‑convenience fee (e.g., 20‑30% of the total contract value) or a minimum payment equal to the value of scheduled work, extending the notice period to 30 days, and allowing invoicing for all work performed, including reasonable costs for partially completed deliverables.\n- The revision allowance specifies three rounds but does not state what happens if more revisions are requested. This could result in unlimited revisions without compensation. I recommend stating that any revisions beyond the three allotted rounds will be billed at a defined hourly or per‑revision rate and will require a written change order.\n- The notice period is set at 20 days with a 15‑day cure period, but the termination rights are not symmetric. This could let the client terminate unilaterally while the contractor lacks recourse. I propose inserting symmetric termination rights, for example: either party may terminate for cause with 20 days’ written notice and for convenience with 30 days’ notice, subject to payment of all earned fees and reimbursement of reasonable termination costs.\n- The post‑launch support clause limits work to the schedule but does not define a “new Service” or the approval process for change requests. This creates uncertainty about additional work. I suggest defining a clear change‑order procedure: any work beyond the schedule must be captured in a written change order signed by both parties, specifying the additional fee, timeline, and impact on the overall project.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

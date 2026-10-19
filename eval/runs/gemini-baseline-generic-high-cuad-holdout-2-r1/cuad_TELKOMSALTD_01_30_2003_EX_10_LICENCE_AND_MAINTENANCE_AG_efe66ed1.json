@@ -1,0 +1,77 @@
+{
+ "id": "cuad:TELKOMSALTD_01_30_2003-EX-10-LICENCE AND MAINTENANCE AGREEMENT",
+ "chars": 105748,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "30 (thirty) days after TELKOM gives SAP AFRICA written notice of   TELKOM's wish to terminate this AGREEMENT for any reason. Any such   termination shall be subject to accrued rights and obligations but only after   payment of all Licence and Maintenance Fees then due and owing",
+   "start": 26506,
+   "end": 26784
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Should TELKOM fail to pay the REVENUE SHARE FEE, such failure shall not   effect TELKOM'S rights to USE the SOFTWARE but SAP AFRICA shall be entitled to   separately claim such payments from TELKOM as provided for hereinabove.",
+   "start": 23145,
+   "end": 23371
+  }
+ ],
+ "email": true,
+ "seconds": 16.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 27990,
+   "prompt_tokens": 24165,
+   "output_tokens": 518,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.87,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "30 (thirty) days after TELKOM gives SAP AFRICA written notice of TELKOM's wish to terminate this AGREEMENT for any reason. Any such termination shall be subject to accrued rights and obligations but only after payment of all Licence and Maintenance Fees then due and owing",
+      "explanation": "This clause allows Telkom to terminate the perpetual license agreement at any time for any reason with only 30 days notice, while denying SAP Africa any compensation or refund protection beyond currently due fees, disrupting expected long-term revenue.",
+      "suggested_change": "Remove Telkom's right to terminate for convenience, or require a substantial termination fee that covers the unamortized license value and anticipated revenue share."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Should TELKOM fail to pay the REVENUE SHARE FEE, such failure shall not effect TELKOM'S rights to USE the SOFTWARE but SAP AFRICA shall be entitled to separately claim such payments from TELKOM as provided for hereinabove.",
+      "explanation": "This prevents SAP Africa from suspending software access or license rights if Telkom fails to pay the revenue share fee, removing a critical commercial leverage tool for ensuring payment compliance.",
+      "suggested_change": "Modify the clause to allow SAP Africa to suspend software use and access rights upon failure to pay revenue share fees after providing written notice and a cure period."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "other than for consequential loss or damages suffered by the innocent party caused by the wilful or intentional acts or omissions of the defaulting party or any person or entity in respect of whom the defaulting party may be vicariously liable.",
+      "explanation": "By carving out wilful or intentional acts from the mutual waiver of consequential damages, SAP Africa's exposure to indirect and consequential losses is left entirely uncapped in those instances.",
+      "suggested_change": "Subject all damages, including those arising from intentional acts, to an aggregate liability cap (e.g., total fees paid over a 12-month period)."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2481,
+   "prompt_tokens": 527,
+   "output_tokens": 123,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.6,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello! I am reviewing the contract and would like to propose a few minor adjustments before signing. - Regarding the relevant clause concerning termination, as it permits ending the agreement on short notice without adequate compensation, I propose removing this termination right or adding an appropriate termination fee. - Regarding the relevant clause regarding payment and software access, since it limits commercial remedies for non-payment, I propose modifying it to allow suspending access if fees are not paid following notice and a cure period. Thank you for your time, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

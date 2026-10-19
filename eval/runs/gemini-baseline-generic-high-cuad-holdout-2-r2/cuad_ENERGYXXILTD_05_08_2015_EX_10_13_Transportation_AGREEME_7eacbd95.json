@@ -1,0 +1,107 @@
+{
+ "id": "cuad:ENERGYXXILTD_05_08_2015-EX-10.13-Transportation AGREEMENT",
+ "chars": 60982,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "In the event Transporter determines in a manner not unreasonably discriminatory that the financial condition of Shipper or Shipper's guarantor (if any) is or has become impaired or unsatisfactory or Transporter determines in a manner not unreasonably discriminatory it is necessary to obtain security from Shipper, Transporter, upon notice to Shipper, may require any of the following prior to Transporter's delivery of Shipper's Crude Petroleum in Transporter's possession or prior to Transporter's acceptance of Shipper's Crude Petroleum: (1) prepayment of all charges, (2) a letter of credit at Shipper's expense in favor of Transporter in an amount sufficient to ensure payment of all such charges and, in a form, and from an institution acceptable to Transporter, or (3) a guaranty in an amount sufficient to ensure payment of all such charges and in a form and from a third party acceptable to Transporter.",
+   "start": 35686,
+   "end": 36598
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "If Shipper fails to pay the undisputed portion of an invoice by the due date, in addition to any other remedies under this Agreement or under applicable law, Transporter shall have the right, either directly or through an agent, to sell at a private sale any and all Crude Petroleum of such Shipper in its custody at fair market value at the time of sale.",
+   "start": 37747,
+   "end": 38102
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Shipper shall release, indemnify, defend, and hold harmless Transporter and its affiliates, directors, officers, employees, agents, consultants, representatives, and invitees from and against all claims and losses arising out of or relating to (i) the operations of Shipper, (ii) any breach of this agreement by Shipper, except to the extent attributable to the negligence, willful misconduct or fault of Transporter, and (iii) operations or activities upstream or downstream of the Gathering System, except to the extent attributable to the negligence, willful misconduct or fault of Transporter.",
+   "start": 41575,
+   "end": 42172
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Transporter shall have absolute discretion and authority to partially or totally shutdown any and all operations and activities (and temporarily or permanently discontinue the services) contemplated hereunder at any time, if in Transporter's sole discretion, such shutdown is warranted to (i) ensure the safety of persons, property, or the environment; (ii) ensure the operational integrity of the Gathering System; or (iii) modify, inspect, maintain or repair the Gathering System.",
+   "start": 8224,
+   "end": 8706
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "provided, however, that notwithstanding anything in the foregoing to the contrary, Shipper's obligation to pay the transportation charge set forth in Section 3.1 shall not be reduced, suspended or otherwise excused in any manner as the result of Force Majeure, regardless of which Party is affected.",
+   "start": 40633,
+   "end": 40932
+  }
+ ],
+ "email": true,
+ "seconds": 25.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20902,
+   "prompt_tokens": 15029,
+   "output_tokens": 946,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.14,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "In the event Transporter determines in a manner not unreasonably discriminatory that the financial condition of Shipper or Shipper's guarantor (if any) is or has become impaired or unsatisfactory or Transporter determines in a manner not unreasonably discriminatory it is necessary to obtain security from Shipper, Transporter, upon notice to Shipper, may require any of the following prior to Transporter's delivery of Shipper's Crude Petroleum in Transporter's possession or prior to Transporter's acceptance of Shipper's Crude Petroleum: (1) prepayment of all charges, (2) a letter of credit at Shipper's expense in favor of Transporter in an amount sufficient to ensure payment of all such charges and, in a form, and from an institution acceptable to Transporter, or (3) a guaranty in an amount sufficient to ensure payment of all such charges and in a form and from a third party acceptable to Transporter.",
+      "explanation": "Transporter has unilateral discretion to demand immediate prepayments or costly letters of credit based on subjective financial assessments, withholding your oil if you fail to comply.",
+      "suggested_change": "Base financial security demands on objective financial criteria (such as credit rating downgrades or formal insolvency) and provide a 15-day cure period before halting services."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "If Shipper fails to pay the undisputed portion of an invoice by the due date, in addition to any other remedies under this Agreement or under applicable law, Transporter shall have the right, either directly or through an agent, to sell at a private sale any and all Crude Petroleum of such Shipper in its custody at fair market value at the time of sale.",
+      "explanation": "Transporter can privately sell your Crude Petroleum inventory upon an unpaid invoice without adequate due process or formal dispute resolution.",
+      "suggested_change": "Require formal notice, a 30-day cure period, and proper legal process or mutual agreement before selling Shipper's Crude Petroleum."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Shipper shall release, indemnify, defend, and hold harmless Transporter and its affiliates, directors, officers, employees, agents, consultants, representatives, and invitees from and against all claims and losses arising out of or relating to (i) the operations of Shipper, (ii) any breach of this agreement by Shipper, except to the extent attributable to the negligence, willful misconduct or fault of Transporter, and (iii) operations or activities upstream or downstream of the Gathering System, except to the extent attributable to the negligence, willful misconduct or fault of Transporter.",
+      "explanation": "Shipper assumes broad indemnification obligations covering operations upstream and downstream of the Gathering System, creating massive uncapped liability exposure.",
+      "suggested_change": "Limit Shipper's indemnity obligations strictly to its own operations and proportional fault, and make indemnification mutual and subject to a liability cap."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Transporter shall have absolute discretion and authority to partially or totally shutdown any and all operations and activities (and temporarily or permanently discontinue the services) contemplated hereunder at any time, if in Transporter's sole discretion, such shutdown is warranted to (i) ensure the safety of persons, property, or the environment; (ii) ensure the operational integrity of the Gathering System; or (iii) modify, inspect, maintain or repair the Gathering System.",
+      "explanation": "Transporter can shut down or permanently discontinue services at its sole discretion without liability, severely disrupting Shipper's business operations.",
+      "suggested_change": "Limit permanent discontinuations to material breach or force majeure, require advance notice for scheduled maintenance, and provide service fee adjustments during prolonged interruptions."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "provided, however, that notwithstanding anything in the foregoing to the contrary, Shipper's obligation to pay the transportation charge set forth in Section 3.1 shall not be reduced, suspended or otherwise excused in any manner as the result of Force Majeure, regardless of which Party is affected.",
+      "explanation": "Shipper must continue paying transportation charges even if a Force Majeure event prevents Transporter from providing transportation services.",
+      "suggested_change": "Suspend Shipper's payment obligations pro rata during any period where Transporter's Force Majeure event prevents the transportation or delivery of Crude Petroleum."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4570,
+   "prompt_tokens": 1164,
+   "output_tokens": 288,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are having a good day. Here are the proposed changes to the agreement: - Regarding the relevant clause, the agreement allows unilateral discretion to demand immediate prepayments or costly letters of credit based on subjective assessments; we propose to base financial security demands on objective financial criteria and provide a 15-day cure period before halting services. - In the relevant clause, the agreement permits the private sale of inventory upon an unpaid invoice without adequate due process; we propose to require formal notice, a 30-day cure period, and proper legal process or mutual agreement before any sale. - Under the relevant clause, the agreement imposes broad indemnification obligations covering upstream and downstream operations; we propose to limit indemnity obligations strictly to own operations and proportional fault, and make indemnification mutual and subject to a liability cap. - Concerning the relevant clause, the agreement grants absolute discretion to shut down or permanently discontinue services without liability; we propose to limit permanent discontinuations to material breach or force majeure, require advance notice for scheduled maintenance, and provide service fee adjustments during prolonged interruptions. - Regarding the relevant clause, the agreement requires ongoing payment of transportation charges even during a Force Majeure event; we propose to suspend payment obligations pro rata during any period where a Force Majeure event prevents transportation or delivery. Thank you, and I look forward to moving forward."
+   }
+  }
+ ],
+ "dropped": []
+}

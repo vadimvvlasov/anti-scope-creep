@@ -1,0 +1,51 @@
+{
+ "id": "cuad:PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content License Agreement",
+ "chars": 18138,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+   "start": 5874,
+   "end": 6200
+  }
+ ],
+ "email": true,
+ "seconds": 21.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11843,
+   "prompt_tokens": 5562,
+   "output_tokens": 200,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.68,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Within 30 days of the end of each quarter during the term of this agreement, PACIFICAP ENTERTAINMENT shall receive from THE HENRY FILM AND ENTERTAINMENT CORPORATION, a detailed accounting statement showing Net Due and Paid Shared Revenues for that quarter and shall remit to PACIFICAP ENTERTAINMENT its share of such revenues.",
+      "explanation": "Payment is deferred on a quarterly basis and conditioned on the client collecting revenues, which delays your funds well beyond 30 days and ties your payment to third-party collections.",
+      "suggested_change": "Within thirty (30) days following the end of each month, the Client shall provide a detailed accounting statement and remit the Licensor's share of net revenues."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2041,
+   "prompt_tokens": 396,
+   "output_tokens": 113,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.03,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for providing the agreement. I am happy to move forward once we make a minor adjustment. - Regarding the relevant clause, payment is deferred on a quarterly basis and conditioned on collections, which delays funds; I propose modifying this so that within thirty (30) days following the end of each month, the Client shall provide a detailed accounting statement and remit the Licensor's share of net revenues. Thank you for your understanding and cooperation."
+   }
+  }
+ ],
+ "dropped": []
+}

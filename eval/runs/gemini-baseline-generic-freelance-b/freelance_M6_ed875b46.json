@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9026,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  }
+ ],
+ "email": true,
+ "seconds": 15.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8009,
+   "prompt_tokens": 4025,
+   "output_tokens": 258,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.57,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "This clause allows the client to walk away from the project at any time without cause upon 20 days' notice, while denying you the same right to terminate for convenience. This leaves you vulnerable to wasted time and stranded capacity if the client cancels mid-project.",
+      "suggested_change": "Grant both parties a mutual right to terminate for convenience upon written notice, and include a kill fee or payment for all work in progress plus a percentage of remaining project fees if terminated by the client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Waiting 40 days after invoicing to receive payment creates cash flow strain for an independent contractor or freelancer, especially on a project spanning several months.",
+      "suggested_change": "Change the payment terms to Net 15 or Net 30 to ensure healthier cash flow."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2294,
+   "prompt_tokens": 484,
+   "output_tokens": 116,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.32,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I have reviewed it and would like to request a few adjustments to the relevant clause before signing: - The current termination provision permits only one party to cancel at will, so I propose making the right to terminate for convenience mutual and providing fair compensation for work in progress. - The payment terms require waiting 40 days, which creates cash flow strain, so I propose changing the schedule to Net 30. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

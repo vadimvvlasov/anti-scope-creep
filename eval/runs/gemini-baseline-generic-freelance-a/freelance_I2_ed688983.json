@@ -1,0 +1,51 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3976,
+   "end": 4004
+  }
+ ],
+ "email": true,
+ "seconds": 14.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7559,
+   "prompt_tokens": 4050,
+   "output_tokens": 91,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.35,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Net 90 payment terms require you to wait three months after invoicing to get paid, which creates severe cash flow challenges for a freelancer.",
+      "suggested_change": "Change the payment terms to Net 30 or require payment within 15 days of invoice receipt."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1919,
+   "prompt_tokens": 319,
+   "output_tokens": 92,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I have reviewed it and would like to request a small modification before signing. - Regarding the relevant clause where invoices are payable Net 90, waiting three months to receive payment creates cash flow challenges, so I propose we change the payment terms to Net 30. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

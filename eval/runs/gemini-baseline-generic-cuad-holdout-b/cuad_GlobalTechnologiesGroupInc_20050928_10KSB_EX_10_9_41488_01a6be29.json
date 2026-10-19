@@ -1,0 +1,88 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "IN NO EVENT WILL IMNTV'S LIABILITY TO DISTRIBUTOR UNDER THIS AGREEMENT EXCEED THE AMOUNT ACTUALLY DUE TO IMNTV HEREIN.",
+   "start": 29080,
+   "end": 29198
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Distributor will be solely liable for any refunds pertaining to the Programming that are issued to Subscribers as a result of termination under this Section 7.2.",
+   "start": 22390,
+   "end": 22551
+  }
+ ],
+ "email": true,
+ "seconds": 20.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14552,
+   "prompt_tokens": 8729,
+   "output_tokens": 631,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.25,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "IN NO EVENT WILL IMNTV'S LIABILITY TO DISTRIBUTOR UNDER THIS AGREEMENT EXCEED THE AMOUNT ACTUALLY DUE TO IMNTV HEREIN.",
+      "explanation": "The contract explicitly caps IMNTV's liability to amounts due under the agreement, but leaves your liability as the distributor completely uncapped, exposing you to disproportionate financial risk in the event of any dispute.",
+      "suggested_change": "Propose a mutual limitation of liability that caps each party's total aggregate liability to the fees paid or payable under the agreement over a 12-month period."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will be solely liable for any refunds pertaining to the Programming that are issued to Subscribers as a result of termination under this Section 7.2.",
+      "explanation": "You are forced to shoulder 100% of the financial liability for subscriber refunds resulting from termination due to IMNTV's defective programming, even though IMNTV supplied the content.",
+      "suggested_change": "Modify the clause to require IMNTV to reimburse or indemnify [PARTY_B] for any subscriber refunds issued as a result of IMNTV's breach or programming deficiencies."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] will provide all 'middleware' programming to facilitate connection of the content delivery platform to local Territory wireless networks. [PARTY_B] will perform localization of any software components to make the program possible to use in the local Territory. This is to include language translations or interface design changes. Provider will act as liaison with local Territory wireless carriers. This will include content review to insure content meets local broadcast standards and meets any local regulatory requirements. [PARTY_B] also agrees to secure necessary governmental approvals or permits necessary to operate in the Territory...",
+      "explanation": "This places broad, open-ended technical, localization, and regulatory compliance burdens solely on you without clearly defining limits or ensuring financial support from IMNTV.",
+      "suggested_change": "Clearly define the scope of middleware, localization, and regulatory tasks, and state that IMNTV will assist with and cover costs related to content-level compliance for their IP."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The China Unicom Tianjin streaming media service is offered as a pilot commercial program without charge for the period of two to three months. IMNTV agrees to participate in this pilot program by providing the content to China Unicom Tianjin via MobileVision without charge during this period.",
+      "explanation": "You are required to run a commercial pilot program and distribute content without generating any revenue or receiving your share during the pilot period, while still incurring operational and hosting costs.",
+      "suggested_change": "Limit the free pilot period to a strict maximum of 30 days or ensure that operational expenses incurred by [PARTY_B] during the pilot are reimbursed."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2440,
+   "prompt_tokens": 504,
+   "output_tokens": 214,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.97,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are doing well. Thank you for sending over the agreement. I have reviewed the terms and would like to request a couple of adjustments to the relevant clauses before signing:\n\n- Regarding the limitation of liability, the agreement currently caps liability for one party while leaving the distributor's liability completely uncapped; I propose making this mutual to cap each party's total aggregate liability to the fees paid or payable under the agreement over a 12-month period.\n- Regarding subscriber refunds upon termination under the relevant clause, [PARTY_B] is currently assigned full liability for refunds resulting from programming issues; I propose modifying this so that IMNTV reimburses or indemnifies [PARTY_B] for any subscriber refunds issued as a result of IMNTV's breach or programming deficiencies.\n\nPlease let me know your thoughts on these updates so we can finalize the contract.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "scope_creep",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "id": "freelance:C2",
+ "chars": 2949,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "start": 1567,
+   "end": 1770
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+   "start": 2107,
+   "end": 2345
+  }
+ ],
+ "email": true,
+ "seconds": 16.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4442,
+   "prompt_tokens": 954,
+   "output_tokens": 273,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.58,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+      "explanation": "This clause lacks a limit on the number of rejection and remediation cycles, which could lead to endless demands for corrections without additional pay.",
+      "suggested_change": "Specify that the remediation obligation applies to a single round of testing per milestone, and subsequent fixes requested after re-testing are billed hourly."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+      "explanation": "The agreement contains no overall limitation of liability or cap on damages, exposing the developer to open-ended financial risk for any critical bugs or security vulnerabilities during the warranty period.",
+      "suggested_change": "Add a limitation of liability clause capping the developer's total liability at the total fees paid under the agreement and restrict the warranty to specific agreed-upon specifications."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2829,
+   "prompt_tokens": 502,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am reviewing the documents and would like to propose a few adjustments to the relevant clauses before we sign. - Regarding the correction of non-conformities, the agreement lacks a limit on remediation cycles, so I propose specifying that the obligation applies to a single round of testing per milestone with subsequent fixes billed hourly. - Regarding the warranty period, the agreement contains no limitation of liability, so I propose adding a liability cap equal to the total fees paid and restricting the warranty to the agreed-upon specifications. Thank you for your flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

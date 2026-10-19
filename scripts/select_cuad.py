@@ -76,6 +76,21 @@ EXCLUDED = {
         "oil and gas farm-in: the company pays drilling costs for a working interest; no service provider",
     "ENTERPRISEPRODUCTSPARTNERSLP_07_08_1998-EX-10.3-TRANSPORTATION CONTRACT":
         "intra-group agreement: the carrier is a division of Enterprise Products Company, the shipper is Enterprise Products Operating L.P., not vendor-client",
+    # Dropped in the second held-out review (2026-10-16, cuad-holdout-2).
+    "CoherusBiosciencesInc_20200227_10-K_EX-10.29_12021376_EX-10.29_Development Agreement":
+        "pharma co-development and licensing between two principal partners; no single service provider; key terms redacted",
+    "ParatekPharmaceuticalsInc_20170505_10-KA_EX-10.29_10323872_EX-10.29_Outsourcing Agreement":
+        "redaction hides the target clauses: liability caps, termination payments and IP terms are unreadable",
+    "INKTOMICORP_06_08_1998-EX-10.14-SOFTWARE HOSTING AGREEMENT":
+        "redaction hides the liability article (316 redacted passages); the target clause cannot be read",
+    "STARTECGLOBALCOMMUNICATIONSCORP_11_16_1998-EX-10.30-CONSTRUCTION AND MAINTENANCE AGREEMENT":
+        "multiparty consortium agreement for building and running a cable; no single provider or client",
+    "WPPPLC_04_30_2020-EX-4.28-SERVICE AGREEMENT":
+        "employment contract (UK executive service agreement with an employee)",
+    "GWG HOLDINGS, INC. - ORDERLY MARKETING AGREEMENT":
+        "agreement between an issuer and selling shareholders about marketing shares through a third-party bank; no service provider among the parties",
+    "DeltathreeInc_19991102_S-1A_EX-10.19_6227850_EX-10.19_Co-Branding Agreement_ Service Agreement":
+        "co-branding agreement with services in both directions; no single provider",
 }
 
 # Contracts per stratum, in this order; a contract lands in the first stratum it fits.

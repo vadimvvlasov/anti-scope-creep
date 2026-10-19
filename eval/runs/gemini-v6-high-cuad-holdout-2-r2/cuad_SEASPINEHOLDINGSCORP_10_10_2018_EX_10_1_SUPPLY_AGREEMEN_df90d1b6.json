@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SEASPINEHOLDINGSCORP_10_10_2018-EX-10.1-SUPPLY AGREEMENT",
+ "chars": 70898,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "PcoMed will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+   "start": 21402,
+   "end": 21687
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payments due under Section 2.2 shall be payable to PcoMed by Integra on a quarterly basis within 45 days following the end of each calendar quarter.",
+   "start": 37596,
+   "end": 37744
+  }
+ ],
+ "email": true,
+ "seconds": 20.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21606,
+   "prompt_tokens": 16467,
+   "output_tokens": 307,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.99,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] will not charge *** Run Fees for reasonable quantities, not to exceed *** units or four *** Runs, of Treated Integra Products or Partially Treated Integra Product and test samples required to complete US Marketing Clearance and/or EU Marketing Clearance testing and validations.",
+      "explanation": "You are required to provide products and production runs without compensation up to a set limit for regulatory testing.",
+      "suggested_change": "The Client shall pay the Contractor standard fees for all units and production runs required for regulatory testing and validations."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payments due under Section 2.2 shall be payable to [PARTY_B] by Integra on a quarterly basis within 45 days following the end of each calendar quarter.",
+      "explanation": "Payment is due within 45 days after the end of each quarter, which exceeds standard 30-day terms and delays your cash flow.",
+      "suggested_change": "Payments due under Section 2.2 shall be payable to the Contractor by the Client on a quarterly basis within 30 days following the end of each calendar quarter."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2990,
+   "prompt_tokens": 480,
+   "output_tokens": 171,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.92,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the documents. I would like to propose a few adjustments to the agreement before signing. - Regarding the relevant clause concerning testing fees, you are required to provide products and production runs without compensation up to a set limit for regulatory testing, and I propose that the Client shall pay the Contractor standard fees for all units and production runs required for regulatory testing and validations. - Regarding the relevant clause concerning payment terms, payment is due within 45 days following the end of each calendar quarter, and I propose that payments due under Section 2.2 shall be payable to the Contractor by the Client on a quarterly basis within 30 days following the end of each calendar quarter. Thank you for considering these updates. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

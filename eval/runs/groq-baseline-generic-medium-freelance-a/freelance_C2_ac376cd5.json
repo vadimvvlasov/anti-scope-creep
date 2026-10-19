@@ -1,0 +1,91 @@
+{
+ "id": "freelance:C2",
+ "chars": 2949,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "start": 593,
+   "end": 720
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "start": 1567,
+   "end": 1770
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "low",
+   "quoted_text": "Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+   "start": 2225,
+   "end": 2345
+  }
+ ],
+ "email": true,
+ "seconds": 38.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2652,
+   "prompt_tokens": 1138,
+   "output_tokens": 1514,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.43,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+      "explanation": "Allows the client to request changes, but the hourly billing may lead to unanticipated additional work and costs that are hard to estimate, exposing you to scope creep.",
+      "suggested_change": "Specify a maximum hourly rate or cap on change order costs, require mutual agreement on estimated hours, and define what constitutes a ‘material change’ to limit frequent small changes."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Milestone 4: Final Production Deployment & Handoff (Due September 30, 2025): $8,500.00 USD (10%).",
+      "explanation": "Only 10% of the total fee is paid after final delivery, leaving the majority of cash flow dependent on earlier milestones and exposing you to risk of non‑payment or delayed acceptance for the final work.",
+      "suggested_change": "Increase the final milestone payment to a more balanced percentage (e.g., 20‑30%) or add a retainage release tied to acceptance, and include a clause that payment is due within a short period after acceptance (e.g., 5 business days)."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+      "explanation": "The clause obligates you to fix any material non‑conformities within 14 days at no extra charge, which could be interpreted broadly and lead to multiple rounds of revisions beyond the original scope.",
+      "suggested_change": "Define ‘material non‑conformities’ clearly, limit revisions to a reasonable number (e.g., two rounds), and state that any additional changes beyond the warranty period will be billed at the Change Order rate."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "low",
+      "quoted_text": "Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+      "explanation": "While limited to critical bugs during the 90‑day warranty, there is no cap on the number of fixes, which could result in extensive work if many issues arise.",
+      "suggested_change": "Add a cap on the number of bug‑fix hours (e.g., 40 hours) or specify that fixes beyond the cap will be billed at the Change Order rate."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1285,
+   "prompt_tokens": 655,
+   "output_tokens": 630,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 15.46,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you’re well. Before I sign the agreement, I would like to ask for a few clarifications:\n\n- The relevant clause about change orders currently sets an hourly rate of $120.00. I’m concerned that without a limit, the cost of change orders could become unpredictable. Could we add a maximum hourly rate or a cap on total change‑order costs, and include a definition of what constitutes a material change, so that both parties have a clear understanding?\n- The clause on fixing material non‑conformities requires corrections within fourteen (14) calendar days at no additional cost. To avoid ambiguity, I suggest we define “material non‑conformities,” limit the number of revision rounds (for example, two), and state that any work beyond the warranty period would be billed at the change‑order rate.\n\nThank you for considering these adjustments. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

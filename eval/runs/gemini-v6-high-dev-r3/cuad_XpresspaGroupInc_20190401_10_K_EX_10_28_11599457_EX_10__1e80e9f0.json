@@ -1,0 +1,51 @@
+{
+ "id": "cuad:XpresspaGroupInc_20190401_10-K_EX-10.28_11599457_EX-10.28_Marketing Agreement",
+ "chars": 52106,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT WITH RESPECT TO EACH PARTY'S INDEMNIFICATION OBLIGATIONS UNDER THIS AGREEMENT, (A) UNDER NO CIRCUMSTANCE AND UNDER NO LEGAL THEORY (TORT, CONTRACT, OR OTHERWISE), SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR ANY LOST PROFITS, LOSS OF OPPORTUNITY OR OTHER SPECIAL, PUNITIVE, INDIRECT, OR CONSEQUENTIAL DAMAGES SUFFERED BY THE OTHER PARTY ARISING IN CONNECTION WITH THIS AGREEMENT; AND (B) THE MAXIMUM LIABILITY OF EACH PARTY IN ANY WAY RELATED TO THIS AGREEMENT SHALL NOT EXCEED $2,000,000.00 (EXCLUDING ANY AMOUNTS DUE AND PAYABLE PURSUANT TO SECTION ​8 HEREUNDER).",
+   "start": 37771,
+   "end": 38350
+  }
+ ],
+ "email": true,
+ "seconds": 17.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17780,
+   "prompt_tokens": 13084,
+   "output_tokens": 275,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.44,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT WITH RESPECT TO EACH PARTY'S INDEMNIFICATION OBLIGATIONS UNDER THIS AGREEMENT, (A) UNDER NO CIRCUMSTANCE AND UNDER NO LEGAL THEORY (TORT, CONTRACT, OR OTHERWISE), SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR ANY LOST PROFITS, LOSS OF OPPORTUNITY OR OTHER SPECIAL, PUNITIVE, INDIRECT, OR CONSEQUENTIAL DAMAGES SUFFERED BY THE OTHER PARTY ARISING IN CONNECTION WITH THIS AGREEMENT; AND (B) THE MAXIMUM LIABILITY OF EACH PARTY IN ANY WAY RELATED TO THIS AGREEMENT SHALL NOT EXCEED $2,000,000.00 (EXCLUDING ANY AMOUNTS DUE AND PAYABLE PURSUANT TO SECTION ​8 HEREUNDER).",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap, meaning your exposure for indemnified claims is completely unlimited.",
+      "suggested_change": "The maximum aggregate liability of each Party for all claims arising out of or related to this Agreement, including indemnification obligations, shall not exceed $2,000,000.00."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1985,
+   "prompt_tokens": 474,
+   "output_tokens": 104,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.39,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I am reviewing the paperwork and would like to request a slight modification to the agreement before signing. - In the relevant clause, indemnification obligations are excluded from the overall liability cap, meaning exposure for indemnified claims is unlimited. I propose updating this so that the maximum aggregate liability of each party for all claims, including indemnification obligations, shall not exceed $2,000,000.00. Thank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

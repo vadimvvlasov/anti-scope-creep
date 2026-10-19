@@ -1,0 +1,22 @@
+{
+ "id": "freelance:LD1",
+ "chars": 19532,
+ "findings": [],
+ "email": false,
+ "seconds": 8.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8598,
+   "prompt_tokens": 5688,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.77,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "eval" / "freelance"
 GOLD = ROOT / "eval" / "gold" / "freelance.jsonl"
+GOLD_LIABILITY = ROOT / "eval" / "gold" / "freelance-liability.jsonl"
 ALL_CATEGORIES = [
     "ip_transfer_before_payment", "one_sided_termination", "scope_creep",
     "uncapped_liability", "unfavorable_payment_terms", "unlimited_revisions",
@@ -171,6 +172,58 @@ MUTANTS = {
 }
 
 
+
+def _cap(old_clause: str, new_clause: str, cap: str, quote_level: str | None = None) -> list[tuple]:
+    """Clause 10.2 plus the two other places that repeat the cap (Schedule A, the commercial summary)."""
+    return [
+        (_clause_text("data/25.txt", "10.2"), new_clause),
+        ("Liability cap: USD 35,000", f"Liability cap: USD {cap}"),
+        ("the liability cap of USD 35,000", f"the liability cap of USD {cap}"),
+    ]
+
+
+# Rule-coverage mutants for uncapped_liability, derived from rules a) to e) of the findings prompt
+# (docs/spec.md), not from any held-out contract. data/25: fee USD 24,875, cap USD 35,000.
+LIABILITY_MUTANTS = {
+    "LD1": ("data/25.txt", [
+        (None, None, "Decoy (rule a): 10.1 only excludes types of damages, with exceptions for indemnification, confidentiality and IP; the cap in 10.2 stays.", [
+            (_clause_text("data/25.txt", "10.1"),
+             _clause_text("data/25.txt", "10.1").rstrip(".") + ", except for a party's indemnification obligations, breach of confidentiality, "
+             "or infringement of intellectual property rights."),
+        ]),
+    ]),
+    "LD2": ("data/25.txt", [
+        (None, None, "Decoy (rule d): a mutual fixed cap of USD 49,000 is below 2x the fee of USD 24,875.",
+         _cap("", "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 49,000, except to the extent a different "
+              "limitation is required by applicable law.", "49,000")),
+    ]),
+    "LD3": ("data/25.txt", [
+        (None, None, "Decoy (rule c): the cap has exceptions only for confidentiality and gross negligence.", [
+            (_clause_text("data/25.txt", "10.2"),
+             "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except for liability arising from breach of "
+             "confidentiality or from gross negligence, and except to the extent a different limitation is required by applicable law."),
+        ]),
+    ]),
+    "LM1": ("data/25.txt", [
+        ("uncapped_liability", "medium", "Rule d: a fixed mutual cap of USD 60,000 is above 2x the fee of USD 24,875.",
+         _cap("", "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 60,000, except to the extent a different "
+              "limitation is required by applicable law.", "60,000")),
+    ]),
+    "LM2": ("data/25.txt", [
+        clause("uncapped_liability", "10.2", "10.2 The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except that "
+               "Contractor's liability for third-party claims and for infringement of intellectual property rights is not subject to this cap.",
+               "medium", "Rule c: third-party claims and IP-infringement claims are taken out of the cap with no separate limit."),
+    ]),
+    "LM3": ("data/25.txt", [
+        ("uncapped_liability", "high", "Rule b: the contractor's liability is stated to have no cap or limit; only the client is capped.", [
+            (_clause_text("data/25.txt", "10.2"), "10.2 The aggregate liability of Client arising from this Agreement is capped at USD 35,000. "
+             "Contractor's liability arising from this Agreement is not subject to any cap or limit.",
+             "Contractor's liability arising from this Agreement is not subject to any cap or limit."),
+            ("Liability cap: USD 35,000", "Liability cap: USD 35,000 (Client only)"),
+        ]),
+    ]),
+}
+
 def mutate(text: str, edits: list[tuple]) -> str:
     for _, _, _, replacements in edits:
         for old, new, *_ in replacements:
@@ -205,6 +258,18 @@ def record(key: str, path: str, base: str, text: str, expected: list[dict], note
     }
 
 
+def build_liability() -> list[dict]:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    records = []
+    for key, (base, edits) in LIABILITY_MUTANTS.items():
+        text = mutate((ROOT / base).read_text(encoding="utf-8"), edits)
+        path = OUT_DIR / f"{key}.txt"
+        path.write_text(text, encoding="utf-8")
+        notes = "; ".join(reason for category, _, reason, _ in edits if category is None)
+        records.append(record(key, f"eval/freelance/{key}.txt", base, text, gold_findings(edits), notes))
+    return records
+
+
 def build() -> list[dict]:
     records = []
     for key, (base, notes) in CONTROLS.items():
@@ -225,11 +290,23 @@ def build() -> list[dict]:
     return records
 
 
+def merge_gold(records: list[dict]) -> list[dict]:
+    """The records replace the lines with the same id; lines this script does not build (the contracts
+    written by hand: B1, I1-I3, M8b, M8c) stay where they are, so a rerun never drops a contract."""
+    built = {r["id"]: r for r in records}
+    kept = [json.loads(line) for line in GOLD.read_text(encoding="utf-8").splitlines() if line.strip()] if GOLD.exists() else []
+    merged = [built.pop(r["id"], r) for r in kept]
+    return merged + list(built.values())
+
+
 def main() -> int:
-    records = build()
+    records = merge_gold(build())
     GOLD.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records), encoding="utf-8")
     groups = sum(len({e["group"] for e in r["expected"]}) for r in records)
     print(f"{len(records)} contracts, {groups} gold findings -> {GOLD.relative_to(ROOT)}")
+    liability = build_liability()
+    GOLD_LIABILITY.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in liability), encoding="utf-8")
+    print(f"{len(liability)} contracts -> {GOLD_LIABILITY.relative_to(ROOT)}")
     return 0
 
 

@@ -1,0 +1,91 @@
+{
+ "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT",
+ "chars": 25214,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Tadeo will provide Diplomat with all online hosting services currently provided to Diplomat through third party contracts, including, without limitations, the development and maintenance for Diplomat's operating divisions and/or operating subsidiaries of Commerce Web Subsites",
+   "start": 23314,
+   "end": 23590
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Tadeo will invoice Diplomat within 15 days of the end of each month for Services rendered in such month. Diplomat will pay such invoice within 30 days of receipt.",
+   "start": 25028,
+   "end": 25190
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Neither party shall be liable or bound to any other party in any manner by any representations, warranties or convenants relating to such subject matter expect as specifically set forth herein.",
+   "start": 21193,
+   "end": 21386
+  }
+ ],
+ "email": true,
+ "seconds": 19.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10072,
+   "prompt_tokens": 5340,
+   "output_tokens": 550,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.55,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Tadeo will provide Diplomat with all online hosting services currently provided to Diplomat through third party contracts, including, without limitations, the development and maintenance for Diplomat's operating divisions and/or operating subsidiaries of Commerce Web Subsites",
+      "explanation": "The phrase 'including, without limitations' tied to undefined third-party contracts creates an ambiguous and potentially expansive scope of work without guaranteed additional compensation.",
+      "suggested_change": "Define the exact scope of services explicitly, remove references to third-party contracts, and state that any out-of-scope work will require a separate written change order."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Diplomat shall have the right (but not the obligation) to terminate this Agreement and the rights granted to Tadeo hereunder if: ... (vi) Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement.",
+      "explanation": "Diplomat can terminate the contract for convenience on 60 days notice, effectively breaking the 12-month commitment and cutting off Tadeo's revenue stream without compensation for lost profits or setup costs.",
+      "suggested_change": "Remove termination for convenience for Diplomat or add a termination fee/early cancellation penalty equivalent to the remaining contract value or non-recoverable expenses."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Tadeo will invoice Diplomat within 15 days of the end of each month for Services rendered in such month. Diplomat will pay such invoice within 30 days of receipt.",
+      "explanation": "Invoicing after the month ends combined with Net 30 payment terms means Tadeo may finance up to 45 to 75 days of services before receiving payment, creating potential cash flow issues.",
+      "suggested_change": "Change invoicing to occur in advance (e.g., on the first of each month) with payment due within 15 days."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Neither party shall be liable or bound to any other party in any manner by any representations, warranties or convenants relating to such subject matter expect as specifically set forth herein.",
+      "explanation": "The agreement lacks a limitation of liability or liability cap for Tadeo, exposing Tadeo to potentially unlimited damages far exceeding the total fees earned under the contract.",
+      "suggested_change": "Insert a mutual limitation of liability capping total damages to the total fees paid by Diplomat to Tadeo under the agreement over the preceding 12 months."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2873,
+   "prompt_tokens": 626,
+   "output_tokens": 160,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.56,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to propose a few adjustments before signing. - Regarding the relevant clause on hosting services, the scope is currently too broad, so I propose defining the exact scope explicitly, removing references to third-party contracts, and requiring a separate change order for extra work. - Regarding the relevant clause on invoicing and payment, the current terms create cash flow issues, so I propose changing invoicing to occur in advance with payment due within 15 days. - Regarding the relevant clause on liability, the agreement lacks a liability cap, so I propose inserting a mutual limitation capping total damages to the fees paid over the preceding 12 months. Please let me know if these changes work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "id": "freelance:C2",
+ "chars": 2949,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+   "start": 2107,
+   "end": 2345
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Milestone 1: UX/UI Designs & Architecture Approval (Due June 01, 2025): $17,000.00 USD (20%)",
+   "start": 951,
+   "end": 1043
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Developer agrees to design, build, test, and deploy a HIPAA-compliant Patient Telehealth Web Portal (\"Software\") as detailed in Exhibit A (Product Specifications).",
+   "start": 429,
+   "end": 592
+  }
+ ],
+ "email": true,
+ "seconds": 23.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6263,
+   "prompt_tokens": 954,
+   "output_tokens": 442,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.53,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+      "explanation": "The agreement completely lacks a limitation of liability clause and a mutual indemnification cap. Committing to fix security vulnerabilities during a warranty period without a liability cap exposes you to potentially unlimited financial damages if a security breach or HIPAA violation occurs.",
+      "suggested_change": "Add a limitation of liability clause capping your total aggregate liability to the fees paid under the contract, and include a waiver for consequential or indirect damages."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Milestone 1: UX/UI Designs & Architecture Approval (Due June 01, 2025): $17,000.00 USD (20%)",
+      "explanation": "The payment schedule lists due dates but fails to specify invoice timing, grace periods, late payment interest, or the right to suspend work if milestone payments are delayed.",
+      "suggested_change": "Add terms stating that late payments accrue interest at 1.5% per month, and that Developer reserves the right to suspend work if any milestone payment is overdue by more than 5 business days."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Developer agrees to design, build, test, and deploy a HIPAA-compliant Patient Telehealth Web Portal (\"Software\") as detailed in Exhibit A (Product Specifications).",
+      "explanation": "HIPAA compliance is a broad, evolving legal standard. If Exhibit A does not exhaustively define security and technical requirements, the client could demand extensive additional security features or penetration testing under the fixed price.",
+      "suggested_change": "Clarify in Exhibit A that HIPAA compliance is limited strictly to the specified technical features listed, and any additional security audits, penetration testing, or regulatory certifications requested by the client will require a separate Change Order."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3629,
+   "prompt_tokens": 671,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I would like to propose a few minor adjustments before signing:\n- The relevant clause concerning the warranty lacks a limitation of liability, so we should add a clause capping total aggregate liability to the fees paid and waiving indirect damages.\n- The payment schedule outlines due dates but does not specify late payment terms, so we should add terms for monthly interest on late payments and the right to suspend work for overdue balances.\n- The section regarding HIPAA compliance is broad, so we should clarify that compliance is limited strictly to specified technical features and any additional requests will require a change order.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

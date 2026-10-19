@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BNLFINANCIALCORP_03_30_2007-EX-10.8-OUTSOURCING AGREEMENT",
+ "chars": 39863,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "in any event, other than claims covered by paragraph 8(b) or paragraph 6(a) of this agreement (which claims are excluded from this paragraph 9(f) limitation), the liability of VIP to BNL for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by BNL to VIP in the twelve (12) month period prior to the accrual of the action or claim for the specific service which is the subject of the action or claim (or, if such accrual occurs during the first twelve (12) months of the initial term, then the liability shall be limited to the minimum fees payable by BNL to VIP during the first twelve (12) months of the initial term).",
+   "start": 18950,
+   "end": 19636
+  }
+ ],
+ "email": true,
+ "seconds": 17.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14705,
+   "prompt_tokens": 10192,
+   "output_tokens": 293,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.9,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "in any event, other than claims covered by paragraph 8(b) or paragraph 6(a) of this agreement (which claims are excluded from this paragraph 9(f) limitation), the liability of VIP to BNL for any reason and upon any cause of action or claim in contract, tort or otherwise shall be limited to the amount paid by BNL to VIP in the twelve (12) month period prior to the accrual of the action or claim for the specific service which is the subject of the action or claim (or, if such accrual occurs during the first twelve (12) months of the initial term, then the liability shall be limited to the minimum fees payable by BNL to VIP during the first twelve (12) months of the initial term).",
+      "explanation": "Your intellectual property infringement and confidentiality claims are carved out of your overall liability cap and have no separate financial limit, exposing you to unlimited financial liability for those claims.",
+      "suggested_change": "The Contractor's total aggregate liability for all claims arising under this Agreement, including intellectual property infringement and confidentiality, shall be subject to and included within the overall limitation of liability set forth herein."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2227,
+   "prompt_tokens": 492,
+   "output_tokens": 89,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have reviewed it and would like to propose an adjustment before signing: - The relevant clause excludes certain claims from the overall liability cap, leaving those claims without a financial limit. I propose that we update the agreement so that all claims are included within the overall limitation of liability. Please let me know if this works for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

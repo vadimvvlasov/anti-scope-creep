@@ -1,0 +1,120 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1754,
+   "end": 2015
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3810,
+   "end": 3969
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9045,
+   "end": 9216
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 2 rounds",
+   "start": 13048,
+   "end": 13076
+  }
+ ],
+ "email": true,
+ "seconds": 149.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4216,
+   "prompt_tokens": 2635,
+   "output_tokens": 1581,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 96.28,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" via informal communications and leaves it to the parties' judgment whether the clarification materially increases workload. In practice the client could request additional features or changes that you may feel are minor, but the contractor may end up doing extra work without additional compensation, creating scope creep.",
+      "suggested_change": "Amend the clause to require that any clarification that could affect effort or cost be documented in writing as a change order and approved by both parties before work begins."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "Net 90 gives the client up to three months to pay, which can strain cash flow for a freelancer. The interest rate of 2.0% per month (24% annual) is high and may be unenforceable in some jurisdictions, leaving you with delayed or disputed payments.",
+      "suggested_change": "Change the payment term to Net 30 (or Net 45) and set a lower, legally enforceable interest rate (e.g., 1.5% per month) for late payments. Also require that any dispute be resolved before the due date or that the undisputed portion be paid on time."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can walk away with only 19 days' notice, potentially after significant effort has been invested, and you only receive payment for work performed up to termination. This creates uncertainty and may leave you with unrecovered costs for work that was not yet billed.",
+      "suggested_change": "Limit termination for convenience to after the completion of key milestones (e.g., after the discovery phase) or require a termination fee equal to a percentage (e.g., 25%) of the total contract value to compensate for lost opportunity and ramp‑up costs."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2693,
+   "prompt_tokens": 1865,
+   "output_tokens": 828,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.45,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You must wait up to 90 days after invoicing before receiving payment, which can create cash‑flow problems for your freelance business and increase the risk of non‑payment.",
+      "suggested_change": "Negotiate a shorter payment term such as Net 30 or Net 45, or include an early‑payment discount to encourage faster payment."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 2 rounds",
+      "explanation": "The contract only guarantees two rounds of revisions. If the client requests additional changes, there is no clear mechanism for extra fees, so you may end up performing extra work without compensation.",
+      "suggested_change": "Add language stating that any revisions beyond the two allotted rounds will be billed at an agreed hourly or per‑revision rate, and require the client’s written approval before proceeding."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1783,
+   "prompt_tokens": 1078,
+   "output_tokens": 705,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 30.11,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a few adjustments before we sign:\n- The relevant clause permits informal \"minor clarifications\" that could increase workload. To protect both sides, I propose that any clarification affecting effort or cost be documented in writing as a change order and approved by both parties before work begins.\n- The payment term of Net 90 and the 2.0% per month interest rate could strain cash flow and may be unenforceable. I suggest changing the term to Net 30 (or Net 45) and setting a lower, legally enforceable interest rate of 1.5% per month for late payments, with any dispute resolved before the due date and the undisputed portion paid on time.\n- The termination‑for‑convenience provision allows termination with only 19 days’ notice, which may leave work unrecovered. I recommend limiting such termination to after key milestones (e.g., after the discovery phase) or requiring a termination fee equal to 25% of the total contract value.\n- The payment period is listed again as Net 90, which creates cash‑flow risk. A shorter term of Net 30 or Net 45, or an early‑payment discount, would be more workable.\n- The revision allowance of two rounds does not address additional changes. I propose adding language that any revisions beyond the two allotted rounds will be billed at an agreed hourly (or per‑revision) rate, with written approval from the client before proceeding.\n\nThank you for considering these updates. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

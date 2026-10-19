@@ -1,0 +1,22 @@
+{
+ "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 31914,
+ "findings": [],
+ "email": false,
+ "seconds": 7.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10944,
+   "prompt_tokens": 8413,
+   "output_tokens": 4,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.6,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

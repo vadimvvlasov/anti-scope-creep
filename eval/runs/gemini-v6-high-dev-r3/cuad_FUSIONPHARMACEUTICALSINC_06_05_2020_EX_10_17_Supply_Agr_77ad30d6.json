@@ -1,0 +1,51 @@
+{
+ "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+ "chars": 40597,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice. (b) Fusion discontinues the trial or terminates the program, Fusion may terminate this agreement by giving [***] written notice to CPDC",
+   "start": 24886,
+   "end": 25270
+  }
+ ],
+ "email": true,
+ "seconds": 17.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 14673,
+   "prompt_tokens": 10235,
+   "output_tokens": 228,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.34,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice. (b) Fusion discontinues the trial or terminates the program, Fusion may terminate this agreement by giving [***] written notice to CPDC",
+      "explanation": "Only the Client has the right to terminate the agreement without cause, and active production orders are deemed cancelled upon termination without explicit payment for work in progress or committed costs.",
+      "suggested_change": "Either Party may terminate this Agreement without cause by providing at least ninety (90) days prior written notice to the other Party, and the Client shall pay for all products manufactured, work completed, and reasonable costs incurred up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2193,
+   "prompt_tokens": 426,
+   "output_tokens": 106,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.29,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the paperwork. I am excited to begin our collaboration and have just one minor suggestion before we sign. - Regarding the relevant clause, the termination terms currently apply to only one party without ensuring coverage for work in progress, so I propose updating the agreement so that either party may terminate with proper notice and that all completed work and incurred costs are duly paid. Thank you for your time and understanding."
+   }
+  }
+ ],
+ "dropped": []
+}

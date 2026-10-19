@@ -1,0 +1,77 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Dexcel shall provide any and all reasonable assistance to Kitov in this respect during the Term.",
+   "start": 11889,
+   "end": 11985
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "in the event of a Change of Control, the Party which was not subject to the Change of Control may terminate this Agreement upon six (6) months advance written notification.",
+   "start": 27122,
+   "end": 27294
+  }
+ ],
+ "email": true,
+ "seconds": 20.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16451,
+   "prompt_tokens": 12361,
+   "output_tokens": 455,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.48,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Dexcel shall provide any and all reasonable assistance to Kitov in this respect during the Term.",
+      "explanation": "As the manufacturer, committing to provide 'any and all reasonable assistance' regarding changes to specifications, materials, and regulatory dossiers without defined caps or guaranteed compensation exposes Dexcel to uncompensated scope creep.",
+      "suggested_change": "Specify that such assistance is limited to a defined number of hours per year, and that any additional or extensive regulatory/specification support will be billed separately at Dexcel's standard rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "in the event of a Change of Control, the Party which was not subject to the Change of Control may terminate this Agreement upon six (6) months advance written notification.",
+      "explanation": "Kitov is given the unilateral right to terminate the contract simply because Dexcel undergoes a corporate restructuring or Change of Control, which creates unnecessary business disruption for Dexcel even if performance is unaffected.",
+      "suggested_change": "Limit Kitov's termination right upon a Change of Control strictly to cases where Dexcel is acquired by a direct material competitor of Kitov."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Dexcel agrees to defend, indemnify and hold Kitov and its Affiliates, and their respective officers, directors, and employees (collectively, the 'Kitov Indemnitees') harmless from and against any Claims arising from (i) any product liability claims related solely to Dexcel's actions as the manufacture of the Product, or (ii) any breach by Dexcel or its Affiliates of its representations, warranties, covenants, agreements or obligations under this Agreement",
+      "explanation": "Dexcel's indemnification obligations are completely uncapped. A product liability claim could result in catastrophic financial losses that far exceed Dexcel's total earnings under this Agreement.",
+      "suggested_change": "Introduce a mutual aggregate liability cap (e.g., capped at the total fees paid or payable by Kitov to Dexcel in the preceding 12 months) and clarify that indemnification is subject to this cap."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2907,
+   "prompt_tokens": 483,
+   "output_tokens": 167,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello and thank you for sharing the paperwork. Before signing the agreement, I would like to propose a few minor adjustments to the relevant clauses: - Regarding the obligation to provide assistance during the term, the current wording lacks defined limits and compensation, which may lead to uncompensated extra work. I propose specifying that such assistance is limited to a set number of hours per year, with any additional support billed separately. - Regarding the termination right in the event of a change of control, the broad terms create potential business disruption even if performance remains unaffected. I propose limiting this termination right strictly to cases where a party is acquired by a direct material competitor. Thank you for your time, and please let me know if these updates work for you."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  }
+ ]
+}

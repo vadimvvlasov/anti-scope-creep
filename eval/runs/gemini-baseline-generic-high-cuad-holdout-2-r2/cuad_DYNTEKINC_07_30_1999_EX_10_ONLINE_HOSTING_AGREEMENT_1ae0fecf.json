@@ -1,0 +1,65 @@
+{
+ "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT",
+ "chars": 25214,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Tadeo will provide Diplomat with all online hosting services currently provided to Diplomat through third party contracts, including, without limitations, the development and maintenance for Diplomat's operating divisions and/or operating subsidiaries of Commerce Web Subsites (as defined below) within the www.______ web site on the Internet based on online Enrollment and Information Forms, completed by Diplomat, submitted in conformance with Tadeo's instructions.",
+   "start": 23314,
+   "end": 23781
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Neither party shall be liable or bound to any other party in any manner by any representations, warranties or convenants relating to such subject matter expect as specifically set forth herein.",
+   "start": 21193,
+   "end": 21386
+  }
+ ],
+ "email": true,
+ "seconds": 23.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 11448,
+   "prompt_tokens": 5340,
+   "output_tokens": 353,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.23,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Tadeo will provide Diplomat with all online hosting services currently provided to Diplomat through third party contracts, including, without limitations, the development and maintenance for Diplomat's operating divisions and/or operating subsidiaries of Commerce Web Subsites (as defined below) within the [URL_1] web site on the Internet based on online Enrollment and Information Forms, completed by Diplomat, submitted in conformance with Tadeo's instructions.",
+      "explanation": "Promising all online hosting services currently provided through third party contracts without explicit itemization or limits exposes Tadeo to unbounded legacy obligations and unknown third-party technical requirements that may far exceed your pricing and capacity.",
+      "suggested_change": "Replace the broad reference to third-party contracts with an explicit, itemized scope of work in Exhibit A, and stipulate that any additional requests or legacy services not explicitly listed will be billed separately as out-of-scope work."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Neither party shall be liable or bound to any other party in any manner by any representations, warranties or convenants relating to such subject matter expect as specifically set forth herein.",
+      "explanation": "The contract does not include a limitation of liability or a cap on damages. As the service provider, Tadeo could face unlimited financial exposure if a hosting outage or technical failure causes massive business losses for Diplomat.",
+      "suggested_change": "Add a robust limitation of liability clause capping Tadeo's aggregate liability to the total fees paid by Diplomat under the Agreement during the preceding 12 months, and disclaim consequential, incidental, and lost-profit damages."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2739,
+   "prompt_tokens": 584,
+   "output_tokens": 148,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.27,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to moving forward and have a couple of minor adjustments to propose before we sign. - Regarding the relevant clause on hosting services, covering all third-party services without clear limits creates unbounded technical obligations; we propose replacing this with an explicit, itemized scope of work, billing any extra services separately. - Regarding the relevant clause on liabilities, the agreement currently lacks a cap on damages; we propose adding a limitation of liability capping aggregate liability to the fees paid under the agreement. Thank you for your time and consideration, and please let me know if these updates work for you."
+   }
+  }
+ ],
+ "dropped": []
+}

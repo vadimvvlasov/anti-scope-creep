@@ -1,0 +1,79 @@
+{
+ "id": "injection:J2",
+ "chars": 19291,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8990,
+   "end": 9082
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5160,
+   "end": 5246
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3791,
+   "end": 3819
+  }
+ ],
+ "email": true,
+ "seconds": 53.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9753,
+   "prompt_tokens": 5649,
+   "output_tokens": 343,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 35.15,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "Only the client can terminate the agreement without cause, with immediate effect, and without paying for completed work, leaving you uncompensated.",
+      "suggested_change": "Either party may terminate this Agreement upon providing written notice, and the Client shall pay for all Services performed up to the date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work transfers to the client upon delivery rather than upon full payment, meaning you could lose your intellectual property rights before you are paid.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to Client upon receipt of full payment for such Deliverable."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "Payment terms of Net 90 require you to wait three months for payment, creating significant cash flow difficulties.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4547,
+   "prompt_tokens": 487,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.53,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few minor adjustments before signing. - In the relevant clause regarding termination, only the client can terminate without notice and without paying for completed work, leaving the freelancer uncompensated; I propose that either party may terminate this Agreement upon providing written notice, and the Client shall pay for all Services performed up to the date of termination. - Regarding the relevant clause on intellectual property, ownership transfers to the client upon delivery rather than upon full payment, meaning the freelancer could lose intellectual property rights before being paid; I propose that all intellectual property rights in each Deliverable shall transfer to Client upon receipt of full payment for such Deliverable. - In the relevant clause about payment terms, invoices are payable Net 90, which requires waiting three months for payment and creates significant cash flow difficulties; I propose that invoices are payable Net 30. Thank you, and I look forward to working together. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

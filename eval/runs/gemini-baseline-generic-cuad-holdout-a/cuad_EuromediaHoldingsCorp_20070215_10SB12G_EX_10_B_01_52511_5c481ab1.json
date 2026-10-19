@@ -1,0 +1,116 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+   "start": 16706,
+   "end": 16866
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Licensor shall be responsible for any and all reasonable costs and/or losses incurred by Rogers as a result of any deletions from such list during the Term.",
+   "start": 1548,
+   "end": 1704
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+   "start": 15954,
+   "end": 16203
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "There shall be no minimum License Fee or retail viewing fee with respect to any Licensed Program. Additionally, Rogers shall not be required to pay any License Fees for VOD exhibitions of any Licensed Program occurring on or off premises that are made for the purposes of quality assurance or testing.",
+   "start": 6471,
+   "end": 6772
+  }
+ ],
+ "email": true,
+ "seconds": 21.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10999,
+   "prompt_tokens": 6475,
+   "output_tokens": 757,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.37,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+      "explanation": "Rogers has the unilateral right to terminate the contract for convenience on short notice, while you are bound for the term without equivalent protection.",
+      "suggested_change": "Make the termination for convenience right mutual or require Rogers to reimburse committed costs upon early termination."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Licensor shall be responsible for any and all reasonable costs and/or losses incurred by Rogers as a result of any deletions from such list during the Term.",
+      "explanation": "You are exposed to potentially unlimited and unpredictable financial liability if you need to pull a title due to third-party rights issues or other unforeseen circumstances.",
+      "suggested_change": "Cap liability for deletions at direct out-of-pocket costs or eliminate liability for mandatory rights withdrawals."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Prior to calculating License Fees, Rogers shall be entitled to deduct from Retail Revenues on a rolling monthly basis during the Term (\"Rogers Costs\"): (A) the value of programming credits... (B) the value of refunds... (C) the percentage equal to Rogers' average year-to-end bad debt exposure... (D) encoding costs... and (E) closed captioning costs...",
+      "explanation": "Rogers can deduct various operational costs, refunds, and bad debt exposures directly from retail revenues before calculating your share, significantly reducing your earnings.",
+      "suggested_change": "Restrist deductions to direct sales taxes and mutually agreed costs, and remove deductions for Rogers' general bad debt or internal promotional credits."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+      "explanation": "The waiver of consequential damages specifically excludes IP infringement claims, meaning you could be sued for massive indirect or consequential losses if an IP dispute arises.",
+      "suggested_change": "Remove the IP infringement carve-out from the waiver of consequential damages or establish a reasonable aggregate cap on liability."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "There shall be no minimum License Fee or retail viewing fee with respect to any Licensed Program. Additionally, Rogers shall not be required to pay any License Fees for VOD exhibitions of any Licensed Program occurring on or off premises that are made for the purposes of quality assurance or testing.",
+      "explanation": "There is no guaranteed minimum revenue for your content, and Rogers can use and test your programs for free without paying royalties.",
+      "suggested_change": "Establish minimum guarantees per title or per viewing, and limit free QA testing views to a strictly defined, reasonable threshold."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "Licensor grants to Rogers the non-exclusive license and right to distribute and exhibit in Canada... Payment of License Fees shall be made in Canadian funds in arrears within thirty (30) days following each calendar month",
+      "explanation": "Rogers receives full operational rights to distribute your content immediately, but payment is delayed until up to 30 days after the end of each month, creating credit and timing risk.",
+      "suggested_change": "Require an upfront licensing fee or advance against royalties prior to making content available on the VOD service."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3858,
+   "prompt_tokens": 692,
+   "output_tokens": 243,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.48,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. Please review the following proposed changes to the agreement: - Regarding the relevant clause, the client has the unilateral right to terminate the agreement for convenience on short notice while the other party remains bound; we propose to make the termination for convenience right mutual or require the client to reimburse committed costs upon early termination. - In the relevant clause, the licensor is exposed to potentially unlimited and unpredictable financial liability for pulling a title due to unforeseen circumstances; we propose to cap liability for deletions at direct out-of-pocket costs or eliminate liability for mandatory rights withdrawals. - Under the relevant clause, the waiver of consequential damages excludes IP infringement claims, creating potential exposure to indirect losses; we propose to remove the IP infringement carve-out from the waiver of consequential damages or establish a reasonable aggregate cap on liability. - Regarding the relevant clause, there is no guaranteed minimum revenue and the client can use and test programs for free; we propose to establish minimum guarantees per title or per viewing, and limit free quality assurance testing views to a strictly defined, reasonable threshold. Thank you, and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}

@@ -1,0 +1,148 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9157,
+   "end": 9254
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5328,
+   "end": 5418
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+   "start": 4747,
+   "end": 4915
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1941,
+   "end": 2206
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 30",
+   "start": 13056,
+   "end": 13078
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Review period: 10 days",
+   "start": 13079,
+   "end": 13101
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 13102,
+   "end": 13130
+  }
+ ],
+ "email": true,
+ "seconds": 93.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4537,
+   "prompt_tokens": 2648,
+   "output_tokens": 1889,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.32,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "This allows the client to end the contract abruptly, leaving the contractor without compensation for work already performed and potentially bearing costs of any work done prior to termination.",
+      "suggested_change": "Add a clause requiring the client to pay for all services performed and expenses incurred up to the termination date, and provide a minimum notice period (e.g., 30 days) or a termination fee."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "IP ownership passes to the client as soon as the deliverable is delivered, even if the client later disputes payment, leaving the contractor without leverage to enforce payment.",
+      "suggested_change": "Condition the IP transfer on full payment of the corresponding invoice or on receipt of payment for each milestone, e.g., \"IP rights will transfer to Client upon full payment of the related invoice.\""
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "5.2 A Deliverable is accepted when Client provides written acceptance or when the review period expires without a written rejection describing a material nonconformity.",
+      "explanation": "If the client does not respond within 10 days, the deliverable is deemed accepted, triggering payment obligations for the contractor even if the client is dissatisfied with minor issues, reducing the contractor’s ability to negotiate revisions.",
+      "suggested_change": "Require explicit written acceptance or a signed acceptance form, and allow the client to raise any non‑material concerns within the review period without deeming the deliverable accepted."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause permits the client to request “minor clarifications” without a formal change order, which could be interpreted broadly and lead to additional work without extra compensation.",
+      "suggested_change": "Specify that any clarification that results in any additional effort, however small, must be documented as a change request and may be subject to additional fees."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3075,
+   "prompt_tokens": 1856,
+   "output_tokens": 1219,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.75,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30",
+      "explanation": "The client has 30 days after invoicing to pay. If they delay, you must wait longer for cash flow and only earn 1.0% late‑payment interest, which may not compensate for the delay.",
+      "suggested_change": "Negotiate a shorter net period (e.g., Net 15) or add a higher late‑payment penalty (e.g., 1.5% per month) and include a right to suspend work after X days of non‑payment."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Review period: 10 days",
+      "explanation": "The client has only ten days to review and accept deliverables. If they miss the deadline, acceptance may be deemed granted, limiting your ability to contest late objections, but it also pressures you to meet a tight review window.",
+      "suggested_change": "Add language that the review period can be extended by mutual agreement and that lack of response after the period does not constitute acceptance unless explicitly confirmed in writing."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "Only three revision cycles are included. If the client requests additional changes beyond these rounds, you may have to do extra work without compensation, creating scope creep and unpaid effort.",
+      "suggested_change": "Specify that any revisions beyond the three rounds will be billed at an agreed hourly or per‑revision rate, and require a written change‑order before additional work proceeds."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2539,
+   "prompt_tokens": 1093,
+   "output_tokens": 1446,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 23.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\n- The relevant clause 12.2 allows termination without notice or further payment, which could leave the contractor uncompensated for work already performed. I suggest amending the agreement to require payment for all services and expenses incurred up to the termination date and to include a minimum notice period of 30 days or a termination fee.\n- The relevant clause 6.1 transfers all intellectual property rights to the client upon delivery, even if payment is later disputed. I propose conditioning the IP transfer on full payment of the corresponding invoice.\n- The relevant clause 5.2 deems a deliverable accepted after a review period expires without a written rejection, which may trigger payment despite unresolved issues. I recommend requiring explicit written acceptance (or a signed acceptance form) and allowing the client to raise any concerns within the review period without automatic acceptance.\n- The relevant clause 2.2 permits “minor clarifications” through ordinary communications without a formal change order, which could be interpreted broadly. I propose specifying that any clarification that results in additional effort, however small, must be documented as a change request and may be subject to additional fees.\n- The payment term “Net 30” gives the client 30 days to pay, which may impact cash flow. I suggest changing the term to Net 15 or adding a higher late‑payment penalty (e.g., 1.5% per month) and including a right to suspend work after a defined period of non‑payment.\n- The revision allowance of three rounds limits revisions and may lead to unpaid extra work. I recommend stating that any revisions beyond the three rounds will be billed at an agreed rate and will require a written change order before additional work proceeds.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}

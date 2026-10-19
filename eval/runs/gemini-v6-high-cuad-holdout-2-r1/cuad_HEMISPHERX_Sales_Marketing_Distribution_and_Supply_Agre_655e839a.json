@@ -1,0 +1,22 @@
+{
+ "id": "cuad:HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement",
+ "chars": 73685,
+ "findings": [],
+ "email": false,
+ "seconds": 12.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21157,
+   "prompt_tokens": 17338,
+   "output_tokens": 9,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.04,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,104 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1750,
+   "end": 2015
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "4.2 Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3972,
+   "end": 4135
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "The parties acknowledge that the fee is based on the assumptions stated in the schedules. If a key assumption changes, the parties will document the resulting effect on price or schedule. Silence, continued discussion, or participation in a meeting does not by itself constitute approval of a commercial change.\n\nWhere Client requests an accelerated delivery, Contractor may assess whether additional personnel or overtime are required. Any acceleration premium will be quoted before the accelerated work starts.",
+   "start": 13372,
+   "end": 13884
+  }
+ ],
+ "email": true,
+ "seconds": 89.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3869,
+   "prompt_tokens": 2669,
+   "output_tokens": 1200,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.93,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The clause allows the client to request \"minor clarifications\" without a formal change request. In practice, what the client considers minor may still require additional effort, creating scope creep and unpaid work for the freelancer.",
+      "suggested_change": "Amend the clause to require any clarification that adds any effort beyond the original estimate to be documented as a change request with mutually agreed additional fees."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "4.2 Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "A 90‑day payment period can create cash‑flow problems for a freelancer, and a 2% per month interest charge is unusually high and may be unenforceable in some jurisdictions, leaving the freelancer exposed to delayed or unpaid invoices.",
+      "suggested_change": "Reduce the payment term to Net 30 (or Net 15) and set any late‑payment interest to the statutory rate or a lower, commercially reasonable rate (e.g., 1.5% per month), and include a right to suspend services after 30 days of non‑payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3067,
+   "prompt_tokens": 1865,
+   "output_tokens": 1202,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 29.29,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90\nLate-payment interest: 2.0%\nThe total project fee of USD 23,500 is not changed merely because the parties discuss a revised timetable. Net 90 remains the agreed payment period, and the review period is 9 days.",
+      "explanation": "You must wait up to 90 days after invoicing to receive payment, and the client only owes interest if they are late. The contract also states the fee cannot be increased if the schedule changes, so any extra work caused by delays may be unpaid, putting your cash flow at risk.",
+      "suggested_change": "Propose a shorter payment term (e.g., Net 30) with a higher late‑payment penalty, and add a clause that any work resulting from schedule changes or client‑requested accelerations is compensated via a change‑order or additional fee."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "The parties acknowledge that the fee is based on the assumptions stated in the schedules. If a key assumption changes, the parties will document the resulting effect on price or schedule. Silence, continued discussion, or participation in a meeting does not by itself constitute approval of a commercial change.\n\nWhere Client requests an accelerated delivery, Contractor may assess whether additional personnel or overtime are required. Any acceleration premium will be quoted before the accelerated work starts.",
+      "explanation": "The contract leaves room for the client to request changes or faster delivery without a clear, pre‑approved change‑order process. If the client assumes the original fee covers all work, you may end up performing extra tasks for free, leading to scope creep.",
+      "suggested_change": "Insert a formal change‑order clause that requires written approval and a fee adjustment for any change in assumptions, scope, or accelerated delivery, with clear rates for overtime or additional resources."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1989,
+   "prompt_tokens": 897,
+   "output_tokens": 1092,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.42,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you’re well.\n\n- The relevant clause on service descriptions permits “minor clarifications” without a formal change request. In practice, what may appear minor can still require additional effort, leading to scope creep and unpaid work. I propose that any clarification that adds effort beyond the original estimate be documented as a change request with mutually agreed additional fees.\n\n- The relevant clause on payment terms sets invoices payable Net 90 and allows interest of 2 % per month on late payments. Such a long payment period can create cash‑flow challenges, and the high interest rate may be unenforceable. I propose reducing the payment term to Net 30 (or Net 15) and setting late‑payment interest to the statutory rate or a commercially reasonable rate (e.g., 1.5 % per month), and adding a right to suspend services after 30 days of non‑payment.\n\n- The relevant clause on assumptions and accelerated delivery does not define a clear pre‑approved change‑order process, which could result in extra work being performed without compensation. I propose inserting a formal change‑order clause that requires written approval and a fee adjustment for any change in assumptions, scope, or accelerated delivery, with clear rates for overtime or additional resources.\n\nThank you for considering these revisions. I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

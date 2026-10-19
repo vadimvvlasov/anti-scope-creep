@@ -1,0 +1,88 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Co-Host will provide to NAI on Monday of each           week, a computer media data file in the format established by NAI           showing Co-Host's current inventory levels of each Product (including           items in transit), and weekly runrate snapshots and the other           information reasonably requested by NAI.",
+   "start": 42418,
+   "end": 42742
+  }
+ ],
+ "email": true,
+ "seconds": 24.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17340,
+   "prompt_tokens": 11586,
+   "output_tokens": 778,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.73,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Section 10 establishes a $15 million cap on direct damages, but explicitly carves out Section 9 (Indemnification) from this limitation. Because Section 9 imposes broad indemnity obligations on Co-Host without a reciprocal cap, Co-Host faces potentially unlimited financial exposure for third-party claims.",
+      "suggested_change": "Remove the carve-out for Section 9 so that all claims, including indemnification, are subject to the agreed liability cap."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Co-Host shall pay to NAI a \"Co-Hosting Fee\" in the following amounts: (a) A non-refundable initial payment of Two Million Five Hundred Thousand Dollars ($2,500,000)...",
+      "explanation": "The initial fee of $2.5 million is explicitly non-refundable, and late payments accrue interest at 1.5% per month (18% per annum) under Section 3(b). This creates severe cash flow and financial risk for Co-Host if NAI fails to perform or if disputes arise.",
+      "suggested_change": "Make the upfront fee refundable if NAI materially breaches or fails to provide the agreed marketing considerations, and reduce the late payment interest rate to a commercially reasonable rate (e.g., 0.5% per month)."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "A party may terminate this Agreement immediately: ... (iii) by such party if that certain Web Site Services Agreement between NAI and Co-Host dated of even date herewith... or the ESD Agreement is terminated by the other party... (viii) if the party terminates the Web Site Services Agreement by reason of the other party's material default thereunder.",
+      "explanation": "These cross-default and cross-termination clauses allow NAI to immediately terminate this Agreement based on issues arising under entirely separate agreements (the Web Site Services Agreement or ESD Agreement), even if Co-Host is in full compliance with this Co-Hosting Agreement.",
+      "suggested_change": "Delete cross-termination triggers based on separate agreements, ensuring that termination of this Agreement is restricted solely to material breaches of this specific contract after an adequate cure period."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Co-Host will provide to NAI on Monday of each week, a computer media data file in the format established by NAI showing Co-Host's current inventory levels of each Product (including items in transit), and weekly runrate snapshots and the other information reasonably requested by NAI.",
+      "explanation": "The phrase \"and the other information reasonably requested by NAI\" is open-ended and creates scope creep by obligating Co-Host to fulfill unspecified, ad-hoc reporting requests without clear limits or additional compensation.",
+      "suggested_change": "Strike \"and the other information reasonably requested by NAI\" and explicitly define all required reporting metrics and formats in the contract."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4066,
+   "prompt_tokens": 539,
+   "output_tokens": 138,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to request a couple of adjustments before signing: - Regarding the limitation of liability, the relevant clause carves out indemnification from the liability cap, creating potential unlimited exposure; we propose removing this carve-out so that all claims are subject to the agreed cap. - Regarding the weekly data reporting, the relevant clause includes an open-ended request for unspecified additional information that introduces scope creep; we propose striking that open-ended language and explicitly defining all required reporting metrics within the agreement. Thank you, and I look forward to moving ahead."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

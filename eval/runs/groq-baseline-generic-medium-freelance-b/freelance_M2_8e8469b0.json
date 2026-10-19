@@ -1,0 +1,154 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8946,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5117,
+   "end": 5207
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1730,
+   "end": 1995
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "start": 1997,
+   "end": 2246
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 3 rounds",
+   "start": 12891,
+   "end": 12919
+  }
+ ],
+ "email": true,
+ "seconds": 88.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4619,
+   "prompt_tokens": 2723,
+   "output_tokens": 1896,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 40.9,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract whenever they wish and is not required to pay for any work already performed, leaving the contractor vulnerable to unpaid labour and sunk costs.",
+      "suggested_change": "Add a clause requiring the client to give at least 15 days written notice and to pay a pro‑rated amount for services rendered up to the termination date, or to pay any earned but unpaid milestones upon termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "IP ownership passes to the client before the contractor has received full payment, so if the client delays or defaults on payment the contractor loses its rights to the work it created.",
+      "suggested_change": "Condition the IP transfer on receipt of full payment (or at least on payment of the milestone associated with the deliverable) and retain a security interest in the IP until payment is made."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The phrase \"minor clarifications\" is vague and could be used by the client to request additional work that is not truly minor, leading to unpaid extra effort.",
+      "suggested_change": "Define \"minor clarification\" with a concrete limit (e.g., no more than 2 hours of effort) and require a written change order for any clarification that exceeds that limit or that adds any measurable effort."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.\n4.4 Client may dispute an invoice in good faith by providing written details within 15 days. The undisputed portion remains payable when due.",
+      "explanation": "The client can withhold payment for up to 45 days (30‑day net plus 15‑day dispute window) and the interest rate for late payment is relatively low, potentially impacting cash flow.",
+      "suggested_change": "Reduce the dispute period to 5 business days, require the client to pay the undisputed portion within 15 days, and increase the late‑payment interest to 1.5% per month (or the maximum lawful rate)."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.3 Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "While this clause mandates written change requests for material changes, it does not define what constitutes a \"material\" change, leaving room for the client to argue that a change is non‑material and avoid paying for it.",
+      "suggested_change": "Add a definition of \"material change\" (e.g., any change that adds more than 8 hours of work or alters deliverable specifications) and require that all changes, material or not, be documented with an agreed fee adjustment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3163,
+   "prompt_tokens": 1740,
+   "output_tokens": 1423,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 27.65,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 3 rounds",
+      "explanation": "The contract only grants the client three rounds of revisions. If the client requests additional changes, they may claim they are within the agreed scope, leading to disputes or unpaid extra work.",
+      "suggested_change": "Specify that any revisions beyond the three allocated rounds will be billed as additional change requests at an agreed hourly or per‑revision rate."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Notice period: 20 days\nNo clause in this section changes the liability cap of USD 35,000, the late-payment rate of 1.0%, or the termination notice period of 20 days.",
+      "explanation": "The agreement mentions a 20‑day termination notice but does not clarify that the contractor has the same right to terminate. This could allow the client to end the contract unilaterally while leaving the contractor bound to complete work.",
+      "suggested_change": "Add language granting the contractor the same 20‑day termination right, or a mutually agreed termination clause that requires mutual consent or provides a comparable notice period for the contractor."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 30\nLate-payment interest: 1.0%",
+      "explanation": "Payments are due 30 days after invoicing, and the interest charge for late payment is only 1% per annum, which may not adequately compensate for cash‑flow delays, especially on a project with a modest upfront deposit.",
+      "suggested_change": "Negotiate a higher late‑payment interest rate (e.g., 1.5%‑2% per month) and consider a larger upfront deposit or shorter net terms (e.g., Net 15) for milestone invoices."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1764,
+   "prompt_tokens": 852,
+   "output_tokens": 912,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 19.84,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a few adjustments before signing:\n\n- Clause 12.2 currently allows termination without notice or further payment. This could leave the contractor without compensation for work already performed. I propose requiring at least 15 days written notice and payment for services rendered up to the termination date, or payment of any earned but unpaid milestones upon termination.\n- Clause 6.1 transfers all intellectual property rights in each Deliverable to the client upon delivery. This means the contractor could lose IP rights before receiving full payment. I suggest conditioning the IP transfer on receipt of full payment (or at least the milestone payment associated with the deliverable) and retaining a security interest in the IP until payment is made.\n- Clause 2.2 refers to “minor clarifications” without definition, which could be interpreted to include additional work beyond the original scope. I recommend defining “minor clarification” as work not exceeding 2 hours of effort and requiring a written change order for any clarification that exceeds that limit or adds measurable effort.\n- The revision allowance states “3 rounds”. This limits revisions and may lead to disputes if additional changes are requested. I propose stating that any revisions beyond the three allocated rounds will be billed as additional change requests at an agreed hourly or per‑revision rate.\n\nThank you for considering these updates. I look forward to finalising the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

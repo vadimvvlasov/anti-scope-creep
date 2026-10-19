@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8951,
+   "end": 9043
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5121,
+   "end": 5207
+  }
+ ],
+ "email": true,
+ "seconds": 17.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9378,
+   "prompt_tokens": 5640,
+   "output_tokens": 258,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.77,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "Only the client can terminate the contract without cause with immediate effect and without paying for your work. This leaves you unprotected against sudden cancellations.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon providing written notice, and the Client shall pay the Contractor for all Services performed up to the date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work passes to the client upon delivery before you are paid. If the client delays or withholds payment, you no longer own the deliverables.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon receipt of full payment for such Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3197,
+   "prompt_tokens": 429,
+   "output_tokens": 174,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.46,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sending over the agreement. I am looking forward to working together and have a few small requests before signing: - Regarding the relevant clause on termination: Currently, only the client can terminate the agreement without cause and without payment, leaving no protection against sudden cancellations. I propose that either party may terminate this agreement without cause upon providing written notice, and the client shall pay the contractor for all services performed up to the date of termination. - Regarding the relevant clause on intellectual property: Ownership of the work passes to the client upon delivery before payment, which leaves the work unprotected if payment is withheld. I propose that all intellectual property rights in each deliverable shall transfer to the client upon receipt of full payment for such deliverable. Please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

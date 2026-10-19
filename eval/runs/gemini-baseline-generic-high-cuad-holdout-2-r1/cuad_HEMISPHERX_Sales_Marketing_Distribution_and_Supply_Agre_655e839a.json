@@ -1,0 +1,93 @@
+{
+ "id": "cuad:HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement",
+ "chars": 73685,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "SCIEN and HEMISPHERX (each an \"Indemnifying Party\") shall indemnify, defend and hold harmless and the other Party's subsidiaries or affiliates, their agents, directors, officers, employees and assigns (the \"Indemnified Parties\") from and against all losses, liabilities, damages, demands and expenses (including reasonable attorneys' fees and expenses) arising out of, as a result of, or in connection with (i) the negligent actions of the Indemnifying Party, its employees or any third party acting on behalf of or under authority of the Indemnifying Party in the performance of this Agreement and/or (ii) the violation of any representation or warranty of Indemnifying Party in this Agreement.",
+   "start": 19445,
+   "end": 20140
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "HEMISPHERX will have the option at any time to buy out this Agreement. If exercised within the first two (2) years HEMISPHERX will pay SCIEN three (3) times the Product sales for the preceding 12 months. If exercised after year 3, HEMISPHERX will pay SCIEN two (2) times the Product sales for the preceding 12 months.",
+   "start": 33014,
+   "end": 33331
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "HEMISPHERX return goods policy is subject to change at any time and without prior notices to other parties.",
+   "start": 73330,
+   "end": 73437
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "If needed, assist in recruiting clinical trial sites and principal investigators in the Field in the Territory.",
+   "start": 7651,
+   "end": 7762
+  }
+ ],
+ "email": true,
+ "seconds": 22.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 21947,
+   "prompt_tokens": 15679,
+   "output_tokens": 630,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 15.46,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "SCIEN and [PARTY_B] (each an \"Indemnifying Party\") shall indemnify, defend and hold harmless and the other Party's subsidiaries or affiliates, their agents, directors, officers, employees and assigns (the \"Indemnified Parties\") from and against all losses, liabilities, damages, demands and expenses (including reasonable attorneys' fees and expenses) arising out of, as a result of, or in connection with (i) the negligent actions of the Indemnifying Party, its employees or any third party acting on behalf of or under authority of the Indemnifying Party in the performance of this Agreement and/or (ii) the violation of any representation or warranty of Indemnifying Party in this Agreement.",
+      "explanation": "The contract imposes broad mutual indemnification obligations without an overall cap on liability, exposing SCIEN to potentially unlimited financial exposure for claims and damages.",
+      "suggested_change": "Propose adding an overall mutual liability cap (e.g., capped at fees paid under the agreement in the preceding 12 months) and standard exclusions for gross negligence or willful misconduct."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "[PARTY_B] will have the option at any time to buy out this Agreement. If exercised within the first two (2) years [PARTY_B] will pay SCIEN three (3) times the Product sales for the preceding 12 months. If exercised after year 3, [PARTY_B] will pay SCIEN two (2) times the Product sales for the preceding 12 months.",
+      "explanation": "[PARTY_B] has the unilateral right to terminate and buy out the agreement at any time, which threatens SCIEN's long-term commercial investments and market development efforts in the Territory.",
+      "suggested_change": "Remove the unilateral buyout option or condition it on a substantial advance notice period and guaranteed fair market compensation covering investments and lost future profits."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_B] return goods policy is subject to change at any time and without prior notices to other parties.",
+      "explanation": "[PARTY_B] can unilaterally modify return goods and credit reimbursement terms without prior notice, creating financial unpredictability for returned or unsold inventory.",
+      "suggested_change": "Require that any changes to the return goods policy be made in writing and mutually agreed upon with at least 30 to 60 days advance written notice."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "If needed, assist in recruiting clinical trial sites and principal investigators in the Field in the Territory.",
+      "explanation": "This creates an open-ended obligation for SCIEN to assist in clinical trial recruitment without predefined limits on time, cost, or resource commitments.",
+      "suggested_change": "Define specific parameters, timelines, and separate compensation for any clinical trial site recruitment assistance requested by [PARTY_B]."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3637,
+   "prompt_tokens": 851,
+   "output_tokens": 196,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.78,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the draft. Before signing, I would like to propose a few adjustments to the agreement: - Regarding the relevant clause on indemnification, the agreement creates broad mutual obligations without an overall liability cap, and we propose adding an overall mutual liability cap with standard exclusions. - Concerning the relevant clause on the buyout option, the agreement allows a party to terminate and buy out the contract at any time, and we propose removing this unilateral option or conditioning it on advance notice and fair compensation. - Under the relevant clause concerning the return goods policy, terms can be modified without prior notice, and we propose requiring that any changes be made in writing and mutually agreed upon with advance notice. - Regarding the relevant clause on clinical trial recruitment, the obligation is open-ended, and we propose defining specific parameters, timelines, and separate compensation for such assistance. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

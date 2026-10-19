@@ -1,0 +1,134 @@
+{
+ "set": "cuad-holdout-2",
+ "contracts": 32,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 5,
+   "fp": 1,
+   "fn": 2,
+   "precision": 0.833,
+   "recall": 0.714,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 5,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.833,
+   "recall": 0.833,
+   "severity_accuracy": 0.6
+  },
+  "uncapped_liability": {
+   "tp": 2,
+   "fp": 4,
+   "fn": 0,
+   "precision": 0.333,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 12,
+   "fp": 6,
+   "fn": 3,
+   "precision": 0.667,
+   "recall": 0.8,
+   "severity_accuracy": 0.833
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 29,
+  "findings_kept": 28,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.034,
+  "tokens_mean": 20975,
+  "tokens_max": 38387,
+  "seconds_mean": 17.6,
+  "seconds_max": 33.3
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "CONFORMIS' LIABILITY ON A PER OCCURRENCE BASIS UNDER SECTION 7.3(A)(IV) SHALL NOT   EXCEED THE GREATER OF (I) $[**] AND (II) THE AMOUNT OF INSURANCE COVERAGE ACTUALLY PAID TO   CONFORMIS UNDER THEN-CURRENT INSURANCE POLICIES OF CONFORMIS IN RESPECT OF SUCH   DAMAGES.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO         EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR         THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY         PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES         TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE         CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Subject to Clause 11.6. SEV will indemnify and keep DCL indemnified in full against all Liabilities arising directly or indirectly  in connection with:",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "A PARTY'S TOTAL LIABILITY TO THE OTHER PARTY IN CONNECTION WITH THIS AGREEMENT, FOR ANY AND ALL CAUSES OF ACTIONS AND CLAIMS, INCLUDING, WITHOUT LIMITATION, BREACH OF CONTRACT, BREACH OF WARRANTY, NEGLIGENCE, STRICT LIABILITY, MISREPRESENTATION AND OTHER TORTS, SHALL BE:   (a) FOR BODILY INJURY OR DEATH TO ANY PERSON PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (b) FOR LOSS OR DAMAGE TO REAL PROPERTY OR TANGIBLE PERSONAL PROPERTY PROXIMATELY CAUSED BY A PARTY'S NEGLIGENCE, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (c) FOR ANY DAMAGES ARISING OUT OF THE WILLFUL OR INTENTIONAL MISCONDUCT OF A PARTY, THE AMOUNT OF DIRECT DAMAGES PROVEN;   (d) FOR ALL OTHER DAMAGES OTHER THAN THOSE SET FORTH ABOVE AND NOT EXCLUDED UNDER THIS AGREEMENT, EACH PARTY'S LIABILITY TO THE OTHER PARTY DURING ANY TWELVE (12) MONTH PERIOD SHALL BE LIMITED TO THE LESSOR OF (i) DIRECT DAMAGES PROVEN BY THE PARTY, OR (ii) THE AMOUNT PAID BY THE COMPANY TO THE PROVIDER UNDER THIS AGREEMENT FOR THE TWELVE (12) MONTH PERIOD PRIOR TO THE CLAIM.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quote": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "Any documentation prepared by Operator during the Term for the purposes of this Agreement, excluding the Training Materials, shall be directly prepared for Owner's benefit and immediately become Owner's property.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:BloomEnergyCorp_20180321_DRSA (on S-1)_EX-10_11240356_EX-10_Maintenance Agreement"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:Sonos, Inc. - Manufacturing Agreement ",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+   "category": "one_sided_termination",
+   "risk_level": "low"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  },
+  {
+   "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

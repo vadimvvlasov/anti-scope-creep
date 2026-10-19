@@ -1,0 +1,65 @@
+{
+ "id": "cuad:MEDALISTDIVERSIFIEDREIT,INC_05_18_2020-EX-10.1-CONSULTING AGREEMENT",
+ "chars": 24315,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+   "start": 2448,
+   "end": 2638
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein. To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+   "start": 7053,
+   "end": 7564
+  }
+ ],
+ "email": true,
+ "seconds": 18.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10782,
+   "prompt_tokens": 6563,
+   "output_tokens": 372,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.07,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Completeness of work product shall be determined by REIT in its sole discretion, and CONSULTANT agrees to make all revisions, additions, deletions or alterations as requested by the Company.",
+      "explanation": "The client has sole discretion over whether your work is complete and can demand an unlimited number of revisions, additions, or alterations without extra pay.",
+      "suggested_change": "The Client shall review deliverables within a reasonable time, and the Contractor agrees to provide a reasonable number of revisions as specified in the Statement of Work."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "CONSULTANT acknowledges that all copyrightable Work Product which is capable of being classified as \"works made for hire\" under the U.S. Copyright Act of 1976, as amended, shall be deemed \"works made for hire\" and that the Company shall be the author of, and own all rights therein. To the extent that any such copyrightable work is not a \"work made for hire,\" CONSULTANT hereby assigns and agrees to assign to the Company all right, title and interest, including a copyright, in and to such copyrightable work.",
+      "explanation": "All intellectual property rights transfer to the client immediately upon creation through work-made-for-hire and present assignment language, before you are paid.",
+      "suggested_change": "Upon receipt of full payment for the applicable services, ownership of the final deliverables shall transfer to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3330,
+   "prompt_tokens": 543,
+   "output_tokens": 133,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.96,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are well. - In the relevant clause regarding work completeness, the agreement grants sole discretion over completion and unlimited revisions without extra pay, and I propose modifying it so that the Client shall review deliverables within a reasonable time, and the Contractor agrees to provide a reasonable number of revisions as specified in the Statement of Work. - In the relevant clause addressing intellectual property, all rights transfer immediately upon creation before payment is received, and I propose modifying it so that upon receipt of full payment for the applicable services, ownership of the final deliverables shall transfer to the Client. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

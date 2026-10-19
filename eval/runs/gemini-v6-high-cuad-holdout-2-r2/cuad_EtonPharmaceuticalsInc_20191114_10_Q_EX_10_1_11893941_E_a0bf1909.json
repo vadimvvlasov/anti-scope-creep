@@ -1,0 +1,65 @@
+{
+ "id": "cuad:EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement",
+ "chars": 65651,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+   "start": 40868,
+   "end": 41104
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "(a) An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within sixty (60) days after the calendar year end.",
+   "start": 18416,
+   "end": 18625
+  }
+ ],
+ "email": true,
+ "seconds": 21.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 22434,
+   "prompt_tokens": 16248,
+   "output_tokens": 366,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.45,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "ETON has the right to terminate this Agreement after approval of the Dossier or marketing application for the Product (or added new product), at its sole discretion, upon providing one hundred eighty (180) days' written notice to Aucta.",
+      "explanation": "Only the Client has the right to terminate the agreement without cause, which creates an unequal termination right.",
+      "suggested_change": "Either Party has the right to terminate this Agreement at any time, at its sole discretion, upon providing one hundred eighty (180) days' written notice to the other Party."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "(a) An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within sixty (60) days after the calendar year end.",
+      "explanation": "Payment terms of sixty days exceed the standard thirty-day threshold, delaying your receipt of milestone compensation.",
+      "suggested_change": "(a) An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within thirty (30) days after the calendar year end."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2204,
+   "prompt_tokens": 405,
+   "output_tokens": 145,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am looking forward to working together and would like to request one minor adjustment before signing. - Regarding the relevant clause, the sixty-day payment terms delay the receipt of milestone compensation, so I propose updating this to thirty days: (a) An amount of one million dollars ($1,000,000) upon Net Sales first exceeding an amount of ten million dollars ($10,000,000) in a calendar year to be paid within thirty (30) days after the calendar year end. Please let me know if this works for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

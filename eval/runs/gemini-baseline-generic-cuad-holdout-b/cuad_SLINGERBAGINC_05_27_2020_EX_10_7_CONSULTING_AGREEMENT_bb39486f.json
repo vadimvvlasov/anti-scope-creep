@@ -1,0 +1,65 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2347,
+   "end": 2603
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "The Consultant may voluntarily terminate the Consultant's engagement with the Company at any time by giving the Company 120 days prior written Notice of the termination.",
+   "start": 8715,
+   "end": 8884
+  }
+ ],
+ "email": true,
+ "seconds": 14.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10609,
+   "prompt_tokens": 6873,
+   "output_tokens": 282,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 10.07,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "and the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "This clause creates an open-ended obligation to perform unspecified services beyond the defined scope of work, leaving you vulnerable to doing unlimited extra work without guaranteed additional pay.",
+      "suggested_change": "Remove this catch-all phrase and stipulate that any services outside the explicitly defined scope must be agreed upon in writing via a separate amendment or statement of work with mutually agreed compensation."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "The Consultant may voluntarily terminate the Consultant's engagement with the Company at any time by giving the Company 120 days prior written Notice of the termination.",
+      "explanation": "The contract imposes a 120-day notice period for you to voluntarily terminate, whereas the Company only needs to give 60 days notice to terminate you without cause. This asymmetry restricts your ability to move on to other opportunities in a timely manner.",
+      "suggested_change": "Make the notice period mutual and equal for both parties (e.g., 60 days for both the Company and the Consultant)."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2339,
+   "prompt_tokens": 512,
+   "output_tokens": 228,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.71,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to get started, but I would like to request a couple of adjustments before signing. - Regarding the relevant clause about extra duties, it creates an open-ended obligation to perform unspecified services beyond the defined scope of work, leaving me vulnerable to doing unlimited extra work without guaranteed additional pay. To resolve this, I propose removing this catch-all phrase and stipulating that any services outside the explicitly defined scope must be agreed upon in writing via a separate amendment or statement of work with mutually agreed compensation. - Regarding the relevant clause on termination notice, the agreement imposes a 120-day notice period for me to voluntarily terminate, whereas the other party only needs to give 60 days notice to terminate without cause, restricting my ability to move on to other opportunities in a timely manner. To resolve this, I propose making the notice period mutual and equal for both parties, such as 60 days for both. Please let me know if these changes sound acceptable so we can proceed. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

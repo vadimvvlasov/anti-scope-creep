@@ -1,0 +1,79 @@
+{
+ "id": "freelance:C3",
+ "chars": 3191,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "start": 949,
+   "end": 1244
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Either party may terminate this Agreement at any time by giving fourteen (14) calendar days' advance written notice. Client shall remain liable for all hours worked up to the date of termination.",
+   "start": 2439,
+   "end": 2634
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices will be issued bi-weekly on the 1st and 15th of each calendar month. Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.",
+   "start": 1460,
+   "end": 1634
+  }
+ ],
+ "email": true,
+ "seconds": 42.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2293,
+   "prompt_tokens": 1146,
+   "output_tokens": 1147,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.08,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+      "explanation": "Because the agreement is time‑and‑materials and the estimate is expressly non‑binding, the client can request additional work at any time. The only guard‑rail is a $150,000 cap, which may still allow many extra hours beyond the original estimate, exposing the Provider to unlimited scope expansion without guaranteed additional compensation.",
+      "suggested_change": "Add a clause that any change in scope requiring more than 10% of the original estimate must be approved in writing and billed at a pre‑agreed rate, and specify that work beyond the $150,000 cap will require a new SOW or amendment with adjusted rates."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Either party may terminate this Agreement at any time by giving fourteen (14) calendar days' advance written notice. Client shall remain liable for all hours worked up to the date of termination.",
+      "explanation": "While both parties can terminate, the short 14‑day notice leaves the Provider vulnerable to sudden loss of revenue and may force the Provider to halt staffing and resource planning with little lead time. The Provider bears the cost of ramp‑down while receiving no guarantee of future work.",
+      "suggested_change": "Require a minimum termination notice of 30 days for the Client (or a termination fee equal to 20% of the estimated total fee) and allow the Provider the same notice period, thereby balancing risk."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices will be issued bi‑weekly on the 1st and 15th of each calendar month. Client shall remit payment via wire transfer within fourteen (14) calendar days of invoice date.",
+      "explanation": "A 14‑day net period is relatively short for a corporate client and the contract does not address interest or penalties for late payments, increasing cash‑flow risk for the Provider.",
+      "suggested_change": "Extend payment terms to net 30 days and include a 1.5% per month late fee for overdue amounts, or tie payment to receipt of funds in the Provider’s account."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2232,
+   "prompt_tokens": 890,
+   "output_tokens": 1342,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI’ve reviewed the agreement and would like to suggest a few adjustments before signing:\n\n- The relevant clause regarding the initial project phase estimate states a non‑binding estimate of 1,200 hours and a $150,000 cap. Because the estimate is non‑binding, the client could request additional work that exceeds the original budget, which may expose me to unlimited scope expansion without guaranteed extra compensation. I propose adding a provision that any change in scope requiring more than 10 % of the original estimate must be approved in writing and billed at a pre‑agreed rate, and that work beyond the $150,000 cap will require a new statement of work or amendment with adjusted rates.\n\n- The relevant clause on termination allows either party to end the agreement with fourteen (14) calendar days’ notice, with the client remaining liable for hours worked up to termination. This short notice period leaves me vulnerable to sudden loss of revenue and makes staffing and resource planning difficult. I propose requiring a minimum termination notice of thirty (30) days for the client (or a termination fee equal to 20 % of the estimated total fee) and granting the provider the same notice period, to balance the risk.\n\n- The relevant clause on invoicing states that invoices are issued bi‑weekly and payment is due within fourteen (14) days, without any late‑payment provisions. A 14‑day net period is relatively short for a corporate client and the lack of penalties increases cash‑flow risk. I propose extending payment terms to net thirty (30) days and adding a 1.5 % per month late fee for overdue amounts, or tying payment to receipt of funds in my account.\n\nPlease let me know if these revisions are acceptable. Thank you."
+   }
+  }
+ ],
+ "dropped": []
+}

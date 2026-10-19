@@ -1,0 +1,276 @@
+{
+ "set": "freelance",
+ "contracts": 19,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 8,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "severity_accuracy": 0.875
+  },
+  "one_sided_termination": {
+   "tp": 5,
+   "fp": 3,
+   "fn": 0,
+   "precision": 0.625,
+   "recall": 1.0,
+   "severity_accuracy": 0.6
+  },
+  "scope_creep": {
+   "tp": 3,
+   "fp": 5,
+   "fn": 0,
+   "precision": 0.375,
+   "recall": 1.0,
+   "severity_accuracy": 1.0
+  },
+  "uncapped_liability": {
+   "tp": 2,
+   "fp": 5,
+   "fn": 0,
+   "precision": 0.286,
+   "recall": 1.0,
+   "severity_accuracy": 0.5
+  },
+  "unfavorable_payment_terms": {
+   "tp": 6,
+   "fp": 5,
+   "fn": 0,
+   "precision": 0.545,
+   "recall": 1.0,
+   "severity_accuracy": 0.667
+  },
+  "unlimited_revisions": {
+   "tp": 2,
+   "fp": 1,
+   "fn": 1,
+   "precision": 0.667,
+   "recall": 0.667,
+   "severity_accuracy": 1.0
+  },
+  "all": {
+   "tp": 26,
+   "fp": 19,
+   "fn": 1,
+   "precision": 0.578,
+   "recall": 0.963,
+   "severity_accuracy": 0.769
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 46,
+  "findings_kept": 45,
+  "dropped": {
+   "quote_not_found": 1
+  },
+  "quote_not_found_rate": 0.022,
+  "tokens_mean": 10045,
+  "tokens_max": 12771,
+  "seconds_mean": 16.7,
+  "seconds_max": 23.1
+ },
+ "false_positives": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C1"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Developer provides a ninety (90) day warranty starting from final deployment (October 01, 2025 to December 30, 2025). Developer agrees to fix any critical bugs or security vulnerabilities reported during this period at no additional cost.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Milestone 1: UX/UI Designs & Architecture Approval (Due June 01, 2025): $17,000.00 USD (20%)",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Developer agrees to design, build, test, and deploy a HIPAA-compliant Patient Telehealth Web Portal (\"Software\") as detailed in Exhibit A (Product Specifications).",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C2"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "The initial project phase is estimated at 1,200 total hours over a six-month period, with an estimated budget of $130,000.00 USD. Client acknowledges that this figure is a non-binding estimate. Provider shall notify Client immediately if project scope changes threaten to exceed $150,000.00 USD.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:C3"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate for convenience upon 19 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "Each party will defend the other against third-party claims to the extent directly caused by its breach of this Agreement, subject to applicable limitations.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:P1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "2.10 Campaign planning and creative strategy.\n2.11 Production of approved marketing materials.\n2.12 Content scheduling and publication support.\n2.13 Monthly performance reporting.\n2.14 Optimization recommendations based on campaign data.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M3"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Invoices are payable within 30 days of receipt.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quote": "Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quote": "The parties intend to allow 3 rounds of ordinary revisions for the principal creative Deliverables. Client may submit an unlimited number of questions about a Deliverable during the review period.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Either party may terminate this Agreement at any time upon 20 days' written notice, and Client will pay for all work performed through the effective termination date.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:D1"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quote": "Contractor may invoice milestone amounts of USD 7,500, USD 8,625, and USD 9,250.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "The aggregate liability of either party arising from this Agreement is capped at USD 35,000, except to the extent a different limitation is required by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8b"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quote": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "freelance:M8c"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "freelance:M4",
+   "category": "unlimited_revisions",
+   "risk_level": "medium"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "freelance:M4",
+   "category": "unfavorable_payment_terms",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "ip_transfer_before_payment",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M5",
+   "category": "uncapped_liability",
+   "gold": "medium",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  },
+  {
+   "id": "freelance:M6",
+   "category": "unfavorable_payment_terms",
+   "gold": "low",
+   "predicted": "medium"
+  }
+ ]
+}

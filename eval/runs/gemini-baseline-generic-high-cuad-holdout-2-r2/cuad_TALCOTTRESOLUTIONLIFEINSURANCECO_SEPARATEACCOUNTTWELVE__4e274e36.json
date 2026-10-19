@@ -1,0 +1,74 @@
+{
+ "id": "cuad:TALCOTTRESOLUTIONLIFEINSURANCECO-SEPARATEACCOUNTTWELVE_04_30_2020-EX-99.8(L)-SERVICE AGREEMENT",
+ "chars": 29797,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Whether or not required by applicable law, Administrator shall deliver or arrange for the delivery of prospectuses to Plan Representatives and to Participants in Participant-directed Plans.",
+   "start": 11721,
+   "end": 11910
+  }
+ ],
+ "email": true,
+ "seconds": 17.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9541,
+   "prompt_tokens": 5952,
+   "output_tokens": 380,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.21,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Administrator agrees to indemnify and hold harmless the Trust, the Trust's administrators, investment adviser, and transfer agent, and each of their directors, trustees, officers, employees, agents and each person, if any, who controls them within the meaning of the Securities Act of 1933, as amended (the \"Securities Act\"), against any losses, claims, damages, liabilities or expenses to which an indemnitee may become subject...",
+      "explanation": "As the Administrator, I am subject to broad indemnification obligations for losses and claims without any aggregate monetary cap on my liability, putting my business at significant financial risk.",
+      "suggested_change": "Insert a mutual aggregate cap on liability and narrow the indemnification scope."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "In consideration of the fees or compensation Administrator will receive from the Trust or other parties under other agreements or arrangements, in connection with the services Administrator performs under this agreement, the sufficiency of which Administrator acknowledges to be sufficient...",
+      "explanation": "My compensation is tied to external or separate agreements rather than being guaranteed and defined within this contract, leaving payment terms ambiguous.",
+      "suggested_change": "Clearly outline the fee rates, calculation methods, and direct payment obligations within this Agreement."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Whether or not required by applicable law, Administrator shall deliver or arrange for the delivery of prospectuses to Plan Representatives and to Participants in Participant-directed Plans.",
+      "explanation": "I am contractually obligated to perform prospectus deliveries even when not required by law, increasing my operational burden and costs without additional defined compensation.",
+      "suggested_change": "Restrict the prospectus delivery obligation strictly to what is required by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1956,
+   "prompt_tokens": 333,
+   "output_tokens": 102,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 4.7,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I am excited to move forward and would like to request a minor modification before signing. - Regarding the relevant clause on prospectus deliveries, the current wording obligates me to perform deliveries even when not required by law, which adds unexpected operational burdens. I propose that we restrict the prospectus delivery obligation strictly to what is required by applicable law. Thank you for your time and flexibility. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

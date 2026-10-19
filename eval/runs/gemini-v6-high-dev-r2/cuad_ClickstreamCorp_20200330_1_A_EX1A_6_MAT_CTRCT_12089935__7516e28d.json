@@ -1,0 +1,79 @@
+{
+ "id": "cuad:ClickstreamCorp_20200330_1-A_EX1A-6 MAT CTRCT_12089935_EX1A-6 MAT CTRCT_Development Agreement",
+ "chars": 34191,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+   "start": 2339,
+   "end": 2496
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+   "start": 14104,
+   "end": 14339
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$90,000.- following Client acceptance of the Application, and when RC1 version is delivered and uploaded to stores.",
+   "start": 33659,
+   "end": 33774
+  }
+ ],
+ "email": true,
+ "seconds": 21.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 15419,
+   "prompt_tokens": 8896,
+   "output_tokens": 421,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.01,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Client has the unilateral right to cancel this agreement at any time within a 7-day notice period. Further, Developer can only cancel due to lack of payment.",
+      "explanation": "Only the Client can terminate the contract without cause, while you can only terminate for non-payment. Because work done is still paid, this is a low risk.",
+      "suggested_change": "Either party may terminate this agreement without cause upon providing written notice to the other party."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Developer expressly acknowledges and agrees that any all proprietary materials prepared by the Developer under this Agreement shall be considered \"works for hire\" and the exclusive property of the Client unless otherwise specified.",
+      "explanation": "Intellectual property ownership transfers immediately upon creation as a work-for-hire rather than upon full payment, leaving you unprotected if the client fails to pay.",
+      "suggested_change": "Upon receipt of full payment for the applicable deliverables, ownership of the final work product shall transfer to the Client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$90,000.- following Client acceptance of the Application, and when RC1 version is delivered and uploaded to stores.",
+      "explanation": "Your final payment is conditioned on the Client's subjective acceptance, giving the Client control over when or whether you receive your money.",
+      "suggested_change": "The final payment of $90,000 shall be due upon delivery and uploading of the RC1 version to the stores."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2267,
+   "prompt_tokens": 456,
+   "output_tokens": 152,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.63,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I have reviewed the agreement and would like to suggest a few adjustments before signing. - Regarding the relevant clause, intellectual property ownership currently transfers immediately upon creation rather than upon full payment, leaving me unprotected if payment is not received. I propose changing this so that ownership of the final work product transfers upon receipt of full payment for the applicable deliverables. - Regarding the relevant clause, the final payment is conditioned on subjective acceptance, which gives you control over when or whether I receive my money. I propose modifying this so that the final payment of $90,000 shall be due upon delivery and uploading of the RC1 version to the stores. Thank you and best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

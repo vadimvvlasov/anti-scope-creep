@@ -1,0 +1,51 @@
+{
+ "id": "cuad:RemarkHoldingsInc_20081114_10-Q_EX-10.24_2895649_EX-10.24_Content License Agreement",
+ "chars": 59089,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+   "start": 46928,
+   "end": 47272
+  }
+ ],
+ "email": true,
+ "seconds": 27.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 20157,
+   "prompt_tokens": 15082,
+   "output_tokens": 184,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 19.54,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCEPT FOR EITHER PARTY'S VIOLATION OF THE CONFIDENTIALITY OBLIGATIONS AND FOR EITHER PARTY'S INDEMNIFICATION OBLIGATIONS, NEITHER PARTY SHALL BE LIABLE UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR ANY AMOUNTS IN EXCESS IN THE AGGREGATE OF THE AMOUNT OF THE FEES PAID OR PAYABLE UNDER THIS AGREEMENT.",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap, which exposes you to unlimited financial liability for third-party claims.",
+      "suggested_change": "Neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2108,
+   "prompt_tokens": 415,
+   "output_tokens": 120,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.9,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I am reviewing the agreement and would like to propose a small adjustment before signing. - In the relevant clause, the indemnification obligations are excluded from the overall liability cap, which could expose me to unlimited financial liability. I propose that we update this to state that neither party shall be liable under any contract, negligence, strict liability, or other legal or equitable theory for any amounts in excess in the aggregate of the amount of the fees paid or payable under this Agreement. Thank you for your understanding and I look forward to working together."
+   }
+  }
+ ],
+ "dropped": []
+}

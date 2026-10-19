@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 2001,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60.",
+   "start": 3737,
+   "end": 3765
+  }
+ ],
+ "email": true,
+ "seconds": 18.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9036,
+   "prompt_tokens": 5657,
+   "output_tokens": 308,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.63,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You must accept changes or extra work without additional pay as long as they fit within the overall project budget.",
+      "suggested_change": "Any changes or extra work requested by the Client that are outside the agreed scope of Services shall be documented in a written change order and billed at the Contractor's standard rates or as otherwise agreed in writing."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "The agreement permits 15 rounds of revisions, which is an excessive allowance that can lead to unpaid extra work.",
+      "suggested_change": "The Client shall be entitled to up to three (3) rounds of revisions for each Deliverable. Any additional revisions requested by the Client shall be subject to a separate written change order and additional fees."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60.",
+      "explanation": "Payment is due within 60 days, which creates a significant delay in receiving your funds.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4290,
+   "prompt_tokens": 534,
+   "output_tokens": 203,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.43,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I am excited to work together, but I would like to request a few minor changes before signing: - Regarding the relevant clause on scope, the agreement requires accepting extra work without additional pay if it fits within the budget; I propose that any changes or extra work outside the agreed scope be documented in a written change order and billed at standard rates. - Regarding the relevant clause on revisions, the agreement permits 15 rounds of revisions, which is an excessive allowance; I propose limiting this to three rounds of revisions for each deliverable, with additional revisions subject to a separate change order and additional fees. - Regarding the relevant clause on payment terms, the agreement sets payment to Net 60, which delays receiving funds; I propose updating invoices to be payable Net 30. Thank you for your time and understanding, and please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

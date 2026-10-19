@@ -1,0 +1,249 @@
+{
+ "set": "cuad-holdout",
+ "contracts": 20,
+ "missing": [],
+ "metrics": {
+  "ip_transfer_before_payment": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 2,
+   "precision": 0.25,
+   "recall": 0.333,
+   "severity_accuracy": 1.0
+  },
+  "one_sided_termination": {
+   "tp": 2,
+   "fp": 6,
+   "fn": 0,
+   "precision": 0.25,
+   "recall": 1.0,
+   "severity_accuracy": 0.0
+  },
+  "uncapped_liability": {
+   "tp": 0,
+   "fp": 12,
+   "fn": 0,
+   "precision": 0.0,
+   "recall": null,
+   "severity_accuracy": null
+  },
+  "all": {
+   "tp": 3,
+   "fp": 21,
+   "fn": 2,
+   "precision": 0.125,
+   "recall": 0.6,
+   "severity_accuracy": 0.333
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 77,
+  "findings_kept": 52,
+  "dropped": {
+   "quote_not_found": 25
+  },
+  "quote_not_found_rate": 0.325,
+  "tokens_mean": 15967,
+  "tokens_max": 21884,
+  "seconds_mean": 22.1,
+  "seconds_max": 31.2
+ },
+ "false_positives": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quote": "Notwithstanding any other provision of this agreement, if Contractor offers or pays a bribe or provides improper gifts or entertainment to any government official or to any other person in connection with the performance of Contractor's obligations under this agreement, Company shall be entitled to elect to terminate this agreement effective immediately upon providing to Contractor written notice of such termination, in which case Company shall have no obligation to pay any fees or other consideration to Contractor under this agreement or otherwise.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:MERITLIFEINSURANCECO_06_19_2020-EX-10.(XIV)-MASTER SERVICES AGREEMENT"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "During the Term, except as otherwise set forth herein, Licensor shall make available to Licensee the Licensed Content for display on the Licensed Site.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "in the event of a Change of Control, the Party which was not subject to the Change of Control may terminate this Agreement upon six (6) months advance written notification.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT FOR BREACHES OR VIOLATIONS OF ARTICLE 9, OR INDEMNITY LIABILITIES ARISING UNDER THIS ARTICLE 8, OR CASES OF GROSS NEGLIGENCE OR WILLFUL MISCONDUCT, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL OR PUNITIVE DAMAGES INCLUDING LOSS OF USE, REVENUES OR PROFITS, INTERRUPTION OF BUSINESS OR CLAIMS AGAINST EITHER PARTY OR ITS CUSTOMERS BY ANY THIRD PARTY, WHETHER SUCH CLAIM IS BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF THE PARTY IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "medium",
+   "quote": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "EXCEPT WITH RESPECT TO THE INDEMNIFICATION OBLIGATIONS SET FORTH IN SECTION 9 WITH REGARD TO CLAIMS BY THIRD PARTIES, IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR ENHANCED DAMAGES, LOST PROFITS OR REVENUES OR DIMINUTION IN VALUE ARISING OUT OF, RELATING TO, OR IN CONNECTION WITH ANY BREACH OF THIS AGREEMENT",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Contractor shall defend, indemnify and hold harmless Customer from all claims, liabilities, costs, damages, judgments and attorney's fees resulting from or arising out of any alleged and/or actual infringement or other violation of any patents, patent rights, trademarks, trademark rights, trade names, trade name rights, copyrights, trade secrets, proprietary rights and processes or other such rights as a result of the manufacturing methods employed by Contractor",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:InmodeLtd_20190729_F-1A_EX-10.9_11743243_EX-10.9_Manufacturing Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "Notwithstanding the foregoing, the Company may terminate the Consultation Period effective immediately upon receipt of written notice by the Consultant, if the Consultant breaches or threatens to breach any provision of Section 6.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "The Consultant acknowledges that any breach of the provisions of Section 1, 6 or 7 of this Agreement shall result in serious and irreparable injury to the Company for which the Company cannot be adequately compensated by monetary damages alone. The Consultant agrees, therefore, that, in addition to any other remedy the Company may have, the Company shall be entitled to enforce the specific performance of this Agreement by the Consultant and to seek both temporary and permanent injunctive relief (to the extent permitted by law) without the necessity of proving actual damages or posting a bond.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Being Developer of the project, Developer will be responsible and liable for the product's business compliance with WeChat Mini Program and Payment guidelines.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "VAL shall, in the event of Developer committing any breach of any of the terms and conditions of this agreement or for any other reason considered as sufficient, be entitled to terminate this agreement by giving two (2) weeks' notice in writing and it is applicable only when the project is not completed.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "The Consultant may voluntarily terminate the Consultant's engagement with the Company at any time by giving the Company 120 days prior written Notice of the termination.",
+   "on_no_finding": true,
+   "gold_category_here": null,
+   "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "MMI shall reimburse Dragon Systems and hold Dragon Systems harmless from any liabilities or obligations imposed upon Dragon Systems resulting directly or indirectly from MMI's or its employees or agents activities under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quote": "MMI shall immediately notify Dragon Systems in writing of any theft, loss or damage to any Dragon Systems property and shall indemnify Dragon Systems in respect of the same.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "IN NO EVENT WILL IMNTV'S LIABILITY TO DISTRIBUTOR UNDER THIS AGREEMENT EXCEED THE AMOUNT ACTUALLY DUE TO IMNTV HEREIN.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quote": "HSNS hereby assigns all right, title and interest in and to any customization, enhancement, amendment or changes made by or for HSNS pursuant to this Agreement, and hereby waives any and all moral rights that HSNS may retain in and to such customizations, enhancements, amendment and changes.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "Cremer's liability arising from this Agreement is limited to intentional misconduct or gross negligence. This limitation of liability does not apply to the injury of the life, body or health of a person, to claims according to the Product Liability Act (Produkthaftungsgesetz) or any other coercive legal liability claims.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:ULTRAGENYXPHARMACEUTICALINC_12_23_2013-EX-10.9-SUPPLY AGREEMENT"
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quote": "The publishing Party shall indemnify and hold the non-publishing Party its, officers, agents, shareholders, and employees harmless against any and all claims, demands, damages, liabilities and costs which directly or indirectly result from, or arise in connection with, any negligent act or omission of the disclosing Party, its agents, or employees, pertaining to such disclosing Party's Publications under this Agreement.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quote": "If the Manufacturer terminates this Agreement or cancels any purchase order for cause pursuant to Section 8.2 Manufacturer shall not be liable for any termination or cancellation charges but Subcontractor may, at Subcontractor's sole discretion, purchase all or part of any remaining inventory.",
+   "on_no_finding": false,
+   "gold_category_here": null,
+   "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT"
+  }
+ ],
+ "false_negatives": [
+  {
+   "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  },
+  {
+   "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high"
+  }
+ ],
+ "severity_misses": [
+  {
+   "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+   "category": "one_sided_termination",
+   "gold": "low",
+   "predicted": "high"
+  },
+  {
+   "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+   "category": "one_sided_termination",
+   "gold": "medium",
+   "predicted": "high"
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25569,
+   "end": 25719
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Late payments shall bear interest at the lesser of: (i)           the maximum rate permitted by law, and (ii) the rate of 1.5% per month           from the due date until paid.",
+   "start": 13497,
+   "end": 13673
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Co-Host will provide to NAI on Monday of each           week, a computer media data file in the format established by NAI           showing Co-Host's current inventory levels of each Product (including           items in transit), and weekly runrate snapshots and the other           information reasonably requested by NAI.",
+   "start": 42418,
+   "end": 42742
+  }
+ ],
+ "email": true,
+ "seconds": 20.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16529,
+   "prompt_tokens": 11586,
+   "output_tokens": 638,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 12.33,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR CLAIMS UNDER SECTION 9 HEREOF, THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "Section 10 caps direct damages at fifteen million dollars but explicitly excludes claims under Section 9 (Indemnification) from this cap. This means my liability for indemnification claims is completely uncapped and exposes me to disproportionate financial risk.",
+      "suggested_change": "Propose capping all liability, including indemnification claims, under the mutual fifteen million dollar cap or a reasonable aggregate liability cap."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Upon the effective date of the termination, all outstanding invoices and other invoicable amounts will become due and payable. Co-Host's contractual right to the marketing consideration shall cease immediately upon the effective date of the termination. Termination or expiration of this Agreement if by reason of material breach by Co-Host shall not affect any of Co-Host's payment obligations, all of which survive termination of this Agreement...",
+      "explanation": "Upon termination for my alleged breach, I immediately lose all marketing rights and access that I paid millions for, while my obligation to pay remaining fees or invoices survives indefinitely. This creates a one-sided penalty where NAI retains payments and marketing control without providing consideration.",
+      "suggested_change": "Ensure that upon termination by NAI without cause or due to NAI breach, pre-paid fees are refunded on a pro-rata basis, and survival of payment obligations is restricted to services already satisfactorily rendered or products delivered."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Late payments shall bear interest at the lesser of: (i) the maximum rate permitted by law, and (ii) the rate of 1.5% per month from the due date until paid.",
+      "explanation": "A late payment interest rate of 1.5% per month amounts to an annualized rate of 18%, which is excessively punitive and unfavorable.",
+      "suggested_change": "Reduce the late payment interest rate to a commercially reasonable rate, such as 1% per month (12% per annum), applicable only after a reasonable cure period and written notice."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Co-Host will provide to NAI on Monday of each week, a computer media data file in the format established by NAI showing Co-Host's current inventory levels of each Product (including items in transit), and weekly runrate snapshots and the other information reasonably requested by NAI.",
+      "explanation": "The inclusion of other information reasonably requested by NAI creates open-ended reporting obligations that can expand administrative burdens and introduce scope creep beyond the agreed-upon weekly inventory and sales reports.",
+      "suggested_change": "Remove the open-ended request for other information reasonably requested and limit reporting obligations strictly to the standard sales-out and inventory files explicitly defined in the contract."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3151,
+   "prompt_tokens": 657,
+   "output_tokens": 168,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.91,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. Thank you for sharing the agreement. I have reviewed the terms and would like to propose a few adjustments before signing: - Regarding the relevant clause on liability, the current terms leave indemnification claims uncapped, creating disproportionate financial risk. I propose applying a reasonable aggregate liability cap to all claims. - In the relevant clause concerning late payments, the specified interest rate is excessively punitive. I suggest reducing this to a standard commercial rate that applies after a reasonable cure period. - Regarding the reporting obligations in the agreement, the open-ended request for additional information creates unnecessary administrative burdens. I propose limiting reporting strictly to the standard inventory files explicitly defined in the contract. Thank you for your flexibility, and I look forward to finalizing this."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "one_sided_termination",
+   "reason": "quote_not_found"
+  }
+ ]
+}

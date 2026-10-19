@@ -1,0 +1,51 @@
+{
+ "id": "cuad:RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement",
+ "chars": 122688,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of Qualigen to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+   "start": 86618,
+   "end": 86931
+  }
+ ],
+ "email": true,
+ "seconds": 25.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 36012,
+   "prompt_tokens": 30034,
+   "output_tokens": 229,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 18.88,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Sekisui may terminate this Agreement upon prior written notice (i) in the event of any failure of [PARTY_C] to meet a milestone set forth in the Development Plan (as it may be amended by the Parties from time to time), or (ii) at any other time upon ninety (90) days' prior written notice of impending termination.",
+      "explanation": "The Client can terminate the agreement without cause on 90 days' notice while you have no equivalent right, and you are not paid for uncompleted milestones or work in progress upon such termination.",
+      "suggested_change": "Either Party may terminate this Agreement at any time upon ninety (90) days' prior written notice to the other Party, and upon termination by the Client, the Client shall pay the Contractor for all work completed and milestones in progress up to the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2375,
+   "prompt_tokens": 427,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.04,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am excited to get started, but I kindly request the following adjustment before signing it: - Regarding the relevant clause, the current terms allow termination without coverage for ongoing work. I propose modifying it so that either party may terminate upon ninety days' notice, with payment provided for all work completed and in progress up to that date. Please let me know your thoughts on this change. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

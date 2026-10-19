@@ -1,0 +1,93 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+   "start": 593,
+   "end": 720
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+   "start": 1688,
+   "end": 1891
+  }
+ ],
+ "email": true,
+ "seconds": 44.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 2436,
+   "prompt_tokens": 1151,
+   "output_tokens": 1285,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.61,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Payment is delayed until after the client has accepted the entire software, giving the developer up to 90 days after project completion to receive any milestone funds, which can cause cash‑flow problems and leaves the developer unpaid for work already performed.",
+      "suggested_change": "Require payment of each milestone within 30 days of delivery of that milestone (or within 30 days of acceptance of that milestone), rather than tying all payments to final acceptance of the complete software."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "The developer transfers ownership of the code and related IP before receiving payment for the corresponding milestone, exposing the developer to the risk of losing IP without having been compensated.",
+      "suggested_change": "Condition the IP assignment on receipt of payment for the respective milestone (or on full payment of the agreement). For example: \"Developer assigns IP to Client upon Client's payment of the applicable milestone amount.\""
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Any changes to the scope shall require a written Change Order signed by both parties, billed at an hourly rate of $120.00/hour.",
+      "explanation": "While a Change Order is required, the clause allows unlimited hourly work at $120/hour without any cap or approval process for the total cost, which could lead to unbounded additional work and expenses for the developer.",
+      "suggested_change": "Add a provision that any Change Order must include an estimate of total hours and cost, and that the client must approve the cost before work begins. Optionally set a maximum percentage increase over the original fixed price (e.g., not to exceed 20%)."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "If deliverables contain material non-conformities, Client shall provide a written bug report. Developer shall have fourteen (14) calendar days to correct non-conformities at no additional cost to Client.",
+      "explanation": "The developer must fix any material non‑conformities within 14 days at no extra charge, but the clause does not limit the number of such fixes. In practice the client could repeatedly claim non‑conformities, leading to extensive unpaid revision work.",
+      "suggested_change": "Limit the free correction period to a reasonable number of iterations (e.g., two rounds) or define \"material non‑conformities\" more narrowly, and state that additional revisions beyond the agreed limit will be billed as Change Orders."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1947,
+   "prompt_tokens": 970,
+   "output_tokens": 977,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.81,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi [Client],\n\nI hope you’re well. Before signing, I would like to suggest a few adjustments to the agreement:\n\n- The payment schedule ties each milestone to the final acceptance of the complete software, which could delay cash flow. I propose that each milestone be paid within 30 days of delivery (or acceptance) of that specific milestone.\n- The IP assignment clause transfers ownership of the code before payment for the milestone is received. I suggest conditioning the assignment on receipt of the corresponding milestone payment.\n- The change‑order clause allows unlimited hourly work at $120/hour without a cost cap. I recommend adding that each Change Order include an estimated total cost and receive client approval before work begins, and optionally limit the increase to 20 % of the original price.\n- The defect‑correction clause requires fixing material non‑conformities within 14 days at no charge, with no limit on the number of fixes. I propose limiting the free correction to two iterations (or defining “material non‑conformities” more narrowly) and stating that additional revisions will be treated as Change Orders.\n\nPlease let me know if these revisions are acceptable. Thank you for your understanding.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "cuad:FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION",
+ "chars": 40597,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice.",
+   "start": 24886,
+   "end": 25134
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "For greater certainty, [***] shall take ownership of and bear all risk of loss of or damage to the Products at the origin of the shipment.",
+   "start": 8233,
+   "end": 8371
+  }
+ ],
+ "email": true,
+ "seconds": 23.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 16948,
+   "prompt_tokens": 10235,
+   "output_tokens": 272,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 17.67,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "FUSION may terminate this Agreement by providing written notice to the CPDC where: (a) [***] following the Effective Date of this Supply Agreement, FUSION may terminate this Agreement without cause by providing CPDC with [***] prior written notice.",
+      "explanation": "Only the client has the right to terminate the contract without cause, and active production orders are cancelled upon termination without guaranteeing payment for committed costs or work in progress.",
+      "suggested_change": "Either party may terminate this Agreement without cause by providing at least ninety (90) days prior written notice to the other party, and the Client shall pay the Contractor for all work completed and non-cancellable costs incurred up to the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "For greater certainty, [***] shall take ownership of and bear all risk of loss of or damage to the Products at the origin of the shipment.",
+      "explanation": "Ownership of the products passes to the client upon shipment, before you have received full payment for the work.",
+      "suggested_change": "Ownership of the Products shall remain with the Contractor until the Contractor has received full payment of all applicable invoices for such Products."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2416,
+   "prompt_tokens": 498,
+   "output_tokens": 139,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.22,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, I hope you are doing well. I have reviewed the agreement and would like to propose a few minor adjustments before we sign. - Regarding the relevant clause about termination, only one party can end the agreement without cause and active orders can be cancelled without payment for work in progress, so I propose that either party may terminate with notice and that the client pays for completed work and costs. - Regarding the relevant clause about product ownership, ownership transfers upon shipment before receiving full payment, so I propose that ownership remains with the contractor until full payment is received. Please let me know if these changes are acceptable. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

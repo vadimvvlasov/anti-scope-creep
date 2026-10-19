@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+   "start": 9026,
+   "end": 9270
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 40.",
+   "start": 3790,
+   "end": 3818
+  }
+ ],
+ "email": true,
+ "seconds": 15.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7447,
+   "prompt_tokens": 4025,
+   "output_tokens": 213,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.44,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date. Contractor may terminate only for Client's material breach under Section 12.1.",
+      "explanation": "This clause allows the client to terminate the agreement for convenience at any time while denying the contractor the same right, locking the contractor in unfairly.",
+      "suggested_change": "Modify the clause to allow either party to terminate the agreement for convenience upon 20 days' written notice."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 40.",
+      "explanation": "Net 40 payment terms mean you must wait 40 days after invoicing to get paid, which creates cash flow difficulties for an independent freelancer.",
+      "suggested_change": "Change the payment terms to Net 15 or Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2373,
+   "prompt_tokens": 438,
+   "output_tokens": 148,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for providing the agreement. I am looking forward to starting our work together, and I have a couple of quick requests before signing. - Regarding the relevant clause, the current terms allow only the client to terminate for convenience, which is unbalanced. I propose modifying the clause to allow either party to terminate the agreement for convenience upon 20 days' written notice. - Regarding the payment terms, the agreement specifies Net 40, which creates cash flow difficulties. I propose changing the payment terms to Net 15 or Net 30. Thank you for understanding, and please let me know if these updates work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

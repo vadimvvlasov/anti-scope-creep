@@ -1,0 +1,77 @@
+{
+ "id": "cuad:CORIOINC_07_20_2000-EX-10.5-LICENSE AND HOSTING AGREEMENT",
+ "chars": 62324,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO         EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR         THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY         PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES         TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE         CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+   "start": 33580,
+   "end": 34023
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Subject to Commerce One's pre-existing ownership of any         materials or technology provided to Corio, the results of all such         development efforts set forth in this Section 13, including all         intellectual property rights in any software interface coding or         programs created solely by Corio during the term of this Agreement to         enable the Software to operated within the Corio Servers' hosted         environment (\"DEVELOPMENTS\"), shall be owned by Corio, unless such         Developments are supported on an ongoing basis by Commerce One in which         case Commerce One will retain all ownership rights, including\n\n\n\n\n\n     intellectual property rights in the Developments.",
+   "start": 43498,
+   "end": 44209
+  }
+ ],
+ "email": true,
+ "seconds": 25.2,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 17668,
+   "prompt_tokens": 12397,
+   "output_tokens": 483,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 13.57,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "License Fees: Due upon Software Acceptance. ... MarketSite.net Access Fee: Due upon Software Acceptance, and on each annual anniversary of Software Acceptance thereafter.",
+      "explanation": "Requiring full payment of license fees and annual access fees immediately upon acceptance can create cash flow strain before revenue is fully realized from customers.",
+      "suggested_change": "Negotiate payment milestones spread out over time or tied to customer adoption milestones."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "EXCEPT FOR LIABILITY ARISING UNDER SECTION 8 OF THIS AGREEMENT, IN NO EVENT SHALL EITHER PARTY'S LIABILITY ARISING OUT OF THIS AGREEMENT OR THE USE OR PERFORMANCE OF THE SOFTWARE EXCEED THE TOTAL AMOUNT ACTUALLY PAID BY CORIO HEREUNDER FOR THE TRANSACTION WHICH THE LIABILITY RELATES TO DURING THE TWELVE (12) MONTHS IMMEDIATELY PRIOR TO THE FILING OF THE CAUSE OF ACTION TO WHICH THE LIABILITY RELATES.",
+      "explanation": "While there is a liability cap, the exception for Section 8 or other carve-outs could expose the company to disproportionate liability.",
+      "suggested_change": "Ensure mutual, reciprocal overall caps on liability with clear, balanced exclusions."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Subject to [PARTY_C]'s pre-existing ownership of any materials or technology provided to Corio, the results of all such development efforts set forth in this Section 13, including all intellectual property rights in any software interface coding or programs created solely by Corio during the term of this Agreement to enable the Software to operated within the Corio Servers' hosted environment (\"DEVELOPMENTS\"), shall be owned by Corio, unless such Developments are supported on an ongoing basis by [PARTY_C] in which case [PARTY_C] will retain all ownership rights, including intellectual property rights in the Developments.",
+      "explanation": "If Commerce One provides ongoing support for developments created by Corio, Corio loses ownership of its proprietary interface code and intellectual property, effectively transferring IP rights away based on support rather than fair compensation.",
+      "suggested_change": "Retain sole ownership of all developments and interface code created by Corio, granting Commerce One only a necessary license."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4621,
+   "prompt_tokens": 607,
+   "output_tokens": 128,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.4,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to propose a few adjustments before signing. - In the relevant clause regarding liability, the current exceptions could lead to disproportionate liability, so I propose ensuring mutual, reciprocal overall caps with balanced exclusions. - In the section concerning development ownership, transferring intellectual property rights based on ongoing support could result in unintended ownership loss, so I propose retaining sole ownership of all developments and interface code created, granting only a necessary license instead. Please let me know if these changes work for you. Best regards,"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

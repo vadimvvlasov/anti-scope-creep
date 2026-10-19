@@ -1,0 +1,51 @@
+{
+ "id": "cuad:BELLRINGBRANDS,INC_02_07_2020-EX-10.18-MASTER SUPPLY AGREEMENT",
+ "chars": 37876,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+   "start": 28030,
+   "end": 28186
+  }
+ ],
+ "email": true,
+ "seconds": 19.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 13731,
+   "prompt_tokens": 9241,
+   "output_tokens": 162,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 14.45,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "9.1.1 The Liability Cap will not apply to any (1) material confidentiality breach under Section 5, and/or (2) indemnification obligations under Section 7.1.",
+      "explanation": "Your indemnification obligations are excluded from the overall liability cap and have no separate limit, exposing you to potentially unlimited financial liability for third-party claims.",
+      "suggested_change": "9.1.1 The Liability Cap shall apply to all claims and liabilities arising out of or related to this Agreement, including any indemnification obligations."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1945,
+   "prompt_tokens": 361,
+   "output_tokens": 95,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.12,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the contract. I have one minor adjustment to discuss before signing. - Regarding the liability cap, the relevant clause excludes indemnification obligations from the overall limit, which creates unlimited financial exposure, and we propose modifying the agreement so that the liability cap applies to all claims and liabilities. Please let me know if this adjustment is acceptable. Best regards."
+   }
+  }
+ ],
+ "dropped": []
+}

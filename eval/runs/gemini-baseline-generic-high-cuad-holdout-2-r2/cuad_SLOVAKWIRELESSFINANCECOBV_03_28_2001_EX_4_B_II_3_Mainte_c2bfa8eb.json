@@ -1,0 +1,77 @@
+{
+ "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules",
+ "chars": 33577,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "20 hours telephone support (during office hours) per month. This             support includes every necessary support for the SICAP(R) PPB, VCA             and OTA (no accumulation of unused hours)",
+   "start": 4704,
+   "end": 4901
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss,       loss of profit, lost savings and loss caused by interruption of operations       is excluded.\n\n      No right to damages shall ever arise unless EuroTel reports the loss to       Sicap Ltd in writing as soon as possible after it has arisen.",
+   "start": 31162,
+   "end": 31479
+  }
+ ],
+ "email": true,
+ "seconds": 17.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10177,
+   "prompt_tokens": 5851,
+   "output_tokens": 355,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 11.82,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "20 hours telephone support (during office hours) per month. This support includes every necessary support for the SICAP(R) PPB, VCA and OTA (no accumulation of unused hours)",
+      "explanation": "The phrasing every necessary support is overly broad and ambiguous, risking scope creep where the customer demands extensive or complex work under the guise of standard monthly support.",
+      "suggested_change": "Replace every necessary support with an explicit, detailed list of included maintenance tasks and clearly define exclusions."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss, loss of profit, lost savings and loss caused by interruption of operations is excluded. No right to damages shall ever arise unless EuroTel reports the loss to Sicap Ltd in writing as soon as possible after it has arisen.",
+      "explanation": "The contract excludes indirect losses but fails to establish a monetary cap on direct liability, leaving Sicap Ltd exposed to unlimited direct damage claims.",
+      "suggested_change": "Add an explicit cap on total liability, limiting it to the total fees paid by the customer under this contract in the preceding 12 months."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "annual fee for the first year (during warranty period), beginning with launch of service: not applicable",
+      "explanation": "Requiring Sicap Ltd to provide maintenance and support services for the first year at zero cost is financially unfavorable and uncompensated.",
+      "suggested_change": "Remove the free first-year warranty period for maintenance services or ensure separate adequate compensation is provided during this period."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2572,
+   "prompt_tokens": 490,
+   "output_tokens": 126,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello. I hope you are doing well. I would like to propose a few minor adjustments to the agreement before signing. - In the relevant clause covering monthly support, the current wording is overly broad and ambiguous; I propose replacing it with an explicit, detailed list of included maintenance tasks and exclusions. - In the relevant clause covering liability, the agreement does not establish a monetary cap on direct liability; I propose adding an explicit cap limiting it to the total fees paid under this contract in the preceding 12 months. Thank you for your time and cooperation."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}

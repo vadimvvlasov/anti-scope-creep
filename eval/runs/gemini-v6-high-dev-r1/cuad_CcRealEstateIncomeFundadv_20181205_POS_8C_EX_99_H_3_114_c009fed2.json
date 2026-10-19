@@ -1,0 +1,51 @@
+{
+ "id": "cuad:CcRealEstateIncomeFundadv_20181205_POS 8C_EX-99.(H)(3)_11447739_EX-99.(H)(3)_Marketing Agreement",
+ "chars": 30127,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+   "start": 9808,
+   "end": 9970
+  }
+ ],
+ "email": true,
+ "seconds": 15.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 10941,
+   "prompt_tokens": 8136,
+   "output_tokens": 103,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 8.57,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "No compensation with respect to a Fund shall be due and owing hereunder until the Distributor actually receives payments from such Fund, to the extent applicable.",
+      "explanation": "Your compensation is conditional on the client receiving payments from the fund, which unfairly shifts collection risk to you.",
+      "suggested_change": "The Client shall pay the Contractor all compensation due within thirty (30) days of the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2538,
+   "prompt_tokens": 331,
+   "output_tokens": 94,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 6.45,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed the text and would like to propose a minor adjustment before we finalize it. - Regarding the relevant clause, compensation is currently conditional on receiving payments from the fund, which shifts collection risk. I propose updating the agreement so that the client pays all compensation due within thirty days of the invoice date. Please let me know if this works for you. Best regards"
+   }
+  }
+ ],
+ "dropped": []
+}

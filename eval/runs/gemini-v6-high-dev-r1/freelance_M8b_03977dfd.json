@@ -1,0 +1,51 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 13.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8563,
+   "prompt_tokens": 5689,
+   "output_tokens": 132,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 7.76,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "Ownership of your work passes to the client as it is created, before you have received payment for your services.",
+      "suggested_change": "Work Product, and every right in it, vests in the Contractor until the Contractor receives full payment, upon which ownership transfers to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2136,
+   "prompt_tokens": 328,
+   "output_tokens": 97,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 5.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, Thank you for sharing the agreement. I am looking forward to starting, but I would like to request one quick update before signing. - Regarding the relevant clause, ownership of the work currently passes to the client as it is created before payment is received; I propose changing this so that work product vests in the contractor until full payment is received, at which point ownership transfers to the client. Best regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

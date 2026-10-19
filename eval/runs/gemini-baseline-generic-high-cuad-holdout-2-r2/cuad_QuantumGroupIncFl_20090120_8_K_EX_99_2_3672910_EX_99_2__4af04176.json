@@ -1,0 +1,116 @@
+{
+ "id": "cuad:QuantumGroupIncFl_20090120_8-K_EX-99.2_3672910_EX-99.2_Hosting Agreement",
+ "chars": 116298,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Customer may terminate this Agreement, or any portion of Services specified herein, for convenience by: providing at least sixty (60) days prior written notice to IBM; and paying the applicable early termination charges specified in Attachment C.",
+   "start": 12597,
+   "end": 12843
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment is due and payable by month end for any invoice received by the 10th of the month, otherwise payment is due thirty (30) days from receipt of invoice.",
+   "start": 13311,
+   "end": 13468
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "IBM will not: Setup and maintain Customer end users; Install, maintain or support Customer applications; Provide application troubleshooting services unless Managed Application Service or T&M services have been purchased; Perform logical database administration; and Perform backups of Customer Content.",
+   "start": 58246,
+   "end": 58549
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "low",
+   "quoted_text": "Although there are no limitations on the number of change requests, the number of emergency requests will be limited to three (3) requests per month, per Customer at no additional charge. Additional requests shall be at the SmartHands rate.",
+   "start": 57437,
+   "end": 57677
+  }
+ ],
+ "email": true,
+ "seconds": 26.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 27809,
+   "prompt_tokens": 22262,
+   "output_tokens": 902,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 16.71,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Customer will defend IBM and its Affiliates and their employees, officers, and directors, at Customer's expense, and pay all costs, damages, and reasonable attorneys' fees that a court finally awards (or which Customer agrees in any final settlement) for any third party claim...",
+      "explanation": "IBM caps its own liability in Section 9.0, but Customer's indemnification obligations and general liability are completely uncapped, exposing Customer to potentially unlimited financial risk for third-party claims.",
+      "suggested_change": "Mutualize the indemnification obligations and cap Customer's total liability under the Agreement at an agreed-upon monetary cap."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Customer may terminate this Agreement, or any portion of Services specified herein, for convenience by: providing at least sixty (60) days prior written notice to IBM; and paying the applicable early termination charges specified in Attachment C.",
+      "explanation": "Customer is locked into a 36-month term with heavy financial penalties for terminating for convenience, while IBM retains broad rights to modify terms, suspend SLAs, or terminate for breach.",
+      "suggested_change": "Allow Customer to terminate for convenience with reasonable notice without punitive early termination charges after the first year."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment is due and payable by month end for any invoice received by the 10th of the month, otherwise payment is due thirty (30) days from receipt of invoice.",
+      "explanation": "Invoices received by the 10th must be paid by month-end, creating an excessively short payment window depending on receipt date.",
+      "suggested_change": "Establish a consistent payment term of net thirty (30) days from receipt of invoice for all billing cycles."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "IBM will not: Setup and maintain Customer end users; Install, maintain or support Customer applications; Provide application troubleshooting services unless Managed Application Service or T&M services have been purchased; Perform logical database administration; and Perform backups of Customer Content.",
+      "explanation": "Broad exclusions mean essential application support and database administration fall entirely on Customer or incur high hourly T&M and SmartHands charges.",
+      "suggested_change": "Clarify boundary lines between hosting infrastructure support and application management, and include a reasonable baseline of support hours."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "low",
+      "quoted_text": "Although there are no limitations on the number of change requests, the number of emergency requests will be limited to three (3) requests per month, per Customer at no additional charge. Additional requests shall be at the SmartHands rate.",
+      "explanation": "Emergency requests are strictly capped at three per month, beyond which Customer is subject to high hourly SmartHands rates.",
+      "suggested_change": "Increase the monthly emergency request allowance or roll over unused requests to subsequent months."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "medium",
+      "quoted_text": "IBM (or its Affiliates or subcontractors) retains all right, title, and interest in Base Components. IBM grants Customer a nonexclusive, nontransferable, revocable license to access and use the Base Components solely in connection with the Services...",
+      "explanation": "Customer only receives a revocable license to base components and materials rather than permanent usage rights tied to fulfillment of payment.",
+      "suggested_change": "Ensure that software and material licenses remain irrevocable and in full effect for the duration of use as long as payments are current."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 4493,
+   "prompt_tokens": 595,
+   "output_tokens": 192,
+   "output_budget": 8000,
+   "finish_reason": "stop",
+   "seconds": 9.93,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello, thank you for sharing the agreement. I have reviewed it and would like to suggest a few adjustments before signing. - The relevant clause on termination for convenience imposes heavy financial penalties and an extended lock-in while the other party retains broad rights, and we propose allowing termination for convenience with reasonable notice without punitive early termination charges after the first year. - The relevant clause on payment schedules requires payment by month end for invoices received by the 10th, creating an excessively short payment window, and we propose establishing a consistent payment term of net thirty days from receipt of invoice for all billing cycles. - The relevant clause detailing service exclusions shifts essential application support and database administration entirely to the client or incurs high hourly charges, and we propose clarifying boundary lines between infrastructure support and application management while including a reasonable baseline of support hours. Thank you for your understanding."
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "uncapped_liability",
+   "reason": "quote_not_found"
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "reason": "quote_not_found"
+  }
+ ]
+}
