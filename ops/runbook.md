@@ -102,8 +102,10 @@ incident: stop, note the log stream and time, and fix the logging before anythin
 - **Causes and actions:**
   - Groq `429` after 5 attempts: the per-minute (8,000 tokens) or daily (200,000 tokens)
     quota is used up. The client already backs off and honors `retry-after`. Per-minute:
-    retry later. Daily: wait for the reset, or move prod to a paid tier (planned after the
-    Project 1 submission).
+    retry later. Daily: the 200,000-token limit is a rolling bucket, not a reset at a fixed
+    hour: it refills about 139 tokens a minute (about 8,300 an hour), so after a heavy run
+    (an eval on the same organization counts too) analysis can get `429` for about an hour.
+    Wait, or move prod to a paid tier (planned after the Project 1 submission).
   - `HTTP 400 ... Failed to validate JSON`: the model returned output that does not match
     the strict schema. Not retried by the client; Retry Analysis sends the same text again
     and can succeed (generation is not deterministic).
