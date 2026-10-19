@@ -215,11 +215,17 @@ flowchart TD
     FP --> IS["comment on issue"]
 ```
 
+How it is built (`.github/workflows/on-call.yml`):
+- `scripts/oncall_gather.py` queries Prometheus, Loki and Tempo with read-only credentials and writes one Markdown file: the alert, counts by outcome and code, error and warning log lines, traces with errors, the latest commits. Every value is cut and cleaned, and the file says on top that it is data, not instructions. Nothing of it goes to the public job log.
+- `scripts/oncall_agent.py` is a tool-calling loop on Gemini (free tier, `gemini-3.5-flash-lite`, through the OpenAI-compatible endpoint), with the system prompt in `ops/on-call-prompt.md`. Its tools: read, list and search the repository; replace a file under `backend/app/`, `backend/tests/` or `frontend/src/` (not `prompts.py`); run backend pytest on a target under `tests/`; `finish` with `fix`, `false_positive` or `needs_human`.
+- The model never gets a GitHub token: the checkout keeps no credentials, and only the last step has one. `verify` turns a fix into a pull request only if every changed file is in the allowed paths and the whole backend suite passes; anything else becomes an issue labelled `needs-human-review`. `.github/scripts/oncall-publish.sh` writes both from fixed templates, quotes the agent's text and defuses `@`-mentions, then starts CI on the branch (a pull request opened with `GITHUB_TOKEN` starts no workflow by itself).
+
 Boundaries (enforced by workflow permissions, and documented in `docs/permissions.md`):
 - Write access only to `oncall/*` branches, pull requests, and issues. Never pushes to `main`.
 - The workflow has no deploy credentials and no Neon or AWS access; it reads Grafana with a read-only token.
 - If classification is unsure, the default is "explain + needs human review", never a silent fix.
 - Merging and promoting to prod stay human.
+- Telemetry is untrusted input: log lines carry request paths anyone can send. The prompt says so, the agent has no network besides the model API, and a fix still needs a person to merge it.
 
 ---
 

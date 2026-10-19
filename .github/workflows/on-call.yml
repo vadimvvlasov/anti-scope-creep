@@ -1,0 +1,91 @@
+name: On-call agent
+
+# A Grafana alert (repository_dispatch, type grafana-alert) or a manual run wakes the agent
+# (docs/architecture.md, section 5; docs/permissions.md, "On-call agent"). It reads telemetry
+# with a read-only token, investigates on Gemini with repository tools, and the last step opens
+# a pull request from an oncall/* branch or an issue. A person reviews, merges and promotes.
+on:
+  repository_dispatch:
+    types: [grafana-alert]
+  workflow_dispatch:
+    inputs:
+      alert:
+        description: Alert name for a manual run (a rehearsal)
+        required: true
+        default: manual-check
+      summary:
+        description: What to look at
+        required: false
+        default: Check the last hour of dev telemetry
+
+permissions:
+  contents: read
+
+concurrency:
+  group: on-call
+  cancel-in-progress: false
+
+jobs:
+  investigate:
+    runs-on: ubuntu-latest
+    # The environment holds GEMINI_API_KEY and the read-only Grafana credentials; it only
+    # deploys from main, so a workflow changed in a pull request cannot read them.
+    environment: oncall
+    timeout-minutes: 30
+    permissions:
+      contents: write        # push the oncall/* branch; main takes changes only through pull requests
+      pull-requests: write
+      issues: write
+      actions: write         # start CI on the agent's branch
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 30
+          persist-credentials: false  # no token in .git/config for the agent's tools to find
+
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install the backend for the tests
+        working-directory: backend
+        run: uv sync --frozen
+
+      - name: Write the alert
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+          MANUAL_ALERT: ${{ inputs.alert }}
+          MANUAL_SUMMARY: ${{ inputs.summary }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = repository_dispatch ]; then
+            printf '%s' "$PAYLOAD" > "$RUNNER_TEMP/alert.json"
+          else
+            jq -n --arg name "$MANUAL_ALERT" --arg summary "$MANUAL_SUMMARY" \
+              '{alert_name: $name, status: "manual", summary: $summary}' > "$RUNNER_TEMP/alert.json"
+          fi
+
+      - name: Gather context (read-only telemetry queries)
+        env:
+          ONCALL_PROM_URL: ${{ vars.ONCALL_PROM_URL }}
+          ONCALL_LOKI_URL: ${{ vars.ONCALL_LOKI_URL }}
+          ONCALL_TEMPO_URL: ${{ vars.ONCALL_TEMPO_URL }}
+          ONCALL_AUTH: ${{ secrets.ONCALL_GRAFANA_AUTH }}
+        run: python3 scripts/oncall_gather.py --alert "$RUNNER_TEMP/alert.json" --out "$RUNNER_TEMP/context.md"
+
+      - name: Investigate (Gemini, no GitHub token)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ONCALL_MODEL: ${{ vars.ONCALL_MODEL }}
+        run: |
+          python3 scripts/oncall_agent.py run --prompt ops/on-call-prompt.md \
+            --context "$RUNNER_TEMP/context.md" --alert "$RUNNER_TEMP/alert.json" --out "$RUNNER_TEMP/result.json"
+
+      - name: Check the change (allowed paths, whole backend suite)
+        run: python3 scripts/oncall_agent.py verify --result "$RUNNER_TEMP/result.json"
+
+      - name: Open a pull request or an issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/scripts/oncall-publish.sh "$RUNNER_TEMP/result.json"

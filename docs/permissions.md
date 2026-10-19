@@ -55,6 +55,27 @@ deny rules apply to it as to the main session. It never edits files.
 - Tool calls need approval: `.claude/settings.json` allows the three tools by name, and
   `enableAllProjectMcpServers` is off, so the server itself must be approved once.
 
+## On-call agent
+
+Runs in GitHub Actions (`.github/workflows/on-call.yml`) when Grafana sends an alert, or by hand.
+
+| Rule | Enforced by |
+|---|---|
+| Reads Grafana only | `ONCALL_GRAFANA_AUTH` is a read-only token (`metrics:read`, `logs:read`, `traces:read`) |
+| Its model never sees a GitHub token | `persist-credentials: false` on checkout; only the publish step gets `GH_TOKEN` |
+| Edits only product code and its tests | `write_file` refuses paths outside `backend/app/`, `backend/tests/`, `frontend/src/` and `prompts.py`; `verify` refuses to publish a change that touches anything else |
+| Cannot read secrets or workflows | the tools refuse `.git/`, `.github/`, `.env*`, `*.pem`, `*.key` and anything outside the repository |
+| Runs only allowlisted commands | tests are `uv run pytest -q -x <target under tests/>`; search is `git grep`; there is no shell tool |
+| Never changes `main` directly | it pushes `oncall/<run id>` and opens a pull request; the `main` ruleset requires a pull request with green CI, and a person merges |
+| Cannot deploy | no AWS role, no Neon or Cloudflare credentials in the `oncall` environment |
+| Its secrets stay with `main` | the `oncall` environment deploys only from `main`, so a workflow edited in a pull request cannot read `GEMINI_API_KEY` |
+| Unsure means a person decides | `needs_human`, a failed check or no verdict becomes an issue labelled `needs-human-review` |
+
+The model is Gemini on the free tier. It receives the alert context (counts, codes, ids, log
+messages and span names of the service, which hold no contract text by design and by test,
+`backend/tests/test_telemetry_signals.py`) and files of this public repository. What it writes is
+posted publicly, so the prompt forbids copying log lines, personal data or keys into it.
+
 ## Eval keys
 
 Gemini and Groq eval keys are in `~/.config/*.env` on the developer's machine. The agent
