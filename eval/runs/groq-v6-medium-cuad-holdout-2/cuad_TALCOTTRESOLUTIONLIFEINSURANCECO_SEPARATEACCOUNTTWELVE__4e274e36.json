@@ -1,0 +1,89 @@
+{
+ "id": "cuad:TALCOTTRESOLUTIONLIFEINSURANCECO-SEPARATEACCOUNTTWELVE_04_30_2020-EX-99.8(L)-SERVICE AGREEMENT",
+ "chars": 29797,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Upon the request of the Trust or its designee, Administrator shall provide copies of all the historical records relating to transactions between the Funds and the Plans, written communications regarding the Funds to or from such Plans and other materials, in each case (i) as are maintained by Administrator in the ordinary course of its business and in compliance with laws and regulations governing transfer agents, and (ii) as may reasonably be requested to enable the Trust or its representatives, including without limitation its auditors or legal counsel, to (a) monitor and review the Services, (b) comply with any request of a governmental body or self-regulatory organization or a Plan, (c) verify compliance by Administrator with the terms of this Agreement, (d) make required regulatory reports, or (e) perform general customer supervision.",
+   "start": 10382,
+   "end": 11233
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Administrator agrees to indemnify and hold harmless the Trust, the Trust's administrators, investment adviser, and transfer agent, and each of their directors, trustees, officers, employees, agents and each person, if any, who controls them within the meaning of the Securities Act of 1933, as amended (the \"Securities Act\"), against any losses, claims, damages, liabilities or expenses to which an indemnitee may become subject insofar as those losses, claims, damages, liabilities or expenses (or actions in respect thereof) arise out of or are based upon (i) any orders that are not timely transmitted by Administrator in accordance with Section 4 of this Agreement or any trades that are cancelled",
+   "start": 20088,
+   "end": 20789
+  }
+ ],
+ "email": true,
+ "seconds": 111.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4375,
+   "prompt_tokens": 3982,
+   "output_tokens": 393,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 3.23,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5957,
+   "prompt_tokens": 4003,
+   "output_tokens": 1954,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.41,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Upon the request of the Trust or its designee, Administrator shall provide copies of all the historical records relating to transactions between the Funds and the Plans, written communications regarding the Funds to or from such Plans and other materials, in each case (i) as are maintained by Administrator in the ordinary course of its business and in compliance with laws and regulations governing transfer agents, and (ii) as may reasonably be requested to enable the Trust or its representatives, including without limitation its auditors or legal counsel, to (a) monitor and review the Services, (b) comply with any request of a governmental body or self-regulatory organization or a Plan, (c) verify compliance by Administrator with the terms of this Agreement, (d) make required regulatory reports, or (e) perform general customer supervision.",
+      "explanation": "The Trust can ask you for any reasonable copies of records at any time, and the clause does not require additional payment or a change‑order, so you may be required to do extra work for free.",
+      "suggested_change": "Administrator shall provide copies of historical records only upon receipt of a written change order specifying the scope of the request and the applicable additional compensation."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Administrator agrees to indemnify and hold harmless the Trust, the Trust's administrators, investment adviser, and transfer agent, and each of their directors, trustees, officers, employees, agents and each person, if any, who controls them within the meaning of the Securities Act of 1933, as amended (the \"Securities Act\"), against any losses, claims, damages, liabilities or expenses to which an indemnitee may become subject insofar as those losses, claims, damages, liabilities or expenses (or actions in respect thereof) arise out of or are based upon (i) any orders that are not timely transmitted by Administrator in accordance with Section 4 of this Agreement or any trades that are cancelled",
+      "explanation": "You must indemnify the Trust for any such losses without any monetary limit, exposing you to unlimited liability.",
+      "suggested_change": "Administrator shall indemnify the Trust for losses arising from orders not timely transmitted or trades cancelled, provided that the total indemnification liability shall not exceed [Insert reasonable monetary cap, e.g., the aggregate fees paid under this Agreement]."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4121,
+   "prompt_tokens": 3838,
+   "output_tokens": 283,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.42,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1423,
+   "prompt_tokens": 876,
+   "output_tokens": 547,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.61,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [Client],\n\nI hope you are well. Before signing, I would like to suggest a couple of adjustments to the agreement:\n\n- The relevant clause requires providing copies of historical records upon request, which could entail additional work at no extra cost. I propose that copies be supplied only after a written change order defining the scope and the applicable additional compensation.\n- The relevant clause obligates indemnification for losses arising from untimely orders or cancelled trades without any monetary limit, exposing me to unlimited liability. I propose that indemnification be limited to an amount not exceeding the aggregate fees paid under the agreement.\n\nThank you for considering these updates. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

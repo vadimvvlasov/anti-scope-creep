@@ -280,7 +280,14 @@ A new run calls the provider and needs its key: `GROQ_API_KEY` (default provider
 uv run python -m evaluation run --set freelance --run my-run                       # Groq, the current prompt
 uv run python -m evaluation run --set cuad-holdout --run my-run-holdout --provider gemini \
     --findings-prompt ../eval/prompts/findings-v3.txt                               # an older prompt version
+uv run python -m evaluation run --set cuad-holdout-2 --run groq-v6-medium-cuad-holdout-2 \
+    --reasoning-effort medium --skip-too-large                                      # Groq, only contracts within its 60000 limit
 ```
+
+`cuad-holdout-2` holds contracts up to 150000 characters, the Gemini limit; Groq accepts 60000.
+Without `--skip-too-large` a run stops at the first longer contract (nothing is sent to the
+provider); with it, those contracts are logged as skipped and not run, and `score` lists them
+as missing.
 
 ## Attribution
 

@@ -8,6 +8,8 @@
     uv run python -m evaluation run --set freelance --run groq-v4-medium --reasoning-effort medium
     uv run python -m evaluation run --set cuad-holdout-long --run gemini-long --provider gemini \
         --max-text-chars 150000 --chunk-chars 150000 --max-output-tokens 8000   # contracts above the product limit
+    uv run python -m evaluation run --set cuad-holdout-2 --run groq-v6-medium-cuad-holdout-2 \
+        --reasoning-effort medium --skip-too-large                       # Groq: only contracts within its 60000 limit
 """
 
 import argparse
@@ -124,6 +126,9 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--max-text-chars", type=int, default=MAX_TEXT_CHARS,
                          help=f"contract length limit (default: the product's {MAX_TEXT_CHARS}); "
                               "cuad-holdout-long and cuad-holdout-2 need 150000, production is not affected")
+    run_cmd.add_argument("--skip-too-large", action="store_true",
+                         help="leave out contracts above --max-text-chars instead of stopping the run "
+                              "(Groq on cuad-holdout-2: the 150000-character set against the 60000 limit)")
     run_cmd.add_argument("--findings-prompt", type=Path,
                          help="text file with the findings system prompt; default: the one in app/prompts.py")
     args = parser.parse_args(argv)
@@ -134,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
                                 reasoning_effort=args.reasoning_effort)
             prompt = args.findings_prompt.read_text(encoding="utf-8") if args.findings_prompt else FINDINGS_SYSTEM_PROMPT
             done = run(set_name, run_dir, client, args.limit, max_chunk_chars=args.chunk_chars, findings_prompt=prompt,
-                       max_text_chars=args.max_text_chars)
+                       max_text_chars=args.max_text_chars, skip_too_large=args.skip_too_large)
             print(f"{set_name}: {done} contracts analyzed")
         else:
             result = score(run_dir, set_name)

@@ -1,0 +1,63 @@
+{
+ "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)",
+ "chars": 12020,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\"). Consultant shall promptly disclose to Aduro all information relating to Work Product as appropriate as part of the Services and at the request of Aduro. To the extent, if any, that Consultant has rights in or to any Work Product or any data or inventions developed in connection with work under this Agreement (\"Aduro IP\"), Consultant hereby irrevocably assigns and transfers to Aduro, and to the extent that an executory assignment is not enforceable, Consultant hereby agrees to assign and transfer to Aduro, in writing, from time to time, upon request, any and all right, title, or interest that Consultant has or may obtain in any Work Product and/or Aduro IP without the necessity of further consideration.",
+   "start": 5984,
+   "end": 7177
+  }
+ ],
+ "email": true,
+ "seconds": 267.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5839,
+   "prompt_tokens": 4299,
+   "output_tokens": 1540,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 55.27,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\"). Consultant shall promptly disclose to Aduro all information relating to Work Product as appropriate as part of the Services and at the request of Aduro. To the extent, if any, that Consultant has rights in or to any Work Product or any data or inventions developed in connection with work under this Agreement (\"Aduro IP\"), Consultant hereby irrevocably assigns and transfers to Aduro, and to the extent that an executory assignment is not enforceable, Consultant hereby agrees to assign and transfer to Aduro, in writing, from time to time, upon request, any and all right, title, or interest that Consultant has or may obtain in any Work Product and/or Aduro IP without the necessity of further consideration.",
+      "explanation": "You give all rights to the work you create to the client before you are paid in full, so the client owns the IP even if they never pay you. This exposes you to loss of ownership without payment.",
+      "suggested_change": "Ownership of all Work Product shall remain with the Consultant until the Consultant has received full payment for the Services. Upon receipt of full payment, the Consultant shall assign and transfer to Aduro all right, title, and interest in the Work Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2208,
+   "prompt_tokens": 2077,
+   "output_tokens": 131,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 149.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1243,
+   "prompt_tokens": 747,
+   "output_tokens": 496,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 62.41,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI hope you are well. Please see below a suggested adjustment before I sign the agreement:\n\n- The relevant clause assigns all rights in the Work Product to Aduro even if full payment has not yet been received, which could leave me without ownership of the work if payment is delayed. I propose that ownership of the Work Product remain with the Consultant until full payment is received, after which the Consultant will assign all rights, title, and interest to Aduro.\n\nThank you for your understanding. I look forward to moving ahead.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

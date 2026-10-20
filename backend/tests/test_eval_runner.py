@@ -2,6 +2,7 @@ import json
 
 import pytest
 
+from app.errors import AppError, ErrorCode
 from app.groq_client import GroqError, GroqResult
 from evaluation import runner
 
@@ -155,3 +156,37 @@ def test_the_long_held_out_set_is_known_but_not_run_by_default():
 
     assert "cuad-holdout-long" in SETS and "cuad-holdout-long" not in DEFAULT_SETS
     assert all(len(r["id"]) for r in runner.load_gold("cuad-holdout-long"))
+
+
+@pytest.fixture
+def short_and_long(monkeypatch):
+    """Two real contracts and a limit between their lengths."""
+    by_length = sorted(runner.load_gold("freelance"), key=lambda r: len(runner.contract_text(r, max_chars=None)))
+    short, long = by_length[0], by_length[-1]
+    limit = len(runner.contract_text(short, max_chars=None))
+    assert limit < len(runner.contract_text(long, max_chars=None))
+    monkeypatch.setattr(runner, "load_gold", lambda name: [long, short])
+    return short, long, limit
+
+
+def test_a_contract_above_the_limit_stops_the_run(tmp_path, short_and_long):
+    _, _, limit = short_and_long
+    with pytest.raises(AppError) as stopped:
+        runner.run("freelance", tmp_path, FakeClient("x"), log=lambda _: None, max_text_chars=limit)
+    assert stopped.value.code == ErrorCode.CONTRACT_TOO_LARGE
+
+
+def test_skip_too_large_leaves_the_contract_out_and_analyzes_the_rest(tmp_path, short_and_long):
+    short, long, limit = short_and_long
+    lines: list[str] = []
+    done = runner.run("freelance", tmp_path, FakeClient("x"), log=lines.append, max_text_chars=limit, skip_too_large=True)
+    assert done == 1
+    assert runner.cache_path(tmp_path, short["id"]).exists() and not runner.cache_path(tmp_path, long["id"]).exists()
+    assert "skipped" in lines[0] and lines[0].startswith(long["id"][:70])
+
+
+def test_skip_too_large_does_not_hide_other_errors(tmp_path, p1, monkeypatch):
+    monkeypatch.setattr(runner, "load_gold", lambda name: [p1])
+    with pytest.raises(GroqError):
+        runner.run("freelance", tmp_path, RejectingClient("Groq returned HTTP 429: rate limit"), log=lambda _: None,
+                   skip_too_large=True)

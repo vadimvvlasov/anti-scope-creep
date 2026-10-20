@@ -1,0 +1,63 @@
+{
+ "id": "cuad:XinhuaSportsEntertainmentLtd_20070221_F-1_EX-99.4_645553_EX-99.4_Content License Agreement",
+ "chars": 19128,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "XFN may terminate this Agreement by giving thirty (30) days written notice      to the CEIS.",
+   "start": 13213,
+   "end": 13305
+  }
+ ],
+ "email": true,
+ "seconds": 113.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5567,
+   "prompt_tokens": 4524,
+   "output_tokens": 1043,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 54.84,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4158,
+   "prompt_tokens": 3351,
+   "output_tokens": 807,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 42.08,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "[PARTY_C] may terminate this Agreement by giving thirty (30) days written notice to the CEIS.",
+      "explanation": "The client can end the contract at will with 30‑day notice and the agreement does not require payment for work you have already done.",
+      "suggested_change": "Either Party may terminate this Agreement by giving thirty (30) days written notice to the other Party, and the terminating Party shall pay for all services performed up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 965,
+   "prompt_tokens": 502,
+   "output_tokens": 463,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 16.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment to the relevant clause:\n\n- The clause currently lets [PARTY_C] terminate the agreement with thirty (30) days written notice to the CEIS, and does not provide compensation for work already performed. I propose that either party may terminate the agreement with thirty (30) days written notice to the other party, and the terminating party shall pay for all services performed up to the effective termination date.\n\nThank you for considering these changes.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,63 @@
+{
+ "id": "cuad:WebmdHealthCorp_20050908_S-1A_EX-10.7_1027007_EX-10.7_Content License Agreement",
+ "chars": 14993,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "(c) Updates. If WebMD should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content Emdeon has licensed (collectively, \"Updates\"), Emdeon has the option, at no additional cost, to receive the most recent Update. WebMD shall promptly notify Emdeon when a new Update is available.",
+   "start": 2455,
+   "end": 2779
+  }
+ ],
+ "email": true,
+ "seconds": 107.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5896,
+   "prompt_tokens": 4634,
+   "output_tokens": 1262,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 54.51,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "(c) Updates. If [PARTY_A] should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content [PARTY_B] has licensed (collectively, \"Updates\"), [PARTY_B] has the option, at no additional cost, to receive the most recent Update. [PARTY_A] shall promptly notify [PARTY_B] when a new Update is available.",
+      "explanation": "You must provide any Updates to the Content without receiving extra payment, so the client can obtain additional work for free.",
+      "suggested_change": "(c) Updates. If [PARTY_A] should reprint, issue a new edition, change or modify the edition, or otherwise enhance or edit the Content [PARTY_B] has licensed (collectively, \"Updates\"), [PARTY_B] may receive such Updates upon payment of the applicable fees. [PARTY_A] shall promptly notify [PARTY_B] when a new Update is available."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2876,
+   "prompt_tokens": 2701,
+   "output_tokens": 175,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.33,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1074,
+   "prompt_tokens": 609,
+   "output_tokens": 465,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear [CLIENT],\n\nI hope you are well. Before signing, I would like to clarify a few points in the agreement:\n- The relevant clause on Updates currently requires [PARTY_B] to receive any new editions or enhancements at no additional cost. This would mean providing extra work for free. I propose that updates be provided upon payment of the applicable fees, as reflected in the revised wording.\n\nThank you for your attention.\n"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,63 @@
+{
+ "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT",
+ "chars": 17786,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "(d)   Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "start": 6500,
+   "end": 6830
+  }
+ ],
+ "email": true,
+ "seconds": 54.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5715,
+   "prompt_tokens": 4216,
+   "output_tokens": 1499,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 5.08,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "(d)   Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+      "explanation": "You can be terminated by the client for any reason with 30‑day notice, and the contract does not require the client to pay for work already performed.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon thirty (30) days prior written notice. Upon termination, the Customer shall pay the Contractor for all services performed and costs incurred up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3508,
+   "prompt_tokens": 2965,
+   "output_tokens": 543,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 31.18,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 986,
+   "prompt_tokens": 551,
+   "output_tokens": 435,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.28,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I hope you’re well.\n\n- The relevant clause currently allows termination by the Customer with thirty days’ notice but does not require payment for work already performed. I propose that either party may terminate for convenience with thirty days’ written notice, and that upon termination the Customer shall pay the Contractor for all services performed and costs incurred up to the effective termination date.\n\nThank you for your consideration."
+   }
+  }
+ ],
+ "dropped": []
+}
