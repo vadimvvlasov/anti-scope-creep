@@ -1,0 +1,75 @@
+{
+ "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 31914,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "5.01 New Products. The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+   "start": 11285,
+   "end": 11558
+  }
+ ],
+ "email": true,
+ "seconds": 169.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5112,
+   "prompt_tokens": 4440,
+   "output_tokens": 672,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.75,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "5.01 New Products. The Company may amend Exhibit A to add new products to the scope of this Agreement, including line extensions of the then-existing Products and new brands acquired by the Company that are sold into the same classes of trade as the then-existing Products.",
+      "explanation": "The Company can expand the list of products you must service without any requirement to adjust your fee, so you may be required to perform additional work for the same payment.",
+      "suggested_change": "The Company may amend Exhibit A to add new products to the scope of this Agreement, provided that any such amendment is set out in a written change order signed by both parties and includes an adjustment to the Service Fees commensurate with the additional work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4859,
+   "prompt_tokens": 4288,
+   "output_tokens": 571,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.83,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4205,
+   "prompt_tokens": 3832,
+   "output_tokens": 373,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 45.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 956,
+   "prompt_tokens": 551,
+   "output_tokens": 405,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 18.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before signing, I’d like to clarify a point in the agreement:\n\n- The relevant clause (5.01) permits the Company to add new products to the scope without adjusting the service fees, which could increase my workload for the same payment. I propose that any amendment to Exhibit A be documented in a written change order signed by both parties and include a fee adjustment that reflects the additional work.\n\nThank you for considering this adjustment. I look forward to moving ahead.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

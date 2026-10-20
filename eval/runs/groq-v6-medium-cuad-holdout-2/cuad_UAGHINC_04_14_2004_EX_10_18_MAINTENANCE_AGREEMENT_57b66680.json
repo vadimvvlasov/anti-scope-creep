@@ -1,0 +1,34 @@
+{
+ "id": "cuad:UAGHINC_04_14_2004-EX-10.18-MAINTENANCE AGREEMENT",
+ "chars": 16823,
+ "findings": [],
+ "email": false,
+ "seconds": 91.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5656,
+   "prompt_tokens": 4504,
+   "output_tokens": 1152,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.52,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3440,
+   "prompt_tokens": 3222,
+   "output_tokens": 218,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 37.48,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,104 @@
+{
+ "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT",
+ "chars": 26346,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+   "start": 5161,
+   "end": 5765
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All writings or works of authorship, including, without limitation, program codes or documentation, produced or authored by Provider in the course of performing services for the Recipient, together with any associated copyrights, are works made for hire and the exclusive property of the Recipient.",
+   "start": 6181,
+   "end": 6479
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Parties agree (a) to furnish upon request to each other such further information, (b) to execute and deliver to each other such other documents, and (c) to do such other acts and things, all as the other party may reasonably request for the purpose of carrying out the intent of this Agreement and the documents referred to in this Agreement.",
+   "start": 21614,
+   "end": 21960
+  }
+ ],
+ "email": true,
+ "seconds": 164.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5037,
+   "prompt_tokens": 3826,
+   "output_tokens": 1211,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.39,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Recipient shall own, and Provider hereby irrevocably assigns to the Recipient, all rights, title, and interest in any invention, technique, process, device, discovery, improvement, or know-how, whether patentable or not and all other proprietary rights, industrial rights and any other similar rights, in each case on a worldwide basis, and all copies and tangible embodiments thereof, or any part thereof, in whatever form or medium hereafter made or conceived solely or jointly by Provider while working for or on behalf of the Recipient, which relate to, is suggested by, or results from the Services.",
+      "explanation": "You give all ownership rights to the client as soon as you create the work, even before you have been paid, which exposes you to loss of IP if the client does not pay.",
+      "suggested_change": "The Provider retains all right, title and interest in any invention, technique, process, device, discovery, improvement, or know-how until the Provider has received full payment of all amounts due under this Agreement, at which time the Provider shall assign such rights to the Recipient."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All writings or works of authorship, including, without limitation, program codes or documentation, produced or authored by Provider in the course of performing services for the Recipient, together with any associated copyrights, are works made for hire and the exclusive property of the Recipient.",
+      "explanation": "The clause makes all deliverables the client’s property from the moment they are created, before you are paid, risking loss of ownership if payment is delayed or withheld.",
+      "suggested_change": "All writings or works of authorship produced by the Provider in the course of performing services shall remain the property of the Provider until the Provider has received full payment of all amounts due under this Agreement, after which the Provider shall assign such works to the Recipient."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5295,
+   "prompt_tokens": 3989,
+   "output_tokens": 1306,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4658,
+   "prompt_tokens": 3507,
+   "output_tokens": 1151,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 43.02,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Parties agree (a) to furnish upon request to each other such further information, (b) to execute and deliver to each other such other documents, and (c) to do such other acts and things, all as the other party may reasonably request for the purpose of carrying out the intent of this Agreement and the documents referred to in this Agreement.",
+      "explanation": "You must provide any additional information, documents, or actions the client reasonably asks for, without any mention of extra pay or a change‑order process, so the client can demand extra work for free.",
+      "suggested_change": "The Parties agree to furnish upon request to each other such further information, documents, and to perform such acts and things only as are reasonably necessary to fulfill the Services described in this Agreement, and any such additional work shall be subject to a mutually agreed written change order and compensated at the rates set forth in this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1627,
+   "prompt_tokens": 981,
+   "output_tokens": 646,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 21.83,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Dear Client,\n\n- The relevant clause assigns all invention rights to the Recipient immediately. This would give the client ownership before payment, which could result in loss of IP if payment is delayed. I propose that the Provider retains all rights until full payment is received, after which the rights are assigned to the Recipient.\n- The relevant clause treats all writings and works as works made for hire, making them the Recipient’s exclusive property as soon as they are created. This could cause loss of ownership before payment. I suggest that the Provider keep ownership of such works until full payment is received, and then assign them to the Recipient.\n- The relevant clause requires the Provider to provide any further information, documents, or actions the other party may reasonably request, without any reference to additional compensation. This could obligate the Provider to perform extra work for free. I propose that any additional work be limited to what is reasonably necessary for the Services and be subject to a mutually agreed written change order with appropriate compensation.\n\nThank you for your consideration. I look forward to finalizing the agreement."
+   }
+  }
+ ],
+ "dropped": []
+}

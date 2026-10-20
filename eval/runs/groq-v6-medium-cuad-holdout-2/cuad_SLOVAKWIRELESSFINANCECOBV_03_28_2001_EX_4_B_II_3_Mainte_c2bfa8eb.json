@@ -1,0 +1,75 @@
+{
+ "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules",
+ "chars": 33577,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss,       loss of profit, lost savings and loss caused by interruption of operations       is excluded.",
+   "start": 31162,
+   "end": 31332
+  }
+ ],
+ "email": true,
+ "seconds": 168.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4374,
+   "prompt_tokens": 3972,
+   "output_tokens": 402,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 52.1,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4484,
+   "prompt_tokens": 4014,
+   "output_tokens": 470,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 53.06,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4474,
+   "prompt_tokens": 3405,
+   "output_tokens": 1069,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 45.7,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "Sicap Ltd's liability for indirect loss, including consequential loss, loss of profit, lost savings and loss caused by interruption of operations is excluded.",
+      "explanation": "You have no overall limit on your liability for direct damages; the contract does not set a monetary cap, so you could be liable for any amount of loss you cause.",
+      "suggested_change": "Sicap Ltd's total aggregate liability for any direct damages arising out of this contract shall not exceed the total fees paid by EuroTel under this contract, and liability for indirect loss shall be excluded as currently stated."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1076,
+   "prompt_tokens": 520,
+   "output_tokens": 556,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.07,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the agreement and would like to suggest a small amendment before signing.\n\n- The relevant clause limits liability for indirect loss but does not place any monetary cap on direct damages. To ensure reasonable exposure for both parties, I propose that the agreement include a cap on total aggregate liability for direct damages equal to the total fees paid under the contract, while keeping the exclusion for indirect loss as currently stated.\n\nPlease let me know if this works for you.\n\nThank you."
+   }
+  }
+ ],
+ "dropped": []
+}

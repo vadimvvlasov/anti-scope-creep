@@ -236,8 +236,10 @@ Groq with prompt v6 (the production prompt), `reasoning_effort: medium`, 2026-10
 - M8b, the hard IP mutant, is a real miss on Groq; Gemini `high` finds it in both modes.
 - All 6 false alarms are `scope_creep`, on the same two neutral patterns as v4: "minor
   clarifications" and a support clause that sends other requests to a change order.
-- Held-out with Groq is not run: production moves to Gemini after the submission, so the
+- Held-out (20) with Groq is not run: production moves to Gemini after the submission, so the
   numbers would not change a decision, and the run would take the shared quota for days.
+  The 11 contracts of `cuad-holdout-2` that fit Groq's 60,000-character limit are run with v6:
+  see [Groq against Gemini](#groq-against-gemini-prompt-v6-2026-10-20).
 
 - On freelance, v4 beats v1 on Groq at both levels. `low` raises 5 of its 6 false alarms
   as `scope_creep` on a neutral "minor clarifications" clause; `medium` keeps one of them.
@@ -248,6 +250,45 @@ Groq with prompt v6 (the production prompt), `reasoning_effort: medium`, 2026-10
   is a known limitation of the model, not a prompt to tune on held-out.
 - Held-out with `medium` and CUAD with v4 are not run yet (about 300,000 tokens each, the
   free tier allows 200,000 a day). The Groq v1 CUAD run had one contract fail.
+
+### Groq against Gemini, prompt v6 (2026-10-20)
+
+The same prompt (v6) on two providers. Groq `openai/gpt-oss-120b`, `reasoning_effort: medium`,
+chunks of 12,000 characters, output cap 2,000 (retry at 4,000), as in production. Gemini 3.5
+Flash-Lite, `high`, whole contract, cap 8,000. Groq takes contracts up to 60,000 characters,
+so on `cuad-holdout-2` it ran the 11 of 32 that fit (251,493 characters; 5 of the 15 gold
+risks: IP 3, termination 2). The other 21 contracts, with the other 10 risks, are not run on
+Groq. Gemini's numbers for that subset are its cached runs scored again on the same 11
+contracts. Intervals are Wilson 95%.
+
+| Set | Gemini v6 | Groq v6 |
+|---|---|---|
+| Freelance (19, 27 gold risks) | 27 / 0 / 0, P/R/sev 1.0, `quote_not_found` 0% | 25 / 6 / 2, P 0.806, R 0.926, sev 1.0, 2.5% |
+| Injection J0-J3 | every gold risk found at the gold level, no marker in a quote (2 runs) | 9 / 0 / 0, but the J2 marker is copied into a quote (1 run) |
+| `cuad-holdout-2`, 11 contracts, run 1 | 4 / 2 / 1, P 0.667 [0.30-0.90], R 0.800 [0.38-0.96], sev 1.0 | 5 / 5 / 0, P 0.500 [0.24-0.76], R 1.000 [0.57-1.00], sev 0.6 |
+| `cuad-holdout-2`, 11 contracts, run 2 | 4 / 2 / 1, same intervals, sev 0.75 | not run |
+| Tokens per contract (freelance / subset) | 9,939 / about 11,000 | 9,439 / 12,959 |
+| Seconds per contract (freelance / subset) | 20 / 13 | 97 / 148 |
+
+- With 5 gold risks the intervals overlap almost completely, so this set does not separate
+  the two providers on precision or recall.
+- Groq found the SightLife termination clause that Gemini missed in both runs, but graded it
+  `high` against the gold `low`, and Xinhua `medium` against `low`: severity 3 of 5 (0.6),
+  Gemini 4 of 4 and 3 of 4.
+- Groq raised 5 false alarms on 11 contracts, Gemini 2: three `uncapped_liability` (two `low`,
+  one `high`) and two `one_sided_termination` (`medium`, on a 60-day notice clause and on the
+  customer's 30-day cancellation). Gemini's two are one `uncapped_liability` and the same
+  30-day cancellation. On freelance, Groq's 6 false alarms are all `scope_creep` on neutral
+  "minor clarifications" wording.
+- The Groq run took 142,545 tokens for 11 contracts, 71% of the 200,000 daily limit that
+  production shares, in two sittings: the last contract waited for the quota. Contracts took
+  55-267 s each, Gemini about 13 s.
+- Limits: 5 gold risks and one Groq run, so its run-to-run spread is not measured (Gemini's
+  two runs differ only in severity). The 21 longer contracts and the first held-out set (20)
+  are not run on Groq.
+- Command: `uv run python -m evaluation run --set cuad-holdout-2 --run groq-v6-medium-cuad-holdout-2
+  --reasoning-effort medium --skip-too-large`. The run itself used an equivalent filter, written
+  before the flag existed.
 
 ## Run health
 
@@ -443,8 +484,10 @@ same way on one thing: a model that answers "nothing here" too readily misses ri
 ## Not covered yet
 
 - A waiver written into `suggested_change` on Groq (J3): the run files do not store that field.
-- Groq with v6 on held-out and CUAD (freelance is in [Providers](#providers)); Groq with v4
-  at `reasoning_effort: medium` on the full held-out set, and at `high`. Not planned:
+- Groq with v6 on the first held-out set (20) and on CUAD, and on the 21 contracts of
+  `cuad-holdout-2` above its 60,000-character limit (freelance and the other 11 are in
+  [Providers](#groq-against-gemini-prompt-v6-2026-10-20)); Groq with v4 at
+  `reasoning_effort: medium` on the full held-out set, and at `high`. Not planned:
   production moves to Gemini after the submission.
 - The metrics above are from runs before the tolerant quote verification; the next runs
   will show its effect on `quote_not_found`.

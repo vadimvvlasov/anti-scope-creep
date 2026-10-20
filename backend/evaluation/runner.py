@@ -19,6 +19,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from app.chunking import DEFAULT_MAX_CHARS
+from app.errors import AppError, ErrorCode
 from app.prompts import FINDINGS_SYSTEM_PROMPT
 from app.extraction import MAX_TEXT_CHARS, check_text
 from app.groq_analyzer import GroqAnalyzer, JsonCompletion
@@ -137,8 +138,11 @@ def _finding(text: str, finding) -> dict:
 
 def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None = None, log=print,
         max_chunk_chars: int = DEFAULT_MAX_CHARS, findings_prompt: str = FINDINGS_SYSTEM_PROMPT,
-        max_text_chars: int = MAX_TEXT_CHARS) -> int:
-    """Analyze the set's contracts that are not cached yet; return how many were analyzed."""
+        max_text_chars: int = MAX_TEXT_CHARS, skip_too_large: bool = False) -> int:
+    """Analyze the set's contracts that are not cached yet; return how many were analyzed.
+
+    A contract above max_text_chars stops the run, as the product would reject it; with
+    skip_too_large it is logged and left out (nothing is sent, nothing is cached)."""
     run_dir.mkdir(parents=True, exist_ok=True)
     done = 0
     for record in load_gold(set_name):
@@ -147,7 +151,13 @@ def run(set_name: str, run_dir: Path, client: JsonCompletion, limit: int | None 
             continue
         if limit is not None and done >= limit:
             break
-        entry = analyze_record(record, client, max_chunk_chars, findings_prompt, max_text_chars)
+        try:
+            entry = analyze_record(record, client, max_chunk_chars, findings_prompt, max_text_chars)
+        except AppError as error:
+            if not skip_too_large or error.code != ErrorCode.CONTRACT_TOO_LARGE:
+                raise
+            log(f"{record['id'][:70]}: skipped, above {max_text_chars} characters")
+            continue
         path.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
         done += 1
         tokens = sum(c["tokens"] or 0 for c in entry["calls"])

@@ -1,0 +1,146 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The sales representation services (\"Services\") are set forth in the Statement of Work (\"SOW\") that is attached hereto as Appendix A and made a part hereof, as it may be amended from time to time by the parties hereto.",
+   "start": 1448,
+   "end": 1665
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Surgical shall immediately cease to provide any further Services under this Agreement and/or any applicable SOW upon receipt of notice from Imprimis that Imprimis is terminating this Agreement and/or such SOW. Upon termination of this Agreement and/or such SOW, Surgical shall be entitled to payment for Services completed prior to such termination. Thereafter, Imprimis shall owe Surgical no further amounts or obligations in law or equity.",
+   "start": 2468,
+   "end": 2909
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+   "start": 4498,
+   "end": 4589
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW). Imprimis shall remit the total Sales Commission payments due for the sale of Product during such calendar quarter at the time such report is made.",
+   "start": 3246,
+   "end": 3684
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "low",
+   "quoted_text": "Tax Indemnity. Surgical agrees to indemnify and hold harmless Imprimis from any and all claims or demands under the Internal Revenue Code of 1986, as amended, or any state or local tax law or ordinance in respect of any failure of Imprimis to withhold income tax, FICA or any other tax from the Sales Commissions paid to Surgical, including any interest or penalties relating  thereto and any costs or expenses incurred in defending such claims.",
+   "start": 10062,
+   "end": 10507
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "low",
+   "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach  of any representation, warranty or covenant by the breaching party under this Agreement.",
+   "start": 10557,
+   "end": 11025
+  }
+ ],
+ "email": true,
+ "seconds": 219.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5694,
+   "prompt_tokens": 3969,
+   "output_tokens": 1725,
+   "output_budget": 4000,
+   "finish_reason": "stop",
+   "seconds": 111.25,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The sales representation services (\"Services\") are set forth in the Statement of Work (\"SOW\") that is attached hereto as Appendix A and made a part hereof, as it may be amended from time to time by the parties hereto.",
+      "explanation": "The SOW can be changed at any time by either party without any requirement for a written change order or additional compensation, allowing the client to add work for free.",
+      "suggested_change": "The sales representation services (\"Services\") are set forth in the Statement of Work (\"SOW\") attached as Appendix A, and any amendment to the SOW must be in writing and shall specify any additional compensation for extra work."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Surgical shall immediately cease to provide any further Services under this Agreement and/or any applicable SOW upon receipt of notice from Imprimis that Imprimis is terminating this Agreement and/or such SOW. Upon termination of this Agreement and/or such SOW, Surgical shall be entitled to payment for Services completed prior to such termination. Thereafter, Imprimis shall owe Surgical no further amounts or obligations in law or equity.",
+      "explanation": "Imprimis can terminate the agreement at any time with no notice period, and you only get paid for work already completed, losing any future commissions or obligations.",
+      "suggested_change": "Either party may terminate this Agreement upon thirty (30) days' written notice; upon termination, the Client shall pay the Contractor for all Services performed up to the effective termination date, including any accrued commissions, and shall remain liable for any undisputed amounts owed."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+      "explanation": "All work you create becomes the client's property immediately, even before you have been paid in full.",
+      "suggested_change": "All Work Product shall remain the property of the Contractor until full payment of all fees and commissions owed under this Agreement; upon receipt of such payment, ownership shall transfer to the Client."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Within sixty (60) days after the end of each calendar quarter during the Term, Imprimis shall deliver to Surgical a report setting forth for such calendar quarter the calculation of the applicable Sales Commission due under this Agreement for the sale of the Product (as defined in the SOW). Imprimis shall remit the total Sales Commission payments due for the sale of Product during such calendar quarter at the time such report is made.",
+      "explanation": "You will not receive commission payments until up to 60 days after each quarter ends, which is longer than the typical 30‑day payment window.",
+      "suggested_change": "Imprimis shall remit the total Sales Commission payments due within thirty (30) days after delivery of the quarterly report."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5651,
+   "prompt_tokens": 4000,
+   "output_tokens": 1651,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 48.64,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "low",
+      "quoted_text": "Tax Indemnity. Surgical agrees to indemnify and hold harmless Imprimis from any and all claims or demands under the Internal Revenue Code of 1986, as amended, or any state or local tax law or ordinance in respect of any failure of Imprimis to withhold income tax, FICA or any other tax from the Sales Commissions paid to Surgical, including any interest or penalties relating thereto and any costs or expenses incurred in defending such claims.",
+      "explanation": "You must cover the client’s tax‑related claims and any related costs, with no monetary limit, which could expose you to large, uncontrolled expenses.",
+      "suggested_change": "Surgical shall indemnify Imprimis for tax claims only to the extent such claims arise from Surgical’s willful misconduct or gross negligence, and such indemnification shall be limited to the total fees paid under this Agreement."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "low",
+      "quoted_text": "Each party shall indemnify and hold harmless the other party, and its directors, officers, employees and agents, from and against all losses, liabilities, damages and expenses, including reasonable attorneys' fees and costs (collectively, \"Liabilities\"), resulting from any claims, demands, actions or other proceedings by any third party to the extent resulting from the breach of any representation, warranty or covenant by the breaching party under this Agreement.",
+      "explanation": "You are required to pay all third‑party losses caused by a breach, without any cap on the amount you may have to reimburse.",
+      "suggested_change": "Each party shall indemnify the other only for losses arising from the indemnifying party’s negligence, willful misconduct, or breach of this Agreement, and such indemnification shall be limited to an amount equal to the total fees actually paid under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3559,
+   "prompt_tokens": 2978,
+   "output_tokens": 581,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 36.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1767,
+   "prompt_tokens": 997,
+   "output_tokens": 770,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 22.82,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you’re well. Before I sign, I’d like to suggest a few adjustments to ensure the agreement reflects a balanced arrangement:\n\n- The current clause allows the SOW to be amended at any time without a written change order or additional compensation. I propose wording that any amendment to the SOW must be in writing and shall specify any additional compensation for extra work.\n- The termination clause permits termination without notice and limits payment to work already completed. I suggest that either party may terminate with thirty (30) days’ written notice, and that the client shall pay for all services performed up to the effective termination date, including any accrued commissions and any undisputed amounts owed.\n- The ownership clause makes all work product the client’s property even before full payment. I recommend that work product remain the contractor’s property until full payment of all fees and commissions is received, after which ownership transfers to the client.\n- The commission payment schedule allows up to sixty (60) days after each quarter to receive payment. I propose that the client remit the total commission within thirty (30) days after delivering the quarterly report.\n\nThank you for considering these revisions. I look forward to moving ahead.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

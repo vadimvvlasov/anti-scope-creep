@@ -1,0 +1,75 @@
+{
+ "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT",
+ "chars": 25214,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "(vi) Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement.",
+   "start": 6189,
+   "end": 6302
+  }
+ ],
+ "email": true,
+ "seconds": 156.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6116,
+   "prompt_tokens": 4554,
+   "output_tokens": 1562,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 55.77,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "(vi) Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement.",
+      "explanation": "The client can end the agreement without cause by giving 60 days notice, and after that the client stops paying for any further services.",
+      "suggested_change": "Termination by Diplomat shall be permitted only for cause as defined in this Agreement, and any such termination shall require payment for all Services performed up to the effective termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4860,
+   "prompt_tokens": 4261,
+   "output_tokens": 599,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 49.25,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2790,
+   "prompt_tokens": 2432,
+   "output_tokens": 358,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 34.01,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 944,
+   "prompt_tokens": 501,
+   "output_tokens": 443,
+   "output_budget": 2000,
+   "finish_reason": "stop",
+   "seconds": 17.51,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI have reviewed the draft and would like to suggest a small amendment before signing:\n\n- Clause \"(vi) Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement.\": The current wording allows termination without cause with only notice, which would stop payment for services already performed. I propose that termination by Diplomat be permitted only for cause as defined in the agreement, and that any termination require payment for all services performed up to the effective termination date.\n\nThank you for considering these changes. I look forward to finalizing the agreement.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
