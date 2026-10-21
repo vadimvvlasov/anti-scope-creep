@@ -331,8 +331,25 @@ aws lightsail delete-container-service --service-name anti-scope-creep-prod --re
 
 ## Tests
 
+All tests, unit and integration, with one command from a fresh clone:
+
+```bash
+make test-all
+```
+
+It installs the dependencies, runs the unit tests (`make test`), starts the full system
+in Docker, runs the end-to-end tests against it (`make e2e`) and stops the stack again,
+also when a test fails. On a fresh Linux machine install the browser's system libraries
+once first: `cd frontend && npx playwright install --with-deps chromium`.
+
+| Layer | Tests | Command |
+|---|---|---|
+| Unit | backend (pytest, in-memory SQLite), frontend (Vitest) | `make test` |
+| Integration | Playwright against the Docker stack: the real frontend, backend and Postgres | `make up`, then `make e2e` |
+
 The tests run on the host, so they need [uv](https://docs.astral.sh/uv/) and Node.js 20+
-with npm. On a fresh clone install the dependencies once (the Docker path does not):
+with npm. To run the steps one by one, install the dependencies once (the Docker path
+does not):
 
 ```bash
 make install
@@ -372,6 +389,7 @@ Run from the repository root.
 | `make dev-backend` | Start the backend dev server on `http://localhost:8000` |
 | `make dev-frontend` | Start the frontend dev server on `http://localhost:8080` |
 | `make test` | Run backend and frontend tests |
+| `make test-all` | Run the unit tests, start the Docker stack, run the end-to-end tests, stop the stack |
 | `make lint` | Lint the frontend with ESLint |
 | `python3 scripts/smoke.py <URL>` | Smoke test a deployed backend |
 | `python3 -m unittest discover -s scripts` | Run the script tests |

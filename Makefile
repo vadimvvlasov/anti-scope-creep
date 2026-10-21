@@ -1,4 +1,4 @@
-.PHONY: install up up-observability down logs e2e db migrate dev-backend dev-frontend test lint
+.PHONY: install up up-observability down logs e2e db migrate dev-backend dev-frontend test test-all lint
 
 install:
 	cd backend && uv sync
@@ -41,6 +41,15 @@ dev-frontend:
 test:
 	cd backend && uv run pytest
 	cd frontend && npm test
+
+# Every test with one command from a fresh clone: the unit tests, then the full system in
+# Docker and the Playwright end-to-end tests against it. The stack is stopped afterwards,
+# also when a test fails, and the exit status of the tests is kept. On a fresh Linux machine
+# run `cd frontend && npx playwright install --with-deps chromium` once first (system libraries).
+test-all: install test
+	status=0; \
+	$(MAKE) up && (cd frontend && npx playwright install chromium) && $(MAKE) e2e || status=$$?; \
+	$(MAKE) down; exit $$status
 
 lint:
 	cd frontend && npm run lint

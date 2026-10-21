@@ -34,6 +34,7 @@ Makefile (run from the repository root):
 - `make dev-backend` - start the backend dev server on `http://localhost:8000`
 - `make dev-frontend` - start the frontend dev server
 - `make test` - run backend and frontend tests
+- `make test-all` - all tests in one command: `make test`, then the Docker stack and `make e2e`, then stop the stack
 - `make lint` - lint the frontend with ESLint (the backend has no linter configured)
 
 Backend (use uv for dependency management):
