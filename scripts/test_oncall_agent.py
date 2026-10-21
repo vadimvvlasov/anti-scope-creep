@@ -66,9 +66,11 @@ class Script:
     def __init__(self, *messages):
         self.messages = list(messages)
         self.seen: list[list[dict]] = []
+        self.offered: list[list[str]] = []  # the names of the tools the model could call on each turn
 
     def __call__(self, messages, tools):
         self.seen.append([dict(m) for m in messages])
+        self.offered.append([tool["function"]["name"] for tool in tools])
         return self.messages.pop(0)
 
 
@@ -182,6 +184,23 @@ class LoopTest(AgentTestCase):
         self.assertEqual(last_user(10), {"role": "user", "content": oncall_agent.TURN_WARNINGS[1]})
         self.assertEqual(sum(m["content"] in oncall_agent.TURN_WARNINGS.values()
                              for m in model.seen[-1] if m["role"] == "user"), 2)
+
+    def test_only_finish_is_offered_on_the_last_two_turns(self):
+        model = Script(*[{"tool_calls": [tool_call("read_file", str(n), path="README.md")]} for n in range(10)])
+        run_agent("system", "context", model, self.workspace, max_turns=10, log=lambda _: None)
+        self.assertIn("write_file", model.offered[7])  # turn 8 still has everything
+        self.assertEqual(model.offered[8], ["finish"])
+        self.assertEqual(model.offered[9], ["finish"])
+        short = Script(*[{"tool_calls": [tool_call("read_file", str(n), path="README.md")]} for n in range(3)])
+        run_agent("system", "context", short, self.workspace, max_turns=3, log=lambda _: None)
+        self.assertTrue(all("read_file" in tools for tools in short.offered))  # a short run keeps its tools
+
+    def test_a_finish_on_a_restricted_turn_ends_the_run_with_its_verdict(self):
+        steps = [{"tool_calls": [tool_call("read_file", str(n), path="README.md")]} for n in range(9)]
+        steps.append({"tool_calls": [tool_call("finish", "f", verdict="needs_human", summary="s", details="stopped on time")]})
+        result = run_agent("system", "context", Script(*steps), self.workspace, max_turns=10, log=lambda _: None)
+        self.assertEqual((result["verdict"], result["turns"]), ("needs_human", 10))
+        self.assertEqual(result["details"], "stopped on time")
 
     def test_a_short_run_is_not_warned(self):
         model = Script(*[{"tool_calls": [tool_call("read_file", str(n), path="README.md")]} for n in range(3)])

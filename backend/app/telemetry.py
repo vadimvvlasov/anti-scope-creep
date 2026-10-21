@@ -10,10 +10,13 @@ or a log record.
 """
 
 import contextvars
+import copy
 import json
 import logging
+import re
 import sys
-from collections.abc import Callable, Iterator
+import traceback
+from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -35,7 +38,7 @@ from opentelemetry.metrics import Counter, Histogram, Meter
 from opentelemetry.sdk.metrics import MeterProvider
 from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.sdk.resources import Resource
-from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace import Event, ReadableSpan, SpanProcessor, TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.trace import Span, Status, StatusCode, Tracer
 
@@ -59,6 +62,73 @@ class ContractContextFilter(logging.Filter):
         if contract_id and not hasattr(record, "contract_id"):
             record.contract_id = contract_id
         return True
+
+
+_TRACEBACK_FRAME = re.compile(r'^\s+File "(?P<file>[^"]+)", line (?P<line>\d+), in (?P<function>.+)$')
+MAX_EXCEPTION_FRAMES = 12
+
+
+def exception_frames(stacktrace: str | None) -> str:
+    """Where a formatted traceback failed, not what it said: one `file:line in function` per frame.
+
+    The source lines and the final `Type: message` line are dropped: an exception message can hold
+    contract text (a title, a clause) that a handler put into it.
+    """
+    frames = []
+    for line in (stacktrace or "").splitlines():
+        match = _TRACEBACK_FRAME.match(line)
+        if match:
+            frames.append(f"{match['file']}:{match['line']} in {match['function']}")
+    return "\n".join(frames[-MAX_EXCEPTION_FRAMES:])
+
+
+def scrubbed_exception_attributes(attributes: Mapping[str, Any] | None) -> dict[str, Any]:
+    """The `exception.*` attributes of OpenTelemetry without `exception.message`; the stack trace is cut to frames."""
+    attributes = attributes or {}
+    scrubbed: dict[str, Any] = {
+        "exception.type": attributes.get("exception.type", ""),
+        "exception.stacktrace": exception_frames(attributes.get("exception.stacktrace")),
+    }
+    if "exception.escaped" in attributes:
+        scrubbed["exception.escaped"] = attributes["exception.escaped"]
+    return scrubbed
+
+
+class ExceptionScrubber(SpanProcessor):
+    """Runs before the exporter and rewrites the `exception` events that the instrumentation records.
+
+    The server span of FastAPI records every unhandled exception with its message and traceback, which
+    is how contract text could reach a third party. The spans of `span()` below already record only the
+    type; this does the same for the rest, keeping the type and the frames (the on-call agent reads them).
+    """
+
+    def on_end(self, span: ReadableSpan) -> None:
+        status = span.status
+        if status.description and ": " in status.description:  # the SDK's default is `Type: message`
+            span._status = Status(status.status_code, status.description.split(": ", 1)[0])  # noqa: SLF001
+        events = getattr(span, "_events", None)  # what `span.events` hands to the exporters that follow
+        if events and any(item.name == "exception" for item in events):
+            span._events = [  # noqa: SLF001 - the SDK has no public way to change a finished span
+                Event(item.name, scrubbed_exception_attributes(item.attributes), item.timestamp)
+                if item.name == "exception" else item
+                for item in events
+            ]
+
+
+class ScrubbedLoggingHandler(LoggingHandler):
+    """The OpenTelemetry log handler without exception messages: type and frames go out, on a copy of
+    the record, so the JSON log on stdout (the operator's own) keeps the whole traceback."""
+
+    def emit(self, record: logging.LogRecord) -> None:
+        if record.exc_info and record.exc_info[0] is not None:
+            exception_type = record.exc_info[0].__name__
+            frames = exception_frames("".join(traceback.format_exception(*record.exc_info)))
+            record = copy.copy(record)
+            record.exc_info = None
+            record.exc_text = None
+            setattr(record, "exception.type", exception_type)
+            setattr(record, "exception.stacktrace", frames)
+        super().emit(record)
 
 
 class JsonFormatter(logging.Formatter):
@@ -236,6 +306,7 @@ def setup_telemetry(settings: Settings) -> Callable[[], None] | None:
         return None
     resource = Resource.create({"service.name": SERVICE_NAME, "service.version": settings.version})
     tracer_provider = TracerProvider(resource=resource)
+    tracer_provider.add_span_processor(ExceptionScrubber())  # before the exporter, which reads the same events
     tracer_provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
     trace.set_tracer_provider(tracer_provider)
     meter_provider = MeterProvider(resource=resource, metric_readers=[PeriodicExportingMetricReader(OTLPMetricExporter())])
@@ -247,7 +318,7 @@ def setup_telemetry(settings: Settings) -> Callable[[], None] | None:
     # The zeros must reach Prometheus before the first event: the reader exports only every 60 seconds,
     # and an event inside the first interval would arrive as the series' first sample (no increase).
     meter_provider.force_flush(timeout_millis=3_000)
-    log_handler = LoggingHandler(level=logging.INFO, logger_provider=logger_provider)
+    log_handler = ScrubbedLoggingHandler(level=logging.INFO, logger_provider=logger_provider)
     log_handler.addFilter(ContractContextFilter())
     logging.getLogger().addHandler(log_handler)
     # No hooks that read bodies: HTTPX spans carry method, URL and status only.
