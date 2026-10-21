@@ -12,6 +12,16 @@ scores them, and drafts an email to the client.
 - Once `openapi.yaml` exists, it is the API contract between frontend and backend.
   The backend implements it; do not change it silently.
 
+## Process and team (read before starting a task)
+
+- Tasks live in GitHub Issues, each with acceptance criteria; one task is one branch and one pull
+  request that says `Closes #<n>`. How: `docs/ai-workflow.md`, section "Tracker".
+- Who the agents are, what each may touch and how work passes between them:
+  `docs/ai-workflow.md`, section "Agent team". What each may and may not do, and what enforces it:
+  `docs/permissions.md`.
+- Architecture, CI/CD, observability and the on-call agent: `docs/architecture.md`. Operations:
+  `ops/runbook.md`.
+
 ## Repository layout
 
 - `backend/` - FastAPI app and its tests

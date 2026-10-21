@@ -1407,6 +1407,10 @@ A LangGraph on-call agent reacts to Grafana alerts: it gathers logs, traces, and
 
 ## Implementation acceptance criteria
 
+The work that implements and extends this specification is tracked as public issues, each with its own
+acceptance criteria: [GitHub Issues](https://github.com/vadimvvlasov/anti-scope-creep/issues). How tasks,
+agents and pull requests fit together: [`ai-workflow.md`](ai-workflow.md).
+
 The MVP is complete when all of the following are true:
 
 1. A new user can register and log in with email/password and receive a 24-hour HS256 JWT.
