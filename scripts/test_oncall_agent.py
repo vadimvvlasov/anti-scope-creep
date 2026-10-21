@@ -170,6 +170,25 @@ class LoopTest(AgentTestCase):
         self.assertEqual(result["verdict"], "needs_human")
         self.assertIn("No finish call in 3 turns", result["details"])
 
+    def test_the_model_is_told_when_few_turns_are_left(self):
+        read = lambda n: {"tool_calls": [tool_call("read_file", str(n), path="README.md")]}  # noqa: E731
+        model = Script(*[read(n) for n in range(10)])
+        result = run_agent("system", "context", model, self.workspace, max_turns=10, log=lambda _: None)
+        self.assertIn("No finish call in 10 turns", result["details"])
+        last_user = lambda turn: model.seen[turn - 1][-1]  # noqa: E731 - what the model saw before that turn
+        self.assertEqual(last_user(6)["role"], "tool")  # nothing before the warning
+        self.assertEqual(last_user(7), {"role": "user", "content": oncall_agent.TURN_WARNINGS[4]})
+        self.assertIn("4 turns left", last_user(7)["content"])
+        self.assertEqual(last_user(10), {"role": "user", "content": oncall_agent.TURN_WARNINGS[1]})
+        self.assertEqual(sum(m["content"] in oncall_agent.TURN_WARNINGS.values()
+                             for m in model.seen[-1] if m["role"] == "user"), 2)
+
+    def test_a_short_run_is_not_warned(self):
+        model = Script(*[{"tool_calls": [tool_call("read_file", str(n), path="README.md")]} for n in range(3)])
+        run_agent("system", "context", model, self.workspace, max_turns=3, log=lambda _: None)
+        self.assertFalse(any(m["content"] in oncall_agent.TURN_WARNINGS.values()
+                             for seen in model.seen for m in seen if m["role"] == "user"))
+
     def test_a_model_failure_ends_with_needs_human(self):
         def broken(messages, tools):
             raise RuntimeError("model request failed: HTTP 403")
