@@ -1,0 +1,169 @@
+# Grafana-managed alert rules for the backend, in the file provisioning format
+# (the same shape as Alerting > Export). Metric names come from backend/app/telemetry.py.
+# Datasource uid grafanacloud-prom is the default metrics source of a Grafana Cloud stack.
+#
+# Both rules group by deployment_environment and service_version, so an alert says where
+# it fired and which image was running (sha-<short sha>): the on-call agent takes the
+# commit to investigate from that label.
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: asc-service
+    folder: Anti-Scope Creep
+    interval: 1m
+    rules:
+      - uid: asc-analysis-failure-rate
+        title: Analysis failure rate above 20 %
+        condition: F
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: grafanacloud-prom
+            model:
+              datasource:
+                type: prometheus
+                uid: grafanacloud-prom
+              editorMode: code
+              expr: >-
+                sum by (deployment_environment, service_version) (increase(analyses_total{outcome="failed"}[15m]))
+                / clamp_min(sum by (deployment_environment, service_version) (increase(analyses_total{outcome=~"done|failed|stale"}[15m])), 1)
+              instant: true
+              range: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+          - refId: B
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: grafanacloud-prom
+            model:
+              datasource:
+                type: prometheus
+                uid: grafanacloud-prom
+              editorMode: code
+              expr: >-
+                sum by (deployment_environment, service_version) (increase(analyses_total{outcome=~"done|failed|stale"}[15m]))
+              instant: true
+              range: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: B
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: A
+              reducer: last
+              settings:
+                mode: dropNN
+              type: reduce
+              refId: C
+          - refId: D
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: B
+              reducer: last
+              settings:
+                mode: dropNN
+              type: reduce
+              refId: D
+          - refId: E
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: $C > 0.2 && $D >= 3
+              type: math
+              refId: E
+          - refId: F
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: E
+              conditions:
+                - evaluator:
+                    params:
+                      - 0
+                    type: gt
+              type: threshold
+              refId: F
+        noDataState: OK
+        execErrState: KeepLast
+        for: 2m
+        annotations:
+          summary: 'Analyses are failing in {{ $labels.deployment_environment }} ({{ $labels.service_version }}): {{ humanizePercentage $values.C.Value }} failed in the last 15 minutes'
+          description: More than 20 % of the analyses finished as failed in 15 minutes, with at least 3 runs in that window. Superseded runs are not counted.
+          runbook_url: https://github.com/vadimvvlasov/anti-scope-creep/blob/main/ops/runbook.md#analyses-fail-or-stay-analyzing
+        labels:
+          service: anti-scope-creep
+          severity: critical
+        isPaused: false
+      - uid: asc-internal-errors
+        title: Backend internal errors (5xx)
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: grafanacloud-prom
+            model:
+              datasource:
+                type: prometheus
+                uid: grafanacloud-prom
+              editorMode: code
+              expr: >-
+                sum by (deployment_environment, service_version) (increase(api_errors_total{code="INTERNAL_ERROR"}[10m]))
+              instant: true
+              range: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: A
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: A
+              reducer: last
+              settings:
+                mode: dropNN
+              type: reduce
+              refId: B
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: B
+              conditions:
+                - evaluator:
+                    params:
+                      - 0
+                    type: gt
+              type: threshold
+              refId: C
+        noDataState: OK
+        execErrState: KeepLast
+        for: 0s
+        annotations:
+          summary: 'The API returned INTERNAL_ERROR in {{ $labels.deployment_environment }} ({{ $labels.service_version }}) in the last 10 minutes'
+          description: At least one request ended in a 5xx (error code INTERNAL_ERROR) in 10 minutes. Counted from api_errors_total, not from the HTTP histogram, whose series appear only after the first request.
+          runbook_url: https://github.com/vadimvvlasov/anti-scope-creep/blob/main/ops/runbook.md#backend-down-or-not-ready
+        labels:
+          service: anti-scope-creep
+          severity: critical
+        isPaused: false
