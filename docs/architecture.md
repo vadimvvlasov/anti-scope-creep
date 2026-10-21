@@ -225,7 +225,7 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 - Write access only to `oncall/*` branches, pull requests, and issues. Never pushes to `main`.
 - The workflow has no deploy credentials and no Neon or AWS access; it reads Grafana with a read-only token.
 - If classification is unsure, the default is "explain + needs human review", never a silent fix.
-- Merging and promoting to prod stay human.
+- Merging and promoting to prod stay human. The chain was run end to end on a planned fault on 2026-10-21 (alert, email, webhook, agent, fix pull request, review, merge): [`ops/diagnosis/2026-10-21-oncall-drill.md`](../ops/diagnosis/2026-10-21-oncall-drill.md).
 - Telemetry is untrusted input: log lines carry request paths anyone can send. The prompt says so, the agent has no network besides the model API, and a fix still needs a person to merge it.
 
 ---
