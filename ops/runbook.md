@@ -125,6 +125,46 @@ incident: stop, note the log stream and time, and fix the logging before anythin
   Neon's status page? Check that `DATABASE_URL` in the GitHub Environment points to the
   right branch.
 
+### The API answers 500 (`INTERNAL_ERROR`)
+
+The alert "Backend internal errors (5xx)" fired: `api_errors_total{code="INTERNAL_ERROR"}` grew. The
+agent is already working on it (next section); this is what a person checks meanwhile.
+
+- **Which route and which image.** The alert carries `deployment_environment` and `service_version`
+  (`sha-<short sha>`, the commit that is running). The dashboard panel "Traces with errors" lists the
+  failing requests with their route; open one in Tempo.
+- **What failed.** The server span has an `exception` event with the type and the traceback frames (no
+  message: it may hold contract text, `docs/architecture.md`, section 6). `routers/...` and `app/...` frames are
+  ours, anything under `site-packages` is a library called from them.
+- **Is it new?** `git log` between the previous and the running `service_version`: a 500 on a fresh deploy
+  is the diff until proven otherwise. A person can roll back prod with the steps below while the agent's fix
+  waits for review.
+- **A title or an input in another alphabet or with unusual characters** is the first guess for a 500 on a
+  route that works for ASCII (the drill of 2026-10-21 was exactly that:
+  [`diagnosis/2026-10-21-oncall-drill.md`](diagnosis/2026-10-21-oncall-drill.md)).
+
+### The on-call agent opened a pull request or an issue
+
+The agent (`.github/workflows/on-call.yml`) answers an alert with one of two things, both labelled
+`oncall`; a person decides, the agent cannot merge or deploy.
+
+- **An issue labelled `needs-human-review`:** the agent could not settle it (`needs_human`), or it judged
+  the alert a false positive (`false_positive`), or it ended without a verdict (`No finish call in N
+  turns`). Read the summary, then the run log of the `Investigate` step: it lists every tool call by turn.
+- **A pull request `On-call: <alert>`:** a verified fix. The whole backend suite passed with it, and it
+  touches only `backend/app/`, `backend/tests/` and `frontend/src/`. Review it like any other pull request:
+  1. Read the diff and the summary. Does the change follow `docs/spec.md`, not only the tests it wrote?
+  2. GitHub holds the CI run of a pull request opened by a bot (`action_required`): open the pull request and
+     choose **Approve and run workflows**. The CI run that the agent starts itself by hand on its branch does
+     not count as the checks of the pull request (the pull request stays blocked until the held run passes).
+  3. When the seven checks are green, merge. The fix branch starts from the deployed commit, not from `main`;
+     if `main` has moved on, GitHub shows a conflict to resolve in the pull request.
+  4. Promote to prod by hand when the fix is needed there; the agent never deploys.
+- **The run itself failed** (red `On-call agent` run): read the failed step. The step "Pick the commit to
+  investigate" fails by design when `ref` is not a commit that is already in `main`.
+- The agent may be wrong. It is not deterministic: the same alert can end as a fix, as an issue, or without
+  a verdict.
+
 ### Frontend does not load or shows errors
 
 - `npx wrangler tail anti-scope-creep` while reproducing; deep links rely on the Worker's

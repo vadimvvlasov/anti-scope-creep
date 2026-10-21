@@ -90,25 +90,29 @@ The queries also run on the dev stack of Grafana Cloud and return the labels abo
 
 ### Who gets an alert
 
-Two contact points are planned (`docs/architecture.md`, section 6): a person gets an
-email for every alert, and the on-call agent gets a webhook at the same time. The agent
-never replaces the human notification, because it can misclassify.
+Two contact points (`docs/architecture.md`, section 6): a person gets an email for every
+alert, and the on-call agent gets a webhook at the same time. The agent never replaces the
+human notification, because it can misclassify.
 
 | Part | State |
 |---|---|
-| Contact point `asc-human-email` (email) | created in Grafana Cloud on 2026-10-21; the address is set in Grafana only and is not in this repository; delivery checked the same day (below) |
-| Root notification policy | receiver changed from the empty default to `asc-human-email` |
-| Webhook to the on-call agent | defined in [`oncall-webhook.yaml`](oncall-webhook.yaml) (a `repository_dispatch` to `.github/workflows/on-call.yml`); created in Grafana Cloud after the workflow that understands `ref` is merged, see "Webhook to the on-call agent" below |
+| Contact point `asc-human-email` (email) | created in Grafana Cloud on 2026-10-21; the address is set in Grafana only and is not in this repository |
+| Contact point `asc-oncall-webhook` | created the same day from [`oncall-webhook.yaml`](oncall-webhook.yaml), without the token (the developer entered it in the Grafana UI); it sends no "resolved" message, so a recovered alert does not wake the agent again |
+| Notification policy | root receiver `asc-human-email`; for `service=anti-scope-creep` a first route to the email (with `continue`) and a second route to the webhook, see below |
 
 Delivery check, 2026-10-21: the **Test** button of the contact point sent Grafana's
 predefined test alert, and the email arrived in the mailbox (timestamp 20:52 Yekaterinburg
 time, 15:52 UTC; the sender and reply-to addresses are blacked out because they contain
-the stack name).
-This proves the path from Grafana to a person, not the two rules themselves; those
-fire only on real failures and are covered by the rehearsal in `ops/diagnosis/`
-once it exists.
+the stack name). That proves the path from Grafana to a person, not the rules.
 
 ![Grafana test alert delivered by email](../../docs/screenshots/06-alert-email.png)
+
+The rules fired on a real fault the same evening, during the on-call drill
+([`diagnosis/2026-10-21-oncall-drill.md`](../diagnosis/2026-10-21-oncall-drill.md)): a planned
+regression made `POST /contracts/{id}/export` answer 500, the rule "Backend internal errors (5xx)"
+fired, and the email arrived 35 seconds later with the labels of the image that was running:
+
+![The alert email of a real firing](../../docs/screenshots/07-alert-email-5xx.png)
 
 ### Webhook to the on-call agent
 
@@ -120,8 +124,9 @@ contact point by default. The webhook route groups per alert, environment and im
 at most once a day: each wake-up is a model run and a pull request or an issue.
 
 Grafana posts to `POST /repos/vadimvvlasov/anti-scope-creep/dispatches`. GitHub wants
-`event_type` and `client_payload`, so the contact point uses a custom payload template. A
-real payload of the rule "Backend internal errors (5xx)" looked like this (test data):
+`event_type` and `client_payload`, so the contact point uses a custom payload template. The
+payload of the rule "Backend internal errors (5xx)" in the local check looked like this (test
+data; the real alerts of the drill carried the same fields, with `dev` and the image tag of dev):
 
 ```json
 {
@@ -152,8 +157,11 @@ cannot change `main`. Rotate it before it expires.
 How it was checked: a local Grafana loaded both files, the synthetic counters from the check
 above fired the rule, one alert reached both receivers (two alert groups, one per receiver),
 and a local HTTP server recorded the webhook request: the path, a `Bearer` header, the JSON
-above. Not checked here: the call to the real GitHub API and the workflow run it starts
-(see the rehearsal in `ops/diagnosis/`).
+above. The call to the real GitHub API and the workflow run it starts were checked by the
+drill: the **Test** button started a run, and the two real alerts started the runs
+[39648800316](https://github.com/vadimvvlasov/anti-scope-creep/actions/runs/39648800316) and
+[39657941130](https://github.com/vadimvvlasov/anti-scope-creep/actions/runs/39657941130), each on
+the commit named by the alert.
 
 ### Apply the rules
 
