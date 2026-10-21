@@ -8,6 +8,7 @@ import of [`dashboard.json`](dashboard.json), not hand-edited state.
 |---|---|
 | [`dashboard.json`](dashboard.json) | the "Anti-Scope Creep service health" dashboard (uid `asc-service-health`) |
 | [`alert-rules.yaml`](alert-rules.yaml) | two alert rules on user impact, in the Grafana file provisioning format |
+| [`oncall-webhook.yaml`](oncall-webhook.yaml) | the webhook contact point that wakes the on-call agent, and the notification policy that sends every alert to a person and to the agent |
 
 ## Import the dashboard
 
@@ -97,7 +98,7 @@ never replaces the human notification, because it can misclassify.
 |---|---|
 | Contact point `asc-human-email` (email) | created in Grafana Cloud on 2026-10-21; the address is set in Grafana only and is not in this repository; delivery checked the same day (below) |
 | Root notification policy | receiver changed from the empty default to `asc-human-email` |
-| Webhook to the on-call agent | next step (`repository_dispatch`, see `.github/workflows/on-call.yml`) |
+| Webhook to the on-call agent | defined in [`oncall-webhook.yaml`](oncall-webhook.yaml) (a `repository_dispatch` to `.github/workflows/on-call.yml`); created in Grafana Cloud after the workflow that understands `ref` is merged, see "Webhook to the on-call agent" below |
 
 Delivery check, 2026-10-21: the **Test** button of the contact point sent Grafana's
 predefined test alert, and the email arrived in the mailbox (timestamp 20:52 Yekaterinburg
@@ -108,6 +109,51 @@ fire only on real failures and are covered by the rehearsal in `ops/diagnosis/`
 once it exists.
 
 ![Grafana test alert delivered by email](../../docs/screenshots/06-alert-email.png)
+
+### Webhook to the on-call agent
+
+[`oncall-webhook.yaml`](oncall-webhook.yaml) holds the contact point `asc-oncall-webhook` and
+the notification policy. Every alert with `service=anti-scope-creep` goes to a person by email
+(first route, `continue`) and to the agent (second route); anything else goes to the email
+contact point by default. The webhook route groups per alert, environment and image
+(`alertname`, `deployment_environment`, `service_version`), waits 30 seconds, and repeats
+at most once a day: each wake-up is a model run and a pull request or an issue.
+
+Grafana posts to `POST /repos/vadimvvlasov/anti-scope-creep/dispatches`. GitHub wants
+`event_type` and `client_payload`, so the contact point uses a custom payload template. A
+real payload of the rule "Backend internal errors (5xx)" looked like this (test data):
+
+```json
+{
+  "event_type": "grafana-alert",
+  "client_payload": {
+    "alert_name": "Backend internal errors (5xx)",
+    "status": "firing",
+    "environment": "test",
+    "ref": "sha-test123",
+    "summary": "The API returned INTERNAL_ERROR in test (sha-test123) in the last 10 minutes",
+    "starts_at": "2026-10-21T17:03:40Z",
+    "labels": {"alertname": "Backend internal errors (5xx)", "deployment_environment": "test",
+               "service": "anti-scope-creep", "service_version": "sha-test123", "severity": "critical"}
+  }
+}
+```
+
+`ref` is the `service_version` label, the tag of the image that was running when the alert
+fired. `.github/workflows/on-call.yml` strips `sha-`, accepts only a commit that is already in
+`main` and investigates that commit (`docs/architecture.md`, section 5).
+
+The token is not in the file. It is a fine-grained personal access token for this repository
+only, with the repository permission Contents: read and write (the only permission
+`repository_dispatch` accepts), valid for 30 days, entered once in the Grafana UI (contact
+point, Authorization header, credentials). The `main` ruleset has no bypass, so the token
+cannot change `main`. Rotate it before it expires.
+
+How it was checked: a local Grafana loaded both files, the synthetic counters from the check
+above fired the rule, one alert reached both receivers (two alert groups, one per receiver),
+and a local HTTP server recorded the webhook request: the path, a `Bearer` header, the JSON
+above. Not checked here: the call to the real GitHub API and the workflow run it starts
+(see the rehearsal in `ops/diagnosis/`).
 
 ### Apply the rules
 

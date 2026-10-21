@@ -162,7 +162,7 @@ def _error_spans(trace: Any) -> list[str]:
 
 def alert_section(alert: dict[str, Any]) -> str:
     lines = ["## Alert", ""]
-    for key in ("alert_name", "status", "environment", "starts_at", "summary"):
+    for key in ("alert_name", "status", "environment", "ref", "starts_at", "summary"):
         if alert.get(key):
             lines.append(f"- {key}: {clean(alert[key])}")
     labels = alert.get("labels") or {}

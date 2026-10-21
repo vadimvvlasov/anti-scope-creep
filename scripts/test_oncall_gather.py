@@ -101,6 +101,10 @@ class GatherTest(unittest.TestCase):
         self.assertIn("## Tempo\n\n- not configured", text)
         self.assertTrue(all("prom.example" in url for url, _ in backends.calls))
 
+    def test_the_commit_under_investigation_is_in_the_alert_section(self):
+        text = build(alert={"alert_name": "Analysis failure rate above 20 %", "environment": "dev", "ref": "a276e96"})
+        self.assertIn("- ref: a276e96", text)
+
     def test_alert_fields_are_cleaned_and_cut(self):
         text = build(alert={"alert_name": "x" * 1000, "labels": {"env": "dev\n`rm -rf`"}})
         name_line = next(line for line in text.splitlines() if line.startswith("- alert_name:"))
