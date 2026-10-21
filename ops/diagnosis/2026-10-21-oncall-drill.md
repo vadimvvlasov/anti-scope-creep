@@ -125,9 +125,9 @@ checks of the pull request. After the approval all seven checks passed and the p
   pins it for spans and for logs.
 - A person approves the CI run of the agent's pull request (GitHub does it by design), reviews the diff and merges.
   The runbook has the steps.
-- Not done: the `runbook_url` of the rule "Backend internal errors (5xx)" points at "Backend down or not ready",
-  while this case belongs to "The API answers 500"; the new runbook section has that name, and the rule in Grafana
-  still has the old anchor.
+- The `runbook_url` of the rule "Backend internal errors (5xx)" pointed at "Backend down or not ready", while this
+  case belongs to "The API answers 500". Found while writing this up, fixed right after: the rule in
+  `ops/grafana/alert-rules.yaml` and in Grafana Cloud now links to the section "The API answers 500".
 - One finished run of four is not a measure of how reliable the agent is. The drill shows the chain and the
   kind of fault it can fix, not a success rate.
 

@@ -162,7 +162,7 @@ groups:
         annotations:
           summary: 'The API returned INTERNAL_ERROR in {{ $labels.deployment_environment }} ({{ $labels.service_version }}) in the last 10 minutes'
           description: At least one request ended in a 5xx (error code INTERNAL_ERROR) in 10 minutes. Counted from api_errors_total, not from the HTTP histogram, whose series appear only after the first request.
-          runbook_url: https://github.com/vadimvvlasov/anti-scope-creep/blob/main/ops/runbook.md#backend-down-or-not-ready
+          runbook_url: https://github.com/vadimvvlasov/anti-scope-creep/blob/main/ops/runbook.md#the-api-answers-500-internal_error
         labels:
           service: anti-scope-creep
           severity: critical
