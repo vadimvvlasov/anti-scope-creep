@@ -47,11 +47,8 @@ class Block:
 
 
 def report_filename(title: str, export_format: ExportFormat) -> str:
-    """`<title> - Counter-proposal.<ext>`; punctuation and symbols in the title become `_`, title cut to 100.
-
-    Letters of any alphabet are kept, so a report for "Договор" is not saved as "_______".
-    """
-    return f"{re.sub(r'[^\w .-]', '_', title)[:100]} - Counter-proposal.{export_format}"
+    """`<title> - Counter-proposal.<ext>`; non-ASCII characters, punctuation and symbols in the title become `_`, title cut to 100."""
+    return f"{re.sub(r'[^a-zA-Z0-9 ._-]', '_', title)[:100]} - Counter-proposal.{export_format}"
 
 
 def report_blocks(contract: ContractDetail, exported_at: datetime) -> list[Block]:

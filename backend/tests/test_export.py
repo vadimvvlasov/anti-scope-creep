@@ -73,6 +73,15 @@ def test_the_filename_keeps_only_safe_title_characters(harness, auth_headers):
     )
 
 
+def test_non_ascii_title_is_sanitized_to_ascii(harness, auth_headers):
+    contract_id = harness.paste(auth_headers, title="Договор 2026").json()["id"]
+    response = export(harness, auth_headers, contract_id, "pdf")
+    assert response.status_code == 200
+    assert response.headers["content-disposition"] == (
+        'attachment; filename="_______ 2026 - Counter-proposal.pdf"'
+    )
+
+
 @pytest.mark.parametrize("contract_id", [str(uuid4()), "not-a-uuid"])
 def test_export_of_unknown_contract_is_404(client, auth_headers, contract_id):
     response = client.post(f"/contracts/{contract_id}/export", json={"format": "pdf"}, headers=auth_headers)
