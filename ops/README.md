@@ -8,6 +8,7 @@ section 6).
 | File | Contents |
 |---|---|
 | [`runbook.md`](runbook.md) | system map, where the logs are, the first five minutes, scenarios and rollback |
+| [`grafana/`](grafana/README.md) | the Grafana dashboard as JSON, how to import it and what each panel answers |
 | `diagnosis/YYYY-MM-DD-<incident>.md` | one investigated incident: symptom, timeline, hypotheses, evidence, root cause, fix, prevention, access |
 
 ## Incidents
