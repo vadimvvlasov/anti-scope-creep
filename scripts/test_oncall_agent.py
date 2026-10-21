@@ -44,6 +44,20 @@ class FakeRunner:
         return oncall_agent.default_runner(args, cwd, timeout)
 
 
+class DefaultRunnerEnvTests(unittest.TestCase):
+    def test_tests_of_the_checked_out_tree_do_not_see_the_credentials(self):
+        secrets = {"GEMINI_API_KEY": "gem-secret", "ONCALL_GRAFANA_AUTH": "Bearer x", "GH_TOKEN": "gh-secret",
+                   "GITHUB_TOKEN": "gh-secret", "ACTIONS_ID_TOKEN_REQUEST_TOKEN": "oidc-secret"}
+        with mock.patch.dict(os.environ, {**secrets, "ASC_VISIBLE": "yes"}):
+            code, output = oncall_agent.default_runner(["env"], Path.cwd(), 30)
+        self.assertEqual(code, 0)
+        for name, value in secrets.items():
+            self.assertNotIn(name, output)
+            self.assertNotIn(value, output)
+        self.assertIn("ASC_VISIBLE=yes", output)  # everything else, PATH included, still passes through
+        self.assertIn("PATH=", output)
+
+
 def tool_call(name: str, call_id: str, **arguments) -> dict:
     return {"id": call_id, "type": "function", "function": {"name": name, "arguments": json.dumps(arguments)}}
 

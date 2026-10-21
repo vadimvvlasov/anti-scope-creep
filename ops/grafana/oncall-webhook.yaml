@@ -1,0 +1,55 @@
+# The webhook that wakes the on-call agent, in the Grafana file provisioning format.
+# A Grafana alert becomes a GitHub `repository_dispatch` event; .github/workflows/on-call.yml
+# starts on it (docs/architecture.md, section 5).
+#
+# The token is not in this file. The contact point is created without it, and the token goes
+# into the contact point in the Grafana UI (Authorization header, credentials). It is a
+# fine-grained personal access token for this repository only, with the repository permission
+# Contents: read and write (the only permission `repository_dispatch` accepts), valid for
+# 30 days. The `main` ruleset has no bypass, so the token cannot change `main`.
+apiVersion: 1
+contactPoints:
+  - orgId: 1
+    name: asc-oncall-webhook
+    receivers:
+      - uid: asc-oncall-webhook
+        type: webhook
+        settings:
+          url: https://api.github.com/repos/vadimvvlasov/anti-scope-creep/dispatches
+          httpMethod: POST
+          authorization_scheme: Bearer
+          # GitHub wants {"event_type": ..., "client_payload": {...}}. `ref` is the image tag of
+          # the series that fired (sha-<short sha>): the agent investigates that commit.
+          payload:
+            template: |-
+              {{ coll.Dict
+                "event_type" "grafana-alert"
+                "client_payload" (coll.Dict
+                  "alert_name" .CommonLabels.alertname
+                  "status" .Status
+                  "environment" .CommonLabels.deployment_environment
+                  "ref" .CommonLabels.service_version
+                  "summary" .CommonAnnotations.summary
+                  "starts_at" (index .Alerts 0).StartsAt
+                  "labels" .CommonLabels)
+                | data.ToJSON }}
+# Every alert of the service goes to a person by email and, at the same time, to the agent.
+# The first route has `continue`, so the second one also matches. Anything else goes to the
+# default receiver. The webhook route groups per alert, environment and image, so one problem
+# wakes the agent once, and repeats rarely: each wake-up is a model run and a pull request or issue.
+policies:
+  - orgId: 1
+    receiver: asc-human-email
+    group_by: [grafana_folder, alertname]
+    routes:
+      - receiver: asc-human-email
+        object_matchers:
+          - [service, "=", anti-scope-creep]
+        continue: true
+      - receiver: asc-oncall-webhook
+        object_matchers:
+          - [service, "=", anti-scope-creep]
+        group_by: [alertname, deployment_environment, service_version]
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 24h

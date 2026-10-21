@@ -69,6 +69,9 @@ Runs in GitHub Actions (`.github/workflows/on-call.yml`) when Grafana sends an a
 | Never changes `main` directly | it pushes `oncall/<run id>` and opens a pull request; the `main` ruleset requires a pull request with green CI, and a person merges |
 | Cannot deploy | no AWS role, no Neon or Cloudflare credentials in the `oncall` environment |
 | Its secrets stay with `main` | the `oncall` environment deploys only from `main`, so a workflow edited in a pull request cannot read `GEMINI_API_KEY` |
+| Investigates only merged code | the alert's `ref` (the deployed commit) must be a commit sha that is an ancestor of `origin/main`; anything else (a branch name, an unknown commit, a commit only on another branch) fails the run before any secret is used. The agent's own scripts always come from `main`; the commit under investigation is a separate `git worktree` |
+| Tests of the repository do not see the credentials | `pytest` runs with the environment of the step minus `GEMINI_*`, `ONCALL_*`, `GH_*`, `GITHUB_TOKEN` and `ACTIONS_*` (`scrubbed_env` in `scripts/oncall_agent.py`, tested) |
+| The webhook token cannot push to `main` | the fine-grained token that lets Grafana start the workflow (`repository_dispatch` needs `Contents: write`) is scoped to this repository and expires in 30 days; the `main` ruleset has no bypass, so the token cannot change `main`. It lives only in the Grafana contact point |
 | Unsure means a person decides | `needs_human`, a failed check or no verdict becomes an issue labelled `needs-human-review` |
 
 The model is Gemini on the free tier. It receives the alert context (counts, codes, ids, log

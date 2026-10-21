@@ -4,6 +4,11 @@ name: On-call agent
 # (docs/architecture.md, section 5; docs/permissions.md, "On-call agent"). It reads telemetry
 # with a read-only token, investigates on Gemini with repository tools, and the last step opens
 # a pull request from an oncall/* branch or an issue. A person reviews, merges and promotes.
+#
+# The agent investigates the commit that was running when the alert fired: the alert carries it
+# as `ref` (the service_version label, sha-<short sha>). The tools come from main, the code under
+# investigation is a separate checkout of that commit, and only a commit already in main is
+# accepted, so a branch pushed by someone else cannot bring its own scripts next to the secrets.
 on:
   repository_dispatch:
     types: [grafana-alert]
@@ -17,6 +22,10 @@ on:
         description: What to look at
         required: false
         default: Check the last hour of dev telemetry
+      ref:
+        description: Commit to investigate (sha or sha-<short sha>, must be in main); empty means main
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -40,8 +49,50 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 30
+          fetch-depth: 0              # the whole history: the commit under investigation can be old
           persist-credentials: false  # no token in .git/config for the agent's tools to find
+
+      - name: Write the alert
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+          MANUAL_ALERT: ${{ inputs.alert }}
+          MANUAL_SUMMARY: ${{ inputs.summary }}
+          MANUAL_REF: ${{ inputs.ref }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = repository_dispatch ]; then
+            printf '%s' "$PAYLOAD" > "$RUNNER_TEMP/alert.json"
+          else
+            jq -n --arg name "$MANUAL_ALERT" --arg summary "$MANUAL_SUMMARY" --arg ref "$MANUAL_REF" \
+              '{alert_name: $name, status: "manual", summary: $summary, ref: $ref}' > "$RUNNER_TEMP/alert.json"
+          fi
+
+      - name: Pick the commit to investigate
+        id: target
+        run: |
+          alert="$RUNNER_TEMP/alert.json"
+          ref=$(jq -r '(.ref // "") | tostring' "$alert")
+          ref="${ref#sha-}"
+          if [ -z "$ref" ]; then
+            ref="$GITHUB_SHA"   # the alert names no commit: main as it is now
+          fi
+          if ! printf '%s' "$ref" | grep -Eq '^[0-9a-f]{7,40}$'; then
+            echo "::error::ref is not a commit sha (use sha-<short sha> or a full sha)"
+            exit 1
+          fi
+          sha=$(git rev-parse --verify --quiet "${ref}^{commit}") || {
+            echo "::error::commit $ref not found in the repository"
+            exit 1
+          }
+          # Only a commit that is already in main: it went through a pull request and the required checks.
+          if ! git merge-base --is-ancestor "$sha" origin/main; then
+            echo "::error::commit $sha is not in main, the agent investigates only code that was merged"
+            exit 1
+          fi
+          git worktree add --detach "$RUNNER_TEMP/target" "$sha" > /dev/null
+          jq --arg sha "$sha" '.ref = $sha' "$alert" > "$alert.tmp"
+          mv "$alert.tmp" "$alert"
+          echo "dir=$RUNNER_TEMP/target" >> "$GITHUB_OUTPUT"
+          echo "Investigating commit $sha"
 
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
@@ -50,42 +101,34 @@ jobs:
           cache-dependency-glob: backend/uv.lock
 
       - name: Install the backend for the tests
-        working-directory: backend
+        working-directory: ${{ steps.target.outputs.dir }}/backend
         run: uv sync --frozen
 
-      - name: Write the alert
-        env:
-          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
-          MANUAL_ALERT: ${{ inputs.alert }}
-          MANUAL_SUMMARY: ${{ inputs.summary }}
-        run: |
-          if [ "$GITHUB_EVENT_NAME" = repository_dispatch ]; then
-            printf '%s' "$PAYLOAD" > "$RUNNER_TEMP/alert.json"
-          else
-            jq -n --arg name "$MANUAL_ALERT" --arg summary "$MANUAL_SUMMARY" \
-              '{alert_name: $name, status: "manual", summary: $summary}' > "$RUNNER_TEMP/alert.json"
-          fi
-
       - name: Gather context (read-only telemetry queries)
+        working-directory: ${{ steps.target.outputs.dir }}
         env:
           ONCALL_PROM_URL: ${{ vars.ONCALL_PROM_URL }}
           ONCALL_LOKI_URL: ${{ vars.ONCALL_LOKI_URL }}
           ONCALL_TEMPO_URL: ${{ vars.ONCALL_TEMPO_URL }}
           ONCALL_AUTH: ${{ secrets.ONCALL_GRAFANA_AUTH }}
-        run: python3 scripts/oncall_gather.py --alert "$RUNNER_TEMP/alert.json" --out "$RUNNER_TEMP/context.md"
+        run: python3 "$GITHUB_WORKSPACE/scripts/oncall_gather.py" --alert "$RUNNER_TEMP/alert.json" --out "$RUNNER_TEMP/context.md"
 
       - name: Investigate (Gemini, no GitHub token)
+        working-directory: ${{ steps.target.outputs.dir }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ONCALL_MODEL: ${{ vars.ONCALL_MODEL }}
         run: |
-          python3 scripts/oncall_agent.py run --prompt ops/on-call-prompt.md \
+          python3 "$GITHUB_WORKSPACE/scripts/oncall_agent.py" run --prompt "$GITHUB_WORKSPACE/ops/on-call-prompt.md" \
             --context "$RUNNER_TEMP/context.md" --alert "$RUNNER_TEMP/alert.json" --out "$RUNNER_TEMP/result.json"
 
       - name: Check the change (allowed paths, whole backend suite)
-        run: python3 scripts/oncall_agent.py verify --result "$RUNNER_TEMP/result.json"
+        working-directory: ${{ steps.target.outputs.dir }}
+        run: python3 "$GITHUB_WORKSPACE/scripts/oncall_agent.py" verify --result "$RUNNER_TEMP/result.json"
 
       - name: Open a pull request or an issue
+        working-directory: ${{ steps.target.outputs.dir }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .github/scripts/oncall-publish.sh "$RUNNER_TEMP/result.json"
+          GH_REPO: ${{ github.repository }}
+        run: bash "$GITHUB_WORKSPACE/.github/scripts/oncall-publish.sh" "$RUNNER_TEMP/result.json"

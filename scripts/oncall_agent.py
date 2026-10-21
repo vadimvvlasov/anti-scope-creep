@@ -81,9 +81,17 @@ class PathError(ValueError):
     pass
 
 
+# pytest runs the tests of the checked-out tree, so it must not inherit the credentials of this step.
+SECRET_ENV_PREFIXES = ("GEMINI_", "ONCALL_", "GH_", "GITHUB_TOKEN", "ACTIONS_")
+
+
+def scrubbed_env() -> dict[str, str]:
+    return {name: value for name, value in os.environ.items() if not name.startswith(SECRET_ENV_PREFIXES)}
+
+
 def default_runner(args: list[str], cwd: Path, timeout: int) -> tuple[int, str]:
     try:
-        done = subprocess.run(args, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+        done = subprocess.run(args, cwd=cwd, capture_output=True, text=True, timeout=timeout, env=scrubbed_env())
     except subprocess.TimeoutExpired:
         return 124, f"timed out after {timeout} s"
     return done.returncode, done.stdout + done.stderr
