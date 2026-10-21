@@ -34,6 +34,7 @@ SERVICE = "anti-scope-creep-backend"
 MAX_FIELD = 300
 MAX_LOG_LINES = 30
 MAX_TRACES = 5
+MAX_FRAMES = 8
 MAX_TOTAL = 30_000
 METRIC_QUERIES = {
     "Analyses by outcome": "sum by (outcome) (increase(analyses_total[{w}m]))",
@@ -117,8 +118,8 @@ def logs_section(fetch: Fetch, base: str, auth: str, minutes: int, now: float) -
         return "\n".join(lines + ["- none"])
     for timestamp, labels, message in sorted(entries, reverse=True)[:MAX_LOG_LINES]:
         when = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(timestamp / 1e9))
-        tags = " ".join(f"{key}={clean(labels[key], 40)}" for key in ("severity_text", "code", "contract_id", "trace_id")
-                        if labels.get(key))
+        tags = " ".join(f"{key}={clean(labels[key], 40)}"
+                        for key in ("severity_text", "code", "contract_id", "trace_id", "exception_type") if labels.get(key))
         lines.append(f"- {when} {tags}: {clean(message)}")
     return "\n".join(lines)
 
@@ -143,21 +144,45 @@ def traces_section(fetch: Fetch, base: str, auth: str, minutes: int, now: float)
         except Exception as error:  # noqa: BLE001
             lines.append(f"  - spans {_failure(error)}")
             continue
-        for span in _error_spans(trace)[:8]:
+        for span, details in _error_spans(trace)[:8]:
             lines.append(f"  - error span {span}")
+            lines.extend(f"    - {detail}" for detail in details)
     return "\n".join(lines)
 
 
-def _error_spans(trace: Any) -> list[str]:
-    """`name (status message)` of the spans marked as errors, from Tempo's OTLP JSON."""
+def _error_spans(trace: Any) -> list[tuple[str, list[str]]]:
+    """`name (status message)` of the spans marked as errors, with what their exception events say
+    (the type and the frames, never a message: the service does not export one), from Tempo's OTLP JSON."""
     spans = []
     for batch in trace.get("batches", []) or trace.get("resourceSpans", []):
         for scope in batch.get("scopeSpans", []) or batch.get("instrumentationLibrarySpans", []):
             for span in scope.get("spans", []):
                 status = span.get("status", {})
                 if status.get("code") in (2, "STATUS_CODE_ERROR"):
-                    spans.append(f"{clean(span.get('name', '?'), 80)} ({clean(status.get('message', ''), 120)})")
+                    name = f"{clean(span.get('name', '?'), 80)} ({clean(status.get('message', ''), 120)})"
+                    spans.append((name, _exception_details(span)))
     return spans
+
+
+def _exception_details(span: dict[str, Any]) -> list[str]:
+    details = []
+    for event in span.get("events", []) or []:
+        if event.get("name") != "exception":
+            continue
+        attributes = {item.get("key"): next(iter((item.get("value") or {}).values()), "")
+                      for item in event.get("attributes", []) or []}
+        if attributes.get("exception.type"):
+            details.append(f"exception type: {clean(attributes['exception.type'], 80)}")
+        frames = [_short_frame(line) for line in str(attributes.get("exception.stacktrace", "")).splitlines() if line.strip()]
+        if frames:
+            details.append("frames, oldest first: " + " | ".join(frames[-MAX_FRAMES:]))
+    return details
+
+
+def _short_frame(line: str) -> str:
+    """`file:line in function` without the installation prefix of the container."""
+    line = re.sub(r"^/app/\.venv/lib/python[\d.]+/site-packages/", "<package>/", line.strip())
+    return clean(re.sub(r"^/app/", "", line), 110)
 
 
 def alert_section(alert: dict[str, Any]) -> str:

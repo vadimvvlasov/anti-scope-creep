@@ -101,6 +101,34 @@ class GatherTest(unittest.TestCase):
         self.assertIn("## Tempo\n\n- not configured", text)
         self.assertTrue(all("prom.example" in url for url, _ in backends.calls))
 
+    def test_an_error_span_shows_the_exception_type_and_frames_but_no_message(self):
+        class WithException(Backends):
+            def __call__(self, url, auth):
+                if urllib.parse.urlparse(url).path.endswith("/api/traces/t1"):
+                    attributes = [
+                        {"key": "exception.type", "value": {"stringValue": "UnicodeEncodeError"}},
+                        {"key": "exception.message", "value": {"stringValue": "SHOULD NOT BE PRINTED"}},
+                        {"key": "exception.stacktrace", "value": {"stringValue": "\n".join([
+                            "/app/.venv/lib/python3.13/site-packages/starlette/responses.py:77 in init_headers",
+                            "/app/app/routers/contracts.py:112 in export_report"])}},
+                    ]
+                    return {"batches": [{"scopeSpans": [{"spans": [
+                        {"name": "POST /contracts/{id}/export", "status": {"code": 2},
+                         "events": [{"name": "exception", "attributes": attributes}, {"name": "other"}]}]}]}]}
+                return super().__call__(url, auth)
+
+        text = build(fetch=WithException())
+        self.assertIn("  - error span POST /contracts/{id}/export ()", text)
+        self.assertIn("    - exception type: UnicodeEncodeError", text)
+        self.assertIn("    - frames, oldest first: <package>/starlette/responses.py:77 in init_headers | "
+                      "app/routers/contracts.py:112 in export_report", text)
+        self.assertNotIn("SHOULD NOT BE PRINTED", text)
+
+    def test_a_span_without_an_exception_event_has_no_detail_lines(self):
+        text = build()
+        self.assertIn("error span analysis.run (analysis_failed)", text)
+        self.assertNotIn("exception type", text)
+
     def test_the_commit_under_investigation_is_in_the_alert_section(self):
         text = build(alert={"alert_name": "Analysis failure rate above 20 %", "environment": "dev", "ref": "a276e96"})
         self.assertIn("- ref: a276e96", text)
