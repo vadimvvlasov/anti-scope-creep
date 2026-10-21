@@ -52,10 +52,11 @@ Planned:
 - A small classifier fine-tuned on the CUAD dataset to preselect risky clauses
   before the LLM call, which cuts tokens per contract
 
-## Current status: Phase 3 (LLM analyzer)
+## Current status: Phase 4 (observability and an on-call agent)
 
-The deployed app analyzes real contracts with the Groq LLM analyzer. CI/CD, dev and
-prod environments come from Phase 2.
+The deployed app analyzes real contracts with the Groq LLM analyzer and reports on itself:
+traces, metrics and logs reach Grafana Cloud, two alerts watch what a user would notice, and an
+on-call agent answers an alert. CI/CD, dev and prod environments come from Phase 2.
 
 What the app does today:
 
@@ -74,6 +75,25 @@ What the app does today:
   proposed counter-clauses, and the client email
 - History Search answers from mock data in mock mode; the real backend returns
   `501` (`History search is coming soon.`) until the text-to-SQL agent phase
+
+Added in Phase 4:
+
+- OpenTelemetry in the backend: traces, metrics and JSON logs, where traces and logs carry the same
+  trace id. No contract text and no exception message leave the service (tests:
+  `backend/tests/test_telemetry_signals.py` and `test_telemetry_exceptions.py`). The signals reach
+  Grafana Cloud from dev; turning it on for prod is tracked in [#74](https://github.com/vadimvvlasov/anti-scope-creep/issues/74)
+- A dashboard and two alert rules on what a user notices (the failure rate of analyses, a 5xx), kept
+  as files in [`ops/grafana/`](ops/grafana/README.md). An alert sends an email to the owner and a
+  webhook to the agent in the same minute
+- An on-call agent (Gemini in GitHub Actions, [`on-call.yml`](.github/workflows/on-call.yml)): it wakes
+  on an alert, investigates the commit that was running from the telemetry and the repository, and
+  opens a fix pull request or an issue. It never merges or deploys; a person reviews. It ran once end
+  to end on a planned fault: [`ops/diagnosis/2026-10-21-oncall-drill.md`](ops/diagnosis/2026-10-21-oncall-drill.md)
+- `make test-all`: unit and integration tests with one command (see [Tests](#tests))
+- A public [tracker](https://github.com/vadimvvlasov/anti-scope-creep/issues) with acceptance criteria and a description of the
+  [agent team](docs/ai-workflow.md#agent-team)
+
+When the service breaks for a user, someone knows within a minute and a first diagnosis is waiting.
 
 Added in Phase 3:
 
@@ -104,7 +124,8 @@ Added in Phase 2:
 - Automatic deploy of `main` to a dev environment and a manual, approved promotion
   of the same image to prod (see [Deploy](#deploy))
 
-Not yet: the text-to-SQL agent, the fine-tuned classifier, monitoring.
+Not yet: the text-to-SQL agent ([#86](https://github.com/vadimvvlasov/anti-scope-creep/issues/86)), the fine-tuned classifier, telemetry from prod
+([#74](https://github.com/vadimvvlasov/anti-scope-creep/issues/74)).
 
 Product rules live in [`docs/spec.md`](docs/spec.md), infrastructure and phases in
 [`docs/architecture.md`](docs/architecture.md).
@@ -131,6 +152,10 @@ deciding, reviewing and verifying. The full process with real prompts is in
 - **Human review and verification.** Every step has a checklist: new tests, the full
   suite, a manual check in the browser on dev, the smoke test after deploy. The LLM
   analyzer is checked against gold sets labeled by hand, not by the model.
+- **Tasks and the agent team.** Tasks are public [issues](https://github.com/vadimvvlasov/anti-scope-creep/issues) with acceptance
+  criteria, and a pull request closes each one (`Closes #<n>`). The team (the developer agent, a
+  read-only API reviewer, the on-call responder, and the owner who reviews and merges) and who may
+  touch what are in [`docs/ai-workflow.md`](docs/ai-workflow.md#agent-team).
 - **Agent extension pack.** A reusable eval workflow (skill), a read-only API contract
   reviewer (subagent), a read-only MCP server over the API, a guard hook that blocks
   secrets and the developer's AWS and GitHub credentials, and the same pack as an
@@ -147,9 +172,10 @@ Course rubric items and where they live in this repository:
 
 | Item | Where |
 |---|---|
-| Product spec | [`docs/spec.md`](docs/spec.md) |
+| Product spec and tracker | [`docs/spec.md`](docs/spec.md), [GitHub Issues](https://github.com/vadimvvlasov/anti-scope-creep/issues) |
 | Agent instructions | [`AGENTS.md`](AGENTS.md), [`frontend/AGENTS.md`](frontend/AGENTS.md), `CLAUDE.md` |
 | AI-assisted workflow | [AI-assisted development](#ai-assisted-development), [`docs/ai-workflow.md`](docs/ai-workflow.md) |
+| Agent team | [`docs/ai-workflow.md`](docs/ai-workflow.md#agent-team), [`docs/permissions.md`](docs/permissions.md) |
 | Agent extension pack | [`docs/agent-extension-pack.md`](docs/agent-extension-pack.md), [`docs/permissions.md`](docs/permissions.md), `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/` |
 | Architecture | [`docs/architecture.md`](docs/architecture.md) |
 | Frontend and its tests | `frontend/`, `frontend/src/**/__tests__/` |
@@ -163,7 +189,10 @@ Course rubric items and where they live in this repository:
 | AI data policy | [`docs/ai-data-policy.md`](docs/ai-data-policy.md) |
 | LLM eval | [`eval/README.md`](eval/README.md) (method), [`docs/eval.md`](docs/eval.md) (results) |
 | Security audit | [`security/README.md`](security/README.md): scanner, dependency audit, model review, a decision per finding |
-| Operations | [`ops/README.md`](ops/README.md): runbook and diagnoses of real incidents |
+| Observability and alerts | [`backend/app/telemetry.py`](backend/app/telemetry.py), [`ops/grafana/`](ops/grafana/README.md): dashboard, alert rules, the webhook to the agent |
+| On-call agent | [`.github/workflows/on-call.yml`](.github/workflows/on-call.yml), [`ops/diagnosis/2026-10-21-oncall-drill.md`](ops/diagnosis/2026-10-21-oncall-drill.md) |
+| Operations | [`ops/README.md`](ops/README.md): runbook and diagnoses, including the on-call drill |
+| Rubric coverage | [`docs/architecture.md`](docs/architecture.md#rubric-coverage): the 12 criteria, the evidence and what is open |
 | Product analytics | [`docs/analytics.md`](docs/analytics.md): funnel events by acquisition channel, the Pro demand test |
 
 ## Screenshots
