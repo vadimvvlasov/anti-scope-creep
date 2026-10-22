@@ -2,7 +2,7 @@
 
 How Anti-Scope Creep is built with AI tools: which tool does what, what context each one
 gets, how work is split and handed to an agent, and how the result is reviewed and
-verified. Short version in the [README](../README.md#ai-assisted-development).
+verified. Short version in the [README](../README.md#how-it-was-built-with-ai).
 
 ## Tools and their roles
 
