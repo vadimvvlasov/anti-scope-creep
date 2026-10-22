@@ -141,3 +141,15 @@ checks of the pull request. After the approval all seven checks passed and the p
 - Claude Code: read-only queries in Grafana through the developer's browser session, `gh` for runs and pull
   requests, and the developer's approval before every merge, every change in Grafana and every setting of the
   repository. No AWS access: dev was reached over its public URL only.
+
+## After the drill (2026-10-22)
+
+The five issues the on-call agent opened while the drill was prepared and run are closed, each with a
+comment that says what that run was, and they stay in the tracker as a record; nothing was deleted:
+[#59](https://github.com/vadimvvlasov/anti-scope-creep/issues/59) (first manual rehearsal),
+[#65](https://github.com/vadimvvlasov/anti-scope-creep/issues/65) (manual run with `ref`),
+[#66](https://github.com/vadimvvlasov/anti-scope-creep/issues/66) (the Test button of the contact point),
+[#68](https://github.com/vadimvvlasov/anti-scope-creep/issues/68) (drill run 2) and
+[#70](https://github.com/vadimvvlasov/anti-scope-creep/issues/70) (drill run 3). The branch
+`oncall/39648800316` is kept until the peer review is over: its commit `78bb0d5` is the only copy of the fix
+that run 1 wrote, and this write-up refers to it.
