@@ -10,8 +10,11 @@ payment terms), scores each one and drafts an email to the client.
 
 ## Reviewer quick path
 
-1. **Live:** register with any email, upload [`data/2.txt`](data/2.txt) (or paste text). The real model
-   (Groq `gpt-oss-120b`) answers in seconds; a long contract takes a few minutes.
+1. **Live:** register with any email and upload [`data/24.txt`](data/24.txt) (about 19,000 characters; or
+   paste text). The real model (Groq `gpt-oss-120b`) returns two High findings, the payment terms "Net 90" in
+   clause 4.2 and in the fee schedule, each with a counter-clause. **Export report** gives a PDF or DOCX with
+   them and a draft email to the client; the email ends without a signature, you add your name. A contract
+   with no risky clauses returns no findings and "Overall risk: Low" (try [`data/2.txt`](data/2.txt)).
 2. **Local:** `make up`, open http://localhost:3000, log in as `demo@example.com` / `password123`
    (23 demo contracts). Locally the analyzer is a **stub** that returns fixture findings, so the findings
    do not depend on the file you upload. `make down` stops it.
@@ -37,7 +40,7 @@ daily quota may be spent: try again later. [AI data policy](docs/ai-data-policy.
 | 8 | Deployment | [Deploy](#deploy-and-cicd), [`docs/deploy.md`](docs/deploy.md) | public URL; Cloudflare Workers, AWS Lightsail, Neon; a smoke test after every deploy |
 | 9 | CI/CD | [`.github/workflows/`](.github/workflows/), [Deploy](#deploy-and-cicd) | seven CI jobs, auto deploy to dev, manual approved promote to prod, [rollback](ops/runbook.md#roll-back-prod) |
 | 10 | Observability | [Observability](#observability-alerts-on-call-agent), [`ops/grafana/`](ops/grafana/README.md) | traces, metrics and JSON logs with one trace id in Grafana Cloud (dev and prod; it is private, the screenshots below are the evidence); no contract text in telemetry (tested) |
-| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email](docs/screenshots/07-alert-email-5xx.png) |
+| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email from the drill](docs/screenshots/07-alert-email-5xx.png) (its runbook link was corrected afterwards, see the write-up) |
 | 12 | On-Call Agent | [`on-call.yml`](.github/workflows/on-call.yml), [drill write-up](ops/diagnosis/2026-10-21-oncall-drill.md) | a planned fault on dev, a real alert: the agent opened the fix pull request ([#72](https://github.com/vadimvvlasov/anti-scope-creep/pull/72)) on the fourth run, see below |
 
 The evidence per criterion and what is still open: [`docs/rubric.md`](docs/rubric.md).
@@ -56,7 +59,9 @@ every contract is not realistic, and there is rarely time to review one line by 
 - Every quote is checked against the contract text; a finding whose quote is not there is dropped
 - Names, emails, phone numbers, URLs, bank and tax IDs and addresses are replaced with placeholders before
   the text leaves the backend, and restored in the answer
-- Contract Details shows the text beside the findings with highlights; export a PDF or DOCX report
+- Contract Details shows the text beside the findings with highlights; export a PDF or DOCX report (High and
+  Medium findings with counter-clauses and the draft email; Low findings are counted in the summary but not
+  listed, as the spec says)
 - A short contract takes seconds; a long one (about 55,000 characters) about three minutes on the free tier
 - The **Pro** button in the header records interest in a paid plan (a demand test, no payments)
 - **Planned, not built yet:** History Search answered by a text-to-SQL agent
