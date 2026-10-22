@@ -43,7 +43,7 @@ Notes:
 - The duration histogram uses the default OpenTelemetry bucket bounds (5, 10, 25, 50 s
   and so on), which are too coarse for a p95 in seconds; the panel shows the mean.
 - The token gauge ignores the environment selector: the Groq quota is shared, and it
-  counts every environment that exports telemetry. Prod does not export yet.
+  counts every environment that exports telemetry (dev and prod).
 - `severity_text` and `trace_id` are Loki structured metadata, not stream labels:
   filter them in the pipeline (`| severity_text="ERROR"`), as the logs panel does.
 - No contract content reaches these panels: telemetry carries ids, sizes, counts,
