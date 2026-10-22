@@ -366,14 +366,16 @@ All tests, unit and integration, with one command from a fresh clone:
 make test-all
 ```
 
-It installs the dependencies, runs the unit tests (`make test`), starts the full system
-in Docker, runs the end-to-end tests against it (`make e2e`) and stops the stack again,
-also when a test fails. On a fresh Linux machine install the browser's system libraries
+It installs the dependencies, starts a throwaway PostgreSQL (container `asc-pg-test`, port 5433,
+database `asc_test`), runs the unit tests with it (`make test`, so the store, migration and
+constraint tests run on PostgreSQL too), starts the full system in Docker, runs the end-to-end
+tests against it (`make e2e`) and stops the stack and the test database again, also when a
+test fails. On a fresh Linux machine install the browser's system libraries
 once first: `cd frontend && npx playwright install --with-deps chromium`.
 
 | Layer | Tests | Command |
 |---|---|---|
-| Unit | backend (pytest, in-memory SQLite), frontend (Vitest) | `make test` |
+| Unit | backend (pytest, in-memory SQLite; PostgreSQL variants with `make test-all`), frontend (Vitest) | `make test` |
 | Integration | Playwright against the Docker stack: the real frontend, backend and Postgres | `make up`, then `make e2e` |
 
 The tests run on the host, so they need [uv](https://docs.astral.sh/uv/) and Node.js 20+
@@ -398,9 +400,11 @@ make e2e
 They register fresh users on every run, so they need no seed data. To run them
 against another environment, set `E2E_BASE_URL` (frontend) and `E2E_API_URL` (backend).
 
-Backend tests run on SQLite in memory. Store, migration and constraint tests also
-run on PostgreSQL when `TEST_DATABASE_URL` points at a throwaway database; see
-[`backend/README.md`](backend/README.md).
+Backend tests run on SQLite in memory with `make test`. Store, migration and constraint tests also
+run on PostgreSQL: `make test-all` does it with a throwaway database, or run `make test-db` and
+then `TEST_DATABASE_URL=postgresql+psycopg://postgres:dev@127.0.0.1:5433/asc_test make test`
+(`make test-db-down` removes the container). The database name must contain `test`; the tests
+wipe it and refuse any other name. See [`backend/README.md`](backend/README.md).
 
 ## Commands
 
