@@ -40,7 +40,7 @@ daily quota may be spent: try again later. [AI data policy](docs/ai-data-policy.
 | 8 | Deployment | [Deploy](#deploy-and-cicd), [`docs/deploy.md`](docs/deploy.md) | public URL; Cloudflare Workers, AWS Lightsail, Neon; a smoke test after every deploy |
 | 9 | CI/CD | [`.github/workflows/`](.github/workflows/), [Deploy](#deploy-and-cicd) | seven CI jobs, auto deploy to dev, manual approved promote to prod, [rollback](ops/runbook.md#roll-back-prod) |
 | 10 | Observability | [Observability](#observability-alerts-on-call-agent), [`ops/grafana/`](ops/grafana/README.md) | traces, metrics and JSON logs with one trace id in Grafana Cloud (dev and prod; it is private, the screenshots below are the evidence); no contract text in telemetry (tested) |
-| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email](docs/screenshots/07-alert-email-5xx.png) |
+| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email from the drill](docs/screenshots/07-alert-email-5xx.png) (its runbook link was corrected afterwards, see the write-up) |
 | 12 | On-Call Agent | [`on-call.yml`](.github/workflows/on-call.yml), [drill write-up](ops/diagnosis/2026-10-21-oncall-drill.md) | a planned fault on dev, a real alert: the agent opened the fix pull request ([#72](https://github.com/vadimvvlasov/anti-scope-creep/pull/72)) on the fourth run, see below |
 
 The evidence per criterion and what is still open: [`docs/rubric.md`](docs/rubric.md).
