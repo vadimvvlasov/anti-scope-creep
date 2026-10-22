@@ -1,4 +1,4 @@
-.PHONY: install up up-observability down logs e2e db migrate dev-backend dev-frontend test test-all lint
+.PHONY: install up up-observability down logs e2e db migrate dev-backend dev-frontend test test-db test-db-down test-all lint
 
 install:
 	cd backend && uv sync
@@ -42,14 +42,30 @@ test:
 	cd backend && uv run pytest
 	cd frontend && npm test
 
-# Every test with one command from a fresh clone: the unit tests, then the full system in
-# Docker and the Playwright end-to-end tests against it. The stack is stopped afterwards,
-# also when a test fails, and the exit status of the tests is kept. On a fresh Linux machine
+# A throwaway PostgreSQL for the database tests: its own container and port, database `asc_test`,
+# never the database of `make db` or `make up`. The tests wipe it.
+TEST_PG_PORT ?= 5433
+TEST_PG_URL = postgresql+psycopg://postgres:dev@127.0.0.1:$(TEST_PG_PORT)/asc_test
+
+test-db:
+	docker rm -f asc-pg-test >/dev/null 2>&1 || true
+	docker run --name asc-pg-test -e POSTGRES_PASSWORD=dev -e POSTGRES_DB=asc_test \
+		-p 127.0.0.1:$(TEST_PG_PORT):5432 -d postgres:16
+	until docker exec asc-pg-test pg_isready -U postgres -d asc_test >/dev/null 2>&1; do sleep 1; done
+
+test-db-down:
+	docker rm -f asc-pg-test
+
+# Every test with one command from a fresh clone: the unit tests (the store, migration and
+# constraint tests also on PostgreSQL), then the full system in Docker and the Playwright
+# end-to-end tests against it. The test database and the stack are stopped afterwards, also
+# when a test fails, and the exit status of the tests is kept. On a fresh Linux machine
 # run `cd frontend && npx playwright install --with-deps chromium` once first (system libraries).
-test-all: install test
+test-all: install
 	status=0; \
-	$(MAKE) up && (cd frontend && npx playwright install chromium) && $(MAKE) e2e || status=$$?; \
-	$(MAKE) down; exit $$status
+	$(MAKE) test-db && TEST_DATABASE_URL=$(TEST_PG_URL) $(MAKE) test \
+		&& $(MAKE) up && (cd frontend && npx playwright install chromium) && $(MAKE) e2e || status=$$?; \
+	$(MAKE) down; $(MAKE) test-db-down; exit $$status
 
 lint:
 	cd frontend && npm run lint

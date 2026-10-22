@@ -41,12 +41,17 @@ uv run pytest
 ```
 
 Tests run on SQLite in memory. Store, migration and constraint tests also run on
-PostgreSQL when `TEST_DATABASE_URL` points at a throwaway database (it is wiped):
+PostgreSQL when `TEST_DATABASE_URL` points at a throwaway database (it is wiped, so its name
+must contain `test`; any other name makes the tests stop with an error). From the repository root,
+`make test-db` starts such a database in its own container (`asc-pg-test`, port 5433):
 
 ```bash
-docker exec asc-pg psql -U postgres -c "create database asc_test"
-TEST_DATABASE_URL=postgresql+psycopg://postgres:dev@localhost:5432/asc_test uv run pytest
+make -C .. test-db
+TEST_DATABASE_URL=postgresql+psycopg://postgres:dev@127.0.0.1:5433/asc_test uv run pytest
+make -C .. test-db-down
 ```
+
+`make test-all` does the same around the whole suite.
 
 `tests/test_openapi_contract.py` checks the app against [`openapi.yaml`](../openapi.yaml),
 the hand-written API contract: same operations, same success statuses, and no error
