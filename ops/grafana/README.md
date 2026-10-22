@@ -14,7 +14,7 @@ import of [`dashboard.json`](dashboard.json), not hand-edited state.
 
 1. Grafana Cloud, **Dashboards**, **New**, **Import**.
 2. Upload `dashboard.json` or paste its content, then **Load** and **Import**.
-3. Pick the environment in the **Environment** selector (`dev`, later `prod`).
+3. Pick the environment in the **Environment** selector (`dev` or `prod`).
 
 The data sources are referenced by the default UIDs of a Grafana Cloud stack:
 `grafanacloud-prom` (metrics), `grafanacloud-logs` (Loki), `grafanacloud-traces` (Tempo).

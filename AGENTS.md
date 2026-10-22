@@ -9,7 +9,7 @@ scores them, and drafts an email to the client.
   validation limits, status flow, severity matrix, error codes.
 - If the spec is unclear or contradicts itself, stop and ask. Do not invent behavior.
 - Do not edit `docs/spec.md` without asking.
-- Once `openapi.yaml` exists, it is the API contract between frontend and backend.
+- `openapi.yaml` is the API contract between frontend and backend.
   The backend implements it; do not change it silently.
 
 ## Process and team (read before starting a task)
@@ -26,8 +26,13 @@ scores them, and drafts an email to the client.
 
 - `backend/` - FastAPI app and its tests
 - `frontend/` - React + TypeScript app (exported from Lovable)
-- `docs/` - specification and supporting documents
-- `openapi.yaml` - API contract (created in Phase 1)
+- `docs/` - specification, architecture, workflow, permissions, deploy, testing, rubric coverage
+- `openapi.yaml` - API contract
+- `ops/` - runbook, Grafana dashboard and alert rules, the on-call prompt, diagnoses
+- `eval/`, `data/` - gold sets, runs and synthetic contracts for the LLM eval
+- `security/` - scanner, audit and model-review runs with a decision per finding
+- `scripts/` - smoke test and helper scripts (standard library only)
+- `agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/`, `.claude/` - the agent extension pack
 
 ## Commands
 

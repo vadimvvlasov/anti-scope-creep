@@ -2,7 +2,7 @@
 
 This document describes how Anti-Scope Creep is built, hosted, deployed, and operated. Product behavior (screens, data model, API, status flow, error codes) is defined in `docs/spec.md`, which wins if the two ever disagree.
 
-Target: **zero hosting cost** on free tiers. Free-tier numbers below were checked on 2026-09-29 and change often; re-check them before relying on them (see [Facts to re-verify](#facts-to-re-verify)).
+Target: **the lowest hosting cost**: free tiers everywhere except the prod backend (a Lightsail Nano node, 7 USD a month). Free-tier numbers below were checked on 2026-09-29 and change often; re-check them before relying on them (see [Facts to re-verify](#facts-to-re-verify)).
 
 ---
 
@@ -13,9 +13,9 @@ flowchart LR
     U["Browser"] --> FE["React SPA<br/>Cloudflare Workers<br/>static assets"]
     FE -->|"HTTPS + JWT<br/>src/services/api.ts"| BE["FastAPI<br/>AWS Lightsail container"]
     BE -->|"pooled connection"| DB[("Neon Postgres")]
-    BE -->|"analysis, text-to-SQL"| LLM["Groq API"]
+    BE -->|"analysis"| LLM["Groq API"]
     BE -->|"OTLP"| OBS["Grafana Cloud<br/>metrics, logs, traces"]
-    MCP["MCP server<br/>query_risk_history"] -->|"POST /query + JWT"| BE
+    MCP["MCP server<br/>3 read-only tools"] -->|"REST API + login"| BE
     OBS -->|"alert webhook"| GH["GitHub Actions<br/>on-call agent"]
     GH -->|"pull request"| REPO["GitHub repo"]
 ```
@@ -27,8 +27,8 @@ flowchart LR
 | Backend | Python, FastAPI, `uv`, `pytest` | AWS Lightsail container service | One Docker image, one always-on Nano node per environment. |
 | Database | PostgreSQL, SQLAlchemy, Alembic | Neon | Built-in PgBouncer pooling, branches for dev/prod. |
 | LLM | Groq API | Groq cloud | Stub analyzer in Phase 1; Groq from the LLM phase. |
-| Agents | LangGraph | inside the backend; on-call agent in GitHub Actions | Text-to-SQL graph behind `POST /query`. |
-| MCP server | FastMCP, stdio | user's machine | Thin client of `POST /query`. |
+| Agents | Gemini tool-calling loop (on-call); LangGraph (planned, #86) | on-call agent in GitHub Actions; the text-to-SQL graph would run inside the backend | The on-call agent exists (section 5). The text-to-SQL graph behind `POST /query` is planned: the route answers `501` today. |
+| MCP server | FastMCP, stdio | user's machine | Thin read-only client of the REST API (three tools, section 5). |
 | Observability | OpenTelemetry → Grafana Cloud | Grafana Cloud free tier | Managed Prometheus-compatible metrics, Loki, Tempo. |
 | CI/CD | GitHub Actions | GitHub | OIDC role in AWS, no long-lived keys. |
 | Images | Docker | GitHub Container Registry (public) | See [Container registry](#container-registry). |
@@ -88,8 +88,8 @@ Local development uses a single Postgres container (`docker run ... postgres:16`
 
 ### Environments
 
-- Neon branch `main` → prod.
-- Neon branch `dev` → dev (branched from `main`, can be reset).
+- Neon branch `production` → prod.
+- Neon branch `dev` → dev (branched from `production`, can be reset).
 - Region: AWS `eu-central-1` (Frankfurt), the same as the backend.
 
 ### Roles and isolation for the text-to-SQL agent
@@ -162,6 +162,8 @@ Contract text and history-query results are sent to Groq. Before the Groq analyz
 
 ### Text-to-SQL graph (behind `POST /query`)
 
+**Status: planned ([#86](https://github.com/vadimvvlasov/anti-scope-creep/issues/86)).** `POST /query` answers `501 FEATURE_NOT_AVAILABLE` today; this section is the design the issue implements.
+
 The router classifies the **question**; uploads never go through it, since they have their own endpoint and screen.
 
 ```mermaid
@@ -196,9 +198,10 @@ Tests for this layer include adversarial SQL: multiple statements, writes, catal
 
 ### MCP server
 
-- One tool: `query_risk_history(question: str) -> HistoryQueryResult`.
-- A thin HTTP client of `POST /query`; configured with `ASC_API_URL` and `ASC_API_TOKEN` (the user's JWT, 24-hour lifetime; the user re-issues it by logging in).
-- No database credentials, no SQL, no guardrail code. There is one guarded path for both the web UI and MCP clients.
+- Three read-only tools in `mcp-server/server.py`: `service_status`, `list_contracts`, `get_findings`.
+- A thin HTTP client of the REST API; configured with `ASC_API_URL` (a local backend only, unless `ASC_ALLOW_REMOTE=1`) and `ASC_EMAIL` and `ASC_PASSWORD` of a test account; it logs in and keeps the token in memory.
+- Planned with the text-to-SQL agent (#86): a `query_risk_history(question)` tool over `POST /query`.
+- No database credentials, no SQL, no guardrail code.
 - Transport: stdio, for local clients (Claude Code, Claude Desktop).
 
 ### On-call agent
@@ -243,16 +246,15 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
   - `llm_requests_total{model,status=ok|rate_limited|server_error|network_error|invalid_json|client_error}` (one per HTTP attempt), `llm_tokens_total{model,kind=input|output}`, `llm_rate_limited_total{model}`
   - `llm_request_duration_seconds{model}` (one chunk or the email request: shows whether a slow analysis is the model or the queue in front of it)
   - `llm_output_truncated_total{model,retried=true|false}`: answers cut at `max_completion_tokens` (`finish_reason: "length"`, section 4); `true` when a retry follows, `false` when the cut was final, so `retried="false"` is the alert
-  - `llm_cost_usd_total{model}`: from token usage and the price per model, once prod runs on a paid tier
+  - `llm_cost_usd_total{model}`: not implemented yet; it needs a paid tier with a price per model
   - `findings_dropped_total{reason=quote_not_found|placeholder_not_restored|invalid_finding|invalid_after_restore}`
   - `api_errors_total{code}` (the error envelope's code, upper case, for example `CONTRACT_NOT_FOUND`)
   - All of our own counters are created with the value 0 at startup (`init_series`) and flushed at once. A counter that first appears with a value has no earlier sample, and Prometheus `increase()` reads its first events as nothing (seen on dev: `UNAUTHORIZED=3` gave an increase of 0). The instrumentation's own series (`http_server_duration_milliseconds_count` by status code) are created lazily and have this flaw, so alerts use our counters, for example `api_errors_total{code="INTERNAL_ERROR"}` for 5xx, not the HTTP histogram.
   - `history_queries_total{route,outcome}`: not implemented yet, `POST /query` answers `501` until the text-to-SQL agent exists
 - **Manual spans:** `contract.extract` (file type, bytes, characters), `analysis.run` (contract id), and inside it `analysis.pseudonymize`, one `analysis.chunk` per chunk, `analysis.verify_quotes` (findings returned and kept), `analysis.email`, and `llm.complete_json` around every model call (model, schema, token counts, finish reason). A failed span carries the exception type or a short code (`analysis_failed`), never the message. The background analysis runs inside the request's trace, so one `trace_id` covers upload, queries and analysis.
 - **Alerts:**
-  - analysis failure rate > 20 % over 15 min; any `stale` outcome; 5xx rate > 5 %; p95 `GET /contracts/{id}` latency > 2 s;
-  - LLM daily budget: on Groq free, `llm_tokens_total` over the last 24 h above 80 % of the 200,000 tokens/day quota, so analyses do not start failing at the end of the day without warning; on a paid tier, a budget alert in the provider's billing console instead;
-  - any truncated answer that failed after its retry.
+  - **Implemented** (two rules in `ops/grafana/alert-rules.yaml`): analysis failure rate > 20 % over 15 minutes (at least 3 analyses in the window), and any 5xx (`api_errors_total{code="INTERNAL_ERROR"}`);
+  - **Planned, not built:** any `stale` outcome; p95 `GET /contracts/{id}` latency > 2 s; LLM daily budget (on Groq free, `llm_tokens_total` over the last 24 h above 80 % of the 200,000 tokens/day quota, so analyses do not start failing at the end of the day without warning; on a paid tier, a budget alert in the provider's billing console instead); any truncated answer that failed after its retry.
 - **Who gets an alert:** two contact points in Grafana. The on-call agent gets the webhook (see On-call agent); a person gets an email (or Telegram) for every alert at the same time. The agent never replaces the human notification: it can misclassify, and only a person merges and promotes.
 - **Local stack before Grafana Cloud:** the `grafana/otel-lgtm` image (Grafana, Prometheus, Loki and Tempo with an OTLP endpoint in one container) as an optional service in `compose.yaml`. Instrumentation, dashboards and alert rules are checked locally on all three signals without spending the cloud free-tier limits; switching to Grafana Cloud changes only `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS`.
 - **Health:** `GET /health` returns `200` without touching the database; `GET /health/ready` checks the database. `GET /version` returns the image tag (`APP_VERSION`, `sha-<short-sha>`, `local` for untagged builds). These are operational endpoints, listed in `openapi.yaml` but not used by the frontend; the frontend footer shows its own build tag, which comes from the same commit.
@@ -325,7 +327,7 @@ Lightsail container services pull images from public registries, so the image is
 | `CORS_ORIGINS` | backend | no | Comma-separated exact origins (the `workers.dev` frontend of the environment, `http://localhost:5173`). No wildcards. |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS` | backend | headers yes | Grafana Cloud OTLP. |
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |
-| `ASC_API_URL`, `ASC_API_TOKEN` | MCP server | token yes | MCP thin client. |
+| `ASC_API_URL`, `ASC_EMAIL`, `ASC_PASSWORD`, `ASC_ALLOW_REMOTE` | MCP server | password yes | MCP thin client of a test account on a local backend. |
 
 - Runtime secrets (`DATABASE_URL`, `JWT_SECRET`, later `GROQ_API_KEY`) live in GitHub Environment secrets and are passed to the container as environment variables of the Lightsail deployment. Lightsail keeps them in the deployment configuration, readable by anyone with Lightsail read access to the account, so that access stays limited to the account owner and the deploy role.
 - `.env.example` in `backend/` and `frontend/` lists every variable with placeholder values; `.env` is git-ignored.

@@ -15,7 +15,7 @@ The MVP uses a deterministic stub analyzer so the complete product workflow work
 
 The MVP frontend also includes a **History Search** screen for natural-language questions over the user's contract history. In the MVP it runs against the frontend mock only; the real backend answers with a stub until the text-to-SQL agent phase (see [History Search](#5-history-search)).
 
-Contract Details is a split-screen viewer: the contract text with findings highlighted in place, next to the risk cards and email. An author badge and a **Methodology & Privacy** dialog explain who built the product and how data is handled. Users can export a **counter-proposal report** (PDF/DOCX); in the MVP only the mock builds it, the real backend answers with a stub. Paid plans are a [later phase](#pro-tier-and-white-labeled-reports).
+Contract Details is a split-screen viewer: the contract text with findings highlighted in place, next to the risk cards and email. An author badge and a **Methodology & Privacy** dialog explain who built the product and how data is handled. Users can export a **counter-proposal report** (PDF/DOCX); the real backend generates the file, and the mock builds it in mock mode. Paid plans are a [later phase](#pro-tier-and-white-labeled-reports).
 
 This document is also the input prompt for Lovable, which generates the React frontend. Everything the frontend needs (screens, data shapes, API operations, error codes, mock behavior) is specified here.
 
@@ -1401,7 +1401,7 @@ After deployment work:
 
 ### On-call agent
 
-A LangGraph on-call agent reacts to Grafana alerts: it gathers logs, traces, and recent commits, reproduces the failure, and either opens a pull request with a minimal fix and passing tests, or explains why the alert is a false positive. It never commits to `main`, never deploys, and never changes infrastructure. Boundaries are documented in `docs/permissions.md`; the design is in `docs/architecture.md`.
+An on-call agent (a tool-calling loop on Gemini in GitHub Actions) reacts to Grafana alerts: it gathers logs, traces, and recent commits, reproduces the failure, and either opens a pull request with a minimal fix and passing tests, or explains why the alert is a false positive. It never commits to `main`, never deploys, and never changes infrastructure. Boundaries are documented in `docs/permissions.md`; the design is in `docs/architecture.md`.
 
 ---
 
