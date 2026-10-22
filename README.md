@@ -10,8 +10,11 @@ payment terms), scores each one and drafts an email to the client.
 
 ## Reviewer quick path
 
-1. **Live:** register with any email, upload [`data/2.txt`](data/2.txt) (or paste text). The real model
-   (Groq `gpt-oss-120b`) answers in seconds; a long contract takes a few minutes.
+1. **Live:** register with any email and upload [`data/24.txt`](data/24.txt) (about 19,000 characters; or
+   paste text). The real model (Groq `gpt-oss-120b`) returns two High findings, the payment terms "Net 90" in
+   clause 4.2 and in the fee schedule, each with a counter-clause. **Export report** gives a PDF or DOCX with
+   them and a draft email to the client; the email ends without a signature, you add your name. A contract
+   with no risky clauses returns no findings and "Overall risk: Low" (try [`data/2.txt`](data/2.txt)).
 2. **Local:** `make up`, open http://localhost:3000, log in as `demo@example.com` / `password123`
    (23 demo contracts). Locally the analyzer is a **stub** that returns fixture findings, so the findings
    do not depend on the file you upload. `make down` stops it.
