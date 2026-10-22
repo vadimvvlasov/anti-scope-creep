@@ -23,7 +23,7 @@ LLM provider), [`docs/architecture.md`](../docs/architecture.md), section 9, and
 | `pip-audit` (40 backend packages) | no known vulnerabilities: [`pip-audit.json`](runs/2026-10-12/pip-audit.json) |
 | `npm audit --omit=dev` (504 packages) | 0 vulnerabilities: [`npm-audit.json`](runs/2026-10-12/npm-audit.json) |
 | Model review of PR #23 (Groq analyzer) | 3 medium, 2 low, 1 info (already fixed): [`model-review-pr23.md`](runs/2026-10-12/model-review-pr23.md) |
-| Manual checks | `main` is not protected; the local agent runs with the developer's credentials |
+| Manual checks | `main` was not protected when the run was made (the ruleset GH-1 below has been active since 2026-10-12); the local agent runs with the developer's credentials |
 
 All 14 findings with dispositions: [`findings.json`](runs/2026-10-12/findings.json).
 

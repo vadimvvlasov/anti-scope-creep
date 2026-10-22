@@ -3,8 +3,9 @@
 What to check, where, and what to do when Anti-Scope Creep misbehaves. Each scenario goes
 symptom → where to look → commands → action. Commands are read-only unless marked.
 
-Until phase 4 (OpenTelemetry, Grafana Cloud, alerts; see `docs/architecture.md`,
-section 6) there is no dashboard: the signals below are the whole observability surface.
+Since phase 4 the backend sends traces, metrics and logs to Grafana Cloud (the dashboard
+"Anti-Scope Creep service health" and two alert rules: [`ops/grafana/README.md`](grafana/README.md)).
+The signals below are what you can check without it.
 
 ## System map
 
@@ -16,7 +17,7 @@ section 6) there is no dashboard: the signals below are the whole observability 
 | LLM | Groq `openai/gpt-oss-120b` (dev and prod) | backend logs: `Groq <model> attempt N failed: HTTP <status>` | backend via `GROQ_API_KEY` |
 | CI/CD | GitHub Actions: `ci.yml`, `deploy-dev.yml`, `promote-prod.yml`, `deploy.yml`, `dev-down.yml` | `gh run list`, `gh run view <id> --log-failed` | anyone with repo access; prod deploy needs an environment approval |
 
-URLs are in the README (Environments). Prod backend:
+URLs are in the README (Deploy and CI/CD). Prod backend:
 `https://anti-scope-creep-prod.w7ype86rjt6a6.eu-central-1.cs.amazonlightsail.com`.
 
 ## First five minutes
@@ -109,7 +110,7 @@ incident: stop, note the log stream and time, and fix the logging before anythin
   - `HTTP 400 ... Failed to validate JSON`: the model returned output that does not match
     the strict schema. Not retried by the client; Retry Analysis sends the same text again
     and can succeed (generation is not deterministic).
-  - `output was cut at max_completion_tokens` (once #31 is merged): the answer did not fit
+  - `output was cut at max_completion_tokens`: the answer did not fit
     even after the retry with a doubled budget. Report it with the contract size, never
     its content.
   - A container restart (deploy, crash) during an analysis: the task is lost, the stale
