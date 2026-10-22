@@ -59,7 +59,9 @@ every contract is not realistic, and there is rarely time to review one line by 
 - Every quote is checked against the contract text; a finding whose quote is not there is dropped
 - Names, emails, phone numbers, URLs, bank and tax IDs and addresses are replaced with placeholders before
   the text leaves the backend, and restored in the answer
-- Contract Details shows the text beside the findings with highlights; export a PDF or DOCX report
+- Contract Details shows the text beside the findings with highlights; export a PDF or DOCX report (High and
+  Medium findings with counter-clauses and the draft email; Low findings are counted in the summary but not
+  listed, as the spec says)
 - A short contract takes seconds; a long one (about 55,000 characters) about three minutes on the free tier
 - The **Pro** button in the header records interest in a paid plan (a demand test, no payments)
 - **Planned, not built yet:** History Search answered by a text-to-SQL agent
