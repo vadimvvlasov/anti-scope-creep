@@ -34,6 +34,41 @@ demo data (later startups find the demo user and skip seeding):
 
 Data is kept in the database across restarts.
 
+## Hot reload with the frontend
+
+You need [uv](https://docs.astral.sh/uv/), Node.js 20+ with npm, and Docker (only
+for the Postgres container). Stop the Docker stack first (`make down`): the dev backend
+uses the same port 8000.
+
+```bash
+make install    # backend and frontend dependencies, creates frontend/.env
+make db         # Postgres 16 in the container asc-pg on 127.0.0.1:5432
+```
+
+Backend, in one terminal. The app does not read `.env` files, so export the
+variables (all of them are described in [`.env.example`](.env.example)):
+
+```bash
+export DATABASE_URL=postgresql+psycopg://postgres:dev@localhost:5432/asc
+export JWT_SECRET=$(python3 -c "import secrets; print(secrets.token_urlsafe(48))")
+make migrate
+make dev-backend    # http://localhost:8000, Swagger UI at /docs
+```
+
+Frontend, in another terminal:
+
+```bash
+make dev-frontend   # http://localhost:8080
+```
+
+Log in as `demo@example.com` / `password123`: the first start on an empty database
+seeds 23 demo contracts in every status. `other@example.com` / `password123` owns
+one contract, for checking that another user's contract returns `404`.
+
+To run the frontend without a backend, set `VITE_USE_MOCK=true` in `frontend/.env`.
+
+Run every `make` command from the repository root.
+
 ## Test
 
 ```bash
