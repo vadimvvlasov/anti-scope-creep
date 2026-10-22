@@ -81,7 +81,7 @@ Added in Phase 4:
 - OpenTelemetry in the backend: traces, metrics and JSON logs, where traces and logs carry the same
   trace id. No contract text and no exception message leave the service (tests:
   `backend/tests/test_telemetry_signals.py` and `test_telemetry_exceptions.py`). The signals reach
-  Grafana Cloud from dev; turning it on for prod is tracked in [#74](https://github.com/vadimvvlasov/anti-scope-creep/issues/74)
+  Grafana Cloud from dev and prod ([#74](https://github.com/vadimvvlasov/anti-scope-creep/issues/74))
 - A dashboard and two alert rules on what a user notices (the failure rate of analyses, a 5xx), kept
   as files in [`ops/grafana/`](ops/grafana/README.md). An alert sends an email to the owner and a
   webhook to the agent in the same minute
@@ -124,8 +124,7 @@ Added in Phase 2:
 - Automatic deploy of `main` to a dev environment and a manual, approved promotion
   of the same image to prod (see [Deploy](#deploy))
 
-Not yet: the text-to-SQL agent ([#86](https://github.com/vadimvvlasov/anti-scope-creep/issues/86)), the fine-tuned classifier, telemetry from prod
-([#74](https://github.com/vadimvvlasov/anti-scope-creep/issues/74)).
+Not yet: the text-to-SQL agent ([#86](https://github.com/vadimvvlasov/anti-scope-creep/issues/86)) and the fine-tuned classifier.
 
 Product rules live in [`docs/spec.md`](docs/spec.md), infrastructure and phases in
 [`docs/architecture.md`](docs/architecture.md).
