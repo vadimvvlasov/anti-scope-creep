@@ -28,17 +28,17 @@ daily quota may be spent: try again later. [AI data policy](docs/ai-data-policy.
 | # | Criterion | Where to look | In one line |
 |---|---|---|---|
 | 1 | Problem Description | [Problem](#problem), [What it does](#what-it-does), [`spec.md`](docs/spec.md) | the problem, the behavior and screenshots are on this page |
-| 2 | Product Specification | [`docs/spec.md`](docs/spec.md), [GitHub Issues](https://github.com/vadimvvlasov/anti-scope-creep/issues) | data model, status flow, severity matrix, error codes; tracker with acceptance criteria, closed by pull requests (`Closes #n`) |
-| 3 | Agent Team Specification | [`docs/ai-workflow.md`](docs/ai-workflow.md#agent-team), [`docs/permissions.md`](docs/permissions.md) | ten roles, what each may and may not touch, a six-step flow |
+| 2 | Product Specification | [`docs/spec.md`](docs/spec.md), [GitHub Issues](https://github.com/vadimvvlasov/anti-scope-creep/issues) | data model, status flow, severity matrix, error codes; a public tracker (opened 2026-10-22, earlier work is planned in [`architecture.md`](docs/architecture.md) section 10) with acceptance criteria, closed by pull requests (`Closes #n`) |
+| 3 | Agent Team Specification | [`docs/ai-workflow.md`](docs/ai-workflow.md#agent-team), [`docs/permissions.md`](docs/permissions.md) | ten members (agents, CI and the owner), what each may and may not touch, a six-step flow |
 | 4 | Context Management | [`AGENTS.md`](AGENTS.md), [`frontend/AGENTS.md`](frontend/AGENTS.md) | one entry file with commands, rules and links to the modular docs |
 | 5 | Application | `frontend/`, `backend/`, [`openapi.yaml`](openapi.yaml) | React, FastAPI, Postgres; upload, background analysis, findings, report export |
-| 6 | Testing | [Tests](#tests), [`docs/testing.md`](docs/testing.md) | backend 419, frontend 71, Playwright end-to-end 11; CI on every pull request |
+| 6 | Testing | [Tests](#tests), [`docs/testing.md`](docs/testing.md) | unit: backend 419 (SQLite and PostgreSQL), frontend 71; integration: Playwright 11 against the Docker stack; CI on every pull request |
 | 7 | Containerization | [`compose.yaml`](compose.yaml), `backend/Dockerfile`, `frontend/Dockerfile` | `make up` starts Postgres, migrations, backend and frontend |
 | 8 | Deployment | [Deploy](#deploy-and-cicd), [`docs/deploy.md`](docs/deploy.md) | public URL; Cloudflare Workers, AWS Lightsail, Neon; a smoke test after every deploy |
-| 9 | CI/CD | [`.github/workflows/`](.github/workflows/), [Deploy](#deploy-and-cicd) | seven CI jobs on every pull request, auto deploy to dev, manual approved promote to prod, rollback in the [runbook](ops/runbook.md) |
-| 10 | Observability | [Observability](#observability-alerts-on-call-agent), [`ops/grafana/`](ops/grafana/README.md) | traces, metrics and JSON logs with one trace id in Grafana Cloud (dev and prod); no contract text in telemetry (tested) |
-| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; fired twice on a real fault; [alert email](docs/screenshots/07-alert-email-5xx.png) |
-| 12 | On-Call Agent | [`on-call.yml`](.github/workflows/on-call.yml), [drill write-up](ops/diagnosis/2026-10-21-oncall-drill.md) | a real alert woke the agent and it opened a fix pull request ([#72](https://github.com/vadimvvlasov/anti-scope-creep/pull/72)); the fourth run of the drill, see below |
+| 9 | CI/CD | [`.github/workflows/`](.github/workflows/), [Deploy](#deploy-and-cicd) | seven CI jobs, auto deploy to dev, manual approved promote to prod, [rollback](ops/runbook.md#roll-back-prod) |
+| 10 | Observability | [Observability](#observability-alerts-on-call-agent), [`ops/grafana/`](ops/grafana/README.md) | traces, metrics and JSON logs with one trace id in Grafana Cloud (dev and prod; it is private, the screenshots below are the evidence); no contract text in telemetry (tested) |
+| 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email](docs/screenshots/07-alert-email-5xx.png) |
+| 12 | On-Call Agent | [`on-call.yml`](.github/workflows/on-call.yml), [drill write-up](ops/diagnosis/2026-10-21-oncall-drill.md) | a planned fault on dev, a real alert: the agent opened the fix pull request ([#72](https://github.com/vadimvvlasov/anti-scope-creep/pull/72)) on the fourth run, see below |
 
 The evidence per criterion and what is still open: [`docs/rubric.md`](docs/rubric.md).
 
@@ -58,6 +58,7 @@ every contract is not realistic, and there is rarely time to review one line by 
   the text leaves the backend, and restored in the answer
 - Contract Details shows the text beside the findings with highlights; export a PDF or DOCX report
 - A short contract takes seconds; a long one (about 55,000 characters) about three minutes on the free tier
+- The **Pro** button in the header records interest in a paid plan (a demand test, no payments)
 - **Planned, not built yet:** History Search answered by a text-to-SQL agent
   ([#86](https://github.com/vadimvvlasov/anti-scope-creep/issues/86); the screen exists and answers "coming
   soon"), and a classifier fine-tuned on CUAD
@@ -66,7 +67,7 @@ every contract is not realistic, and there is rarely time to review one line by 
 |---|---|---|
 | ![Login](docs/screenshots/01-login.png) | ![Contract history](docs/screenshots/02-contract-history.png) | ![New analysis](docs/screenshots/03-new-analysis.png) |
 
-| Contract Details: text beside findings, export | History Search: "coming soon" until #86 |
+| Contract Details: text beside findings, export (local demo data, stub analyzer) | History Search: "coming soon" until #86 |
 |---|---|
 | ![Contract details](docs/screenshots/04-contract-details.png) | ![History search](docs/screenshots/05-history-search.png) |
 
@@ -90,12 +91,13 @@ make down    # stop; the database volume is kept
 make test-all
 ```
 
-- Installs the dependencies, starts a throwaway PostgreSQL, runs the unit tests (backend on SQLite and
-  PostgreSQL, frontend with Vitest), starts the Docker stack, runs the Playwright end-to-end tests against
-  it and stops everything, also when a test fails
+- Needs Docker, [uv](https://docs.astral.sh/uv/) and Node.js 20+. It installs the dependencies, starts a
+  throwaway PostgreSQL, runs the **unit** tests (backend with pytest on SQLite and PostgreSQL, frontend with
+  Vitest), starts the Docker stack, runs the **integration** tests (Playwright against the real frontend,
+  backend and Postgres) and stops everything, also when a test fails
 - On 2026-10-22, from a fresh clone: backend 419 passed, frontend 71 passed, end-to-end 11 passed
-- CI runs the same tests on every pull request, plus Semgrep, a Docker build and a check that
-  `openapi.yaml` matches the routes
+- CI runs the same tests on every pull request, plus a Docker build, a check that `openapi.yaml` matches
+  the routes, and Semgrep (report only: findings are reviewed, they do not fail the build yet)
 - Step by step, and on a fresh Linux machine: [`docs/testing.md`](docs/testing.md)
 
 ## Deploy and CI/CD
@@ -120,11 +122,14 @@ make test-all
   and prod; logs and traces share a `trace_id`. No contract text and no exception message leave the service
   (tests: `test_telemetry_signals.py`, `test_telemetry_exceptions.py`)
 - **Dashboard and alerts:** a dashboard and two alert rules (failure rate of analyses, 5xx) as files in
-  [`ops/grafana/`](ops/grafana/README.md); an alert emails the owner and calls a webhook
+  [`ops/grafana/`](ops/grafana/README.md); an alert emails the owner and calls a webhook. Grafana Cloud is
+  private, so the screenshots below are the evidence; locally `make up-observability` starts a Grafana to
+  which you import `ops/grafana/dashboard.json`
 - **On-call agent:** Gemini in GitHub Actions wakes on an alert, investigates the commit that was running, and
   opens a fix pull request or an issue. It never merges or deploys; a person reviews
-- **How the drill went** ([write-up](ops/diagnosis/2026-10-21-oncall-drill.md)): the first three runs found the
-  cause but ended with no pull request or no verdict (a repository setting, then the turn budget, then a
+- **How the drill went** ([write-up](ops/diagnosis/2026-10-21-oncall-drill.md)): a planned regression on dev, a
+  real alert and a real agent run. The first three runs found the cause but ended with no pull request or no
+  verdict (a repository setting, then the turn budget, then a
   missing exception type in the context). After fixing those, the fourth run opened the fix pull request
   about three minutes after the alert email. It shows one kind of fault it can fix, not a success rate
   ([#82](https://github.com/vadimvvlasov/anti-scope-creep/issues/82))
@@ -159,8 +164,3 @@ make test-all
 | [`docs/eval.md`](docs/eval.md), [`eval/README.md`](eval/README.md) | how the analyzer is measured and the results |
 | [`security/README.md`](security/README.md) | scanner, dependency audit, model review, a decision per finding |
 | [`ops/README.md`](ops/README.md) | runbook and diagnoses |
-
-Repository layout: `frontend/` (React, Vite), `backend/` (FastAPI, SQLAlchemy, Alembic, tests), `openapi.yaml`,
-`docs/`, `ops/` (runbook, Grafana files, diagnoses), `eval/`, `data/` (synthetic contracts), `scripts/`,
-`.github/workflows/`, and the agent files (`agent-capabilities/`, `agent-hooks/`, `mcp-server/`, `plugins/`,
-`.claude/`).

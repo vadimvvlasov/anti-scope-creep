@@ -9,7 +9,7 @@ incident steps are in [`../ops/runbook.md`](../ops/runbook.md).
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `ci.yml` | pull requests, pushes to `main` | backend, frontend, e2e, scripts, Semgrep, Docker build |
+| `ci.yml` | pull requests, pushes to `main` | backend, frontend, mcp-server, e2e, scripts, Semgrep (report only), Docker build |
 | `deploy-dev.yml` | CI passed on `main`, or by hand | builds the backend image once (`ghcr.io/vadimvvlasov/anti-scope-creep-backend:sha-<short-sha>`) and deploys it to dev |
 | `promote-prod.yml` | by hand, optionally with an image tag | deploys an image that already ran in dev to prod, without a rebuild, after approval |
 | `deploy.yml` | called by the two above | runs migrations, deploys to Lightsail, builds and deploys the frontend, runs a smoke test |
