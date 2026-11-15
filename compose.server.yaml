@@ -1,0 +1,98 @@
+# One environment of the backend on the home server (docs/self-host.md).
+# The same file runs prod and dev side by side; each is its own compose project with its own env file:
+#
+#   docker compose -f compose.server.yaml --env-file /path/to/prod.env up -d
+#
+# The backend is reachable from the internet only through its own Tailscale node (the sidecar below),
+# at https://<COMPOSE_PROJECT_NAME>.<tailnet>.ts.net, via Tailscale Funnel. Nothing listens on the LAN:
+# the local port binds to 127.0.0.1 and is there for checks on the server itself.
+# The database is Neon; migrations run from the deploy workflow, not here.
+
+name: ${COMPOSE_PROJECT_NAME:?set COMPOSE_PROJECT_NAME, e.g. asc-prod or asc-dev}
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+services:
+  backend:
+    image: ghcr.io/vadimvvlasov/anti-scope-creep-backend:${IMAGE_TAG:?set IMAGE_TAG, e.g. prod or dev}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?}
+      JWT_SECRET: ${JWT_SECRET:?}
+      CORS_ORIGINS: ${CORS_ORIGINS:?}
+      ANALYZER: ${ANALYZER:-stub}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-}
+      SEED_DEMO_DATA: "false"
+      # Telemetry export is off while the endpoint is empty (docs/architecture.md, section 6).
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${IMAGE_TAG}
+    ports:
+      - "127.0.0.1:${PORT:?set PORT, a different one per environment}:8000"
+    # The image runs as a non-root user and writes nothing to disk (backend/Dockerfile).
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid,nodev
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    # The same memory as the Lightsail nano service the image was tuned for (see MALLOC_* in the Dockerfile).
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 256
+    healthcheck:
+      # The image has no curl.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 20s
+    logging: *logging
+
+  # This environment's own Tailscale node. Userspace networking: no NET_ADMIN, no /dev/net/tun,
+  # and the node reaches the backend over the compose network, not over the host.
+  tailscale:
+    # From ghcr, like the backend: one registry for the server to reach.
+    image: ghcr.io/tailscale/tailscale:v1.104.4
+    restart: unless-stopped
+    hostname: ${COMPOSE_PROJECT_NAME}
+    environment:
+      # A tagged, pre-approved auth key; needed only for the first login, the node then lives in the state volume.
+      TS_AUTHKEY: ${TS_AUTHKEY:?}
+      TS_HOSTNAME: ${COMPOSE_PROJECT_NAME}
+      TS_EXTRA_ARGS: --advertise-tags=tag:asc
+      TS_USERSPACE: "true"
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_SERVE_CONFIG: /config/serve.json
+    configs:
+      - source: serve
+        target: /config/serve.json
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+    read_only: true
+    # The socket lives in /tmp and is linked from /var/run/tailscale, where the CLI looks for it:
+    # `docker compose exec tailscale tailscale status`.
+    tmpfs:
+      - /tmp:size=16m,nosuid,nodev
+      - /var/run/tailscale:size=1m,nosuid,nodev
+    # Without NET_ADMIN tailscaled logs that it cannot raise UDP buffer sizes; that limits throughput only.
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 128
+    logging: *logging
+
+configs:
+  # HTTPS on 443 of this node goes to the backend, and Funnel opens it to the internet; the sidecar fills
+  # in ${TS_CERT_DOMAIN} with the node's name. A file, not inline content: Compose cannot place inline
+  # content into a read-only container.
+  serve:
+    file: ./ops/server/tailscale-serve.json
+
+volumes:
+  tailscale-state:
