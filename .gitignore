@@ -1,1 +1,4 @@
 __pycache__/
+# Filled-in env files of compose.server.yaml; only the .example file is committed.
+.env.server
+*.env
