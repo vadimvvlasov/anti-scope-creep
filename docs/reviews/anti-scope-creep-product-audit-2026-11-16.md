@@ -734,4 +734,4 @@ Decided by the owner after reading the audit. Where they differ from sections E-
 | 9 | Frontend npm audit (needed before the landing page T8) | #109 | - |
 
 T8-T10 and T12-T18 keep their places in section H. #84 (text limit by provider) is now Groq versus the local
-model. #85 (DeepSeek versus Gemini) compared cloud candidates for prod and is likely obsolete; the owner decides.
+model. #85 (DeepSeek versus Gemini) is closed as obsolete.
