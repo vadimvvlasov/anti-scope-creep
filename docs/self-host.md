@@ -462,7 +462,11 @@ about 12-13 GB in all) and a cap in the other project (`torch.cuda.set_per_proce
 ### The GPU in Docker
 
 The NVIDIA driver must already work on the host (`nvidia-smi`). Then the NVIDIA Container Toolkit
-([docs.nvidia.com](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)):
+([docs.nvidia.com](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)).
+It may already be installed (`nvidia-ctk --version`, `grep -rl libnvidia-container /etc/apt/sources.list.d/`):
+then skip the repository lines and run only `nvidia-ctk runtime configure` and the restart. A second list file
+for the same repository with another keyring stops `apt update` with "Conflicting values set for option
+Signed-By"; delete the newer file.
 
 ```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey |
