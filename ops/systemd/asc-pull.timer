@@ -1,0 +1,13 @@
+# Runs asc-pull.service every 5 minutes (docs/self-host.md, "Pull timer").
+# A run that is still going when the next one is due is not started twice.
+[Unit]
+Description=Pull the anti-scope-creep backend images every 5 minutes
+
+[Timer]
+OnCalendar=*:0/5
+AccuracySec=10s
+RandomizedDelaySec=20s
+Persistent=false
+
+[Install]
+WantedBy=timers.target
