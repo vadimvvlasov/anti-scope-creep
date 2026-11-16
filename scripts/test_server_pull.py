@@ -25,7 +25,7 @@ FAKE_DOCKER = textwrap.dedent(
 
     if args[0] == "compose":
         env = Path(args[args.index("--env-file") + 1]).stem
-        command = args[5]
+        command = args[args.index("--env-file") + 2]
         if f"{command}:{env}" in os.environ.get("FAKE_FAIL", "").split():
             sys.exit(1)
         cid, new = state / f"{env}.cid", state / f"{env}.new"
@@ -98,7 +98,7 @@ class ServerPullTest(unittest.TestCase):
 
     def test_pulls_and_waits_for_health_in_each_environment(self):
         self.run_script(self.prod, self.dev)
-        prefix = f"compose -f {self.compose_file} --env-file"
+        prefix = f"compose --progress quiet -f {self.compose_file} --env-file"
         for env_file in (self.prod, self.dev):
             self.assertIn(f"{prefix} {env_file} pull --quiet", self.calls())
             self.assertIn(f"{prefix} {env_file} up -d --wait --wait-timeout 180", self.calls())

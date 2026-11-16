@@ -22,10 +22,12 @@ log() {
   printf '%s\n' "$*"
 }
 
+# No progress lines ("Container ... Running", "Image ... Pulled"): a run every 5 minutes would fill the journal
+# with them. Errors still go to stderr, and the script logs one line per environment.
 compose() {
   local env_file=$1
   shift
-  docker compose -f "$compose_file" --env-file "$env_file" "$@"
+  docker compose --progress quiet -f "$compose_file" --env-file "$env_file" "$@"
 }
 
 # The running backend container of an environment, empty if there is none.
