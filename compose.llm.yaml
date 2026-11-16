@@ -30,6 +30,8 @@ services:
       - Ternary-Bonsai-2-27B-Q2_0.gguf
       - --alias
       - bonsai-2-27b
+      # -hf also fetches the vision projector (mmproj) and keeps it in VRAM; contracts are text only.
+      - --no-mmproj
       # Every layer on the GPU, flash attention on (the model card's settings).
       - -ngl
       - "99"
