@@ -125,6 +125,20 @@ The clone of this repository (the compose file, the serve config and the pull sc
 sudo -u asc -H git clone https://github.com/vadimvvlasov/anti-scope-creep.git /home/asc/anti-scope-creep
 ```
 
+`/home/asc` is closed to other users (mode 750), so your own account cannot `cd` into it, and a relative
+`-f compose.server.yaml` run as `asc` from your directory points at a file `asc` cannot read. The commands below
+therefore use absolute paths. For compose, put this function in your `~/.bashrc`:
+
+```bash
+# asc <prod|dev> <compose command...>: compose of one environment, run as the stack user.
+asc() {
+  (cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.server.yaml \
+    --env-file "/home/asc/env/$1.env" "${@:2}")
+}
+```
+
+`asc prod ps`, `asc dev logs --since 1h backend`, `asc prod exec tailscale tailscale status`.
+
 ### Env files
 
 One file per environment, readable by `asc` only, outside the clone:
@@ -136,7 +150,7 @@ for env in prod dev; do
 done
 sudoedit /home/asc/env/prod.env
 sudoedit /home/asc/env/dev.env
-ls -l /home/asc/env   # -rw------- asc asc for both
+sudo ls -l /home/asc/env   # -rw------- asc asc for both
 ```
 
 What differs between the two files:
@@ -246,17 +260,20 @@ In the [admin console](https://login.tailscale.com/admin), once per tailnet:
    (`asc-prod_tailscale-state`), and tagged nodes have key expiry off. Once both nodes are up, the expired key
    in the env files does no harm, but keep the variable set: `compose.server.yaml` requires it.
 
-The check that a tagged node reaches nothing (after step 5, when the nodes exist): from the sidecar,
-`tailscale nc` to one of your own devices must fail.
+The check that a tagged node reaches nothing (after step 5, when the nodes exist). Tailscale sends a node only
+the peers it may talk to, in either direction, so `asc-prod` does not even know `asc-dev`:
 
 ```bash
-cd /home/asc/anti-scope-creep
-sudo -u asc docker compose -f compose.server.yaml --env-file /home/asc/env/prod.env \
-  exec tailscale timeout 10 tailscale nc <one-of-your-devices> 22
+asc prod exec tailscale tailscale status            # asc-prod and your own devices; no asc-dev
+dev_ip=$(asc dev exec tailscale tailscale ip -4)
+asc prod exec tailscale timeout 10 tailscale nc "$dev_ip" 443; echo "rc=$?"
 ```
 
-Expected: an error or a timeout, no SSH banner. The backend container cannot reach the tailnet at all: the
-sidecar runs in userspace mode and does not route the compose network into the tailnet.
+Expected: no `asc-dev` in the list, and the `nc` ends with an error or is cut by the timeout (`rc=143`, the
+TERM from busybox `timeout`). By name instead of IP, `nc` fails earlier, at the DNS lookup, for the same reason.
+In the admin console, Access controls → Preview rules for `tag:asc` shows no destinations. The backend
+container cannot reach the tailnet at all: the sidecar runs in userspace mode and does not route the compose
+network into the tailnet.
 
 ## 4. Pulling from ghcr
 
@@ -285,10 +302,8 @@ The `:prod` and `:dev` tags exist once the deploy workflows have moved them to a
 ## 5. Start both environments
 
 ```bash
-cd /home/asc/anti-scope-creep
-for env in prod dev; do
-  sudo -u asc docker compose -f compose.server.yaml --env-file "/home/asc/env/$env.env" up -d --wait
-done
+asc prod up -d --wait
+asc dev up -d --wait
 sudo -u asc docker ps --format 'table {{.Names}}\t{{.Status}}'
 ```
 
@@ -298,8 +313,7 @@ state volume. `--wait` returns once the backend's health check passes. On the se
 ```bash
 curl -fsS http://127.0.0.1:8000/version   # prod
 curl -fsS http://127.0.0.1:8001/version   # dev
-sudo -u asc docker compose -f compose.server.yaml --env-file /home/asc/env/prod.env \
-  exec tailscale tailscale funnel status
+asc prod exec tailscale tailscale funnel status
 ```
 
 `funnel status` shows `https://asc-prod.<tailnet>.ts.net (Funnel on)` proxying to `http://backend:8000`.
@@ -356,10 +370,19 @@ To stop deploys for a while (an incident, a migration by hand): `sudo systemctl 
 
 ### Moving an existing setup to the stack user
 
-If the environments already run from another account's clone, stop them there
-(`docker compose -f compose.server.yaml --env-file <old>.env down`, without `-v`) and start them from
-`/home/asc` as above. Volumes belong to Docker, not to a user, and the project names are the same, so the
-sidecars find their state volumes and come back as the same Tailscale nodes, with the same URLs.
+If the environments already run from another account's clone, copy the env files over unchanged (the same
+`JWT_SECRET` keeps users logged in), then move one environment at a time, dev first:
+
+```bash
+sudo install -o asc -g asc -m 600 <old-dir>/dev.env /home/asc/env/dev.env
+(cd <old-clone> && docker compose -f compose.server.yaml --env-file <old-dir>/dev.env down)   # no -v
+asc dev up -d --wait
+```
+
+Volumes belong to Docker, not to a user, and the project names are the same, so the sidecar finds its state
+volume and comes back as the same Tailscale node, with the same URL. If `up` fails, the same `up -d` from the
+old clone brings the environment back. Once both run from `/home/asc`, delete the old env files
+(`shred -u`).
 
 ## 6. Another project on the same server
 
