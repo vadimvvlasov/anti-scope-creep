@@ -41,10 +41,11 @@ class EventLimiter:
 
 
 def client_ip(request: Request) -> str:
-    """The visitor's IP behind the Lightsail load balancer.
+    """The visitor's IP behind the reverse proxy in front of the backend.
 
-    The balancer appends the address it saw to X-Forwarded-For, so the last entry is the
-    one a client cannot forge; earlier entries are whatever the client sent.
+    The proxy (Tailscale Funnel and serve in prod, docs/self-host.md) puts the address it saw
+    last in X-Forwarded-For, so the last entry is the one a client cannot forge; earlier
+    entries, if any, are whatever the client sent.
     """
     forwarded = request.headers.get("x-forwarded-for", "")
     if forwarded.strip():

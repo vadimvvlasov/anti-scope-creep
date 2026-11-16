@@ -40,7 +40,7 @@ services:
       - /tmp:size=64m,noexec,nosuid,nodev
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
-    # The same memory as the Lightsail nano service the image was tuned for (see MALLOC_* in the Dockerfile).
+    # 512 MB: the memory the image was tuned for (see MALLOC_* in the Dockerfile and HASH_CONCURRENCY in app/auth.py).
     mem_limit: 512m
     cpus: 1.0
     pids_limit: 256

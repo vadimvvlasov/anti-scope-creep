@@ -11,17 +11,20 @@ The local agent (Claude Code) runs in the developer's shell. What keeps producti
 is mostly what is **not** on the machine and what GitHub enforces, not the agent's
 instructions:
 
-- Production and dev secrets (database URLs, JWT secret, the deployed Groq key) live only
-  in GitHub Environments. The agent never sees them.
+- Production and dev runtime secrets (database URLs, JWT secret, the deployed Groq key) live in
+  the env files on the home server, readable only by the stack user `asc`; the migration URL and
+  the Cloudflare token live in GitHub Environments. The agent never reads them. Its limit on the
+  server is the developer's SSH access, which it inherits from the shell: see the note below the table.
 - `main` accepts changes only through a pull request with green CI (ruleset, GH-1).
-- Deploying to prod needs a reviewer on the `prod` environment; the deploy roles can only
-  touch Lightsail services tagged for their environment (SG-2).
+- Deploying to prod needs a reviewer on the `prod` environment. A deploy only moves an image
+  tag in ghcr; nothing in GitHub can reach the server, which pulls images on its own timer
+  ([`self-host.md`](self-host.md)).
 
 ## Rules for the local agent
 
 | Rule | Enforced by |
 |---|---|
-| No AWS CLI | `deny: Bash(aws:*)` in `.claude/settings.json`, and the guard hook for compound commands (`cd x && aws ...`) |
+| No AWS CLI (kept from the Lightsail period; the project no longer uses AWS) | `deny: Bash(aws:*)` in `.claude/settings.json`, and the guard hook for compound commands (`cd x && aws ...`) |
 | No merging pull requests, no GitHub secrets or tokens | `deny: Bash(gh pr merge:*)`, `Bash(gh secret:*)`, `Bash(gh auth token:*)`; the hook also stops `gh api .../secrets` |
 | Does not read or edit `.env` files or keys in `~/.config/*.env` | `deny: Read(./**/.env)`, `Read(~/.config/*.env)`, `Edit(./**/.env)`; the hook covers `.env.*` variants, private keys and shell reads (`cat`, `grep`, `head`) |
 | Does not print the environment | the hook stops `printenv`, a bare `env` and `echo $...KEY/TOKEN/SECRET/PASSWORD` |
@@ -34,6 +37,14 @@ The hook is a guardrail against mistakes, not a sandbox: a determined command ca
 around a pattern match. It runs in the same process context as the agent and fails open
 on input it does not understand. The credentials that are not on the machine are the
 real boundary.
+
+**The home server is the exception.** Since the backend moved there (November 2026), the
+developer's machine holds an SSH key to the server, and the agent inherits it: an agent
+command can reach an account with `sudo`, and from there the env files with the runtime
+secrets. No rule stops this today; the agent is told not to read the env files
+(`AGENTS.md`), and the hook does not see inside a remote command. To make it a hard boundary,
+the developer can deny `Bash(ssh:*)` and `Bash(scp:*)` in `.claude/settings.json`, or keep the
+server key in an agent that asks for confirmation (`ssh-add -c`).
 
 ## Subagent
 
@@ -69,7 +80,7 @@ Runs in GitHub Actions (`.github/workflows/on-call.yml`) when Grafana sends an a
 | Never changes `main` directly | it pushes `oncall/<run id>` and opens a pull request; the `main` ruleset requires a pull request with green CI, and a person merges |
 | Needs one repository setting | "Allow GitHub Actions to create and approve pull requests" (Settings, Actions, General) must be on, or the publish step cannot open a pull request (the first run of the drill ended that way). The same setting would let a workflow approve a pull request; the `main` ruleset asks for no approvals and nothing in `on-call.yml` approves or merges |
 | Its pull request is looked at before its code runs in CI | GitHub holds the CI run of a pull request opened by a bot (`action_required`) until a person approves it, and the CI run that `oncall-publish.sh` starts on the branch does not count as the checks of the pull request. So code written by the agent runs in CI only after a person has seen the diff (`ops/runbook.md`) |
-| Cannot deploy | no AWS role, no Neon or Cloudflare credentials in the `oncall` environment |
+| Cannot deploy | no `packages: write`, no Neon or Cloudflare credentials in the `oncall` environment, and no access to the server |
 | Its secrets stay with `main` | the `oncall` environment deploys only from `main`, so a workflow edited in a pull request cannot read `GEMINI_API_KEY` |
 | Investigates only merged code | the alert's `ref` (the deployed commit) must be a commit sha that is an ancestor of `origin/main`; anything else (a branch name, an unknown commit, a commit only on another branch) fails the run before any secret is used. The agent's own scripts always come from `main`; the commit under investigation is a separate `git worktree` |
 | Tests of the repository do not see the credentials | `pytest` runs with the environment of the step minus `GEMINI_*`, `ONCALL_*`, `GH_*`, `GITHUB_TOKEN` and `ACTIONS_*` (`scrubbed_env` in `scripts/oncall_agent.py`, tested) |

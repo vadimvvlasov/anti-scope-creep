@@ -37,7 +37,7 @@ daily quota may be spent: try again later. [AI data policy](docs/ai-data-policy.
 | 5 | Application | `frontend/`, `backend/`, [`openapi.yaml`](openapi.yaml) | React, FastAPI, Postgres; upload, background analysis, findings, report export |
 | 6 | Testing | [Tests](#tests), [`docs/testing.md`](docs/testing.md) | unit: backend 419 (SQLite and PostgreSQL), frontend 71; integration: Playwright 11 against the Docker stack; CI on every pull request |
 | 7 | Containerization | [`compose.yaml`](compose.yaml), `backend/Dockerfile`, `frontend/Dockerfile` | `make up` starts Postgres, migrations, backend and frontend |
-| 8 | Deployment | [Deploy](#deploy-and-cicd), [`docs/deploy.md`](docs/deploy.md) | public URL; Cloudflare Workers, AWS Lightsail, Neon; a smoke test after every deploy |
+| 8 | Deployment | [Deploy](#deploy-and-cicd), [`docs/deploy.md`](docs/deploy.md) | public URL; Cloudflare Workers, a self-hosted backend behind Tailscale Funnel, Neon; a smoke test after every deploy |
 | 9 | CI/CD | [`.github/workflows/`](.github/workflows/), [Deploy](#deploy-and-cicd) | seven CI jobs, auto deploy to dev, manual approved promote to prod, [rollback](ops/runbook.md#roll-back-prod) |
 | 10 | Observability | [Observability](#observability-alerts-on-call-agent), [`ops/grafana/`](ops/grafana/README.md) | traces, metrics and JSON logs with one trace id in Grafana Cloud (dev and prod; it is private, the screenshots below are the evidence); no contract text in telemetry (tested) |
 | 11 | Alerting on User Impact | [`ops/grafana/alert-rules.yaml`](ops/grafana/alert-rules.yaml) | two rules on what a user notices; the 5xx rule fired twice in the drill; [alert email from the drill](docs/screenshots/07-alert-email-5xx.png) (its runbook link was corrected afterwards, see the write-up) |
@@ -109,15 +109,19 @@ make test-all
 
 | | Frontend | Backend | Database |
 |---|---|---|---|
-| **prod** | https://anti-scope-creep.vadimvlasov.workers.dev | AWS Lightsail container service, `eu-central-1` | Neon branch `production` |
-| **dev** | https://anti-scope-creep-dev.vadimvlasov.workers.dev | Lightsail service created on deploy, deleted every night | Neon branch `dev` |
+| **prod** | https://anti-scope-creep.vadimvlasov.workers.dev | compose project `asc-prod` on a home server, public through Tailscale Funnel | Neon branch `production` |
+| **dev** | https://anti-scope-creep-dev.vadimvlasov.workers.dev | compose project `asc-dev` on the same server | Neon branch `dev` |
 
 - Every pull request: CI (backend, frontend, mcp-server, scripts, e2e, Docker, Semgrep); the `main` ruleset
   needs a pull request and green checks
-- Merge to `main`: CI, then `deploy-dev` builds the image once, migrates, deploys and runs a smoke test
+- Merge to `main`: CI, then `deploy-dev` builds the image once, migrates, moves the `:dev` tag to it, waits
+  until the server has pulled it (`GET /version`), deploys the frontend and runs a smoke test
 - Prod: **Promote to prod** is manual, takes an image that already ran in dev, and waits for a reviewer's
   approval; a smoke test checks `GET /version` against the promoted tag
-- Rollback: promote the previous tag ([`ops/runbook.md`](ops/runbook.md))
+- Rollback: promote the previous tag, or move `:prod` back by hand ([`ops/runbook.md`](ops/runbook.md#roll-back-prod))
+- The server: [`docs/self-host.md`](docs/self-host.md). Nothing from GitHub connects to it; a timer on the server
+  pulls the image that `:dev` or `:prod` points to. The backend ran on AWS Lightsail until the AWS account was
+  closed in November 2026
 - Workflows, secrets, deploying your own copy and cleanup: [`docs/deploy.md`](docs/deploy.md); the reasons
   for the choices: [`docs/architecture.md`](docs/architecture.md)
 
@@ -165,6 +169,7 @@ make test-all
 | Document | What is in it |
 |---|---|
 | [`docs/architecture.md`](docs/architecture.md) | hosting, CI/CD, LLM provider, observability, the on-call agent, phases |
+| [`docs/deploy.md`](docs/deploy.md), [`docs/self-host.md`](docs/self-host.md) | workflows and settings; the home server from a clean host to two environments |
 | [`docs/ai-data-policy.md`](docs/ai-data-policy.md) | what contract data goes to the LLM provider and what is kept |
 | [`docs/eval.md`](docs/eval.md), [`eval/README.md`](eval/README.md) | how the analyzer is measured and the results |
 | [`security/README.md`](security/README.md) | scanner, dependency audit, model review, a decision per finding |

@@ -6,7 +6,7 @@ findings and an email draft, then delete the contract. Exits non-zero with a mes
 the first failure.
 
 Usage:
-    python3 scripts/smoke.py https://anti-scope-creep-dev.example.cs.amazonlightsail.com
+    python3 scripts/smoke.py https://asc-dev.example.ts.net
     python3 scripts/smoke.py http://localhost:8000 --timeout 60
     python3 scripts/smoke.py <BACKEND-URL> --expect-version sha-a702387
 """
@@ -138,7 +138,7 @@ def run(base_url: str, timeout: float = 120.0, interval: float = 2.0, expect_ver
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("base_url", help="API base URL, e.g. https://<service>.<id>.<region>.cs.amazonlightsail.com")
+    parser.add_argument("base_url", help="API base URL, e.g. https://asc-dev.<tailnet>.ts.net")
     parser.add_argument("--timeout", type=float, default=120.0, help="seconds for the whole run (default 120)")
     parser.add_argument("--interval", type=float, default=2.0, help="seconds between polls (default 2)")
     parser.add_argument("--expect-version", help="fail unless GET /version returns this, e.g. sha-a702387")

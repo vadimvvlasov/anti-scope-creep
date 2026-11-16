@@ -1,4 +1,4 @@
-"""Password hashing must fit a 512 MB container (Lightsail nano) under concurrent requests."""
+"""Password hashing must fit a 512 MB container (the prod memory limit) under concurrent requests."""
 
 import threading
 import time
@@ -9,7 +9,7 @@ from argon2 import PasswordHasher
 import app.auth as auth
 from app.auth import HASH_CONCURRENCY, hash_password, verify_password
 
-# argon2-cffi's default profile: 64 MiB per hash. Eight at once killed the nano container.
+# argon2-cffi's default profile: 64 MiB per hash. Eight at once killed a 512 MB container.
 LEGACY_HASHER = PasswordHasher(memory_cost=65536, time_cost=3, parallelism=4)
 
 
