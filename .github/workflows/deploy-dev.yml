@@ -39,11 +39,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/anti-scope-creep-backend:sha-${SHA::7}"
+          cache="${image%:*}:buildcache"
           echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
-          docker build -t "$image" --build-arg APP_VERSION="sha-${SHA::7}" \
+          # A build cache in ghcr: the venv layer is rebuilt, and pulled by the server, only when uv.lock
+          # changes; a code change ships a layer of under a megabyte (backend/Dockerfile).
+          docker buildx create --use --driver docker-container >/dev/null
+          docker buildx build -t "$image" --build-arg APP_VERSION="sha-${SHA::7}" \
             --label "org.opencontainers.image.source=https://github.com/$GITHUB_REPOSITORY" \
-            --label "org.opencontainers.image.revision=$SHA" backend/
-          docker push "$image"
+            --label "org.opencontainers.image.revision=$SHA" \
+            --cache-from "type=registry,ref=$cache" --cache-to "type=registry,ref=$cache,mode=max" \
+            --push backend/
           echo "image=$image" >> "$GITHUB_OUTPUT"
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
 

@@ -39,7 +39,12 @@ RUN useradd --system --uid 10001 --no-create-home --shell /usr/sbin/nologin app
 
 WORKDIR /app
 # Root-owned and read-only for the app user: the container writes nothing to disk.
-COPY --from=build /app /app
+# Dependencies and code in separate layers: the server's pull from ghcr is slow (about 120 KB/s), and with the
+# build cache of deploy-dev.yml a code change ships only the small code layer, not the 50 MB of the venv.
+COPY --from=build /app/.venv /app/.venv
+COPY --from=build /app/alembic.ini /app/
+COPY --from=build /app/migrations /app/migrations
+COPY --from=build /app/app /app/app
 
 # The image tag (sha-<7 hex>), set by deploy-dev.yml; served by GET /version and shown on deploy.
 ARG APP_VERSION=local
