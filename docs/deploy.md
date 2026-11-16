@@ -106,10 +106,8 @@ server is your own. To take the backend down, on the server:
 
 ```bash
 sudo systemctl disable --now asc-pull.timer
-cd /home/asc/anti-scope-creep
-for env in prod dev; do
-  sudo -u asc docker compose -f compose.server.yaml --env-file "/home/asc/env/$env.env" down -v
-done
+asc prod down -v     # asc(): the compose helper from self-host.md, section 1
+asc dev down -v
 ```
 
 `-v` also deletes the sidecars' state volumes; then remove the nodes in the Tailscale admin

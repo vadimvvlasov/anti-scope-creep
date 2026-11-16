@@ -46,11 +46,15 @@ Until November 2026 the backend ran on AWS Lightsail; the diagnosis logs from th
 ## Logs
 
 Backend: on the server, over SSH (the owner's access; the on-call agent has none by design).
-A shell function saves typing the compose file and the env file each time:
+The `asc` shell function from [`docs/self-host.md`](../docs/self-host.md) (section 1, "The stack user")
+saves typing the compose file and the env file each time; it uses absolute paths, because `/home/asc` is
+closed to your own account:
 
 ```bash
-cd /home/asc/anti-scope-creep
-asc() { sudo -u asc docker compose -f compose.server.yaml --env-file "/home/asc/env/$1.env" "${@:2}"; }
+asc() {
+  (cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.server.yaml \
+    --env-file "/home/asc/env/$1.env" "${@:2}")
+}
 
 asc prod logs --since 1h backend | grep -v 'GET /health'   # the backend's JSON log
 asc prod ps                                                # state, health, uptime
