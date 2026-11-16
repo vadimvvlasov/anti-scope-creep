@@ -49,6 +49,10 @@ services:
       # The prompt cache in host memory (default 8 GiB): smaller, so it fits mem_limit next to the model file.
       - -cram
       - "4096"
+      # The GPU is shared by turns with other projects (docs/self-host.md, section 8): after 5 idle minutes the
+      # server unloads the model and frees the VRAM; the next request loads it again.
+      - --sleep-idle-seconds
+      - "300"
     ports:
       - "127.0.0.1:8080:8080"
     volumes:

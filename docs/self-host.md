@@ -447,6 +447,18 @@ Why these choices (from the model card and its `KNOWN_ISSUES.md`):
   in all. Check the real number with `nvidia-smi` after the first request.
 - Reasoning effort `medium` from the client: `low` is not supported and `high` returns HTTP 500.
 
+### Sharing the GPU with other projects
+
+The GPU is shared by turns, not split: whoever runs gets nearly all 24 GB. `--sleep-idle-seconds 300` makes
+`llama-server` unload the model after 5 idle minutes; the next request loads it again from the volume (seconds,
+plus the prompt). Another project on the GPU (for example a PyTorch inference service) must do the same: free
+its memory when it is done (`del model; torch.cuda.empty_cache()`, or exit), and not hold it while idle.
+
+Nothing arbitrates between them. If both need the GPU at the same moment, the one that loads second gets an
+out-of-memory error. For this project that is a failed analysis the user can retry; the other project must
+handle it too. If collisions become common, split the memory instead: a smaller context here (`-c 32768`,
+about 12-13 GB in all) and a cap in the other project (`torch.cuda.set_per_process_memory_fraction`).
+
 ### The GPU in Docker
 
 The NVIDIA driver must already work on the host (`nvidia-smi`). Then the NVIDIA Container Toolkit
@@ -495,7 +507,8 @@ nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv
 ```
 
 Expected: a sensible answer, the token usage, the generation speed in tokens per second, and the memory in use
-well under 24 GB.
+well under 24 GB. Six minutes later, with no requests, `nvidia-smi` should show the memory freed again (the
+server is asleep); `docker logs llm-llama-1` says when it went to sleep and woke up.
 
 ### The eval from a laptop
 
