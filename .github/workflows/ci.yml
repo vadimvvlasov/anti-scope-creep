@@ -124,8 +124,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Build the backend image (not pushed)
         run: docker build -t asc-backend backend/
-      - name: Check the server compose file (docs/self-host.md)
-        run: docker compose -f compose.server.yaml --env-file .env.server.example config --quiet
+      - name: Check the server compose files (docs/self-host.md)
+        run: |
+          docker compose -f compose.server.yaml --env-file .env.server.example config --quiet
+          docker compose -f compose.llm.yaml config --quiet
 
   semgrep:
     runs-on: ubuntu-latest
