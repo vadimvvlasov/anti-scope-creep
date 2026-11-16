@@ -20,6 +20,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+import httpx
+
 from app.chunking import DEFAULT_MAX_CHARS
 from app.extraction import MAX_TEXT_CHARS
 from app.groq_client import API_URL as GROQ_API_URL
@@ -40,18 +42,28 @@ PROVIDERS = {
     "groq": ("GROQ", GROQ_API_URL, DEFAULT_MODEL, 30, 8_000),
     "gemini": ("GEMINI", "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
                "gemini-3.5-flash-lite", 10, 250_000),
+    # llama-server from compose.llm.yaml (docs/self-host.md, section 8), through an SSH tunnel to the server.
+    # One GPU, one request at a time: the server queues, so the limits are only a ceiling.
+    "local": ("LOCAL", "http://127.0.0.1:8080/v1/chat/completions", "bonsai-2-27b", 600, 10_000_000),
 }
+# Seconds per request. A local model that thinks for thousands of tokens needs minutes, not the 60 s of a cloud API.
+REQUEST_TIMEOUT = {"local": 900.0}
 
 
 def llm_client(provider: str = "groq", max_output_tokens: int = 2_000, env=os.environ, temperature: float | None = None,
                reasoning_effort: str = "low"):
-    """The client for one provider; key, model and limits come from <PREFIX>_* variables."""
+    """The client for one provider; key, URL, model and limits come from <PREFIX>_* variables.
+
+    A local server needs no key: LOCAL_API_KEY is sent if set (llama-server --api-key), a placeholder otherwise.
+    """
     prefix, url, model, rpm, tpm = PROVIDERS[provider]
     limiter = TokenBucketLimiter(int(env.get(f"{prefix}_TOKENS_PER_MINUTE", tpm)),
                                  int(env.get(f"{prefix}_REQUESTS_PER_MINUTE", rpm)))
-    return GroqClient(env[f"{prefix}_API_KEY"], limiter, env.get(f"{prefix}_MODEL", model),
-                      max_completion_tokens=max_output_tokens, api_url=url, temperature=temperature,
-                      reasoning_effort=reasoning_effort)
+    key = env.get(f"{prefix}_API_KEY") or ("none" if provider == "local" else env[f"{prefix}_API_KEY"])
+    timeout = float(env.get(f"{prefix}_TIMEOUT", REQUEST_TIMEOUT.get(provider, 60.0)))
+    return GroqClient(key, limiter, env.get(f"{prefix}_MODEL", model), http=httpx.Client(timeout=timeout),
+                      max_completion_tokens=max_output_tokens, api_url=env.get(f"{prefix}_API_URL", url),
+                      temperature=temperature, reasoning_effort=reasoning_effort)
 
 
 def score(run_dir: Path, set_name: str) -> dict:

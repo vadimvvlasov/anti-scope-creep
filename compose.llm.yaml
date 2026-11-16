@@ -1,0 +1,81 @@
+# A local LLM on the server's GPU (docs/self-host.md, section 8): llama-server with Bonsai 2 27B, an
+# OpenAI-compatible API at http://127.0.0.1:8080/v1. Its own compose project, next to asc-prod and asc-dev:
+#
+#   docker compose -f compose.llm.yaml up -d --wait
+#
+# Not public: the port binds to 127.0.0.1, for checks on the server and an SSH tunnel from a laptop (the eval).
+# The product does not use it yet (#114 measures it first).
+
+name: llm
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+services:
+  llama:
+    # Official image, CUDA 12 build. Not CUDA 13: the model's known issues report segfaults of CUDA 13.3 builds
+    # on Linux. Not older than b11556: older builds load Q2_0 without a warning and produce garbage.
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda12-b12429
+    restart: unless-stopped
+    environment:
+      # -hf downloads the model here on the first start (7.63 GB), then reuses it.
+      LLAMA_CACHE: /models
+    command:
+      - --hf-repo
+      - prism-ml/Ternary-Bonsai-2-27B-gguf
+      - --hf-file
+      - Ternary-Bonsai-2-27B-Q2_0.gguf
+      - --alias
+      - bonsai-2-27b
+      # Every layer on the GPU, flash attention on (the model card's settings).
+      - -ngl
+      - "99"
+      - -fa
+      - "on"
+      # One request at a time with a 64K context: a 60,000-character contract is about 15K tokens, and the
+      # model thinks before it answers (the card asks for up to 16K output tokens). A q8_0 KV cache halves
+      # its VRAM against f16 (q5_0 is the slow one, per the known issues).
+      - -c
+      - "65536"
+      - -np
+      - "1"
+      - -ctk
+      - q8_0
+      - -ctv
+      - q8_0
+      # The prompt cache in host memory (default 8 GiB): smaller, so it fits mem_limit next to the model file.
+      - -cram
+      - "4096"
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,nosuid,nodev
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    # The weights live in VRAM; host memory is for loading them and for the prompt cache.
+    mem_limit: 16g
+    pids_limit: 256
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      # The first start downloads the model before /health answers.
+      start_period: 30m
+    logging: *logging
+
+volumes:
+  models:

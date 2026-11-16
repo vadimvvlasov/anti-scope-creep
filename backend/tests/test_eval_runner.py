@@ -133,6 +133,29 @@ def test_gemini_client_uses_its_key_model_endpoint_and_output_limit():
     assert llm_client("groq", env={"GROQ_API_KEY": "test-key"}, reasoning_effort="medium")._reasoning_effort == "medium"
 
 
+def test_local_client_needs_no_key_and_waits_long():
+    from evaluation.__main__ import llm_client
+
+    client = llm_client("local", 16_000, env={}, reasoning_effort="medium")
+    assert client._api_url == "http://127.0.0.1:8080/v1/chat/completions"
+    assert client._model == "bonsai-2-27b" and client._max_completion_tokens == 16_000
+    assert client._headers == {"Authorization": "Bearer none"} and client._reasoning_effort == "medium"
+    assert client._http.timeout.read == 900.0
+
+    tuned = llm_client("local", env={"LOCAL_API_URL": "http://127.0.0.1:9000/v1/chat/completions",
+                                     "LOCAL_API_KEY": "k", "LOCAL_TIMEOUT": "120"})
+    assert tuned._api_url.endswith(":9000/v1/chat/completions") and tuned._headers["Authorization"] == "Bearer k"
+    assert tuned._http.timeout.read == 120.0
+
+
+def test_cloud_providers_still_need_a_key_and_keep_a_short_timeout():
+    from evaluation.__main__ import llm_client
+
+    with pytest.raises(KeyError):
+        llm_client("gemini", env={})
+    assert llm_client("groq", env={"GROQ_API_KEY": "k"})._http.timeout.read == 60.0
+
+
 def test_groq_stays_the_default_provider():
     from evaluation.__main__ import llm_client
 

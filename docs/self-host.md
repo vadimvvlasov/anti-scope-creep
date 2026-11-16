@@ -430,3 +430,93 @@ from then on, because the tag no longer moves; set `IMAGE_TAG=prod` again once t
 Migrations are not rolled back: they run before the new image takes traffic and must stay compatible with the
 previous version, so the older image runs on the newer schema
 ([`deploy.md`](deploy.md), "Promote to prod"; incidents: [`../ops/runbook.md`](../ops/runbook.md)).
+
+## 8. A local LLM on the GPU
+
+An optional third compose project, `llm` ([`compose.llm.yaml`](../compose.llm.yaml)): `llama-server` with
+Bonsai 2 27B (`prism-ml/Ternary-Bonsai-2-27B-gguf`, file `Q2_0`, 7.63 GB) on an NVIDIA GPU, with an
+OpenAI-compatible API on `127.0.0.1:8080`. The product does not use it yet: the eval decides first
+([#114](https://github.com/vadimvvlasov/anti-scope-creep/issues/114)). Written for an RTX 3090 (24 GB).
+
+Why these choices (from the model card and its `KNOWN_ISSUES.md`):
+
+- `Q2_0` runs on the official llama.cpp image; the smaller `PQ2_0` and `PTQ1_0` need PrismML's fork.
+- The image is pinned to a build at or after b11556 (older builds load `Q2_0` silently and produce garbage),
+  and to CUDA 12: CUDA 13.3 builds segfault on Linux.
+- 64K context, one slot, q8_0 KV cache: room for a whole contract and the model's thinking, about 16 GB of VRAM
+  in all. Check the real number with `nvidia-smi` after the first request.
+- Reasoning effort `medium` from the client: `low` is not supported and `high` returns HTTP 500.
+
+### The GPU in Docker
+
+The NVIDIA driver must already work on the host (`nvidia-smi`). Then the NVIDIA Container Toolkit
+([docs.nvidia.com](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)):
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey |
+  sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -fsSL https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list |
+  sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |
+  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list >/dev/null
+sudo apt update && sudo apt install -y nvidia-container-toolkit
+sudo nvidia-ctk runtime configure --runtime=docker   # adds the runtime to /etc/docker/daemon.json, keeps "dns"
+cat /etc/docker/daemon.json
+sudo systemctl restart docker                        # restarts asc-prod and asc-dev too: a short outage
+```
+
+Check that a container sees the GPU:
+
+```bash
+sudo -u asc docker run --rm --gpus all ghcr.io/ggml-org/llama.cpp:server-cuda12-b12429 --list-devices
+```
+
+Expected: `CUDA0: NVIDIA GeForce RTX 3090 (24... MiB, ... free)`. `(none)` means the toolkit is not in use.
+
+### Start
+
+```bash
+cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.llm.yaml up -d
+sudo -u asc docker logs -f llm-llama-1     # the download, then "server is listening on http://0.0.0.0:8080"
+```
+
+The first start downloads the model into the `llm_models` volume (7.63 GB, from Hugging Face; the LAN block
+does not affect it). Later starts load it from there in seconds. The pull timer does not touch this project:
+the image is pinned, and a new build is a deliberate change in `compose.llm.yaml`.
+
+### Checks
+
+```bash
+curl -s http://127.0.0.1:8080/health; echo                 # {"status":"ok"}
+curl -s http://127.0.0.1:8080/v1/chat/completions -H 'Content-Type: application/json' -d '{
+  "model": "bonsai-2-27b", "reasoning_effort": "medium", "max_tokens": 4000,
+  "messages": [{"role": "user", "content": "Name one risk of unlimited revisions in a freelance contract."}]
+}' | python3 -c 'import json,sys; r=json.load(sys.stdin); print(r["choices"][0]["message"]["content"]); print(r["usage"], r.get("timings", {}).get("predicted_per_second"))'
+nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv
+```
+
+Expected: a sensible answer, the token usage, the generation speed in tokens per second, and the memory in use
+well under 24 GB.
+
+### The eval from a laptop
+
+The API listens on the server's loopback only. From the laptop, an SSH tunnel makes it `127.0.0.1:8080` there:
+
+```bash
+ssh -N -L 8080:127.0.0.1:8080 <you>@<server>     # keep it open in its own terminal
+```
+
+Then, in `backend/` on the laptop (the `local` provider needs no key):
+
+```bash
+uv run python -m evaluation run --set freelance --run bonsai-q2-medium --provider local \
+  --reasoning-effort medium --max-output-tokens 16000
+uv run python -m evaluation score --run bonsai-q2-medium --set freelance
+```
+
+Results are cached per contract in `eval/runs/<run>/`, so an interrupted run continues where it stopped.
+`LOCAL_API_URL`, `LOCAL_MODEL` and `LOCAL_TIMEOUT` (seconds per request, default 900) override the defaults.
+
+### Stop
+
+`cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.llm.yaml down` frees the GPU; the
+model stays in the volume (`down -v` deletes it).
