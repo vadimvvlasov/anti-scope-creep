@@ -92,7 +92,8 @@ project's Groq console settings:
 | Uploaded PDF or TXT file | Not stored: read in memory and discarded after text extraction | — |
 
 - Only you can see your contracts.
-- The backend runs on AWS Lightsail in `eu-central-1` (Frankfurt).
+- The backend runs on the owner's own server (self-hosted). Requests reach it through Tailscale Funnel, which
+  relays the encrypted connection: TLS ends on the server, so Tailscale does not see the content.
 - Application logs contain no contract text, prompts or model output: only statuses,
   timings, token counts, and the category and reason of a dropped finding.
 - Usage statistics: page views and a few product events (sign-up, analysis started,

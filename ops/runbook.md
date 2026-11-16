@@ -12,75 +12,55 @@ The signals below are what you can check without it.
 | Component | Where it runs | Logs and state | Who has access |
 |---|---|---|---|
 | Frontend | Cloudflare Worker `anti-scope-creep` (prod), `anti-scope-creep-dev` (dev) | `npx wrangler tail <worker>` | owner (Cloudflare login) |
-| Backend | Lightsail container service `anti-scope-creep-prod` (permanent), `anti-scope-creep-dev` (created by `deploy-dev.yml`, deleted every night by `dev-down.yml` at 03:17 UTC), region `eu-central-1`, container `backend` | `aws lightsail get-container-log`, `GET /health`, `/health/ready`, `/version` | owner (AWS credentials); CI uses OIDC deploy roles |
+| Backend | Home server, compose projects `asc-prod` and `asc-dev` (`compose.server.yaml`): service `backend` and its Tailscale sidecar `tailscale`, public through Funnel; `asc-pull.timer` pulls new images every 5 minutes ([`docs/self-host.md`](../docs/self-host.md)) | `docker compose ... logs backend`, `journalctl -u asc-pull.service`, `GET /health`, `/health/ready`, `/version` | owner (SSH to the server); CI only moves image tags in ghcr |
 | Database | Neon Postgres, branches `production` and `dev` | Neon console: branch status, connections, operations | owner |
 | LLM | Groq `openai/gpt-oss-120b` (dev and prod) | backend logs: `Groq <model> attempt N failed: HTTP <status>` | backend via `GROQ_API_KEY` |
-| CI/CD | GitHub Actions: `ci.yml`, `deploy-dev.yml`, `promote-prod.yml`, `deploy.yml`, `dev-down.yml` | `gh run list`, `gh run view <id> --log-failed` | anyone with repo access; prod deploy needs an environment approval |
+| CI/CD | GitHub Actions: `ci.yml`, `deploy-dev.yml`, `promote-prod.yml`, `deploy.yml` | `gh run list`, `gh run view <id> --log-failed` | anyone with repo access; prod deploy needs an environment approval |
 
-URLs are in the README (Deploy and CI/CD). Prod backend:
-`https://anti-scope-creep-prod.w7ype86rjt6a6.eu-central-1.cs.amazonlightsail.com`.
+URLs are in the README (Deploy and CI/CD). Backends: `https://asc-prod.tailfeb101.ts.net` (prod),
+`https://asc-dev.tailfeb101.ts.net` (dev); the `BACKEND_URL` variable of each GitHub Environment.
+Until November 2026 the backend ran on AWS Lightsail; the diagnosis logs from that time refer to it.
 
 ## First five minutes
 
 1. Is it up?
 
    ```bash
-   B=https://anti-scope-creep-prod.w7ype86rjt6a6.eu-central-1.cs.amazonlightsail.com
+   B=https://asc-prod.tailfeb101.ts.net
    curl -s $B/health         # {"status":"ok"}: the process serves requests, no database touched
    curl -s $B/health/ready   # {"status":"ok"}: the database answers
    curl -s $B/version        # {"version":"sha-<7 hex>"}: the image that runs
    ```
 
+   If nothing answers, the server or its connection may be down: on the server, try
+   `curl -s http://127.0.0.1:8000/health` (8001 for dev), and see
+   [Backend down or not ready](#backend-down-or-not-ready).
 2. Is it the version you expect? Compare `/version` with the last successful promote:
    `gh run list --workflow promote-prod.yml --status success --limit 1`. The frontend footer
    shows its own build tag from the same commit.
-3. What changed? `gh run list --limit 10` (deploys, promotes, nightly dev-down) and
+3. What changed? `gh run list --limit 10` (deploys, promotes),
+   `journalctl -u asc-pull.service --since -2h` on the server (which tag started when) and
    `git log --oneline -10 origin/main`.
 4. Read the backend log around the time of the problem (next section).
 
 ## Logs
 
-Backend (owner's AWS credentials; the agent has none by design). The commands use a
-named profile for the project's AWS account (`aws configure --profile asc-prod`):
-`--profile` wins over `AWS_ACCESS_KEY_ID` in the environment, which may belong to
-another account on the same machine. Check with
-`aws sts get-caller-identity --profile asc-prod` before reading anything.
+Backend: on the server, over SSH (the owner's access; the on-call agent has none by design).
+A shell function saves typing the compose file and the env file each time:
 
 ```bash
-aws lightsail get-container-log --profile asc-prod --region eu-central-1 \
-  --service-name anti-scope-creep-prod --container-name backend \
-  --start-time "$(date -u -d '-1 hour' +%FT%TZ)" \
-  --query 'logEvents[].[createdAt,message]' --output text | grep -v '"GET /health'
+cd /home/asc/anti-scope-creep
+asc() { sudo -u asc docker compose -f compose.server.yaml --env-file "/home/asc/env/$1.env" "${@:2}"; }
+
+asc prod logs --since 1h backend | grep -v 'GET /health'   # the backend's JSON log
+asc prod ps                                                # state, health, uptime
+asc prod logs --since 1h tailscale                         # the sidecar: Funnel, certificates
+journalctl -u asc-pull.service --since -2h --no-pager      # pulls and restarts
 ```
 
-Lightsail health checks hit `/health` every few seconds, hence the `grep -v`. The answer
-is paged oldest first: a wide `--start-time` returns only its oldest page (the response
-has a `nextPageToken`), so keep the window narrow or set `--end-time`.
-
-Service and deployment state:
-
-```bash
-aws lightsail get-container-services --profile asc-prod --region eu-central-1 --service-name anti-scope-creep-prod \
-  --query 'containerServices[0].{state:state,deployment:currentDeployment.state,image:currentDeployment.containers.backend.image}'
-```
-
-Both commands need read permissions that a plain IAM user does not have by default
-(the CI deploy roles have their own). Without them AWS answers `AccessDeniedException ...
-is not authorized to perform: lightsail:GetContainerLog`; if the ARN in that message
-shows an unexpected account, the profile is wrong, not the permissions. A read-only
-inline policy for a separate on-call IAM user (not the Terraform or deploy identity):
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "ReadLightsailContainerLogsAndState",
-    "Effect": "Allow",
-    "Action": ["lightsail:GetContainerLog", "lightsail:GetContainerServices"],
-    "Resource": "arn:aws:lightsail:eu-central-1:<account-id>:*"
-  }]
-}
-```
+The container's own health check calls `/health/ready` every 10 seconds, hence the
+`grep -v`. Docker keeps up to 30 MB of log per container (3 files of 10 MB), so older
+lines are gone; the same logs are in Loki when telemetry export is on.
 
 Lines worth searching for: `Analysis failed for contract`, `Groq <model> attempt`,
 `Dropped a <category> finding`, `HTTP 429`.
@@ -114,17 +94,26 @@ incident: stop, note the log stream and time, and fix the logging before anythin
     even after the retry with a doubled budget. Report it with the contract size, never
     its content.
   - A container restart (deploy, crash) during an analysis: the task is lost, the stale
-    rule turns it `failed` after 600 s. Check the deployment time in the service state.
+    rule turns it `failed` after 600 s. `asc prod ps` shows how long the container has been
+    up, and `journalctl -u asc-pull.service` when a new image started.
 
 ### Backend down or not ready
 
-- **`/health` fails:** the container does not serve. Service state: `DEPLOYING` or
-  `UPDATING` means a deploy is in progress, wait; `RUNNING` with errors means the process
-  crashes, read the log from its start.
+- **`/health` fails from outside, but works on the server** (`curl -s http://127.0.0.1:8000/health`):
+  the path through Tailscale is broken. `asc prod exec tailscale tailscale status` and
+  `asc prod exec tailscale tailscale funnel status`; `asc prod logs tailscale`. A node that has
+  just been created drops some TLS handshakes for a few minutes; that passes on its own.
+- **`/health` fails on the server too:** the container does not serve. `asc prod ps`:
+  `starting` means a restart is in progress, wait; `restarting` or `unhealthy` means the
+  process crashes or cannot reach the database, read `asc prod logs backend` from its start.
+  A pull that is still running shows in `systemctl status asc-pull.service`.
+- **Nothing answers, not even SSH:** the server is off or offline (power, home internet).
+  There is no second host; the backend is down until it is back. The frontend still loads
+  and shows network errors.
 - **`/health` ok, `/health/ready` fails:** the database does not answer. Neon console:
   is the branch active, compute suspended (it wakes on the next query), any incident on
-  Neon's status page? Check that `DATABASE_URL` in the GitHub Environment points to the
-  right branch.
+  Neon's status page? Check that `DATABASE_URL` in the server's env file of that environment
+  points to the right branch.
 
 ### The API answers 500 (`INTERNAL_ERROR`)
 
@@ -175,15 +164,21 @@ The agent (`.github/workflows/on-call.yml`) answers an alert with one of two thi
 ### A deploy or promote failed
 
 - `gh run view <id> --log-failed` shows the failed step.
-- **`deploy-dev.yml`:** dev is deleted every night, so the first deploy of the day creates
-  the service again. "is done DELETING" is retried by `lightsail-deploy.sh` for up to 15
-  minutes; anything else in the create step is a real error.
 - **`promote-prod.yml`, job `resolve`:** it validates before anyone approves. Leave
   `image_tag` empty to promote the last successful dev deploy; a typed tag must match
   `sha-<7 hex>`, be on `main` and exist in ghcr. A failure here changed nothing in prod.
+- **`deploy.yml`, "Check the settings":** the `BACKEND_URL` variable of the environment is
+  empty or not `https://<host>`.
+- **`deploy.yml`, "Wait for the server to run the image":** the tag moved, but in 10 minutes
+  `GET /version` did not report the new image. On the server: `systemctl status asc-pull.timer
+  asc-pull.service` (is the timer running, did the last run fail?) and
+  `journalctl -u asc-pull.service -n 50` (pull error, or `not healthy after 180s`: then
+  `asc dev logs backend`). Compose does not roll back: a new container that never becomes
+  healthy stays in place of the old one, so that environment is down until you fix it or move
+  the tag back. Rerun the workflow once the server is fixed: moving the tag again is harmless.
 - **`deploy.yml` smoke test:** `scripts/smoke.py` waits for `/health/ready`, checks
-  `/version` and runs register, upload, poll and delete. A smoke failure after a
-  successful Lightsail deploy means the new version is live but broken: roll back.
+  `/version` and runs register, upload, poll and delete. A smoke failure after the server
+  switched means the new version is live but broken: roll back.
 
 ### Roll back prod
 
@@ -194,8 +189,25 @@ gh run list --workflow promote-prod.yml --status success --limit 5   # pick the 
 gh workflow run promote-prod.yml -f image_tag=sha-<7 hex>             # changes prod; needs approval
 ```
 
-Then check `/version`. Migrations are not rolled back automatically: if the bad release
-contained a migration, check it before promoting an older image.
+The server runs it within about 5 minutes; the workflow waits for that and runs the smoke
+test. Then check `/version`.
+
+Migrations are not rolled back automatically, and the promote runs `alembic upgrade head`
+from the older image first: if the bad release contained a migration, that step fails
+(the database is at a revision the older image does not know), and nothing changes in
+prod. Then move the tag by hand, which skips migrations. The older image then runs on the
+newer schema, which works because migrations must stay backward-compatible
+([`docs/deploy.md`](../docs/deploy.md), "Promote to prod"; [`docs/self-host.md`](../docs/self-host.md),
+section 7):
+
+```bash
+docker buildx imagetools create \
+  -t ghcr.io/vadimvvlasov/anti-scope-creep-backend:prod \
+  ghcr.io/vadimvvlasov/anti-scope-creep-backend:sha-<7 hex>       # changes prod
+```
+
+If ghcr itself is the problem, pin the image on the server instead: `IMAGE_TAG=sha-<7 hex>`
+in the prod env file, then `sudo systemctl start asc-pull.service`.
 
 ## After an incident
 

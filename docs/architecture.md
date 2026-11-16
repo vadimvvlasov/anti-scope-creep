@@ -2,7 +2,7 @@
 
 This document describes how Anti-Scope Creep is built, hosted, deployed, and operated. Product behavior (screens, data model, API, status flow, error codes) is defined in `docs/spec.md`, which wins if the two ever disagree.
 
-Target: **the lowest hosting cost**: free tiers everywhere except the prod backend (a Lightsail Nano node, 7 USD a month). Free-tier numbers below were checked on 2026-09-29 and change often; re-check them before relying on them (see [Facts to re-verify](#facts-to-re-verify)).
+Target: **the lowest hosting cost**: free tiers everywhere, and the backend on the owner's own server (until November 2026 it ran on AWS Lightsail, see [Decisions](#decisions)). Free-tier numbers below were checked on 2026-09-29 and change often; re-check them before relying on them (see [Facts to re-verify](#facts-to-re-verify)).
 
 ---
 
@@ -11,7 +11,8 @@ Target: **the lowest hosting cost**: free tiers everywhere except the prod backe
 ```mermaid
 flowchart LR
     U["Browser"] --> FE["React SPA<br/>Cloudflare Workers<br/>static assets"]
-    FE -->|"HTTPS + JWT<br/>src/services/api.ts"| BE["FastAPI<br/>AWS Lightsail container"]
+    FE -->|"HTTPS + JWT<br/>src/services/api.ts"| TS["Tailscale Funnel<br/>sidecar node"]
+    TS -->|"HTTP, compose network"| BE["FastAPI container<br/>home server"]
     BE -->|"pooled connection"| DB[("Neon Postgres")]
     BE -->|"analysis"| LLM["Groq API"]
     BE -->|"OTLP"| OBS["Grafana Cloud<br/>metrics, logs, traces"]
@@ -24,13 +25,13 @@ flowchart LR
 |---|---|---|---|
 | Frontend | React + TypeScript (Lovable) | Cloudflare Workers static assets (`frontend/wrangler.jsonc`) | Static SPA. All API calls in `src/services/api.ts`; full mock for backend-free runs. TanStack Start SPA mode, build output `frontend/.output/public`; the shell is `index.html`, and `not_found_handling: single-page-application` serves it for deep links. No Worker script: requests to static assets are free and unlimited. URLs: `anti-scope-creep.vadimvlasov.workers.dev` (prod), `anti-scope-creep-dev.vadimvlasov.workers.dev` (dev). Cloudflare Pages was the first plan; Wrangler now delegates new Pages projects to Workers. |
 | API contract | `openapi.yaml` | repo | Contract between frontend and backend. |
-| Backend | Python, FastAPI, `uv`, `pytest` | AWS Lightsail container service | One Docker image, one always-on Nano node per environment. |
+| Backend | Python, FastAPI, `uv`, `pytest` | Home server, Docker Compose (`compose.server.yaml`) | One Docker image; per environment a compose project with the backend (512 MB, 1 CPU) and a Tailscale sidecar that makes it public through Funnel. See [`self-host.md`](self-host.md). |
 | Database | PostgreSQL, SQLAlchemy, Alembic | Neon | Built-in PgBouncer pooling, branches for dev/prod. |
 | LLM | Groq API | Groq cloud | Stub analyzer in Phase 1; Groq from the LLM phase. |
 | Agents | Gemini tool-calling loop (on-call); LangGraph (planned, #86) | on-call agent in GitHub Actions; the text-to-SQL graph would run inside the backend | The on-call agent exists (section 5). The text-to-SQL graph behind `POST /query` is planned: the route answers `501` today. |
 | MCP server | FastMCP, stdio | user's machine | Thin read-only client of the REST API (three tools, section 5). |
 | Observability | OpenTelemetry → Grafana Cloud | Grafana Cloud free tier | Managed Prometheus-compatible metrics, Loki, Tempo. |
-| CI/CD | GitHub Actions | GitHub | OIDC role in AWS, no long-lived keys. |
+| CI/CD | GitHub Actions | GitHub | Deploys move an image tag in ghcr; the server pulls it. No credentials for the server in GitHub. |
 | Images | Docker | GitHub Container Registry (public) | See [Container registry](#container-registry). |
 
 ---
@@ -61,15 +62,15 @@ Rules that matter for the infrastructure (full definitions in `docs/spec.md`):
 - **Run check:** a task commits only if the contract is still `analyzing` with the task's `analysis_run_id`.
 - **Stale analysis rule:** an `analyzing` contract older than `ANALYSIS_STALE_AFTER_SECONDS` (default 600) becomes `failed` on its next read or change. This is the safety net for lost background tasks.
 
-### Background work on Lightsail
+### Background work in an always-on container
 
-FastAPI `BackgroundTasks` run in the same process after the response is sent. A Lightsail container service keeps its containers running: CPU is not throttled between requests and the service does not scale to zero, so in-process tasks run normally after the `202` response. A container can still be replaced (deploy, node restart), and the stale rule covers that.
+FastAPI `BackgroundTasks` run in the same process after the response is sent. The backend container runs all the time: CPU is not throttled between requests and nothing scales it to zero, so in-process tasks run normally after the `202` response. A container can still be replaced (a new image, a crash, a server reboot), and the stale rule covers that. The same held on AWS Lightsail, where the backend ran until November 2026.
 
 **Decision:** in-process `BackgroundTasks` plus the stale rule. The analysis runner sits behind an interface (`AnalysisRunner.schedule(contract_id, run_id)`), so it can be swapped for a task queue (for example, SQS with a worker container in the same deployment) if tasks get lost too often. That swap changes no public API.
 
-**Cost.** Lightsail bills by the hour up to the monthly price, for as long as a container service exists, busy or idle, enabled or disabled; only deleting it stops the charge. Nano power (0.25 vCPU, 512 MB) costs 7 USD/month per node (about 0.0096 USD/hour) and includes 500 GB of data transfer. So **prod is permanent** (7 USD/month) and **dev is ephemeral**: the deploy workflow creates the dev service when it needs it, and a nightly workflow deletes it, so a dozen hours of dev a month cost about 0.12 USD. Both are paid from the AWS Free Tier credits (100 USD, valid until 2027-05-08). Set an AWS budget alert that ignores credits, and delete the prod service when the project is no longer demoed.
+**Cost.** None beyond the server's own power and internet: Tailscale Funnel is on every plan, including the free one, and both environments run all the time. The price is availability: one machine on a home connection, no second host, so a power or internet outage takes the backend down (the frontend on Cloudflare stays up). Funnel traffic also has bandwidth limits that cannot be configured, which is fine at this scale.
 
-Lightsail settings: power Nano, scale 1, region `eu-central-1` (Frankfurt, the same AWS region as Neon), container port 8000 as the public endpoint (HTTPS only, default `*.cs.amazonlightsail.com` domain), health check `GET /health`.
+Server settings: one compose project per environment (`asc-prod`, `asc-dev`), the backend read-only with all capabilities dropped, 512 MB and 1 CPU (the image was tuned for 512 MB on Lightsail Nano, see `HASH_CONCURRENCY` in `app/auth.py`), a health check on `GET /health/ready`, the port bound to `127.0.0.1` only. Public HTTPS comes from the environment's own Tailscale node (`https://asc-<env>.<tailnet>.ts.net`), which terminates TLS and proxies to the backend over the compose network. Containers cannot reach the home LAN. Details and the steps: [`self-host.md`](self-host.md).
 
 ---
 
@@ -90,7 +91,7 @@ Local development uses a single Postgres container (`docker run ... postgres:16`
 
 - Neon branch `production` → prod.
 - Neon branch `dev` → dev (branched from `production`, can be reset).
-- Region: AWS `eu-central-1` (Frankfurt), the same as the backend.
+- Region: AWS `eu-central-1` (Frankfurt). It was the same region as the backend on Lightsail; the backend now runs on a home server, so each query crosses the internet instead of staying inside one AWS region.
 
 ### Roles and isolation for the text-to-SQL agent
 
@@ -226,7 +227,7 @@ How it is built (`.github/workflows/on-call.yml`):
 
 Boundaries (enforced by workflow permissions, and documented in `docs/permissions.md`):
 - Write access only to `oncall/*` branches, pull requests, and issues. Never pushes to `main`.
-- The workflow has no deploy credentials and no Neon or AWS access; it reads Grafana with a read-only token.
+- The workflow has no deploy credentials, no Neon access and no access to the server; it reads Grafana with a read-only token.
 - If classification is unsure, the default is "explain + needs human review", never a silent fix.
 - Merging and promoting to prod stay human. The chain was run end to end on a planned fault on 2026-10-21 (alert, email, webhook, agent, fix pull request, review, merge): [`ops/diagnosis/2026-10-21-oncall-drill.md`](../ops/diagnosis/2026-10-21-oncall-drill.md).
 - Telemetry is untrusted input: log lines carry request paths anyone can send. The prompt says so, the agent has no network besides the model API, and a fix still needs a person to merge it.
@@ -237,7 +238,7 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 
 - **Instrumentation:** OpenTelemetry SDK in the backend, with auto-instrumentation for FastAPI and HTTPX (the Groq client), a query tracer on SQLAlchemy engine events (one `db SELECT` span per query with the dialect and the operation only: `opentelemetry-instrumentation-sqlalchemy` refuses sqlalchemy 2.1 and records the SQL text), plus manual spans for extraction, each analysis chunk, quote verification, and the text-to-SQL graph nodes.
 - **Export:** OTLP over HTTP directly to the Grafana Cloud OTLP gateway, with no collector sidecar. Pull scraping would need a public metrics endpoint on the container service, so push is simpler. Flush exporters on `SIGTERM`, when a deployment replaces the container.
-- **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to the Lightsail container logs automatically and to Loki through OTLP logs.
+- **Logs:** structured JSON to stdout, with `trace_id`, `contract_id`, and error `code`. They go to the container's log on the server (`docker compose logs`, kept up to 30 MB per container) and to Loki through OTLP logs.
 - **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
   - **Exceptions carry where, not what.** An exception message can hold contract text (a title, a clause that a handler put into it). The manual spans record only the exception type. The FastAPI server span and the OpenTelemetry log handler used to record the full message and traceback (found on 2026-10-21 in the trace of the on-call drill); `ExceptionScrubber` (a span processor that runs before the exporter) and `ScrubbedLoggingHandler` now export the exception type and the traceback frames (`file:line in function`, no source lines, no message), and a span status `Type: message` is cut to `Type`. The JSON log on stdout, the operator's own, keeps the whole traceback. Tests: `backend/tests/test_telemetry_exceptions.py`.
 - **Metrics:**
@@ -268,13 +269,15 @@ Grafana Cloud free tier (metrics, logs, traces with limited retention) is enough
 ```mermaid
 flowchart LR
     PR["pull request"] --> CI["ci.yml:<br/>backend tests + Postgres,<br/>frontend tests + build,<br/>e2e, Semgrep"]
-    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>create + deploy Lightsail dev,<br/>Workers dev, smoke test"]
-    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon main,<br/>Lightsail prod, Workers prod,<br/>smoke test"]
+    M["push to main"] --> CI2["ci.yml"] --> DEV["deploy-dev.yml:<br/>image sha-tag -> ghcr,<br/>migrate Neon dev,<br/>move :dev, wait for /version,<br/>Workers dev, smoke test"]
+    WD["workflow_dispatch<br/>(tag, approval)"] --> PROD["promote-prod.yml:<br/>same image,<br/>migrate Neon production,<br/>move :prod, wait for /version,<br/>Workers prod, smoke test"]
+    DEV -.->|":dev tag"| SRV["home server:<br/>asc-pull.timer,<br/>pull + up every 5 min"]
+    PROD -.->|":prod tag"| SRV
 ```
 
 ### Workflows
 
-All workflows use GitHub-hosted runners, which are free for public repositories. A self-hosted runner saves nothing here and exposes the machine to workflows triggered from forks.
+All workflows use GitHub-hosted runners, which are free for public repositories. A self-hosted runner saves nothing here and exposes the machine to workflows triggered from forks. That is also why the deploy is pull-based: the server pulls images on its own timer, and nothing in GitHub can reach it.
 
 1. **`ci.yml`** (pull requests and pushes):
    - backend: `uv sync`, linter if configured, `uv run pytest` against a Postgres service container;
@@ -284,29 +287,30 @@ All workflows use GitHub-hosted runners, which are free for public repositories.
 2. **`deploy-dev.yml`** (after CI passes on `main`):
    - build the image once, tag it `sha-<short-sha>` (also baked in as `APP_VERSION`), and push it to `ghcr.io`;
    - `alembic upgrade head` on the Neon `dev` branch (direct endpoint), run with the same image;
-   - create the Lightsail container service `anti-scope-creep-dev` if it does not exist (dev is ephemeral; its default domain stays the same, because the random part is per account and Region), then create a deployment of that image (`aws lightsail create-container-service-deployment`) and wait until it is active;
-   - build the frontend with the URL of that service as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
+   - point the `:dev` tag at that image (`docker buildx imagetools create`, no rebuild); the server's timer pulls it within 5 minutes, and the workflow polls `GET /version` on `BACKEND_URL` until it reports the new tag (`scripts/wait_version.py`, up to 10 minutes);
+   - build the frontend with `BACKEND_URL` as `VITE_API_URL` and deploy it to the Cloudflare Worker `anti-scope-creep-dev` (`wrangler deploy --env dev`);
    - smoke test: `GET /health/ready`, `GET /version` equals the image's `APP_VERSION`, register + upload + poll with the stub.
 3. **`promote-prod.yml`** (`workflow_dispatch` with an optional image tag, GitHub Environment `prod` with a required reviewer; an empty tag means the head commit of the last successful `deploy-dev` run):
    - reuses the **same image** tested in dev;
-   - migrations on the Neon `main` branch;
-   - deploys it to the Lightsail container service `anti-scope-creep-prod`;
-   - builds the frontend with the prod service URL as `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
+   - migrations on the Neon `production` branch;
+   - points the `:prod` tag at it and waits until the server runs it;
+   - builds the frontend with the prod `BACKEND_URL` as `VITE_API_URL` (the frontend is rebuilt per environment because Vite inlines env vars at build time) and deploys it to the Cloudflare Worker `anti-scope-creep` (`wrangler deploy`);
    - smoke test.
 
-   Before the approval gate, a job checks that the tag is `sha-<short-sha>` of a commit on `main` and that the image exists in ghcr. Both deploy workflows share the steps after the image build through the reusable workflow **`deploy.yml`** (migrate, Lightsail deployment, frontend Worker, smoke test); only dev may create its service.
-4. **`dev-down.yml`** (nightly schedule and `workflow_dispatch`): deletes the dev container service, which is billed until deleted.
-5. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
+   Before the approval gate, a job checks that the tag is `sha-<short-sha>` of a commit on `main` and that the image exists in ghcr. Both deploy workflows share the steps after the image build through the reusable workflow **`deploy.yml`** (migrate, move the tag, wait, frontend Worker, smoke test).
+4. **`on-call.yml`** (`repository_dispatch` from Grafana): see [On-call agent](#on-call-agent).
 
 Migrations run **before** the new revision takes traffic, so they must be backward-compatible with the running revision (add columns first, remove them in a later release).
 
 ### Container registry
 
-Lightsail container services pull images from public registries, so the image is a public package on `ghcr.io` (the repository is public too). If the image ever has to be private, push it to the container service itself (`aws lightsail push-container-image`) or to Amazon ECR.
+The image is a public package on `ghcr.io` (the repository is public too), so the server pulls it without a login. If it ever has to be private, the server logs in with a read-only token ([`self-host.md`](self-host.md), section 4). The environment tags `:dev` and `:prod` are the deploy: the workflows move them, the server follows them.
 
 ### Authentication to clouds
 
-- GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository can assume. The trust policies match GitHub's immutable subject claim (`repo:vadimvvlasov@48059972/anti-scope-creep@1393514697:environment:<env>`): repositories created after 2026-07-15 get it by default, and it keeps a recreated repository with the same name from assuming the roles. `asc-github-deploy-dev` (environment `dev`) can create, deploy to and delete container services, because dev is ephemeral. `asc-github-deploy-prod` (environment `prod`) can only create and read deployments: it cannot create or delete the prod service. No IAM access keys are stored in GitHub.
+- GitHub → ghcr: the job's own `GITHUB_TOKEN` with `packages: write`, to move the environment tags. Nothing else: GitHub holds no credentials for the server.
+- GitHub → Neon: `MIGRATIONS_DATABASE_URL` per environment, for Alembic from the runner.
+- Until November 2026, GitHub → AWS: OIDC identity provider `token.actions.githubusercontent.com` and one IAM role per GitHub Environment, which only this repository could assume. The trust policies match GitHub's immutable subject claim (`repo:vadimvvlasov@48059972/anti-scope-creep@1393514697:environment:<env>`): repositories created after 2026-07-15 get it by default, and it keeps a recreated repository with the same name from assuming the roles. `asc-github-deploy-dev` (environment `dev`) could create, deploy to and delete container services, because dev was ephemeral. `asc-github-deploy-prod` (environment `prod`) could only create and read deployments. No IAM access keys were stored in GitHub. The AWS account is closed; the roles went with it.
 - GitHub → Cloudflare: API token limited to Workers Scripts edit on this account, stored as an environment secret.
 
 ---
@@ -329,7 +333,7 @@ Lightsail container services pull images from public registries, so the image is
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |
 | `ASC_API_URL`, `ASC_EMAIL`, `ASC_PASSWORD`, `ASC_ALLOW_REMOTE` | MCP server | password yes | MCP thin client of a test account on a local backend. |
 
-- Runtime secrets (`DATABASE_URL`, `JWT_SECRET`, later `GROQ_API_KEY`) live in GitHub Environment secrets and are passed to the container as environment variables of the Lightsail deployment. Lightsail keeps them in the deployment configuration, readable by anyone with Lightsail read access to the account, so that access stays limited to the account owner and the deploy role.
+- Runtime secrets (`DATABASE_URL`, `JWT_SECRET`, `GROQ_API_KEY`, the OTLP headers, the Tailscale auth key) live in one env file per environment on the server, mode 600, owned by the stack user, outside the repository clone (`.env.server.example` lists them). Anyone with root or `docker` group access on the server can read them, so that access stays with the owner. GitHub Environments hold only what the workflows use: `MIGRATIONS_DATABASE_URL` and the Cloudflare token.
 - `.env.example` in `backend/` and `frontend/` lists every variable with placeholder values; `.env` is git-ignored.
 
 ---
@@ -353,7 +357,7 @@ Lightsail container services pull images from public registries, so the image is
 | Phase | Scope | Result |
 |---|---|---|
 | 1 | Lovable frontend + mock, `openapi.yaml`, FastAPI in-memory, then SQLAlchemy + Postgres | Full product locally with the stub analyzer |
-| 2 | Docker, CI/CD, Neon, AWS Lightsail, Cloudflare Workers static assets, dev/prod | Deployed MVP |
+| 2 | Docker, CI/CD, Neon, AWS Lightsail (a home server since November 2026), Cloudflare Workers static assets, dev/prod | Deployed MVP |
 | 3 | Groq analyzer (chunking, quote verification, data policy) | Real findings |
 | 4 | OpenTelemetry, Grafana Cloud, alerts, on-call agent | Observable system + diagnosis artifact |
 | 5 | Text-to-SQL graph behind `/query`, MCP server | History Search works on the real backend |
@@ -381,27 +385,26 @@ The 12 criteria of the course rubric, the evidence for each and what is open: [`
 
 ## Decisions
 
-Decided on 2026-09-29; backend hosting changed on 2026-10-04; the LLM provider plan on 2026-10-12. No open decisions right now.
+Decided on 2026-09-29; backend hosting changed on 2026-10-04 and again on 2026-11-15; the LLM provider plan on 2026-10-12. No open decisions right now.
 
 | Topic | Decision | Revisit when |
 |---|---|---|
 | Maximum contract length | 60,000 characters, all phases (raised from 30,000 on 2026-10-11 for CUAD coverage, see section 4) | Moving prod to Gemini: 150,000 characters for Gemini, 60,000 for Groq |
 | LLM model | One Groq model, `openai/gpt-oss-120b`, for analysis and text-to-SQL in dev and prod. The eval also runs Gemini 3.5 Flash-Lite. After the Project 1 submission prod moves to Gemini on a paid tier: the free tier forbids confidential data and serving users in the EEA, Switzerland or the UK ([terms](https://ai.google.dev/gemini-api/terms)) | Project 1 is submitted (2026-10-27), or Groq changes free-tier models or limits |
 | CUAD/LoRA + MLflow | **Stretch goal**, built only after phases 1–6. Role: preselect candidate clauses before the LLM | Core phases are done before the capstone deadline |
-| Background execution | In-process `BackgroundTasks` on an always-on Lightsail container, plus the stale-analysis rule. A task queue is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics) |
-| Backend hosting | AWS Lightsail container services (Nano, `eu-central-1`), paid from AWS Free Tier credits. Google Cloud Run was the first choice, but a Google Cloud billing account could not be created (`OR_BACR2_59`) | The credits run out (about 2027-05) or Lightsail pricing changes |
+| Background execution | In-process `BackgroundTasks` in an always-on container, plus the stale-analysis rule. A task queue is the fallback behind the runner interface | Analyses are regularly lost (stale outcomes in metrics) |
+| Backend hosting | The owner's home server: Docker Compose, one Tailscale sidecar with Funnel per environment, images pulled by a timer ([`self-host.md`](self-host.md)). Decided on 2026-11-15, after the AWS account was found closed on 2026-11-13 (the nightly `dev-down` run failed to assume its role). Before that: AWS Lightsail container services (Nano, `eu-central-1`) on Free Tier credits, from 2026-10-04; Google Cloud Run was the first choice, but a Google Cloud billing account could not be created (`OR_BACR2_59`). Cloudflare Tunnel was considered instead of Funnel and rejected: it needs a domain of one's own, and TLS ends at Cloudflare | The home server's availability is not enough for real users, or Funnel's bandwidth limits are hit |
 
 ## Facts to re-verify
 
-Checked on 2026-09-29 (Lightsail and AWS rows on 2026-10-04). Groq rows re-checked on 2026-10-06 at the start of the LLM phase (limits per model, ZDR enabled for the organization); the rolling daily token bucket observed on 2026-10-14.
+Checked on 2026-09-29; the Tailscale rows on 2026-11-16. Groq rows re-checked on 2026-10-06 at the start of the LLM phase (limits per model, ZDR enabled for the organization); the rolling daily token bucket observed on 2026-10-14.
 
 | Fact | Source |
 |---|---|
 | Groq free models and limits; Llama removal on 2026-08-16 | https://console.groq.com/docs/rate-limits, https://console.groq.com/docs/deprecations |
 | Groq data retention (none by default, up to 30 days for reliability/abuse), ZDR, US storage | https://console.groq.com/docs/your-data |
-| Lightsail container pricing (Nano 7 USD/month per node, 500 GB transfer included) | https://aws.amazon.com/lightsail/pricing/ |
-| Lightsail container services deploy images from public registries | https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-container-services.html |
-| AWS Free Tier credits cover Lightsail containers | https://aws.amazon.com/free/compute/lightsail/ |
+| Tailscale Funnel is available on all plans; ports 443, 8443 and 10000 only; TLS ends on the node, the relays do not decrypt; bandwidth limits that cannot be configured; needs MagicDNS, HTTPS certificates and the `funnel` node attribute | https://tailscale.com/kb/1223/funnel |
+| Tailscale free Personal plan: up to 6 users, unlimited user devices | https://tailscale.com/pricing |
 | Neon free tier (storage, compute hours, branches, scale-to-zero) | https://neon.com/pricing |
 | Grafana Cloud free tier limits and retention | https://grafana.com/pricing |
 | Cloudflare Workers static assets: requests to static assets are free and unlimited | https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/ |

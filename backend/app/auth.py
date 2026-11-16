@@ -21,8 +21,8 @@ from app.store import DuplicateEmailError, Store
 TOKEN_TTL_SECONDS = 24 * 60 * 60
 JWT_ALGORITHM = "HS256"
 
-# argon2id with OWASP's 19 MiB profile instead of argon2-cffi's default 64 MiB: on a 512 MB
-# Lightsail nano container, eight concurrent registrations at 64 MiB each ran it out of memory.
+# argon2id with OWASP's 19 MiB profile instead of argon2-cffi's default 64 MiB: in a 512 MB
+# container (the prod memory limit), eight concurrent registrations at 64 MiB each ran it out of memory.
 _hasher = PasswordHasher(memory_cost=19 * 1024, time_cost=2, parallelism=1)
 # Sync routes run in a thread pool, so cap how many hashes use memory at once; others wait.
 # Two slots stay small even for a legacy 64 MiB hash.

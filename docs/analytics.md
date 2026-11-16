@@ -43,8 +43,8 @@ values), and rejects anything else with `422`. IP addresses are not stored.
   runs, tests and e2e send nothing. A failed request never affects the app.
 - Spam limits: 30 events per client IP per minute and 5,000 per UTC day in total
   (`backend/app/event_limits.py`, in memory). Extra events are dropped quietly. The IP is
-  read from the last `X-Forwarded-For` entry (the Lightsail load balancer's) and only
-  counted, never stored.
+  read from the last `X-Forwarded-For` entry (set by the Tailscale proxy in front of the
+  backend, which a client cannot forge) and only counted, never stored.
 
 ## The Pro plan is a demand test
 

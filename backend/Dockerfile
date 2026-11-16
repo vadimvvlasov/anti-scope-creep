@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
-# Backend image for local compose and AWS Lightsail. Build from backend/: `docker build -t asc-backend .`
+# Backend image for local compose and the home server (compose.server.yaml). Build from backend/:
+# `docker build -t asc-backend .`
 
 FROM python:3.12-slim-bookworm AS build
 
@@ -29,7 +30,7 @@ ENV PATH="/app/.venv/bin:$PATH" \
 
 # Each argon2 hash allocates 19 MiB. By default glibc keeps freed large blocks in the
 # allocating thread's arena, so the ~40 request threads each kept one: 64 registrations grew
-# the process from 62 MiB to 829 MiB and the 512 MB Lightsail container was killed. A fixed
+# the process from 62 MiB to 829 MiB and a 512 MB container (the memory limit in prod) was killed. A fixed
 # mmap threshold returns large blocks to the OS on free; fewer arenas limit the rest.
 ENV MALLOC_MMAP_THRESHOLD_=131072 \
     MALLOC_ARENA_MAX=2

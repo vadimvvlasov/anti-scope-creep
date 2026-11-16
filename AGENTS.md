@@ -26,7 +26,7 @@ scores them, and drafts an email to the client.
 
 - `backend/` - FastAPI app and its tests
 - `frontend/` - React + TypeScript app (exported from Lovable)
-- `docs/` - specification, architecture, workflow, permissions, deploy, testing, rubric coverage
+- `docs/` - specification, architecture, workflow, permissions, deploy, self-hosting, testing, rubric coverage
 - `openapi.yaml` - API contract
 - `ops/` - runbook, Grafana dashboard and alert rules, the on-call prompt, diagnoses
 - `eval/`, `data/` - gold sets, runs and synthetic contracts for the LLM eval
