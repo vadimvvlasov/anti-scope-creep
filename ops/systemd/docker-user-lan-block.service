@@ -1,0 +1,18 @@
+# Containers may reach the internet but not the home LAN (docs/self-host.md, "Block containers from the LAN").
+# DOCKER-USER is the chain Docker leaves to the host's own rules; iptables rules do not survive a reboot,
+# so this unit adds them each time Docker starts. Each rule is added only if it is not there yet.
+# docker0 is the default bridge, br-+ every compose network (of every project on this host).
+# The commands are inline on purpose: a root unit must not run a script the stack user can edit.
+[Unit]
+Description=Block Docker containers from the home LAN 192.168.0.0/16
+After=docker.service
+PartOf=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'iptables -C DOCKER-USER -i docker0 -d 192.168.0.0/16 -j REJECT 2>/dev/null || iptables -I DOCKER-USER -i docker0 -d 192.168.0.0/16 -j REJECT'
+ExecStart=/bin/sh -c 'iptables -C DOCKER-USER -i br-+ -d 192.168.0.0/16 -j REJECT 2>/dev/null || iptables -I DOCKER-USER -i br-+ -d 192.168.0.0/16 -j REJECT'
+
+[Install]
+WantedBy=docker.service

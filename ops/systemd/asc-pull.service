@@ -1,0 +1,23 @@
+# Pull-based deploy of both environments (docs/self-host.md, "Pull timer").
+# Started by asc-pull.timer; to run it now: sudo systemctl start asc-pull.service
+# The paths assume the stack user asc with the clone in /home/asc/anti-scope-creep and the env files in
+# /home/asc/env; to change them or the list of environments: sudo systemctl edit asc-pull.service
+[Unit]
+Description=Pull and start the anti-scope-creep backend images
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=asc
+Group=asc
+WorkingDirectory=/home/asc/anti-scope-creep
+ExecStart=/home/asc/anti-scope-creep/scripts/server-pull.sh /home/asc/env/prod.env /home/asc/env/dev.env
+# A pull from ghcr plus the health wait of two environments; a stuck run must not block the next ones forever.
+TimeoutStartSec=15min
+SyslogIdentifier=asc-pull
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ReadWritePaths=/home/asc
