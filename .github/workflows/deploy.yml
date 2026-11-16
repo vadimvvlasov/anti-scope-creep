@@ -1,14 +1,17 @@
 name: Deploy
 
 # Reusable: deploy a backend image that is already in ghcr to one environment.
-# Neon migrations, the Lightsail container service, the frontend Worker, a smoke test.
+# Neon migrations, then the environment tag (:dev or :prod) moves to the image; the home server
+# pulls it on its own timer (docs/self-host.md), and this workflow waits until GET /version
+# reports it. Then the frontend Worker and a smoke test. Nothing here connects to the server.
 # Called by deploy-dev.yml and promote-prod.yml. The secrets live in the GitHub Environment;
-# callers pass them by name (not `secrets: inherit`), so this workflow gets only these five.
+# callers pass them by name (not `secrets: inherit`), so this workflow gets only these two.
+# The backend's own settings (DATABASE_URL, JWT_SECRET, CORS_ORIGINS, ...) are in the server's env files.
 on:
   workflow_call:
     inputs:
       environment:
-        description: GitHub Environment (dev or prod)
+        description: GitHub Environment (dev or prod); also the image tag the server runs
         required: true
         type: string
       image:
@@ -16,13 +19,9 @@ on:
         required: true
         type: string
       ref:
-        description: Full commit SHA the image was built from (frontend and smoke script come from it)
+        description: Full commit SHA the image was built from (frontend and scripts come from it)
         required: true
         type: string
-      create-service:
-        description: Create the Lightsail service if it does not exist (dev is ephemeral)
-        type: boolean
-        default: false
       wrangler-env:
         description: Wrangler environment (dev); empty deploys the top-level prod Worker
         type: string
@@ -30,15 +29,7 @@ on:
     # Not `required: true`: the callers have no environment, so the values resolve only
     # inside the deploy job (environment: inputs.environment).
     secrets:
-      DATABASE_URL:
-        required: false
       MIGRATIONS_DATABASE_URL:
-        required: false
-      JWT_SECRET:
-        required: false
-      GROQ_API_KEY:
-        required: false
-      OTEL_EXPORTER_OTLP_HEADERS:
         required: false
       CLOUDFLARE_API_TOKEN:
         required: false
@@ -52,8 +43,18 @@ jobs:
     environment: ${{ inputs.environment }}
     permissions:
       contents: read
-      id-token: write
+      packages: write
+    env:
+      # The public URL of this environment's backend: https://asc-<env>.<tailnet>.ts.net
+      BACKEND_URL: ${{ vars.BACKEND_URL }}
     steps:
+      - name: Check the settings
+        run: |
+          if [[ ! "$BACKEND_URL" =~ ^https://[^/]+$ ]]; then
+            echo "Set the BACKEND_URL variable of this environment to https://<host>, without a trailing slash (now: '$BACKEND_URL')" >&2
+            exit 1
+          fi
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ inputs.ref }}
@@ -64,27 +65,41 @@ jobs:
           MIGRATIONS_DATABASE_URL: ${{ secrets.MIGRATIONS_DATABASE_URL }}
         run: docker run --rm -e DATABASE_URL="$MIGRATIONS_DATABASE_URL" "$IMAGE" alembic upgrade head
 
-      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
-        with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
-
-      - name: Deploy to the Lightsail service
-        id: backend
+      # The version comes from the image (pulled by the migrate step): images built before
+      # GET /version existed have no APP_VERSION, and a rollback to one must still deploy.
+      - name: Read the image version
+        id: version
         env:
-          SERVICE: ${{ vars.LIGHTSAIL_SERVICE }}
+          IMAGE: ${{ inputs.image }}
+        run: |
+          version=$(docker image inspect "$IMAGE" \
+            --format '{{range .Config.Env}}{{println .}}{{end}}' | sed -n 's/^APP_VERSION=//p')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      # No rebuild: the environment tag becomes a second name for the image that was built and tested.
+      - name: Move the ${{ inputs.environment }} tag to the image
+        env:
           IMAGE: ${{ inputs.image }}
           ENV_TAG: ${{ inputs.environment }}
-          CREATE_IF_MISSING: ${{ inputs.create-service }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          CORS_ORIGINS: ${{ vars.CORS_ORIGINS }}
-          ANALYZER: ${{ vars.ANALYZER }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
-          OTEL_EXPORTER_OTLP_ENDPOINT: ${{ vars.OTEL_EXPORTER_OTLP_ENDPOINT }}
-          OTEL_EXPORTER_OTLP_HEADERS: ${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}
-        run: .github/scripts/lightsail-deploy.sh
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker buildx imagetools create --tag "${IMAGE%:*}:$ENV_TAG" "$IMAGE"
+          echo "Moved \`$ENV_TAG\` to \`${IMAGE##*:}\`" >> "$GITHUB_STEP_SUMMARY"
+
+      # The server's timer runs every 5 minutes; the pull and the health check add a minute or two.
+      # Network and TLS errors while the backend restarts count as "not yet".
+      - name: Wait for the server to run the image
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          IMAGE: ${{ inputs.image }}
+        run: |
+          if [[ -z "$VERSION" ]]; then
+            echo "::warning::$IMAGE has no APP_VERSION, so the switch cannot be seen; waiting 6 minutes"
+            sleep 360
+          else
+            python3 scripts/wait_version.py "$BACKEND_URL" "$VERSION" --timeout 600
+          fi
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -94,13 +109,13 @@ jobs:
 
       # Vite inlines VITE_* at build time, so the frontend is rebuilt for every environment.
       # Its footer shows the backend image tag (sha-<7 hex>): both come from the same commit.
-      # VITE_ANALYZER comes from the same variable as the backend's ANALYZER, so the dialog
-      # and the Upload notice always describe the analyzer that actually runs.
+      # VITE_ANALYZER must match ANALYZER in the server's env file of this environment, so the
+      # dialog and the Upload notice describe the analyzer that actually runs.
       - name: Build and deploy the frontend
         working-directory: frontend
         env:
           IMAGE: ${{ inputs.image }}
-          VITE_API_URL: ${{ steps.backend.outputs.url }}
+          VITE_API_URL: ${{ vars.BACKEND_URL }}
           VITE_USE_MOCK: "false"
           VITE_ANALYZER: ${{ vars.ANALYZER || 'stub' }}
           # Product analytics (docs/analytics.md): funnel events to this backend's POST /events.
@@ -116,18 +131,14 @@ jobs:
 
       - name: Smoke test
         env:
-          API_URL: ${{ steps.backend.outputs.url }}
+          VERSION: ${{ steps.version.outputs.version }}
           IMAGE: ${{ inputs.image }}
           ENVIRONMENT: ${{ inputs.environment }}
-        # The expected version comes from the image (pulled by the migrate step): images built
-        # before GET /version existed have no APP_VERSION, and a rollback to one must still pass.
         run: |
-          expected=$(docker image inspect "$IMAGE" \
-            --format '{{range .Config.Env}}{{println .}}{{end}}' | sed -n 's/^APP_VERSION=//p')
-          if [[ -n "$expected" ]]; then
-            python3 scripts/smoke.py "$API_URL" --expect-version "$expected"
+          if [[ -n "$VERSION" ]]; then
+            python3 scripts/smoke.py "$BACKEND_URL" --expect-version "$VERSION"
           else
             echo "::notice::$IMAGE has no APP_VERSION; version check skipped"
-            python3 scripts/smoke.py "$API_URL"
+            python3 scripts/smoke.py "$BACKEND_URL"
           fi
-          echo "Deployed \`${IMAGE##*:}\` to **$ENVIRONMENT**: $API_URL" >> "$GITHUB_STEP_SUMMARY"
+          echo "Deployed \`${IMAGE##*:}\` to **$ENVIRONMENT**: $BACKEND_URL" >> "$GITHUB_STEP_SUMMARY"
