@@ -8,15 +8,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
+import {
+  EMAIL_NOTE,
+  initialLoginTab,
+  LOGIN_TAGLINE,
+  LOGIN_VALUE_LINE,
+  parseLoginTab,
+  type LoginTab,
+} from "@/lib/login-copy";
 import { DEFAULT_SAMPLE, LOGIN_SAMPLE_LINK } from "@/lib/samples";
 import { isApiError, SESSION_EXPIRED_MESSAGE, USE_MOCK } from "@/services/api";
 
-type LoginTab = "login" | "register";
-
 export const Route = createFileRoute("/login")({
-  // `?tab=register` opens the Register tab (the guest sample's call to action).
-  validateSearch: (search: Record<string, unknown>): { tab?: LoginTab } =>
-    search["tab"] === "register" ? { tab: "register" } : {},
+  // `?tab=register|login` picks the first tab (docs/spec.md "Login copy").
+  validateSearch: (search: Record<string, unknown>): { tab?: LoginTab } => {
+    const tab = parseLoginTab(search["tab"]);
+    return tab ? { tab } : {};
+  },
   head: () => ({
     meta: [
       { title: "Sign in — Anti-Scope Creep" },
@@ -40,7 +48,12 @@ function LoginPage() {
   const { user, login, register, sessionExpired, clearSessionExpired } = useAuth();
   const navigate = useNavigate();
   const { tab: initialTab } = Route.useSearch();
-  const [tab, setTab] = useState<LoginTab>(initialTab ?? "login");
+  const [tab, setTab] = useState<LoginTab>(() => initialLoginTab(initialTab, sessionExpired));
+
+  // A session that expires while this page is open still lands on Login.
+  useEffect(() => {
+    if (sessionExpired) setTab("login");
+  }, [sessionExpired]);
 
   useEffect(() => {
     if (user) void navigate({ to: "/history" });
@@ -56,8 +69,9 @@ function LoginPage() {
           <div className="mb-8 text-center">
             <ShieldCheck className="mx-auto size-8 text-accent" />
             <h1 className="mt-3 text-2xl font-semibold">Anti-Scope Creep</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Contract risk review for freelancers and small businesses.
+            <p className="mt-1 text-sm text-muted-foreground">{LOGIN_TAGLINE}</p>
+            <p className="mt-3 text-sm" data-testid="login-value">
+              {LOGIN_VALUE_LINE}
             </p>
           </div>
 
@@ -70,8 +84,8 @@ function LoginPage() {
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
             <Tabs value={tab} onValueChange={(v) => setTab(v as "login" | "register")}>
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
                 <TabsTrigger value="register">Register</TabsTrigger>
+                <TabsTrigger value="login">Login</TabsTrigger>
               </TabsList>
               <TabsContent value="login">
                 <AuthForm
@@ -172,6 +186,11 @@ function AuthForm({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@studio.com"
         />
+        {mode === "register" && (
+          <p className="text-xs text-muted-foreground" data-testid="email-note">
+            {EMAIL_NOTE}
+          </p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor={`${mode}-password`}>Password</Label>
