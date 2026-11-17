@@ -132,7 +132,7 @@ Wrong email or password returns `401` with `INVALID_CREDENTIALS`; the UI shows `
 9. `POST /contracts` returns `202 Accepted` with the new contract in status `analyzing`.
 10. Frontend navigates to Contract Details and polls `GET /contracts/{id}` every **2 seconds**.
 11. Polling stops when status becomes `done` or `failed`.
-12. Polling also stops after **5 minutes** without reaching `done` or `failed`. The UI then shows `Analysis is taking longer than expected` with a `Check again` button that fetches the contract once and, if it is still `analyzing`, restarts polling with a new 5-minute window.
+12. Polling also stops when its window ends without `done` or `failed`; see [Frontend polling](#frontend-polling).
 
 ### 3. Successful analysis
 
@@ -300,8 +300,9 @@ Header:
 At **1024 px and wider** the panels sit side by side (left ~55%), each scrolling independently. Below 1024 px they stack, Risk panel first; scroll sync then scrolls the page.
 
 State handling (Risk panel):
-- `analyzing`: progress/loading panel `Analyzing contract…` and automatic polling every 2 seconds. After 5 minutes: `Analysis is taking longer than expected` plus `Check again`.
+- `analyzing`: progress/loading panel `Analyzing contract…` and automatic polling every 2 seconds. When the polling window ends: `Analysis is taking longer than expected` plus `Check again`.
 - `failed`: error panel `Analysis failed. Please try again.` plus `Retry Analysis`.
+- Per-analyzer texts: [Analysis states and limits](#analysis-states-and-limits).
 - `done`: the sections below.
 
 When status is `analyzing` or `failed` but results from an earlier successful analysis exist (`analyzed_at` is not null), the sections below and the highlights are still shown under a notice `Showing results from the previous analysis on <analyzed_at>.`
@@ -735,10 +736,10 @@ While a contract is `analyzing`, the frontend polls `GET /contracts/{id}` every 
 Polling stops on:
 - `done`;
 - `failed`;
-- the 5-minute frontend timeout;
+- the end of the polling window (5 minutes; 15 with the local model);
 - leaving the Contract Details screen.
 
-On timeout the UI shows `Analysis is taking longer than expected` and a `Check again` button. Starting a retry starts a new polling window.
+On timeout the UI shows `Analysis is taking longer than expected` and `Check again`, which fetches once and restarts polling if still `analyzing`. A retry starts a new window.
 
 ### Ownership behavior
 
@@ -1192,6 +1193,24 @@ The limits protect the analyzer's capacity from abuse and overload. They are not
 - Over a limit, the upload or retry is rejected with `429` and `ANALYSIS_ALREADY_RUNNING` or `DAILY_ANALYSIS_LIMIT_REACHED` (see [Error codes](#error-codes)); nothing is stored and no analysis starts.
 - The check is a soft cap: two requests at the same moment can both pass.
 - The values follow the analyzer's capacity and may change when the analyzer changes (the planned local model, #121). Changing them changes only the settings and the error message, not the API.
+
+### Analysis states and limits
+
+What the user is told about the limits, the wait and a failure (issue #119). The frontend knows the active analyzer from its build (`VITE_ANALYZER`, as for the [Methodology & Privacy dialog](#6-methodology--privacy-dialog)); the API does not report a failure reason.
+
+- **Upload / Analyze**, second helper line: `You can start 5 analyses in 24 hours, one at a time. A retry counts as one.`
+- **`analyzing`**, under `Analyzing contract…`: the usual time for the active analyzer (table).
+- **`failed`**: the probable cause for the active analyzer (table), then `Your contract text is saved. A retry counts as one of your 5 analyses in 24 hours.`, then `Retry Analysis`.
+- **A retry rejected with `DAILY_ANALYSIS_LIMIT_REACHED`**: the error `message` in the failed panel with the Pro dialog link, placement `daily_limit`, as on Upload / Analyze. Other retry errors keep the toast.
+- **Polling window**: 5 minutes; **15 minutes** with the local model, which runs one analysis at a time and may have to load the model first.
+
+| Analyzer | Analyzing: usual time | Failed: probable cause |
+|---|---|---|
+| Stub | none | `Analysis failed. Please try again.` |
+| Groq | `This usually takes 1–3 minutes.` | `Analysis failed. The shared free AI capacity may be used up for now. Please try again later.` |
+| Local model | `This usually takes 2–4 minutes, up to 8 for a long contract, and longer if other analyses are waiting or the model is starting up.` | `Analysis failed. The AI model on our server may be busy or temporarily unavailable. Please try again in a few minutes.` |
+
+The number 5 follows `ANALYSIS_DAILY_LIMIT_PER_USER`; a change of the limit changes these texts too. The local model times come from the eval (`docs/eval.md`, Local model gate) and are updated after the measurements of #121.
 
 ### Product analytics events
 

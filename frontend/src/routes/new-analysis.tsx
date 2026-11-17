@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRequireAuth } from "@/hooks/useAuth";
+import { LIMITS_TEXT } from "@/lib/analysis-copy";
 import { ACTIVE_PROVIDER_NOTICE, AI_DATA_POLICY_URL, LLM_ANALYZER_ACTIVE } from "@/lib/methodology";
 import { analytics } from "@/services/analytics";
 import { api, isApiError, MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "@/services/api";
@@ -119,6 +120,9 @@ function NewAnalysisPage() {
     <AppShell>
       <h1 className="text-2xl font-semibold">New analysis</h1>
       <p className="mt-1 text-sm text-muted-foreground">{HELPER}</p>
+      <p className="text-sm text-muted-foreground" data-testid="analysis-limits">
+        {LIMITS_TEXT}
+      </p>
 
       <form onSubmit={submit} className="mt-6 max-w-2xl space-y-6">
         <Tabs value={mode} onValueChange={(v) => setMode(v as "file" | "text")}>
