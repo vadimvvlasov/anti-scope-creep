@@ -142,6 +142,8 @@ paths:
                   message: An account with this email already exists.
         "422":
           $ref: "#/components/responses/ValidationError"
+        "429":
+          $ref: "#/components/responses/TooManyAttempts"
         "500":
           $ref: "#/components/responses/InternalError"
 
@@ -180,6 +182,8 @@ paths:
                   message: Invalid email or password.
         "422":
           $ref: "#/components/responses/ValidationError"
+        "429":
+          $ref: "#/components/responses/TooManyAttempts"
         "500":
           $ref: "#/components/responses/InternalError"
 
@@ -669,6 +673,19 @@ components:
                 error:
                   code: DAILY_ANALYSIS_LIMIT_REACHED
                   message: You have reached the limit of 5 analyses in 24 hours. Please try again later.
+    TooManyAttempts:
+      description: |
+        Too many login or registration attempts (docs/spec.md "Authentication rate limits"):
+        login attempts per client IP or failed logins per email in 15 minutes, or registrations
+        per client IP in an hour. The same answer whether or not the email has an account.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: TOO_MANY_ATTEMPTS
+              message: Too many attempts. Please wait a few minutes and try again.
     Unauthorized:
       description: Missing, invalid, or expired access token.
       content:
@@ -1185,6 +1202,7 @@ components:
         - ANALYSIS_IN_PROGRESS
         - ANALYSIS_ALREADY_RUNNING
         - DAILY_ANALYSIS_LIMIT_REACHED
+        - TOO_MANY_ATTEMPTS
         - CONTRACT_NOT_FOUND
         - NO_ANALYSIS_RESULTS
         - FEATURE_NOT_AVAILABLE

@@ -35,6 +35,9 @@ services:
       ANALYZER: stub
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:8080}
       SEED_DEMO_DATA: "true"
+      # The e2e tests register many accounts from one address; production keeps the limits (docs/spec.md).
+      AUTH_REGISTER_PER_IP: "0"
+      AUTH_LOGIN_PER_IP: "0"
       # Telemetry export is off while this is empty; `make up-observability` points it at the lgtm service.
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
       OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}

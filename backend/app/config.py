@@ -24,6 +24,10 @@ class Settings:
     # at once. Daily: analyses started (upload or retry) in a rolling 24 hours.
     analysis_max_running_per_user: int = 1
     analysis_daily_limit_per_user: int = 5
+    # Login and registration attempt limits (app/auth_limits.py); 0 turns a limit off.
+    auth_login_per_ip: int = 20
+    auth_login_failures_per_email: int = 5
+    auth_register_per_ip: int = 5
     analyzer: str = "stub"
     cors_origins: tuple[str, ...] = DEFAULT_CORS_ORIGINS
     seed_demo_data: bool = True
@@ -66,6 +70,9 @@ class Settings:
             analysis_stale_after_seconds=int(env.get("ANALYSIS_STALE_AFTER_SECONDS", "600")),
             analysis_max_running_per_user=int(env.get("ANALYSIS_MAX_RUNNING_PER_USER", "1")),
             analysis_daily_limit_per_user=int(env.get("ANALYSIS_DAILY_LIMIT_PER_USER", "5")),
+            auth_login_per_ip=int(env.get("AUTH_LOGIN_PER_IP", "20")),
+            auth_login_failures_per_email=int(env.get("AUTH_LOGIN_FAILURES_PER_EMAIL", "5")),
+            auth_register_per_ip=int(env.get("AUTH_REGISTER_PER_IP", "5")),
             analyzer=analyzer,
             cors_origins=_split_origins(env.get("CORS_ORIGINS")),
             seed_demo_data=_parse_bool(env.get("SEED_DEMO_DATA", "true")),

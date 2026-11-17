@@ -7,6 +7,7 @@ from datetime import UTC, datetime
 from fastapi import Request
 
 from app.analyzer import Analyzer
+from app.auth_limits import AuthLimiter
 from app.config import Settings
 from app.event_limits import EventLimiter
 from app.store import Store
@@ -25,6 +26,7 @@ class AppContext:
     analyzer: Analyzer
     clock: Clock = utc_now
     event_limiter: EventLimiter = field(default_factory=EventLimiter)
+    auth_limiter: AuthLimiter = field(default_factory=AuthLimiter.default)
 
 
 def get_context(request: Request) -> AppContext:
