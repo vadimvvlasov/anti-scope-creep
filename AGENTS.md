@@ -25,7 +25,7 @@ scores them, and drafts an email to the client.
 ## Repository layout
 
 - `backend/` - FastAPI app and its tests
-- `frontend/` - React + TypeScript app (exported from Lovable)
+- `frontend/` - React + TypeScript app (first exported from Lovable, maintained here since)
 - `docs/` - specification, architecture, workflow, permissions, deploy, self-hosting, testing, rubric coverage
 - `openapi.yaml` - API contract
 - `ops/` - runbook, Grafana dashboard and alert rules, the on-call prompt, diagnoses
@@ -75,7 +75,7 @@ Frontend:
 
 Scripts (Python standard library only):
 
-- `python3 scripts/build_lovable_prompt.py -o <FILE>` - build the Lovable prompt from `docs/spec.md`
+- `python3 scripts/build_lovable_prompt.py -o <FILE>` - build the historical Lovable prompt from `docs/spec.md` (only warns past its size limit; see `docs/ai-workflow.md`)
 - `python3 -m unittest discover -s scripts` - run script tests
 - `python3 scripts/smoke.py <BACKEND-URL> [--expect-version sha-<7 hex>]` - smoke test a deployed backend (health, version, register, upload, poll, delete)
 - `python3 scripts/select_cuad.py --download`, then `python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl` - pick the CUAD eval subset and write draft gold records (see `eval/README.md`)

@@ -1,5 +1,10 @@
 """Build the Lovable prompt from the frontend-relevant parts of docs/spec.md.
 
+History: Lovable generated the first frontend from this prompt (docs/ai-workflow.md). The
+frontend is now maintained in the repository and is never regenerated from the spec, so the
+prompt's size no longer limits the spec: over Lovable's limit the script only warns. New
+Lovable work is a prototype from a short, task-specific prompt instead.
+
 The full spec is larger than Lovable's prompt limit, so this script keeps only
 the sections the frontend needs and wraps them in the generation prompt.
 
@@ -104,8 +109,7 @@ def main(argv: list[str] | None = None) -> int:
 
     prompt = build_prompt(args.spec.read_text(encoding="utf-8"))
     if len(prompt) > MAX_CHARS:
-        print(f"prompt is {len(prompt)} chars, over the {MAX_CHARS} limit", file=sys.stderr)
-        return 1
+        print(f"warning: prompt is {len(prompt)} chars, over Lovable's {MAX_CHARS} limit", file=sys.stderr)
     if args.output:
         args.output.write_text(prompt, encoding="utf-8")
         print(f"wrote {len(prompt)} chars to {args.output}", file=sys.stderr)
