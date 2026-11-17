@@ -434,7 +434,7 @@ While the MVP stub analyzer is active, this section starts with:
 > - Your contract text is not used to train AI models.
 > - In this version, contract text is not sent to any third-party AI provider.
 
-The dialog must not claim that contract text is never stored, that it is anonymized, or that the analysis cannot be wrong. The texts that change when the LLM analyzer is enabled are listed in [LLM analyzer (Groq)](#llm-analyzer-groq) and, for the model on our own server, in [Local model analyzer](#local-model-analyzer).
+The dialog must not claim that contract text is never stored, that it is anonymized, or that the analysis cannot be wrong. The texts that change when the LLM analyzer is enabled are listed in [LLM analyzer (Groq)](#llm-analyzer-groq) and [Local model analyzer](#local-model-analyzer).
 
 ---
 
