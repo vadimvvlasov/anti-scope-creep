@@ -107,7 +107,32 @@ are included; note how many there are and subtract them.
 
 With few accounts (under about 30 with a full window), read the counts, not the percentage.
 
-Results (to be filled in by the owner): *not run yet.*
+### Results, prod, 2026-11-17
+
+Run by the owner in the Neon SQL editor. Analyses counted since 2026-10-13.
+
+| Measure | Value |
+|---|---|
+| Accounts | 21, of them 2 the owner's test accounts |
+| Accounts with at least one analysis | 13 |
+| Analyses | 18 |
+| Accounts with 0 / 1 / 2 / 3-5 / 6+ analyses | 8 / 11 / 0 / 2 / 0 |
+| Accounts with a full 30-day window and an analysis in it | 5 |
+| Of them, analyses on 2 or more distinct days | **0 (0%)** |
+| Waitlist accounts | 1 |
+
+Reading:
+
+- **Return rate: 0 of 5.** Below the 5% line of the audit rule: nobody came back within 30 days. Five accounts
+  are too few for a percentage, but the direction matches the hypothesis that a freelancer checks a contract
+  now and then, not every week. **A subscription is not supported; price per contract or packs.**
+- **Analyses per account:** 11 accounts ran exactly one analysis; the two accounts with 3-5 are most likely
+  the owner's test accounts (the query does not tell accounts apart). Without them, no real user has run more
+  than one analysis.
+- **Activation:** 8 of 21 accounts (about 40%) signed up and never analyzed a contract. With at most 19 real
+  accounts in five weeks, the bottleneck is traffic and activation, not the price.
+- **Waitlist: 1 account**, possibly the owner's own test click. X4 cannot run as planned (the rule needs 30 or
+  more); see section 4.
 
 ## 4. X4: ask the waitlist
 
@@ -145,9 +170,17 @@ Thanks,
 
 Record counts and anonymized quotes only, no names or emails.
 
-Results (to be filled in by the owner): *not sent yet.*
+### Status, 2026-11-17
+
+Not sent: the waitlist has 1 account (X3, section 3), possibly the owner's own. The email cannot give a
+signal, so price questions move to interviews: 5-10 freelancers shown the guest sample (#125, X5), with the
+three questions above asked in person. The email draft stays for when the waitlist grows.
 
 ## 5. Preliminary direction (for the owner to decide after X3 and X4)
+
+After X3 (2026-11-17): the per-contract or pack branch below is the one the data points to; the monthly plan
+is not supported. Real pricing waits for interviews and more traffic: with at most 19 real accounts, getting
+people to the first analysis matters more than the price.
 
 - Keep a free tier that shows the findings, as every competitor does. That is the free entry, not "5 a day".
 - Charge for the result: the negotiation email and the PDF/DOCX export with suggested wording (#123).
