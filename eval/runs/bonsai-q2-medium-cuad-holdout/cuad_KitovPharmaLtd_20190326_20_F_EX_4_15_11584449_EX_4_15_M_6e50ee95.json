@@ -1,0 +1,111 @@
+{
+ "id": "cuad:KitovPharmaLtd_20190326_20-F_EX-4.15_11584449_EX-4.15_Manufacturing Agreement",
+ "chars": 57436,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint. IP",
+   "start": 56882,
+   "end": 57386
+  }
+ ],
+ "email": true,
+ "seconds": 210.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5319,
+   "prompt_tokens": 4531,
+   "output_tokens": 788,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 18.26,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6034,
+   "prompt_tokens": 3934,
+   "output_tokens": 2100,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 43.64,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5288,
+   "prompt_tokens": 3905,
+   "output_tokens": 1383,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 29.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4749,
+   "prompt_tokens": 3705,
+   "output_tokens": 1044,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 23.22,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4988,
+   "prompt_tokens": 4096,
+   "output_tokens": 892,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 19.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5477,
+   "prompt_tokens": 3163,
+   "output_tokens": 2314,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 48.55,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "any and all rights, title and interest in any Intellectual Property Rights resulting from any development made by Dexcel which is related to the Product and embodied in the Deliverables or conceived in connection with the services provided hereunder by Dexcel to Kitov, which is only applicable for the manufacture, research, development, making of, use, sale, production, commercialisation and distribution of the Product, shall be jointly and equally (50%/50%) owned by Dexcel and Kitov (the \"Joint IP\").",
+      "explanation": "This clause gives the Client an immediate 50% ownership stake in all IP you create as part of the work, with no payment condition. The moment you produce any development, half of it belongs to Kitov whether or not you have been paid in full.",
+      "suggested_change": "Any and all rights, title and interest in Intellectual Property Rights resulting from any development made by the Contractor in connection with the Services shall be owned by the Contractor, and upon receipt of full payment of all invoices relating to such development, the Contractor shall grant the Client a fully paid, non-exclusive, limited, and non-transferable license to use such Intellectual Property solely for the manufacture, research, development, making, use, sale, production, commercialization, and distribution of the Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1860,
+   "prompt_tokens": 532,
+   "output_tokens": 1328,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 26.99,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi there,\n\nI hope you're well. Before I sign the agreement, I'd like to raise a point regarding the relevant clause so we can agree on a fair final version.\n\n- The clause on intellectual property currently states that all IP resulting from development made in connection with the services would be jointly owned 50/50 by both parties from the moment of creation, with no condition attached to payment. In plain terms, this means that half of everything I create as part of the work would belong to the Client immediately, regardless of whether any invoices have been paid. To address this, I propose that the relevant clause be amended so that the IP remains with the Contractor, and upon receipt of full payment of all related invoices, the Contractor grants the Client a fully paid, non-exclusive, limited, and non-transferable license to use that IP solely for the manufacture, research, development, making, use, sale, production, commercialization, and distribution of the Product.\n\nDoes that work for you? Happy to hop on a quick call to talk it through if that's easier.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

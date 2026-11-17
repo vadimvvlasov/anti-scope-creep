@@ -1,0 +1,63 @@
+{
+ "id": "cuad:ADUROBIOTECH,INC_06_02_2020-EX-10.7-CONSULTING AGREEMENT(1)",
+ "chars": 12020,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+   "start": 5984,
+   "end": 6465
+  }
+ ],
+ "email": true,
+ "seconds": 72.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6567,
+   "prompt_tokens": 4189,
+   "output_tokens": 2378,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 46.28,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Aduro shall be the sole and exclusive owner of, and Consultant hereby assigns to Aduro, any and all writings, documents, work product, inventions, developments, improvements, discoveries, know-how, processes, chemical entities, compounds, plans, memoranda, tests, research, designs, specifications, models and data that Consultant makes, conceives, discovers or develops, either solely or jointly with any other person in performance of the Services (collectively, \"Work Product\").",
+      "explanation": "This clause states that ownership of everything you create while performing the services passes to Aduro immediately as you create it, with a present assignment (\"hereby assigns\") and no condition tied to payment. If Aduro never pays you in full, you have already given up ownership of the work product.",
+      "suggested_change": "Upon full and final payment by the Client to the Contractor for the Services, the Contractor shall transfer to the Client all right, title, and interest in and to the Work Product created or developed by the Contractor in the performance of the Services."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2048,
+   "prompt_tokens": 1871,
+   "output_tokens": 177,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 3.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1715,
+   "prompt_tokens": 485,
+   "output_tokens": 1230,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 22.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore I sign the agreement, I wanted to flag one item I believe would benefit from a small adjustment.\n\n- The relevant clause currently provides that the Client will be the sole and exclusive owner of all work product from the moment it is created, with an immediate and unconditional assignment that is not tied to payment. In plain terms, ownership would transfer even before the Client has paid in full for the services. To keep the transfer aligned with the completion of payment, I would suggest revising the clause so that the Contractor shall transfer all right, title, and interest in and to the Work Product created or developed in the performance of the Services upon full and final payment of the fees.\n\nHappy to go through the language further if that's helpful. Thanks so much!\n"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,62 @@
+{
+ "id": "cuad:TALCOTTRESOLUTIONLIFEINSURANCECO-SEPARATEACCOUNTTWELVE_04_30_2020-EX-99.8(L)-SERVICE AGREEMENT",
+ "chars": 29797,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Transmit to the Trust or its designee such periodic reports as the Trust shall reasonably conclude is necessary to enable the Trust to comply with federal or state Blue Sky requirements.",
+   "start": 29049,
+   "end": 29235
+  }
+ ],
+ "email": false,
+ "seconds": 112.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 4970,
+   "prompt_tokens": 3812,
+   "output_tokens": 1158,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 25.52,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5383,
+   "prompt_tokens": 3820,
+   "output_tokens": 1563,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 34.38,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6103,
+   "prompt_tokens": 3678,
+   "output_tokens": 2425,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 52.11,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Transmit to the Trust or its designee such periodic reports as the Trust shall reasonably conclude is necessary to enable the Trust to comply with federal or state Blue Sky requirements.",
+      "explanation": "This clause lets the Trust decide on its own which periodic reports you must prepare and transmit, rather than tying the obligation to a defined list or to reports specifically required by law. Although the other services in Schedule B are clearly described, this item gives the client broad discretion to add reporting work without a fixed scope.",
+      "suggested_change": "Transmit to the Trust or its designee periodic reports as required by applicable federal or state Blue Sky regulations in connection with the compliance of each Fund, in a form and frequency reasonably requested by the Trust."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

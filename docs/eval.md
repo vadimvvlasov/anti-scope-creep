@@ -312,6 +312,23 @@ If any point fails, the switch stops and the result is reported; the prompt is n
 With 5 gold risks per set this shows direction, not a precise comparison. The 21 longer contracts of
 `cuad-holdout-2` (up to 123K characters, about 5 GPU hours) wait for the text-limit decision (#84).
 
+**Result, 2026-11-17: passed** (`eval/runs/bonsai-q2-medium-cuad-holdout`, `eval/runs/bonsai-q2-medium-cuad-holdout-2`).
+
+| Set | TP / FP / FN | P / R / sev | Failed, invalid JSON, `quote_not_found` | Seconds per contract, mean / max | Gemini v6 | Groq v6 |
+|---|---|---|---|---|---|---|
+| `cuad-holdout` (20) | 5 / 5 / 0 | 0.5 / 1.0 / 1.0 | 0, 0, 4% | 219 / 456 | P 0.714 and 1.0, R 1.0 | not run |
+| `cuad-holdout-2`, 11 within 60K | 5 / 1 / 0 | 0.833 / 1.0 / 1.0 | 0, 0, 0% | 115 / 169 | P 0.667, R 0.8 | P 0.5, R 1.0, sev 0.6, 5 FP |
+
+1. Run health: passed on both sets.
+2. `cuad-holdout`: recall 1.0, 5 false alarms, exactly at the limit. Two are `ip_transfer_before_payment` on
+   ownership wording (derivative works, assignment of developments), two `uncapped_liability` on a clause that
+   caps direct damages at $15M, one `one_sided_termination` (`low`) on a 90-day notice.
+3. `cuad-holdout-2` subset: recall 1.0, 1 false alarm (the customer's 30-day cancellation, which Gemini and Groq
+   also flag), severity 1.0. Better than Groq on every count.
+
+Time: 115-219 s per contract on average, up to 456 s, about 7 s per 1,000 characters; one request at a time.
+This is slower than Groq (97-148 s) and feeds the queue, timeout and stale-rule design of #121.
+
 ## Run health
 
 | Run | Failed | Invalid JSON | `quote_not_found` | Tokens per contract, mean / max |

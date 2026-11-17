@@ -1,0 +1,76 @@
+{
+ "id": "cuad:EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+ "chars": 30050,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Licensor, at its sole expense and on a timely basis, shall provide complete, accurate and informative listing and descriptive information in respect of each Licensed Program selected for distribution and exhibition by Rogers hereunder (including, without limitation, synopsis, theme, rating, closed captioning and such other information as may be appropriate or otherwise required by Rogers) to Rogers' graphic user interface (\"GUI\") or electronic programming guide provider (\"EPG\"), as the case may be, as designated by Rogers from time to time.",
+   "start": 11700,
+   "end": 12246
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+   "start": 16706,
+   "end": 16866
+  }
+ ],
+ "email": false,
+ "seconds": 279.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8476,
+   "prompt_tokens": 4066,
+   "output_tokens": 4410,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 83.07,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 11623,
+   "prompt_tokens": 4029,
+   "output_tokens": 7594,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 154.68,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Licensor, at its sole expense and on a timely basis, shall provide complete, accurate and informative listing and descriptive information in respect of each Licensed Program selected for distribution and exhibition by Rogers hereunder (including, without limitation, synopsis, theme, rating, closed captioning and such other information as may be appropriate or otherwise required by Rogers) to Rogers' graphic user interface (\"GUI\") or electronic programming guide provider (\"EPG\"), as the case may be, as designated by Rogers from time to time.",
+      "explanation": "The parenthetical adds \"including, without limitation\" and \"such other information as may be appropriate or otherwise required by Rogers,\" giving Rogers the open-ended right to demand additional items beyond the named examples. Although the core deliverable (listing and descriptive information for the GUI/EPG) is defined, this vague catch-all lets Rogers request extra content at no additional compensation.",
+      "suggested_change": "Licensor, at its sole expense and on a timely basis, shall provide complete, accurate and informative listing and descriptive information in respect of each Licensed Program selected for distribution and exhibition by Rogers hereunder (including synopsis, theme, rating and closed captioning) to Rogers' graphic user interface (\"GUI\") or electronic programming guide provider (\"EPG\"), as the case may be, as designated by Rogers from time to time."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.",
+      "explanation": "Rogers (the client) holds a unilateral right to end the agreement without cause on 60 days' notice, while the Licensor may only terminate for the enumerated causes. Although the 60-day notice period and the 60-day post-termination tail with continued payment obligations provide some compensation, the right remains one-sided.",
+      "suggested_change": "Notwithstanding any other provision of this Agreement, either party may terminate this Agreement at any time upon sixty (60) days' prior written notice to the other party."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5789,
+   "prompt_tokens": 3806,
+   "output_tokens": 1983,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.85,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

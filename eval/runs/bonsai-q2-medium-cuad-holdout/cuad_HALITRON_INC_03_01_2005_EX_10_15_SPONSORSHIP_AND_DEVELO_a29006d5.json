@@ -1,0 +1,75 @@
+{
+ "id": "cuad:HALITRON,INC_03_01_2005-EX-10.15-SPONSORSHIP AND DEVELOPMENT AGREEMENT",
+ "chars": 30102,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+   "start": 16228,
+   "end": 16401
+  }
+ ],
+ "email": true,
+ "seconds": 289.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9553,
+   "prompt_tokens": 4407,
+   "output_tokens": 5146,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 110.91,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7279,
+   "prompt_tokens": 4161,
+   "output_tokens": 3118,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 68.92,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All right, title and interest in and to the Results and Proceeds and to the Advertising Materials (as defined below) shall be and remain the absolute property of TDA forever",
+      "explanation": "This clause makes TDA the immediate and unconditional owner of all Results, Proceeds, and Advertising Materials (which include commercials and promotional materials featuring your likeness) the moment they are created, with no condition tied to payment. Your work product belongs to TDA before and regardless of whether you have been paid in full.",
+      "suggested_change": "Ownership of all right, title and interest in and to the Results, Proceeds, and Advertising Materials shall transfer to the Client only upon receipt of full payment of all amounts due to the Contractor under this Agreement, after which the Client shall hold such rights in perpetuity."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6820,
+   "prompt_tokens": 2916,
+   "output_tokens": 3904,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 81.63,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1806,
+   "prompt_tokens": 429,
+   "output_tokens": 1377,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 27.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore signing, I wanted to flag one clause in the agreement for your review.\n\n- The relevant clause states that all right, title and interest in the Results, Proceeds, and Advertising Materials shall be the absolute property of the Client forever. In plain terms, this means the Client would own my work product immediately upon creation, regardless of whether I have been paid. I propose that ownership of these items transfer to the Client only upon receipt of full payment of all amounts due to me under the agreement, after which the Client shall hold such rights in perpetuity.\n\nI hope this is helpful. Happy to discuss if you have any questions.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

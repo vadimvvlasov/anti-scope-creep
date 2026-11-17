@@ -1,0 +1,86 @@
+{
+ "id": "cuad:Apollo Endosurgery - Manufacturing and Supply Agreement",
+ "chars": 48253,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "ESTABLISHMENT shall provide APOLLO with certain technical support regarding the Product as reasonably requested by APOLLO, including, but not limited to, analytical test methods, manufacturing process development, and validation support. If there are charges associated with these services, a separate quote will be provided to APOLLO.",
+   "start": 26322,
+   "end": 26657
+  }
+ ],
+ "email": false,
+ "seconds": 236.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7635,
+   "prompt_tokens": 4436,
+   "output_tokens": 3199,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 66.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5598,
+   "prompt_tokens": 4371,
+   "output_tokens": 1227,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 28.31,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7519,
+   "prompt_tokens": 4266,
+   "output_tokens": 3253,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 68.22,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "[PARTY_B] shall provide [PARTY_A] with certain technical support regarding the Product as reasonably requested by [PARTY_A], including, but not limited to, analytical test methods, manufacturing process development, and validation support. If there are charges associated with these services, a separate quote will be provided to [PARTY_A].",
+      "explanation": "The clause obligates you to provide technical support \"as reasonably requested\" by the client with no defined cap, and the phrase \"including, but not limited to\" explicitly opens the scope to additional, unspecified services. The quote mechanism only applies \"if there are charges associated,\" suggesting the base level of support is expected without extra compensation.",
+      "suggested_change": "The Contractor shall provide the Client with technical support regarding the Product as reasonably requested by the Client, limited to a maximum of [X] hours per year or as set forth in a written change order signed by both parties, and any technical support requested beyond the scope described in this Section shall be quoted in writing by the Contractor and compensated at rates mutually agreed upon in advance."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6358,
+   "prompt_tokens": 4538,
+   "output_tokens": 1820,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 40.67,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3615,
+   "prompt_tokens": 2005,
+   "output_tokens": 1610,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 32.26,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

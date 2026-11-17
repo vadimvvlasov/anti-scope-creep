@@ -1,0 +1,114 @@
+{
+ "id": "cuad:OASYSMOBILE,INC_07_05_2001-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 58860,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "When it believes that it has made the necessary corrections, E.piphany will again deliver the Deliverable to HSNS and the acceptance/ rejection/correction process shall be reapplied until the Deliverable substantially complies with the requirements of the Statement of Work.",
+   "start": 17699,
+   "end": 17973
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+   "start": 43686,
+   "end": 43803
+  }
+ ],
+ "email": true,
+ "seconds": 295.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7766,
+   "prompt_tokens": 4409,
+   "output_tokens": 3357,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 73.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6909,
+   "prompt_tokens": 4256,
+   "output_tokens": 2653,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 57.17,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "When it believes that it has made the necessary corrections, E.piphany will again deliver the Deliverable to HSNS and the acceptance/ rejection/correction process shall be reapplied until the Deliverable substantially complies with the requirements of the Statement of Work.",
+      "explanation": "Each time HSNS rejects a Deliverable, the full acceptance-and-rejection cycle restarts with a fresh 10-day window, and the clause states this repeats with no cap on how many rounds it may take. In practice this lets the client keep sending work back until it declares the result \"substantially compliant,\" which is a subjective standard you cannot control.",
+      "suggested_change": "The acceptance/rejection/correction process shall be reapplied up to three (3) rounds, after which the Deliverable shall be deemed accepted unless the Client and the Contractor agree in writing to an additional round or the Client's rejection is not based on a material non-conformity to the Statement of Work."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6523,
+   "prompt_tokens": 4227,
+   "output_tokens": 2296,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 49.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6493,
+   "prompt_tokens": 4378,
+   "output_tokens": 2115,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 46.57,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "$ 115,250.00      Net ninety (90) days from the Effective Date                                     of this Agreement.",
+      "explanation": "This clause requires the client to pay you 90 days after the effective date for a $115,250 installment, meaning you will be without that money for up to three months after the work is agreed and the contract starts.",
+      "suggested_change": "The Client shall pay the second installment of $115,250.00 Net thirty (30) days from the Effective Date of this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6278,
+   "prompt_tokens": 4425,
+   "output_tokens": 1853,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.04,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1982,
+   "prompt_tokens": 605,
+   "output_tokens": 1377,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 27.97,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sending the agreement for review. Before we move on to signing, I'd like to raise two points on relevant clauses so we can agree on the wording upfront.\n\n- The acceptance/rejection/correction cycle for the Deliverable. As written in the relevant clause, every rejection by the Client restarts the full acceptance cycle with a new time window, and there is no cap on how many rounds this may continue. In practical terms, the process could go on indefinitely, and the final standard of \"substantially complies\" is subjective and difficult for the Contractor to control from the other side. I would suggest that the acceptance/rejection/correction process be reapplied up to three (3) rounds, after which the Deliverable shall be deemed accepted unless both parties agree in writing to an additional round, or the Client's rejection is not based on a material non-conformity to the Statement of Work.\n\n- The payment term for the second installment of $115,250.00. The relevant clause currently sets the due date at Net ninety (90) days from the Effective Date, which means a three-month wait from the start of the engagement before this payment is due. I would suggest changing this to Net thirty (30) days from the Effective Date of the Agreement, so the payment aligns more closely with the start of the work.\n\nI hope these adjustments are reasonable, and I'm happy to discuss either point further or look at alternative wording. Just let me know what you think.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

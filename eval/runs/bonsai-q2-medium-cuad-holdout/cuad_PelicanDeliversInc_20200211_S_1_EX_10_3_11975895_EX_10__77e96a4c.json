@@ -1,0 +1,104 @@
+{
+ "id": "cuad:PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development Agreement2",
+ "chars": 32093,
+ "findings": [
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Should Developer reasonably fail to meet the requirements of Section 3. or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy Client's reasonable acceptance criteria within the time periods set forth in the same, Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 Above; or (b) terminating this Agreement",
+   "start": 4985,
+   "end": 5393
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement",
+   "start": 6321,
+   "end": 6568
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+   "start": 11252,
+   "end": 11766
+  }
+ ],
+ "email": true,
+ "seconds": 243.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 9476,
+   "prompt_tokens": 4181,
+   "output_tokens": 5295,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 115.51,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Should Developer reasonably fail to meet the requirements of Section 3. or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy Client's reasonable acceptance criteria within the time periods set forth in the same, Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 Above; or (b) terminating this Agreement.",
+      "explanation": "If a milestone deliverable is not accepted, the client can force you to go through the entire correction-and-retest cycle again, with no stated limit on how many rounds you must endure before they are obliged to accept or walk away.",
+      "suggested_change": "Should Developer reasonably fail to meet the requirements of Section 3.4 or Section 3.5 of this Agreement such that a Milestone Deliverable or Modified Deliverable does not satisfy the Client's reasonable acceptance criteria within the time periods set forth in the same, the Client will have the option of: (a) repeating the procedures set forth in Section 3.4 or Section 3.5 up to two (2) additional times; or (b) terminating this Agreement."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, Client shall have the option of either: (a) repeating the procedure set forth above; or (b) terminating this Agreement.",
+      "explanation": "After the final deliverable is corrected and re-inspected, the client may still reject it and send you back for another round with no cap on the number of repetitions, meaning you could be working on rework indefinitely without any additional compensation.",
+      "suggested_change": "If the Subject Program or Final Deliverable still does not satisfy the Client's acceptance criteria and/or the Acceptance Tests, the Client shall have the option of either: (a) repeating the procedure set forth above up to two (2) additional times; or (b) terminating this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5708,
+   "prompt_tokens": 3997,
+   "output_tokens": 1711,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 37.35,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Except as otherwise detailed in this Agreement, the Parties acknowledge and agree that the Subject Program including without limitation the Deliverables and Documentation (collectively, the Works) are \"work made for hire\" in accordance with the U.S. Copyright Act, 17 U.S.C. § 101 et seq. Accordingly, Client will be the copyright author and owner of all of the Works. To the extent permissible, Developer hereby assigns and transfers to Client all copyright and other intellectual property ownership in the Works.",
+      "explanation": "This clause makes the work you create belong to the Client from the moment it is produced (work-made-for-hire) and immediately assigns all rights to them (present assignment). Even though a later sentence mentions payment, the ownership has already passed to the Client before you are paid, so you have no leverage to ensure you are compensated.",
+      "suggested_change": "The Developer shall retain ownership of all Works created in the course of this Agreement until the Client has paid all outstanding Fees in full; upon such full payment, the Developer hereby assigns and transfers to the Client all copyright and other intellectual property ownership in the Works."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5970,
+   "prompt_tokens": 3971,
+   "output_tokens": 1999,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 3171,
+   "prompt_tokens": 941,
+   "output_tokens": 2230,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 46.03,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore we finalize the agreement, I wanted to flag a few points where I'd like to request revisions. Here are the proposed changes:\n\n- The relevant clause governing acceptance criteria for a Milestone Deliverable or Modified Deliverable allows the Client to repeat the correction-and-retest cycle an unlimited number of times before choosing to terminate. This means there is no cap on the number of revision rounds the Developer would need to complete. I would propose limiting this to up to two (2) additional repetitions, after which the Client's remaining option would be to terminate the agreement.\n\n- The clause addressing the final deliverable (Subject Program or Final Deliverable) similarly permits the Client to send the work back for another round with no stated limit, and no additional compensation is attached to those repetitions. I would propose capping this at up to two (2) additional repetitions, after which the Client may choose to terminate the agreement.\n\n- The intellectual property clause states that the Works are \"work made for hire\" and that the Developer immediately assigns all copyright ownership to the Client at the moment the work is produced, before any Fees have been paid. I would propose replacing this with a provision under which the Developer retains ownership of the Works until the Client has paid all outstanding Fees in full, and that upon such full payment, the Developer assigns and transfers all copyright and other intellectual property ownership in the Works to the Client.\n\nPlease let me know your thoughts on any of these – I'm happy to discuss and find a middle ground where you're comfortable.\n\nWarm regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,75 @@
+{
+ "id": "cuad:SLINGERBAGINC_05_27_2020-EX-10.7-CONSULTING AGREEMENT",
+ "chars": 33425,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+   "start": 2351,
+   "end": 2603
+  }
+ ],
+ "email": true,
+ "seconds": 141.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6274,
+   "prompt_tokens": 4194,
+   "output_tokens": 2080,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 46.02,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "the Consultant will provide any other services not specifically mentioned herein, but which by reason of the Consultant's capability, the Consultant knows or ought to know to be necessary to ensure that the best interests of the Company are maintained.",
+      "explanation": "You are contractually obligated to perform any additional services the Company needs beyond the defined scope of investor relations, corporate structure, public relations, and commercial development, with no change-order mechanism and no additional compensation. Your fixed monthly fee covers an unlimited, client-defined scope.",
+      "suggested_change": "The Contractor's services shall be limited to the scope described in Section A of this Agreement, and any services beyond that scope shall be subject to a mutually agreed written change order specifying the additional work and any applicable additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6341,
+   "prompt_tokens": 4016,
+   "output_tokens": 2325,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 50.54,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4915,
+   "prompt_tokens": 4117,
+   "output_tokens": 798,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 18.99,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1690,
+   "prompt_tokens": 417,
+   "output_tokens": 1273,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 25.47,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore signing the agreement, I'd like to raise one point for us to adjust together.\n\n- The relevant clause requires the Consultant to perform any additional services beyond those specifically mentioned in the agreement, to the extent they are necessary to maintain the Company's best interests. In plain terms, this would make the fixed monthly fee cover an unlimited, client-defined scope with no change-order process and no additional compensation. A constructive modification would be to limit the Consultant's services to the scope described in Section A of the agreement, with any work beyond that scope subject to a mutually agreed written change order specifying the additional work and any applicable additional compensation.\n\nPlease let me know if we can work through this before signing. I'm happy to discuss it whenever is convenient for you.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}
