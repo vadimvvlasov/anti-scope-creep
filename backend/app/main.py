@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.formparsers import MultiPartParser
 
+from app.auth_limits import AuthLimiter
 from app.analyzer import Analyzer, build_analyzer
 from app.config import Settings
 from app.context import AppContext, Clock, utc_now
@@ -66,6 +67,7 @@ def create_app(
         store=store or _sql_store(settings, trace_queries=stop_telemetry is not None),
         analyzer=analyzer or build_analyzer(settings),
         clock=clock,
+        auth_limiter=AuthLimiter.from_settings(settings),
     )
     pending_runs = seed_demo_data(context) if settings.seed_demo_data else []
     app = FastAPI(

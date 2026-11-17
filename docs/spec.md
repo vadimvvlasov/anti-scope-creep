@@ -1155,6 +1155,23 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Background analysis failure or stale analysis | — | — | Not an HTTP error: contract status becomes `failed`; the UI shows the failed state with Retry Analysis. |
 | Unexpected server error | 500 | `INTERNAL_ERROR` | `Something went wrong. Please try again.` |
 
+### Authentication rate limits
+
+Login and registration are limited, because the backend has no WAF in front of it (issue #129). The code below belongs to the [error table](#error-codes); it is listed here so the Lovable prompt, built from that table, stays within its limit.
+
+| Condition | HTTP status | Code | Message |
+|---|---:|---|---|
+| Too many login or registration attempts | 429 | `TOO_MANY_ATTEMPTS` | `Too many attempts. Please wait a few minutes and try again.` |
+
+- **Login:** at most **20** attempts per client IP, and **5** failed attempts per email, in a fixed 15-minute window. Over either limit the attempt is refused before the password is checked, so a locked email is refused even with the right password until the window ends. Successful logins never lock an email.
+- **Registration:** at most **5** attempts per client IP in a fixed 1-hour window, counting attempts that fail (for example `EMAIL_ALREADY_EXISTS`).
+- An email without an account is counted and answered exactly like one with an account; the message never says whether the email exists.
+- The client IP is the last `X-Forwarded-For` entry, set by the proxy in front of the backend (as for the analytics limits); without the header, the connection's address.
+- Counters are in memory per process and reset on restart; the IP and the email are only counted, never stored or logged.
+- Server settings `AUTH_LOGIN_PER_IP`, `AUTH_LOGIN_FAILURES_PER_EMAIL`, `AUTH_REGISTER_PER_IP`; `0` turns a limit off. The local Docker stack turns the per-IP limits off, because the e2e tests register many accounts from one address.
+- The frontend shows the `message` like any other error on the Login / Register form.
+- Known trade-off: anyone who knows an email can lock its login for up to 15 minutes by failing 5 times.
+
 ### Validation and normalization
 
 - Trim user-entered title and reject empty results.
