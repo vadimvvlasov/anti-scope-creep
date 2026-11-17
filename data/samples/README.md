@@ -22,5 +22,13 @@ python3 scripts/build_sample.py --contract data/25.txt --recording $G/freelance_
   --recorded-on 2026-10-16 -o data/samples/clean.json
 ```
 
+Then rebuild the static reports the guest route offers for download (`frontend/public/samples/*.pdf|docx`),
+rendered by the backend exactly as a signed-in user's export; `backend/tests/test_sample_reports.py` fails
+while they are out of date:
+
+```bash
+cd backend && uv run python -m sample_reports
+```
+
 The script stops, and writes nothing, if a quote is not exactly `text[start:end]`, a finding has no
 recorded explanation, the email does not match the findings, or a pseudonymization placeholder is left.
