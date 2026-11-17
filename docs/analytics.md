@@ -83,5 +83,9 @@ account through `identify`. Run it against the database of the environment:
 psql "$DATABASE_URL" -f scripts/funnel.sql
 ```
 
+Its second query is for the guest sample (X1, issue #125): visitors split by whether they opened
+`/sample/*` before signing up, with their sign-ups and first analyses. A `pageview` carries the path, so
+no new event is needed.
+
 `DATABASE_URL` here is the plain `postgresql://` form (without `+psycopg`). Use the dev or
 prod Neon connection string; the query only reads.

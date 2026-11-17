@@ -1233,16 +1233,19 @@ There is no paid plan and nothing is charged. A **Pro** button opens a dialog th
 
 The price, the feature list and the placements are an experiment, set in `frontend/src/lib/pro.ts`, and are expected to change: the paid value is the result (exports and branded reports), not more analyses (#123); the price waits for the demand checks (#122). The current list in `pro.ts` predates #123: it still names more analyses per day and a 150,000-character limit, which this specification does not offer, and #123 replaces it. New placements are added as new `placement` values in `docs/analytics.md`, the frontend and the backend validation together.
 
-### Guest sample (planned)
+### Guest sample
 
-A public, read-only sample analysis lets a visitor see the output before creating an account. Planned, not built yet.
+A public, read-only sample analysis lets a visitor see the output before creating an account.
 
-- A signed-out route shows the Contract Details view (contract text with highlights, risk summary, findings, email) for a bundled sample contract.
-- The data is static and ships with the frontend: a synthetic contract and the recorded output of the real analyzer. The route makes **no backend call** other than `POST /events`.
-- The sample is labelled with the analyzer model, the prompt version and the date the output was recorded, and states that the contract is synthetic.
-- The [legal disclaimer](#legal-positioning) is shown, with a link to the Methodology & Privacy dialog.
-- The sample offers the prebuilt PDF and DOCX reports of the same analysis as static downloads. They are built ahead of time by the backend report renderer; this is the one exception to reports being generated per request.
-- Rename, Delete and Retry Analysis are not shown. A call to action leads to Register.
+- **Routes:** `/sample/net-90` (two high findings, an email) and `/sample/clean` (no findings), open without signing in. An unknown sample name shows `This sample does not exist.` with a link to `/sample/net-90`.
+- The page shows the Contract Details view (contract text with highlights, risk summary, findings with the filter, email with Copy) for a bundled sample contract.
+- The data is static and ships with the frontend (`frontend/public/samples/`): a synthetic contract and the recorded output of the real analyzer (`data/samples/`). The route makes **no backend call** other than `POST /events`.
+- Label above the title: `Sample: synthetic contract, analysed by <model>, prompt <prompt version>, <recording date>`, for example `Sample: synthetic contract, analysed by openai/gpt-oss-120b, prompt v6, 2026-10-16`.
+- The [legal disclaimer](#legal-positioning) is shown, and the header and footer carry the Methodology & Privacy link.
+- `Download PDF` and `Download DOCX` link to the prebuilt reports of the same analysis. They are built ahead of time by the backend report renderer; this is the one exception to reports being generated per request.
+- Rename, Delete, Retry Analysis, the status badge and the Pro button are not shown.
+- Call to action, under the results: heading `Check your own contract`, text `Create a free account to get the same review of your contract: risky clauses, suggested wording and an email to your client.`, button `Create a free account`, which opens Login on the Register tab (`/login?tab=register`). A `Log in` link sits in the header.
+- Links to the sample: `See a sample analysis` under the Login card, and `or see a sample analysis` in the empty Contract History state.
 - **A guest cannot paste text or upload a file.** Analysing a contract always requires an account.
 - The sample does not mention the per-user limits.
 

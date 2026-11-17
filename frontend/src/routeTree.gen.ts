@@ -15,6 +15,7 @@ import { Route as HistorySearchRouteImport } from './routes/history-search'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as NewAnalysisRouteImport } from './routes/new-analysis'
 import { Route as ContractsIdRouteImport } from './routes/contracts.$id'
+import { Route as SampleNameRouteImport } from './routes/sample.$name'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const ContractsIdRoute = ContractsIdRouteImport.update({
   path: '/contracts/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SampleNameRoute = SampleNameRouteImport.update({
+  id: '/sample/$name',
+  path: '/sample/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/new-analysis': typeof NewAnalysisRoute
   '/contracts/$id': typeof ContractsIdRoute
+  '/sample/$name': typeof SampleNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/new-analysis': typeof NewAnalysisRoute
   '/contracts/$id': typeof ContractsIdRoute
+  '/sample/$name': typeof SampleNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/new-analysis': typeof NewAnalysisRoute
   '/contracts/$id': typeof ContractsIdRoute
+  '/sample/$name': typeof SampleNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/new-analysis'
     | '/contracts/$id'
+    | '/sample/$name'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/new-analysis'
     | '/contracts/$id'
+    | '/sample/$name'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/new-analysis'
     | '/contracts/$id'
+    | '/sample/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   NewAnalysisRoute: typeof NewAnalysisRoute
   ContractsIdRoute: typeof ContractsIdRoute
+  SampleNameRoute: typeof SampleNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContractsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sample/$name': {
+      id: '/sample/$name'
+      path: '/sample/$name'
+      fullPath: '/sample/$name'
+      preLoaderRoute: typeof SampleNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   NewAnalysisRoute: NewAnalysisRoute,
   ContractsIdRoute: ContractsIdRoute,
+  SampleNameRoute: SampleNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

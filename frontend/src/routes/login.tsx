@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { ShieldCheck } from "lucide-react";
 
@@ -8,9 +8,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
+import { DEFAULT_SAMPLE, LOGIN_SAMPLE_LINK } from "@/lib/samples";
 import { isApiError, SESSION_EXPIRED_MESSAGE, USE_MOCK } from "@/services/api";
 
+type LoginTab = "login" | "register";
+
 export const Route = createFileRoute("/login")({
+  // `?tab=register` opens the Register tab (the guest sample's call to action).
+  validateSearch: (search: Record<string, unknown>): { tab?: LoginTab } =>
+    search["tab"] === "register" ? { tab: "register" } : {},
   head: () => ({
     meta: [
       { title: "Sign in — Anti-Scope Creep" },
@@ -33,7 +39,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function LoginPage() {
   const { user, login, register, sessionExpired, clearSessionExpired } = useAuth();
   const navigate = useNavigate();
-  const [tab, setTab] = useState<"login" | "register">("login");
+  const { tab: initialTab } = Route.useSearch();
+  const [tab, setTab] = useState<LoginTab>(initialTab ?? "login");
 
   useEffect(() => {
     if (user) void navigate({ to: "/history" });
@@ -84,6 +91,16 @@ function LoginPage() {
               </TabsContent>
             </Tabs>
           </div>
+
+          <p className="mt-4 text-center text-sm">
+            <Link
+              to="/sample/$name"
+              params={{ name: DEFAULT_SAMPLE }}
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              {LOGIN_SAMPLE_LINK}
+            </Link>
+          </p>
 
           {USE_MOCK && (
             <p className="mt-4 text-center text-xs text-muted-foreground">
