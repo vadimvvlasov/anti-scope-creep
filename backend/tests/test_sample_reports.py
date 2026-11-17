@@ -77,6 +77,11 @@ def test_committed_files_match_the_samples(rebuilt, name):
     assert read(committed.read_bytes()) == read((rebuilt / name).read_bytes())
 
 
+@pytest.mark.parametrize("name", ["net-90.json", "clean.json"])
+def test_committed_sample_json_is_a_copy_of_the_source(name):
+    assert (OUTPUT_DIR / name).read_bytes() == (SAMPLES_DIR / name).read_bytes()
+
+
 def test_cli_fails_without_samples(tmp_path, capsys):
     assert main(["--samples", str(tmp_path), "-o", str(tmp_path / "out")]) == 1
     assert "no sample JSON" in capsys.readouterr().err

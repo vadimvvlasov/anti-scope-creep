@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useRequireAuth } from "@/hooks/useAuth";
+import { DEFAULT_SAMPLE, HISTORY_SAMPLE_LINK } from "@/lib/samples";
 import { api, isApiError, type ContractSummary } from "@/services/api";
 
 export const Route = createFileRoute("/history")({
@@ -95,6 +96,15 @@ function HistoryPage() {
           <Button asChild className="mt-4">
             <Link to="/new-analysis">New Analysis</Link>
           </Button>
+          <p className="mt-3 text-sm">
+            <Link
+              to="/sample/$name"
+              params={{ name: DEFAULT_SAMPLE }}
+              className="text-muted-foreground underline underline-offset-2 hover:text-foreground"
+            >
+              {HISTORY_SAMPLE_LINK}
+            </Link>
+          </p>
         </div>
       )}
 

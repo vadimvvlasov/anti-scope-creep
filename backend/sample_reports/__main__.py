@@ -1,5 +1,6 @@
 """Render the guest samples (data/samples/*.json, issue #120) into static PDF and DOCX reports with the
-backend's own report renderer, for the frontend's public assets (issue #124).
+backend's own report renderer, for the frontend's public assets (issue #124), and copy the sample JSON
+next to them for the public sample route (issue #125).
 
     uv run python -m sample_reports            # from backend/: writes frontend/public/samples/
 
@@ -28,12 +29,13 @@ def sample_contract(path: Path) -> ContractDetail:
 
 
 def render_sample(path: Path, output_dir: Path) -> list[Path]:
-    """Write <name>.pdf and <name>.docx for one sample; return their paths."""
+    """Write <name>.json (a byte copy), <name>.pdf and <name>.docx for one sample; return their paths."""
     contract = sample_contract(path)
     assert contract.analyzed_at is not None
     blocks = report_blocks(contract, exported_at=contract.analyzed_at)
     output_dir.mkdir(parents=True, exist_ok=True)
-    written = []
+    written = [output_dir / path.name]
+    written[0].write_bytes(path.read_bytes())
     for extension, render in (("pdf", render_pdf), ("docx", render_docx)):
         target = output_dir / f"{path.stem}.{extension}"
         target.write_bytes(render(blocks))
