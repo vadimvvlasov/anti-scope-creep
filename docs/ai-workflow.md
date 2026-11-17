@@ -216,3 +216,5 @@ How a Lovable draft becomes part of the frontend, so the port is a normal review
 4. **Check:** the usual tests (Vitest for the copy against the spec, Playwright including 390 px), the
    pull request with a screenshot. The Lovable project stays a draft; nothing syncs back.
 
+The prompts are kept in [`docs/lovable/`](lovable/), one file per screen (the landing page: [`landing.md`](lovable/landing.md)).
+
