@@ -19,22 +19,29 @@ test("upload states the limits; a failed analysis explains the cost and a limite
   );
 
   await pasteContract(page, TEXT, "E2E limits");
+  // API calls only: the page itself is also served at /contracts/<id>.
+  const isApiCall = (type: string) => type === "fetch" || type === "xhr";
   await page.route(/\/contracts\/[0-9a-f-]{36}$/, async (route) => {
-    if (route.request().method() !== "GET") return route.continue();
+    const request = route.request();
+    if (request.method() !== "GET" || !isApiCall(request.resourceType())) return route.continue();
     const response = await route.fetch();
     await route.fulfill({ response, json: { ...(await response.json()), status: "failed" } });
   });
-  await page.route(/\/contracts\/[0-9a-f-]{36}\/retry$/, (route) =>
-    route.fulfill({
+  // The API is on another origin: the CORS preflight goes to the backend, and the answer needs its CORS header.
+  await page.route(/\/contracts\/[0-9a-f-]{36}\/retry$/, (route) => {
+    const request = route.request();
+    if (request.method() !== "POST") return route.continue();
+    return route.fulfill({
       status: 429,
+      headers: { "access-control-allow-origin": request.headers()["origin"] ?? "*" },
       json: {
         error: {
           code: "DAILY_ANALYSIS_LIMIT_REACHED",
           message: "You have reached the limit of 5 analyses in 24 hours. Please try again later.",
         },
       },
-    }),
-  );
+    });
+  });
   await page.reload();
 
   const failed = page.getByTestId("analysis-failed");
