@@ -1286,6 +1286,32 @@ A public, read-only sample analysis lets a visitor see the output before creatin
 - **A guest cannot paste text or upload a file.** Analysing a contract always requires an account.
 - The sample does not mention the per-user limits.
 
+### Landing page
+
+Planned (issue #147, audit T8). A static page at `/` tells a guest what the product does before asking for an account. Today `/` shows a spinner and redirects a guest to Login, and a link preview of `/` has no text.
+
+- **Who sees it:** a visitor without a stored session. A stored session still goes straight to Contract History, as today.
+- **Static:** the HTML of `/` contains the texts below at build time, so `curl /` and link previews show them; no server-side rendering. The page makes **no backend call** other than `POST /events`. Deep links (`/contracts/<id>`, `/sample/net-90`) keep working on reload.
+- **Link preview:** the current title and description of `/`, plus an `og:image` (1200×630: product name, the tagline, a cropped view of the sample findings).
+- **Header:** product name; links `See a sample` (`/sample/net-90`) and `Log in` (`/login?tab=login`); button `Create a free account` (`/login?tab=register`).
+- **Hero:**
+  - above the heading, the Login tagline: `For freelancers and independent contractors checking a client's contract.`
+  - heading: `Find the risky clauses before you sign.`
+  - under it, the Login value line: `Find the risky clauses in a client's contract, with exact quotes, suggested wording and a ready email to your client. Free to try.`
+  - primary button `See a sample analysis` (`/sample/net-90`), secondary button `Create a free account` (`/login?tab=register`).
+- **What you get**, three items:
+  - `Risky clauses, quoted` — `Each finding quotes the clause from your contract, explains the risk in plain English and rates it high, medium or low.`
+  - `Wording to propose` — `For each risky clause, replacement wording you can offer your client, in a PDF or DOCX report.`
+  - `An email to your client` — `A polite draft that asks for the changes. Copy it and send it from your own email.`
+- **What it checks:** heading `Six common traps in freelance contracts`, then the six UI labels of [Clause categories](#clause-categories-with-examples), as a list.
+- **How it works**, three steps: `Upload a PDF or paste the text of an English contract.`, `Wait a few minutes while the AI reads it.`, `Review the findings and send the email.`
+- **Privacy:** heading `Your contract stays private`, then the [Privacy at upload](#privacy-at-upload) list for the active analyzer, verbatim, caveat included, and the Methodology & Privacy link.
+- **Closing call to action:** heading `Check your own contract`, button `Create a free account` (`/login?tab=register`), link `or see a sample analysis` (`/sample/net-90`).
+- **Footer:** the [legal disclaimer](#legal-positioning), the Methodology & Privacy link, the `AI data policy` link, the version tag.
+- **Not on the page:** accuracy percentages, testimonials, customer logos, the per-user limits, prices or Pro. Every claim describes what the app does today.
+- **Analytics:** no new events. The existing `pageview` of `/` carries the UTM parameters, and the funnel compares `/` → `signup_completed` per `utm_source` (`docs/analytics.md`).
+- Layout works from 390 px wide; the design follows the app (`frontend/src/styles.css`, shadcn/ui components).
+
 ---
 
 ## Out of scope for the MVP
