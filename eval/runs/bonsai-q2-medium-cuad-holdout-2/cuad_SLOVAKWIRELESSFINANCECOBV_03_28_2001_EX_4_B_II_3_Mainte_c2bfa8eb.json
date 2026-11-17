@@ -1,0 +1,46 @@
+{
+ "id": "cuad:SLOVAKWIRELESSFINANCECOBV_03_28_2001-EX-4.(B)(II).3-Maintenance and support contract for SICAP(R) modules",
+ "chars": 33577,
+ "findings": [],
+ "email": false,
+ "seconds": 103.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5259,
+   "prompt_tokens": 3819,
+   "output_tokens": 1440,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 27.45,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6204,
+   "prompt_tokens": 3908,
+   "output_tokens": 2296,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 43.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4986,
+   "prompt_tokens": 3240,
+   "output_tokens": 1746,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 32.87,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

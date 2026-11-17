@@ -1,10 +1,12 @@
 # A local LLM on the server's GPU (docs/self-host.md, section 8): llama-server with Bonsai 2 27B, an
 # OpenAI-compatible API at http://127.0.0.1:8080/v1. Its own compose project, next to asc-prod and asc-dev:
 #
+#   docker network inspect llm-api >/dev/null 2>&1 || docker network create --internal llm-api
 #   docker compose -f compose.llm.yaml up -d --wait
 #
 # Not public: the port binds to 127.0.0.1, for checks on the server and an SSH tunnel from a laptop (the eval).
-# The product does not use it yet (#114 measures it first).
+# The backends (ANALYZER=local) reach it as http://llama:8080 over the internal network llm-api, which
+# scripts/server-pull.sh also creates.
 
 name: llm
 
@@ -57,6 +59,8 @@ services:
       - "300"
     ports:
       - "127.0.0.1:8080:8080"
+    # default: the first start downloads the model from Hugging Face. llm-api: internal, the backends only.
+    networks: [default, llm-api]
     volumes:
       - models:/models
     deploy:
@@ -82,6 +86,12 @@ services:
       # The first start downloads the model before /health answers.
       start_period: 30m
     logging: *logging
+
+networks:
+  default: {}
+  llm-api:
+    name: llm-api
+    external: true
 
 volumes:
   models:

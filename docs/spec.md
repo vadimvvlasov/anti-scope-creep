@@ -434,7 +434,7 @@ While the MVP stub analyzer is active, this section starts with:
 > - Your contract text is not used to train AI models.
 > - In this version, contract text is not sent to any third-party AI provider.
 
-The dialog must not claim that contract text is never stored, that it is anonymized, or that the analysis cannot be wrong. The texts that change when the LLM analyzer is enabled are listed in [LLM analyzer (Groq)](#llm-analyzer-groq).
+The dialog must not claim that contract text is never stored, that it is anonymized, or that the analysis cannot be wrong. The texts that change when the LLM analyzer is enabled are listed in [LLM analyzer (Groq)](#llm-analyzer-groq) and [Local model analyzer](#local-model-analyzer).
 
 ---
 
@@ -1344,6 +1344,15 @@ The LLM prompt must explicitly encode:
 - concise plain-English explanations;
 - one `suggested_change` per finding: replacement wording for the quoted clause, following the email wording rules;
 - negotiation email rules.
+
+### Local model analyzer
+
+The same LLM analyzer, run by a model on the project's own server instead of Groq (`ANALYZER=local`; model and server setup in `docs/self-host.md`, section 8). It is enabled only after it passes the held-out eval gate written in `docs/eval.md` before the run (passed 2026-11-17).
+
+- Everything in [LLM analyzer (Groq)](#llm-analyzer-groq) applies unchanged: the same prompts, untrusted-input framing, structured output, validation, quote verification, chunking, email rule and transactional failure. Pseudonymization also stays, although the text no longer leaves the server.
+- Contract text is not sent to any third party. `docs/ai-data-policy.md` must say which analyzer is active and, for this one, that the text is processed on the project's server and not sent to a third-party AI provider.
+- The server runs one analysis at a time; others wait in its queue. A request that gets no answer within its timeout fails the analysis instead of being repeated. The stale-analysis limit for this analyzer is set long enough to cover a queued analysis (`docs/self-host.md`).
+- When this analyzer is enabled, the [Methodology & Privacy dialog](#6-methodology--privacy-dialog) changes as for Groq, except the `Your data` line, which becomes `To analyze a contract, its text is processed by an AI model that runs on our own server; it is not sent to a third-party AI provider. Party names and contact details are replaced with placeholders where detected, but this is not full anonymization. See the AI data policy for details.` The Upload / Analyze screen shows its first sentence with a link to the AI data policy.
 
 ### CUAD / LoRA classifier (stretch goal)
 

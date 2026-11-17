@@ -1,0 +1,99 @@
+{
+ "id": "cuad:LegacyEducationAllianceInc_20200330_10-K_EX-10.18_12090678_EX-10.18_Development Agreement",
+ "chars": 46255,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+   "start": 8668,
+   "end": 8802
+  }
+ ],
+ "email": true,
+ "seconds": 252.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6635,
+   "prompt_tokens": 3940,
+   "output_tokens": 2695,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 57.25,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "For the avoidance of doubt, T&B shall remain the owner of all right, title and interest in and to the Derivative Works from inception.",
+      "explanation": "Any modifications or new educational content you create under this agreement automatically belongs to T&B the moment you create it, before you have been paid anything. You lose ownership of your own creative work at the moment of creation rather than after you have received full compensation.",
+      "suggested_change": "Ownership of all right, title and interest in and to the Derivative Works created by LEA shall transfer from LEA to T&B only upon LEA's receipt of full payment of all fees and compensation owed to LEA under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6628,
+   "prompt_tokens": 3897,
+   "output_tokens": 2731,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 58.08,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5714,
+   "prompt_tokens": 3833,
+   "output_tokens": 1881,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 39.59,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7188,
+   "prompt_tokens": 4405,
+   "output_tokens": 2783,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 59.87,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4026,
+   "prompt_tokens": 3436,
+   "output_tokens": 590,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 13.29,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1649,
+   "prompt_tokens": 405,
+   "output_tokens": 1244,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 24.23,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi there,\n\nI'm going through the agreement before signing and have one point I'd like to discuss regarding the relevant clause.\n\n- The clause on ownership of the Derivative Works states that ownership transfers to T&B at the moment the work is created, before any compensation has been paid. In plain terms, this means the creative work belongs to T&B the instant it is produced, regardless of whether you have been paid. I'd suggest revising the clause so that ownership of the Derivative Works created by LEA transfers to T&B only upon LEA's receipt of full payment of all fees and compensation owed under the agreement. This ensures the transfer aligns with the completion of payment.\n\nThanks so much for considering this adjustment. Happy to talk it through whenever works for you.\n\nWarm regards"
+   }
+  }
+ ],
+ "dropped": []
+}

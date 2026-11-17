@@ -1,0 +1,90 @@
+{
+ "id": "cuad:ReedsInc_20191113_10-Q_EX-10.4_11888303_EX-10.4_Development Agreement",
+ "chars": 28331,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company will create and provide to Reed's the Deliverables. Reed's will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to Reed's any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and Reed's accepts such assignment.",
+   "start": 8267,
+   "end": 8696
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by Reed's, are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of Reed's.",
+   "start": 10186,
+   "end": 10820
+  }
+ ],
+ "email": true,
+ "seconds": 141.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5668,
+   "prompt_tokens": 3888,
+   "output_tokens": 1780,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.68,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company will create and provide to [PARTY_D] the Deliverables. [PARTY_D] will exclusively own all Deliverables. Company will and hereby does, without further consideration, irrevocably assign to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations) and [PARTY_D] accepts such assignment.",
+      "explanation": "This clause states that [PARTY_D] exclusively owns the Deliverables and that you irrevocably assign all rights in them using present-tense language (\"hereby does...assign\") with no payment condition. In effect, ownership of your work transfers the moment it is created, not when you are paid, leaving you without a security interest or leverage if [PARTY_D] never remits payment.",
+      "suggested_change": "Company will create and provide to [PARTY_D] the Deliverables, and [PARTY_D] will exclusively own all Deliverables upon payment in full of all fees due to Company under this Agreement. Upon such full payment, Company irrevocably assigns to [PARTY_D] any and all worldwide right, title or interest that Company may now or hereafter possess in or to the Deliverables in perpetuity (or the maximum period permitted by Applicable Laws and Regulations), and [PARTY_D] accepts such assignment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5528,
+   "prompt_tokens": 3465,
+   "output_tokens": 2063,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.47,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Company acknowledges and agrees that all Intellectual Property created by Company, its affiliates, representatives, or agents in connection with or resulting from any work or services related to the Products, including the Deliverables (\"Work Product\"), but excluding the Neutral Alcohol Beverage Base and excluding the Company's general know-how and independently developed production processes not specifically related to the Products, have been specially ordered and commissioned by [PARTY_D], are works-made-for-hire from the moment of creation and that all such Work Product is and will be the sole and exclusive property of [PARTY_D].",
+      "explanation": "This clause makes every work product you create the Client's property from the moment of creation, with no payment condition attached. Even if you never receive payment for a deliverable, the Client already owns the rights to your work the instant you produce it.",
+      "suggested_change": "All Work Product shall remain the exclusive property of the Contractor until the Client has paid in full all fees due for the corresponding Deliverables, at which point the Contractor shall transfer to the Client all right, title, and interest in such Work Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4948,
+   "prompt_tokens": 4006,
+   "output_tokens": 942,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 21.47,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2458,
+   "prompt_tokens": 805,
+   "output_tokens": 1653,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 33.49,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sending over the agreement for review. Before I sign, I'd like to flag two clauses where I believe a small adjustment would better reflect how the work will be delivered.\n\n- The relevant clause provides that [PARTY_D] exclusively owns the Deliverables and that I irrevocably assign all worldwide rights to them in perpetuity, effective the moment the work is created, with no payment condition attached. In plain terms, this would mean I lose ownership of the work before I have been paid, leaving me with no way to secure my fee if payment is delayed or not made. I would suggest amending the clause so that exclusive ownership and the irrevocable assignment of all worldwide rights transfer to [PARTY_D] only upon payment in full of all fees due to me under the agreement.\n\n- A second relevant clause makes all work product I create in connection with the project the exclusive property of [PARTY_D] from the moment of creation, again with no payment condition. This has the same effect as the first clause: I would be giving up the rights to my work before I have been compensated for it. I would suggest replacing this clause with language stating that all work product remains the exclusive property of the contractor until [PARTY_D] has paid in full all fees due for the corresponding deliverables, at which point the contractor transfers to [PARTY_D] all right, title, and interest in such work product.\n\nI'm happy to discuss these points or adjust the wording if that works better for you. I believe these small changes would keep things fair for both sides and help us get to a signed agreement smoothly.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,46 @@
+{
+ "id": "cuad:DYNTEKINC_07_30_1999-EX-10-ONLINE HOSTING AGREEMENT",
+ "chars": 25214,
+ "findings": [],
+ "email": false,
+ "seconds": 91.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6351,
+   "prompt_tokens": 4427,
+   "output_tokens": 1924,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 37.02,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5500,
+   "prompt_tokens": 4107,
+   "output_tokens": 1393,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 26.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3775,
+   "prompt_tokens": 2238,
+   "output_tokens": 1537,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 27.41,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

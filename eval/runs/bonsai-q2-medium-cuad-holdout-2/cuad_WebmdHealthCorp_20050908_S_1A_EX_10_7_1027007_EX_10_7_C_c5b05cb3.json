@@ -1,0 +1,34 @@
+{
+ "id": "cuad:WebmdHealthCorp_20050908_S-1A_EX-10.7_1027007_EX-10.7_Content License Agreement",
+ "chars": 14993,
+ "findings": [],
+ "email": false,
+ "seconds": 67.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7578,
+   "prompt_tokens": 4500,
+   "output_tokens": 3078,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 58.99,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 2909,
+   "prompt_tokens": 2507,
+   "output_tokens": 402,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 8.39,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,128 @@
+{
+ "id": "cuad:BEYONDCOMCORP_08_03_2000-EX-10.2-CO-HOSTING AGREEMENT",
+ "chars": 58300,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "upon ninety (90) days prior notice in writing by Co-Host at any           time after June 30, 2000, if the term of the Web Site Services           Agreement has not been renewed for an additional term of one (1) year           or more pursuant to its terms",
+   "start": 16405,
+   "end": 16661
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "THE      LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED      FIFTEEN MILLION DOLLARS.",
+   "start": 25611,
+   "end": 25719
+  },
+  {
+   "category": "uncapped_liability",
+   "risk_level": "medium",
+   "quoted_text": "EXCLUSIVE OF ANY CLAIMS BY THIRD PARTIES FOR      INJURY OR DAMAGES TO PERSONS OR TANGIBLE PROPERTY DIRECTLY CAUSED BY ANY      PRODUCT",
+   "start": 25720,
+   "end": 25855
+  }
+ ],
+ "email": true,
+ "seconds": 455.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5238,
+   "prompt_tokens": 4184,
+   "output_tokens": 1054,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 24.12,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7795,
+   "prompt_tokens": 3699,
+   "output_tokens": 4096,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 87.73,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "upon ninety (90) days prior notice in writing by Co-Host at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms",
+      "explanation": "This gives only Co-Host (the client) the right to terminate the agreement without NAI's (the freelancer's) breach, while NAI has no matching exit right for the same non-renewal condition. The 90-day notice and the requirement to pay outstanding invoices and invoicable amounts mitigate the risk, but the one-sidedness remains.",
+      "suggested_change": "upon ninety (90) days prior notice in writing by either party at any time after June 30, 2000, if the term of the Web Site Services Agreement has not been renewed for an additional term of one (1) year or more pursuant to its terms"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 10667,
+   "prompt_tokens": 4184,
+   "output_tokens": 6483,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 140.7,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED FIFTEEN MILLION DOLLARS.",
+      "explanation": "The aggregate cap is $15 million, which is roughly three times the total contract fees (about $5 million: $2.5 million initial plus eight quarterly payments of $312,500). You could be liable for direct damages well beyond what the deal is worth.",
+      "suggested_change": "THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED TWO TIMES THE TOTAL AMOUNT PAYABLE UNDER THIS AGREEMENT."
+     },
+     {
+      "category": "uncapped_liability",
+      "risk_level": "medium",
+      "quoted_text": "EXCLUSIVE OF ANY CLAIMS BY THIRD PARTIES FOR INJURY OR DAMAGES TO PERSONS OR TANGIBLE PROPERTY DIRECTLY CAUSED BY ANY PRODUCT",
+      "explanation": "This takes third-party property-damage claims outside the $15 million cap with no separate ceiling, meaning a single property-damage suit could expose you to unlimited liability.",
+      "suggested_change": "EXCLUSIVE OF ANY CLAIMS BY THIRD PARTIES FOR INJURY OR DAMAGES TO PERSONS OR TANGIBLE PROPERTY DIRECTLY CAUSED BY ANY PRODUCT, WHICH SHALL BE SUBJECT TO AN AGGREGATE LIMIT EQUAL TO THE FIFTEEN MILLION DOLLAR CAP IN THIS SECTION."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7537,
+   "prompt_tokens": 4315,
+   "output_tokens": 3222,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 71.5,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8127,
+   "prompt_tokens": 4089,
+   "output_tokens": 4038,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 88.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2609,
+   "prompt_tokens": 539,
+   "output_tokens": 2070,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 43.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sending over the draft agreement. Before I sign, I'd like to propose two adjustments to specific clauses so the terms are more in line with the overall value of the work.\n\n- The relevant clause sets an aggregate liability cap of fifteen million dollars for direct damages. Given that the total fees payable under the agreement come to roughly five million dollars, this cap is about three times the value of the work, which could leave me exposed to damages well beyond what the deal is worth. I would suggest the clause be revised to read: \"THE LIABILITY OF A PARTY TO THE OTHER FOR DIRECT DAMAGES SHALL NOT EXCEED TWO TIMES THE TOTAL AMOUNT PAYABLE UNDER THIS AGREEMENT.\"\n\n- The relevant clause carves out third-party claims for injury or damages to persons or tangible property directly caused by any product from the cap in this section, with no separate ceiling applied. In plain terms, a single property-damage suit by a third party could create unlimited exposure. I would suggest adding to the end of that carve-out: \"WHICH SHALL BE SUBJECT TO AN AGGREGATE LIMIT EQUAL TO THE FIFTEEN MILLION DOLLAR CAP IN THIS SECTION.\"\n\nLet me know if these work for you or if you'd like to talk through any of them further. I'm happy to jump on a call if that's easier.\n\nThanks,\n"
+   }
+  }
+ ],
+ "dropped": []
+}

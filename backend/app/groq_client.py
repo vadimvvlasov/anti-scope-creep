@@ -105,6 +105,7 @@ class GroqClient:
         api_url: str = API_URL,
         temperature: float | None = None,
         reasoning_effort: str = "low",
+        retry_read_timeouts: bool = True,
     ):
         if not api_key:
             raise ValueError("GROQ_API_KEY is not set")
@@ -119,6 +120,8 @@ class GroqClient:
         self._api_url = api_url
         self._temperature = temperature
         self._reasoning_effort = reasoning_effort
+        # A local server keeps generating after the client gives up, so asking again only lengthens its queue.
+        self._retry_read_timeouts = retry_read_timeouts
 
     def __repr__(self) -> str:
         return f"GroqClient(model={self._model!r})"
@@ -180,6 +183,8 @@ class GroqClient:
             telemetry.record_llm_attempt(self._model, _attempt_status(response), time.monotonic() - started)
             if response is not None and response.status_code == 200:
                 return self._parse(response, attempt, started, budget)
+            if response is None and last == "ReadTimeout" and not self._retry_read_timeouts:
+                raise GroqError(f"Groq request timed out after attempt {attempt} (ReadTimeout)")
             if response is not None and not invalid_json_retried and _is_invalid_json(response):
                 invalid_json_retried = True
                 logger.warning("Groq %s attempt %d: generated JSON failed validation; asking again once",

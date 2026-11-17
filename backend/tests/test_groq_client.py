@@ -287,3 +287,26 @@ def test_strict_schema_of_the_analysis_result_keeps_the_six_categories():
     finding = schema["properties"]["findings"]["items"]
     assert set(finding["required"]) == set(FindingDraft.model_fields)
     assert len(finding["properties"]["category"]["enum"]) == 6
+
+
+def test_read_timeouts_are_retried_by_default():
+    script = Script(httpx.ReadTimeout("slow"), ok())
+    groq, _ = client(script)
+    assert groq.complete_json(MESSAGES, "hi", SCHEMA).content == {"text": "hi"}
+    assert len(script.requests) == 2
+
+
+def test_read_timeout_fails_at_once_when_not_retried():
+    # A local server keeps generating after a timeout; asking again would only queue a second copy.
+    script = Script(httpx.ReadTimeout("slow"), ok())
+    sleeps: list[float] = []
+    groq, _ = client(script, sleeps, retry_read_timeouts=False)
+    with pytest.raises(GroqError, match="timed out"):
+        groq.complete_json(MESSAGES, "hi", SCHEMA)
+    assert len(script.requests) == 1 and sleeps == []
+
+
+def test_connection_errors_are_still_retried_without_read_timeout_retries():
+    script = Script(httpx.ConnectError("down"), ok())
+    groq, _ = client(script, retry_read_timeouts=False)
+    assert groq.complete_json(MESSAGES, "hi", SCHEMA).content == {"text": "hi"}

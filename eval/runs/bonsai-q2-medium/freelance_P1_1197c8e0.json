@@ -1,0 +1,78 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3810,
+   "end": 3838
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 148.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7263,
+   "prompt_tokens": 4164,
+   "output_tokens": 3099,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 66.47,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "You will be paid 90 days after issuing each invoice, which ties up your cash flow for nearly three months and creates a significant liquidity risk, especially for an estimated $23,500 project.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5519,
+   "prompt_tokens": 3354,
+   "output_tokens": 2165,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.71,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You must wait 90 days after invoicing or delivery to be paid, which ties up your cash flow for three months. This is a long and unfavorable payment term.",
+      "suggested_change": "The Client shall pay each invoice within thirty (30) days of receipt of the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2294,
+   "prompt_tokens": 426,
+   "output_tokens": 1868,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 37.49,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore we sign the agreement, I'd like to ask about two adjustments to the payment terms. Both relate to the Net 90 provision and would shorten the time between issuing an invoice and receiving payment.\n\n- The relevant clause states, \"Invoices are payable Net 90.\" This means each invoice is due 90 days after issuance, which ties up cash flow for nearly three months and makes it difficult to cover day-to-day costs. I'd propose changing this to: \"Invoices are payable Net 30.\"\n\n- The payment period clause specifies Net 90, requiring the client to wait 90 days after invoicing or delivery to make payment. I'd propose replacing that clause with: \"The Client shall pay each invoice within thirty (30) days of receipt of the invoice.\"\n\nI'm happy to discuss either or both of these in more detail. Thank you for considering the changes.\n\nBest,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,92 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1754,
+   "end": 2015
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90.",
+   "start": 3976,
+   "end": 4004
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13169,
+   "end": 13191
+  }
+ ],
+ "email": true,
+ "seconds": 127.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7297,
+   "prompt_tokens": 4199,
+   "output_tokens": 3098,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 68.49,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "The scope is described as only the 'principal workstreams,' and minor changes can be handled through informal project communications. While there is a safeguard about workload, the vague threshold between 'minor clarification' and extra work leaves room for scope to expand without a formal change order and additional fees.",
+      "suggested_change": "Any clarification or modification to the scope of Services that goes beyond what is expressly stated in the applicable statement of work must be documented in a written change order specifying additional fees, revised dates, and any other effects before the changed work begins."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90.",
+      "explanation": "You will be paid 90 days after invoicing, which means your cash flow is significantly delayed and you may be out of pocket for three months between completing milestone work and receiving payment.",
+      "suggested_change": "Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4488,
+   "prompt_tokens": 3354,
+   "output_tokens": 1134,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 25.87,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "Your invoices are paid only 90 days after delivery, meaning you carry three months of working capital on every milestone while the Client holds the cash. This is three times longer than standard Net 30 terms.",
+      "suggested_change": "Payment period: Net 30 days from the date of the applicable invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2016,
+   "prompt_tokens": 455,
+   "output_tokens": 1561,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 33.17,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope all is well. I've gone through the agreement and have a couple of points I'd like to discuss before we go ahead with signing.\n\n- The relevant clause states \"Invoices are payable Net 90,\" which means each invoice would be due 90 days after it is issued. That creates a lengthy gap between completing milestone work and actually receiving payment. I'd suggest replacing it with: \"Invoices are payable Net 30. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.\"\n\n- The payment period is currently set at \"Net 90,\" which means the full quarter is required to elapse before funds come through on each deliverable. This is considerably longer than standard terms and would leave me funding several months of work on every milestone. I'd propose changing it to: \"Payment period: Net 30 days from the date of the applicable invoice.\"\n\nI'm happy to jump on a quick call to go over either point if that's easier.\n\nThanks so much for taking a look.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,89 @@
+{
+ "id": "cuad:SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT",
+ "chars": 23895,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+   "start": 4498,
+   "end": 4589
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Surgical shall immediately cease to provide any further Services under this Agreement and/or any applicable SOW upon receipt of notice from Imprimis that Imprimis is terminating this Agreement and/or such SOW. Upon termination of this Agreement and/or such SOW, Surgical shall be entitled to payment for Services completed prior to such termination.",
+   "start": 2468,
+   "end": 2817
+  }
+ ],
+ "email": true,
+ "seconds": 150.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7757,
+   "prompt_tokens": 3786,
+   "output_tokens": 3971,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 75.43,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Surgical agrees that all Work Product shall be the sole and exclusive property of Imprimis.",
+      "explanation": "This clause makes all of your work product immediately and unconditionally the client's property the moment you create it, regardless of whether or when you get paid. Combined with the work-made-for-hire language and the present-assignment language in the same section, you have no ownership leverage at all.",
+      "suggested_change": "Upon receipt of full payment of all Sales Commissions due under this Agreement, all Work Product shall be the sole and exclusive property of the Client."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Surgical shall immediately cease to provide any further Services under this Agreement and/or any applicable SOW upon receipt of notice from Imprimis that Imprimis is terminating this Agreement and/or such SOW. Upon termination of this Agreement and/or such SOW, Surgical shall be entitled to payment for Services completed prior to such termination.",
+      "explanation": "Only the client has an express right to end the contract, while your ability to walk away is not stated here. Although you will be paid for completed work, the one-sidedness means the client can exit at any time at its convenience while you are locked in for the full term.",
+      "suggested_change": "Either party may terminate this Agreement or any applicable SOW upon thirty (30) days' written notice to the other party. Upon termination, the Client shall pay the Contractor for all Services completed prior to such termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5655,
+   "prompt_tokens": 3857,
+   "output_tokens": 1798,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 34.66,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3670,
+   "prompt_tokens": 2822,
+   "output_tokens": 848,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 16.38,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1713,
+   "prompt_tokens": 383,
+   "output_tokens": 1330,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 23.6,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sending the agreement over. Before I proceed with signing, I'd like to raise one item for your consideration:\n\n- The relevant clause states that all Work Product shall be the sole and exclusive property of the Client the moment it is created. In plain English, this means ownership of the work would transfer before any payment has been made. I'd propose the constructive modification of tying the transfer to payment: \"Upon receipt of full payment of all Sales Commissions due under this Agreement, all Work Product shall be the sole and exclusive property of the Client.\" This keeps the ownership arrangement intact but makes it contingent on full payment.\n\nHappy to discuss at your convenience or work through any questions you may have.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

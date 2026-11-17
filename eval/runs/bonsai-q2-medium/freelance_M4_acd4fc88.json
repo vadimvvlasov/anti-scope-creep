@@ -1,0 +1,120 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 2001,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4880,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3737,
+   "end": 3896
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  }
+ ],
+ "email": true,
+ "seconds": 130.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6876,
+   "prompt_tokens": 4152,
+   "output_tokens": 2724,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 66.15,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You are required to absorb any reasonable scope changes as long as they fit within the existing $24,875 budget, meaning the Client receives additional work without paying extra until that budget is exhausted.",
+      "suggested_change": "Changes to the scope of Services shall be documented in a written change order specifying the additional work, associated fees, and timeline, and shall be effective only upon written acceptance by both parties."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "You are contractually committed to 15 rounds of revisions on the principal creative Deliverables, which is well above a typical review cycle and could consume a substantial amount of unpaid time.",
+      "suggested_change": "The parties agree that up to 3 rounds of ordinary revisions for each principal creative Deliverable are included in the fees. Additional revision requests shall be handled through a written change order specifying any associated fees and timeline."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "You must wait 60 days after invoicing to be paid, which extends the period during which you carry the financial risk of performing the work.",
+      "suggested_change": "Invoices are payable Net 30 from the date of invoice. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4829,
+   "prompt_tokens": 3345,
+   "output_tokens": 1484,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 33.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "You are contractually obligated to accept 15 revision rounds, which is well beyond a normal review process and could consume significant billable time on rework without additional compensation.",
+      "suggested_change": "Revision allowance: 3 rounds"
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You will be paid 60 days after invoicing, which ties up your working capital for a long period relative to the project timeline of roughly two months.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2302,
+   "prompt_tokens": 809,
+   "output_tokens": 1493,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 30.48,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're well. I've had a chance to review the agreement and would like to suggest a few adjustments before we sign. Here are my proposed modifications to the relevant clauses:\n\n- The relevant clause requires absorbing any reasonable scope changes as long as they fall within the existing project budget. I propose revising it to state that changes to the scope of Services shall be documented in a written change order specifying the additional work, associated fees, and timeline, and shall be effective only upon written acceptance by both parties.\n\n- The relevant clause commits to 15 rounds of ordinary revisions for the principal creative Deliverables. I propose reducing this to up to 3 rounds per Deliverable included in the fees, with any additional revision requests handled through a written change order specifying associated fees and timeline.\n\n- The relevant clause on payment terms sets invoices at Net 60. I propose shortening the payment period to Net 30 from the date of invoice, while keeping the same interest provision for late payment as currently written.\n\n- The relevant clause on the revision allowance states 15 rounds. I propose changing this to 3 rounds.\n\n- The relevant clause on the payment period states Net 60. I propose changing this to Net 30.\n\nPlease let me know your thoughts on any of these points. I'm happy to talk through them or make further adjustments to reach a mutual understanding.\n\nWarm regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,92 @@
+{
+ "id": "cuad:PANDIONTHERAPEUTICSHOLDCOLLC_05_22_2020-EX-10.17-CONSULTING AGREEMENT",
+ "chars": 22730,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+   "start": 681,
+   "end": 935
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "The Consultant further acknowledges that each original work of authorship which is made by the Consultant (solely or jointly with others) within the scope of this Agreement and which is protectable by copyright is a \"work made for hire,\" as that term is defined in the United States Copyright Act.",
+   "start": 11413,
+   "end": 11710
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Consultant will provide advice and services to the Company as requested by the Board of Directors from time to time.",
+   "start": 22485,
+   "end": 22601
+  }
+ ],
+ "email": true,
+ "seconds": 232.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8259,
+   "prompt_tokens": 4110,
+   "output_tokens": 4149,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 89.45,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "The Consultant agrees to perform such consulting, advisory and related services to and for the Company as may be reasonably requested from time to time by the Company, including, but not limited to, the services specified on Schedule A to this Agreement.",
+      "explanation": "You are required to perform whatever services the Company requests, with no cap on volume or hours and no change-order or additional-pay mechanism. The 'reasonably' qualifier is too vague to limit the scope, so the Company can keep adding tasks and expect you to perform them within the fixed equity compensation already granted.",
+      "suggested_change": "The Contractor shall perform the services specifically described in Schedule A. Any additional services or expanded scope requested by the Client after the Effective Date shall require a written change order signed by both parties, which shall specify the additional services and the corresponding compensation to be paid to the Contractor."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "The Consultant further acknowledges that each original work of authorship which is made by the Consultant (solely or jointly with others) within the scope of this Agreement and which is protectable by copyright is a \"work made for hire,\" as that term is defined in the United States Copyright Act.",
+      "explanation": "This clause makes everything you create during the engagement the Company's property from the moment it is created, with no condition tied to payment. You have no right to withhold the work or the ownership rights until the Company's obligation to issue the shares or pay expenses is fulfilled.",
+      "suggested_change": "All work product created by the Contractor specifically for the Client under this Agreement shall be transferred to the Client upon receipt of full payment of all amounts due to the Contractor under this Agreement, and from that moment forward the work product and all associated intellectual property rights shall belong to the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8823,
+   "prompt_tokens": 3987,
+   "output_tokens": 4836,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 105.09,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Consultant will provide advice and services to the Company as requested by the Board of Directors from time to time.",
+      "explanation": "Your entire scope is defined as doing whatever the Board asks, 'from time to time,' with no cap on the number, type, or volume of requests and no change-order or pricing mechanism for expanded work. This means the client can keep asking you for additional services and you would be expected to deliver them under the original terms.",
+      "suggested_change": "The Consultant will provide advice and services within the defined field as reasonably requested by the Board of Directors; any request for additional or expanded services beyond those reasonably contemplated in the original engagement shall be subject to a mutually agreed written change order specifying the additional scope, timeframe, and applicable fees before the Consultant is obligated to perform them."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2651,
+   "prompt_tokens": 813,
+   "output_tokens": 1838,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 37.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're well. Before I sign, I wanted to raise a few points on the agreement that I'd like to discuss with you.\n\n- The relevant clause states that I would perform consulting and advisory services as reasonably requested from time to time, including those on Schedule A. In plain terms, this leaves the scope of work entirely open — no cap on the number or type of tasks, and no mechanism to adjust compensation if the work expands. I'd like to propose that the scope be limited to the services specifically described in Schedule A, and that any additional or expanded services requested after the effective date would require a written change order signed by both parties, specifying the additional services and the corresponding compensation.\n\n- The relevant clause designates every work of authorship I create during the engagement as a \"work made for hire\" under the United States Copyright Act. As written, all intellectual property I produce becomes yours the moment it is created, with no condition tied to payment. I'd like to propose that ownership of all work product created specifically for you under the agreement transfers to you upon receipt of full payment of all amounts due, and from that point forward all associated intellectual property rights would belong to you.\n\n- The relevant clause defines my scope as providing advice and services as requested by the Board of Directors from time to time. Like the first point, this leaves the scope open-ended with no limit on the number, type, or volume of requests and no pricing mechanism for expanded work. I'd like to propose that my engagement be limited to a defined field of services as reasonably requested by the Board, with any request for additional or expanded services beyond those reasonably contemplated in the original engagement subject to a mutually agreed written change order specifying the additional scope, timeframe, and applicable fees before I would be obligated to perform them.\n\nPlease let me know if you'd like to talk through any of these, or if there's a better way to address them.\n\nThanks for your time — looking forward to hearing from you.\n"
+   }
+  }
+ ],
+ "dropped": []
+}

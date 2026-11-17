@@ -1,0 +1,65 @@
+{
+ "id": "cuad:DRAGONSYSTEMSINC_01_08_1999-EX-10.17-OUTSOURCING AGREEMENT",
+ "chars": 8599,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "However, this may be extended.",
+   "start": 1197,
+   "end": 1227
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "medium",
+   "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to MMI.",
+   "start": 6266,
+   "end": 6364
+  }
+ ],
+ "email": true,
+ "seconds": 122.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7643,
+   "prompt_tokens": 3632,
+   "output_tokens": 4011,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 86.35,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "However, this may be extended.",
+      "explanation": "The contract defines your services for three specific products with attached price sheets, but then states in a single sentence that the scope 'may be extended' without any change-order process or pricing mechanism. This leaves the door open for your client to request additional products or services with no defined way to get paid for the extra work.",
+      "suggested_change": "Any extension of the scope of Services beyond the three products listed in the attached price sheets shall require a written change order signed by both parties, specifying the additional services, quantities, and the agreed pricing or rates for such additions."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "medium",
+      "quoted_text": "Dragon may terminate this agreement without cause by giving sixty (60) days written notice to [PARTY_B].",
+      "explanation": "Only your client (Dragon) has a right to terminate the agreement without cause. The contract does not state that you will be paid for work completed or costs incurred up to the effective date of termination, leaving you exposed to losing revenue with no guarantee of compensation for work already performed.",
+      "suggested_change": "Either party may terminate this Agreement without cause by giving sixty (60) days written notice to the other party; upon termination, the Client shall pay the Contractor within thirty (30) days for all Services performed and all materials delivered prior to the effective date of termination, plus any reasonable costs incurred in reliance on the Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2168,
+   "prompt_tokens": 422,
+   "output_tokens": 1746,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 35.65,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're well. Before we sign, I'd like to discuss one point regarding the agreement.\n\n- The relevant clause grants the right to terminate without cause solely to the Client. In plain terms, this means I would not be contractually entitled to payment for work already completed or materials already delivered if the Client chose to terminate. I suggest that the clause be amended to allow either party to terminate without cause upon sixty (60) days' written notice, and that upon termination the Client pay the Contractor within thirty (30) days for all services performed and all materials delivered before the effective date of termination, along with any reasonable costs incurred in reliance on the agreement.\n\nLet me know your thoughts and I'll gladly update the document.\n\nWarm regards"
+   }
+  }
+ ],
+ "dropped": []
+}

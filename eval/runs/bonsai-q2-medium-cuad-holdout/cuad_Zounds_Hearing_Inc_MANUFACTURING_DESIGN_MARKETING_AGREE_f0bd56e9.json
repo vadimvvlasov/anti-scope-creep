@@ -1,0 +1,99 @@
+{
+ "id": "cuad:Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT",
+ "chars": 47001,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "The Technology Access Fee will be paid in two equal installments of $500,000 each. The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+   "start": 2382,
+   "end": 2629
+  }
+ ],
+ "email": true,
+ "seconds": 321.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8357,
+   "prompt_tokens": 4044,
+   "output_tokens": 4313,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 93.68,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "The Technology Access Fee will be paid in two equal installments of $500,000 each. The first installment will be due thirty (30) days following the Effective Date and the second installment will be due sixty (60) days following the Effective Date.",
+      "explanation": "The second $500,000 installment of the Technology Access Fee is not due until 60 days after the Effective Date, deferring a substantial portion of the upfront fee well beyond the standard 30-day window and leaving you exposed for two months.",
+      "suggested_change": "The Technology Access Fee will be paid in two equal installments of $500,000 each. The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following payment of the first installment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5183,
+   "prompt_tokens": 3329,
+   "output_tokens": 1854,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 40.53,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7067,
+   "prompt_tokens": 4061,
+   "output_tokens": 3006,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 65.03,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7042,
+   "prompt_tokens": 4126,
+   "output_tokens": 2916,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 63.05,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 3363,
+   "prompt_tokens": 2720,
+   "output_tokens": 643,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 14.33,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2691,
+   "prompt_tokens": 447,
+   "output_tokens": 2244,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.8,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi there,\n\nI've had a look through the draft and wanted to flag one small adjustment before it's ready for signature.\n\n- The relevant clause currently sets the second Technology Access Fee installment at sixty (60) days following the Effective Date. In plain terms, this fixes the second $500,000 payment to a calendar milestone rather than anchoring it to when the first payment is actually made. I'd suggest revising the clause to read: \"The Technology Access Fee will be paid in two equal installments of $500,000 each. The first installment will be due thirty (30) days following the Effective Date and the second installment will be due thirty (30) days following payment of the first installment.\" This way the second payment is tied to the actual timing of the first, which gives the schedule a bit more structure.\n\nLet me know if that works, or if you'd like to walk through it together.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

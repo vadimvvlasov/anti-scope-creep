@@ -1,0 +1,46 @@
+{
+ "id": "cuad:CCAINDUSTRIESINC_04_14_2014-EX-10.1-OUTSOURCING AGREEMENT",
+ "chars": 31914,
+ "findings": [],
+ "email": false,
+ "seconds": 169.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7356,
+   "prompt_tokens": 4350,
+   "output_tokens": 3006,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 65.77,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 8011,
+   "prompt_tokens": 4154,
+   "output_tokens": 3857,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 80.82,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4816,
+   "prompt_tokens": 3730,
+   "output_tokens": 1086,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 22.31,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

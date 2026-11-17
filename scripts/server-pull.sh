@@ -70,6 +70,18 @@ update_environment() {
   fi
 }
 
+# The internal network shared by the backends and llama-server (compose.llm.yaml). compose.server.yaml needs it
+# to exist, also when ANALYZER is not local, so a missing one is created before any environment starts.
+ensure_llm_network() {
+  docker network inspect llm-api >/dev/null 2>&1 && return 0
+  if docker network create --internal llm-api >/dev/null; then
+    log "created network llm-api"
+  else
+    log "cannot create network llm-api"
+    return 1
+  fi
+}
+
 prune_images() {
   local output
   output=$(docker image prune -f) || return 1
@@ -88,6 +100,7 @@ main() {
     return 1
   fi
   local status=0 env_file
+  ensure_llm_network || return 1
   for env_file in "$@"; do
     update_environment "$env_file" || status=1
   done

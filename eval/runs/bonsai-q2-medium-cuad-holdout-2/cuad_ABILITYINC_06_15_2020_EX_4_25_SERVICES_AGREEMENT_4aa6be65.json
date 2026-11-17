@@ -1,0 +1,75 @@
+{
+ "id": "cuad:ABILITYINC_06_15_2020-EX-4.25-SERVICES AGREEMENT",
+ "chars": 26346,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All writings or works of authorship, including, without limitation, program codes or documentation, produced or authored by Provider in the course of performing services for the Recipient, together with any associated copyrights, are works made for hire and the exclusive property of the Recipient. To the extent that any writings or works of authorship may not, by operation of law, be works made for hire, this Agreement shall constitute an irrevocable assignment by Provider to the Recipient of the ownership of and all rights of copyright in, such items, and the Recipient shall have the right to obtain and hold in its own name, rights of copyright, copyright registrations, and similar protections which may be available in the works. Provider shall give the Recipient or its designees all assistance reasonably required to perfect such rights.",
+   "start": 6181,
+   "end": 7031
+  }
+ ],
+ "email": true,
+ "seconds": 142.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7182,
+   "prompt_tokens": 3675,
+   "output_tokens": 3507,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 64.76,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All writings or works of authorship, including, without limitation, program codes or documentation, produced or authored by Provider in the course of performing services for the Recipient, together with any associated copyrights, are works made for hire and the exclusive property of the Recipient. To the extent that any writings or works of authorship may not, by operation of law, be works made for hire, this Agreement shall constitute an irrevocable assignment by Provider to the Recipient of the ownership of and all rights of copyright in, such items, and the Recipient shall have the right to obtain and hold in its own name, rights of copyright, copyright registrations, and similar protections which may be available in the works. Provider shall give the Recipient or its designees all assistance reasonably required to perfect such rights.",
+      "explanation": "The clause declares every deliverable you create to be the Client's property the moment it is made, with no payment condition attached. If the Client stops paying or the engagement ends before you have been fully compensated, it still owns your work product outright and can use or license it without owing you anything further.",
+      "suggested_change": "All writings or works of authorship produced by the Contractor in the course of performing the Services shall be owned by the Client only upon receipt of full payment of all invoices relating to such work product. Until full payment is received, the Contractor retains all ownership of and rights in and to all deliverables, and the Client shall have no right to use, reproduce, or distribute any deliverables prior to such full payment."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6491,
+   "prompt_tokens": 3822,
+   "output_tokens": 2669,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 49.8,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4053,
+   "prompt_tokens": 3339,
+   "output_tokens": 714,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 14.31,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1302,
+   "prompt_tokens": 583,
+   "output_tokens": 719,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 13.1,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore I sign the agreement, I'd like to raise one item for discussion so we can align before finalizing.\n\n- The relevant clause states that every deliverable I produce during the engagement becomes the client's exclusive property the moment it is created, with no condition tied to payment. In plain terms, the client would own all work product even if no invoices have been paid or the engagement is cut short. I would suggest amending the clause so that ownership of all deliverables transfers to the client only upon receipt of full payment of the applicable invoices. Until full payment is received, I would retain ownership of all work product, and the client would have no right to use, reproduce, or distribute any deliverables.\n\nI hope this makes sense. I'm happy to jump on a quick call to talk it through.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

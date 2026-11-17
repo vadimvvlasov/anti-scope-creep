@@ -1,0 +1,50 @@
+{
+ "id": "cuad:TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT",
+ "chars": 17786,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "Customer, upon thirty days prior written notice, may cancel this           Agreement at the end of the Initial Term and thereafter on each           anniversary of the end of the Initial Term. MMMW may cancel this           Agreement if the Customer does not remit payment according to the           terms of MMMW's invoice.",
+   "start": 6506,
+   "end": 6830
+  }
+ ],
+ "email": false,
+ "seconds": 86.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6261,
+   "prompt_tokens": 4074,
+   "output_tokens": 2187,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.29,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "Customer, upon thirty days prior written notice, may cancel this Agreement at the end of the Initial Term and thereafter on each anniversary of the end of the Initial Term. MMMW may cancel this Agreement if the Customer does not remit payment according to the terms of MMMW's invoice.",
+      "explanation": "Only the Customer has the right to end the agreement without cause (by simply choosing not to renew at each term boundary with 30 days' notice), while you (MMMW) can only terminate if the Customer fails to pay. This means the Client can walk away at every anniversary on their own schedule, but you are locked in unless they breach.",
+      "suggested_change": "Either party may terminate this Agreement without cause upon thirty (30) days prior written notice to the other party, and all work performed and costs incurred prior to the effective date of termination shall be invoiced and paid in full within thirty (30) days of the invoice date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4906,
+   "prompt_tokens": 2785,
+   "output_tokens": 2121,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.95,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": []
+}

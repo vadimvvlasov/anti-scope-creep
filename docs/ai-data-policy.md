@@ -1,13 +1,25 @@
 # AI data policy
 
-What Anti-Scope Creep sends to its AI provider, what the provider keeps, and what the
-application stores. It applies when the LLM analyzer is enabled (`ANALYZER=groq`); the
-Methodology & Privacy dialog and the Upload screen link here. Rules come from
-`docs/spec.md` ("LLM analyzer (Groq)", "Pseudonymization rules").
+Where Anti-Scope Creep sends contract text for analysis, what is kept there, and what the
+application stores. It applies when an LLM analyzer is enabled: the model on our own server
+(`ANALYZER=local`) or Groq (`ANALYZER=groq`). The Methodology & Privacy dialog and the Upload
+screen say which one is active and link here. Rules come from `docs/spec.md` ("LLM analyzer
+(Groq)", "Local model analyzer", "Pseudonymization rules").
 
-Last updated: 2026-10-19.
+Last updated: 2026-11-17.
 
-## In short
+## In short: the model on our own server (`ANALYZER=local`)
+
+- To analyze a contract, its text is processed by an AI model that runs on the project's own
+  server. It is **not sent to a third-party AI provider**.
+- Party names and contact details are still replaced with placeholders where detected, as
+  below. This is not anonymization.
+- The model does not learn from contracts and keeps nothing after the server restarts (see
+  [The model on our own server](#the-model-on-our-own-server)).
+- The application stores the extracted contract text and the results in your account
+  until you delete the contract. The original file is never stored.
+
+## In short: Groq (`ANALYZER=groq`)
 
 - To analyze a contract, its text is sent to **Groq**, a third-party AI provider.
 - Before it is sent, party and signatory names, contact details, bank details,
@@ -20,7 +32,23 @@ Last updated: 2026-10-19.
   until you delete the contract. The original file is never stored.
 - Anti-Scope Creep does not use contract text to train models.
 
+## The model on our own server
+
+With `ANALYZER=local` the requests in the table below go to `llama-server`, an open-source
+inference server, running an open-weight model (Bonsai 2 27B) on the GPU of the same server
+as the backend (`docs/self-host.md`, section 8). The backend reaches it over an internal
+Docker network with no route to the internet and no port open to the outside.
+
+- The same content is sent as for Groq (the table below), pseudonymized the same way.
+- `llama-server` keeps recent prompts in memory to speed up similar requests. They are not
+  written to disk and are gone when the server or the model restarts; the model is unloaded
+  after 5 idle minutes.
+- The model weights do not change: contracts are not used for training.
+- `llama-server` is not configured to log prompts or answers.
+
 ## What is sent to Groq
+
+With `ANALYZER=groq`:
 
 | Request | Content | When |
 |---|---|---|
@@ -58,7 +86,7 @@ Limits. The rules are pattern-based and may miss:
 - phone numbers without a country code or label, and addresses without a label;
 - personal data in unusual layouts.
 
-Anything missed is sent to Groq as written. Do not upload contracts whose contents must
+Anything missed reaches the model as written (with Groq, the third-party provider). Do not upload contracts whose contents must
 not leave your organization.
 
 The placeholder mapping exists only in memory while the analysis runs. It is used to put

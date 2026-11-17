@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+   "start": 5121,
+   "end": 5243
+  }
+ ],
+ "email": true,
+ "seconds": 111.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6461,
+   "prompt_tokens": 4189,
+   "output_tokens": 2272,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 50.39,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project.",
+      "explanation": "You lose ownership of the work the instant it is created, before any payment has been made. Although the actual file handover is delayed until the Client pays, the Client legally owns the Deliverables throughout the entire project, which means they hold the work in their hands (legally speaking) even while you are still performing it.",
+      "suggested_change": "All intellectual property rights in the Deliverables shall transfer to the Client upon Client's receipt of full payment for the applicable Deliverable, and until such payment is received, Contractor retains full ownership and all rights in and to the Deliverables."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5416,
+   "prompt_tokens": 3344,
+   "output_tokens": 2072,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.55,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1183,
+   "prompt_tokens": 410,
+   "output_tokens": 773,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 16.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sharing the draft agreement. Before we go ahead with signing, I'd like to raise one point for discussion.\n\n- The relevant clause states that all intellectual property rights in the Deliverables transfer to the Client from the moment they are created during the project. In practical terms, this means I would lose ownership of the work the instant I begin creating it, even before any payment is due. I would suggest amending it so that ownership of the Deliverables transfers to the Client upon the Client's receipt of full payment for the applicable Deliverable, and that until such payment is received, I retain full ownership and all rights in and to the Deliverables.\n\nPlease let me know if that works for you or if you'd like to discuss it further. Happy to make any adjustments.\n\nBest wishes"
+   }
+  }
+ ],
+ "dropped": []
+}

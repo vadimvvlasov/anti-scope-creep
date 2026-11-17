@@ -1,0 +1,92 @@
+{
+ "id": "freelance:M3",
+ "chars": 19600,
+ "findings": [
+  {
+   "category": "uncapped_liability",
+   "risk_level": "high",
+   "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+   "start": 8183,
+   "end": 8386
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+   "start": 3790,
+   "end": 3878
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+   "start": 13095,
+   "end": 13155
+  }
+ ],
+ "email": true,
+ "seconds": 125.8,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6751,
+   "prompt_tokens": 4180,
+   "output_tokens": 2571,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 55.18,
+   "content": {
+    "findings": [
+     {
+      "category": "uncapped_liability",
+      "risk_level": "high",
+      "quoted_text": "The aggregate liability of Client arising from this Agreement is capped at USD 35,000. Contractor shall be liable for all losses, damages, costs, and claims arising from the Services, without limitation.",
+      "explanation": "This clause explicitly states that your (the Contractor's) liability is unlimited, while the Client's liability is capped at USD 35,000. You are exposed to uncapped financial risk for any loss, damage, cost, or claim related to the Services.",
+      "suggested_change": "The aggregate liability of either party arising from this Agreement shall not exceed USD 35,000."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable within 15 days after Client receives payment from its own customer.",
+      "explanation": "Your payment is conditioned on the Client being paid by its own customer, which is an event outside your control. You could be left unpaid indefinitely if the Client's customer delays paying the Client.",
+      "suggested_change": "Invoices are payable within 15 days after the Client receives the invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5279,
+   "prompt_tokens": 3363,
+   "output_tokens": 1916,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 44.52,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: 15 days after Client is paid by its customer",
+      "explanation": "Your payment is tied to whether the Client actually collects from its own customer. If the Client's customer is slow to pay, never pays, or disputes the invoice, your payment is pushed indefinitely with no defined outer limit. The 15-day clock only starts once the Client is paid, which is an event entirely outside your control.",
+      "suggested_change": "Payment period: 15 days after the invoice is issued and accepted by the Client."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1834,
+   "prompt_tokens": 622,
+   "output_tokens": 1212,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 26.06,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi there,\n\nHope all is well. Before I go ahead with signing, I wanted to reach out about a few points in the agreement that I'd like to see adjusted. Here are my suggested modifications:\n\n- The relevant clause caps the Client's aggregate liability at USD 35,000 but makes the Contractor liable for all losses, damages, costs, and claims arising from the Services without any limit. This means my liability is unlimited while yours is not, which is an imbalance I'd like to address. I would propose changing it to: \"The aggregate liability of either party arising from this Agreement shall not exceed USD 35,000.\"\n\n- The relevant clause states that invoices are payable within 15 days after the Client receives payment from its own customer. This ties my payment to an event entirely outside my control, so if the Client's customer delays or disputes a payment, my invoice could sit unpaid indefinitely. I would propose changing it to: \"Invoices are payable within 15 days after the Client receives the invoice.\"\n\n- The relevant clause sets the payment period at 15 days after the Client is paid by its customer. This means the 15-day clock only begins once the Client has actually collected from its own customer, with no defined outer limit on how long that can take. I would propose changing it to: \"Payment period: 15 days after the invoice is issued and accepted by the Client.\"\n\nPlease let me know if any of these points are okay or if you'd like to discuss them further. Happy to work through them together.\n\nThanks,\n"
+   }
+  }
+ ],
+ "dropped": []
+}

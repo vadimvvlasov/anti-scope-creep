@@ -1,0 +1,63 @@
+{
+ "id": "cuad:VgrabCommunicationsInc_20200129_10-K_EX-10.33_11958828_EX-10.33_Development Agreement",
+ "chars": 14822,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+   "start": 8849,
+   "end": 9055
+  }
+ ],
+ "email": true,
+ "seconds": 130.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7277,
+   "prompt_tokens": 4053,
+   "output_tokens": 3224,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 68.6,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All Intellectual Property during the project is owned by VAL, and will be turned over to VAL at the conclusion of the project by Developer and after the fulfillment of all commercial obligations by the VAL.",
+      "explanation": "This clause makes the client (VAL) the owner of your work as it is created, during the project, with no payment condition attached. Even though the next clause mentions the work being turned over only after VAL pays, the ownership itself has already shifted to VAL before you receive any compensation. If VAL fails to pay, it still claims ownership of what you built.",
+      "suggested_change": "All Intellectual Property created by the Developer in connection with the Project shall be owned by the Developer, and shall be transferred to the Client upon full payment of all fees due under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4823,
+   "prompt_tokens": 3008,
+   "output_tokens": 1815,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 38.47,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1599,
+   "prompt_tokens": 424,
+   "output_tokens": 1175,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 23.64,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore we get the agreement signed, I'd like to raise one item for us to adjust together.\n\n- The relevant clause states that all intellectual property created during the project is owned by the Client from the outset, with the work handed over only after the Client meets its commercial obligations. In practice, ownership would shift to the Client before any payment is received, even though the actual handover is tied to payment. I would suggest amending this clause so that the intellectual property created by the Developer remains owned by the Developer and is transferred to the Client upon full payment of all fees due under the agreement.\n\nPlease let me know if you'd like to talk this through or if there's anything else you'd like me to revisit on my end. I'm happy to accommodate any reasonable adjustments.\n\nBest wishes,"
+   }
+  }
+ ],
+ "dropped": []
+}

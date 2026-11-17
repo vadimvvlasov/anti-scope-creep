@@ -1,0 +1,71 @@
+{
+ "id": "cuad:GlobalTechnologiesGroupInc_20050928_10KSB_EX-10.9_4148808_EX-10.9_Content License Agreement",
+ "chars": 39596,
+ "findings": [],
+ "email": false,
+ "seconds": 218.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6302,
+   "prompt_tokens": 4446,
+   "output_tokens": 1856,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.19,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 7813,
+   "prompt_tokens": 4340,
+   "output_tokens": 3473,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 75.96,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "All payments hereunder shall be payable to IMNTV in United States Dollars on a quarterly basis upon receipt from the wireless carriers in the Territory, except as follows: (d) Summary of Timing. The parties acknowledge the following that establishes timing of payments: (1) [PARTY_B] receives a carrier statement saying how much [PARTY_B] will be paid; (2) 30-45 days later the Carrier pays [PARTY_B]; (3) when [PARTY_B] is paid by a carrier, [PARTY_B] makes royalty payments to IMNTV.",
+      "explanation": "Your payment is only triggered when the client has itself been paid by the wireless carriers, and even then the timing is set by the client. This means your income depends on the client's cash flow and on third-party carrier billing cycles outside your control, potentially delaying your compensation by 90 days or more from when a subscriber actually pays.",
+      "suggested_change": "All payments hereunder shall be payable to the Contractor in United States Dollars on a quarterly basis, and shall be due and payable no later than thirty (30) days after the end of each calendar quarter, regardless of the timing of the Client's receipt of funds from any third-party carrier or payment processor."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 6564,
+   "prompt_tokens": 4361,
+   "output_tokens": 2203,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 48.52,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5214,
+   "prompt_tokens": 2755,
+   "output_tokens": 2459,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 52.34,
+   "content": {
+    "findings": []
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "category": "unfavorable_payment_terms",
+   "reason": "quote_not_found"
+  }
+ ]
+}
