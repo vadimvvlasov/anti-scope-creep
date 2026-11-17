@@ -435,8 +435,9 @@ previous version, so the older image runs on the newer schema
 
 An optional third compose project, `llm` ([`compose.llm.yaml`](../compose.llm.yaml)): `llama-server` with
 Bonsai 2 27B (`prism-ml/Ternary-Bonsai-2-27B-gguf`, file `Q2_0`, 7.63 GB) on an NVIDIA GPU, with an
-OpenAI-compatible API on `127.0.0.1:8080`. The product does not use it yet: the eval decides first
-([#114](https://github.com/vadimvvlasov/anti-scope-creep/issues/114)). Written for an RTX 3090 (24 GB).
+OpenAI-compatible API on `127.0.0.1:8080` and, for the backends, on the internal Docker network `llm-api`.
+It passed the held-out eval gate on 2026-11-17 (`docs/eval.md`, Local model gate); the backend uses it with
+`ANALYZER=local` (see [Use it from the backend](#use-it-from-the-backend)). Written for an RTX 3090 (24 GB).
 
 Why these choices (from the model card and its `KNOWN_ISSUES.md`):
 
@@ -491,9 +492,15 @@ Expected: `CUDA0: NVIDIA GeForce RTX 3090 (24... MiB, ... free)`. `(none)` means
 ### Start
 
 ```bash
+sudo -u asc docker network inspect llm-api >/dev/null 2>&1 || sudo -u asc docker network create --internal llm-api
 cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.llm.yaml up -d
 sudo -u asc docker logs -f llm-llama-1     # the download, then "server is listening on http://0.0.0.0:8080"
 ```
+
+`llm-api` is an internal network: the containers on it (the backends of every environment and `llama-server`)
+reach each other, and nothing on it has a route out or a port on the host. `scripts/server-pull.sh` creates it
+too, before it starts any environment, because `compose.server.yaml` attaches the backend to it whatever the
+analyzer is.
 
 The first start downloads the model into the `llm_models` volume (7.63 GB, from Hugging Face; the LAN block
 does not affect it). Later starts load it from there in seconds. The pull timer does not touch this project:
@@ -532,6 +539,33 @@ uv run python -m evaluation score --run bonsai-q2-medium --set freelance
 
 Results are cached per contract in `eval/runs/<run>/`, so an interrupted run continues where it stopped.
 `LOCAL_API_URL`, `LOCAL_MODEL` and `LOCAL_TIMEOUT` (seconds per request, default 900) override the defaults.
+
+### Use it from the backend
+
+Dev first; prod after a day on dev without failed analyses. In the environment's env file (`sudoedit`):
+
+```bash
+ANALYZER=local
+LOCAL_API_URL=http://llama:8080/v1/chat/completions
+# One slot, minutes per contract, and the model may be asleep: a queued analysis must not be marked stale.
+ANALYSIS_STALE_AFTER_SECONDS=1800
+# Optional: LOCAL_MODEL (default bonsai-2-27b), LOCAL_TIMEOUT (seconds per request, default 900),
+# LOCAL_MAX_OUTPUT_TOKENS (default 16000), LOCAL_API_KEY (only with llama-server --api-key).
+```
+
+The pull timer applies it within 5 minutes, or at once:
+`sudo -u asc /home/asc/anti-scope-creep/scripts/server-pull.sh /home/asc/env/dev.env`. Check from inside the
+backend container that the model answers over `llm-api`:
+
+```bash
+asc dev exec backend python -c "import urllib.request; print(urllib.request.urlopen('http://llama:8080/health', timeout=5).read())"
+```
+
+What to expect: about 7 seconds per 1,000 characters (2-4 minutes for a typical contract, up to 8 for a long
+one), one analysis at a time; the next ones wait in `llama-server`'s queue. The frontend stops polling after
+5 minutes and offers `Check again` (`docs/spec.md`); the longer wait and its wording are #119.
+
+Back to Groq: `ANALYZER=groq` and `ANALYSIS_STALE_AFTER_SECONDS=600` (or remove the line).
 
 ### Stop
 

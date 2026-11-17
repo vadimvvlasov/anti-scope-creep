@@ -33,6 +33,12 @@ FAKE_DOCKER = textwrap.dedent(
             print(cid.read_text())
         if command == "up" and new.exists():
             new.rename(cid)
+    elif args[0] == "network":
+        fail = os.environ.get("FAKE_FAIL", "").split()
+        if args[1] == "inspect" and os.environ.get("FAKE_NETWORK") == "missing":
+            sys.exit(1)
+        if args[1] == "create" and "network-create" in fail:
+            sys.exit(1)
     elif args[0] == "inspect":
         print("sha256:image-" + args[-1])
     elif args[:2] == ["image", "inspect"]:
@@ -150,6 +156,24 @@ class ServerPullTest(unittest.TestCase):
         code, out = self.run_script(self.prod, FAKE_PRUNE="Deleted Images:\ndeleted: sha256:old\n\nTotal reclaimed space: 90MB")
         self.assertEqual(code, 0, out)
         self.assertIn("Total reclaimed space: 90MB", out)
+
+    def test_existing_llm_network_is_left_alone(self):
+        code, out = self.run_script(self.prod)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.calls()[0], "network inspect llm-api")
+        self.assertNotIn("network create --internal llm-api", self.calls())
+
+    def test_missing_llm_network_is_created_internal_before_any_environment(self):
+        code, out = self.run_script(self.prod, FAKE_NETWORK="missing")
+        self.assertEqual(code, 0, out)
+        self.assertIn("created network llm-api", out)
+        self.assertEqual(self.calls()[:2], ["network inspect llm-api", "network create --internal llm-api"])
+
+    def test_llm_network_that_cannot_be_created_stops_the_run(self):
+        code, out = self.run_script(self.prod, FAKE_NETWORK="missing", FAKE_FAIL="network-create")
+        self.assertEqual(code, 1)
+        self.assertIn("cannot create network llm-api", out)
+        self.assertFalse(any(call.startswith("compose") for call in self.calls()))
 
     def test_no_arguments_prints_usage(self):
         code, out = self.run_script()

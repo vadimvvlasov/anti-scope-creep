@@ -27,11 +27,23 @@ services:
       ANALYZER: ${ANALYZER:-stub}
       GROQ_API_KEY: ${GROQ_API_KEY:-}
       GROQ_MODEL: ${GROQ_MODEL:-}
+      # ANALYZER=local: llama-server of compose.llm.yaml over the internal network llm-api, e.g.
+      # LOCAL_API_URL=http://llama:8080/v1/chat/completions (docs/self-host.md, section 8).
+      LOCAL_API_URL: ${LOCAL_API_URL:-}
+      LOCAL_MODEL: ${LOCAL_MODEL:-}
+      LOCAL_API_KEY: ${LOCAL_API_KEY:-}
+      LOCAL_TIMEOUT: ${LOCAL_TIMEOUT:-}
+      LOCAL_MAX_OUTPUT_TOKENS: ${LOCAL_MAX_OUTPUT_TOKENS:-}
+      # The local model takes minutes per contract and runs one at a time: 1800 there, 600 for Groq.
+      ANALYSIS_STALE_AFTER_SECONDS: ${ANALYSIS_STALE_AFTER_SECONDS:-600}
       SEED_DEMO_DATA: "false"
       # Telemetry export is off while the endpoint is empty (docs/architecture.md, section 6).
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
       OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
       OTEL_RESOURCE_ATTRIBUTES: deployment.environment=${IMAGE_TAG}
+    # default: the Tailscale sidecar reaches the backend here. llm: the internal network shared with llama-server
+    # (created by scripts/server-pull.sh), so the model is reachable without a host port.
+    networks: [default, llm]
     ports:
       - "127.0.0.1:${PORT:?set PORT, a different one per environment}:8000"
     # The image runs as a non-root user and writes nothing to disk (backend/Dockerfile).
@@ -93,6 +105,13 @@ configs:
   # content into a read-only container.
   serve:
     file: ./ops/server/tailscale-serve.json
+
+networks:
+  default: {}
+  # Internal: no route out, only the containers attached to it (the backends and llama-server).
+  llm:
+    name: llm-api
+    external: true
 
 volumes:
   tailscale-state:
