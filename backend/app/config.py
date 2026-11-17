@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 logger = logging.getLogger(__name__)
 
 DEFAULT_CORS_ORIGINS = ("http://localhost:8080", "http://localhost:5173")
-SUPPORTED_ANALYZERS = ("stub", "groq")
+SUPPORTED_ANALYZERS = ("stub", "groq", "local")
 SUPPORTED_REASONING_EFFORTS = ("low", "medium", "high")
 # Deployed images carry their tag (sha-<7 hex>) in APP_VERSION; everything else is "local".
 DEFAULT_VERSION = "local"
@@ -36,6 +36,13 @@ class Settings:
     groq_reasoning_effort: str = "medium"
     groq_tokens_per_minute: int = 8_000
     groq_requests_per_minute: int = 30
+    # Local OpenAI-compatible server (llama-server, docs/self-host.md, section 8). It accepts only
+    # reasoning effort medium; a model that thinks needs minutes and a large output budget (docs/eval.md).
+    local_api_url: str = ""
+    local_model: str = "bonsai-2-27b"
+    local_api_key: str = field(default="", repr=False)
+    local_timeout_seconds: float = 900.0
+    local_max_output_tokens: int = 16_000
     # OTLP endpoint (docs/architecture.md, section 6); empty keeps telemetry export off.
     otel_endpoint: str = ""
 
@@ -46,6 +53,8 @@ class Settings:
             raise ValueError(f"Unsupported ANALYZER {analyzer!r}; expected one of {SUPPORTED_ANALYZERS}")
         if analyzer == "groq" and not env.get("GROQ_API_KEY", "").strip():
             raise ValueError("ANALYZER=groq requires GROQ_API_KEY")
+        if analyzer == "local" and not env.get("LOCAL_API_URL", "").strip():
+            raise ValueError("ANALYZER=local requires LOCAL_API_URL")
         reasoning_effort = env.get("GROQ_REASONING_EFFORT", "").strip() or "medium"
         if reasoning_effort not in SUPPORTED_REASONING_EFFORTS:
             raise ValueError(
@@ -67,7 +76,21 @@ class Settings:
             groq_tokens_per_minute=int(env.get("GROQ_TOKENS_PER_MINUTE", "8000")),
             groq_requests_per_minute=int(env.get("GROQ_REQUESTS_PER_MINUTE", "30")),
             otel_endpoint=env.get("OTEL_EXPORTER_OTLP_ENDPOINT", "").strip(),
+            **_local_settings(env),
         )
+
+
+def _local_settings(env: Mapping[str, str]) -> dict:
+    """LOCAL_* variables; empty values keep the defaults."""
+    values = {"local_api_url": env.get("LOCAL_API_URL", "").strip(),
+              "local_api_key": env.get("LOCAL_API_KEY", "").strip()}
+    if model := env.get("LOCAL_MODEL", "").strip():
+        values["local_model"] = model
+    if timeout := env.get("LOCAL_TIMEOUT", "").strip():
+        values["local_timeout_seconds"] = float(timeout)
+    if budget := env.get("LOCAL_MAX_OUTPUT_TOKENS", "").strip():
+        values["local_max_output_tokens"] = int(budget)
+    return values
 
 
 def migrations_database_url(env: Mapping[str, str] = os.environ) -> str:
