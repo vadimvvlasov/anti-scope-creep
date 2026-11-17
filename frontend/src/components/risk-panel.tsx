@@ -2,8 +2,10 @@ import { Copy, Loader2, RefreshCw } from "lucide-react";
 
 import { RiskBadge } from "@/components/badges";
 import { FindingCard } from "@/components/finding-card";
+import { ProDialog } from "@/components/pro-dialog";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { DURATION_TEXT, FAILED_TEXT, RETRY_COST_TEXT } from "@/lib/analysis-copy";
 import { emptyFindingsMessage, type FindingFilter } from "@/lib/highlights";
 import type { ContractDetail, Finding } from "@/services/api";
 
@@ -33,15 +35,19 @@ export function FindingFilterToggle({
   );
 }
 
-/** `analyzing` (with the 5-minute timeout) and `failed` panels; nothing for `done`. */
+/** `analyzing` (with its polling window) and `failed` panels; nothing for `done`.
+ * Texts follow the active analyzer (docs/spec.md "Analysis states and limits"). */
 export function AnalysisStatePanel({
   contract,
   timedOut,
+  retryLimitMessage = null,
   onCheckAgain,
   onRetry,
 }: {
   contract: ContractDetail;
   timedOut: boolean;
+  /** The message of a retry rejected by the daily limit; shown with the Pro link. */
+  retryLimitMessage?: string | null;
   onCheckAgain: () => void;
   onRetry: () => void;
 }) {
@@ -56,20 +62,46 @@ export function AnalysisStatePanel({
             </Button>
           </div>
         ) : (
-          <p className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Loader2 className="size-4 animate-spin" /> Analyzing contract…
-          </p>
+          <>
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Loader2 className="size-4 animate-spin" /> Analyzing contract…
+            </p>
+            {DURATION_TEXT && (
+              <p className="mt-2 text-xs text-muted-foreground" data-testid="analysis-duration">
+                {DURATION_TEXT}
+              </p>
+            )}
+          </>
         )}
       </div>
     );
   }
   if (contract.status === "failed") {
     return (
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-risk-high-soft p-6">
-        <p className="text-sm text-risk-high">Analysis failed. Please try again.</p>
-        <Button size="sm" onClick={onRetry}>
-          <RefreshCw className="size-4" /> Retry Analysis
-        </Button>
+      <div
+        className="space-y-3 rounded-xl border border-border bg-risk-high-soft p-6"
+        data-testid="analysis-failed"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-risk-high">{FAILED_TEXT}</p>
+          <Button size="sm" onClick={onRetry}>
+            <RefreshCw className="size-4" /> Retry Analysis
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground">{RETRY_COST_TEXT}</p>
+        {retryLimitMessage && (
+          <p className="text-sm text-risk-high" data-testid="retry-limit">
+            {retryLimitMessage}
+            <ProDialog
+              placement="daily_limit"
+              trigger={
+                <Button type="button" variant="link" size="sm" className="h-auto px-1">
+                  Need more? See Pro
+                </Button>
+              }
+            />
+          </p>
+        )}
       </div>
     );
   }

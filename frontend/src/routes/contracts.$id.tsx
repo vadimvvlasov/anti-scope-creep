@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useRequireAuth } from "@/hooks/useAuth";
 import { useFindingSelection } from "@/hooks/useFindingSelection";
+import { POLL_WINDOW_MS } from "@/lib/analysis-copy";
 import { filterFindings } from "@/lib/highlights";
 import { analytics } from "@/services/analytics";
 import { api, isApiError, type ContractDetail, type Finding } from "@/services/api";
@@ -45,7 +46,6 @@ export const Route = createFileRoute("/contracts/$id")({
 });
 
 const POLL_MS = 2000;
-const POLL_WINDOW_MS = 5 * 60 * 1000;
 const NO_FINDINGS: Finding[] = [];
 
 function ContractDetailsPage() {
@@ -54,6 +54,8 @@ function ContractDetailsPage() {
   const [contract, setContract] = useState<ContractDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [timedOut, setTimedOut] = useState(false);
+  // The daily-limit message of a rejected retry, shown in the failed panel with the Pro link.
+  const [retryLimitMessage, setRetryLimitMessage] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [titleDraft, setTitleDraft] = useState<string | null>(null);
   const pollStartedAt = useRef<number>(Date.now());
@@ -141,8 +143,11 @@ function ContractDetailsPage() {
       pollStartedAt.current = Date.now();
       setTimedOut(false);
       setTimeout(() => void refetchOnce(true), POLL_MS);
+      setRetryLimitMessage(null);
     } catch (err) {
-      toast.error(isApiError(err) ? err.message : "Could not restart the analysis.");
+      if (isApiError(err) && err.code === "DAILY_ANALYSIS_LIMIT_REACHED")
+        setRetryLimitMessage(err.message);
+      else toast.error(isApiError(err) ? err.message : "Could not restart the analysis.");
     }
   };
 
@@ -279,6 +284,7 @@ function ContractDetailsPage() {
           <AnalysisStatePanel
             contract={contract}
             timedOut={timedOut}
+            retryLimitMessage={retryLimitMessage}
             onCheckAgain={() => void refetchOnce(true)}
             onRetry={retry}
           />
