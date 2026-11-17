@@ -1,0 +1,77 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+   "start": 2001,
+   "end": 2246
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+   "start": 5121,
+   "end": 5368
+  }
+ ],
+ "email": true,
+ "seconds": 152.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8055,
+   "prompt_tokens": 4179,
+   "output_tokens": 3876,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 86.18,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence should be documented in writing. A change request may describe additional fees, revised dates, or other effects before the changed work begins.",
+      "explanation": "The clause only says changes 'should be documented' (a recommendation) and that fees 'may' be described, meaning there is no hard requirement that extra work comes with a negotiated price before you start. You could be asked to do additional work with no clear obligation for the Client to pay for it.",
+      "suggested_change": "Any material change to scope, assumptions, dependencies, technical requirements, or delivery sequence shall be documented in a written change order signed by both parties, which shall state any additional fees, revised dates, and other commercial effects before the changed work begins."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+      "explanation": "Ownership of everything you create passes to the Client from the moment you make it, even before you are paid. The later sentence about handing over files only controls physical transfer, not ownership, so you lose your rights to your work before you see payment.",
+      "suggested_change": "Ownership of the Work Product created in the course of the project shall transfer from the Contractor to the Client upon the Contractor's receipt of full payment of all outstanding invoices relating to the Work Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4989,
+   "prompt_tokens": 3344,
+   "output_tokens": 1645,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 36.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1839,
+   "prompt_tokens": 407,
+   "output_tokens": 1432,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 29.76,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi there,\n\nI've had a chance to review the agreement and wanted to raise one item before we proceed to the signing stage.\n\n- The relevant clause provides that Work Product created in the course of the project is the property of the Client from the outset, with a separate sentence addressing the handover of the files once the Client has met its commercial obligations under the agreement. As written, ownership passes to the Client before any payment is received, because the ownership language takes effect immediately while the second sentence only governs the physical transfer of the files. A constructive modification would be to state that ownership of the Work Product shall transfer from the Contractor to the Client upon the Contractor's receipt of full payment of all outstanding invoices relating to the Work Product. This preserves the ultimate ownership arrangement while aligning the point of transfer with the moment payment is actually made.\n\nThank you for considering this. Happy to discuss further if it helps.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

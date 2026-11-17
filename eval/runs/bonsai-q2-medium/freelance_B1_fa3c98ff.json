@@ -1,0 +1,106 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Requests that introduce new functionality, new content, or a materially different design are performed as part of the Services.",
+   "start": 4690,
+   "end": 4817
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12886,
+   "end": 12915
+  }
+ ],
+ "email": true,
+ "seconds": 179.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8481,
+   "prompt_tokens": 4262,
+   "output_tokens": 4219,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 95.97,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "This clause obligates you to do any extra work the client asks for without paying you, so the scope of your work is effectively unlimited and uncompensated. There is no change-order process to price or limit additional services.",
+      "suggested_change": "Any additional services requested by the Client that fall outside the Services described in the applicable statement of work will be subject to a written change order specifying scope, schedule, and additional compensation."
+     },
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Requests that introduce new functionality, new content, or a materially different design are performed as part of the Services.",
+      "explanation": "When you are correcting a confirmed defect, this clause says that if the client's request turns into a request for something new (new features, content, or design), you still have to build it without extra payment. This lets the client expand the scope of work under the cover of a defect fix.",
+      "suggested_change": "Requests that introduce new functionality, new content, or a materially different design will be treated as additional services and will require a written change order specifying scope and additional compensation before performance."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "This gives the client the right to send back every deliverable indefinitely until they are personally happy, with no cap on the number of rounds. You could spend unlimited time on the same item with no defined endpoint.",
+      "suggested_change": "Contractor will provide up to three (3) rounds of revisions for each Deliverable; any additional rounds requested by the Client will be subject to a written change order with additional compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5661,
+   "prompt_tokens": 3217,
+   "output_tokens": 2444,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 53.81,
+   "content": {
+    "findings": [
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The schedule gives the client an unlimited number of revision rounds on your deliverables. This means you could be required to keep revising work indefinitely before the client accepts it, with no defined upper bound on how many rounds you must complete.",
+      "suggested_change": "Revision allowance: three (3) rounds of revisions per deliverable. Any revision requests beyond three rounds shall be handled under a separate written agreement specifying scope and corresponding compensation."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 2187,
+   "prompt_tokens": 762,
+   "output_tokens": 1425,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 29.57,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're doing well. Before we get the agreement signed, I wanted to walk through a few points I'd like to adjust so both sides are clear on scope and process. Here's what I have in mind:\n\n- The relevant clause provides that any additional services requested during the Term would be performed at no additional charge. In practice this leaves the scope open-ended with no mechanism to price or approve extra work. I'd suggest that any additional services falling outside the Services described in the applicable statement of work be subject to a written change order specifying scope, schedule, and additional compensation.\n\n- The relevant clause states that requests introducing new functionality, new content, or a materially different design are performed as part of the Services. This means that even in the context of a confirmed defect correction, a request that shifts into something genuinely new would still be expected without extra pay. I'd suggest that such requests be treated as additional services requiring a written change order specifying scope and additional compensation before performance.\n\n- The relevant clause allows unlimited revisions until the Client is fully satisfied with each Deliverable. There is no defined cap on rounds, which can lead to an open-ended amount of time on the same item. I'd suggest providing up to three (3) rounds of revisions per Deliverable, with any additional rounds subject to a written change order with additional compensation.\n\n- The relevant clause lists the revision allowance as unlimited. This means there is no defined upper bound on the number of revision rounds the Contractor must complete before the Client accepts a deliverable. I'd suggest setting this at three (3) rounds per deliverable, with any requests beyond that handled under a separate written agreement specifying scope and corresponding compensation.\n\nI'm happy to talk through any of these or adjust the wording however works best. Thanks for your patience on this—looking forward to getting the agreement finalized.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  }
+ ],
+ "email": true,
+ "seconds": 83.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5305,
+   "prompt_tokens": 2637,
+   "output_tokens": 2668,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 56.69,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You assign all ownership of your work simply upon delivery, with no payment condition attached. Since your payments are not due until 90 days after the client accepts the complete Software, you could deliver a milestone and immediately lose ownership of it while waiting months to get paid.",
+      "suggested_change": "Upon receipt of full payment for each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "Every milestone payment is tied to a single event (the client's acceptance of the complete Software) and is due 90 days after that event, so your cash flow is delayed by several months and the trigger is entirely in the client's hands.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after the Client's acceptance of the corresponding Milestone."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1801,
+   "prompt_tokens": 545,
+   "output_tokens": 1256,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 26.33,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore we finalize the agreement, I'd like to flag a couple of points in the relevant clauses and suggest some adjustments for your review.\n\n- The clause on assignment of rights states that all copyrights and patent rights in the custom software code, database schemas, and visual assets transfer to you upon delivery of each Milestone, with no payment condition attached. Since every milestone payment is tied to your final acceptance of the complete Software, this would mean losing ownership of delivered work before any payment has been received. I would suggest that the clause instead state that, upon receipt of full payment for each Milestone, the Developer assigns to the Client all right, title, and interest, including copyrights and patent rights, in and to the work developed under the agreement.\n\n- The payment clause currently ties every milestone amount to a single trigger — your final acceptance of the complete Software — and sets a ninety-day window from that point. This delays all payment well after the work is delivered. I would suggest amending the relevant clause so that each milestone amount is paid within thirty (30) days after your acceptance of the corresponding Milestone.\n\nPlease let me know if these adjustments work for you or if you'd like to chat through any of them. Thank you for considering.\n\nBest wishes,"
+   }
+  }
+ ],
+ "dropped": []
+}

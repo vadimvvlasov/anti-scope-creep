@@ -1,0 +1,77 @@
+{
+ "id": "freelance:I3",
+ "chars": 19468,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9167,
+   "end": 9259
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5337,
+   "end": 5423
+  }
+ ],
+ "email": true,
+ "seconds": 183.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 8920,
+   "prompt_tokens": 4183,
+   "output_tokens": 4737,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 107.82,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "Only you (the Contractor) have a termination right, and it is limited to material breach with a 15-day cure period. The Client can end the deal at any moment, give no notice, and walk away without paying for any work you have already completed.",
+      "suggested_change": "If the Client terminates this Agreement without cause, the Client shall pay the Contractor for all Services performed and non-cancellable costs incurred through the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "You lose ownership of your work the instant it is delivered, with no link to payment. The Client holds your work product as their property while your invoices may still be unpaid, giving them leverage over you for both the current and future work.",
+      "suggested_change": "All intellectual property rights in each Deliverable transfer to the Client upon full payment of the corresponding invoice."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5637,
+   "prompt_tokens": 3344,
+   "output_tokens": 2293,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 47.51,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1839,
+   "prompt_tokens": 487,
+   "output_tokens": 1352,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 28.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nThank you for sharing the agreement for my review. Before we both sign, I'd like to flag two points where a small adjustment would help make the terms work well for both sides.\n\n- The relevant clause states that the Client may terminate the agreement at any time, without notice and without further payment. In plain terms, this means the Client could end the engagement at any moment and would not be required to pay for work that has already been completed. I would propose that if the Client terminates without cause, the Client shall pay the Contractor for all Services performed and non-cancellable costs incurred through the effective date of termination. This ensures that work done to date is compensated.\n\n- The relevant clause states that all intellectual property rights in each Deliverable transfer to Client upon delivery. In plain terms, ownership of the work passes to the Client the moment it is handed over, even if payment for that work has not yet been made. I would propose that all intellectual property rights in each Deliverable transfer to the Client upon full payment of the corresponding invoice. This ties the transfer of ownership to payment, which keeps things balanced.\n\nI'm happy to discuss any of these points or adjust the wording to fit what works for both of you. Just let me know a time that is convenient to talk through them.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

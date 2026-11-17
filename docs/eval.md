@@ -290,6 +290,28 @@ contracts. Intervals are Wilson 95%.
   --reasoning-effort medium --skip-too-large`. The run itself used an equivalent filter, written
   before the flag existed.
 
+### Local model gate (#121), rule written 2026-11-17 before the run
+
+The local model (Bonsai 2 27B `Q2_0` on `llama-server`, `docs/self-host.md` section 8) would replace Groq
+in production, so Groq v6 `medium` is the bar and Gemini v6 `high` is the reference. Settings as in
+production: prompt v6, 12,000-character chunks, `reasoning_effort: medium` (the only level the server
+accepts), output cap 16,000 (thinking included). One run per set.
+
+Freelance, already run (`eval/runs/bonsai-q2-medium`): P 0.844 / R 1.0 / sev 1.0, 5 false alarms, 0 failed,
+123 s per contract (Groq v6: P 0.806 / R 0.926 / sev 1.0, 6 false alarms).
+
+The local model passes if all of these hold:
+
+1. **Run health**, per set: at most 1 failed contract, 0 invalid JSON answers, `quote_not_found` at most 10%.
+2. **`cuad-holdout`** (20 contracts, 5 gold risks): recall at least 0.8 (at most 1 miss), at most 5 false alarms.
+3. **`cuad-holdout-2`, the 11 contracts within the product's 60,000-character limit** (5 gold risks, the
+   subset Groq ran): recall at least 0.8, at most 5 false alarms (Groq's count), severity accuracy at least 0.6.
+4. **Time** is measured, not gated: seconds per contract feed the queue and timeout design of #121.
+
+If any point fails, the switch stops and the result is reported; the prompt is not tuned on held-out data.
+With 5 gold risks per set this shows direction, not a precise comparison. The 21 longer contracts of
+`cuad-holdout-2` (up to 123K characters, about 5 GPU hours) wait for the text-limit decision (#84).
+
 ## Run health
 
 | Run | Failed | Invalid JSON | `quote_not_found` | Tokens per contract, mean / max |

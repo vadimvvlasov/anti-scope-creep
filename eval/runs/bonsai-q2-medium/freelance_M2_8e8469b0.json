@@ -1,0 +1,77 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5117,
+   "end": 5207
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 8946,
+   "end": 9043
+  }
+ ],
+ "email": true,
+ "seconds": 132.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6798,
+   "prompt_tokens": 4260,
+   "output_tokens": 2538,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 54.41,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "The moment you hand over a deliverable, the client owns it, even if you haven't been paid yet. If the client disputes the invoice or goes insolvent after receiving the work, you lose your intellectual property.",
+      "suggested_change": "All intellectual property rights in each Deliverable transfer to Client upon full payment of the corresponding invoice for that Deliverable."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can walk away instantly and owe you nothing for work you have already completed. You are the only party restricted to terminating for cause after a 15-day cure period.",
+      "suggested_change": "Client may terminate this Agreement on 14 days' prior written notice, in which case Client shall pay all fees for work performed and reasonable costs incurred through the effective date of termination."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5813,
+   "prompt_tokens": 3220,
+   "output_tokens": 2593,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 55.72,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1601,
+   "prompt_tokens": 480,
+   "output_tokens": 1121,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 22.15,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore I sign the agreement, I'd like to raise two points regarding the relevant clauses. I've outlined them below along with a suggested modification for each, so we can get everything on the same page before we finalise the document.\n\n- Clause 6.1 (intellectual property transfer). In plain English, the current wording says that ownership of every Deliverable passes to you the moment it is handed over, regardless of whether the corresponding invoice has been paid. If an invoice were disputed or any other payment issue arose after delivery, the intellectual property would already belong to you with no remaining recourse for the freelancer. I would propose amending the relevant clause to read: \"All intellectual property rights in each Deliverable transfer to Client upon full payment of the corresponding invoice for that Deliverable.\" This simply ties the transfer of ownership to successful payment, which I think reflects a fair balance for both sides.\n\n- Clause 12.2 (termination). In plain English, as written the clause lets you end the agreement instantly, without any notice and without any obligation to pay for work that has already been completed, while the only party bound by a notice-and-cure requirement is the freelancer. I would propose amending the relevant clause to read: \"Client may terminate this Agreement on 14 days' prior written notice, in which case Client shall pay all fees for work performed and reasonable costs incurred through the effective date of termination.\" This gives a short, reasonable notice window and ensures that work already performed is still compensated.\n\nI hope these two adjustments make the agreement more workable for both parties. Please let me know if you'd like to discuss either point, or if there's anything else you'd like to tweak before we put pen to paper.\n\nLooking forward to hearing from you.\n\nWarm regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

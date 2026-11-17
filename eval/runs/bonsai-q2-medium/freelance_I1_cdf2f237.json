@@ -1,0 +1,77 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9162,
+   "end": 9254
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5332,
+   "end": 5418
+  }
+ ],
+ "email": true,
+ "seconds": 119.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6786,
+   "prompt_tokens": 4178,
+   "output_tokens": 2608,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 58.21,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "You can be dropped at any moment with zero warning, and the client owes you nothing for work you have already performed. The only termination right available to you is for material breach.",
+      "suggested_change": "The Client may terminate this Agreement at any time for convenience upon thirty (30) days' prior written notice, in which case the Client shall pay the Contractor for all Services performed and approved expenses incurred up to and including the effective date of termination."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of everything you create passes to the client the moment you deliver it, while your invoices are not due for another thirty days. If the client then defaults on payment, the work product is legally theirs.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to the Client upon receipt of full payment for that Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5294,
+   "prompt_tokens": 3344,
+   "output_tokens": 1950,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 41.35,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1420,
+   "prompt_tokens": 483,
+   "output_tokens": 937,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 20.34,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nI hope you're doing well. Before I sign, I'd like to request a couple of adjustments to the agreement.\n\n- The relevant clause currently allows the Client to terminate the agreement at any time without notice and without any payment for work already performed. I would propose changing this to require thirty (30) days' prior written notice for termination for convenience, and that in such case the Client pay the Contractor for all Services performed and approved expenses incurred up to the effective date of termination.\n\n- The relevant clause currently states that all intellectual property rights in each Deliverable transfer to the Client upon delivery, while payment is due thirty days after the invoice. This means the work product would legally belong to the Client before I have been paid. I would propose changing this so that all intellectual property rights in each Deliverable transfer to the Client upon receipt of full payment for that Deliverable.\n\nPlease let me know if these proposed changes work for you, or if you'd like to discuss further.\n\nBest regards,"
+   }
+  }
+ ],
+ "dropped": []
+}

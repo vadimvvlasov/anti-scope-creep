@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated. Delivery of the native files, working layers and final masters will take place at project close-out, once Client's commercial obligations under this Agreement are satisfied.",
+   "start": 3628,
+   "end": 3874
+  }
+ ],
+ "email": true,
+ "seconds": 133.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 7511,
+   "prompt_tokens": 4183,
+   "output_tokens": 3328,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 73.51,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated. Delivery of the native files, working layers and final masters will take place at project close-out, once Client's commercial obligations under this Agreement are satisfied.",
+      "explanation": "This clause states that ownership of all work product passes to the Client the moment it is created, with no condition tied to your being paid. The later sentence only addresses when physical files are handed over, not when ownership transfers. In practice, the Client owns the work from day one, even if you have not been compensated yet.",
+      "suggested_change": "Ownership of all Work Product and every right therein shall vest in the Client upon the Contractor's receipt of full payment of all fees due under this Agreement for such Work Product."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5263,
+   "prompt_tokens": 3344,
+   "output_tokens": 1919,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 40.86,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1322,
+   "prompt_tokens": 423,
+   "output_tokens": 899,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 19.09,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hi,\n\nBefore we sign the agreement, I'd like to flag one point I think is worth a quick adjustment.\n\n- The relevant clause states that ownership of all work product and every right therein vests in the Client as soon as the work is generated, and that delivery of native files and final masters takes place at close-out once the Client's commercial obligations are satisfied. In plain terms, this means the Client would own the deliverables from day one, regardless of whether any payment has been received. The modification I'd suggest is: ownership of all work product and every right therein shall vest in the Client upon the Contractor's receipt of full payment of all fees due under this Agreement for such work product.\n\nI'm happy to walk through the detail at whatever time suits you best.\n\nThanks so much,\n[freelancer]"
+   }
+  }
+ ],
+ "dropped": []
+}
