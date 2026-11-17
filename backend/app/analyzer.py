@@ -148,6 +148,8 @@ def build_analyzer(settings: "Settings") -> Analyzer:
 # The local server queues requests itself (one slot), so the limiter is only a ceiling.
 LOCAL_TOKENS_PER_MINUTE = 10_000_000
 LOCAL_REQUESTS_PER_MINUTE = 600
+# A server that is down refuses at once; one that does not answer the connection is not coming back soon.
+LOCAL_CONNECT_TIMEOUT_SECONDS = 10.0
 
 
 def _local_analyzer(settings: "Settings") -> Analyzer:
@@ -163,7 +165,9 @@ def _local_analyzer(settings: "Settings") -> Analyzer:
 
     limiter = TokenBucketLimiter(LOCAL_TOKENS_PER_MINUTE, LOCAL_REQUESTS_PER_MINUTE)
     client = GroqClient(settings.local_api_key or "none", limiter, settings.local_model,
-                        http=httpx.Client(timeout=settings.local_timeout_seconds),
+                        http=httpx.Client(timeout=httpx.Timeout(settings.local_timeout_seconds,
+                                                                connect=LOCAL_CONNECT_TIMEOUT_SECONDS)),
                         max_completion_tokens=settings.local_max_output_tokens,
-                        api_url=settings.local_api_url, reasoning_effort="medium")
+                        api_url=settings.local_api_url, reasoning_effort="medium",
+                        retry_read_timeouts=False)
     return GroqAnalyzer(client)

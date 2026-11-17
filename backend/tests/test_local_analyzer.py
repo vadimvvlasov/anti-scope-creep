@@ -99,3 +99,11 @@ def test_local_api_key_is_sent_when_set(fake_server):
     settings = Settings(jwt_secret="x", analyzer="local", local_api_url=fake_server, local_api_key="k")
     build_analyzer(settings).analyze(CONTRACT)
     assert {r["auth"] for r in _FakeLlamaServer.requests} == {"Bearer k"}
+
+
+def test_local_client_fails_fast_instead_of_waiting_for_retries():
+    settings = Settings(jwt_secret="x", analyzer="local", local_api_url="http://llm", local_timeout_seconds=600)
+    client = build_analyzer(settings)._client
+    assert client._retry_read_timeouts is False
+    timeout = client._http.timeout
+    assert (timeout.read, timeout.connect) == (600, 10.0)
