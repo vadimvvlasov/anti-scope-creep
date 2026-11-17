@@ -70,12 +70,29 @@ const STUB_ANALYSIS_PARAGRAPHS = [
   "Automated analysis can miss risks or flag them incorrectly. It is not legal advice.",
 ];
 
+export const FILE_NOT_STORED_TEXT =
+  "Uploaded files are read in memory. The original PDF or TXT file is discarded right after its text is extracted and is never stored.";
+export const DELETE_TEXT =
+  "Deleting a contract removes its text, findings, and email draft from the application database.";
+export const NOT_TRAINED_TEXT = "Your contract text is not used to train AI models.";
+
 const COMMON_DATA_POINTS = [
-  "Uploaded files are read in memory. The original PDF or TXT file is discarded right after its text is extracted and is never stored.",
+  FILE_NOT_STORED_TEXT,
   "The extracted contract text is stored in your account so you can return to the results. Only you can see your contracts.",
-  "Deleting a contract removes its text, findings, and email draft from the application database.",
-  "Your contract text is not used to train AI models.",
+  DELETE_TEXT,
+  NOT_TRAINED_TEXT,
 ];
+
+/** The pseudonymization caveat, verbatim from both LLM provider texts. */
+export const MASKING_TEXT =
+  "Party names and contact details are replaced with placeholders where detected, but this is not full anonymization.";
+
+/** The list above `Analyze contract` (docs/spec.md "Privacy at upload"). */
+export function uploadPrivacyPoints(analyzer: AnalyzerName): readonly string[] {
+  const safeguards = [FILE_NOT_STORED_TEXT, NOT_TRAINED_TEXT, DELETE_TEXT];
+  if (analyzer === "stub") return [NO_PROVIDER_TEXT, ...safeguards];
+  return [providerNotice(analyzer), MASKING_TEXT, ...safeguards];
+}
 
 /** "How the analysis works": the LLM analyzer adds the quote verification sentence. */
 export function analysisParagraphs(analyzer: AnalyzerName): readonly string[] {
@@ -96,3 +113,4 @@ export function dataPoints(analyzer: AnalyzerName): readonly string[] {
 export const ANALYSIS_PARAGRAPHS = analysisParagraphs(ANALYZER);
 export const DATA_POINTS = dataPoints(ANALYZER);
 export const ACTIVE_PROVIDER_NOTICE = providerNotice(ANALYZER);
+export const UPLOAD_PRIVACY_POINTS = uploadPrivacyPoints(ANALYZER);

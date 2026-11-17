@@ -6,6 +6,7 @@ import {
   AUTHOR_NAME,
   DATA_POINTS,
   STUB_ANALYZER_NOTICE,
+  UPLOAD_PRIVACY_POINTS,
 } from "../src/lib/methodology";
 import { registerInUi } from "./helpers";
 
@@ -73,4 +74,13 @@ test.describe("on a narrow screen", () => {
     await dialog(page).getByRole("button", { name: "Close" }).click();
     await expect(dialog(page)).toBeHidden();
   });
+});
+
+test("the upload screen lists the privacy safeguards next to the Analyze button", async ({
+  page,
+}) => {
+  await registerInUi(page);
+  await page.getByRole("navigation").getByRole("link", { name: "New Analysis" }).click();
+  const privacy = page.getByTestId("upload-privacy");
+  for (const text of UPLOAD_PRIVACY_POINTS) await expect(privacy.getByText(text)).toBeVisible();
 });

@@ -7,6 +7,8 @@ import {
   analyzerName,
   dataPoints,
   LOCAL_PROVIDER_NOTICE,
+  MASKING_TEXT,
+  uploadPrivacyPoints,
   LOCAL_PROVIDER_TEXT,
   NO_PROVIDER_TEXT,
   providerNotice,
@@ -81,6 +83,23 @@ describe("Methodology & Privacy copy", () => {
     expect(providerNotice("groq")).toBe(PROVIDER_NOTICE);
     expect(providerNotice("local")).toBe(LOCAL_PROVIDER_NOTICE);
     expect(providerNotice("stub")).toBe("");
+  });
+
+  it("lists the upload safeguards verbatim from the spec, caveat included", () => {
+    const start = SPEC.indexOf("### Privacy at upload");
+    expect(start).toBeGreaterThan(0);
+    const section = SPEC.slice(start, SPEC.indexOf("\n### ", start + 1));
+    for (const analyzer of ["stub", "groq", "local"] as const)
+      for (const text of uploadPrivacyPoints(analyzer)) {
+        if (text === PROVIDER_NOTICE) continue; // quoted in "LLM analyzer (Groq)", checked above
+        expect(section).toContain(`\`${text}\``);
+      }
+    expect(PROVIDER_TEXT).toContain(MASKING_TEXT);
+    expect(LOCAL_PROVIDER_TEXT).toContain(MASKING_TEXT);
+    expect(uploadPrivacyPoints("groq")).toContain(MASKING_TEXT);
+    expect(uploadPrivacyPoints("local")[0]).toBe(LOCAL_PROVIDER_NOTICE);
+    expect(uploadPrivacyPoints("stub")).not.toContain(MASKING_TEXT);
+    expect(uploadPrivacyPoints("stub")[0]).toBe(NO_PROVIDER_TEXT);
   });
 
   it("reads the analyzer name, defaulting to the stub", () => {

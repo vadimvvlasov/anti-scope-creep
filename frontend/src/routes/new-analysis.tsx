@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRequireAuth } from "@/hooks/useAuth";
 import { LIMITS_TEXT } from "@/lib/analysis-copy";
-import { ACTIVE_PROVIDER_NOTICE, AI_DATA_POLICY_URL, LLM_ANALYZER_ACTIVE } from "@/lib/methodology";
+import { AI_DATA_POLICY_URL, LLM_ANALYZER_ACTIVE, UPLOAD_PRIVACY_POINTS } from "@/lib/methodology";
 import { analytics } from "@/services/analytics";
 import { api, isApiError, MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "@/services/api";
 
@@ -206,19 +206,23 @@ function NewAnalysisPage() {
           </div>
         )}
 
-        {LLM_ANALYZER_ACTIVE && (
-          <p className="text-xs text-muted-foreground" data-testid="provider-notice">
-            {ACTIVE_PROVIDER_NOTICE}{" "}
+        <div className="text-xs text-muted-foreground" data-testid="upload-privacy">
+          <ul className="list-disc space-y-1 pl-5">
+            {UPLOAD_PRIVACY_POINTS.map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
+          {LLM_ANALYZER_ACTIVE && (
             <a
               href={AI_DATA_POLICY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:text-foreground"
+              className="mt-1 inline-block underline underline-offset-2 hover:text-foreground"
             >
               AI data policy
             </a>
-          </p>
-        )}
+          )}
+        </div>
 
         <Button type="submit" disabled={busy}>
           <FileText className="size-4" />

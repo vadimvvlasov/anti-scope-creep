@@ -1244,6 +1244,18 @@ There is no paid plan and nothing is charged. A **Pro** button opens a dialog th
 
 The price, the feature list and the placements are an experiment, set in `frontend/src/lib/pro.ts`, and are expected to change: the paid value is the result (exports and branded reports), not more analyses (#123); the price waits for the demand checks (#122). The current list in `pro.ts` predates #123: it still names more analyses per day and a 150,000-character limit, which this specification does not offer, and #123 replaces it. New placements are added as new `placement` values in `docs/analytics.md`, the frontend and the backend validation together.
 
+### Privacy at upload
+
+The safeguards appear where the user decides to upload (issue #126), not only in the Methodology & Privacy dialog. On Upload / Analyze, above the `Analyze contract` button, a short list, every line verbatim from the dialog:
+
+- with an LLM analyzer (Groq or the local model): the first sentence of its `Your data` line (for example `To analyze a contract, its text is processed by an AI model that runs on our own server; it is not sent to a third-party AI provider.`), then `Party names and contact details are replaced with placeholders where detected, but this is not full anonymization.`, then the three lines below, then the `AI data policy` link;
+- with the stub analyzer: `In this version, contract text is not sent to any third-party AI provider.`, then the three lines below;
+- `Uploaded files are read in memory. The original PDF or TXT file is discarded right after its text is extracted and is never stored.`
+- `Your contract text is not used to train AI models.`
+- `Deleting a contract removes its text, findings, and email draft from the application database.`
+
+The caveat is never shortened, and the screen makes no claim the dialog does not (for example no retention claim about a provider).
+
 ### Guest sample
 
 A public, read-only sample analysis lets a visitor see the output before creating an account.
@@ -1355,7 +1367,7 @@ Requirements:
 - The email is generated after quote verification, from the final set of `high` and `medium` findings, as structured data validated before commit. It is generated from pseudonymized findings, and placeholders are restored before it is stored. If the answer contains a placeholder that cannot be restored, the email request is repeated once; a second such answer fails the analysis.
 - Provider rate-limit responses are retried with backoff inside the task. When retries are exhausted, or on failed validation or other provider errors, the analysis fails with the same transactional failure behavior as the MVP.
 - The frontend API contract remains unchanged.
-- Before this analyzer is enabled, the Upload / Analyze screen must also state that contract text is sent to a third-party AI provider for analysis, and `docs/ai-data-policy.md` must describe what is sent, to whom, and what is stored.
+- Before this analyzer is enabled, the Upload / Analyze screen must also state that contract text is sent to a third-party AI provider for analysis, and `docs/ai-data-policy.md` must describe what is sent, to whom, and what is stored (the full list: [Privacy at upload](#privacy-at-upload)).
 - Each finding also gets a `suggested_change` (the proposed counter-clause), generated as structured data with the findings and validated the same way. Placeholders in it are restored before it is stored. Offsets come from quote verification (see [Finding offsets](#finding-offsets)).
 - When this analyzer is enabled, the [Methodology & Privacy dialog](#6-methodology--privacy-dialog) changes: the demonstration-analyzer notice is removed; `How the analysis works` adds `Every quoted clause is checked against your contract text, and findings whose quote cannot be found are dropped.`; and in `Your data` the line `In this version, contract text is not sent to any third-party AI provider.` is replaced with `To analyze a contract, its text is sent to Groq, a third-party AI provider. Party names and contact details are replaced with placeholders where detected, but this is not full anonymization. See the AI data policy for what the provider retains.` The dialog links to the published AI data policy.
 
