@@ -1177,6 +1177,58 @@ Risk findings and email draft are committed together. If either analysis or requ
 
 ---
 
+## Growth experiments and limits
+
+The product's goal is commercial (owner decision, 2026-11-16). This section covers what ships today to protect capacity and to measure demand, and the planned guest sample. Prices and the paid plan itself are not decided here (see [Pro tier and white-labeled reports](#pro-tier-and-white-labeled-reports)).
+
+### Per-user analysis limits
+
+The limits protect the analyzer's capacity from abuse and overload. They are not the product offer: a freelancer signs a few contracts a year, so marketing copy (the guest sample, the Login screen, the Pro dialog) does not advertise the number of analyses per day.
+
+- At most **1** analysis running at a time per user (`ANALYSIS_MAX_RUNNING_PER_USER`, default `1`).
+- At most **5** analyses started in a rolling 24 hours per user (`ANALYSIS_DAILY_LIMIT_PER_USER`, default `5`).
+- Both uploads and Retry Analysis count as a start. Starts of contracts that were later deleted still count.
+- `0` turns a limit off.
+- Over a limit, the upload or retry is rejected with `429` and `ANALYSIS_ALREADY_RUNNING` or `DAILY_ANALYSIS_LIMIT_REACHED` (see [Error codes](#error-codes)); nothing is stored and no analysis starts.
+- The check is a soft cap: two requests at the same moment can both pass.
+- The values follow the analyzer's capacity and may change when the analyzer changes (the planned local model, #121). Changing them changes only the settings and the error message, not the API.
+
+### Product analytics events
+
+The frontend sends funnel events to the backend's own `POST /events` (`openapi.yaml`, operation `recordEvent`). The event names, the allowed properties and their values, what is never sent, the spam limits and how the funnel is read are defined in `docs/analytics.md`; that document is the source of truth for analytics and this specification does not repeat its lists.
+
+Product rules that follow from it:
+
+- No login is needed; the endpoint answers `204`, also when an event is dropped by the spam limits.
+- Events never carry contract text, titles, file names, findings, email drafts, account emails or tokens.
+- Analytics is off in mock mode and unless the build enables it; a failed event request never affects the app.
+
+### Pro demand test
+
+There is no paid plan and nothing is charged. A **Pro** button opens a dialog that measures interest in paying:
+
+- **Placements:** the app header on signed-in pages (`header`), and next to the `DAILY_ANALYSIS_LIMIT_REACHED` error on Upload / Analyze (`daily_limit`).
+- **Content:** a title, a monthly price, a list of planned features, and the statement that Pro is not available yet and nothing is charged.
+- **Waitlist:** one button joins the waitlist; the dialog closes and a toast confirms that the user will be emailed when Pro launches. The waitlist is the `pro_waitlist_joined` event of a signed-in user; there is no separate table.
+- Opening the dialog sends `pro_cta_clicked`, joining sends `pro_waitlist_joined`, both with the placement (and the shown price for the waitlist), as defined in `docs/analytics.md`.
+
+The price, the feature list and the placements are an experiment, set in `frontend/src/lib/pro.ts`, and are expected to change: the paid value is the result (exports and branded reports), not more analyses (#123); the price waits for the demand checks (#122). The current list in `pro.ts` predates #123: it still names more analyses per day and a 150,000-character limit, which this specification does not offer, and #123 replaces it. New placements are added as new `placement` values in `docs/analytics.md`, the frontend and the backend validation together.
+
+### Guest sample (planned)
+
+A public, read-only sample analysis lets a visitor see the output before creating an account. Planned, not built yet.
+
+- A signed-out route shows the Contract Details view (contract text with highlights, risk summary, findings, email) for a bundled sample contract.
+- The data is static and ships with the frontend: a synthetic contract and the recorded output of the real analyzer. The route makes **no backend call** other than `POST /events`.
+- The sample is labelled with the analyzer model, the prompt version and the date the output was recorded, and states that the contract is synthetic.
+- The [legal disclaimer](#legal-positioning) is shown, with a link to the Methodology & Privacy dialog.
+- The sample offers the prebuilt PDF and DOCX reports of the same analysis as static downloads. They are built ahead of time by the backend report renderer; this is the one exception to reports being generated per request.
+- Rename, Delete and Retry Analysis are not shown. A call to action leads to Register.
+- **A guest cannot paste text or upload a file.** Analysing a contract always requires an account.
+- The sample does not mention the per-user limits.
+
+---
+
 ## Out of scope for the MVP
 
 ### Authentication and user management
@@ -1216,7 +1268,7 @@ Risk findings and email draft are committed together. If either analysis or requ
 
 ### Plans and billing
 
-- Free/Pro plans, payments, and usage limits.
+- Free/Pro plans and payments. The per-user analysis limits do ship, as protection, not as a plan (see [Growth experiments and limits](#growth-experiments-and-limits)).
 - White-labeled reports (custom logo, custom header text, removing the default footer).
 
 See [Pro tier and white-labeled reports](#pro-tier-and-white-labeled-reports).
