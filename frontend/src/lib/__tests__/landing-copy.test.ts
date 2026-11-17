@@ -77,8 +77,13 @@ describe("Static hosting", () => {
     for (const route of routes) {
       // `contracts.$id` -> `/contracts/*`, `history-search` -> `/history-search`
       const source = "/" + route.replace(/\.\$\w+$/, "/*").replace(/\./g, "/");
-      expect(redirects).toContain(`\n${source} /_shell.html 200`);
+      expect(redirects).toContain(`\n${source} /_shell 200`);
     }
+  });
+
+  it("rewrites to /_shell, which Cloudflare serves without a redirect", () => {
+    const rules = redirects.split("\n").filter((line) => line.startsWith("/"));
+    for (const rule of rules) expect(rule).toMatch(/ \/_shell 200$/);
   });
 
   it("never rewrites everything, which would also catch the assets", () => {
