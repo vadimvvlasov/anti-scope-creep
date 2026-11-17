@@ -4,7 +4,6 @@ import unittest
 
 from build_lovable_prompt import (
     DEFAULT_SPEC,
-    MAX_CHARS,
     build_prompt,
     build_spec_excerpt,
 )
@@ -139,9 +138,9 @@ class BuildPromptTest(unittest.TestCase):
         self.assertIn("<SPEC>\n# Title", prompt)
         self.assertTrue(prompt.endswith("</SPEC>\n"))
 
-    def test_real_spec_fits_lovable_limit(self):
+    def test_real_spec_builds_without_backend_sections(self):
+        # The size is not checked: the frontend is no longer regenerated from this prompt.
         prompt = build_prompt(DEFAULT_SPEC.read_text(encoding="utf-8"))
-        self.assertLess(len(prompt), MAX_CHARS)
         self.assertNotIn("## Later phases", prompt)
         self.assertNotIn("## Data model", prompt)
 

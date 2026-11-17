@@ -9,13 +9,21 @@ verified. Short version in the [README](../README.md#how-it-was-built-with-ai).
 | Stage | Tool | Input | Output |
 |---|---|---|---|
 | Product spec | ChatGPT (dialogue) | problem, users, MVP scope, answers to its questions | [`docs/spec.md`](spec.md) |
-| Frontend | Lovable | a prompt built from the spec by `scripts/build_lovable_prompt.py` | React app in `frontend/` with a mock services layer and tests |
+| Frontend (first version) | Lovable | a prompt built from the spec by `scripts/build_lovable_prompt.py` | React app in `frontend/` with a mock services layer and tests |
+| Frontend (since then) | Claude Code | the spec, one issue at a time; a Lovable prototype when a screen needs a visual draft | changes in `frontend/`, Vitest and Playwright tests |
 | API contract | Claude Code | the frontend API client (`frontend/src/services/api.ts`) and the spec | [`openapi.yaml`](../openapi.yaml) |
 | Backend, infrastructure, eval | Claude Code | `AGENTS.md`, the spec, `openapi.yaml`, one step prompt at a time | code, tests, workflows, docs; one PR per step |
 | Decisions, labeling, review | a person | diffs, test results, the deployed app, eval errors | merge or rework; gold labels for the eval |
 
 The spec was written in a separate ChatGPT dialogue on purpose: discussing the idea needs
 no file access, and it would only fill the coding agent's context.
+
+Lovable generated the first frontend once. Lovable cannot attach to an existing repository (connecting a
+project always creates a new one) and the frontend has since changed far beyond the export, so it is never
+regenerated from the spec: `scripts/build_lovable_prompt.py` is kept as a record and only warns when its
+prompt grows past Lovable's limit. Lovable is still useful for a visual draft of a new screen (for example
+the landing page), built in a separate Lovable project from a short prompt for that screen; the developer
+then ports the result into `frontend/` (see [Lovable prototypes](#lovable-prototypes)).
 
 ## Agent team
 
@@ -27,7 +35,7 @@ a telemetry signal, an alert), so each one starts from the repository, not from 
 | Member | Kind | Responsibility | May touch | May not |
 |---|---|---|---|---|
 | Product analyst | ChatGPT, a separate dialogue | turns the idea into the specification: users, MVP scope, data model, limits, severity matrix, error codes | [`docs/spec.md`](spec.md), committed by the owner | see or change the code |
-| Frontend developer | Lovable | the React app and its mock services layer, from a prompt built from the spec | `frontend/` | the backend; calls to the API outside `src/services/api.ts` |
+| Prototype designer | Lovable, a separate project per prototype | a visual draft of a new screen from a short prompt; the first frontend came from the spec prompt | its own Lovable project and repository | this repository; the frontend is changed only by porting (see [Lovable prototypes](#lovable-prototypes)) |
 | Developer | Claude Code | the API contract, backend, infrastructure, CI/CD, eval, telemetry and docs, one step per branch and pull request | feature branches, pull requests, code, tests, workflows, docs | the spec or `openapi.yaml` without asking; a new dependency without asking; secrets; merging or deploying to prod on its own (only on the owner's explicit word) |
 | API reviewer | subagent `api-contract-reviewer` (Claude Code) | reads an API change against the spec and `openapi.yaml` before the pull request is opened | read-only: `git diff`, the contract test | write files, change state |
 | Eval operator | skill `eval-run` (Claude Code) | the repeatable procedure for a prompt or model decision: plan within the quota, run, score, compare, report | `eval/runs/`, `docs/eval.md` | tune a prompt on the held-out set |
@@ -192,3 +200,19 @@ calls the LLM.
 - labeling the eval gold sets and deciding whether a prompt version is better;
 - approving every merge and every prod deployment;
 - secrets and cloud accounts.
+
+## Lovable prototypes
+
+How a Lovable draft becomes part of the frontend, so the port is a normal reviewed change:
+
+1. **Prompt:** one screen, written for Lovable: who it is for, the copy (taken from `docs/spec.md`, which
+   gets the screen's section first), the sections in order, the existing look (Tailwind, shadcn/ui, the
+   colour tokens of `frontend/src/styles.css`), and "static, no backend calls". No full spec.
+2. **Draft:** iterate in its own Lovable project until the layout is right. Lovable's GitHub sync puts it in
+   its own repository.
+3. **Port:** in a feature branch here, the developer copies the screen's components into `frontend/src/`,
+   replaces Lovable's own UI copies with the existing `components/ui/*`, wires routing and analytics, and
+   keeps the copy verbatim from the spec. No Lovable runtime packages and no new dependency without asking.
+4. **Check:** the usual tests (Vitest for the copy against the spec, Playwright including 390 px), the
+   pull request with a screenshot. The Lovable project stays a draft; nothing syncs back.
+
