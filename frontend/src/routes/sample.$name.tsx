@@ -55,7 +55,9 @@ function GuestShell({ children }: { children: ReactNode }) {
             Anti-Scope Creep
           </Link>
           <Button asChild variant="ghost" size="sm" className="ml-auto">
-            <Link to="/login">Log in</Link>
+            <Link to="/login" search={{ tab: "login" }}>
+              Log in
+            </Link>
           </Button>
         </div>
       </header>

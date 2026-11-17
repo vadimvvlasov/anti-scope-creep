@@ -224,7 +224,7 @@ Every screen, including Login / Register, has:
 Purpose: authentication.
 
 Required UI:
-- Two tabs or toggled forms: Login and Register.
+- Tabs Register (opened first) and Login; texts in [Login copy](#login-copy).
 - Fields: email, password (Register: password min 8 characters, shown as a hint).
 - Client-side validation feedback (invalid email, short password).
 - `EMAIL_ALREADY_EXISTS`: message plus a link/button that switches to Login.
@@ -232,7 +232,7 @@ Required UI:
 - Session-expired banner `Your session has expired. Please log in again.` when redirected here by the 401 handler.
 - In mock mode, a small hint with the demo credentials (see [Mock seed data](#mock-seed-data)).
 
-No OAuth, social login, email verification, password reset, or account-management screens.
+No account-management screens (see [Authentication](#authentication)).
 
 ### 2. Contract History
 
@@ -1211,6 +1211,17 @@ What the user is told about the limits, the wait and a failure (issue #119). The
 | Local model | `This usually takes 2–4 minutes, up to 8 for a long contract, and longer if other analyses are waiting or the model is starting up.` | `Analysis failed. The AI model on our server may be busy or temporarily unavailable. Please try again in a few minutes.` |
 
 The number 5 follows `ANALYSIS_DAILY_LIMIT_PER_USER`; a change of the limit changes these texts too. The local model times come from the eval (`docs/eval.md`, Local model gate) and are updated after the measurements of #121.
+
+### Login copy
+
+What a first-time visitor reads on Login / Register (issue #127). The page speaks to freelancers and says what they get before asking for an email.
+
+- **Tab:** Register opens first when there is no stored session. Login opens first after the session-expired redirect (with its banner) and with `?tab=login`; `?tab=register` opens Register (the guest sample's call to action). A stored session still goes straight to Contract History.
+- **Tagline** under the product name: `For freelancers and independent contractors checking a client's contract.`
+- **Value line** under the tagline: `Find the risky clauses in a client's contract, with exact quotes, suggested wording and a ready email to your client. Free to try.`
+- **Email note** under the Register email field: `Your email is used only to sign in, and to tell you about Pro if you join its waitlist. No newsletter.` It must stay true: the application sends no email, analytics events never carry it (`docs/analytics.md`), and the waitlist is contacted only as `docs/analytics.md` describes.
+- The `See a sample analysis` link (see [Guest sample](#guest-sample)) stays under the card; the `Log in` link of the sample page opens the Login tab.
+- No limit wording (owner, 2026-11-16).
 
 ### Product analytics events
 
