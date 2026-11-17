@@ -14,6 +14,12 @@ Related: the [AI data policy](../docs/ai-data-policy.md) (what contract data goe
 LLM provider), [`docs/architecture.md`](../docs/architecture.md), section 9, and
 [`ops/`](../ops/README.md) (runbook and incident diagnoses).
 
+## Frontend dependencies, 2026-11-17
+
+`npm audit`: 17 vulnerabilities (5 critical, 3 high, 9 moderate) before, **0** after the version updates of
+issue #109, with and without dev dependencies. None was reachable in production as deployed. Versions,
+decisions and the one code change: [`runs/2026-11-17/npm-audit.md`](runs/2026-11-17/npm-audit.md).
+
 ## Latest run: 2026-10-12
 
 | Source | Result |
@@ -21,7 +27,7 @@ LLM provider), [`docs/architecture.md`](../docs/architecture.md), section 9, and
 | Semgrep on `main` (`8cbbb0a`) | 17 results from 6 rules: [`semgrep-main-8cbbb0a.json`](runs/2026-10-12/semgrep-main-8cbbb0a.json) |
 | Semgrep after the fixes | 4 results left, all accepted or false positives: [`semgrep-after-fixes.json`](runs/2026-10-12/semgrep-after-fixes.json) |
 | `pip-audit` (40 backend packages) | no known vulnerabilities: [`pip-audit.json`](runs/2026-10-12/pip-audit.json) |
-| `npm audit --omit=dev` (504 packages) | 0 vulnerabilities: [`npm-audit.json`](runs/2026-10-12/npm-audit.json) |
+| `npm audit --omit=dev` (504 packages) | 0 vulnerabilities on 2026-10-12 (17 found later, fixed on 2026-11-17, above): [`npm-audit.json`](runs/2026-10-12/npm-audit.json) |
 | Model review of PR #23 (Groq analyzer) | 3 medium, 2 low, 1 info (already fixed): [`model-review-pr23.md`](runs/2026-10-12/model-review-pr23.md) |
 | Manual checks | `main` was not protected when the run was made (the ruleset GH-1 below has been active since 2026-10-12); the local agent runs with the developer's credentials |
 
