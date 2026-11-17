@@ -51,6 +51,9 @@
   --color-highlight-high: var(--highlight-high);
   --color-highlight-medium: var(--highlight-medium);
   --color-highlight-low: var(--highlight-low);
+  --color-paper-line: var(--paper-line);
+  --shadow-paper: var(--shadow-paper-value);
+  --shadow-float: var(--shadow-float-value);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -100,6 +103,11 @@
   --highlight-medium: #fef3c7;
   --highlight-low: #e0f2fe;
 
+  /* Landing page illustration (docs/spec.md "Landing page"). */
+  --paper-line: oklch(0.92 0.01 95);
+  --shadow-paper-value: 0 1px 2px oklch(0.24 0.035 255 / 6%), 0 12px 32px -16px oklch(0.24 0.035 255 / 18%);
+  --shadow-float-value: 0 2px 4px oklch(0.24 0.035 255 / 6%), 0 20px 40px -20px oklch(0.24 0.035 255 / 30%);
+
   --chart-1: oklch(0.52 0.19 27);
   --chart-2: oklch(0.58 0.13 70);
   --chart-3: oklch(0.5 0.1 155);
@@ -146,6 +154,10 @@
   --highlight-high: oklch(0.36 0.09 27);
   --highlight-medium: oklch(0.38 0.07 75);
   --highlight-low: oklch(0.36 0.06 240);
+
+  --paper-line: oklch(0.3 0.03 255);
+  --shadow-paper-value: 0 1px 2px oklch(0 0 0 / 30%), 0 12px 32px -16px oklch(0 0 0 / 50%);
+  --shadow-float-value: 0 2px 4px oklch(0 0 0 / 30%), 0 20px 40px -20px oklch(0 0 0 / 60%);
 
   --sidebar: oklch(0.25 0.033 255);
   --sidebar-foreground: oklch(0.96 0.008 95);
@@ -209,5 +221,132 @@
   @media (prefers-reduced-motion: reduce) {
     animation: none;
     outline: 2px solid var(--ring);
+  }
+}
+
+/* Landing page (docs/spec.md "Landing page"; drafted in Lovable, docs/lovable/landing.md). */
+@utility page-container {
+  width: 100%;
+  max-width: 1148px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Small uppercase label above a section heading. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+/* Thin amber rule, a document-style marker. */
+@utility amber-rule {
+  display: inline-block;
+  width: 1.5rem;
+  height: 2px;
+  background-color: var(--color-accent);
+  vertical-align: middle;
+}
+
+/* A placeholder line of text in the illustrated contract. */
+@utility paper-bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--color-paper-line);
+}
+
+/* A highlighted clause in the illustrated contract; a background image, so it can sweep in. */
+@utility clause-mark {
+  color: var(--color-foreground);
+  padding: 0.1em 0.2em;
+  margin-inline: -0.2em;
+  border-radius: 0.2em;
+  background-image: linear-gradient(var(--clause-bg), var(--clause-bg));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@utility clause-high {
+  --clause-bg: var(--color-highlight-high);
+}
+
+@utility clause-medium {
+  --clause-bg: var(--color-highlight-medium);
+}
+
+/* Hero sequence: a scan line, the clause highlights, the finding cards; each starts at --delay. */
+@keyframes review-scan {
+  0% { top: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes clause-sweep {
+  from { background-size: 0% 100%; }
+  to { background-size: 100% 100%; }
+}
+
+@keyframes finding-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes finding-dot {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--dot-color) 55%, transparent); }
+  100% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--dot-color) 0%, transparent); }
+}
+
+@utility review-scan-line {
+  position: absolute;
+  left: -0.5rem;
+  right: -0.5rem;
+  height: 2px;
+  border-radius: 9999px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--color-accent) 45%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  animation: review-scan 2.6s cubic-bezier(0.45, 0, 0.55, 1) var(--delay, 0s) both;
+}
+
+@utility animate-clause {
+  animation: clause-sweep 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s) both;
+}
+
+@utility animate-finding {
+  animation: finding-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s) both;
+}
+
+@utility animate-finding-dot {
+  animation: finding-dot 1.2s ease-out var(--delay, 0s) 2 both;
+}
+
+/* The sequence waits on its first frame until the picture scrolls into view. */
+.review-idle .review-scan-line,
+.review-idle .animate-clause,
+.review-idle .animate-finding,
+.review-idle .animate-finding-dot {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-scan-line {
+    display: none;
+  }
+  .animate-clause,
+  .animate-finding,
+  .animate-finding-dot {
+    animation: none;
   }
 }
