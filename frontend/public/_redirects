@@ -1,0 +1,9 @@
+# Cloudflare Static Assets: app routes get the SPA shell with status 200. `/` is the prerendered
+# landing page (index.html); any other unknown path gets 404.html, a copy of the shell, so the app
+# still renders its Not Found page (wrangler.jsonc, not_found_handling). Keep in step with src/routes/.
+/login /_shell.html 200
+/history /_shell.html 200
+/history-search /_shell.html 200
+/new-analysis /_shell.html 200
+/contracts/* /_shell.html 200
+/sample/* /_shell.html 200

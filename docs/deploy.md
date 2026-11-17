@@ -61,7 +61,9 @@ repository. Both environments accept deployments only from `main`; `prod` also n
 - Secrets: `MIGRATIONS_DATABASE_URL` (Neon direct endpoint, for Alembic), `CLOUDFLARE_API_TOKEN`
 - Variables: `BACKEND_URL` (the environment's public URL, `https://asc-<env>.<tailnet>.ts.net`, no
   trailing slash), `CLOUDFLARE_ACCOUNT_ID`, `ANALYZER` (`groq` or `stub`; it only sets what the
-  frontend says about the analyzer, so keep it equal to `ANALYZER` in the server's env file)
+  frontend says about the analyzer, so keep it equal to `ANALYZER` in the server's env file),
+  `FRONTEND_URL` (the environment's frontend address, no trailing slash; the landing page's link preview
+  needs it for an absolute `og:image` URL; optional)
 
 The workflows move image tags with the job's own `GITHUB_TOKEN` (`packages: write`); there are
 no cloud credentials.
