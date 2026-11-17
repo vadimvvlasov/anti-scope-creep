@@ -79,6 +79,7 @@ Scripts (Python standard library only):
 - `python3 scripts/smoke.py <BACKEND-URL> [--expect-version sha-<7 hex>]` - smoke test a deployed backend (health, version, register, upload, poll, delete)
 - `python3 scripts/select_cuad.py --download`, then `python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl` - pick the CUAD eval subset and write draft gold records (see `eval/README.md`)
 - `python3 scripts/build_freelance_set.py` - build the freelance eval set (mutated synthetic contracts) and its gold records (see `eval/README.md`)
+- `python3 scripts/build_sample.py --contract <TXT> --recording <RUN-JSON> ... -o data/samples/<name>.json` - build a guest sample analysis from a recorded run (see `data/samples/README.md`)
 
 Agent extension pack (see `docs/agent-extension-pack.md`):
 
