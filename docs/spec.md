@@ -656,8 +656,8 @@ Base URL comes from `VITE_API_URL`. All paths below are relative to it. Every pa
 
 | # | Operation | Method + path | Request | Success | Errors |
 |---|---|---|---|---|---|
-| 1 | Register | `POST /auth/register` | JSON `{ email, password }` | `201` `AuthResponse` | `409 EMAIL_ALREADY_EXISTS`, `422 VALIDATION_ERROR` |
-| 2 | Login | `POST /auth/login` | JSON `{ email, password }` | `200` `AuthResponse` | `401 INVALID_CREDENTIALS`, `422 VALIDATION_ERROR` |
+| 1 | Register | `POST /auth/register` | JSON `{ email, password }` | `201` `AuthResponse` | `409 EMAIL_ALREADY_EXISTS`, `422 VALIDATION_ERROR`, `429 TOO_MANY_ATTEMPTS` |
+| 2 | Login | `POST /auth/login` | JSON `{ email, password }` | `200` `AuthResponse` | `401 INVALID_CREDENTIALS`, `422 VALIDATION_ERROR`, `429 TOO_MANY_ATTEMPTS` |
 | 3 | Current user | `GET /auth/me` | — | `200` `User` | `401 UNAUTHORIZED` |
 | 4 | Create + analyze contract | `POST /contracts` | `multipart/form-data`: `file?`, `text?`, `title?` | `202` `ContractDetail` (status `analyzing`) | `422` input/file errors (see table below) |
 | 5 | List contracts | `GET /contracts?page=1&page_size=20` | query params | `200` `ContractPage` | `422 VALIDATION_ERROR` |
@@ -1139,6 +1139,7 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 | Scanned/image-only PDF | 422 | `PDF_TEXT_EXTRACTION_FAILED` | `No text could be extracted. Scanned PDFs are not supported.` |
 | Non-English contract | 422 | `UNSUPPORTED_LANGUAGE` | `Only English contracts are supported in the MVP` |
 | Text cannot be reliably language-classified | 422 | `LANGUAGE_UNDETERMINED` | `The contract language could not be determined. Please provide more text.` |
+| Too many login or registration attempts | 429 | `TOO_MANY_ATTEMPTS` | `Too many attempts. Please wait a few minutes and try again.` See [Authentication rate limits](#authentication-rate-limits). |
 | Duplicate registration email | 409 | `EMAIL_ALREADY_EXISTS` | `An account with this email already exists.` plus link to Login. |
 | Delete while analyzing | 409 | `CONTRACT_ANALYSIS_IN_PROGRESS` | `This contract cannot be deleted while analysis is running.` |
 | Retry while analyzing | 409 | `ANALYSIS_IN_PROGRESS` | `An analysis is already running for this contract.` |
@@ -1157,11 +1158,7 @@ Codes are stable upper-snake-case strings; the frontend branches on `code`, neve
 
 ### Authentication rate limits
 
-Login and registration are limited, because the backend has no WAF in front of it (issue #129). The code below belongs to the [error table](#error-codes); it is listed here so the Lovable prompt, built from that table, stays within its limit.
-
-| Condition | HTTP status | Code | Message |
-|---|---:|---|---|
-| Too many login or registration attempts | 429 | `TOO_MANY_ATTEMPTS` | `Too many attempts. Please wait a few minutes and try again.` |
+Login and registration are limited, because the backend has no WAF in front of it (issue #129). Over a limit the backend answers `429 TOO_MANY_ATTEMPTS` (see the [error table](#error-codes)).
 
 - **Login:** at most **20** attempts per client IP, and **5** failed attempts per email, in a fixed 15-minute window. Over either limit the attempt is refused before the password is checked, so a locked email is refused even with the right password until the window ends. Successful logins never lock an email.
 - **Registration:** at most **5** attempts per client IP in a fixed 1-hour window, counting attempts that fail (for example `EMAIL_ALREADY_EXISTS`).
