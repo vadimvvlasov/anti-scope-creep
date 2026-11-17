@@ -565,7 +565,12 @@ What to expect: about 7 seconds per 1,000 characters (2-4 minutes for a typical 
 one), one analysis at a time; the next ones wait in `llama-server`'s queue. The frontend stops polling after
 5 minutes and offers `Check again` (`docs/spec.md`); the longer wait and its wording are #119.
 
-Back to Groq: `ANALYZER=groq` and `ANALYSIS_STALE_AFTER_SECONDS=600` (or remove the line).
+The frontend shows the privacy text of the active analyzer (`docs/spec.md`, "Local model analyzer"). It is
+built with `VITE_ANALYZER` from the GitHub Environment variable `ANALYZER` (`deploy.yml`), so set that variable
+to `local` for the same environment and redeploy the frontend in the same step; otherwise the Upload screen
+still says the text is sent to Groq.
+
+Back to Groq: `ANALYZER=groq` and `ANALYSIS_STALE_AFTER_SECONDS=600` (or remove the line), in both places.
 
 ### Stop
 

@@ -6,7 +6,11 @@ import {
   analysisParagraphs,
   analyzerName,
   dataPoints,
+  LOCAL_PROVIDER_NOTICE,
+  LOCAL_PROVIDER_TEXT,
   NO_PROVIDER_TEXT,
+  providerNotice,
+  providerText,
   PROVIDER_NOTICE,
   PROVIDER_TEXT,
   QUOTE_VERIFICATION_TEXT,
@@ -61,8 +65,27 @@ describe("Methodology & Privacy copy", () => {
     expect(dataPoints("groq")).not.toContain(NO_PROVIDER_TEXT);
   });
 
+  it("has the local model texts the spec lists, verbatim", () => {
+    // docs/spec.md "Local model analyzer" quotes the dialog line in backticks.
+    expect(SPEC).toContain(`\`${LOCAL_PROVIDER_TEXT}\``);
+    expect(LOCAL_PROVIDER_TEXT.startsWith(LOCAL_PROVIDER_NOTICE)).toBe(true);
+    expect(LOCAL_PROVIDER_TEXT).toContain("not sent to a third-party AI provider");
+    expect(LOCAL_PROVIDER_TEXT).not.toContain("Groq");
+  });
+
+  it("gives the local model its own provider texts and the LLM paragraphs", () => {
+    expect(analysisParagraphs("local")).toEqual(analysisParagraphs("groq"));
+    expect(dataPoints("local").at(-1)).toBe(LOCAL_PROVIDER_TEXT);
+    expect(dataPoints("local")).not.toContain(PROVIDER_TEXT);
+    expect(providerText("stub")).toBe(NO_PROVIDER_TEXT);
+    expect(providerNotice("groq")).toBe(PROVIDER_NOTICE);
+    expect(providerNotice("local")).toBe(LOCAL_PROVIDER_NOTICE);
+    expect(providerNotice("stub")).toBe("");
+  });
+
   it("reads the analyzer name, defaulting to the stub", () => {
     expect(analyzerName("groq")).toBe("groq");
+    expect(analyzerName(" local ")).toBe("local");
     expect(analyzerName(" groq ")).toBe("groq");
     expect(analyzerName(undefined)).toBe("stub");
     expect(analyzerName("other")).toBe("stub");

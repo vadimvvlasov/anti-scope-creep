@@ -17,13 +17,17 @@ export const AUTHOR_BIO =
 
 /** The analyzer this build's backend runs: deploy.yml sets VITE_ANALYZER from the same
  * GitHub Environment variable as the backend's ANALYZER, so the two cannot disagree. */
-export type AnalyzerName = "stub" | "groq";
-export const analyzerName = (raw: string | undefined): AnalyzerName =>
-  raw?.trim() === "groq" ? "groq" : "stub";
+export type AnalyzerName = "stub" | "groq" | "local";
+export const analyzerName = (raw: string | undefined): AnalyzerName => {
+  const name = raw?.trim();
+  return name === "groq" || name === "local" ? name : "stub";
+};
 export const ANALYZER: AnalyzerName = analyzerName(
   typeof import.meta !== "undefined" ? import.meta.env?.["VITE_ANALYZER"] : undefined,
 );
 export const STUB_ANALYZER_ACTIVE = ANALYZER === "stub";
+/** A real model analyzes contracts (Groq or the local model): the provider texts and policy link apply. */
+export const LLM_ANALYZER_ACTIVE = !STUB_ANALYZER_ACTIVE;
 
 export const STUB_ANALYZER_NOTICE =
   "This version uses a demonstration analyzer that returns the same sample findings for every contract. The rules below describe the analyzer that replaces it.";
@@ -41,6 +45,23 @@ export const PROVIDER_NOTICE =
   "To analyze a contract, its text is sent to Groq, a third-party AI provider.";
 export const NO_PROVIDER_TEXT =
   "In this version, contract text is not sent to any third-party AI provider.";
+// The local model (docs/spec.md "Local model analyzer").
+export const LOCAL_PROVIDER_TEXT =
+  "To analyze a contract, its text is processed by an AI model that runs on our own server; it is not sent to a third-party AI provider. Party names and contact details are replaced with placeholders where detected, but this is not full anonymization. See the AI data policy for details.";
+export const LOCAL_PROVIDER_NOTICE =
+  "To analyze a contract, its text is processed by an AI model that runs on our own server; it is not sent to a third-party AI provider.";
+
+/** The "Your data" line about the provider, by analyzer. */
+export function providerText(analyzer: AnalyzerName): string {
+  if (analyzer === "groq") return PROVIDER_TEXT;
+  return analyzer === "local" ? LOCAL_PROVIDER_TEXT : NO_PROVIDER_TEXT;
+}
+
+/** The Upload / Analyze notice by analyzer; empty for the stub, which shows none. */
+export function providerNotice(analyzer: AnalyzerName): string {
+  if (analyzer === "groq") return PROVIDER_NOTICE;
+  return analyzer === "local" ? LOCAL_PROVIDER_NOTICE : "";
+}
 
 const STUB_ANALYSIS_PARAGRAPHS = [
   "Anti-Scope Creep checks contracts for six risks common in freelance work: scope creep, unlimited revisions, one-sided termination, IP transfer before payment, uncapped liability, and long payment terms.",
@@ -67,10 +88,11 @@ export function analysisParagraphs(analyzer: AnalyzerName): readonly string[] {
   ];
 }
 
-/** "Your data": the LLM analyzer replaces the no-provider line with the provider text. */
+/** "Your data": an LLM analyzer replaces the no-provider line with its provider text. */
 export function dataPoints(analyzer: AnalyzerName): readonly string[] {
-  return [...COMMON_DATA_POINTS, analyzer === "groq" ? PROVIDER_TEXT : NO_PROVIDER_TEXT];
+  return [...COMMON_DATA_POINTS, providerText(analyzer)];
 }
 
 export const ANALYSIS_PARAGRAPHS = analysisParagraphs(ANALYZER);
 export const DATA_POINTS = dataPoints(ANALYZER);
+export const ACTIVE_PROVIDER_NOTICE = providerNotice(ANALYZER);

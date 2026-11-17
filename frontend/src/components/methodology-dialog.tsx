@@ -21,11 +21,11 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import {
   AI_DATA_POLICY_URL,
   ANALYSIS_PARAGRAPHS,
-  ANALYZER,
   AUTHOR_BIO,
   AUTHOR_LINKS,
   AUTHOR_NAME,
   DATA_POINTS,
+  LLM_ANALYZER_ACTIVE,
   METHODOLOGY_TITLE,
   STUB_ANALYZER_ACTIVE,
   STUB_ANALYZER_NOTICE,
@@ -91,7 +91,7 @@ function MethodologyBody() {
             <li key={text}>{text}</li>
           ))}
         </ul>
-        {ANALYZER === "groq" && (
+        {LLM_ANALYZER_ACTIVE && (
           <p>
             <a
               href={AI_DATA_POLICY_URL}
