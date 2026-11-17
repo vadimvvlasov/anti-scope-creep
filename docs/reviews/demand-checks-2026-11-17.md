@@ -158,3 +158,70 @@ Results (to be filled in by the owner): *not sent yet.*
 - Lead with what competitors don't claim: quotes checked against the contract, and the text processed on our
   own server (after #121).
 - Billing waits for #128-#130 in any case.
+
+## 6. Monetization without charging users
+
+The owner asked what else could pay if the product stays free. The finding categories point at products the
+freelancer needs at that moment, so partners could pay for a user who needs them now:
+
+| Finding | What the freelancer needs | Who could pay for the user |
+|---|---|---|
+| Net 60/90 (`unfavorable_payment_terms`) | get paid sooner | invoice factoring and financing, payment protection |
+| IP before payment, one-sided termination | be sure to get paid | escrow and milestone-payment services |
+| `uncapped_liability` | cover the liability | professional liability insurance for freelancers |
+| several high risks | a lawyer's look | legal services, lawyer marketplaces, a local lawyer on a revenue share |
+
+Models, from the easiest to start to the hardest:
+
+1. **Affiliate programs.** Many legal, insurance and finance services run self-serve programs, so nobody has
+   to be asked. At about 20 analyses a day the income is tiny until there is traffic; a bonus, not a model.
+2. **Lead generation for lawyers.** "Have a lawyer check this for $X"; the lawyer pays per client or shares
+   revenue. The closest fit to the product: it finds the problem, the lawyer fixes it. One or two lawyers who
+   work with freelancers can be found now.
+3. **Freelancer associations and communities** (Freelancers Union in the US, IPSE in the UK, niche
+   communities): the check as a free member benefit. Little money, but distribution and trust, which every
+   other model needs. The first door to knock on.
+4. **Embedding in platforms** where contracts live: freelancer business tools, freelance marketplaces,
+   contractor-hiring services. Paid per API call or white-label. The biggest money, but nobody talks without
+   traffic and quality numbers (`docs/eval.md` is the quality argument). Start with small indie platforms.
+5. **White-label for agencies** (audit H3): an agency checks its clients' contracts under its own brand. B2B
+   sales rather than a partnership.
+
+Risks:
+
+- **Conflict of interest.** The product is on the freelancer's side. A partner link next to a finding invites
+  the question whether risks are inflated for a commission. Findings, severity and the email must never depend
+  on partners, and partner links must be marked; both rules go into the spec.
+- **Free without limits runs into the GPU.** Free is only possible on the local model (#121), and the per-user
+  limit stays as protection.
+- **No selling of user data**, not even aggregates of contracts: it would break the main argument that the
+  text does not leave our server.
+
+Cheap test before signing anything: a fake-door button per need on the finding card, measured like the Pro
+dialog (#135).
+
+## 7. Where money is received
+
+The owner plans a Georgian individual entrepreneur (IE) if demand appears. Desk research, 2026-11-17, not
+legal or tax advice:
+
+- **IE with Small Business Status:** 1% of turnover up to 500,000 GEL a year; the status must be requested
+  from the Revenue Service separately from the IE registration. Confirm the current rules on rs.ge or with a
+  Georgian adviser.
+- **Stripe:** third-party guides say Georgia is not a supported country for a Stripe account (Stripe Atlas,
+  a US company, is a separate route with its own tax and banking obligations). Not confirmed on Stripe's own
+  country page.
+- **Paddle (merchant of record):** Georgia appears in Paddle's supported-countries list; payout details for a
+  Georgian seller were not found. Check during Paddle's account verification before choosing it.
+- **USDT:** consultancy guides say crypto received for services counts as IE turnover at its GEL value on the
+  day received, but advisers do not fully agree; check before relying on it.
+
+USDT as a payment or donation option at the start:
+
+- **As the only way to pay, no.** The target users are freelancers in the US, UK and EU paying $9-15. Few of
+  them hold USDT, so conversion would measure payment friction, not demand, and the X4/pricing signal would
+  be lost. A crypto-only checkout also reads badly for a product that sells trust about contracts.
+- **Donations** ("support the project") are not a demand signal: they show goodwill, not what people pay for.
+- **As an extra option on request**, after the IE exists and its tax treatment is confirmed: acceptable.
+- **Before the IE:** keep the waitlist and pre-commitment (price named in the X4 replies) as the signal; take
+  money only once a merchant of record (or the IE with a bank) is in place.
