@@ -1288,27 +1288,41 @@ A public, read-only sample analysis lets a visitor see the output before creatin
 
 ### Landing page
 
-Planned (issue #147, audit T8). A static page at `/` tells a guest what the product does before asking for an account. Today `/` shows a spinner and redirects a guest to Login, and a link preview of `/` has no text.
+Issue #147 (audit T8), redesigned in #151 from a second Lovable draft. A static page at `/` tells a guest what the product does before asking for an account.
 
 - **Who sees it:** a visitor without a stored session. A stored session still goes straight to Contract History, as today.
 - **Static:** the HTML of `/` contains the texts below at build time, so `curl /` and link previews show them; no server-side rendering. The page makes **no backend call** other than `POST /events`. Deep links (`/contracts/<id>`, `/sample/net-90`) keep working on reload: they get the app shell, and an unknown path gets the app's Not Found page.
 - **Link preview:** title `Anti-Scope Creep — Find the risky clauses before you sign`, the value line as the description, and an `og:image` (1200×630: the top of this page, with the product name, the heading and the illustrated findings).
-- **Header:** product name; links `See a sample` (`/sample/net-90`) and `Log in` (`/login?tab=login`); button `Create a free account` (`/login?tab=register`).
+- **Header:** product name; links `See a sample` (`/sample/net-90`) and `Log in` (`/login?tab=login`); button `Analyze my contract` (`/login?tab=register`).
 - **Hero:**
   - above the heading, the Login tagline: `For freelancers and independent contractors checking a client's contract.`
   - heading: `Find the risky clauses before you sign.`
   - under it, the Login value line: `Find the risky clauses in a client's contract, with exact quotes, suggested wording and a ready email to your client. Free to try.`
-  - primary button `See a sample analysis` (`/sample/net-90`), secondary button `Create a free account` (`/login?tab=register`).
-  - beside it (under it on a phone), an animated illustration drawn in HTML and CSS: a contract excerpt where two clauses are highlighted and their finding cards appear, `Invoices are payable Net 90.` (high, from the `net-90` sample) and an illustrative open-ended scope clause (medium). It is marked as an illustration for screen readers and holds still with reduced motion.
+  - primary button `Try a free sample` (`/sample/net-90`) with the note `No account needed` under it; secondary button `Analyze my contract` (`/login?tab=register`) with the note `Free account` under it.
+  - beside it (under it on a phone), an animated illustration drawn in HTML and CSS: a contract page reviewed clause by clause, where two clauses are highlighted and their finding cards appear, the illustrative scope clause (medium) and `Invoices are payable Net 90.` (high, as in the `net-90` sample), then the suggested wording for the payment clause. It starts when it scrolls into view, is described for screen readers and holds still with reduced motion.
+- **Sample analysis**, small label `Sample analysis`, heading `Every finding, with the fix next to it.`, link `Open the full sample analysis` (`/sample/net-90`); an interactive illustration, no backend call:
+  - a short illustrative services agreement with three highlighted clauses; a list of their findings beside it (under it on a phone):
+    - `Long / unfavorable payment terms`, high: `Invoices are payable Net 90.`; why it matters `You could wait three months after delivering the work before you are paid.`; suggested wording `Invoices are payable within 14 days of receipt. Contractor may pause work while any invoice is overdue.`
+    - `Scope ambiguity / scope creep`, medium: `Contractor will provide any additional services reasonably requested by Client.`; why it matters `The scope of work can expand without additional compensation.`; suggested wording `Additional services outside the agreed scope require a separate written agreement and additional compensation.`
+    - `IP transfer before payment`, high: `All intellectual property in the deliverables transfers to Client upon creation.`; why it matters `The client would own your work even if the invoice is never paid.`; suggested wording `Intellectual property in the deliverables transfers to Client upon receipt of full payment.`
+  - choosing a finding (in the list or on its clause) shows its quote, why it matters and the suggested wording with a `Copy` button;
+  - a second tab `Email draft` shows an illustrative email that asks for the three changes, with a `Copy` button;
+  - under it: `An illustrative example. The full sample analysis shows real output.`
 - **What you get**, heading `What you get`, three items:
   - `Risky clauses, quoted` — `Each finding quotes the clause from your contract, explains the risk in plain English and rates it high, medium or low.`
   - `Wording to propose` — `For each risky clause, replacement wording you can offer your client, in a PDF or DOCX report.`
   - `An email to your client` — `A polite draft that asks for the changes. Copy it and send it from your own email.`
-- **What it checks:** small label `What it checks`, heading `Six common traps in freelance contracts`, then the six UI labels of [Clause categories](#clause-categories-with-examples), as a list.
+- **What it checks:** small label `What it checks`, heading `Six common traps in freelance contracts`, then the six UI labels of [Clause categories](#clause-categories-with-examples), each with one line:
+  - `Scope ambiguity / scope creep` — `Vague deliverables let the work grow while the fee stays the same.`
+  - `Unlimited revisions` — `No cap on rounds means no clear end to the project.`
+  - `One-sided termination` — `Only the client can walk away, sometimes without paying for work already done.`
+  - `IP transfer before payment` — `The client owns your work before you have been paid for it.`
+  - `Uncapped liability` — `What you could owe has no upper limit, whatever the project is worth.`
+  - `Long / unfavorable payment terms` — `Long payment windows and missing late-payment terms delay your income.`
 - **How it works**, heading `How it works`, three steps: `Upload a PDF or paste the text of an English contract.`, `Wait a few minutes while the AI reads it.`, `Review the findings and send the email.`
 - **Privacy:** small label `Privacy`, heading `Your contract stays private`, then the [Privacy at upload](#privacy-at-upload) list for the active analyzer, verbatim, caveat included, and the Methodology & Privacy link.
-- **Closing call to action:** heading `Check your own contract`, button `Create a free account` (`/login?tab=register`), link `or see a sample analysis` (`/sample/net-90`).
-- **Footer:** the [legal disclaimer](#legal-positioning), the Methodology & Privacy link, the `AI data policy` link, the version tag.
+- **Closing call to action:** heading `Don't sign a contract you haven't checked.`, buttons `Try a free sample` (`/sample/net-90`) and `Analyze my contract` (`/login?tab=register`).
+- **Footer:** product name with the line `Contract review for freelancers and independent contractors.`; links `See a sample`, `Log in`, `Methodology & Privacy`, `AI data policy`; the [legal disclaimer](#legal-positioning); the version tag.
 - **Not on the page:** accuracy percentages, testimonials, customer logos, the per-user limits, prices or Pro. Every claim describes what the app does today.
 - **Analytics:** no new events. The existing `pageview` of `/` carries the UTM parameters, and the funnel compares `/` → `signup_completed` per `utm_source` (`docs/analytics.md`).
 - Layout works from 390 px wide; the design follows the app (`frontend/src/styles.css`, shadcn/ui components).
