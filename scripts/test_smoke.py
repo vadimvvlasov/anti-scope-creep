@@ -6,6 +6,7 @@ import threading
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from unittest import mock
 from urllib.parse import parse_qs
 
 from smoke import main
@@ -22,15 +23,20 @@ class FakeApi:
         statuses: tuple[str, ...] = ("analyzing", "done"),
         findings: int = 3,
         version: str = "sha-a702387",
+        drop_requests: int = 0,
     ):
         self.ready_after = ready_after
         self.statuses = list(statuses)
         self.findings = findings
         self.version = version
+        self.drop_requests = drop_requests
         self.requests: list[tuple[str, str, dict]] = []
 
     def handle(self, method: str, path: str, headers: dict, body: bytes) -> tuple[int, dict | None]:
         self.requests.append((method, path, headers))
+        if method == "GET" and path.startswith("/contracts/") and self.drop_requests > 0:
+            self.drop_requests -= 1
+            return 0, None  # the handler closes the connection without a reply
         if path == "/health/ready":
             if self.ready_after > 0:
                 self.ready_after -= 1
@@ -65,6 +71,9 @@ def serve(api: FakeApi) -> ThreadingHTTPServer:
         def _respond(self) -> None:
             body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
             status, payload = api.handle(self.command, self.path, dict(self.headers), body)
+            if status == 0:
+                self.close_connection = True
+                return
             data = json.dumps(payload).encode() if payload is not None else b""
             self.send_response(status)
             self.send_header("Content-Type", "application/json")
@@ -98,6 +107,23 @@ class SmokeTest(unittest.TestCase):
         self.assertEqual(code, 0, err)
         self.assertIn("smoke test passed", out)
         self.assertIn(("DELETE", f"/contracts/{CONTRACT_ID}"), [(m, p) for m, p, _ in api.requests])
+
+    def test_a_dropped_poll_is_repeated(self):
+        with mock.patch("smoke.RETRY_PAUSE", 0.01):
+            code, out, err = self.run_smoke(FakeApi(drop_requests=2))
+        self.assertEqual(code, 0, err)
+        self.assertIn("smoke test passed", out)
+
+    def test_a_poll_dropped_every_time_fails_after_the_retries(self):
+        with mock.patch("smoke.RETRY_PAUSE", 0.01), self.assertRaises(OSError):
+            self.run_smoke(FakeApi(drop_requests=10))
+
+    def test_a_write_is_not_repeated_after_a_dropped_connection(self):
+        from smoke import safe_to_repeat
+
+        self.assertTrue(safe_to_repeat("GET", ConnectionResetError("reset")))
+        self.assertFalse(safe_to_repeat("POST", ConnectionResetError("reset")))
+        self.assertTrue(safe_to_repeat("POST", TimeoutError("_ssl.c:1063: The handshake operation timed out")))
 
     def test_failed_analysis_exits_non_zero(self):
         code, _, err = self.run_smoke(FakeApi(statuses=("analyzing", "failed")))
