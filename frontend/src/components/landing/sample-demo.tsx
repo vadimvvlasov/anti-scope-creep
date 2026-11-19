@@ -1,4 +1,4 @@
-import { Check, Copy, FileText, Mail } from "lucide-react";
+import { ArrowRight, Check, Copy, FileText, Mail } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import {
   SAMPLE_LABEL,
   SAMPLE_NOTE,
   SAMPLE_OPEN_LINK,
+  TRY_SAMPLE_NOTE,
   type DemoFinding,
 } from "@/lib/landing-copy";
 import { cn } from "@/lib/utils";
@@ -72,11 +73,8 @@ export function SampleDemo() {
   return (
     <section id="sample" aria-labelledby="sample-heading" className="scroll-mt-20 border-t">
       <div className="page-container py-20 sm:py-28">
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <Reveal>
           <SectionHeading id="sample-heading" eyebrow={SAMPLE_LABEL} title={SAMPLE_HEADING} />
-          <SampleLink className="text-sm font-medium underline decoration-accent decoration-2 underline-offset-4">
-            {SAMPLE_OPEN_LINK}
-          </SampleLink>
         </Reveal>
         <Reveal className="mt-10" delay={80}>
           <Tabs value={tab} onValueChange={(v) => setTab(v as Tab)}>
@@ -92,9 +90,28 @@ export function SampleDemo() {
             </div>
           </Tabs>
           <p className="mt-4 text-sm text-muted-foreground">{SAMPLE_NOTE}</p>
+          <OpenSampleButton />
         </Reveal>
       </div>
     </section>
+  );
+}
+
+/** The main next step for a guest: the real sample opens without an account. */
+function OpenSampleButton() {
+  return (
+    <div className="mt-10 flex flex-col items-center gap-2 text-center">
+      <Button asChild className="group h-12 w-full px-6 text-base sm:w-auto">
+        <SampleLink>
+          {SAMPLE_OPEN_LINK}
+          <ArrowRight
+            aria-hidden="true"
+            className="transition-transform group-hover:translate-x-0.5"
+          />
+        </SampleLink>
+      </Button>
+      <span className="text-xs text-muted-foreground">{TRY_SAMPLE_NOTE}</span>
+    </div>
   );
 }
 

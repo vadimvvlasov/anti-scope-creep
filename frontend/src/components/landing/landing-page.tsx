@@ -81,7 +81,7 @@ function LandingHeader() {
 function CtaButtons({ notes = false }: { notes?: boolean }) {
   const note = "text-center text-xs text-muted-foreground sm:text-left";
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+    <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start">
       <div className="flex flex-col gap-2">
         <Button asChild className={BIG_BUTTON}>
           <SampleLink>{TRY_SAMPLE_BUTTON}</SampleLink>
@@ -102,9 +102,9 @@ function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="page-container pt-10 pb-24 sm:pt-16 lg:pt-20 lg:pb-32"
+      className="page-container pt-10 pb-24 sm:pt-16 md:pt-12 lg:pt-20 lg:pb-32"
     >
-      <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.05fr]">
+      <div className="grid items-center gap-14 md:grid-cols-2 md:items-start md:gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-14">
         <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">
           <p className="flex items-start gap-3 text-sm text-muted-foreground">
             <span aria-hidden="true" className="amber-rule mt-2.5 shrink-0" />
@@ -112,14 +112,14 @@ function Hero() {
           </p>
           <h1
             id="hero-heading"
-            className="mt-5 text-4xl leading-[1.08] font-semibold text-balance sm:text-5xl lg:text-[3.5rem]"
+            className="mt-5 text-4xl leading-[1.08] font-semibold text-balance sm:text-5xl md:text-[2.6rem] lg:text-[3.5rem]"
           >
             {HERO_HEADING}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-base lg:text-lg">
             {LOGIN_VALUE_LINE}
           </p>
-          <div className="mt-9">
+          <div className="mt-9 md:mt-7 lg:mt-9">
             <CtaButtons notes />
           </div>
         </div>

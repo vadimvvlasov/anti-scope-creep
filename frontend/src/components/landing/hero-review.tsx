@@ -117,7 +117,11 @@ function ContractPage() {
               {payment.quote}
             </mark>
           </p>
-          <Bars widths={["100%", "90%", "96%", "62%", "84%", "92%", "70%", "88%", "40%"]} />
+          {/* A short tail below desktop width, so the findings stay in the first view. */}
+          <Bars widths={["100%", "90%", "62%"]} />
+          <span className="hidden lg:-mt-2.5 lg:block">
+            <Bars widths={["96%", "84%", "92%", "70%", "88%", "40%"]} />
+          </span>
         </div>
       </div>
     </div>
@@ -129,7 +133,7 @@ function HeroFindings() {
   return (
     <div
       aria-hidden="true"
-      className="relative -mt-8 mr-1 ml-5 flex flex-col gap-3 sm:ml-10 lg:static lg:m-0"
+      className="relative -mt-8 mr-1 ml-5 flex flex-col gap-3 sm:ml-10 md:ml-5 lg:static lg:m-0"
     >
       <div
         className={cn(

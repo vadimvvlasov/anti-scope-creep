@@ -89,6 +89,29 @@ test("the sample analysis on / switches findings and shows the email", async ({ 
   ).toBeVisible();
 });
 
+test("the button under the sample opens the full sample", async ({ page }) => {
+  await page.goto("/");
+  await page
+    .locator("#sample")
+    .getByRole("link", { name: "Open the full sample analysis" })
+    .click();
+  await expect(page).toHaveURL(/\/sample\/net-90$/);
+});
+
+test("on a tablet the hero picture sits beside the heading", async ({ page }) => {
+  await page.setViewportSize({ width: 820, height: 1000 });
+  await page.goto("/");
+  const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
+  const picture = await page
+    .getByRole("img", { name: /Illustration: a contract page/ })
+    .boundingBox();
+  expect(heading && picture && picture.x > heading.x + heading.width - 1).toBe(true);
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  );
+  expect(overflow).toBeLessThanOrEqual(0);
+});
+
 test("a stored session goes from / to Contract History", async ({ page }) => {
   await registerInUi(page);
   await page.goto("/");
