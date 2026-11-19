@@ -329,6 +329,43 @@ With 5 gold risks per set this shows direction, not a precise comparison. The 21
 Time: 115-219 s per contract on average, up to 456 s, about 7 s per 1,000 characters; one request at a time.
 This is slower than Groq (97-148 s) and feeds the queue, timeout and stale-rule design of #121.
 
+### Faster local model, selection rule (#159), written 2026-11-19 before the runs
+
+Bonsai passed the gate above but needs about 165 s of GPU per analysis, and the time barely depends on the
+contract's length: a 6-sentence smoke contract took 164-186 s, three 16K-character contracts 496 s in total (one
+slot, requests queue). Thinking and the client email dominate. The owner's priority is time per request, so a
+candidate has to be clearly faster and not worse. Bonsai is the reference (its numbers are in the table above).
+
+**Candidates.** First wave: Nemotron 3.5 Bolt E4B (8B total, 4B effective, post-trained from Gemma 4 E4B; `Q4_K_M`
+from bartowski, license OpenMDW-1.1), LFM3 1.7B (`Q4_K_M` from LiquidAI; the LFM Open License allows commercial use
+only below US$10 million annual revenue, a risk to the product, and the card advises against complex multi-step
+reasoning, so it is the speed floor). Second wave, only if the first fails: Ornith 1.5 9B (MIT, its thinking cannot
+be switched off), Gemma 4 26B-A4B, Qwen 3.6 35B-A3B. gpt-oss-20b was dropped by the owner (too big and old).
+
+**Settings** as in production except what the server needs: prompt v6, 12,000-character chunks, `reasoning_effort:
+medium` sent by the client, output cap 16,000 (thinking included). `llama-server` from the pinned image b12429 on the
+server's `127.0.0.1:8081`, `-c 24576 -np 1 -ctk q8_0 -ctv q8_0 -ngl 99 -fa on`, one model at a time, the GPU
+otherwise idle. Any extra server flag that limits thinking is written next to the run. One run per set.
+
+**Smoke** (a screen, not the gate): 3 freelance contracts per candidate. The candidate goes on only if all hold:
+0 failed contracts, 0 invalid JSON answers, and a mean of at most **62 s per contract** (half of Bonsai's 123 s on
+the freelance set). VRAM is read with `nvidia-smi` after the first request.
+
+**Full gate** for each survivor, the same points as the Bonsai gate, plus speed:
+
+1. Run health, per set: at most 1 failed contract, 0 invalid JSON answers, `quote_not_found` at most 10%.
+2. `cuad-holdout` (20): recall at least 0.8, at most 5 false alarms.
+3. `cuad-holdout-2`, the 11 contracts within 60,000 characters: recall at least 0.8, at most 5 false alarms,
+   severity accuracy at least 0.6.
+4. `freelance` (19): recall 1.0, severity accuracy 1.0, at most 5 false alarms (Bonsai's result).
+5. **Speed:** mean seconds per contract at most half of Bonsai's on the same set (freelance 62 s, `cuad-holdout`
+   110 s, `cuad-holdout-2` subset 58 s).
+6. **License:** commercial use without a revenue threshold. A candidate with one is reported, and the owner decides.
+
+If a candidate passes, the switch is a separate issue. If none does, Bonsai stays and this section records why.
+With 5 gold risks per held-out set this shows direction, not a precise comparison, as for Bonsai. The prompt is not
+tuned on held-out data.
+
 ## Run health
 
 | Run | Failed | Invalid JSON | `quote_not_found` | Tokens per contract, mean / max |
