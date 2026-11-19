@@ -137,11 +137,14 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
           IMAGE: ${{ inputs.image }}
           ENVIRONMENT: ${{ inputs.environment }}
+          # The local model runs one analysis at a time and may have to load first: the smoke analysis can
+          # wait behind a user's (minutes), so it gets 20 minutes there instead of 2 (docs/self-host.md, 8).
+          SMOKE_TIMEOUT: ${{ vars.ANALYZER == 'local' && '1200' || '120' }}
         run: |
           if [[ -n "$VERSION" ]]; then
-            python3 scripts/smoke.py "$BACKEND_URL" --expect-version "$VERSION"
+            python3 scripts/smoke.py "$BACKEND_URL" --timeout "$SMOKE_TIMEOUT" --expect-version "$VERSION"
           else
             echo "::notice::$IMAGE has no APP_VERSION; version check skipped"
-            python3 scripts/smoke.py "$BACKEND_URL"
+            python3 scripts/smoke.py "$BACKEND_URL" --timeout "$SMOKE_TIMEOUT"
           fi
           echo "Deployed \`${IMAGE##*:}\` to **$ENVIRONMENT**: $BACKEND_URL" >> "$GITHUB_STEP_SUMMARY"
