@@ -15,8 +15,9 @@ from measure_analysis import main
 class FakeApi:
     """Every user gets a token; each contract is `done` (or `failed`) on its second poll."""
 
-    def __init__(self, final: str = "done"):
+    def __init__(self, final: str = "done", drop_first_poll: bool = False):
         self.final = final
+        self.drop_next_poll = drop_first_poll
         self.lock = threading.Lock()
         self.users = 0
         self.polls: dict[str, int] = {}
@@ -39,6 +40,9 @@ class FakeApi:
             if method == "DELETE":
                 self.deleted.append(contract_id)
                 return 204, None
+            if self.drop_next_poll:
+                self.drop_next_poll = False
+                return 0, None  # the handler closes the connection without a reply
             self.polls[contract_id] += 1
             done = self.polls[contract_id] >= 2
             status = self.final if done else "analyzing"
@@ -50,6 +54,9 @@ def serve(api: FakeApi) -> ThreadingHTTPServer:
         def _reply(self) -> None:
             body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
             status, payload = api.handle(self.command, self.path, dict(self.headers), body)
+            if status == 0:
+                self.close_connection = True
+                return
             data = json.dumps(payload).encode() if payload is not None else b""
             self.send_response(status)
             self.send_header("Content-Length", str(len(data)))
@@ -88,6 +95,11 @@ class MeasureTest(unittest.TestCase):
         self.assertIn("| cold | 1 of 1 | done |", out)
         self.assertEqual(out.count("| concurrent |"), 3)
         self.assertIn("Contract: 20 characters.", out)
+
+    def test_a_dropped_poll_is_retried(self) -> None:
+        code, out = self.run_main(FakeApi(drop_first_poll=True), "--skip-cold", "-n", "1")
+        self.assertEqual(code, 0)
+        self.assertIn("| concurrent | 1 of 1 | done |", out)
 
     def test_failed_analysis_is_reported_and_exits_non_zero(self) -> None:
         code, out = self.run_main(FakeApi(final="failed"), "--skip-cold", "-n", "2")

@@ -47,7 +47,11 @@ def analyze(api: Api, text: str, title: str, deadline: float, interval: float) -
     """Upload and poll until the analysis ends; returns (status, findings, contract id)."""
     created = _expect(api.call("POST", "/contracts", form={"text": text, "title": title}), 202, "upload")
     while time.monotonic() < deadline:
-        contract = _expect(api.call("GET", f"/contracts/{created['id']}"), 200, "poll")
+        try:
+            contract = _expect(api.call("GET", f"/contracts/{created['id']}"), 200, "poll")
+        except OSError:  # a timeout or dropped connection on one poll must not end a minutes-long measurement
+            time.sleep(interval)
+            continue
         if contract.get("status") in ("done", "failed"):
             return contract["status"], len(contract.get("findings") or []), created["id"]
         time.sleep(interval)
@@ -58,8 +62,12 @@ def timed(phase: str, label: str, api: Api, text: str, deadline: float, interval
     start = time.monotonic()
     status, findings, contract_id = analyze(api, text, f"Measure {label}", deadline, interval)
     seconds = time.monotonic() - start
+    print(f"{phase} {label}: {status} in {seconds:.0f} s", file=sys.stderr)
     if status != "timeout":
-        _expect(api.call("DELETE", f"/contracts/{contract_id}"), 204, "delete")
+        try:
+            _expect(api.call("DELETE", f"/contracts/{contract_id}"), 204, "delete")
+        except (OSError, SmokeError) as error:  # the measurement is done; a leftover test contract is harmless
+            print(f"warning: contract {contract_id} not deleted: {error}", file=sys.stderr)
     return Result(phase, label, status, seconds, findings)
 
 
