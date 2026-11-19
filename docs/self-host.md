@@ -572,6 +572,24 @@ still says the text is sent to Groq.
 
 Back to Groq: `ANALYZER=groq` and `ANALYSIS_STALE_AFTER_SECONDS=600` (or remove the line), in both places.
 
+The deploy smoke test waits up to 20 minutes when the environment's `ANALYZER` variable is `local` (2 minutes
+otherwise): its short analysis may queue behind a user's and wait for the model to load.
+
+### Measure it
+
+After dev is switched, from a laptop, against dev's public URL (it registers 4 throwaway users, within the
+registration limit of 5 per IP per hour, and deletes their contracts):
+
+```bash
+# Wait until the model is asleep: no analysis for 6 minutes, `docker logs llm-llama-1` says it went to sleep.
+python3 scripts/measure_analysis.py https://asc-dev.<tailnet>.ts.net --contract data/4.txt
+```
+
+It runs one analysis on the sleeping model (cold start), then three at the same moment (the third waits for
+the other two), and prints a table to copy here. `nvidia-smi` on the server during the run gives the VRAM.
+
+Measured: not yet (issue #121).
+
 ### Stop
 
 `cd / && sudo -u asc docker compose -f /home/asc/anti-scope-creep/compose.llm.yaml down` frees the GPU; the

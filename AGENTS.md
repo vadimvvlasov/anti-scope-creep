@@ -78,6 +78,7 @@ Scripts (Python standard library only):
 - `python3 scripts/build_lovable_prompt.py -o <FILE>` - build the historical Lovable prompt from `docs/spec.md` (only warns past its size limit; see `docs/ai-workflow.md`)
 - `python3 -m unittest discover -s scripts` - run script tests
 - `python3 scripts/smoke.py <BACKEND-URL> [--expect-version sha-<7 hex>]` - smoke test a deployed backend (health, version, register, upload, poll, delete)
+- `python3 scripts/measure_analysis.py <BACKEND-URL> --contract data/4.txt` - time a cold-start analysis and 3 simultaneous ones on a deployed backend (local model, `docs/self-host.md` section 8)
 - `python3 scripts/select_cuad.py --download`, then `python3 scripts/select_cuad.py -o eval/gold/cuad.draft.jsonl` - pick the CUAD eval subset and write draft gold records (see `eval/README.md`)
 - `python3 scripts/build_freelance_set.py` - build the freelance eval set (mutated synthetic contracts) and its gold records (see `eval/README.md`)
 - `python3 scripts/build_sample.py --contract <TXT> --recording <RUN-JSON> ... -o data/samples/<name>.json` - build a guest sample analysis from a recorded run (see `data/samples/README.md`)
