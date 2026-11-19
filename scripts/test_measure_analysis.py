@@ -4,6 +4,7 @@ import io
 import json
 import threading
 import unittest
+from unittest import mock
 from contextlib import redirect_stderr, redirect_stdout
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -105,6 +106,12 @@ class MeasureTest(unittest.TestCase):
         code, out = self.run_main(FakeApi(final="failed"), "--skip-cold", "-n", "2")
         self.assertEqual(code, 1)
         self.assertEqual(out.count("| failed |"), 2)
+
+    def test_an_upload_that_fails_names_the_analysis(self) -> None:
+        with mock.patch("measure_analysis.analyze", side_effect=TimeoutError("The read operation timed out")):
+            code, out = self.run_main(FakeApi(), "--skip-cold", "-n", "1")
+        self.assertEqual(code, 1)
+        self.assertEqual(out, "")
 
     def test_refuses_more_users_than_registration_allows(self) -> None:
         with self.assertRaises(SystemExit), redirect_stderr(io.StringIO()):

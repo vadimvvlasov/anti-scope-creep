@@ -35,8 +35,12 @@ class Result:
     findings: int
 
 
+# The backend can be slow to answer an upload while the local model is busy; 15 s (the smoke default) is too short.
+REQUEST_TIMEOUT = 60.0
+
+
 def register(base_url: str) -> Api:
-    api = Api(base_url)
+    api = Api(base_url, REQUEST_TIMEOUT)
     email = f"measure-{int(time.time())}-{secrets.token_hex(3)}@example.com"
     body = {"email": email, "password": secrets.token_urlsafe(16)}
     api.token = _expect(api.call("POST", "/auth/register", body), 201, "register")["access_token"]
@@ -60,7 +64,10 @@ def analyze(api: Api, text: str, title: str, deadline: float, interval: float) -
 
 def timed(phase: str, label: str, api: Api, text: str, deadline: float, interval: float) -> Result:
     start = time.monotonic()
-    status, findings, contract_id = analyze(api, text, f"Measure {label}", deadline, interval)
+    try:
+        status, findings, contract_id = analyze(api, text, f"Measure {label}", deadline, interval)
+    except OSError as error:  # name the analysis: "read operation timed out" alone says nothing
+        raise SmokeError(f"{phase} {label}: upload failed after {time.monotonic() - start:.0f} s: {error}") from error
     seconds = time.monotonic() - start
     print(f"{phase} {label}: {status} in {seconds:.0f} s", file=sys.stderr)
     if status != "timeout":
