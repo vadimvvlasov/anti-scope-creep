@@ -32,8 +32,19 @@ CONTRACT_TEXT = (
 )
 
 
+# A request that fails at the network level is repeated, because the public address (Tailscale Funnel) now
+# and then drops a TLS handshake or a connection (seen on deploys and in docs/self-host.md measurements).
+NETWORK_RETRIES = 3
+RETRY_PAUSE = 2.0
+
+
 class SmokeError(Exception):
     pass
+
+
+def safe_to_repeat(method: str, error: OSError) -> bool:
+    """A read can always be repeated; a write only if the request cannot have reached the server."""
+    return method == "GET" or "handshake" in str(error)
 
 
 @dataclass
@@ -60,11 +71,17 @@ class Api:
         if self.token:
             headers["Authorization"] = f"Bearer {self.token}"
         request = urllib.request.Request(self.base_url + path, data=data, headers=headers, method=method)
-        try:
-            with urllib.request.urlopen(request, timeout=self.request_timeout) as response:
-                return Response(response.status, _json(response.read()))
-        except urllib.error.HTTPError as error:
-            return Response(error.code, _json(error.read()))
+        for attempt in range(1, NETWORK_RETRIES + 1):
+            try:
+                with urllib.request.urlopen(request, timeout=self.request_timeout) as response:
+                    return Response(response.status, _json(response.read()))
+            except urllib.error.HTTPError as error:
+                return Response(error.code, _json(error.read()))
+            except OSError as error:
+                if attempt == NETWORK_RETRIES or not safe_to_repeat(method, error):
+                    raise
+                time.sleep(RETRY_PAUSE)
+        raise AssertionError("unreachable")
 
 
 def _json(raw: bytes) -> dict | None:
