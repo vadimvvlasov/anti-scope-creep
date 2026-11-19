@@ -49,10 +49,7 @@ for (const viewport of [
     );
     expect(overflow).toBeLessThanOrEqual(0);
 
-    await page
-      .getByRole("main")
-      .getByRole("link", { name: "See a sample analysis", exact: true })
-      .click();
+    await page.getByRole("main").getByRole("link", { name: "Try a free sample" }).first().click();
     await expect(page).toHaveURL(/\/sample\/net-90$/);
     expect(apiCalls.filter((path) => path !== "/events")).toEqual([]);
   });
@@ -60,12 +57,59 @@ for (const viewport of [
 
 test("the call to action opens Register", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("banner").getByRole("link", { name: "Create a free account" }).click();
+  await page.getByRole("banner").getByRole("link", { name: "Analyze my contract" }).click();
   await expect(page).toHaveURL(/\/login\?tab=register$/);
   await expect(page.getByRole("tab", { name: "Register" })).toHaveAttribute(
     "aria-selected",
     "true",
   );
+});
+
+test("the sample analysis on / switches findings and shows the email", async ({ page }) => {
+  await page.goto("/");
+  const sample = page.locator("#sample");
+  await expect(sample.getByText("Invoices are payable within 14 days of receipt.")).toBeVisible();
+
+  await sample.getByRole("button", { name: /IP transfer before payment/ }).click();
+  await expect(
+    sample.getByText("The client would own your work even if the invoice is never paid."),
+  ).toBeVisible();
+
+  await sample.getByRole("tab", { name: "Email draft" }).click();
+  await expect(sample.getByText("A few proposed changes to our agreement")).toBeVisible();
+
+  // A clause in the contract brings back its finding.
+  await sample.getByText("Invoices are payable Net 90.", { exact: true }).click();
+  await expect(sample.getByRole("tab", { name: /Findings/ })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(
+    sample.getByText("You could wait three months after delivering the work before you are paid."),
+  ).toBeVisible();
+});
+
+test("the button under the sample opens the full sample", async ({ page }) => {
+  await page.goto("/");
+  await page
+    .locator("#sample")
+    .getByRole("link", { name: "Open the full sample analysis" })
+    .click();
+  await expect(page).toHaveURL(/\/sample\/net-90$/);
+});
+
+test("on a tablet the hero picture sits beside the heading", async ({ page }) => {
+  await page.setViewportSize({ width: 820, height: 1000 });
+  await page.goto("/");
+  const heading = await page.getByRole("heading", { level: 1 }).boundingBox();
+  const picture = await page
+    .getByRole("img", { name: /Illustration: a contract page/ })
+    .boundingBox();
+  expect(heading && picture && picture.x > heading.x + heading.width - 1).toBe(true);
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  );
+  expect(overflow).toBeLessThanOrEqual(0);
 });
 
 test("a stored session goes from / to Contract History", async ({ page }) => {

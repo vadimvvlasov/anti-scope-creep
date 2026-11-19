@@ -52,6 +52,10 @@
   --color-highlight-medium: var(--highlight-medium);
   --color-highlight-low: var(--highlight-low);
   --color-paper-line: var(--paper-line);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-inverse-foreground: var(--surface-inverse-foreground);
+  --color-surface-inverse-muted: var(--surface-inverse-muted);
+  --color-surface-inverse-border: var(--surface-inverse-border);
   --shadow-paper: var(--shadow-paper-value);
   --shadow-float: var(--shadow-float-value);
   --color-chart-1: var(--chart-1);
@@ -105,6 +109,11 @@
 
   /* Landing page illustration (docs/spec.md "Landing page"). */
   --paper-line: oklch(0.92 0.01 95);
+  /* The dark privacy block on the landing page. */
+  --surface-inverse: oklch(0.255 0.05 256);
+  --surface-inverse-foreground: oklch(0.97 0.006 95);
+  --surface-inverse-muted: oklch(0.8 0.025 255);
+  --surface-inverse-border: oklch(0.37 0.05 256);
   --shadow-paper-value: 0 1px 2px oklch(0.24 0.035 255 / 6%), 0 12px 32px -16px oklch(0.24 0.035 255 / 18%);
   --shadow-float-value: 0 2px 4px oklch(0.24 0.035 255 / 6%), 0 20px 40px -20px oklch(0.24 0.035 255 / 30%);
 
@@ -156,6 +165,10 @@
   --highlight-low: oklch(0.36 0.06 240);
 
   --paper-line: oklch(0.3 0.03 255);
+  --surface-inverse: oklch(0.25 0.04 256);
+  --surface-inverse-foreground: oklch(0.96 0.008 95);
+  --surface-inverse-muted: oklch(0.78 0.022 255);
+  --surface-inverse-border: oklch(0.37 0.04 256);
   --shadow-paper-value: 0 1px 2px oklch(0 0 0 / 30%), 0 12px 32px -16px oklch(0 0 0 / 50%);
   --shadow-float-value: 0 2px 4px oklch(0 0 0 / 30%), 0 20px 40px -20px oklch(0 0 0 / 60%);
 
@@ -282,6 +295,28 @@
 
 @utility clause-medium {
   --clause-bg: var(--color-highlight-medium);
+}
+
+@utility clause-low {
+  --clause-bg: var(--color-highlight-low);
+}
+
+/* Scroll reveal: reveal.tsx hides only blocks that start below the fold. */
+[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
 }
 
 /* Hero sequence: a scan line, the clause highlights, the finding cards; each starts at --delay. */
