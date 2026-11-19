@@ -1299,8 +1299,8 @@ Issue #147 (audit T8), redesigned in #151 from a second Lovable draft. A static 
   - heading: `Find the risky clauses before you sign.`
   - under it, the Login value line: `Find the risky clauses in a client's contract, with exact quotes, suggested wording and a ready email to your client. Free to try.`
   - primary button `Try a free sample` (`/sample/net-90`) with the note `No account needed` under it; secondary button `Analyze my contract` (`/login?tab=register`) with the note `Free account` under it.
-  - beside it (under it on a phone), an animated illustration drawn in HTML and CSS: a contract page reviewed clause by clause, where two clauses are highlighted and their finding cards appear, the illustrative scope clause (medium) and `Invoices are payable Net 90.` (high, as in the `net-90` sample), then the suggested wording for the payment clause. It starts when it scrolls into view, is described for screen readers and holds still with reduced motion.
-- **Sample analysis**, small label `Sample analysis`, heading `Every finding, with the fix next to it.`, link `Open the full sample analysis` (`/sample/net-90`); an interactive illustration, no backend call:
+  - beside it from tablet width up (under it on a phone), an animated illustration drawn in HTML and CSS: a contract page reviewed clause by clause, where two clauses are highlighted and their finding cards appear, the illustrative scope clause (medium) and `Invoices are payable Net 90.` (high, as in the `net-90` sample), then the suggested wording for the payment clause. It starts when it scrolls into view, is described for screen readers and holds still with reduced motion.
+- **Sample analysis**, small label `Sample analysis`, heading `Every finding, with the fix next to it.`; an interactive illustration, no backend call:
   - a short illustrative services agreement with three highlighted clauses; a list of their findings beside it (under it on a phone):
     - `Long / unfavorable payment terms`, high: `Invoices are payable Net 90.`; why it matters `You could wait three months after delivering the work before you are paid.`; suggested wording `Invoices are payable within 14 days of receipt. Contractor may pause work while any invoice is overdue.`
     - `Scope ambiguity / scope creep`, medium: `Contractor will provide any additional services reasonably requested by Client.`; why it matters `The scope of work can expand without additional compensation.`; suggested wording `Additional services outside the agreed scope require a separate written agreement and additional compensation.`
@@ -1308,6 +1308,7 @@ Issue #147 (audit T8), redesigned in #151 from a second Lovable draft. A static 
   - choosing a finding (in the list or on its clause) shows its quote, why it matters and the suggested wording with a `Copy` button;
   - a second tab `Email draft` shows an illustrative email that asks for the three changes, with a `Copy` button;
   - under it: `An illustrative example. The full sample analysis shows real output.`
+  - then a button `Open the full sample analysis` (`/sample/net-90`) with the note `No account needed` under it.
 - **What you get**, heading `What you get`, three items:
   - `Risky clauses, quoted` — `Each finding quotes the clause from your contract, explains the risk in plain English and rates it high, medium or low.`
   - `Wording to propose` — `For each risky clause, replacement wording you can offer your client, in a PDF or DOCX report.`
