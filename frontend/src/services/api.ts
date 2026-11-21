@@ -1,6 +1,7 @@
 // The ONLY module the app imports to talk to the backend.
 // No fetch / axios / URL building anywhere outside src/services/.
 
+import { localServiceHours, networkErrorMessage } from "../lib/service-hours";
 import { ApiError, isApiError } from "./errors";
 import { MockApiClient } from "./mock/mockClient";
 import type {
@@ -94,7 +95,7 @@ class HttpApiClient implements ApiClient {
     try {
       response = await fetch(`${this.baseUrl}${path}`, { ...rest, headers });
     } catch {
-      throw new ApiError(0, "NETWORK_ERROR", "Could not reach the server. Please try again.");
+      throw new ApiError(0, "NETWORK_ERROR", networkErrorMessage(localServiceHours()));
     }
 
     if (!response.ok) {
