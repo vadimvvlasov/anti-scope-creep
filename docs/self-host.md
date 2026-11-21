@@ -343,8 +343,8 @@ at 76 ms. A run under load (three analyses on the local model, section 8) was no
 What the sidecar log shows: in the 4 minutes of the probe it wrote 20 lines
 `Drop: TCP{...} no rules matched`, each a connection attempt from a Tailscale address to a port of the node that no
 rule allows, followed by `netstack: decrementing connsInFlightByClient ... because the packet was not handled`.
-They appear also during ordinary use (a contract upload). The working explanation is that Funnel retries a dropped
-connection and each retry adds the wait seen above. This is a match in time and size, not a proof.
+They appear also during ordinary use (a contract upload). The first guess was that Funnel retries a dropped
+connection and each retry adds the wait seen above; the experiment below does not support it.
 
 The tailnet console (checked read-only on 2026-11-21): the tailnet has two machines, `asc-dev` and `asc-prod`, so
 the sender addresses (`fd7a:115c:a1e0::c301:...`, `::f701:...`, `::3f01:...`) belong to no device of ours; the
@@ -354,27 +354,39 @@ the `funnel` attribute for `tag:asc` is set. That is as section 3 wants it: ther
 and opening `tag:asc` to more sources would be wrong. The dropped packets go to port 35424, not to 443, which is
 where Funnel traffic arrives, so they may be a side effect and not the cause of the handshake tail.
 
-Limit to expect: a few percent of requests through Funnel wait 3-6 seconds for the handshake; the application
-and the server are not the cause. Clients must allow it: the smoke test and the measurement script repeat a
-request that failed at the network level (#156).
+The experiment (2026-11-21, dev, 100 sequential `GET /health/ready` from a laptop each, no failures in any):
 
-Not done: the cause of the drops. Experiment to run on dev only: the sidecar without userspace networking
-([`ops/server/tailscale-kernel.override.yaml`](../ops/server/tailscale-kernel.override.yaml); it needs `NET_ADMIN`
-and `/dev/net/tun`, which the deploy file deliberately does without), then the same 100 requests, to see whether
-the tail and the `connsInFlightByClient` lines belong to netstack. The pull timer would undo it within 5 minutes,
-so stop it for the run. On the server, as the stack user:
+| Sidecar | Uptime at the probe | Total p50 / p95 / max | TLS p50 / p95 / max | `no rules matched` in the window |
+|---|---|---|---|---|
+| userspace (the deploy setup) | up to 10 h (the server's uptime) | 1.1 / 5.4 / 6.3 s | 0.63 / 3.7 / 4.6 s | 20 |
+| kernel (`ops/server/tailscale-kernel.override.yaml`) | minutes | 0.94 / 1.23 / 1.54 s | 0.50 / 0.73 / 1.10 s | 11 |
+| userspace again, control | minutes | 0.94 / 1.26 / 2.30 s | 0.52 / 0.75 / 1.87 s | not counted |
 
-```bash
-sudo systemctl stop asc-pull.timer
-asc dev -f /home/asc/anti-scope-creep/ops/server/tailscale-kernel.override.yaml up -d tailscale   # see `asc` in section 1
-asc dev exec tailscale tailscale status                                   # wait until the node is back and Funnel is on
-# wait about 5 minutes for the certificate and Funnel to settle, then run the 100 requests from a laptop
-asc dev logs --since 10m tailscale 2>&1 | grep -c "no rules matched"      # drops in the window
-# back to the deploy setup:
-asc dev up -d tailscale && sudo systemctl start asc-pull.timer
-```
+What it says: the tail is not the network mode. The control, in the deploy setup, is as fast as the kernel run
+right after a restart. The drops are not the cause either: the kernel run logged 11 of them with no tail. What
+changed between the slow run and the others is the sidecar's age (up to 10 hours against minutes; the sidecar's own start time was not read), and the
+time of day. So the likely cause is something that builds up in a long-running sidecar, or in its Funnel path, and
+a restart clears it. The same shape matches the failures of 2026-11-19 ("the server up for days"). This is one
+run of each; it does not tell the two explanations (age, time of day) apart.
 
-Also not done: the same probe from a GitHub runner for comparison.
+In the kernel run `tailscale status` warned that `iptables` could not set up its filter table (`Table does not
+exist`: the image has `iptables-legacy`, the host kernel uses nftables). The node and Funnel worked anyway.
+
+Limit to expect, until the cause is known: a sidecar that has run for hours can have a few percent of requests wait
+3-6 seconds for the handshake; the application and the server are not the cause, and a restart of the sidecar
+(`asc <env> restart tailscale`, about a minute of downtime) clears it in the one case measured. Clients must
+allow it: the smoke test and the measurement script repeat a request that failed at the network level (#156).
+
+Not done, and what to try next:
+
+- Run the same 100 requests every hour or two on a dev sidecar that is not restarted, to see when the tail comes
+  back (this separates age from time of day), and note `tailscale status` and the `connsInFlightByClient` lines
+  at that moment.
+- If the tail comes back with age: compare with a newer `tailscale/tailscale` image than v1.104.4 on dev, or a
+  scheduled restart of the sidecars at night; and report the case to Tailscale.
+- The same probe from a GitHub runner, for the path from outside.
+
+The kernel-mode override stays in `ops/server/` as the record of the experiment; it is not a deploy setting.
 
 ### Pull timer
 
