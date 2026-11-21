@@ -328,6 +328,32 @@ In the first minutes after a node appears, Funnel drops some TLS handshakes whil
 retry for a few minutes before you look for a fault. Then point each frontend at its URL (`VITE_API_URL`) and
 put the frontend origins into `CORS_ORIGINS`.
 
+### Funnel: slow handshakes on a node that is up (issue #157)
+
+Measured on 2026-11-21 against dev, 100 sequential `GET /health/ready` from a laptop, server up for 10 hours:
+no failures (100 times `200`), but a long tail: total time p50 1.1 s, p95 5.4 s, maximum 6.3 s; TLS handshake
+p50 0.63 s, p95 3.7 s, maximum 4.6 s. The TCP connect stayed near 0.13 s, so the wait is inside the TLS handshake,
+in steps of about 1, 3 and 4-5 seconds.
+
+What was ruled out, with the server numbers taken at the time: the sidecar is not limited by its caps (CPU 0.02 %,
+48 of 128 MiB, `compose.server.yaml`), the backend is idle (182 of 512 MiB), the GPU was at 0 % with the model loaded,
+the host load was 0.9. `tailscale netcheck` from the sidecar: UDP works, IPv4 yes, IPv6 no, nearest DERP Frankfurt
+at 76 ms. A run under load (three analyses on the local model, section 8) was not repeated for this probe.
+
+What the sidecar log shows: in the 4 minutes of the probe it wrote 20 lines
+`Drop: TCP{...} no rules matched`, each a connection attempt from a Tailscale address to a port of the node that no
+rule allows, followed by `netstack: decrementing connsInFlightByClient ... because the packet was not handled`.
+They appear also during ordinary use (a contract upload). The working explanation is that Funnel retries a dropped
+connection and each retry adds the wait seen above. This is a match in time and size, not a proof: the sender
+addresses were not identified as Funnel's.
+
+Limit to expect: a few percent of requests through Funnel wait 3-6 seconds for the handshake; the application
+and the server are not the cause. Clients must allow it: the smoke test and the measurement script repeat a
+request that failed at the network level (#156).
+
+Not done: finding which rule drops those packets (the tailnet policy and the sender addresses), and a run of the
+same probe from a GitHub runner for comparison. Both need the owner's tailnet console.
+
 ### Pull timer
 
 The timer runs [`scripts/server-pull.sh`](../scripts/server-pull.sh) every 5 minutes as `asc`, with both env
@@ -588,7 +614,20 @@ python3 scripts/measure_analysis.py https://asc-dev.<tailnet>.ts.net --contract 
 It runs one analysis on the sleeping model (cold start), then three at the same moment (the third waits for
 the other two), and prints a table to copy here. `nvidia-smi` on the server during the run gives the VRAM.
 
-Measured: not yet (issue #121).
+Measured on 2026-11-21 against dev, `data/4.txt` (16,235 characters), the model idle for 17 minutes before the
+run (so asleep), on an RTX 3090 (24 GB) with `llama-server` holding 10 GB:
+
+| Phase | Analysis | Status | Seconds | Findings |
+|---|---|---|---|---|
+| cold | 1 of 1 | done | 165 | 2 |
+| concurrent | 2 of 3 | done | 379 | 2 |
+| concurrent | 3 of 3 | done | 425 | 2 |
+| concurrent | 1 of 3 | done | 455 | 2 |
+
+Read it as: a cold analysis takes about 2.75 minutes; three at the same moment all finish in 6-8 minutes,
+because one slot serves the chunks of the three analyses in turn. The last one waits about 7.5 minutes. The
+smoke test (one analysis) passed on the same run. The model's own share of a request (load time against
+generation time) is not separated: the script reports whole analyses only.
 
 ### Stop
 
