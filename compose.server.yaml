@@ -36,6 +36,7 @@ services:
       LOCAL_MAX_OUTPUT_TOKENS: ${LOCAL_MAX_OUTPUT_TOKENS:-}
       # The local model takes minutes per contract and runs one at a time: 1800 there, 600 for Groq.
       ANALYSIS_STALE_AFTER_SECONDS: ${ANALYSIS_STALE_AFTER_SECONDS:-600}
+      ANALYSIS_MAX_RESUMES: ${ANALYSIS_MAX_RESUMES:-3}
       SEED_DEMO_DATA: "false"
       # Telemetry export is off while the endpoint is empty (docs/architecture.md, section 6).
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}

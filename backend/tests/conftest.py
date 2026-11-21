@@ -14,11 +14,12 @@ class Harness:
     """A test app plus handles on its collaborators."""
 
     def __init__(self, analyzer: Analyzer | None = None, stale_after: int = 600, max_running: int = 0,
-                 daily_limit: int = 0):
+                 daily_limit: int = 0, max_resumes: int = 3):
         # The per-user caps are off unless a test turns them on (tests/test_analysis_limits.py).
         self.settings = Settings(
             jwt_secret=TEST_JWT_SECRET, analysis_stale_after_seconds=stale_after, seed_demo_data=False,
             analysis_max_running_per_user=max_running, analysis_daily_limit_per_user=daily_limit,
+            analysis_max_resumes=max_resumes,
         )
         self.store = memory_store()
         self.clock = FakeClock()

@@ -61,6 +61,7 @@ Rules that matter for the infrastructure (full definitions in `docs/spec.md`):
 - **Keep until success:** a retry replaces findings and email only when it succeeds.
 - **Run check:** a task commits only if the contract is still `analyzing` with the task's `analysis_run_id`.
 - **Stale analysis rule:** an `analyzing` contract older than `ANALYSIS_STALE_AFTER_SECONDS` (default 600) becomes `failed` on its next read or change. This is the safety net for lost background tasks.
+- **Resume after a start:** the home server is switched off at night, which loses the tasks in flight. At the start of the backend every contract still `analyzing` (no task of this process can be running yet) gets a new `analysis_run_id` and a fresh `analysis_started_at`, and runs again, the oldest first and one at a time (the local model has one slot). While one runs, the clocks of the ones waiting are restarted, so the stale rule does not fail a contract that is only waiting its turn; a run that hangs still goes stale as before. `contracts.analysis_resumes` counts the resumes in a row: at `ANALYSIS_MAX_RESUMES` (default 3, `0` turns the resume off) the contract goes to `failed` instead, so one that crashes the backend cannot loop; a start by the user resets the count. What is promised: an analysis started before a shutdown is finished after the next start. A request made while the server is off is not queued: the frontend says so (`docs/spec.md`, "Service hours notice").
 
 ### Background work in an always-on container
 
@@ -242,7 +243,7 @@ Boundaries (enforced by workflow permissions, and documented in `docs/permission
 - **No contract content in telemetry.** Grafana Cloud is another third party. Spans, span attributes, span events, and logs never contain `source_text`, prompts, model responses, `quoted_text`, history-query rows, or the pseudonymization mapping. HTTPX instrumentation must not record request or response bodies. Only sizes, counts, IDs, model name, token usage, and error codes are recorded. A test asserts that a fixture contract's text does not appear in exported spans or logs.
   - **Exceptions carry where, not what.** An exception message can hold contract text (a title, a clause that a handler put into it). The manual spans record only the exception type. The FastAPI server span and the OpenTelemetry log handler used to record the full message and traceback (found on 2026-10-21 in the trace of the on-call drill); `ExceptionScrubber` (a span processor that runs before the exporter) and `ScrubbedLoggingHandler` now export the exception type and the traceback frames (`file:line in function`, no source lines, no message), and a span status `Type: message` is cut to `Type`. The JSON log on stdout, the operator's own, keeps the whole traceback. Tests: `backend/tests/test_telemetry_exceptions.py`.
 - **Metrics:**
-  - `analyses_total{outcome=done|failed|stale|superseded}` (`superseded`: a newer run replaced this one; leave it out of the failure rate)
+  - `analyses_total{outcome=done|failed|stale|superseded|resumed}` (`superseded`: a newer run replaced this one; `resumed`: a start of the backend took an interrupted analysis up again, and the run counts again under its own outcome; leave both out of the failure rate: the alert rules already filter `done|failed|stale`)
   - `analysis_duration_seconds{outcome}`
   - `llm_requests_total{model,status=ok|rate_limited|server_error|network_error|invalid_json|client_error}` (one per HTTP attempt), `llm_tokens_total{model,kind=input|output}`, `llm_rate_limited_total{model}`
   - `llm_request_duration_seconds{model}` (one chunk or the email request: shows whether a slow analysis is the model or the queue in front of it)
@@ -328,6 +329,7 @@ The image is a public package on `ghcr.io` (the repository is public too), so th
 | `GROQ_REASONING_EFFORT` | backend | no | `low`, `medium` (default) or `high`. |
 | `ANALYZER` | backend | no | `stub` or `groq`. |
 | `ANALYSIS_STALE_AFTER_SECONDS` | backend | no | Default 600. |
+| `ANALYSIS_MAX_RESUMES` | backend | no | Default 3: how many times in a row a start of the backend takes up an interrupted analysis again; `0` turns it off. |
 | `CORS_ORIGINS` | backend | no | Comma-separated exact origins (the `workers.dev` frontend of the environment, `http://localhost:5173`). No wildcards. |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS` | backend | headers yes | Grafana Cloud OTLP. |
 | `VITE_API_URL`, `VITE_USE_MOCK` | frontend build | no | See spec. |

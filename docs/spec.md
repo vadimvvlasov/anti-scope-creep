@@ -470,6 +470,7 @@ The initial implementation may use an in-memory repository, but the model must m
 | `analyzed_at` | datetime (UTC) / nullable | null until first successful analysis; updated on each successful analysis | A failed retry keeps the previous successful timestamp. |
 | `analysis_started_at` | datetime (UTC) / nullable | set every time the contract enters `analyzing` | Used by the stale-analysis rule. Not exposed via API. |
 | `analysis_run_id` | UUID / nullable | new value every time the contract enters `analyzing` | Identifies the current analysis run; a background task may commit only if it still owns the current run. Not exposed via API. |
+| `analysis_resumes` | integer | default `0`; reset to `0` every time the contract enters `analyzing` by an upload or a retry | How many times in a row a start of the backend took the interrupted analysis up again (see [Stale analysis rule](#stale-analysis-rule)). Internal. Not exposed via API. |
 
 #### Contract derived fields (not stored)
 
@@ -644,7 +645,7 @@ interface ApiError {
 }
 ```
 
-`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text` is returned only in `ContractDetail`, never in `ContractSummary` list items. `user_id`, `analysis_started_at`, and `analysis_run_id` are never returned.
+`ContractDetail` findings, risk summary, and email draft always reflect the **last successful** analysis, whatever the current status is. `source_text` is returned only in `ContractDetail`, never in `ContractSummary` list items. `user_id`, `analysis_started_at`, `analysis_run_id`, and `analysis_resumes` are never returned.
 
 In `HistoryQueryResult`, `sql` is `null` when no query was executed (the question needed clarification); `columns` and `rows` are then empty and `answer` holds the clarifying question.
 
@@ -1105,6 +1106,15 @@ A background task can be lost without reporting back, for example when the serve
 - Moving a stale contract to `failed` follows the failure rule: previous successful findings/email and `analyzed_at` stay untouched.
 - The frontend needs no special handling: after its 5-minute polling timeout, `Check again` eventually returns `failed`, and `Retry Analysis` becomes available.
 - The default is longer than the frontend timeout on purpose: a real LLM analysis of a maximum-size contract may legitimately take several minutes under provider rate limits (see `docs/architecture.md`).
+
+#### Resume after a start (issue #163)
+
+The home server is switched off at night, which loses the background tasks in flight. When the backend starts, no task of its process can be running, so every contract still `analyzing` was left by a process that is gone:
+
+- Each one gets a new `analysis_run_id` and `analysis_started_at` set to the current time, `analysis_resumes` goes up by one, and its analysis runs again. They run one at a time, the one with the oldest `analysis_started_at` first (the local model has one slot). A task of the old run that finishes late commits nothing, by the run check.
+- While one runs, the `analysis_started_at` of the ones waiting is set to the current time again, so the stale rule does not fail a contract that is only waiting for its turn. A resumed analysis that hangs still becomes stale as above.
+- A contract that was already resumed `ANALYSIS_MAX_RESUMES` times in a row (environment variable, default **3**; `0` turns the resume off) becomes `failed` instead, following the failure rule (previous results and `analyzed_at` stay untouched). A contract that crashes the backend therefore cannot loop. An upload or a retry by the user sets `analysis_resumes` back to `0`.
+- This covers only an analysis that had started before the shutdown. While the server is off a request is not accepted and not queued; the visitor is told so by the [Service hours notice](#service-hours-notice).
 
 ---
 
@@ -1604,7 +1614,7 @@ The MVP is complete when all of the following are true:
 14. Low-only and zero-finding analyses produce `email_draft = null`.
 15. Analysis and email persistence are atomic.
 16. Retries keep the previous findings/email until the new analysis succeeds; failed retries preserve them.
-17. A contract stuck in `analyzing` longer than `ANALYSIS_STALE_AFTER_SECONDS` becomes `failed` on its next read or change, keeping previous results; a task that finishes after its run was superseded commits nothing.
+17. A contract stuck in `analyzing` longer than `ANALYSIS_STALE_AFTER_SECONDS` becomes `failed` on its next read or change, keeping previous results; a task that finishes after its run was superseded commits nothing. When the backend starts, a contract left in `analyzing` by a shutdown runs again (oldest first, one at a time), at most `ANALYSIS_MAX_RESUMES` times in a row (default 3), then it becomes `failed`.
 18. A user can rename a contract up to 250 characters.
 19. A user can permanently delete a done/failed contract; cascading findings/email are deleted.
 20. Delete and retry return `409` during `analyzing`.

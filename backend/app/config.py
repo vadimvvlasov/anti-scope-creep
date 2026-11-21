@@ -20,6 +20,9 @@ class Settings:
     jwt_secret: str
     database_url: str = ""
     analysis_stale_after_seconds: int = 600
+    # A start of the backend takes up again an analysis that a shutdown interrupted, at most this many
+    # times in a row; 0 turns it off (the stale rule then fails the contract). docs/spec.md "Stale analysis rule".
+    analysis_max_resumes: int = 3
     # Per-user caps (security finding MR-2); 0 turns a cap off. Running: analyses in progress
     # at once. Daily: analyses started (upload or retry) in a rolling 24 hours.
     analysis_max_running_per_user: int = 1
@@ -68,6 +71,7 @@ class Settings:
             jwt_secret=_jwt_secret(env),
             database_url=_database_url(env),
             analysis_stale_after_seconds=int(env.get("ANALYSIS_STALE_AFTER_SECONDS", "600")),
+            analysis_max_resumes=int(env.get("ANALYSIS_MAX_RESUMES", "3")),
             analysis_max_running_per_user=int(env.get("ANALYSIS_MAX_RUNNING_PER_USER", "1")),
             analysis_daily_limit_per_user=int(env.get("ANALYSIS_DAILY_LIMIT_PER_USER", "5")),
             auth_login_per_ip=int(env.get("AUTH_LOGIN_PER_IP", "20")),

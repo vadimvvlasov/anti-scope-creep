@@ -177,7 +177,7 @@ class Instruments:
     """The metrics of docs/architecture.md, section 6. Labels are ids, codes, model names and
     counts, never text from a contract."""
 
-    analyses: Counter  # analyses_total{outcome=done|failed|stale|superseded}
+    analyses: Counter  # analyses_total{outcome=done|failed|stale|superseded|resumed}
     analysis_duration: Histogram  # analysis_duration_seconds{outcome}
     llm_requests: Counter  # llm_requests_total{model,status}
     llm_request_duration: Histogram  # llm_request_duration_seconds{model}
@@ -209,7 +209,7 @@ def build_instruments(meter: Meter) -> Instruments:
 instruments = build_instruments(metrics.get_meter(SERVICE_NAME))
 
 
-ANALYSIS_OUTCOMES = ("done", "failed", "stale", "superseded")
+ANALYSIS_OUTCOMES = ("done", "failed", "stale", "superseded", "resumed")
 LLM_STATUSES = ("ok", "rate_limited", "server_error", "network_error", "invalid_json", "client_error")
 DROP_REASONS = ("quote_not_found", "placeholder_not_restored", "invalid_finding", "invalid_after_restore")
 
