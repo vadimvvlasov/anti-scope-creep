@@ -344,15 +344,24 @@ What the sidecar log shows: in the 4 minutes of the probe it wrote 20 lines
 `Drop: TCP{...} no rules matched`, each a connection attempt from a Tailscale address to a port of the node that no
 rule allows, followed by `netstack: decrementing connsInFlightByClient ... because the packet was not handled`.
 They appear also during ordinary use (a contract upload). The working explanation is that Funnel retries a dropped
-connection and each retry adds the wait seen above. This is a match in time and size, not a proof: the sender
-addresses were not identified as Funnel's.
+connection and each retry adds the wait seen above. This is a match in time and size, not a proof.
+
+The tailnet console (checked read-only on 2026-11-21): the tailnet has two machines, `asc-dev` and `asc-prod`, so
+the sender addresses (`fd7a:115c:a1e0::c301:...`, `::f701:...`, `::3f01:...`) belong to no device of ours; the
+likely senders are Tailscale's own Funnel ingress nodes, which the console does not list. The policy has no
+rule that targets `tag:asc` (the only grant is `autogroup:member` to `*`, and tagged nodes are not members), and
+the `funnel` attribute for `tag:asc` is set. That is as section 3 wants it: there is no policy edit to make,
+and opening `tag:asc` to more sources would be wrong. The dropped packets go to port 35424, not to 443, which is
+where Funnel traffic arrives, so they may be a side effect and not the cause of the handshake tail.
 
 Limit to expect: a few percent of requests through Funnel wait 3-6 seconds for the handshake; the application
 and the server are not the cause. Clients must allow it: the smoke test and the measurement script repeat a
 request that failed at the network level (#156).
 
-Not done: finding which rule drops those packets (the tailnet policy and the sender addresses), and a run of the
-same probe from a GitHub runner for comparison. Both need the owner's tailnet console.
+Not done: the cause of the drops. The next step to try on dev: the sidecar without userspace networking
+(`TS_USERSPACE: "false"`, which needs `NET_ADMIN` and `/dev/net/tun` and so softens the sidecar's hardening), then
+the same 100 requests, to see whether the tail and the `connsInFlightByClient` lines belong to netstack. Also not
+done: the same probe from a GitHub runner for comparison.
 
 ### Pull timer
 
