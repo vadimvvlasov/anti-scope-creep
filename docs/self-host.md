@@ -328,6 +328,66 @@ In the first minutes after a node appears, Funnel drops some TLS handshakes whil
 retry for a few minutes before you look for a fault. Then point each frontend at its URL (`VITE_API_URL`) and
 put the frontend origins into `CORS_ORIGINS`.
 
+### Funnel: slow handshakes on a node that is up (issue #157)
+
+Measured on 2026-11-21 against dev, 100 sequential `GET /health/ready` from a laptop, server up for 10 hours:
+no failures (100 times `200`), but a long tail: total time p50 1.1 s, p95 5.4 s, maximum 6.3 s; TLS handshake
+p50 0.63 s, p95 3.7 s, maximum 4.6 s. The TCP connect stayed near 0.13 s, so the wait is inside the TLS handshake,
+in steps of about 1, 3 and 4-5 seconds.
+
+What was ruled out, with the server numbers taken at the time: the sidecar is not limited by its caps (CPU 0.02 %,
+48 of 128 MiB, `compose.server.yaml`), the backend is idle (182 of 512 MiB), the GPU was at 0 % with the model loaded,
+the host load was 0.9. `tailscale netcheck` from the sidecar: UDP works, IPv4 yes, IPv6 no, nearest DERP Frankfurt
+at 76 ms. A run under load (three analyses on the local model, section 8) was not repeated for this probe.
+
+What the sidecar log shows: in the 4 minutes of the probe it wrote 20 lines
+`Drop: TCP{...} no rules matched`, each a connection attempt from a Tailscale address to a port of the node that no
+rule allows, followed by `netstack: decrementing connsInFlightByClient ... because the packet was not handled`.
+They appear also during ordinary use (a contract upload). The first guess was that Funnel retries a dropped
+connection and each retry adds the wait seen above; the experiment below does not support it.
+
+The tailnet console (checked read-only on 2026-11-21): the tailnet has two machines, `asc-dev` and `asc-prod`, so
+the sender addresses (`fd7a:115c:a1e0::c301:...`, `::f701:...`, `::3f01:...`) belong to no device of ours; the
+likely senders are Tailscale's own Funnel ingress nodes, which the console does not list. The policy has no
+rule that targets `tag:asc` (the only grant is `autogroup:member` to `*`, and tagged nodes are not members), and
+the `funnel` attribute for `tag:asc` is set. That is as section 3 wants it: there is no policy edit to make,
+and opening `tag:asc` to more sources would be wrong. The dropped packets go to port 35424, not to 443, which is
+where Funnel traffic arrives, so they may be a side effect and not the cause of the handshake tail.
+
+The experiment (2026-11-21, dev, 100 sequential `GET /health/ready` from a laptop each, no failures in any):
+
+| Sidecar | Uptime at the probe | Total p50 / p95 / max | TLS p50 / p95 / max | `no rules matched` in the window |
+|---|---|---|---|---|
+| userspace (the deploy setup) | up to 10 h (the server's uptime) | 1.1 / 5.4 / 6.3 s | 0.63 / 3.7 / 4.6 s | 20 |
+| kernel (`ops/server/tailscale-kernel.override.yaml`) | minutes | 0.94 / 1.23 / 1.54 s | 0.50 / 0.73 / 1.10 s | 11 |
+| userspace again, control | minutes | 0.94 / 1.26 / 2.30 s | 0.52 / 0.75 / 1.87 s | not counted |
+
+What it says: the tail is not the network mode. The control, in the deploy setup, is as fast as the kernel run
+right after a restart. The drops are not the cause either: the kernel run logged 11 of them with no tail. What
+changed between the slow run and the others is the sidecar's age (up to 10 hours against minutes; the sidecar's own start time was not read), and the
+time of day. So the likely cause is something that builds up in a long-running sidecar, or in its Funnel path, and
+a restart clears it. The same shape matches the failures of 2026-11-19 ("the server up for days"). This is one
+run of each; it does not tell the two explanations (age, time of day) apart.
+
+In the kernel run `tailscale status` warned that `iptables` could not set up its filter table (`Table does not
+exist`: the image has `iptables-legacy`, the host kernel uses nftables). The node and Funnel worked anyway.
+
+Limit to expect, until the cause is known: a sidecar that has run for hours can have a few percent of requests wait
+3-6 seconds for the handshake; the application and the server are not the cause, and a restart of the sidecar
+(`asc <env> restart tailscale`, about a minute of downtime) clears it in the one case measured. Clients must
+allow it: the smoke test and the measurement script repeat a request that failed at the network level (#156).
+
+Not done, and what to try next:
+
+- Run the same 100 requests every hour or two on a dev sidecar that is not restarted, to see when the tail comes
+  back (this separates age from time of day), and note `tailscale status` and the `connsInFlightByClient` lines
+  at that moment.
+- If the tail comes back with age: compare with a newer `tailscale/tailscale` image than v1.104.4 on dev, or a
+  scheduled restart of the sidecars at night; and report the case to Tailscale.
+- The same probe from a GitHub runner, for the path from outside.
+
+The kernel-mode override stays in `ops/server/` as the record of the experiment; it is not a deploy setting.
+
 ### Pull timer
 
 The timer runs [`scripts/server-pull.sh`](../scripts/server-pull.sh) every 5 minutes as `asc`, with both env
@@ -588,7 +648,20 @@ python3 scripts/measure_analysis.py https://asc-dev.<tailnet>.ts.net --contract 
 It runs one analysis on the sleeping model (cold start), then three at the same moment (the third waits for
 the other two), and prints a table to copy here. `nvidia-smi` on the server during the run gives the VRAM.
 
-Measured: not yet (issue #121).
+Measured on 2026-11-21 against dev, `data/4.txt` (16,235 characters), the model idle for 17 minutes before the
+run (so asleep), on an RTX 3090 (24 GB) with `llama-server` holding 10 GB:
+
+| Phase | Analysis | Status | Seconds | Findings |
+|---|---|---|---|---|
+| cold | 1 of 1 | done | 165 | 2 |
+| concurrent | 2 of 3 | done | 379 | 2 |
+| concurrent | 3 of 3 | done | 425 | 2 |
+| concurrent | 1 of 3 | done | 455 | 2 |
+
+Read it as: a cold analysis takes about 2.75 minutes; three at the same moment all finish in 6-8 minutes,
+because one slot serves the chunks of the three analyses in turn. The last one waits about 7.5 minutes. The
+smoke test (one analysis) passed on the same run. The model's own share of a request (load time against
+generation time) is not separated: the script reports whole analyses only.
 
 ### Stop
 
