@@ -80,6 +80,7 @@ class ContractRecord:
     analyzed_at: datetime | None = None
     analysis_started_at: datetime | None = None
     analysis_run_id: UUID | None = None
+    analysis_resumes: int = 0
 
 
 @dataclass(frozen=True)

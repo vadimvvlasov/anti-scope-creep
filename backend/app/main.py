@@ -19,6 +19,7 @@ from app.context import AppContext, Clock, utc_now
 from app.errors import register_error_handlers
 from app.extraction import MAX_FILE_BYTES
 from app.routers import auth, contracts, events, health, query, version
+from app.runner import resume_interrupted_analyses
 from app.seed import finish_pending_analyses, seed_demo_data
 from app.telemetry import configure_logging, instrument_app, instrument_engine, setup_telemetry
 from app.db import build_engine
@@ -29,15 +30,21 @@ from app.store import SqlStore, Store
 MultiPartParser.spool_max_size = MAX_FILE_BYTES + 1
 
 
+async def _startup_analyses(context: AppContext, pending_runs: list[tuple[UUID, UUID]]) -> None:
+    """After a start: the seeded demo analyses finish, then what a shutdown interrupted is resumed."""
+    if pending_runs:
+        await finish_pending_analyses(context, pending_runs)
+    await resume_interrupted_analyses(context)
+
+
 def _lifespan(
     context: AppContext, pending_runs: list[tuple[UUID, UUID]], stop_telemetry: Callable[[], None] | None = None
 ):
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-        task = asyncio.create_task(finish_pending_analyses(context, pending_runs)) if pending_runs else None
+        task = asyncio.create_task(_startup_analyses(context, pending_runs))
         yield
-        if task:
-            task.cancel()
+        task.cancel()
         if stop_telemetry:
             stop_telemetry()  # flush the exporters before the container is replaced
 

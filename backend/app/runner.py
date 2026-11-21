@@ -11,6 +11,7 @@ from typing import Protocol
 from uuid import UUID, uuid4
 
 from fastapi import BackgroundTasks
+from starlette.concurrency import run_in_threadpool
 
 from app.analyzer import AnalysisResult, FindingDraft
 from app.context import AppContext
@@ -49,6 +50,35 @@ def run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> None:
         telemetry.record_analysis(outcome, time.monotonic() - started)
     finally:
         contract_id_var.reset(token)
+
+
+async def resume_interrupted_analyses(context: AppContext) -> None:
+    """At the start of the backend, take up again what a shutdown interrupted, one analysis at a time.
+
+    The model has one slot, so they run in order, the oldest first. While one runs, the others'
+    stale clocks are restarted, so the stale rule does not fail a contract that is only waiting.
+    A contract resumed `analysis_max_resumes` times already goes to `failed` instead (a contract that
+    crashes the backend must not loop). Never raises.
+    """
+    store, now = context.store, context.clock
+    max_resumes = context.settings.analysis_max_resumes
+    if max_resumes <= 0:
+        return
+    try:
+        found = await run_in_threadpool(store.restart_interrupted_analyses, max_resumes, now())
+        if found.failed:
+            telemetry.record_analysis("failed", count=found.failed)
+        if not found.runs:
+            return
+        logger.info("Resuming %d interrupted analyses, %d given up", len(found.runs), found.failed)
+        telemetry.record_analysis("resumed", count=len(found.runs))
+        waiting = [run_id for _, run_id in found.runs]
+        for contract_id, run_id in found.runs:
+            await run_in_threadpool(store.touch_analyses, waiting, now())
+            await run_in_threadpool(run_analysis, context, contract_id, run_id)
+            waiting.remove(run_id)
+    except Exception:
+        logger.exception("Resuming interrupted analyses failed", extra={"code": "resume_failed"})
 
 
 def _run_analysis(context: AppContext, contract_id: UUID, run_id: UUID) -> str:

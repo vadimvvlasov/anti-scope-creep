@@ -7,7 +7,7 @@ a row locked with `SELECT ... FOR UPDATE`, each in one transaction.
 """
 
 from collections.abc import Sequence
-from dataclasses import asdict, replace
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from typing import Any, Protocol
 from uuid import UUID, uuid4
@@ -24,6 +24,14 @@ from app.models import (
     FindingRecord,
     UserRecord,
 )
+
+
+@dataclass(frozen=True)
+class InterruptedAnalyses:
+    """What a start of the backend did with the analyses a shutdown left in `analyzing`."""
+
+    runs: list[tuple[UUID, UUID]]  # (contract id, its new run id), the oldest first
+    failed: int  # taken up too many times already, moved to `failed`
 
 
 class DuplicateEmailError(Exception):
@@ -68,6 +76,10 @@ class Store(Protocol):
     def fail_stale_analyses(
         self, user_id: UUID, started_before: datetime, now: datetime
     ) -> int: ...
+
+    def restart_interrupted_analyses(self, max_resumes: int, now: datetime) -> InterruptedAnalyses: ...
+
+    def touch_analyses(self, run_ids: Sequence[UUID], now: datetime) -> int: ...
 
     def complete_analysis(
         self,
@@ -186,6 +198,7 @@ class SqlStore:
                 status=ContractStatus.ANALYZING,
                 analysis_started_at=now,
                 analysis_run_id=run_id,
+                analysis_resumes=0,
                 updated_at=now,
             )
 
@@ -210,6 +223,49 @@ class SqlStore:
         )
         with self._engine.begin() as conn:
             return conn.execute(stale.values(status=ContractStatus.FAILED, updated_at=now)).rowcount
+
+    def restart_interrupted_analyses(self, max_resumes: int, now: datetime) -> InterruptedAnalyses:
+        """Give every `analyzing` contract a new run, or fail it when it was resumed `max_resumes` times.
+
+        Meant for the start of the backend, when no task of this process can be running: whatever is
+        `analyzing` was left by a process that is gone. The new run ID makes a late commit of the old
+        run a no-op; the fresh `analysis_started_at` keeps the stale rule from failing it at once.
+        """
+        query = (
+            select(contracts)
+            .where(contracts.c.status == ContractStatus.ANALYZING)
+            .order_by(contracts.c.analysis_started_at)
+            .with_for_update()
+        )
+        runs: list[tuple[UUID, UUID]] = []
+        failed = 0
+        with self._engine.begin() as conn:
+            for row in conn.execute(query).all():
+                if row.analysis_resumes >= max_resumes:
+                    _update_contract(conn, row, status=ContractStatus.FAILED, updated_at=now)
+                    failed += 1
+                    continue
+                run_id = uuid4()
+                _update_contract(
+                    conn,
+                    row,
+                    analysis_run_id=run_id,
+                    analysis_started_at=now,
+                    analysis_resumes=row.analysis_resumes + 1,
+                    updated_at=now,
+                )
+                runs.append((row.id, run_id))
+        return InterruptedAnalyses(runs=runs, failed=failed)
+
+    def touch_analyses(self, run_ids: Sequence[UUID], now: datetime) -> int:
+        """Restart the stale clock of these runs (those still `analyzing`): they are waiting for their turn."""
+        if not run_ids:
+            return 0
+        waiting = update(contracts).where(
+            contracts.c.status == ContractStatus.ANALYZING, contracts.c.analysis_run_id.in_(run_ids)
+        )
+        with self._engine.begin() as conn:
+            return conn.execute(waiting.values(analysis_started_at=now)).rowcount
 
     def complete_analysis(
         self,

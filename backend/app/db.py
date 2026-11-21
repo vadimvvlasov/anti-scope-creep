@@ -106,6 +106,8 @@ contracts = Table(
     Column("analyzed_at", UtcDateTime, nullable=True),
     Column("analysis_started_at", UtcDateTime, nullable=True),
     Column("analysis_run_id", Uuid, nullable=True),
+    # How many times a start of the backend took this analysis up again after it was interrupted.
+    Column("analysis_resumes", Integer, nullable=False, server_default="0"),
     Index("ix_contracts_user_id_created_at", "user_id", "created_at"),
 )
 
