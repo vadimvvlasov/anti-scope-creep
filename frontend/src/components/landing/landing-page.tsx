@@ -1,4 +1,5 @@
 import { MethodologyLink } from "@/components/methodology-dialog";
+import { ServiceNotice } from "@/components/service-notice";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,6 +36,9 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <LandingHeader />
+      <div className="border-b bg-secondary/40">
+        <ServiceNotice className="page-container py-2 text-center" />
+      </div>
       <main>
         <Hero />
         <SampleDemo />

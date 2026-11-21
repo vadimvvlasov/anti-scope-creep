@@ -1226,6 +1226,19 @@ What the user is told about the limits, the wait and a failure (issue #119). The
 
 The number 5 follows `ANALYSIS_DAILY_LIMIT_PER_USER`; a change of the limit changes these texts too. The local model times come from the eval (`docs/eval.md`, Local model gate) and are updated after the measurements of #121.
 
+### Service hours notice
+
+The backend and the model run on a home server that is switched off at night, and the product is a free test mode (issue #162). While the server is off, the API does not answer at all, and a request made then is not queued. The visitor is told so, and when.
+
+- **Setting:** `VITE_SERVICE_HOURS`, `HH:MM-HH:MM` in UTC (start, then end; the end may be earlier than the start, then the window crosses midnight). Not set or not valid: the texts without hours are used.
+- **Where:** a notice line on the landing page (under the header), on Login / Register (under the value line) and on Upload / Analyze (under the limits line). Not on other screens.
+- **Hours shown:** `{start}` and `{end}` are the two times in the visitor's browser time zone, 24-hour `HH:MM`. They are filled in after the page loads (the landing page is prerendered, so the server has no visitor time zone); before that the text without hours is shown.
+- **Notice, with hours:** `Free test mode. The service runs on our own server and is available from {start} to {end} (your local time). Outside these hours it does not respond; please come back later.`
+- **Notice, without hours:** `Free test mode. The service runs on our own server and is not available around the clock. If it does not respond, please come back later.`
+- **Network error** (`NETWORK_ERROR`, the call did not reach the server), with hours: `The service is not reachable right now. In the free test mode it is available from {start} to {end} (your local time).`
+- **Network error, without hours:** `The service is not reachable right now. In the free test mode it is not available around the clock. Please try again later.`
+- Other errors keep their messages. None of the texts promises a time for a result; that waits for the resume-after-start task (#163).
+
 ### Login copy
 
 What a first-time visitor reads on Login / Register (issue #127). The page speaks to freelancers and says what they get before asking for an email.

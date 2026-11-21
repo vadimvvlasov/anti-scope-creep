@@ -63,7 +63,9 @@ repository. Both environments accept deployments only from `main`; `prod` also n
   trailing slash), `CLOUDFLARE_ACCOUNT_ID`, `ANALYZER` (`groq` or `stub`; it only sets what the
   frontend says about the analyzer, so keep it equal to `ANALYZER` in the server's env file),
   `FRONTEND_URL` (the environment's frontend address, no trailing slash; the landing page's link preview
-  needs it for an absolute `og:image` URL; optional)
+  needs it for an absolute `og:image` URL; optional;
+  optional), `SERVICE_HOURS` (the hours the server is on, `HH:MM-HH:MM` in UTC, for the free-test-mode notice;
+  optional, without it the notice says the service is not available around the clock, with no hours)
 
 The workflows move image tags with the job's own `GITHUB_TOKEN` (`packages: write`); there are
 no cloud credentials.

@@ -4,6 +4,7 @@ import { Upload, FileText } from "lucide-react";
 
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
 import { ProDialog } from "@/components/pro-dialog";
+import { ServiceNotice } from "@/components/service-notice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -123,6 +124,7 @@ function NewAnalysisPage() {
       <p className="text-sm text-muted-foreground" data-testid="analysis-limits">
         {LIMITS_TEXT}
       </p>
+      <ServiceNotice className="mt-1" />
 
       <form onSubmit={submit} className="mt-6 max-w-2xl space-y-6">
         <Tabs value={mode} onValueChange={(v) => setMode(v as "file" | "text")}>

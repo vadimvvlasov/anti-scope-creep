@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { ShieldCheck } from "lucide-react";
 
+import { ServiceNotice } from "@/components/service-notice";
 import { AuthorBar, SiteFooter } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,6 +74,7 @@ function LoginPage() {
             <p className="mt-3 text-sm" data-testid="login-value">
               {LOGIN_VALUE_LINE}
             </p>
+            <ServiceNotice className="mt-3" />
           </div>
 
           {sessionExpired && (

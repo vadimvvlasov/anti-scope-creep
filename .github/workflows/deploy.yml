@@ -123,6 +123,9 @@ jobs:
           # The frontend's public address, for the landing page's link preview (og:image needs an
           # absolute URL). Empty keeps a relative URL.
           VITE_SITE_URL: ${{ vars.FRONTEND_URL }}
+          # The hours the server is on, `HH:MM-HH:MM` in UTC (docs/spec.md "Service hours notice"). Empty: the notice
+          # and the network-error message say the service is not available around the clock, without hours.
+          VITE_SERVICE_HOURS: ${{ vars.SERVICE_HOURS }}
           WRANGLER_ENV: ${{ inputs.wrangler-env }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
