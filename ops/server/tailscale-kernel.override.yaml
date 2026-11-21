@@ -10,5 +10,8 @@ services:
     environment:
       TS_USERSPACE: "false"
     cap_add: [NET_ADMIN]
+    # Kernel mode runs iptables, which writes /run/xtables.lock; with a read-only root it fails
+    # ("can't open lock file /run/xtables.lock: Read-only file system", seen 2026-11-21).
+    read_only: false
     devices:
       - /dev/net/tun:/dev/net/tun
