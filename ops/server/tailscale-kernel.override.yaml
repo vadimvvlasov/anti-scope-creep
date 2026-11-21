@@ -1,0 +1,14 @@
+# EXPERIMENT for issue #157, not part of the deploy: the dev sidecar with the kernel network stack instead of
+# userspace (netstack), to see whether the TLS handshake tail through Funnel comes from netstack.
+# It needs NET_ADMIN and /dev/net/tun, which compose.server.yaml deliberately does without, so run it on dev only
+# and only for the measurement. Steps: docs/self-host.md, section 5, "Funnel: slow handshakes".
+#
+#   docker compose -f compose.server.yaml -f ops/server/tailscale-kernel.override.yaml \
+#     --env-file /home/asc/env/dev.env up -d tailscale
+services:
+  tailscale:
+    environment:
+      TS_USERSPACE: "false"
+    cap_add: [NET_ADMIN]
+    devices:
+      - /dev/net/tun:/dev/net/tun

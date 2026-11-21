@@ -358,10 +358,23 @@ Limit to expect: a few percent of requests through Funnel wait 3-6 seconds for t
 and the server are not the cause. Clients must allow it: the smoke test and the measurement script repeat a
 request that failed at the network level (#156).
 
-Not done: the cause of the drops. The next step to try on dev: the sidecar without userspace networking
-(`TS_USERSPACE: "false"`, which needs `NET_ADMIN` and `/dev/net/tun` and so softens the sidecar's hardening), then
-the same 100 requests, to see whether the tail and the `connsInFlightByClient` lines belong to netstack. Also not
-done: the same probe from a GitHub runner for comparison.
+Not done: the cause of the drops. Experiment to run on dev only: the sidecar without userspace networking
+([`ops/server/tailscale-kernel.override.yaml`](../ops/server/tailscale-kernel.override.yaml); it needs `NET_ADMIN`
+and `/dev/net/tun`, which the deploy file deliberately does without), then the same 100 requests, to see whether
+the tail and the `connsInFlightByClient` lines belong to netstack. The pull timer would undo it within 5 minutes,
+so stop it for the run. On the server, as the stack user:
+
+```bash
+sudo systemctl stop asc-pull.timer
+asc dev -f /home/asc/anti-scope-creep/ops/server/tailscale-kernel.override.yaml up -d tailscale   # see `asc` in section 1
+asc dev exec tailscale tailscale status                                   # wait until the node is back and Funnel is on
+# wait about 5 minutes for the certificate and Funnel to settle, then run the 100 requests from a laptop
+asc dev logs --since 10m tailscale 2>&1 | grep -c "no rules matched"      # drops in the window
+# back to the deploy setup:
+asc dev up -d tailscale && sudo systemctl start asc-pull.timer
+```
+
+Also not done: the same probe from a GitHub runner for comparison.
 
 ### Pull timer
 
