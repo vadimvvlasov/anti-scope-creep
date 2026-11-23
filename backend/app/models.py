@@ -51,6 +51,15 @@ class FileType(StrEnum):
     TXT = "txt"
 
 
+class ContractGoal(StrEnum):
+    """The answer to "What are you doing with this contract?" (docs/spec.md "Contract goal")."""
+
+    BEFORE_SIGNING = "before_signing"
+    NEGOTIATING = "negotiating"
+    ALREADY_SIGNED = "already_signed"
+    JUST_CURIOUS = "just_curious"
+
+
 # ----------------------------------------------------------------------------
 # Domain records
 # ----------------------------------------------------------------------------
@@ -81,6 +90,7 @@ class ContractRecord:
     analysis_started_at: datetime | None = None
     analysis_run_id: UUID | None = None
     analysis_resumes: int = 0
+    goal: ContractGoal | None = None
 
 
 @dataclass(frozen=True)
@@ -192,6 +202,7 @@ class ContractSummary(BaseModel):
     updated_at: UtcDateTime
     analyzed_at: UtcDateTime | None
     overall_risk_level: RiskLevel | None
+    goal: ContractGoal | None
 
 
 class Finding(BaseModel):
@@ -276,6 +287,7 @@ class EventProperties(BaseModel):
     format: Literal["pdf", "docx"] | None = None
     placement: Literal["header", "daily_limit", "scan_photo"] | None = None
     screen: Literal["mobile", "desktop"] | None = None
+    goal: ContractGoal | None = None
     price_usd: int | None = Field(default=None, ge=0, le=10_000)
 
 

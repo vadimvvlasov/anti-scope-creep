@@ -7,7 +7,7 @@ memory by the caller and are dropped once the text is extracted.
 
 import io
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import PurePosixPath
 
 from langdetect import DetectorFactory, LangDetectException, detect_langs
@@ -15,7 +15,7 @@ from pypdf import PdfReader
 
 from app import telemetry
 from app.errors import AppError, ErrorCode
-from app.models import MAX_TITLE_LENGTH, FileType
+from app.models import MAX_TITLE_LENGTH, ContractGoal, FileType
 
 logger = logging.getLogger(__name__)
 
@@ -50,10 +50,11 @@ class ContractInput:
     file_type: FileType
     file_size: int | None
     source_text: str
+    goal: ContractGoal | None = None
 
 
 def build_contract_input(
-    file: UploadedFile | None, text: str | None, title: str | None
+    file: UploadedFile | None, text: str | None, title: str | None, goal: str | None = None
 ) -> ContractInput:
     """Validate the raw form fields and return what gets stored."""
     if (file is None) == (text is None):
@@ -61,11 +62,23 @@ def build_contract_input(
         message = "Provide either a file or pasted text, not both." if both else "Provide a file or pasted text."
         raise AppError(ErrorCode.INVALID_CONTRACT_INPUT, message)
     cleaned_title = _clean_title(title)
+    parsed_goal = _parse_goal(goal)
     if file is None:
         if cleaned_title is None:
             raise AppError(ErrorCode.VALIDATION_ERROR, "Title is required for pasted text.")
-        return ContractInput(cleaned_title, "", FileType.TXT, None, check_text(text))
-    return _file_input(file, cleaned_title)
+        return ContractInput(cleaned_title, "", FileType.TXT, None, check_text(text), parsed_goal)
+    return replace(_file_input(file, cleaned_title), goal=parsed_goal)
+
+
+def _parse_goal(goal: str | None) -> ContractGoal | None:
+    """An empty field counts as absent; any other unknown value is a validation error."""
+    if not goal:
+        return None
+    try:
+        return ContractGoal(goal)
+    except ValueError:
+        allowed = ", ".join(g.value for g in ContractGoal)
+        raise AppError(ErrorCode.VALIDATION_ERROR, f"Goal must be one of: {allowed}.") from None
 
 
 def _clean_title(title: str | None) -> str | None:

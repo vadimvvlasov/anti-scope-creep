@@ -101,6 +101,34 @@ describe("contract history", () => {
   });
 });
 
+describe("contract goal", () => {
+  it.each(["before_signing", "negotiating", "already_signed", "just_curious"] as const)(
+    "stores %s and returns it with the contract",
+    async (goal) => {
+      const { client } = makeClient();
+      await login(client);
+      const created = await client.createContract({ text: "some clause", title: "T", goal });
+      expect(created.goal).toBe(goal);
+      expect((await client.getContract(created.id)).goal).toBe(goal);
+    },
+  );
+
+  it("stores null when the question is skipped", async () => {
+    const { client } = makeClient();
+    await login(client);
+    const created = await client.createContract({ text: "some clause", title: "T" });
+    expect(created.goal).toBeNull();
+  });
+
+  it("rejects an unknown goal", async () => {
+    const { client } = makeClient();
+    await login(client);
+    await expect(
+      client.createContract({ text: "some clause", title: "T", goal: "x" as never }),
+    ).rejects.toMatchObject({ code: "VALIDATION_ERROR" });
+  });
+});
+
 describe("upload validation", () => {
   it("requires exactly one input source", async () => {
     const { client } = makeClient();

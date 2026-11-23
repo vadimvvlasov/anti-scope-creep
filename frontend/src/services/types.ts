@@ -36,6 +36,8 @@ export interface AuthResponse {
   user: User;
 }
 
+export type ContractGoal = "before_signing" | "negotiating" | "already_signed" | "just_curious";
+
 export interface RiskSummary {
   overall_risk_level: RiskLevel;
   high_count: number;
@@ -54,6 +56,8 @@ export interface ContractSummary {
   updated_at: string;
   analyzed_at: string | null;
   overall_risk_level: RiskLevel | null;
+  /** The answer to the goal question; null when it was skipped. */
+  goal: ContractGoal | null;
 }
 
 export interface Finding {
@@ -113,6 +117,7 @@ export interface CreateContractInput {
   file?: File | null;
   text?: string | null;
   title?: string | null;
+  goal?: ContractGoal | null;
 }
 
 export interface ListContractsParams {

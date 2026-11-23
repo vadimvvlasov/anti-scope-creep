@@ -4,6 +4,7 @@ import { Upload, FileText } from "lucide-react";
 
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
 import { ProDialog } from "@/components/pro-dialog";
+import { GoalQuestion } from "@/components/goal-question";
 import { ScanPhotoDialog } from "@/components/scan-photo-dialog";
 import { ServiceNotice } from "@/components/service-notice";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import { LIMITS_TEXT } from "@/lib/analysis-copy";
 import { AI_DATA_POLICY_URL, LLM_ANALYZER_ACTIVE, UPLOAD_PRIVACY_POINTS } from "@/lib/methodology";
 import { analytics } from "@/services/analytics";
 import { api, isApiError, MAX_FILE_BYTES, MAX_TEXT_LENGTH, MAX_TITLE_LENGTH } from "@/services/api";
+import type { ContractGoal } from "@/services/types";
 
 export const Route = createFileRoute("/new-analysis")({
   head: () => ({
@@ -45,6 +47,7 @@ function NewAnalysisPage() {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
+  const [goal, setGoal] = useState<ContractGoal | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [limitReached, setLimitReached] = useState(false);
   // Why the last picked file was rejected, so submitting without a file repeats it.
@@ -106,9 +109,11 @@ function NewAnalysisPage() {
     setBusy(true);
     try {
       const contract = await api.createContract(
-        mode === "file" ? { file, title: trimmedTitle || null } : { text, title: trimmedTitle },
+        mode === "file"
+          ? { file, title: trimmedTitle || null, goal }
+          : { text, title: trimmedTitle, goal },
       );
-      analytics.track("analysis_started", { input: mode });
+      analytics.track("analysis_started", goal ? { input: mode, goal } : { input: mode });
       void navigate({ to: "/contracts/$id", params: { id: contract.id } });
     } catch (err) {
       setLimitReached(isApiError(err) && err.code === "DAILY_ANALYSIS_LIMIT_REACHED");
@@ -128,6 +133,8 @@ function NewAnalysisPage() {
       <ServiceNotice className="mt-1" />
 
       <form onSubmit={submit} className="mt-6 max-w-2xl space-y-6">
+        <GoalQuestion value={goal} onChange={setGoal} />
+
         <Tabs value={mode} onValueChange={(v) => setMode(v as "file" | "text")}>
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="file">Upload file</TabsTrigger>

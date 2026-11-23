@@ -732,6 +732,14 @@ components:
       type: string
       enum: [high, medium, low]
 
+    ContractGoal:
+      type: string
+      enum: [before_signing, negotiating, already_signed, just_curious]
+      description: |
+        The answer to "What are you doing with this contract?". Optional on upload; an empty
+        field counts as absent; any other value returns `422 VALIDATION_ERROR`. It only frames
+        the Risk Summary; findings, severity and the email never depend on it.
+
     ContractStatus:
       type: string
       description: |
@@ -839,6 +847,8 @@ components:
           description: |
             1–250 characters after trimming. Required with `text`. Optional with `file`;
             defaults to the original filename.
+        goal:
+          $ref: "#/components/schemas/ContractGoal"
 
     RenameContractRequest:
       type: object
@@ -882,6 +892,7 @@ components:
         - updated_at
         - analyzed_at
         - overall_risk_level
+        - goal
       properties:
         id:
           type: string
@@ -919,6 +930,11 @@ components:
           description: '`null` until the first successful analysis.'
           oneOf:
             - $ref: "#/components/schemas/RiskLevel"
+            - type: "null"
+        goal:
+          description: '`null` when the goal question was skipped.'
+          oneOf:
+            - $ref: "#/components/schemas/ContractGoal"
             - type: "null"
 
     Finding:
@@ -1146,6 +1162,8 @@ components:
         screen:
           type: string
           enum: [mobile, desktop]
+        goal:
+          $ref: "#/components/schemas/ContractGoal"
         price_usd:
           type: integer
           minimum: 0

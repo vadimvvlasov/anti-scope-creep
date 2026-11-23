@@ -102,7 +102,7 @@ def build_contract(text: str, recording: dict, title: str, timestamp: str) -> di
     return {"id": stable_id(record_id, "contract"), "title": title, "filename": "", "file_type": "txt",
             "file_size": None, "status": "done", "created_at": timestamp, "updated_at": timestamp,
             "analyzed_at": timestamp, "overall_risk_level": summary["overall_risk_level"],
-            "source_text": text, "risk_summary": summary, "findings": findings,
+            "goal": None, "source_text": text, "risk_summary": summary, "findings": findings,
             "email_draft": build_email(recording, findings, record_id, timestamp)}
 
 

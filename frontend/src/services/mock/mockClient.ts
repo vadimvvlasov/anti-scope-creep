@@ -1,3 +1,5 @@
+import { GOAL_OPTIONS } from "@/lib/contract-goal";
+
 import { ApiError } from "../errors";
 import type {
   ApiClient,
@@ -223,6 +225,9 @@ export class MockApiClient implements ApiClient {
     if (title.length > MAX_TITLE_LENGTH) {
       throw new ApiError(422, "VALIDATION_ERROR", "Title must be 250 characters or fewer.");
     }
+    if (input.goal && !GOAL_OPTIONS.some((option) => option.value === input.goal)) {
+      throw new ApiError(422, "VALIDATION_ERROR", "Goal must be a known answer.");
+    }
 
     let filename = "";
     let fileType: "pdf" | "txt" = "txt";
@@ -285,6 +290,7 @@ export class MockApiClient implements ApiClient {
       updated_at: at,
       analyzed_at: null,
       overall_risk_level: null,
+      goal: input.goal ?? null,
       risk_summary: null,
       findings: [],
       email_draft: null,

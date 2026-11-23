@@ -606,6 +606,7 @@ const buildContract = (spec: SeedSpec, userId: string, now: number): MockContrac
     updated_at: iso(created + 60_000),
     analyzed_at: analyzedAt,
     overall_risk_level: hasResults ? computeSummary(findings).overall_risk_level : null,
+    goal: null,
     risk_summary: hasResults ? computeSummary(findings) : null,
     findings: hasResults ? findings : [],
     email_draft: hasResults
