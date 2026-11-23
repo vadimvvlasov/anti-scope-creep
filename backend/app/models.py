@@ -253,6 +253,7 @@ class AnalyticsEventName(StrEnum):
     REPORT_EXPORTED = "report_exported"
     PRO_CTA_CLICKED = "pro_cta_clicked"
     PRO_WAITLIST_JOINED = "pro_waitlist_joined"
+    SCAN_PHOTO_CLICKED = "scan_photo_clicked"
 
 
 EventText = Annotated[str, StringConstraints(max_length=100)]
@@ -273,7 +274,8 @@ class EventProperties(BaseModel):
     anon_id: EventText | None = None
     input: Literal["file", "text", "retry"] | None = None
     format: Literal["pdf", "docx"] | None = None
-    placement: Literal["header", "daily_limit"] | None = None
+    placement: Literal["header", "daily_limit", "scan_photo"] | None = None
+    screen: Literal["mobile", "desktop"] | None = None
     price_usd: int | None = Field(default=None, ge=0, le=10_000)
 
 

@@ -4,6 +4,7 @@ import { Upload, FileText } from "lucide-react";
 
 import { AppShell, LegalDisclaimer } from "@/components/app-shell";
 import { ProDialog } from "@/components/pro-dialog";
+import { ScanPhotoDialog } from "@/components/scan-photo-dialog";
 import { ServiceNotice } from "@/components/service-notice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -178,6 +179,8 @@ function NewAnalysisPage() {
             </p>
           </TabsContent>
         </Tabs>
+
+        <ScanPhotoDialog />
 
         <div className="space-y-2">
           <Label htmlFor="title">

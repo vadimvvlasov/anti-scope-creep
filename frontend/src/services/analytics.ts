@@ -19,7 +19,8 @@ export type AnalyticsEvent =
   | "analysis_started"
   | "report_exported"
   | "pro_cta_clicked"
-  | "pro_waitlist_joined";
+  | "pro_waitlist_joined"
+  | "scan_photo_clicked";
 
 export type EventProperties = Record<string, string | number | boolean>;
 

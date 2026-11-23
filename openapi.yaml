@@ -1098,6 +1098,7 @@ components:
         - report_exported
         - pro_cta_clicked
         - pro_waitlist_joined
+        - scan_photo_clicked
 
     AnalyticsEvent:
       type: object
@@ -1141,7 +1142,10 @@ components:
           enum: [pdf, docx]
         placement:
           type: string
-          enum: [header, daily_limit]
+          enum: [header, daily_limit, scan_photo]
+        screen:
+          type: string
+          enum: [mobile, desktop]
         price_usd:
           type: integer
           minimum: 0

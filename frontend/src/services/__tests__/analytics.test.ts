@@ -129,6 +129,15 @@ describe("Analytics", () => {
     expect(sent.at(-1)?.body.distinct_id).toBe("anon-2");
   });
 
+  it("sends the photo-scan click with its placement and screen size only", () => {
+    const { analytics, sent } = setup();
+    analytics.track("scan_photo_clicked", { placement: "scan_photo", screen: "mobile" });
+    expect(sent[0]?.body).toMatchObject({
+      event: "scan_photo_clicked",
+      properties: { placement: "scan_photo", screen: "mobile" },
+    });
+  });
+
   it("never throws when sending fails", () => {
     const { analytics } = setup({
       send: () => {
