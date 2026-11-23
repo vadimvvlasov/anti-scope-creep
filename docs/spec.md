@@ -266,6 +266,7 @@ Input options (tabs or segmented control):
 - **Paste text:** textarea with a live character counter (`N / 60,000`).
 
 Fields:
+- **Goal question**, shown first, above the input options: `What are you doing with this contract?` Four single-tap choices: `Before signing` (`before_signing`), `Negotiating terms` (`negotiating`), `Already signed` (`already_signed`), `Just curious` (`just_curious`). Nothing is preselected; the question may be skipped. It is part of this screen: no extra step, no animation. See [Contract goal](#contract-goal).
 - `title` input. Required for pasted text. Optional for files; when empty, the filename is used. Max 250 characters.
 
 Client-side checks before submitting (the server re-validates everything):
@@ -327,7 +328,8 @@ When status is `analyzing` or `failed` but results from an earlier successful an
 #### Risk Summary
 
 - overall risk level badge;
-- high / medium / low finding counts.
+- high / medium / low finding counts;
+- the goal line, when the contract has a `goal` (see [Contract goal](#contract-goal)).
 
 Overall risk is derived, not stored: `high > medium > low`.
 
@@ -472,6 +474,8 @@ The initial implementation may use an in-memory repository, but the model must m
 | `analysis_run_id` | UUID / nullable | new value every time the contract enters `analyzing` | Identifies the current analysis run; a background task may commit only if it still owns the current run. Not exposed via API. |
 | `analysis_resumes` | integer | default `0`; reset to `0` every time the contract enters `analyzing` by an upload or a retry | How many times in a row a start of the backend took the interrupted analysis up again (see [Stale analysis rule](#stale-analysis-rule)). Internal. Not exposed via API. |
 
+| `goal` | enum / nullable | `before_signing`, `negotiating`, `already_signed`, `just_curious`, or `null` | The user's answer to the goal question at upload. `null` when skipped. Never changes after creation, not even on retry. |
+
 #### Contract derived fields (not stored)
 
 Calculated from `risk_findings`:
@@ -546,6 +550,8 @@ type RiskLevel = "high" | "medium" | "low";
 
 type ContractStatus = "uploaded" | "analyzing" | "done" | "failed";
 
+type ContractGoal = "before_signing" | "negotiating" | "already_signed" | "just_curious";
+
 type RiskCategory =
   | "scope_creep"
   | "unlimited_revisions"
@@ -586,6 +592,7 @@ interface ContractSummary {
   updated_at: string;
   analyzed_at: string | null;
   overall_risk_level: RiskLevel | null; // null until first successful analysis
+  goal: ContractGoal | null;   // null when the question was skipped
 }
 
 interface Finding {
@@ -660,7 +667,7 @@ Base URL comes from `VITE_API_URL`. All paths below are relative to it. Every pa
 | 1 | Register | `POST /auth/register` | JSON `{ email, password }` | `201` `AuthResponse` | `409 EMAIL_ALREADY_EXISTS`, `422 VALIDATION_ERROR`, `429 TOO_MANY_ATTEMPTS` |
 | 2 | Login | `POST /auth/login` | JSON `{ email, password }` | `200` `AuthResponse` | `401 INVALID_CREDENTIALS`, `422 VALIDATION_ERROR`, `429 TOO_MANY_ATTEMPTS` |
 | 3 | Current user | `GET /auth/me` | — | `200` `User` | `401 UNAUTHORIZED` |
-| 4 | Create + analyze contract | `POST /contracts` | `multipart/form-data`: `file?`, `text?`, `title?` | `202` `ContractDetail` (status `analyzing`) | `422` input/file errors (see table below) |
+| 4 | Create + analyze contract | `POST /contracts` | `multipart/form-data`: `file?`, `text?`, `title?`, `goal?` | `202` `ContractDetail` (status `analyzing`) | `422` input/file errors (see table below) |
 | 5 | List contracts | `GET /contracts?page=1&page_size=20` | query params | `200` `ContractPage` | `422 VALIDATION_ERROR` |
 | 6 | Get contract | `GET /contracts/{id}` | — | `200` `ContractDetail` | `404 CONTRACT_NOT_FOUND` |
 | 7 | Rename contract | `PATCH /contracts/{id}` | JSON `{ title }` | `200` `ContractDetail` | `404 CONTRACT_NOT_FOUND`, `422 VALIDATION_ERROR` |
@@ -680,6 +687,7 @@ Any protected operation can also return `401 UNAUTHORIZED`.
 - `file`: `.pdf` or `.txt`, ≤ 5 MB. Extension, MIME type, and file signature are all checked.
 - `text`: 1–60,000 characters after normalization.
 - `title`: required when `text` is used; optional for `file` (defaults to the filename); 1–250 characters after trimming.
+- `goal`: optional; one of the `ContractGoal` values. Any other value returns `422 VALIDATION_ERROR`. An empty field counts as absent. See [Contract goal](#contract-goal).
 - The binary is discarded right after text extraction.
 - The response is the new contract with `status: "analyzing"`, `analyzed_at: null`, `risk_summary: null`, `findings: []`, `email_draft: null`.
 
@@ -1280,6 +1288,21 @@ There is no paid plan and nothing is charged. A **Pro** button opens a dialog th
 - Opening the dialog sends `pro_cta_clicked`, joining sends `pro_waitlist_joined`, both with the placement (and the shown price for the waitlist), as defined in `docs/analytics.md`.
 
 The price, the feature list and the placements are an experiment, set in `frontend/src/lib/pro.ts`, and are expected to change: the paid value is the result (exports and branded reports), not more analyses (#123); the price waits for the demand checks (#122). The current list in `pro.ts` predates #123: it still names more analyses per day and a 150,000-character limit, which this specification does not offer, and #123 replaces it. New placements are added as new `placement` values in `docs/analytics.md`, the frontend and the backend validation together.
+
+### Contract goal
+
+The Upload / Analyze screen asks one optional question, `What are you doing with this contract?`, before the input options. It frames the result and tells us who the visitors are (`docs/analytics.md`).
+
+- **Allowed answers:** `before_signing`, `negotiating`, `already_signed`, `just_curious`. Skipping is allowed and stored as `null`.
+- **Stored:** as `contracts.goal`, sent as the optional `goal` field of `POST /contracts`. It is returned in `ContractSummary` and `ContractDetail`. Retry keeps it.
+- **What it changes:** only one line in the Risk Summary, a label and nothing else:
+  - `before_signing`: `You are reviewing this before signing.`
+  - `negotiating`: `You are negotiating the terms.`
+  - `already_signed`: `You have already signed this contract.`
+  - `just_curious`: `You are just looking.`
+  With `null` no line is shown.
+- **What it never changes:** the findings prompt, the findings, their severity, the email draft and its wording, the export. Findings and the email do not depend on the goal.
+- **Analytics:** the value is sent as the `goal` property of `analysis_started`, a fixed enum and never free text (`docs/analytics.md`).
 
 ### Privacy at upload
 
