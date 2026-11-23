@@ -1,7 +1,7 @@
 """Analyses a shutdown interrupted are taken up again when the backend starts (docs/spec.md "Stale analysis rule")."""
 
 import asyncio
-import time
+import threading
 from uuid import UUID
 
 from app.analyzer import StubAnalyzer
@@ -159,11 +159,19 @@ def test_a_start_of_the_app_resumes_what_was_left() -> None:
     harness = Harness()
     headers = harness.register()
     contract_id = _interrupted(harness, headers)
+    committed = threading.Event()
+    complete = harness.store.complete_analysis
 
-    with TestClient(harness.app) as started:  # the lifespan runs: this is the start of the backend
-        for _ in range(100):
-            if started.get(f"/contracts/{contract_id}", headers=headers).json()["status"] != "analyzing":
-                break
-            time.sleep(0.05)
+    def complete_and_signal(*args, **kwargs):
+        result = complete(*args, **kwargs)
+        committed.set()
+        return result
+
+    harness.store.complete_analysis = complete_and_signal
+
+    with TestClient(harness.app):  # the lifespan runs: this is the start of the backend
+        # Wait without touching the store: the in-memory SQLite shares one connection, and a request
+        # from this thread during the resume would roll back its uncommitted new run.
+        assert committed.wait(timeout=10)
 
     assert _status(harness, headers, contract_id)["status"] == "done"
