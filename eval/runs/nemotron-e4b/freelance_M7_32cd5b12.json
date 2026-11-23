@@ -1,0 +1,65 @@
+{
+ "id": "freelance:M7",
+ "chars": 3042,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+   "start": 921,
+   "end": 1041
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+   "start": 1928,
+   "end": 2164
+  }
+ ],
+ "email": true,
+ "seconds": 26.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 3882,
+   "prompt_tokens": 2637,
+   "output_tokens": 1245,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 22.59,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Client shall pay each milestone amount within ninety (90) days after Client's final acceptance of the complete Software.",
+      "explanation": "You have 90 days after acceptance to receive payment for each milestone, which is longer than the standard 30-day term.",
+      "suggested_change": "Client shall pay each milestone amount within thirty (30) days after Client's final acceptance of the complete Software."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Upon delivery of each Milestone, Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement.",
+      "explanation": "You assign ownership of the work to the Client as soon as each milestone is delivered, not after you are fully paid for the entire project.",
+      "suggested_change": "Developer assigns to Client all right, title, and interest, including copyrights and patent rights, in and to the custom software code, database schemas, and visual assets developed under this Agreement upon receipt of full payment of the Total Fixed Price."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 865,
+   "prompt_tokens": 495,
+   "output_tokens": 370,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 3.89,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I have reviewed the agreement and would like to propose two changes before signing.\n\n- The relevant clause regarding payment terms currently allows 90 days after final acceptance, but the standard term is 30 days. I propose the agreement be modified to require payment within thirty (30) days after Client's final acceptance of the complete Software.\n- The relevant clause assigns full ownership upon delivery of each milestone. I propose modifying this so that Developer assigns all right, title, and interest upon receipt of full payment of the Total Fixed Price."
+   }
+  }
+ ],
+ "dropped": []
+}

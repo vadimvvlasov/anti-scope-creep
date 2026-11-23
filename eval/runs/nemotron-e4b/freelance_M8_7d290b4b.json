@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8",
+ "chars": 19554,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+   "start": 5121,
+   "end": 5430
+  }
+ ],
+ "email": true,
+ "seconds": 33.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5475,
+   "prompt_tokens": 4201,
+   "output_tokens": 1274,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 13.55,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "All intellectual property rights in the Deliverables belong to Client from the moment they are created during the project. Contractor will hand over the source files and final assets to Client at the conclusion of the project, after Client has fulfilled all of its commercial obligations under this Agreement.",
+      "explanation": "The Client owns the work as soon as it is created, even if you have not been fully paid for it. This means you risk losing rights or having difficulty proving ownership if payment is delayed.",
+      "suggested_change": "All intellectual property rights in the Deliverables shall transfer to Client only upon Client's full payment of all commercial obligations under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4756,
+   "prompt_tokens": 3357,
+   "output_tokens": 1399,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 16.13,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 784,
+   "prompt_tokens": 394,
+   "output_tokens": 390,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 3.94,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI reviewed the agreement and have one suggested change regarding intellectual property.\n\n- The relevant clause states that all intellectual property rights in the Deliverables belong to the Client from the moment they are created. However, it is proposed that all intellectual property rights in the Deliverables shall transfer to Client only upon Client's full payment of all commercial obligations under this Agreement.\n\nLet me know if this modification is acceptable.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8c",
+ "chars": 19492,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+   "start": 5117,
+   "end": 5368
+  }
+ ],
+ "email": true,
+ "seconds": 34.3,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5556,
+   "prompt_tokens": 4191,
+   "output_tokens": 1365,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 15.19,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 Work Product created in the course of the project is the property of Client throughout. Contractor will transfer the Work Product to Client upon completion of the project, once Client has met all of its commercial obligations under this Agreement.",
+      "explanation": "The contract states that ownership immediately belongs to the client while you are working, even if you haven't been paid yet. This risks losing rights before earning the money.",
+      "suggested_change": "Work Product created in the course of the project shall become the property of the Client only upon full payment of all commercial obligations under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4412,
+   "prompt_tokens": 3357,
+   "output_tokens": 1055,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 11.56,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1094,
+   "prompt_tokens": 383,
+   "output_tokens": 711,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 7.52,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and would like to suggest a modification to the relevant clause before finalizing the contract.\n\n- The relevant clause states that Work Product ownership belongs to the Client throughout the project. To ensure proper compensation, the agreement should stipulate that Work Product ownership transfers to the Client only upon full payment of all commercial obligations under this agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,78 @@
+{
+ "id": "freelance:I2",
+ "chars": 19552,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "4.2 Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3972,
+   "end": 4135
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13169,
+   "end": 13191
+  }
+ ],
+ "email": true,
+ "seconds": 36.4,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5383,
+   "prompt_tokens": 4211,
+   "output_tokens": 1172,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 14.15,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "4.2 Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "You must wait 90 days from the invoice date to receive payment, which significantly delays cash flow. The late payment interest accrual also penalizes delays.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4529,
+   "prompt_tokens": 3363,
+   "output_tokens": 1166,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 13.46,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "You must wait 90 days after invoicing for payment, which is longer than the standard 30-day term.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1222,
+   "prompt_tokens": 423,
+   "output_tokens": 799,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 8.79,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI've reviewed the agreement and have a few suggestions for modification before signing.\n\n- The relevant clause 4.2 requires payment Net 90, which significantly delays cash flow, and includes late payment interest accrual; I propose changing this to 'Invoices are payable Net 30.'\n- The agreement states 'Payment period: Net 90,' which is longer than the standard 30-day term; I propose changing this to 'Payment period: Net 30.'\n\nLet me know your thoughts on these adjustments.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

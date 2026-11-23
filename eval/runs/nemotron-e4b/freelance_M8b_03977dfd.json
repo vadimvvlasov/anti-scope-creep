@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M8b",
+ "chars": 19491,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+   "start": 3628,
+   "end": 3700
+  }
+ ],
+ "email": true,
+ "seconds": 35.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5619,
+   "prompt_tokens": 4197,
+   "output_tokens": 1422,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 16.33,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "Work Product, and every right in it, vests in Client as it is generated.",
+      "explanation": "The client owns your work immediately upon creation, even if you have not been paid for it.",
+      "suggested_change": "Work Product ownership shall transfer to the Contractor until the Client has satisfied all commercial obligations under this Agreement."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4379,
+   "prompt_tokens": 3357,
+   "output_tokens": 1022,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 11.61,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 994,
+   "prompt_tokens": 331,
+   "output_tokens": 663,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 7.72,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nBefore signing the agreement, I would like to propose a modification to the relevant clause.\n\n- The relevant clause states that the client owns the work immediately upon creation, even if payment has not yet been made. I propose that Work Product ownership shall transfer to the Contractor until the Client has satisfied all commercial obligations under this Agreement.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

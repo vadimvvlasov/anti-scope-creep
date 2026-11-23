@@ -1,0 +1,120 @@
+{
+ "id": "freelance:M4",
+ "chars": 19355,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "2.3 Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+   "start": 1997,
+   "end": 2193
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "5.4 The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+   "start": 4876,
+   "end": 5037
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "4.2 Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+   "start": 3733,
+   "end": 3896
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "medium",
+   "quoted_text": "Payment period: Net 60",
+   "start": 12947,
+   "end": 12969
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "medium",
+   "quoted_text": "Revision allowance: 15 rounds",
+   "start": 12993,
+   "end": 13022
+  }
+ ],
+ "email": true,
+ "seconds": 98.9,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6547,
+   "prompt_tokens": 4164,
+   "output_tokens": 2383,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 51.93,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "2.3 Contractor will accommodate reasonable changes to scope requested by Client within the overall project budget. Changes that would exceed that budget are documented in a written change request.",
+      "explanation": "You must accept scope changes within the overall project budget without receiving additional payment.",
+      "suggested_change": "The Contractor shall accommodate reasonable changes to scope requested by the Client within the overall project budget, and any changes exceeding this budget must be documented in a written change request and priced separately."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "5.4 The parties intend to allow 15 rounds of ordinary revisions for the principal creative Deliverables. Additional revisions may require a written change order.",
+      "explanation": "You are obligated to provide up to 15 rounds of revisions for free, which is more than the allowed limit of 3 rounds.",
+      "suggested_change": "The Contractor shall allow up to 3 rounds of ordinary revisions for the principal creative Deliverables, with additional revisions requiring a written change order and corresponding fee."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "4.2 Invoices are payable Net 60. An invoice that remains unpaid after the due date may accrue interest at 1.0% per month to the extent permitted by applicable law.",
+      "explanation": "Payment is due 60 days after invoicing, which is longer than the standard 30-day term.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4767,
+   "prompt_tokens": 3358,
+   "output_tokens": 1409,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 30.82,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "medium",
+      "quoted_text": "Payment period: Net 60",
+      "explanation": "You must wait 60 days after invoicing to receive payment.",
+      "suggested_change": "Payment shall be made within 30 days of the invoice date."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "medium",
+      "quoted_text": "Revision allowance: 15 rounds",
+      "explanation": "The client can request up to 15 rounds of revisions, which is more than the allowed 3 rounds.",
+      "suggested_change": "The revision allowance shall be limited to 3 rounds."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1424,
+   "prompt_tokens": 702,
+   "output_tokens": 722,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 16.11,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and propose a few changes to ensure clarity. These modifications relate to the relevant clause:\n- The agreement currently requires accepting scope changes within the overall project budget without additional payment. The proposed change is that any changes exceeding the budget must be documented in a written change request and priced separately.\n- The relevant clause obligates providing up to 15 rounds of revisions for free, exceeding the allowed limit of 3 rounds. The proposed change is that the agreement should allow up to 3 rounds of ordinary revisions, with additional revisions requiring a written change order and corresponding fee.\n- Payment is currently due 60 days after invoicing, which is longer than the standard 30-day term. The proposed change is that invoices are payable Net 30.\n- The payment period requires waiting 60 days after invoicing to receive payment. The proposed change is that payment shall be made within 30 days of the invoice date.\n- The relevant clause allows for up to 15 rounds of revisions, exceeding the allowed limit of 3 rounds. The proposed change is that the revision allowance shall be limited to 3 rounds.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

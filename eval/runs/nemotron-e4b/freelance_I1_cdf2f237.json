@@ -1,0 +1,91 @@
+{
+ "id": "freelance:I1",
+ "chars": 19463,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "low",
+   "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+   "start": 1941,
+   "end": 2206
+  },
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5328,
+   "end": 5418
+  },
+  {
+   "category": "one_sided_termination",
+   "risk_level": "high",
+   "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+   "start": 9157,
+   "end": 9254
+  }
+ ],
+ "email": true,
+ "seconds": 46.1,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6407,
+   "prompt_tokens": 4190,
+   "output_tokens": 2217,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 25.29,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "low",
+      "quoted_text": "2.2 The parties acknowledge that the description of the Services is intended to identify the principal workstreams. Minor clarifications may be made through ordinary project communications, provided that such clarification does not materially increase the workload.",
+      "explanation": "This vague language allows the client to request minor changes without requiring a formal process or additional payment.",
+      "suggested_change": "Any clarification or change to the scope of Services must be documented in writing and may result in adjusted fees or timelines."
+     },
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "Ownership of your work transfers immediately upon delivery, even if you have not been paid for the full project.",
+      "suggested_change": "Intellectual property rights in each Deliverable shall transfer to Client upon full and final payment of the corresponding milestone or project fee, whichever is later."
+     },
+     {
+      "category": "one_sided_termination",
+      "risk_level": "high",
+      "quoted_text": "12.2 Client may terminate this Agreement at any time, without notice and without further payment.",
+      "explanation": "The client can end the contract instantly for any reason and does not have to pay you for work already completed.",
+      "suggested_change": "Either party may terminate this Agreement for material breach after 15 days notice, and if termination occurs without cause, the Client shall pay the Contractor for all work completed and costs incurred up to the termination date."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4414,
+   "prompt_tokens": 3357,
+   "output_tokens": 1057,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 11.93,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1282,
+   "prompt_tokens": 452,
+   "output_tokens": 830,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 8.89,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nBefore signing the agreement, I would like to propose some modifications to the relevant clauses:\n\n- The relevant clause 6.1 states that ownership transfers upon delivery, even if payment is incomplete. I propose that intellectual property rights transfer to the Client only upon full and final payment of the corresponding milestone or project fee, whichever is later.\n- The relevant clause 12.2 allows immediate termination without payment for completed work. I propose that either party may terminate for material breach after 15 days notice, and if termination occurs without cause, the Client shall pay the Contractor for all work completed and costs incurred up to the termination date.\n\nThank you,\n\n"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,47 @@
+{
+ "set": "freelance",
+ "contracts": 3,
+ "missing": [
+  "freelance:P1",
+  "freelance:M1",
+  "freelance:M2",
+  "freelance:M3",
+  "freelance:M4",
+  "freelance:M5",
+  "freelance:M6",
+  "freelance:D1",
+  "freelance:M7",
+  "freelance:M8",
+  "freelance:M8b",
+  "freelance:M8c",
+  "freelance:I1",
+  "freelance:I2",
+  "freelance:I3",
+  "freelance:B1"
+ ],
+ "metrics": {
+  "all": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 0,
+   "precision": null,
+   "recall": null,
+   "severity_accuracy": null
+  }
+ },
+ "run": {
+  "failed": 0,
+  "invalid_output": 0,
+  "findings_returned": 0,
+  "findings_kept": 0,
+  "dropped": {},
+  "quote_not_found_rate": null,
+  "tokens_mean": 5512,
+  "tokens_max": 9536,
+  "seconds_mean": 23.4,
+  "seconds_max": 35.4
+ },
+ "false_positives": [],
+ "false_negatives": [],
+ "severity_misses": []
+}
