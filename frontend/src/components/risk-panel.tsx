@@ -6,6 +6,7 @@ import { ProDialog } from "@/components/pro-dialog";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { DURATION_TEXT, FAILED_TEXT, RETRY_COST_TEXT } from "@/lib/analysis-copy";
+import { GOAL_LINES } from "@/lib/contract-goal";
 import { emptyFindingsMessage, type FindingFilter } from "@/lib/highlights";
 import type { ContractDetail, Finding } from "@/services/api";
 
@@ -132,7 +133,9 @@ export function AnalysisResults({
           {new Date(contract.analyzed_at).toLocaleString()}.
         </p>
       )}
-      {contract.risk_summary && <RiskSummarySection summary={contract.risk_summary} />}
+      {contract.risk_summary && (
+        <RiskSummarySection summary={contract.risk_summary} goal={contract.goal} />
+      )}
       <section>
         <h2 className={SECTION_TITLE}>Findings</h2>
         {emptyMessage ? (
@@ -155,7 +158,13 @@ export function AnalysisResults({
   );
 }
 
-function RiskSummarySection({ summary }: { summary: NonNullable<ContractDetail["risk_summary"]> }) {
+function RiskSummarySection({
+  summary,
+  goal,
+}: {
+  summary: NonNullable<ContractDetail["risk_summary"]>;
+  goal: ContractDetail["goal"];
+}) {
   return (
     <section className="rounded-xl border border-border bg-card p-6">
       <h2 className={SECTION_TITLE}>Risk summary</h2>
@@ -173,6 +182,11 @@ function RiskSummarySection({ summary }: { summary: NonNullable<ContractDetail["
           </span>
         </div>
       </div>
+      {goal && (
+        <p className="mt-3 text-sm text-muted-foreground" data-testid="goal-line">
+          {GOAL_LINES[goal]}
+        </p>
+      )}
     </section>
   );
 }

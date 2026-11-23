@@ -19,6 +19,7 @@ DETAIL_FIELDS = {
     "updated_at",
     "analyzed_at",
     "overall_risk_level",
+    "goal",
     "source_text",
     "risk_summary",
     "findings",
@@ -290,3 +291,52 @@ def test_other_users_contract_is_indistinguishable_from_missing(harness, auth_he
 
     assert harness.client.get("/contracts", headers=intruder).json()["total_count"] == 0
     assert harness.client.get(owned, headers=auth_headers).json()["title"] == "Pasted contract"
+
+
+# -- contract goal --------------------------------------------------------------------
+
+
+def _post_with_goal(harness, headers, goal):
+    data = {"text": ENGLISH_CONTRACT, "title": "With goal"}
+    if goal is not None:
+        data["goal"] = goal
+    return harness.client.post("/contracts", data=data, headers=headers)
+
+
+@pytest.mark.parametrize("goal", ["before_signing", "negotiating", "already_signed", "just_curious"])
+def test_each_goal_is_stored_and_returned_in_detail_and_list(harness, auth_headers, goal):
+    harness.use_recording_runner()
+    response = _post_with_goal(harness, auth_headers, goal)
+
+    assert response.status_code == 202
+    assert response.json()["goal"] == goal
+    contract_id = response.json()["id"]
+    assert harness.client.get(f"/contracts/{contract_id}", headers=auth_headers).json()["goal"] == goal
+    [item] = harness.client.get("/contracts", headers=auth_headers).json()["items"]
+    assert item["goal"] == goal
+
+
+@pytest.mark.parametrize("goal", [None, ""])
+def test_a_skipped_or_empty_goal_is_null(harness, auth_headers, goal):
+    harness.use_recording_runner()
+    assert _post_with_goal(harness, auth_headers, goal).json()["goal"] is None
+
+
+@pytest.mark.parametrize("goal", ["BEFORE_SIGNING", "curious", "x" * 500])
+def test_an_unknown_goal_is_rejected(harness, auth_headers, goal):
+    response = _post_with_goal(harness, auth_headers, goal)
+
+    assert_error(response, 422, "VALIDATION_ERROR")
+    assert harness.client.get("/contracts", headers=auth_headers).json()["items"] == []
+
+
+def test_retry_keeps_the_goal(harness, auth_headers):
+    data = {"text": ENGLISH_CONTRACT, "title": "With goal", "goal": "negotiating"}
+    contract_id = harness.client.post("/contracts", data=data, headers=auth_headers).json()["id"]
+    harness.use_recording_runner()
+    harness.clock.advance(60)
+
+    retried = harness.client.post(f"/contracts/{contract_id}/retry", headers=auth_headers)
+
+    assert retried.status_code == 202
+    assert retried.json()["goal"] == "negotiating"

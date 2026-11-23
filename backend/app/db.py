@@ -30,7 +30,7 @@ from sqlalchemy import (
 from sqlalchemy.engine import Engine, make_url
 from sqlalchemy.pool import StaticPool
 
-from app.models import ContractStatus, FileType, RiskCategory, RiskLevel
+from app.models import ContractGoal, ContractStatus, FileType, RiskCategory, RiskLevel
 
 metadata = MetaData(
     naming_convention={
@@ -108,6 +108,7 @@ contracts = Table(
     Column("analysis_run_id", Uuid, nullable=True),
     # How many times a start of the backend took this analysis up again after it was interrupted.
     Column("analysis_resumes", Integer, nullable=False, server_default="0"),
+    Column("goal", _enum(ContractGoal, "goal"), nullable=True),
     Index("ix_contracts_user_id_created_at", "user_id", "created_at"),
 )
 

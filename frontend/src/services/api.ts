@@ -155,6 +155,7 @@ class HttpApiClient implements ApiClient {
     if (input.file) form.append("file", input.file);
     if (input.text) form.append("text", input.text);
     if (input.title) form.append("title", input.title);
+    if (input.goal) form.append("goal", input.goal);
     return this.request<ContractDetail>("/contracts", { method: "POST", body: form });
   }
 

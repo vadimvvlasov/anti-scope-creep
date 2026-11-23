@@ -18,6 +18,7 @@ const contract = (findings: Finding[], withEmail = true): ContractDetail => ({
   updated_at: "2026-09-01T10:01:00Z",
   analyzed_at: "2026-09-01T10:01:00Z",
   overall_risk_level: "high",
+  goal: null,
   source_text: "text",
   risk_summary: { overall_risk_level: "high", high_count: 1, medium_count: 1, low_count: 1 },
   findings,

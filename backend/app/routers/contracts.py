@@ -54,8 +54,9 @@ def create_contract(
     file: Annotated[UploadFile | None, File()] = None,
     text: Annotated[str | None, Form()] = None,
     title: Annotated[str | None, Form()] = None,
+    goal: Annotated[str | None, Form()] = None,
 ) -> ContractDetail:
-    data = build_contract_input(_read_upload(file), text or None, title)
+    data = build_contract_input(_read_upload(file), text or None, title, goal)
     return service.create(user.id, data)
 
 

@@ -15,7 +15,7 @@ appears in the data policy.
 |---|---|---|---|
 | Visit | `pageview` | — | every route change |
 | Sign-up | `signup_completed` | — | after a successful registration |
-| Activation | `analysis_started` | `input`: `file`, `text` or `retry` | after the API accepts an upload or a retry |
+| Activation | `analysis_started` | `input`: `file`, `text` or `retry`; `goal`: the answer to the goal question (`before_signing`, `negotiating`, `already_signed`, `just_curious`), left out when skipped | after the API accepts an upload or a retry |
 | Value | `report_exported` | `format`: `pdf` or `docx` | after a report download |
 | Interest in paying | `pro_cta_clicked` | `placement`: `header` or `daily_limit` | the Pro dialog opens |
 | Intent to pay | `pro_waitlist_joined` | `placement`, `price_usd` | the waitlist button in the Pro dialog |
@@ -31,7 +31,7 @@ Every event also carries `path` (no query string) and the attribution of the bro
 Contract text, titles, file names, findings, email drafts, account emails, tokens. Events
 are typed in `frontend/src/services/analytics.ts` and the properties above are the only
 ones the code sends. The backend accepts only the event names and property keys above, with
-values up to 100 characters (`input`, `format`, `placement` and `screen` only from their fixed
+values up to 100 characters (`input`, `format`, `placement`, `screen` and `goal` only from their fixed
 values), and rejects anything else with `422`. IP addresses are not stored.
 
 ## How it is sent

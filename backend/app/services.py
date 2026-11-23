@@ -59,6 +59,7 @@ class ContractService:
             file_type=data.file_type,
             file_size=data.file_size,
             source_text=data.source_text,
+            goal=data.goal,
             status=ContractStatus.UPLOADED,
             created_at=now,
             updated_at=now,
@@ -199,6 +200,7 @@ def _summary_fields(record: ContractRecord) -> dict:
         "created_at": record.created_at,
         "updated_at": record.updated_at,
         "analyzed_at": record.analyzed_at,
+        "goal": record.goal,
     }
 
 
