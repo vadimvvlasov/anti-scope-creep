@@ -19,6 +19,7 @@ appears in the data policy.
 | Value | `report_exported` | `format`: `pdf` or `docx` | after a report download |
 | Interest in paying | `pro_cta_clicked` | `placement`: `header` or `daily_limit` | the Pro dialog opens |
 | Intent to pay | `pro_waitlist_joined` | `placement`, `price_usd` | the waitlist button in the Pro dialog |
+| Interest in photo scanning | `scan_photo_clicked` | `placement`: `scan_photo`, `screen`: `mobile` or `desktop` | the "Photograph a contract" dialog opens |
 
 Every event also carries `path` (no query string) and the attribution of the browser tab:
 `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` from the first page's URL, and
@@ -30,7 +31,7 @@ Every event also carries `path` (no query string) and the attribution of the bro
 Contract text, titles, file names, findings, email drafts, account emails, tokens. Events
 are typed in `frontend/src/services/analytics.ts` and the properties above are the only
 ones the code sends. The backend accepts only the event names and property keys above, with
-values up to 100 characters (`input`, `format` and `placement` only from their fixed
+values up to 100 characters (`input`, `format`, `placement` and `screen` only from their fixed
 values), and rejects anything else with `422`. IP addresses are not stored.
 
 ## How it is sent
@@ -54,6 +55,16 @@ available and nothing is charged, and offers a waitlist. A click on the waitlist
 signal. To write to the people on the waitlist, join the `distinct_id` of
 `pro_waitlist_joined` events with `users.id`: the Pro button is only on signed-in pages, so
 these events always carry an account ID.
+
+## The photo scan is a demand test
+
+There is no photo scanning. On narrow (phone) screens, New Analysis shows a "Photograph a
+contract" button; it opens a dialog saying the feature is not available yet. No camera is
+opened and nothing is uploaded. The click is `scan_photo_clicked` (`placement`:
+`scan_photo`, `screen`: `mobile` or `desktop`). It feeds one decision: whether to open the
+follow-up "photo scan through the PWA, with OCR quality measured on real phone photos"
+(#169). The threshold (clicks as a share of mobile analyses, over how many weeks) is set by
+the owner in #169 before the button ships; below it the button is removed.
 
 ## Links for channels
 

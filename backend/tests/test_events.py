@@ -38,6 +38,19 @@ def test_only_the_properties_sent_are_stored_with_their_types(harness, client):
     assert stored(harness)[0]["properties"] == {"placement": "header", "price_usd": 19}
 
 
+def test_the_photo_scan_click_is_stored_with_placement_and_screen(harness, client):
+    body = {"event": "scan_photo_clicked", "distinct_id": VISITOR,
+            "properties": {"placement": "scan_photo", "screen": "mobile"}}
+    assert client.post("/events", json=body).status_code == 204
+    assert stored(harness)[0]["properties"] == {"placement": "scan_photo", "screen": "mobile"}
+
+
+def test_an_unknown_screen_value_is_rejected(client):
+    body = {"event": "scan_photo_clicked", "distinct_id": VISITOR,
+            "properties": {"placement": "scan_photo", "screen": "tablet"}}
+    assert client.post("/events", json=body).status_code == 422
+
+
 def test_properties_may_be_left_out(harness, client):
     assert client.post("/events", json={"event": "signup_completed", "distinct_id": VISITOR}).status_code == 204
     assert stored(harness)[0]["properties"] == {}
