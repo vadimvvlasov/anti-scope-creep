@@ -1,0 +1,79 @@
+{
+ "id": "freelance:M6",
+ "chars": 19479,
+ "findings": [
+  {
+   "category": "one_sided_termination",
+   "risk_level": "low",
+   "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+   "start": 9021,
+   "end": 9191
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "4.2 Invoices are payable Net 40.",
+   "start": 3786,
+   "end": 3818
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "low",
+   "quoted_text": "Payment period: Net 40",
+   "start": 13072,
+   "end": 13094
+  }
+ ],
+ "email": false,
+ "seconds": 67.7,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5775,
+   "prompt_tokens": 4192,
+   "output_tokens": 1583,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 39.03,
+   "content": {
+    "findings": [
+     {
+      "category": "one_sided_termination",
+      "risk_level": "low",
+      "quoted_text": "12.2 Client may terminate for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date.",
+      "explanation": "The client can end the contract without a reason, but you are paid for the work completed up until the termination date.",
+      "suggested_change": "Either party may terminate this Agreement for convenience upon 20 days' written notice, subject to payment of fees for Services properly performed through the effective termination date."
+     },
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "4.2 Invoices are payable Net 40.",
+      "explanation": "The payment term is 40 days, which is longer than the standard 30 days, delaying when you receive your money.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4658,
+   "prompt_tokens": 3357,
+   "output_tokens": 1301,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 28.62,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "low",
+      "quoted_text": "Payment period: Net 40",
+      "explanation": "This means you have 40 days after sending an invoice to get paid, which is longer than the standard 30-day payment terms.",
+      "suggested_change": "The Contractor shall be paid within 30 days of the invoice date."
+     }
+    ]
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -1,0 +1,78 @@
+{
+ "id": "freelance:P1",
+ "chars": 19386,
+ "findings": [
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+   "start": 3810,
+   "end": 3969
+  },
+  {
+   "category": "unfavorable_payment_terms",
+   "risk_level": "high",
+   "quoted_text": "Payment period: Net 90",
+   "start": 13003,
+   "end": 13025
+  }
+ ],
+ "email": true,
+ "seconds": 69.6,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5312,
+   "prompt_tokens": 4176,
+   "output_tokens": 1136,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 27.89,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Invoices are payable Net 90. An invoice that remains unpaid after the due date may accrue interest at 2.0% per month to the extent permitted by applicable law.",
+      "explanation": "You have 90 days from the invoice date to pay, which is longer than the maximum allowed.",
+      "suggested_change": "Invoices are payable Net 30."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4745,
+   "prompt_tokens": 3363,
+   "output_tokens": 1382,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 29.64,
+   "content": {
+    "findings": [
+     {
+      "category": "unfavorable_payment_terms",
+      "risk_level": "high",
+      "quoted_text": "Payment period: Net 90",
+      "explanation": "This requires you to wait 90 days after invoicing before being paid, which is longer than the standard 30 days.",
+      "suggested_change": "Payment period: Net 30"
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 886,
+   "prompt_tokens": 410,
+   "output_tokens": 476,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 12.0,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nI have reviewed the agreement and have a few suggested changes to the relevant clauses before signing.\n\n- The relevant clause states that invoices are payable Net 90, which is longer than the maximum allowed. I propose changing this to: Invoices are payable Net 30.\n- The relevant clause specifies a Payment period of Net 90, which requires waiting 90 days after invoicing before payment, longer than the standard 30 days. I propose changing this to: Payment period: Net 30.\n\nLet me know if these modifications are acceptable.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

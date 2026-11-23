@@ -1,0 +1,63 @@
+{
+ "id": "freelance:M2",
+ "chars": 19252,
+ "findings": [
+  {
+   "category": "ip_transfer_before_payment",
+   "risk_level": "high",
+   "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+   "start": 5117,
+   "end": 5207
+  }
+ ],
+ "email": true,
+ "seconds": 103.5,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 6882,
+   "prompt_tokens": 4274,
+   "output_tokens": 2608,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 62.42,
+   "content": {
+    "findings": [
+     {
+      "category": "ip_transfer_before_payment",
+      "risk_level": "high",
+      "quoted_text": "6.1 All intellectual property rights in each Deliverable transfer to Client upon delivery.",
+      "explanation": "You lose ownership of your work as soon as it is delivered, even if you have not been fully paid for it.",
+      "suggested_change": "All intellectual property rights in each Deliverable shall transfer to Client only upon receipt of full payment for that Deliverable."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 4336,
+   "prompt_tokens": 3231,
+   "output_tokens": 1105,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 23.32,
+   "content": {
+    "findings": []
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1027,
+   "prompt_tokens": 339,
+   "output_tokens": 688,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 17.75,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "I have reviewed the agreement and have a few points I would like to discuss before signing.\n\n- The relevant clause 6.1 states that all intellectual property rights in each Deliverable transfer to the Client upon delivery. This means ownership transfers even if full payment for that Deliverable has not been received. I propose changing this to: All intellectual property rights in each Deliverable shall transfer to Client only upon receipt of full payment for that Deliverable.\n\nLet me know if these modifications are acceptable.\n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

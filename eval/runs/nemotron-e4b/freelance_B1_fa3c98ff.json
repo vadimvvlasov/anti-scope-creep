@@ -1,0 +1,106 @@
+{
+ "id": "freelance:B1",
+ "chars": 19237,
+ "findings": [
+  {
+   "category": "scope_creep",
+   "risk_level": "medium",
+   "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+   "start": 2001,
+   "end": 2129
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+   "start": 4823,
+   "end": 4930
+  },
+  {
+   "category": "scope_creep",
+   "risk_level": "high",
+   "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+   "start": 13855,
+   "end": 14022
+  },
+  {
+   "category": "unlimited_revisions",
+   "risk_level": "high",
+   "quoted_text": "Revision allowance: unlimited",
+   "start": 12886,
+   "end": 12915
+  }
+ ],
+ "email": true,
+ "seconds": 122.0,
+ "calls": [
+  {
+   "schema": "contract_findings",
+   "tokens": 5658,
+   "prompt_tokens": 4279,
+   "output_tokens": 1379,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 58.14,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "medium",
+      "quoted_text": "Contractor shall also perform any additional services [CLIENT_NAME] reasonably requests during the Term at no additional charge.",
+      "explanation": "You must perform any extra work requested by the client, even if it increases workload, without being paid extra.",
+      "suggested_change": "Any additional services requested by the Client must be agreed upon in writing, detailing the scope and associated fees, prior to commencement."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "[CLIENT_NAME] may request unlimited revisions until [CLIENT_NAME] is fully satisfied with each Deliverable.",
+      "explanation": "The client can request as many revisions as they want until they are completely satisfied, with no limit on time or effort.",
+      "suggested_change": "The Contractor will provide up to three (3) rounds of revisions for each Deliverable, after which further revisions may be subject to an additional fee."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "contract_findings",
+   "tokens": 5051,
+   "prompt_tokens": 3228,
+   "output_tokens": 1823,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 53.15,
+   "content": {
+    "findings": [
+     {
+      "category": "scope_creep",
+      "risk_level": "high",
+      "quoted_text": "Any post-launch support period is limited to the duration and scope stated in the commercial schedule. Requests outside that scope are handled as part of the Services.",
+      "explanation": "The contract implies that any work requested outside the defined scope is included in the existing services without requiring extra payment or a formal change order.",
+      "suggested_change": "Any requests for services outside the defined scope require a written change order specifying the work and associated fees before commencement."
+     },
+     {
+      "category": "unlimited_revisions",
+      "risk_level": "high",
+      "quoted_text": "Revision allowance: unlimited",
+      "explanation": "The client can request unlimited revisions without limit, potentially causing endless back-and-forth and delaying final delivery.",
+      "suggested_change": "The revision allowance is limited to three rounds, unless otherwise mutually agreed upon in writing."
+     }
+    ]
+   }
+  },
+  {
+   "schema": "client_email",
+   "tokens": 1458,
+   "prompt_tokens": 623,
+   "output_tokens": 835,
+   "output_budget": 16000,
+   "finish_reason": "stop",
+   "seconds": 10.62,
+   "content": {
+    "subject": "Proposed changes to the agreement",
+    "body": "Hello,\n\nThank you for sending over the agreement. Before signing, I wanted to raise a few points regarding the relevant clause for clarification:\n\n- The agreement states that any additional services requested should be performed at no additional charge. To clarify, any additional services must be agreed upon in writing, detailing the scope and associated fees, prior to commencement.\n- The relevant clause allows for unlimited revisions until full satisfaction is achieved. The Contractor will provide up to three (3) rounds of revisions for each Deliverable, after which further revisions may be subject to an additional fee.\n- The clause regarding post-launch support suggests work outside the defined scope is included in the Services. Any requests for services outside the defined scope require a written change order specifying the work and associated fees before commencement.\n- The revision allowance is stated as unlimited. The revision allowance is limited to three rounds, unless otherwise mutually agreed upon in writing.\n\nI look forward to finalizing the agreement. \n\nBest regards"
+   }
+  }
+ ],
+ "dropped": []
+}

@@ -366,6 +366,25 @@ If a candidate passes, the switch is a separate issue. If none does, Bonsai stay
 With 5 gold risks per held-out set this shows direction, not a precise comparison, as for Bonsai. The prompt is not
 tuned on held-out data.
 
+**Result, Nemotron 3.5 Bolt E4B, 2026-11-23: failed gate point 4** (`eval/runs/nemotron-e4b`, `freelance` only;
+`cuad-holdout` and `cuad-holdout-2` were not run because the candidate already fails on `freelance`).
+
+| | Nemotron E4B | Bonsai | Threshold |
+|---|---|---|---|
+| Failed / invalid JSON | 0 / 0 | 0 / 0 | at most 1 / 0 |
+| Recall | **0.963** (1 missed) | 1.0 | 1.0 |
+| Severity accuracy | **0.923** | 1.0 | 1.0 |
+| False alarms | 3 | 5 | at most 5 |
+| `quote_not_found` | 0% | 0% | at most 10% |
+| Seconds per contract, mean / max | 60.5 / 122 | 123.4 / 183.4 | at most 62 |
+
+- The missed risk is `one_sided_termination` in `freelance:M2` (gold severity high).
+- `scope_creep` severity was medium instead of high in `freelance:M1` and `freelance:B1`; all 3 false alarms are
+  also `scope_creep`.
+- Speed passes with 1.5 s to spare: half of Bonsai's time. Bonsai stays. Next, per the rule above, is the second
+  wave (Ornith 1.5 9B, Gemma 4 26B-A4B, Qwen 3.6 35B-A3B). The smoke run (`eval/runs/nemotron-e4b-smoke`, 3
+  contracts, mean 23 s) is a screen only and does not score on its own.
+
 ## Run health
 
 | Run | Failed | Invalid JSON | `quote_not_found` | Tokens per contract, mean / max |
